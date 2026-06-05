@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGNIVEERX REAL QUIZ PRO</title>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+     crossorigin="anonymous"></script> 
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:95%;
+max-width:750px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+position:relative;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+color:#fbbf24;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option{
+background:#111827;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.option:hover{background:#00e6ff;color:black;}
+
+.correct{background:#22c55e !important;}
+.wrong{background:#ef4444 !important;}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#00e6ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.previewBox{
+position:absolute;
+top:60px;
+left:0;
+right:0;
+background:#0f172a;
+max-height:300px;
+overflow:auto;
+display:none;
+padding:10px;
+border-radius:10px;
+z-index:999;
+}
+
+.previewItem{
+padding:6px;
+margin:5px 0;
+background:#111827;
+cursor:pointer;
+border-radius:6px;
+font-size:12px;
+}
+
+.pop{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px;
+border-radius:8px;
+animation:fade 1s;
+}
+@keyframes fade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+<div id="sec">START</div>
+<div>Score: <span id="score">0</span></div>
+<div id="timer">⏳ 15</div>
+</div>
+
+<h2 id="q"></h2>
+<div id="opt"></div>
+
+<div id="ansBox" style="margin-top:10px;color:#22c55e;font-weight:bold;"></div>
+
+<button onclick="togglePreview()">👁 Preview</button>
+<div class="previewBox" id="preview"></div>
+
+</div>
+
+<audio id="ok" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+<audio id="no" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+<script>
+
+let quiz=[];
+
+function add(sec,arr){
+arr.forEach(q=>{
+quiz.push({sec,q:q.q,o:q.o,c:q.c});
+});
+}
+
+/* ================= PHYSICS 25 REAL ================= */
+add("PHYSICS",[
+{q:"SI unit of force?",o:["Newton","Joule","Watt","Pascal"],c:0},
+{q:"Speed of light in vacuum?",o:["3×10^8 m/s","3×10^6","5×10^8","1×10^7"],c:0},
+{q:"Ohm's law formula?",o:["V=IR","P=VI","F=ma","E=mc²"],c:0},
+{q:"Unit of power?",o:["Watt","Joule","Newton","Volt"],c:0},
+{q:"Sound cannot travel in?",o:["Vacuum","Air","Water","Solid"],c:0},
+{q:"Lens formula?",o:["1/f=1/v-1/u","F=ma","P=VI","E=mc²"],c:0},
+{q:"SI unit of frequency?",o:["Hertz","Newton","Joule","Volt"],c:0},
+{q:"Acceleration due to gravity?",o:["9.8 m/s²","10","8","12"],c:0},
+{q:"Mirror used in car rear view?",o:["Convex","Concave","Plane","None"],c:0},
+{q:"Work formula?",o:["Force×Distance","Mass×Velocity","V×I","m×g"],c:0},
+{q:"Energy unit?",o:["Joule","Newton","Watt","Volt"],c:0},
+{q:"Transformer works on?",o:["AC","DC","Heat","Light"],c:0},
+{q:"Capacitor stores?",o:["Charge","Heat","Light","Mass"],c:0},
+{q:"Wave speed formula?",o:["fλ","f/λ","λ/f","f+λ"],c:0},
+{q:"Refraction law?",o:["Snell's law","Newton law","Ohm law","Faraday law"],c:0},
+{q:"SI unit of resistance?",o:["Ohm","Volt","Ampere","Watt"],c:0},
+{q:"Current formula?",o:["I=V/R","I=VR","I=R/V","I=V+R"],c:0},
+{q:"EM wave nature?",o:["Transverse","Longitudinal","Static","None"],c:0},
+{q:"Planck constant unit?",o:["J·s","N","W","Pa"],c:0},
+{q:"Photon is?",o:["Quantum of light","Particle with mass","Electron","Proton"],c:0},
+{q:"Energy formula?",o:["E=mc²","F=ma","V=IR","P=VI"],c:0},
+{q:"Magnetic flux unit?",o:["Weber","Tesla","Ohm","Joule"],c:0},
+{q:"Sound speed fastest in?",o:["Solid","Gas","Vacuum","Air"],c:0},
+{q:"Work-energy theorem?",o:["Work=Change in KE","F=ma","V=IR","P=VI"],c:0},
+{q:"EM wave speed?",o:["3×10^8 m/s","3×10^6","5×10^8","1×10^7"],c:0}
+]);
+
+/* ================= MATH 25 REAL ================= */
+add("MATH",[
+{q:"√144?",o:["12","14","10","16"],c:0},
+{q:"2^5?",o:["32","16","64","8"],c:0},
+{q:"log10(100)?",o:["2","1","3","4"],c:0},
+{q:"Derivative of x²?",o:["2x","x","x²","1"],c:0},
+{q:"sin²θ+cos²θ=?",o:["1","0","2","π"],c:0},
+{q:"5! ?",o:["120","60","24","720"],c:0},
+{q:"Area of circle?",o:["πr²","2πr","r²","πd"],c:0},
+{q:"LCM of 12,18?",o:["36","24","18","12"],c:0},
+{q:"HCF of 48,60?",o:["12","6","8","10"],c:0},
+{q:"√81?",o:["9","8","7","6"],c:0},
+{q:"3^4?",o:["81","64","27","16"],c:0},
+{q:"Probability max value?",o:["1","0","10","100"],c:0},
+{q:"(a-b)²?",o:["a²+b²-2ab","a²-b²","2ab","a²+b²"],c:0},
+{q:"Cube root 27?",o:["3","9","6","12"],c:0},
+{q:"tan 45°?",o:["1","0","√2","∞"],c:0},
+{q:"π approx?",o:["3.14","2.14","3.41","4.13"],c:0},
+{q:"log(1)?",o:["0","1","∞","-1"],c:0},
+{q:"Integral of x dx?",o:["x²/2","x","2x","lnx"],c:0},
+{q:"Matrix inverse exists when?",o:["det≠0","det=0","0","1"],c:0},
+{q:"Quadratic formula used for?",o:["Roots","Area","Volume","Speed"],c:0},
+{q:"Euler identity?",o:["e^{iπ}+1=0","a²+b²","F=ma","V=IR"],c:0},
+{q:"Distance formula?",o:["√((x2-x1)²+(y2-y1)²)","x+y","xy","x²"],c:0},
+{q:"Mean of 2,4,6?",o:["4","6","8","2"],c:0},
+{q:"Median of 1,3,5?",o:["3","1","5","0"],c:0},
+{q:"Mode means?",o:["Most frequent","Average","Middle","None"],c:0}
+]);
+
+/* ================= GK 25 REAL ================= */
+add("GK",[
+{q:"Capital of India?",o:["New Delhi","Mumbai","Kolkata","Chennai"],c:0},
+{q:"WHO HQ?",o:["Geneva","Paris","London","NY"],c:0},
+{q:"UN founded in?",o:["1945","1950","1939","1960"],c:0},
+{q:"Largest ocean?",o:["Pacific","Atlantic","Indian","Arctic"],c:0},
+{q:"Largest continent?",o:["Asia","Africa","Europe","Australia"],c:0},
+{q:"Currency of Japan?",o:["Yen","Won","Dollar","Euro"],c:0},
+{q:"NASA belongs to?",o:["USA","India","Russia","China"],c:0},
+{q:"First PM of India?",o:["Nehru","Gandhi","Patel","Bose"],c:0},
+{q:"India independence year?",o:["1947","1950","1930","1960"],c:0},
+{q:"UNO HQ?",o:["New York","Paris","London","Berlin"],c:0},
+{q:"BRICS includes?",o:["Brazil Russia India China SA","USA","UK","Japan"],c:0},
+{q:"ISRO stands for?",o:["Space Research Org","Indian Science","Space Agency","None"],c:0},
+{q:"First satellite of India?",o:["Aryabhata","INSAT","Chandrayaan","Mangal"],c:0},
+{q:"Capital USA?",o:["Washington DC","NY","LA","Chicago"],c:0},
+{q:"NATO HQ?",o:["Brussels","Paris","London","Berlin"],c:0},
+{q:"Largest desert?",o:["Sahara","Thar","Gobi","Kalahari"],c:0},
+{q:"UNESCO works for?",o:["Education","War","Trade","Money"],c:0},
+{q:"India currency?",o:["Rupee","Dollar","Euro","Yen"],c:0},
+{q:"UN chief?",o:["Guterres","Trump","Putin","Obama"],c:0},
+{q:"Climate summit?",o:["COP","G20","WHO","UN"],c:0},
+{q:"Space agency USA?",o:["NASA","ISRO","ESA","JAXA"],c:0},
+{q:"Head of India?",o:["President","PM","CM","Governor"],c:0},
+{q:"Longest river?",o:["Nile","Amazon","Ganga","Mississippi"],c:0},
+{q:"Largest country?",o:["Russia","India","USA","China"],c:0},
+{q:"UNO works for?",o:["Peace","War","Money","Trade"],c:0}
+]);
+
+/* ================= ENGLISH 25 REAL ================= */
+add("ENGLISH",[
+{q:"Synonym of Abundant?",o:["Plentiful","Rare","Small","Empty"],c:0},
+{q:"Antonym of Hot?",o:["Cold","Warm","Boiling","Fire"],c:0},
+{q:"Past of Go?",o:["Went","Gone","Go","Going"],c:0},
+{q:"Meaning of Benevolent?",o:["Kind","Cruel","Weak","Strong"],c:0},
+{q:"Plural of Mouse?",o:["Mice","Mouses","Mouse","Mices"],c:0},
+{q:"Synonym of Fast?",o:["Quick","Slow","Late","Weak"],c:0},
+{q:"Opposite of Bright?",o:["Dark","Light","Glow","Shine"],c:0},
+{q:"Meaning of Rapidly?",o:["Quickly","Slowly","Late","Hard"],c:0},
+{q:"Prefix of Possible?",o:["Im","Un","Re","Dis"],c:0},
+{q:"Article before vowel?",o:["an","a","the","no"],c:0},
+{q:"Past of Begin?",o:["Began","Begun","Begin","Begined"],c:0},
+{q:"Synonym Smart?",o:["Intelligent","Dumb","Weak","Slow"],c:0},
+{q:"Opposite Honest?",o:["Dishonest","Fair","Good","Kind"],c:0},
+{q:"Meaning of Idiom 'Break ice'?",o:["Start talk","Break ice","Stop","End"],c:0},
+{q:"Fear of water?",o:["Aquaphobia","Hydra","Aqua","Waterism"],c:0},
+{q:"Synonym Difficult?",o:["Hard","Easy","Soft","Light"],c:0},
+{q:"Opposite Ancient?",o:["Modern","Old","Past","Historic"],c:0},
+{q:"Verb of Beauty?",o:["Beautify","Beauty","Beautiful","Beaute"],c:0},
+{q:"Synonym Rapid?",o:["Fast","Slow","Late","Weak"],c:0},
+{q:"Opposite Victory?",o:["Defeat","Win","Success","Gain"],c:0},
+{q:"Meaning of 'She has gone'?",o:["Correct","Wrong","None","Maybe"],c:0},
+{q:"Article for consonant?",o:["a","an","the","no"],c:0},
+{q:"Synonym Brave?",o:["Courageous","Weak","Fearful","Small"],c:0},
+{q:"Opposite Big?",o:["Small","Large","Huge","Wide"],c:0},
+{q:"Meaning of Rapid?",o:["Fast","Slow","Late","Weak"],c:0}
+]);
+
+/* ================= REASONING 10 ================= */
+add("REASONING",[
+{q:"Odd one out?",o:["2","4","6","9"],c:3},
+{q:"Series 2,4,6?",o:["8","10","12","14"],c:0},
+{q:"Mirror image?",o:["Reverse","Same","Flip","None"],c:0},
+{q:"Coding A=1?",o:["Correct","Wrong","Maybe","None"],c:0},
+{q:"Direction left?",o:["West","East","North","South"],c:0},
+{q:"Analogy?",o:["A:B::C:D","Only A","Only B","None"],c:0},
+{q:"Pattern?",o:["ABAB","AAAA","BBBB","CCCC"],c:0},
+{q:"Puzzle?",o:["Solve","Skip","Guess","None"],c:0},
+{q:"Logic?",o:["True","False","Maybe","Unknown"],c:0},
+{q:"Relation father?",o:["Male parent","Female","Brother","None"],c:0}
+]);
+
+/* SHUFFLE */
+quiz.forEach(q=>{
+let correct=q.o[q.c];
+for(let i=q.o.length-1;i>0;i--){
+let j=Math.floor(Math.random()*i);
+[q.o[i],q.o[j]]=[q.o[j],q.o[i]];
+}
+q.c=q.o.indexOf(correct);
+});
+
+let i=0,score=0,timer,time=15;
+
+function load(){
+if(i>=quiz.length){
+document.body.innerHTML=`<h1>Finished</h1><h2>Score: ${score}</h2>`;
+return;
+}
+
+let q=quiz[i];
+document.getElementById("sec").innerText=q.sec;
+document.getElementById("q").innerText=q.q;
+document.getElementById("score").innerText=score;
+
+let box=document.getElementById("opt");
+box.innerHTML="";
+
+q.o.forEach((op,idx)=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=op;
+d.onclick=()=>check(idx);
+box.appendChild(d);
+});
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(timer);
+time=15;
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="⏳ "+time;
+if(time<=0) next();
+},1000);
+}
+
+function pop(msg,color){
+let d=document.createElement("div");
+d.className="pop";
+d.style.background=color;
+d.innerText=msg;
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),800);
+}
+
+function check(ans){
+
+clearInterval(timer);
+
+let q=quiz[i];
+let correctText=q.o[q.c];
+
+let opt=document.querySelectorAll(".option");
+
+opt.forEach(o=>o.style.pointerEvents="none");
+
+if(ans===q.c){
+
+score++;
+
+document.getElementById("ok").play();
+
+pop("+1 Correct ✔","green");
+
+opt[ans].classList.add("correct");
+
+}else{
+
+score--;
+
+document.getElementById("no").play();
+
+pop("-1 Wrong ❌","red");
+
+opt[ans].classList.add("wrong");
+
+opt[q.c].classList.add("correct");
+
+}
+
+document.getElementById("score").innerText=score;
+
+/* show answer */
+
+document.getElementById("ansBox").innerHTML=
+"✅ Correct Answer: "+correctText;
+
+setTimeout(()=>{
+
+document.getElementById("ansBox").innerHTML="";
+
+i++;
+
+load();
+
+},1500);
+
+}
+
+function togglePreview(){
+
+let p=document.getElementById("preview");
+
+if(p.style.display==="block"){
+p.style.display="none";
+return;
+}
+
+p.style.display="block";
+p.innerHTML="";
+
+quiz.forEach((q,idx)=>{
+
+let d=document.createElement("div");
+
+d.className="previewItem";
+
+d.innerText=(idx+1)+". "+q.q;
+
+d.onclick=()=>{
+i=idx;
+load();
+p.style.display="none";
+};
+
+p.appendChild(d);
+
+});
+
+}
+  
+load();
+
+</script>
+
+</body>
+</html>
