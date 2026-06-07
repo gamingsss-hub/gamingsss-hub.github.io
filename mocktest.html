@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGNIVEERX REAL QUIZ PRO</title>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+     crossorigin="anonymous"></script> 
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:95%;
+max-width:750px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+position:relative;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+color:#fbbf24;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option{
+background:#111827;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.option:hover{background:#00e6ff;color:black;}
+
+.correct{background:#22c55e !important;}
+.wrong{background:#ef4444 !important;}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#00e6ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.previewBox{
+position:absolute;
+top:60px;
+left:0;
+right:0;
+background:#0f172a;
+max-height:300px;
+overflow:auto;
+display:none;
+padding:10px;
+border-radius:10px;
+z-index:999;
+}
+
+.previewItem{
+padding:6px;
+margin:5px 0;
+background:#111827;
+cursor:pointer;
+border-radius:6px;
+font-size:12px;
+}
+
+.pop{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px;
+border-radius:8px;
+animation:fade 1s;
+}
+@keyframes fade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+<div id="sec">START</div>
+<div>Score: <span id="score">0</span></div>
+<div id="timer">⏳ 15</div>
+</div>
+
+<h2 id="q"></h2>
+<div id="opt"></div>
+
+<div id="ansBox" style="margin-top:10px;color:#22c55e;font-weight:bold;"></div>
+
+<button onclick="togglePreview()">👁 Preview</button>
+<div class="previewBox" id="preview"></div>
+
+</div>
+
+<audio id="ok" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+<audio id="no" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+<script>
+
+let quiz=[];
+
+function add(sec,arr){
+arr.forEach(q=>{
+quiz.push({sec,q:q.q,o:q.o,c:q.c});
+});
+}
+
+/* ================= COMPUTER 25 REAL ================= */
+add("COMPUTER",[
+{q:"Which memory is known as volatile memory?",o:["RAM","ROM","Hard Disk","CD"],c:0},
+{q:"Full form of CPU?",o:["Central Processing Unit","Control Processing Unit","Computer Processing Unit","Central Program Unit"],c:0},
+{q:"Brain of computer?",o:["CPU","RAM","ROM","Monitor"],c:0},
+{q:"1 MB = ?",o:["1024 KB","1000 KB","512 KB","2048 KB"],c:0},
+{q:"Which is an input device?",o:["Keyboard","Monitor","Printer","Speaker"],c:0},
+{q:"Shortcut key for Save?",o:["Ctrl+S","Ctrl+C","Ctrl+P","Ctrl+A"],c:0},
+{q:"Which company developed Windows?",o:["Microsoft","Google","Apple","IBM"],c:0},
+{q:"WWW stands for?",o:["World Wide Web","World Web Wide","Wide World Web","Web World Wide"],c:0},
+{q:"Full form of URL?",o:["Uniform Resource Locator","Universal Resource Link","Unique Resource Locator","Uniform Record Locator"],c:0},
+{q:"Binary language uses?",o:["0 and 1","1 and 2","A and B","0 to 9"],c:0},
+{q:"Which is not an Operating System?",o:["MS Word","Windows","Linux","Android"],c:0},
+{q:"Full form of USB?",o:["Universal Serial Bus","United Serial Bus","Universal System Bus","Unique Serial Bus"],c:0},
+{q:"Fastest memory?",o:["Cache","RAM","ROM","Hard Disk"],c:0},
+{q:"Email is used for?",o:["Sending Messages","Printing","Scanning","Gaming"],c:0},
+{q:"Virus is?",o:["Malicious Software","Hardware","Input Device","Memory"],c:0},
+{q:"Shortcut key for Undo?",o:["Ctrl+Z","Ctrl+Y","Ctrl+U","Ctrl+A"],c:0},
+{q:"Which is a web browser?",o:["Chrome","Excel","PowerPoint","Windows"],c:0},
+{q:"PDF stands for?",o:["Portable Document Format","Printed Data File","Personal Document Format","Portable Data Format"],c:0},
+{q:"LAN stands for?",o:["Local Area Network","Large Area Network","Long Area Network","Linked Area Network"],c:0},
+{q:"Which device prints documents?",o:["Printer","Scanner","Monitor","Keyboard"],c:0},
+{q:"Which key refreshes a webpage?",o:["F5","F2","F8","F12"],c:0},
+{q:"Google is a?",o:["Search Engine","Browser","OS","Software"],c:0},
+{q:"ROM is?",o:["Permanent Memory","Temporary Memory","Cache","Storage"],c:0},
+{q:"Which stores data permanently?",o:["Hard Disk","RAM","Register","Cache"],c:0},
+{q:"Full form of HTML?",o:["HyperText Markup Language","HighText Machine Language","Hyper Tool Markup Language","Hyper Transfer Markup Language"],c:0}
+]);
+/* ================= MATH 25 REAL ================= */
+add("MATHS",[
+{q:"√2025 = ?",o:["45","40","50","55"],c:0},
+{q:"15% of 2400 = ?",o:["360","320","340","380"],c:0},
+{q:"LCM of 18, 24 and 36?",o:["72","144","108","36"],c:0},
+{q:"HCF of 96 and 144?",o:["48","24","12","36"],c:0},
+{q:"2³ × 2⁴ = ?",o:["128","64","256","32"],c:0},
+{q:"(25×16)÷4 = ?",o:["100","120","80","90"],c:0},
+{q:"If x=12, then x²=?",o:["144","124","134","154"],c:0},
+{q:"Cube root of 2197?",o:["13","12","14","15"],c:0},
+{q:"Simple Interest on ₹5000 at 10% for 2 years?",o:["1000","500","1500","1200"],c:0},
+{q:"Average of 12,18,24,30,36?",o:["24","22","26","28"],c:0},
+{q:"0.625 as fraction?",o:["5/8","3/8","7/8","1/8"],c:0},
+{q:"Area of a circle with radius 7 cm?",o:["154 cm²","144 cm²","164 cm²","174 cm²"],c:0},
+{q:"Perimeter of square of side 15 cm?",o:["60 cm","45 cm","75 cm","30 cm"],c:0},
+{q:"(a-b)² = ?",o:["a²-2ab+b²","a²+2ab+b²","a²-b²","2ab"],c:0},
+{q:"tan 60° = ?",o:["√3","1","0","1/√3"],c:0},
+{q:"cos 0° = ?",o:["1","0","1/2","√3/2"],c:0},
+{q:"A train covers 180 km in 3 hours. Speed?",o:["60 km/h","50 km/h","70 km/h","80 km/h"],c:0},
+{q:"If 8x = 96, x = ?",o:["12","10","14","16"],c:0},
+{q:"(121)^(1/2) = ?",o:["11","12","13","10"],c:0},
+{q:"Sum of interior angles of a quadrilateral?",o:["360°","180°","540°","720°"],c:0},
+{q:"1 hectare = ?",o:["10000 m²","1000 m²","5000 m²","100 m²"],c:0},
+{q:"Median of 5,10,15,20,25?",o:["15","10","20","25"],c:0},
+{q:"Probability of getting head in one coin toss?",o:["1/2","1","0","1/3"],c:0},
+{q:"If CP=₹800 and SP=₹1000, Profit %=?",o:["25%","20%","30%","15%"],c:0},
+{q:"Compound Interest on ₹1000 at 10% for 2 years?",o:["₹210","₹200","₹220","₹190"],c:0}
+]);
+/* ================= GK 25 REAL ================= */
+add("GK",[
+{q:"Who is known as Iron Man of India?",o:["Sardar Patel","Nehru","Gandhi","Bose"],c:0},
+{q:"Constitution adopted on?",o:["26 Nov 1949","26 Jan 1950","15 Aug 1947","24 Jan 1950"],c:0},
+{q:"First President of India?",o:["Dr Rajendra Prasad","Nehru","Radhakrishnan","Patel"],c:0},
+{q:"RBI established in?",o:["1935","1947","1949","1950"],c:0},
+{q:"Capital of Australia?",o:["Canberra","Sydney","Melbourne","Perth"],c:0},
+{q:"Largest planet?",o:["Jupiter","Earth","Saturn","Mars"],c:0},
+{q:"Battle of Plassey fought in?",o:["1757","1764","1857","1748"],c:0},
+{q:"Founder of Brahmo Samaj?",o:["Raja Ram Mohan Roy","Dayanand","Vivekananda","Tagore"],c:0},
+{q:"WTO Headquarters?",o:["Geneva","Paris","New York","London"],c:0},
+{q:"Which planet is known as Red Planet?",o:["Mars","Earth","Jupiter","Venus"],c:0},
+{q:"Who discovered Penicillin?",o:["Alexander Fleming","Newton","Darwin","Pasteur"],c:0},
+{q:"Fundamental Duties added by?",o:["42nd Amendment","44th","52nd","61st"],c:0},
+{q:"Longest National Highway?",o:["NH44","NH27","NH48","NH16"],c:0},
+{q:"Capital of Kazakhstan?",o:["Astana","Baku","Almaty","Tashkent"],c:0},
+{q:"Permanent members of UNSC?",o:["5","4","6","7"],c:0},
+{q:"Who wrote Discovery of India?",o:["Jawaharlal Nehru","Gandhi","Tagore","Patel"],c:0},
+{q:"Largest coffee producer state?",o:["Karnataka","Kerala","Tamil Nadu","Assam"],c:0},
+{q:"Most abundant gas in atmosphere?",o:["Nitrogen","Oxygen","CO2","Hydrogen"],c:0},
+{q:"ISRO Headquarters?",o:["Bengaluru","Delhi","Mumbai","Hyderabad"],c:0},
+{q:"Jai Jawan Jai Kisan slogan by?",o:["Lal Bahadur Shastri","Nehru","Indira Gandhi","Patel"],c:0},
+{q:"India's first satellite?",o:["Aryabhata","Rohini","INSAT","Bhaskara"],c:0},
+{q:"Highest mountain peak?",o:["Mount Everest","K2","Kanchenjunga","Makalu"],c:0},
+{q:"Currency of Japan?",o:["Yen","Won","Dollar","Baht"],c:0},
+{q:"Buland Darwaza built by?",o:["Akbar","Babur","Humayun","Shah Jahan"],c:0},
+{q:"National animal of India?",o:["Tiger","Lion","Elephant","Leopard"],c:0}
+]);
+/* ================= ENGLISH 25 REAL ================= */
+add("ENGLISH",[
+{q:"Synonym of 'Brave'?",o:["Courageous","Weak","Coward","Fearful"],c:0},
+{q:"Antonym of 'Ancient'?",o:["Modern","Old","Historic","Past"],c:0},
+{q:"He ____ to school daily.",o:["goes","go","gone","going"],c:0},
+{q:"One who writes poems is called?",o:["Poet","Author","Singer","Artist"],c:0},
+{q:"Correct spelling?",o:["Environment","Enviroment","Environmant","Enviornment"],c:0},
+{q:"'Break the ice' means?",o:["Start conversation","Break ice","Fight","Run away"],c:0},
+{q:"Passive voice of 'He plays cricket'?",o:["Cricket is played by him","Cricket was played by him","Cricket plays him","Cricket is playing"],c:0},
+{q:"Synonym of 'Rapid'?",o:["Fast","Slow","Late","Weak"],c:0},
+{q:"Antonym of 'Victory'?",o:["Defeat","Win","Success","Triumph"],c:0},
+{q:"She has lived here ____ 2015.",o:["since","for","from","at"],c:0},
+{q:"One who cannot read or write?",o:["Illiterate","Literate","Scholar","Graduate"],c:0},
+{q:"___ honest man.",o:["An","A","The","No article"],c:0},
+{q:"Meaning of 'Generous'?",o:["Kind","Cruel","Greedy","Weak"],c:0},
+{q:"Antonym of 'Transparent'?",o:["Opaque","Clear","Visible","Bright"],c:0},
+{q:"If I ____ rich, I would help others.",o:["were","am","was","be"],c:0},
+{q:"One who loves mankind?",o:["Philanthropist","Pessimist","Atheist","Critic"],c:0},
+{q:"Correct spelling?",o:["Embarrassment","Embarassment","Embarrasment","Embarasment"],c:0},
+{q:"'A blessing in disguise' means?",o:["Hidden benefit","Bad luck","False hope","Curse"],c:0},
+{q:"Direct speech: He said, 'I am busy.'",o:["He said that he was busy","He says he is busy","He said he is busy","He was busy"],c:0},
+{q:"Synonym of 'Prudent'?",o:["Wise","Foolish","Careless","Weak"],c:0},
+{q:"Choose correct sentence.",o:["Neither boy was present","Neither boy were present","Neither boys was present","Neither boys were present"],c:0},
+{q:"Train arrived ____ time.",o:["on","at","for","in"],c:0},
+{q:"Optimist means?",o:["Positive thinker","Negative thinker","Critic","Neutral person"],c:0},
+{q:"'Hit the nail on the head' means?",o:["Exactly right","Miss target","Work hard","Careless"],c:0},
+{q:"Antonym of 'Scarcity'?",o:["Abundance","Shortage","Need","Lack"],c:0}
+]);
+/* ================= REASONING 10 ================= */
+add("REASONING",[
+{q:"Odd one out?",o:["2","4","6","9"],c:3},
+{q:"Series 2,4,6?",o:["8","10","12","14"],c:0},
+{q:"Mirror image?",o:["Reverse","Same","Flip","None"],c:0},
+{q:"Coding A=1?",o:["Correct","Wrong","Maybe","None"],c:0},
+{q:"Direction left?",o:["West","East","North","South"],c:0},
+{q:"Analogy?",o:["A:B::C:D","Only A","Only B","None"],c:0},
+{q:"Pattern?",o:["ABAB","AAAA","BBBB","CCCC"],c:0},
+{q:"Puzzle?",o:["Solve","Skip","Guess","None"],c:0},
+{q:"Logic?",o:["True","False","Maybe","Unknown"],c:0},
+{q:"Relation father?",o:["Male parent","Female","Brother","None"],c:0}
+]);
+
+/* SHUFFLE */
+quiz.forEach(q=>{
+let correct=q.o[q.c];
+for(let i=q.o.length-1;i>0;i--){
+let j=Math.floor(Math.random()*i);
+[q.o[i],q.o[j]]=[q.o[j],q.o[i]];
+}
+q.c=q.o.indexOf(correct);
+});
+
+let i=0,score=0,timer,time=15;
+
+function load(){
+if(i>=quiz.length){
+document.body.innerHTML=`<h1>Finished</h1><h2>Score: ${score}</h2>`;
+return;
+}
+
+let q=quiz[i];
+document.getElementById("sec").innerText=q.sec;
+document.getElementById("q").innerText=q.q;
+document.getElementById("score").innerText=score;
+
+let box=document.getElementById("opt");
+box.innerHTML="";
+
+q.o.forEach((op,idx)=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=op;
+d.onclick=()=>check(idx);
+box.appendChild(d);
+});
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(timer);
+time=15;
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="⏳ "+time;
+if(time<=0) next();
+},1000);
+}
+
+function pop(msg,color){
+let d=document.createElement("div");
+d.className="pop";
+d.style.background=color;
+d.innerText=msg;
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),800);
+}
+
+function check(ans){
+
+clearInterval(timer);
+
+let q=quiz[i];
+let correctText=q.o[q.c];
+
+let opt=document.querySelectorAll(".option");
+
+opt.forEach(o=>o.style.pointerEvents="none");
+
+if(ans===q.c){
+
+score++;
+
+document.getElementById("ok").play();
+
+pop("+1 Correct ✔","green");
+
+opt[ans].classList.add("correct");
+
+}else{
+
+score--;
+
+document.getElementById("no").play();
+
+pop("-1 Wrong ❌","red");
+
+opt[ans].classList.add("wrong");
+
+opt[q.c].classList.add("correct");
+
+}
+
+document.getElementById("score").innerText=score;
+
+/* show answer */
+
+document.getElementById("ansBox").innerHTML=
+"✅ Correct Answer: "+correctText;
+
+setTimeout(()=>{
+
+document.getElementById("ansBox").innerHTML="";
+
+i++;
+
+load();
+
+},1500);
+
+}
+
+function togglePreview(){
+
+let p=document.getElementById("preview");
+
+if(p.style.display==="block"){
+p.style.display="none";
+return;
+}
+
+p.style.display="block";
+p.innerHTML="";
+
+quiz.forEach((q,idx)=>{
+
+let d=document.createElement("div");
+
+d.className="previewItem";
+
+d.innerText=(idx+1)+". "+q.q;
+
+d.onclick=()=>{
+i=idx;
+load();
+p.style.display="none";
+};
+
+p.appendChild(d);
+
+});
+
+}
+  
+load();
+
+</script>
+
+</body>
+</html>
