@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGNIVEERX REAL QUIZ PRO</title>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+     crossorigin="anonymous"></script> 
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:95%;
+max-width:750px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+position:relative;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+color:#fbbf24;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option{
+background:#111827;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.option:hover{background:#00e6ff;color:black;}
+
+.correct{background:#22c55e !important;}
+.wrong{background:#ef4444 !important;}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#00e6ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.previewBox{
+position:absolute;
+top:60px;
+left:0;
+right:0;
+background:#0f172a;
+max-height:300px;
+overflow:auto;
+display:none;
+padding:10px;
+border-radius:10px;
+z-index:999;
+}
+
+.previewItem{
+padding:6px;
+margin:5px 0;
+background:#111827;
+cursor:pointer;
+border-radius:6px;
+font-size:12px;
+}
+
+.pop{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px;
+border-radius:8px;
+animation:fade 1s;
+}
+@keyframes fade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+<div id="sec">START</div>
+<div>Score: <span id="score">0</span></div>
+<div id="timer">⏳ 15</div>
+</div>
+
+<h2 id="q"></h2>
+<div id="opt"></div>
+
+<div id="ansBox" style="margin-top:10px;color:#22c55e;font-weight:bold;"></div>
+
+<button onclick="togglePreview()">👁 Preview</button>
+<div class="previewBox" id="preview"></div>
+
+</div>
+
+<audio id="ok" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+<audio id="no" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+<script>
+
+let quiz=[];
+
+function add(sec,arr){
+arr.forEach(q=>{
+quiz.push({sec,q:q.q,o:q.o,c:q.c});
+});
+}
+
+
+/* ================= REASONING 25 REAL ================= */
+add("RESONING",[
+{
+q:"Series: 2 6 18 54 ?",
+o:["162","108","72","216"],
+c:0
+},
+
+{
+q:"Odd one out?",
+o:["Car","Bus","Train","Banana"],
+c:3
+},
+
+{
+q:"Dog:Puppy :: Cat:?",
+o:["Kitten","Cub","Calf","Kid"],
+c:0
+},
+
+{
+q:"Mirror time of 4:30?",
+o:["7:30","8:30","6:30","5:30"],
+c:0
+},
+
+{
+q:"Series: A C E G ?",
+o:["I","H","J","K"],
+c:0
+},
+
+{
+q:"Coding CAT=DBU BAT=?",
+o:["CBU","DBU","CAU","DBT"],
+c:0
+},
+
+{
+q:"8 16 32 ?",
+o:["64","48","72","96"],
+c:0
+},
+
+{
+q:"Clock angle at 3?",
+o:["90°","180°","45°","120°"],
+c:0
+},
+
+{
+q:"Odd one?",
+o:["Apple","Mango","Potato","Banana"],
+c:2
+},
+
+{
+q:"Brother's daughter relation?",
+o:["Niece","Sister","Aunt","Cousin"],
+c:0
+},
+
+{
+q:"Series: 5 10 20 40 ?",
+o:["80","60","70","90"],
+c:0
+},
+
+{
+q:"Book:Read :: Food:?",
+o:["Eat","Write","Cook","Draw"],
+c:0
+},
+
+{
+q:"If A=1 then D=?",
+o:["4","5","6","3"],
+c:0
+},
+
+{
+q:"Series: Z X V T ?",
+o:["R","Q","S","P"],
+c:0
+},
+
+{
+q:"2 5 10 17 ?",
+o:["26","20","24","30"],
+c:0
+},
+
+{
+q:"Pen:Write :: Knife:?",
+o:["Cut","Read","Eat","Throw"],
+c:0
+},
+
+{
+q:"Odd one?",
+o:["Circle","Square","Triangle","Apple"],
+c:3
+},
+
+{
+q:"Mirror of LEFT?",
+o:["TFEL","TFEL","LEFT","FLET"],
+c:0
+},
+
+{
+q:"Series: 1 4 9 16 ?",
+o:["25","20","36","49"],
+c:0
+},
+
+{
+q:"Coding DOG=EPH CAT=?",
+o:["DBU","CBU","CAU","DAU"],
+c:0
+},
+
+{
+q:"Series: 3 6 12 24 ?",
+o:["48","36","42","50"],
+c:0
+},
+
+{
+q:"A:B::C:?",
+o:["D","E","F","G"],
+c:0
+},
+
+{
+q:"Triangle has how many sides?",
+o:["3","4","5","6"],
+c:0
+},
+
+{
+q:"Odd one?",
+o:["Bus","Truck","Train","Tiger"],
+c:3
+},
+
+{
+q:"Monday ke baad?",
+o:["Tuesday","Sunday","Friday","Saturday"],
+c:0
+}
+]);
+
+
+/* SHUFFLE */
+quiz.forEach(q=>{
+let correct=q.o[q.c];
+for(let i=q.o.length-1;i>0;i--){
+let j=Math.floor(Math.random()*i);
+[q.o[i],q.o[j]]=[q.o[j],q.o[i]];
+}
+q.c=q.o.indexOf(correct);
+});
+
+let i=0,score=0,timer,time=15;
+
+function load(){
+if(i>=quiz.length){
+document.body.innerHTML=`<h1>Finished</h1><h2>Score: ${score}</h2>`;
+return;
+}
+
+let q=quiz[i];
+document.getElementById("sec").innerText=q.sec;
+document.getElementById("q").innerText=q.q;
+document.getElementById("score").innerText=score;
+
+let box=document.getElementById("opt");
+box.innerHTML="";
+
+q.o.forEach((op,idx)=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=op;
+d.onclick=()=>check(idx);
+box.appendChild(d);
+});
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(timer);
+time=15;
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="⏳ "+time;
+if(time<=0) next();
+},1000);
+}
+
+function pop(msg,color){
+let d=document.createElement("div");
+d.className="pop";
+d.style.background=color;
+d.innerText=msg;
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),800);
+}
+
+function check(ans){
+
+clearInterval(timer);
+
+let q=quiz[i];
+let correctText=q.o[q.c];
+
+let opt=document.querySelectorAll(".option");
+
+opt.forEach(o=>o.style.pointerEvents="none");
+
+if(ans===q.c){
+
+score++;
+
+document.getElementById("ok").play();
+
+pop("+1 Correct ✔","green");
+
+opt[ans].classList.add("correct");
+
+}else{
+
+score--;
+
+document.getElementById("no").play();
+
+pop("-1 Wrong ❌","red");
+
+opt[ans].classList.add("wrong");
+
+opt[q.c].classList.add("correct");
+
+}
+
+document.getElementById("score").innerText=score;
+
+/* show answer */
+
+document.getElementById("ansBox").innerHTML=
+"✅ Correct Answer: "+correctText;
+
+setTimeout(()=>{
+
+document.getElementById("ansBox").innerHTML="";
+
+i++;
+
+load();
+
+},1500);
+
+}
+
+function togglePreview(){
+
+let p=document.getElementById("preview");
+
+if(p.style.display==="block"){
+p.style.display="none";
+return;
+}
+
+p.style.display="block";
+p.innerHTML="";
+
+quiz.forEach((q,idx)=>{
+
+let d=document.createElement("div");
+
+d.className="previewItem";
+
+d.innerText=(idx+1)+". "+q.q;
+
+d.onclick=()=>{
+i=idx;
+load();
+p.style.display="none";
+};
+
+p.appendChild(d);
+
+});
+
+}
+  
+load();
+
+</script>
+
+</body>
+</html>
