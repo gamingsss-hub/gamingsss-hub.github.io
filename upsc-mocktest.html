@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGNIVEERX REAL QUIZ PRO</title>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+     crossorigin="anonymous"></script> 
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:95%;
+max-width:750px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+position:relative;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+color:#fbbf24;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option{
+background:#111827;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.option:hover{background:#00e6ff;color:black;}
+
+.correct{background:#22c55e !important;}
+.wrong{background:#ef4444 !important;}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#00e6ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.previewBox{
+position:absolute;
+top:60px;
+left:0;
+right:0;
+background:#0f172a;
+max-height:300px;
+overflow:auto;
+display:none;
+padding:10px;
+border-radius:10px;
+z-index:999;
+}
+
+.previewItem{
+padding:6px;
+margin:5px 0;
+background:#111827;
+cursor:pointer;
+border-radius:6px;
+font-size:12px;
+}
+
+.pop{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px;
+border-radius:8px;
+animation:fade 1s;
+}
+@keyframes fade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+<div id="sec">START</div>
+<div>Score: <span id="score">0</span></div>
+<div id="timer">⏳ 15</div>
+</div>
+
+<h2 id="q"></h2>
+<div id="opt"></div>
+
+<div id="ansBox" style="margin-top:10px;color:#22c55e;font-weight:bold;"></div>
+
+<button onclick="togglePreview()">👁 Preview</button>
+<div class="previewBox" id="preview"></div>
+
+</div>
+
+<audio id="ok" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+<audio id="no" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+<script>
+
+let quiz=[];
+
+function add(sec,arr){
+arr.forEach(q=>{
+quiz.push({sec,q:q.q,o:q.o,c:q.c});
+});
+}
+
+
+/* ================= MOCKTEST 25 REAL ================= */
+add("MOCKTEST",[
+{q:"भारत का संविधान कब लागू हुआ?", a:["1947","1949","1950","1952"], correct:2},
+{q:"भारत का सबसे बड़ा राज्य क्षेत्रफल के अनुसार कौन सा है?", a:["UP","MP","Rajasthan","Maharashtra"], correct:2},
+{q:"UNO की स्थापना कब हुई?", a:["1919","1945","1950","1947"], correct:1},
+{q:"भारत के राष्ट्रपति का कार्यकाल कितना होता है?", a:["4 साल","5 साल","6 साल","7 साल"], correct:1},
+{q:"भारत की पहली महिला प्रधानमंत्री कौन थी?", a:["Indira Gandhi","Sarojini Naidu","Pratibha Patil","None"], correct:0},
+{q:"गंगा नदी का उद्गम कहाँ से होता है?", a:["Yamunotri","Gangotri","Kedarnath","Amarnath"], correct:1},
+{q:"भारतीय संसद में कितने सदन होते हैं?", a:["1","2","3","4"], correct:1},
+{q:"RBI की स्थापना कब हुई?", a:["1935","1947","1950","1965"], correct:0},
+{q:"पृथ्वी का सबसे बड़ा महाद्वीप कौन सा है?", a:["Africa","Asia","Europe","Australia"], correct:1},
+{q:"संविधान सभा के अध्यक्ष कौन थे?", a:["Rajendra Prasad","Nehru","Gandhi","Patel"], correct:0},
+
+{q:"भारत छोड़ो आंदोलन कब हुआ?", a:["1940","1942","1945","1930"], correct:1},
+{q:"1857 की क्रांति का नेतृत्व किसने किया?", a:["Mangal Pandey","Bhagat Singh","Subhash Bose","Nehru"], correct:0},
+{q:"मौलिक अधिकार कितने हैं?", a:["5","6","7","8"], correct:1},
+{q:"भारतीय संविधान के निर्माता कौन हैं?", a:["Gandhi","Ambedkar","Nehru","Patel"], correct:1},
+{q:"लोकसभा का कार्यकाल कितना होता है?", a:["4","5","6","7"], correct:1},
+{q:"राज्यसभा के सदस्य कितने वर्षों के लिए चुने जाते हैं?", a:["4","5","6","7"], correct:2},
+{q:"भारत के प्रथम राष्ट्रपति कौन थे?", a:["Rajendra Prasad","Nehru","Patel","Radhakrishnan"], correct:0},
+{q:"अनुच्छेद 21 किससे संबंधित है?", a:["Right to Education","Right to Life","Right to Vote","Right to Property"], correct:1},
+{q:"पंचायती राज कब लागू हुआ?", a:["1950","1959","1975","1985"], correct:1},
+{q:"सबसे बड़ा महासागर कौन सा है?", a:["Atlantic","Indian","Pacific","Arctic"], correct:2},
+
+{q:"थार मरुस्थल कहाँ स्थित है?", a:["Gujarat","Rajasthan","Punjab","MP"], correct:1},
+{q:"भारत की सबसे लंबी नदी कौन सी है?", a:["Yamuna","Ganga","Brahmaputra","Godavari"], correct:1},
+{q:"हिमालय किस प्रकार के पर्वत हैं?", a:["Volcanic","Fold","Block","Residual"], correct:1},
+{q:"भारत का सबसे ऊँचा पर्वत कौन सा है?", a:["K2","Kanchenjunga","Everest","Nanda Devi"], correct:1},
+{q:"ओजोन परत कहाँ होती है?", a:["Troposphere","Stratosphere","Mesosphere","Core"], correct:1},
+{q:"पृथ्वी का सबसे गर्म स्थान?", a:["Libya","Death Valley","Sahara","Rajasthan"], correct:1},
+{q:"मानसून क्या है?", a:["Wind system","Rain system","Cloud system","Storm"], correct:1},
+{q:"कोयला किस प्रकार का संसाधन है?", a:["Renewable","Non-renewable","Inexhaustible","None"], correct:1},
+{q:"नर्मदा नदी किस दिशा में बहती है?", a:["East","West","North","South"], correct:1},
+{q:"पानी का रासायनिक सूत्र क्या है?", a:["H2O","O2","CO2","H2"], correct:0},
+
+{q:"मानव शरीर में कितनी हड्डियाँ होती हैं?", a:["206","205","210","200"], correct:0},
+{q:"रक्त का रंग लाल क्यों होता है?", a:["Iron","Hemoglobin","Oxygen","Plasma"], correct:1},
+{q:"प्रकाश की गति कितनी है?", a:["3x10^8 m/s","3x10^6","3x10^5","3x10^4"], correct:0},
+{q:"पौधे भोजन कैसे बनाते हैं?", a:["Respiration","Photosynthesis","Digestion","Fermentation"], correct:1},
+{q:"DNA का पूरा नाम क्या है?", a:["Deoxyribonucleic Acid","Dynamic Acid","DNA Acid","None"], correct:0},
+{q:"बिजली का आविष्कार किसने किया?", a:["Newton","Edison","Einstein","Tesla"], correct:1},
+{q:"सौरमंडल का केंद्र क्या है?", a:["Earth","Sun","Moon","Mars"], correct:1},
+{q:"मानव हृदय में कितने कक्ष होते हैं?", a:["2","3","4","5"], correct:2},
+{q:"ऑक्सीजन का प्रतीक क्या है?", a:["Ox","O","O2","Om"], correct:1},
+{q:"ISRO का पूरा नाम क्या है?", a:["Indian Space Research Organisation","India Space Rocket Org","International Space Org","None"], correct:0}
+]);
+
+
+/* SHUFFLE */
+quiz.forEach(q=>{
+let correct=q.o[q.c];
+for(let i=q.o.length-1;i>0;i--){
+let j=Math.floor(Math.random()*i);
+[q.o[i],q.o[j]]=[q.o[j],q.o[i]];
+}
+q.c=q.o.indexOf(correct);
+});
+
+let i=0,score=0,timer,time=15;
+
+function load(){
+if(i>=quiz.length){
+document.body.innerHTML=`<h1>Finished</h1><h2>Score: ${score}</h2>`;
+return;
+}
+
+let q=quiz[i];
+document.getElementById("sec").innerText=q.sec;
+document.getElementById("q").innerText=q.q;
+document.getElementById("score").innerText=score;
+
+let box=document.getElementById("opt");
+box.innerHTML="";
+
+q.o.forEach((op,idx)=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=op;
+d.onclick=()=>check(idx);
+box.appendChild(d);
+});
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(timer);
+time=15;
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="⏳ "+time;
+if(time<=0) next();
+},1000);
+}
+
+function pop(msg,color){
+let d=document.createElement("div");
+d.className="pop";
+d.style.background=color;
+d.innerText=msg;
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),800);
+}
+
+function check(ans){
+
+clearInterval(timer);
+
+let q=quiz[i];
+let correctText=q.o[q.c];
+
+let opt=document.querySelectorAll(".option");
+
+opt.forEach(o=>o.style.pointerEvents="none");
+
+if(ans===q.c){
+
+score++;
+
+document.getElementById("ok").play();
+
+pop("+1 Correct ✔","green");
+
+opt[ans].classList.add("correct");
+
+}else{
+
+score--;
+
+document.getElementById("no").play();
+
+pop("-1 Wrong ❌","red");
+
+opt[ans].classList.add("wrong");
+
+opt[q.c].classList.add("correct");
+
+}
+
+document.getElementById("score").innerText=score;
+
+/* show answer */
+
+document.getElementById("ansBox").innerHTML=
+"✅ Correct Answer: "+correctText;
+
+setTimeout(()=>{
+
+document.getElementById("ansBox").innerHTML="";
+
+i++;
+
+load();
+
+},1500);
+
+}
+
+function togglePreview(){
+
+let p=document.getElementById("preview");
+
+if(p.style.display==="block"){
+p.style.display="none";
+return;
+}
+
+p.style.display="block";
+p.innerHTML="";
+
+quiz.forEach((q,idx)=>{
+
+let d=document.createElement("div");
+
+d.className="previewItem";
+
+d.innerText=(idx+1)+". "+q.q;
+
+d.onclick=()=>{
+i=idx;
+load();
+p.style.display="none";
+};
+
+p.appendChild(d);
+
+});
+
+}
+  
+load();
+
+</script>
+
+</body>
+</html>
