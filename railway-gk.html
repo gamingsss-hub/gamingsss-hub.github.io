@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGNIVEERX REAL QUIZ PRO</title>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+     crossorigin="anonymous"></script> 
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:95%;
+max-width:750px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+position:relative;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+color:#fbbf24;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option{
+background:#111827;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.option:hover{background:#00e6ff;color:black;}
+
+.correct{background:#22c55e !important;}
+.wrong{background:#ef4444 !important;}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#00e6ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.previewBox{
+position:absolute;
+top:60px;
+left:0;
+right:0;
+background:#0f172a;
+max-height:300px;
+overflow:auto;
+display:none;
+padding:10px;
+border-radius:10px;
+z-index:999;
+}
+
+.previewItem{
+padding:6px;
+margin:5px 0;
+background:#111827;
+cursor:pointer;
+border-radius:6px;
+font-size:12px;
+}
+
+.pop{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px;
+border-radius:8px;
+animation:fade 1s;
+}
+@keyframes fade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+<div id="sec">START</div>
+<div>Score: <span id="score">0</span></div>
+<div id="timer">⏳ 15</div>
+</div>
+
+<h2 id="q"></h2>
+<div id="opt"></div>
+
+<div id="ansBox" style="margin-top:10px;color:#22c55e;font-weight:bold;"></div>
+
+<button onclick="togglePreview()">👁 Preview</button>
+<div class="previewBox" id="preview"></div>
+
+</div>
+
+<audio id="ok" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+<audio id="no" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+<script>
+
+let quiz=[];
+
+function add(sec,arr){
+arr.forEach(q=>{
+quiz.push({sec,q:q.q,o:q.o,c:q.c});
+});
+}
+
+
+/* ================= GK 25 REAL ================= */
+add("GK",[
+{
+q:"Who introduced Subsidiary Alliance?",
+o:["Lord Wellesley","Lord Curzon","Lord Ripon","Lord Dalhousie"],
+c:0
+},
+
+{
+q:"Which schedule contains Panchayati Raj?",
+o:["11th","8th","9th","10th"],
+c:0
+},
+
+{
+q:"Indian Constitution borrowed DPSP from?",
+o:["Ireland","USA","France","Canada"],
+c:0
+},
+
+{
+q:"Who wrote Discovery of India?",
+o:["Jawaharlal Nehru","Gandhi","Tagore","Ambedkar"],
+c:0
+},
+
+{
+q:"First battle of Panipat year?",
+o:["1526","1556","1761","1857"],
+c:0
+},
+
+{
+q:"Which article deals with Emergency?",
+o:["352","370","356","324"],
+c:0
+},
+
+{
+q:"Largest freshwater lake in India?",
+o:["Wular Lake","Chilika","Pulicat","Sambhar"],
+c:0
+},
+
+{
+q:"Headquarters of UNESCO?",
+o:["Paris","Geneva","New York","London"],
+c:0
+},
+
+{
+q:"Who founded Arya Samaj?",
+o:["Dayanand Saraswati","Vivekananda","Rammohan Roy","Tilak"],
+c:0
+},
+
+{
+q:"Green Revolution associated with?",
+o:["M S Swaminathan","Verghese Kurien","Bhabha","Kalam"],
+c:0
+},
+
+{
+q:"Which gas causes acid rain?",
+o:["SO₂","O₂","N₂","H₂"],
+c:0
+},
+
+{
+q:"Who discovered electron?",
+o:["J J Thomson","Rutherford","Bohr","Chadwick"],
+c:0
+},
+
+{
+q:"Currency of Bangladesh?",
+o:["Taka","Rupee","Dollar","Riyal"],
+c:0
+},
+
+{
+q:"Zero Mile Stone is located in?",
+o:["Nagpur","Delhi","Mumbai","Bhopal"],
+c:0
+},
+
+{
+q:"Which river crosses equator twice?",
+o:["Congo","Amazon","Nile","Yangtze"],
+c:0
+},
+
+{
+q:"Which Mughal ruler abolished Jizya tax?",
+o:["Akbar","Babur","Aurangzeb","Humayun"],
+c:0
+},
+
+{
+q:"National income estimated by?",
+o:["NSO","RBI","SEBI","NITI"],
+c:0
+},
+
+{
+q:"Vitamin deficiency causing night blindness?",
+o:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+c:0
+},
+
+{
+q:"Indian Space Programme founder?",
+o:["Vikram Sarabhai","Kalam","Bhabha","Raman"],
+c:0
+},
+
+{
+q:"Which planet has maximum moons?",
+o:["Saturn","Jupiter","Mars","Neptune"],
+c:0
+},
+
+{
+q:"Who coined Jai Jawan Jai Kisan?",
+o:["Lal Bahadur Shastri","Nehru","Patel","Gandhi"],
+c:0
+},
+
+{
+q:"Longest National Highway in India?",
+o:["NH44","NH27","NH48","NH19"],
+c:0
+},
+
+{
+q:"Who was first woman governor in India?",
+o:["Sarojini Naidu","Indira Gandhi","Annie Besant","Sucheta"],
+c:0
+},
+
+{
+q:"Where is Konark Sun Temple?",
+o:["Odisha","Gujarat","UP","MP"],
+c:0
+},
+
+{
+q:"Which amendment lowered voting age to 18?",
+o:["61st","42nd","44th","73rd"],
+c:0
+}
+]);
+
+
+/* SHUFFLE */
+quiz.forEach(q=>{
+let correct=q.o[q.c];
+for(let i=q.o.length-1;i>0;i--){
+let j=Math.floor(Math.random()*i);
+[q.o[i],q.o[j]]=[q.o[j],q.o[i]];
+}
+q.c=q.o.indexOf(correct);
+});
+
+let i=0,score=0,timer,time=15;
+
+function load(){
+if(i>=quiz.length){
+document.body.innerHTML=`<h1>Finished</h1><h2>Score: ${score}</h2>`;
+return;
+}
+
+let q=quiz[i];
+document.getElementById("sec").innerText=q.sec;
+document.getElementById("q").innerText=q.q;
+document.getElementById("score").innerText=score;
+
+let box=document.getElementById("opt");
+box.innerHTML="";
+
+q.o.forEach((op,idx)=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=op;
+d.onclick=()=>check(idx);
+box.appendChild(d);
+});
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(timer);
+time=15;
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="⏳ "+time;
+if(time<=0) next();
+},1000);
+}
+
+function pop(msg,color){
+let d=document.createElement("div");
+d.className="pop";
+d.style.background=color;
+d.innerText=msg;
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),800);
+}
+
+function check(ans){
+
+clearInterval(timer);
+
+let q=quiz[i];
+let correctText=q.o[q.c];
+
+let opt=document.querySelectorAll(".option");
+
+opt.forEach(o=>o.style.pointerEvents="none");
+
+if(ans===q.c){
+
+score++;
+
+document.getElementById("ok").play();
+
+pop("+1 Correct ✔","green");
+
+opt[ans].classList.add("correct");
+
+}else{
+
+score--;
+
+document.getElementById("no").play();
+
+pop("-1 Wrong ❌","red");
+
+opt[ans].classList.add("wrong");
+
+opt[q.c].classList.add("correct");
+
+}
+
+document.getElementById("score").innerText=score;
+
+/* show answer */
+
+document.getElementById("ansBox").innerHTML=
+"✅ Correct Answer: "+correctText;
+
+setTimeout(()=>{
+
+document.getElementById("ansBox").innerHTML="";
+
+i++;
+
+load();
+
+},1500);
+
+}
+
+function togglePreview(){
+
+let p=document.getElementById("preview");
+
+if(p.style.display==="block"){
+p.style.display="none";
+return;
+}
+
+p.style.display="block";
+p.innerHTML="";
+
+quiz.forEach((q,idx)=>{
+
+let d=document.createElement("div");
+
+d.className="previewItem";
+
+d.innerText=(idx+1)+". "+q.q;
+
+d.onclick=()=>{
+i=idx;
+load();
+p.style.display="none";
+};
+
+p.appendChild(d);
+
+});
+
+}
+  
+load();
+
+</script>
+
+</body>
+</html>
