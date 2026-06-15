@@ -1,60 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<urlset
-xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>
-https://gamingsss-hub.github.io/
-</loc>
-</url>
-
-<url>
-<loc>
-https://gamingsss-hub.github.io/army.html
-</loc>
-</url>
-
-<url>
-<loc>
-https://gamingsss-hub.github.io/nda.html
-</loc>
-</url>
-
-<url>
-<loc>
-https://gamingsss-hub.github.io/navy.html
-</loc>
-</url>
-
-<url>
-<loc>
-https://gamingsss-hub.github.io/airforce.html
-</loc>
-</url>
-
-<url>
-<loc>
-https://gamingsss-hub.github.io/sscgd.html
-</loc>
-</url>
-
-<url>
-<loc>
-https://gamingsss-hub.github.io/upsc.html
-</loc>
-</url>
-
-<url>
-<loc>
-https://gamingsss-hub.github.io/cuet.html
-</loc>
-</url>
-
-<url>
-<loc>
-https://gamingsss-hub.github.io/generalquiz.html
-</loc>
+<loc>https://gamingsss-hub.github.io/</loc>
 </url>
 
 </urlset>
