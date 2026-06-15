@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGNIVEERX REAL QUIZ PRO</title>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+     crossorigin="anonymous"></script> 
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:95%;
+max-width:750px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+position:relative;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+color:#fbbf24;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option{
+background:#111827;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.option:hover{background:#00e6ff;color:black;}
+
+.correct{background:#22c55e !important;}
+.wrong{background:#ef4444 !important;}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#00e6ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.previewBox{
+position:absolute;
+top:60px;
+left:0;
+right:0;
+background:#0f172a;
+max-height:300px;
+overflow:auto;
+display:none;
+padding:10px;
+border-radius:10px;
+z-index:999;
+}
+
+.previewItem{
+padding:6px;
+margin:5px 0;
+background:#111827;
+cursor:pointer;
+border-radius:6px;
+font-size:12px;
+}
+
+.pop{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px;
+border-radius:8px;
+animation:fade 1s;
+}
+@keyframes fade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+<div id="sec">START</div>
+<div>Score: <span id="score">0</span></div>
+<div id="timer">⏳ 15</div>
+</div>
+
+<h2 id="q"></h2>
+<div id="opt"></div>
+
+<div id="ansBox" style="margin-top:10px;color:#22c55e;font-weight:bold;"></div>
+
+<button onclick="togglePreview()">👁 Preview</button>
+<div class="previewBox" id="preview"></div>
+
+</div>
+
+<audio id="ok" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+<audio id="no" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+<script>
+
+let quiz=[];
+
+function add(sec,arr){
+arr.forEach(q=>{
+quiz.push({sec,q:q.q,o:q.o,c:q.c});
+});
+}
+
+
+/* ================= SCIENCE 25 REAL ================= */
+add("SCIENCE",[
+{
+q:"SI unit of Force?",
+o:["Newton","Joule","Watt","Pascal"],
+c:0
+},
+{
+q:"Who discovered gravity?",
+o:["Isaac Newton","Einstein","Galileo","Bohr"],
+c:0
+},
+{
+q:"Chemical formula of water?",
+o:["H2O","CO2","NaCl","O2"],
+c:0
+},
+{
+q:"Largest organ in human body?",
+o:["Skin","Heart","Liver","Brain"],
+c:0
+},
+{
+q:"Planet known as Red Planet?",
+o:["Mars","Venus","Earth","Saturn"],
+c:0
+},
+{
+q:"Speed of light?",
+o:["3×10⁸ m/s","3×10⁶","3×10⁷","3×10⁹"],
+c:0
+},
+{
+q:"Which gas is most abundant in atmosphere?",
+o:["Nitrogen","Oxygen","Hydrogen","CO2"],
+c:0
+},
+{
+q:"Who discovered electron?",
+o:["J J Thomson","Rutherford","Bohr","Newton"],
+c:0
+},
+{
+q:"Unit of electric current?",
+o:["Ampere","Volt","Ohm","Watt"],
+c:0
+},
+{
+q:"Vitamin from sunlight?",
+o:["Vitamin D","Vitamin A","Vitamin B","Vitamin C"],
+c:0
+},
+{
+q:"Atomic number of Oxygen?",
+o:["8","10","12","16"],
+c:0
+},
+{
+q:"Smallest bone?",
+o:["Stapes","Femur","Ulna","Radius"],
+c:0
+},
+{
+q:"Gas used in balloons?",
+o:["Helium","Nitrogen","Oxygen","Hydrogen"],
+c:0
+},
+{
+q:"Chemical symbol of Gold?",
+o:["Au","Ag","Go","Gd"],
+c:0
+},
+{
+q:"Who invented telephone?",
+o:["Alexander Graham Bell","Edison","Newton","Tesla"],
+c:0
+},
+{
+q:"Unit of Power?",
+o:["Watt","Joule","Newton","Volt"],
+c:0
+},
+{
+q:"Which planet has rings?",
+o:["Saturn","Mars","Earth","Mercury"],
+c:0
+},
+{
+q:"Largest gland?",
+o:["Liver","Kidney","Heart","Brain"],
+c:0
+},
+{
+q:"pH of pure water?",
+o:["7","5","9","11"],
+c:0
+},
+{
+q:"Which blood group is universal donor?",
+o:["O−","AB+","A+","B+"],
+c:0
+},
+{
+q:"Chemical formula of methane?",
+o:["CH4","NH3","CO2","H2O"],
+c:0
+},
+{
+q:"Unit of frequency?",
+o:["Hertz","Volt","Watt","Newton"],
+c:0
+},
+{
+q:"Who discovered penicillin?",
+o:["Alexander Fleming","Einstein","Bohr","Tesla"],
+c:0
+},
+{
+q:"Which acid in lemon?",
+o:["Citric Acid","Sulphuric","Nitric","Acetic"],
+c:0
+},
+{
+q:"Instrument for earthquake?",
+o:["Seismograph","Barometer","Thermometer","Altimeter"],
+c:0
+},
+{
+q:"Nearest star to Earth?",
+o:["Sun","Sirius","Polaris","Alpha Centauri"],
+c:0
+},
+{
+q:"Normal body temperature?",
+o:["37°C","35°C","39°C","40°C"],
+c:0
+},
+{
+q:"Who proposed Theory of Relativity?",
+o:["Einstein","Newton","Bohr","Tesla"],
+c:0
+},
+{
+q:"Boiling point of water?",
+o:["100°C","90°C","80°C","120°C"],
+c:0
+},
+{
+q:"Human heart chambers?",
+o:["4","2","3","5"],
+c:0
+},
+{
+q:"SI unit of energy?",
+o:["Joule","Watt","Newton","Pascal"],
+c:0
+},
+{
+q:"Which metal is liquid?",
+o:["Mercury","Iron","Silver","Gold"],
+c:0
+},
+{
+q:"Who discovered neutron?",
+o:["James Chadwick","Bohr","Newton","Rutherford"],
+c:0
+},
+{
+q:"Which vitamin helps clotting?",
+o:["Vitamin K","Vitamin A","Vitamin D","Vitamin C"],
+c:0
+},
+{
+q:"Earth satellite?",
+o:["Moon","Mars","Venus","Sun"],
+c:0
+},
+{
+q:"Formula of common salt?",
+o:["NaCl","NaOH","H2O","CO2"],
+c:0
+},
+{
+q:"Largest planet?",
+o:["Jupiter","Earth","Mars","Saturn"],
+c:0
+},
+{
+q:"Unit of pressure?",
+o:["Pascal","Volt","Watt","Newton"],
+c:0
+},
+{
+q:"Cell powerhouse?",
+o:["Mitochondria","Nucleus","Ribosome","Membrane"],
+c:0
+},
+{
+q:"Which gas for photosynthesis?",
+o:["CO2","Oxygen","Nitrogen","Hydrogen"],
+c:0
+},
+{
+q:"Human teeth in adult?",
+o:["32","30","28","34"],
+c:0
+},
+{
+q:"SI unit of temperature?",
+o:["Kelvin","Celsius","Fahrenheit","Volt"],
+c:0
+},
+{
+q:"Study of plants?",
+o:["Botany","Zoology","Physics","Biology"],
+c:0
+},
+{
+q:"Which organ pumps blood?",
+o:["Heart","Liver","Kidney","Lungs"],
+c:0
+},
+{
+q:"Hardest natural substance?",
+o:["Diamond","Iron","Steel","Gold"],
+c:0
+},
+{
+q:"Which layer contains ozone?",
+o:["Stratosphere","Troposphere","Mesosphere","Thermosphere"],
+c:0
+},
+{
+q:"Planet nearest Sun?",
+o:["Mercury","Venus","Earth","Mars"],
+c:0
+},
+{
+q:"Who invented bulb?",
+o:["Thomas Edison","Tesla","Newton","Bell"],
+c:0
+},
+{
+q:"Largest cell?",
+o:["Ostrich Egg","Neuron","Muscle","Blood"],
+c:0
+},
+{
+q:"Human blood color due to?",
+o:["Hemoglobin","Melanin","Protein","Calcium"],
+c:0
+}
+]);
+
+
+/* SHUFFLE */
+quiz.forEach(q=>{
+let correct=q.o[q.c];
+for(let i=q.o.length-1;i>0;i--){
+let j=Math.floor(Math.random()*i);
+[q.o[i],q.o[j]]=[q.o[j],q.o[i]];
+}
+q.c=q.o.indexOf(correct);
+});
+
+let i=0,score=0,timer,time=15;
+
+function load(){
+if(i>=quiz.length){
+document.body.innerHTML=`<h1>Finished</h1><h2>Score: ${score}</h2>`;
+return;
+}
+
+let q=quiz[i];
+document.getElementById("sec").innerText=q.sec;
+document.getElementById("q").innerText=q.q;
+document.getElementById("score").innerText=score;
+
+let box=document.getElementById("opt");
+box.innerHTML="";
+
+q.o.forEach((op,idx)=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=op;
+d.onclick=()=>check(idx);
+box.appendChild(d);
+});
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(timer);
+time=15;
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="⏳ "+time;
+if(time<=0) next();
+},1000);
+}
+
+function pop(msg,color){
+let d=document.createElement("div");
+d.className="pop";
+d.style.background=color;
+d.innerText=msg;
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),800);
+}
+
+function check(ans){
+
+clearInterval(timer);
+
+let q=quiz[i];
+let correctText=q.o[q.c];
+
+let opt=document.querySelectorAll(".option");
+
+opt.forEach(o=>o.style.pointerEvents="none");
+
+if(ans===q.c){
+
+score++;
+
+document.getElementById("ok").play();
+
+pop("+1 Correct ✔","green");
+
+opt[ans].classList.add("correct");
+
+}else{
+
+score--;
+
+document.getElementById("no").play();
+
+pop("-1 Wrong ❌","red");
+
+opt[ans].classList.add("wrong");
+
+opt[q.c].classList.add("correct");
+
+}
+
+document.getElementById("score").innerText=score;
+
+/* show answer */
+
+document.getElementById("ansBox").innerHTML=
+"✅ Correct Answer: "+correctText;
+
+setTimeout(()=>{
+
+document.getElementById("ansBox").innerHTML="";
+
+i++;
+
+load();
+
+},1500);
+
+}
+
+function togglePreview(){
+
+let p=document.getElementById("preview");
+
+if(p.style.display==="block"){
+p.style.display="none";
+return;
+}
+
+p.style.display="block";
+p.innerHTML="";
+
+quiz.forEach((q,idx)=>{
+
+let d=document.createElement("div");
+
+d.className="previewItem";
+
+d.innerText=(idx+1)+". "+q.q;
+
+d.onclick=()=>{
+i=idx;
+load();
+p.style.display="none";
+};
+
+p.appendChild(d);
+
+});
+
+}
+  
+load();
+
+</script>
+
+</body>
+</html>
