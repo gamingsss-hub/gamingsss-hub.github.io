@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGNIVEERX REAL QUIZ PRO</title>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+     crossorigin="anonymous"></script> 
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:95%;
+max-width:750px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+position:relative;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+color:#fbbf24;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option{
+background:#111827;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.option:hover{background:#00e6ff;color:black;}
+
+.correct{background:#22c55e !important;}
+.wrong{background:#ef4444 !important;}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#00e6ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.previewBox{
+position:absolute;
+top:60px;
+left:0;
+right:0;
+background:#0f172a;
+max-height:300px;
+overflow:auto;
+display:none;
+padding:10px;
+border-radius:10px;
+z-index:999;
+}
+
+.previewItem{
+padding:6px;
+margin:5px 0;
+background:#111827;
+cursor:pointer;
+border-radius:6px;
+font-size:12px;
+}
+
+.pop{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px;
+border-radius:8px;
+animation:fade 1s;
+}
+@keyframes fade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+<div id="sec">START</div>
+<div>Score: <span id="score">0</span></div>
+<div id="timer">⏳ 15</div>
+</div>
+
+<h2 id="q"></h2>
+<div id="opt"></div>
+
+<div id="ansBox" style="margin-top:10px;color:#22c55e;font-weight:bold;"></div>
+
+<button onclick="togglePreview()">👁 Preview</button>
+<div class="previewBox" id="preview"></div>
+
+</div>
+
+<audio id="ok" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+<audio id="no" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+<script>
+
+let quiz=[];
+
+function add(sec,arr){
+arr.forEach(q=>{
+quiz.push({sec,q:q.q,o:q.o,c:q.c});
+});
+}
+
+
+/* ================= WORLD GK 25 REAL ================= */
+add("WORLD GK",[
+{
+q:"Capital of Australia?",
+o:["Canberra","Sydney","Perth","Melbourne"],
+c:0
+},
+{
+q:"Largest country by area?",
+o:["Russia","Canada","USA","China"],
+c:0
+},
+{
+q:"Currency of Japan?",
+o:["Yen","Won","Dollar","Euro"],
+c:0
+},
+{
+q:"UN headquarters?",
+o:["New York","Paris","London","Geneva"],
+c:0
+},
+{
+q:"Smallest country in world?",
+o:["Vatican City","Monaco","Nepal","Bhutan"],
+c:0
+},
+{
+q:"Largest ocean?",
+o:["Pacific","Indian","Atlantic","Arctic"],
+c:0
+},
+{
+q:"Capital of Canada?",
+o:["Ottawa","Toronto","Vancouver","Montreal"],
+c:0
+},
+{
+q:"Mount Everest lies in?",
+o:["Nepal","India","China","Bhutan"],
+c:0
+},
+{
+q:"Currency of UK?",
+o:["Pound","Euro","Dollar","Yen"],
+c:0
+},
+{
+q:"River Nile is in?",
+o:["Africa","Asia","Europe","America"],
+c:0
+},
+{
+q:"Country known as Land of Rising Sun?",
+o:["Japan","China","India","Thailand"],
+c:0
+},
+{
+q:"Capital of Brazil?",
+o:["Brasilia","Rio","Sao Paulo","Lima"],
+c:0
+},
+{
+q:"Largest desert?",
+o:["Antarctica","Sahara","Arabian","Gobi"],
+c:0
+},
+{
+q:"WHO headquarters?",
+o:["Geneva","Paris","London","Tokyo"],
+c:0
+},
+{
+q:"Currency of China?",
+o:["Yuan","Won","Dollar","Peso"],
+c:0
+},
+{
+q:"Statue of Liberty is in?",
+o:["USA","UK","France","Canada"],
+c:0
+},
+{
+q:"Capital of Germany?",
+o:["Berlin","Munich","Hamburg","Frankfurt"],
+c:0
+},
+{
+q:"Country with most population?",
+o:["India","China","USA","Indonesia"],
+c:0
+},
+{
+q:"Amazon rainforest located in?",
+o:["South America","Europe","Africa","Asia"],
+c:0
+},
+{
+q:"Capital of South Korea?",
+o:["Seoul","Busan","Tokyo","Bangkok"],
+c:0
+},
+{
+q:"Which continent has most countries?",
+o:["Africa","Asia","Europe","America"],
+c:0
+},
+{
+q:"Currency of UAE?",
+o:["Dirham","Riyal","Dinar","Dollar"],
+c:0
+},
+{
+q:"Capital of Italy?",
+o:["Rome","Venice","Milan","Naples"],
+c:0
+},
+{
+q:"Longest river?",
+o:["Nile","Amazon","Yangtze","Mississippi"],
+c:0
+},
+{
+q:"Headquarters of UNESCO?",
+o:["Paris","Geneva","London","New York"],
+c:0
+},
+{
+q:"Capital of Russia?",
+o:["Moscow","Saint Petersburg","Kazan","Sochi"],
+c:0
+},
+{
+q:"Largest island?",
+o:["Greenland","Australia","Madagascar","Japan"],
+c:0
+},
+{
+q:"Country known for pyramids?",
+o:["Egypt","Mexico","India","China"],
+c:0
+},
+{
+q:"Capital of Argentina?",
+o:["Buenos Aires","Lima","Santiago","Brasilia"],
+c:0
+},
+{
+q:"Currency of Saudi Arabia?",
+o:["Riyal","Dirham","Dinar","Peso"],
+c:0
+},
+{
+q:"Tallest building country?",
+o:["UAE","USA","China","Japan"],
+c:0
+},
+{
+q:"Capital of France?",
+o:["Paris","Lyon","Marseille","Nice"],
+c:0
+},
+{
+q:"World Bank HQ?",
+o:["Washington DC","London","Paris","Geneva"],
+c:0
+},
+{
+q:"Largest lake?",
+o:["Caspian Sea","Superior","Victoria","Baikal"],
+c:0
+},
+{
+q:"Capital of Turkey?",
+o:["Ankara","Istanbul","Izmir","Bursa"],
+c:0
+},
+{
+q:"Currency of Bangladesh?",
+o:["Taka","Rupee","Dollar","Yuan"],
+c:0
+},
+{
+q:"Country known as White Elephant?",
+o:["Thailand","Japan","China","India"],
+c:0
+},
+{
+q:"Capital of Spain?",
+o:["Madrid","Barcelona","Valencia","Seville"],
+c:0
+},
+{
+q:"Most spoken language?",
+o:["English","Mandarin Chinese","Hindi","Spanish"],
+c:1
+},
+{
+q:"Capital of New Zealand?",
+o:["Wellington","Auckland","Sydney","Perth"],
+c:0
+},
+{
+q:"Country with maple leaf flag?",
+o:["Canada","USA","UK","France"],
+c:0
+},
+{
+q:"Currency of Nepal?",
+o:["Nepalese Rupee","Rupee","Dollar","Taka"],
+c:0
+},
+{
+q:"Capital of Indonesia?",
+o:["Jakarta","Bali","Bandung","Surabaya"],
+c:0
+},
+{
+q:"Country famous for tulips?",
+o:["Netherlands","France","Italy","Germany"],
+c:0
+},
+{
+q:"Capital of Egypt?",
+o:["Cairo","Alexandria","Giza","Luxor"],
+c:0
+},
+{
+q:"Largest volcano?",
+o:["Mauna Loa","Etna","Fuji","Kilimanjaro"],
+c:0
+},
+{
+q:"Capital of Pakistan?",
+o:["Islamabad","Karachi","Lahore","Peshawar"],
+c:0
+},
+{
+q:"Currency of Europe?",
+o:["Euro","Dollar","Pound","Yen"],
+c:0
+},
+{
+q:"Country known as Land of Thousand Lakes?",
+o:["Finland","Sweden","Canada","Norway"],
+c:0
+},
+{
+q:"Capital of Mexico?",
+o:["Mexico City","Lima","Bogota","Quito"],
+c:0
+}
+]);
+
+
+/* SHUFFLE */
+quiz.forEach(q=>{
+let correct=q.o[q.c];
+for(let i=q.o.length-1;i>0;i--){
+let j=Math.floor(Math.random()*i);
+[q.o[i],q.o[j]]=[q.o[j],q.o[i]];
+}
+q.c=q.o.indexOf(correct);
+});
+
+let i=0,score=0,timer,time=15;
+
+function load(){
+if(i>=quiz.length){
+document.body.innerHTML=`<h1>Finished</h1><h2>Score: ${score}</h2>`;
+return;
+}
+
+let q=quiz[i];
+document.getElementById("sec").innerText=q.sec;
+document.getElementById("q").innerText=q.q;
+document.getElementById("score").innerText=score;
+
+let box=document.getElementById("opt");
+box.innerHTML="";
+
+q.o.forEach((op,idx)=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=op;
+d.onclick=()=>check(idx);
+box.appendChild(d);
+});
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(timer);
+time=15;
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="⏳ "+time;
+if(time<=0) next();
+},1000);
+}
+
+function pop(msg,color){
+let d=document.createElement("div");
+d.className="pop";
+d.style.background=color;
+d.innerText=msg;
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),800);
+}
+
+function check(ans){
+
+clearInterval(timer);
+
+let q=quiz[i];
+let correctText=q.o[q.c];
+
+let opt=document.querySelectorAll(".option");
+
+opt.forEach(o=>o.style.pointerEvents="none");
+
+if(ans===q.c){
+
+score++;
+
+document.getElementById("ok").play();
+
+pop("+1 Correct ✔","green");
+
+opt[ans].classList.add("correct");
+
+}else{
+
+score--;
+
+document.getElementById("no").play();
+
+pop("-1 Wrong ❌","red");
+
+opt[ans].classList.add("wrong");
+
+opt[q.c].classList.add("correct");
+
+}
+
+document.getElementById("score").innerText=score;
+
+/* show answer */
+
+document.getElementById("ansBox").innerHTML=
+"✅ Correct Answer: "+correctText;
+
+setTimeout(()=>{
+
+document.getElementById("ansBox").innerHTML="";
+
+i++;
+
+load();
+
+},1500);
+
+}
+
+function togglePreview(){
+
+let p=document.getElementById("preview");
+
+if(p.style.display==="block"){
+p.style.display="none";
+return;
+}
+
+p.style.display="block";
+p.innerHTML="";
+
+quiz.forEach((q,idx)=>{
+
+let d=document.createElement("div");
+
+d.className="previewItem";
+
+d.innerText=(idx+1)+". "+q.q;
+
+d.onclick=()=>{
+i=idx;
+load();
+p.style.display="none";
+};
+
+p.appendChild(d);
+
+});
+
+}
+  
+load();
+
+</script>
+
+</body>
+</html>
