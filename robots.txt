@@ -1,4 +1,6 @@
 User-agent: *
+
 Allow: /
 
-Sitemap: https://gamingsss-hub.github.io/agniveerx/sitemap.xml
+Sitemap:
+https://gamingsss-hub.github.io/sitemap.xml
