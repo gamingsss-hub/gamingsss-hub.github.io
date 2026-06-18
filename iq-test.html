@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGNIVEERX REAL QUIZ PRO</title>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+     crossorigin="anonymous"></script> 
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:95%;
+max-width:750px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+position:relative;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+color:#fbbf24;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option{
+background:#111827;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.option:hover{background:#00e6ff;color:black;}
+
+.correct{background:#22c55e !important;}
+.wrong{background:#ef4444 !important;}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#00e6ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.previewBox{
+position:absolute;
+top:60px;
+left:0;
+right:0;
+background:#0f172a;
+max-height:300px;
+overflow:auto;
+display:none;
+padding:10px;
+border-radius:10px;
+z-index:999;
+}
+
+.previewItem{
+padding:6px;
+margin:5px 0;
+background:#111827;
+cursor:pointer;
+border-radius:6px;
+font-size:12px;
+}
+
+.pop{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px;
+border-radius:8px;
+animation:fade 1s;
+}
+@keyframes fade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+<div id="sec">START</div>
+<div>Score: <span id="score">0</span></div>
+<div id="timer">⏳ 15</div>
+</div>
+
+<h2 id="q"></h2>
+<div id="opt"></div>
+
+<div id="ansBox" style="margin-top:10px;color:#22c55e;font-weight:bold;"></div>
+
+<button onclick="togglePreview()">👁 Preview</button>
+<div class="previewBox" id="preview"></div>
+
+</div>
+
+<audio id="ok" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+<audio id="no" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+<script>
+
+let quiz=[];
+
+function add(sec,arr){
+arr.forEach(q=>{
+quiz.push({sec,q:q.q,o:q.o,c:q.c});
+});
+}
+
+
+/* ================= ENGLISH 25 REAL ================= */
+add("ENGLISH",[
+{
+q:"Series: 2,6,12,20,30,?",
+o:["36","40","42","44"],
+c:2
+},
+{
+q:"Find next: 1,4,10,22,46,?",
+o:["82","90","94","96"],
+c:2
+},
+{
+q:"Odd one out?",
+o:["Circle","Square","Triangle","Laptop"],
+c:3
+},
+{
+q:"If all birds fly and sparrow is bird, sparrow can?",
+o:["Run","Fly","Swim","Sleep"],
+c:1
+},
+{
+q:"Series: 1,8,27,64,?",
+o:["81","100","125","144"],
+c:2
+},
+{
+q:"Mirror time of 4:20?",
+o:["7:40","7:35","7:45","8:40"],
+c:0
+},
+{
+q:"A is taller than B, B taller than C. Shortest?",
+o:["A","B","C","None"],
+c:2
+},
+{
+q:"Series: A,D,G,J,?",
+o:["K","L","M","N"],
+c:2
+},
+{
+q:"If 12 workers finish in 6 days, 6 workers need?",
+o:["8","10","12","14"],
+c:2
+},
+{
+q:"Find next: 121,100,81,64,?",
+o:["49","36","25","16"],
+c:0
+},
+{
+q:"Series: 5,11,23,47,?",
+o:["91","95","97","99"],
+c:1
+},
+{
+q:"Clock angle at 2:00?",
+o:["30°","60°","90°","120°"],
+c:1
+},
+{
+q:"If CAT=24 then DOG=?",
+o:["26","30","34","38"],
+c:0
+},
+{
+q:"Series: 3,6,18,72,?",
+o:["216","288","360","432"],
+c:2
+},
+{
+q:"Find odd?",
+o:["Lion","Tiger","Dog","Car"],
+c:3
+},
+{
+q:"Series: 1,2,6,24,120,?",
+o:["240","360","720","840"],
+c:2
+},
+{
+q:"Which comes next? Z,W,T,Q,?",
+o:["N","M","O","P"],
+c:0
+},
+{
+q:"If PEN=123 then N=?",
+o:["1","2","3","4"],
+c:2
+},
+{
+q:"Find next: 7,14,28,56,?",
+o:["98","112","120","140"],
+c:1
+},
+{
+q:"Series: 2,5,11,23,47,?",
+o:["93","95","97","99"],
+c:1
+},
+{
+q:"One word different?",
+o:["Rose","Lily","Lotus","Chair"],
+c:3
+},
+{
+q:"Find next: 16,25,36,49,?",
+o:["64","81","100","121"],
+c:0
+},
+{
+q:"If yesterday was Thursday, after tomorrow?",
+o:["Saturday","Sunday","Monday","Tuesday"],
+c:1
+},
+{
+q:"Series: 4,13,40,121,?",
+o:["242","361","364","400"],
+c:1
+},
+{
+q:"A train moves 90 km in 1 hr. In 20 min?",
+o:["20","25","30","35"],
+c:2
+}
+]);
+
+
+/* SHUFFLE */
+quiz.forEach(q=>{
+let correct=q.o[q.c];
+for(let i=q.o.length-1;i>0;i--){
+let j=Math.floor(Math.random()*i);
+[q.o[i],q.o[j]]=[q.o[j],q.o[i]];
+}
+q.c=q.o.indexOf(correct);
+});
+
+let i=0,score=0,timer,time=15;
+
+function load(){
+if(i>=quiz.length){
+document.body.innerHTML=`<h1>Finished</h1><h2>Score: ${score}</h2>`;
+return;
+}
+
+let q=quiz[i];
+document.getElementById("sec").innerText=q.sec;
+document.getElementById("q").innerText=q.q;
+document.getElementById("score").innerText=score;
+
+let box=document.getElementById("opt");
+box.innerHTML="";
+
+q.o.forEach((op,idx)=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=op;
+d.onclick=()=>check(idx);
+box.appendChild(d);
+});
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(timer);
+time=15;
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="⏳ "+time;
+if(time<=0) next();
+},1000);
+}
+
+function pop(msg,color){
+let d=document.createElement("div");
+d.className="pop";
+d.style.background=color;
+d.innerText=msg;
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),800);
+}
+
+function check(ans){
+
+clearInterval(timer);
+
+let q=quiz[i];
+let correctText=q.o[q.c];
+
+let opt=document.querySelectorAll(".option");
+
+opt.forEach(o=>o.style.pointerEvents="none");
+
+if(ans===q.c){
+
+score++;
+
+document.getElementById("ok").play();
+
+pop("+1 Correct ✔","green");
+
+opt[ans].classList.add("correct");
+
+}else{
+
+score--;
+
+document.getElementById("no").play();
+
+pop("-1 Wrong ❌","red");
+
+opt[ans].classList.add("wrong");
+
+opt[q.c].classList.add("correct");
+
+}
+
+document.getElementById("score").innerText=score;
+
+/* show answer */
+
+document.getElementById("ansBox").innerHTML=
+"✅ Correct Answer: "+correctText;
+
+setTimeout(()=>{
+
+document.getElementById("ansBox").innerHTML="";
+
+i++;
+
+load();
+
+},1500);
+
+}
+
+function togglePreview(){
+
+let p=document.getElementById("preview");
+
+if(p.style.display==="block"){
+p.style.display="none";
+return;
+}
+
+p.style.display="block";
+p.innerHTML="";
+
+quiz.forEach((q,idx)=>{
+
+let d=document.createElement("div");
+
+d.className="previewItem";
+
+d.innerText=(idx+1)+". "+q.q;
+
+d.onclick=()=>{
+i=idx;
+load();
+p.style.display="none";
+};
+
+p.appendChild(d);
+
+});
+
+}
+  
+load();
+
+</script>
+
+</body>
+</html>
