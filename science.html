@@ -3,31 +3,24 @@ content="width=device-width,initial-scale=1.0">
 
 <title>Science Quiz | QuizEmpire
 
-</title><link
-rel="icon"
-href="favicon.png"><style>
+</title><link rel="icon" href="favicon.png"><style>
 
 *{
-
 margin:0;
-
 padding:0;
-
 box-sizing:border-box;
-
 font-family:Poppins,sans-serif;
-
 }
 
 body{
 
 background:
-
 linear-gradient(
 135deg,
-#030712,
-#111827,
-#1e1b4b
+#020617,
+#001b2e,
+#031525,
+#111827
 );
 
 color:white;
@@ -40,7 +33,7 @@ min-height:100vh;
 
 .container{
 
-max-width:1300px;
+max-width:1350px;
 
 margin:auto;
 
@@ -48,13 +41,23 @@ margin:auto;
 
 .logo{
 
-font-size:60px;
+text-align:center;
+
+font-size:64px;
 
 font-weight:900;
 
-text-align:center;
+background:
+linear-gradient(
+90deg,
+#22d3ee,
+#67e8f9,
+#06b6d4
+);
 
-color:#67e8f9;
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
 
 margin-top:20px;
 
@@ -66,9 +69,9 @@ text-align:center;
 
 font-size:20px;
 
-color:#cbd5e1;
+color:#d1d5db;
 
-margin-top:10px;
+margin-top:12px;
 
 }
 
@@ -77,59 +80,124 @@ margin-top:10px;
 display:grid;
 
 grid-template-columns:
-
 repeat(
 auto-fit,
 minmax(280px,1fr)
 );
 
-gap:25px;
+gap:28px;
 
-margin-top:40px;
+margin-top:50px;
 
 }
 
 .card{
 
 background:
-
-linear-gradient(
-145deg,
-#172554,
-#1e293b
+rgba(
+255,
+255,
+255,
+0.06
 );
+
+backdrop-filter:
+blur(15px);
 
 padding:35px;
 
-border-radius:25px;
+border-radius:30px;
 
 text-decoration:none;
 
 color:white;
 
+border:
+1px solid
+rgba(
+34,
+211,
+238,
+0.25
+);
+
+transition:.35s;
+
 }
 
-.about{
+.card:hover{
 
-background:#182338;
+transform:
+translateY(-10px);
 
-padding:30px;
-
-border-radius:25px;
-
-margin-top:35px;
+box-shadow:
+0 0 40px
+rgba(
+34,
+211,
+238,
+0.4
+);
 
 }
 
 .title{
 
-font-size:30px;
+font-size:34px;
 
-margin-bottom:10px;
+margin-bottom:12px;
 
 }
 
-a{
+.desc{
+
+color:#cbd5e1;
+
+line-height:1.8;
+
+}
+
+.about{
+
+margin-top:45px;
+
+padding:35px;
+
+border-radius:30px;
+
+background:
+rgba(
+255,
+255,
+255,
+0.06
+);
+
+backdrop-filter:
+blur(14px);
+
+}
+
+.back{
+
+display:inline-block;
+
+margin-top:35px;
+
+padding:16px 36px;
+
+border-radius:18px;
+
+background:
+linear-gradient(
+90deg,
+#22d3ee,
+#06b6d4
+);
+
+color:black;
+
+font-weight:bold;
 
 text-decoration:none;
 
@@ -139,53 +207,31 @@ text-decoration:none;
 
 </div><div class="sub">Physics • Chemistry • Biology • Space
 
-</div><div class="cards"><a
-<div class="cards"><a
-href="physics.html"
-class="card">
-
-<div class="title">⚛️ Physics
+</div><div class="cards"><a href="physics.html" class="card"><div class="title">⚛️ Physics
 
 </div><div class="desc">Motion • Force • Electricity
 
-</div></a><a
-href="chemistry.html"
-class="card">
+</div></a><a href="chemistry.html" class="card"><div class="title">🧪 Chemistry
 
-<div class="title">🧪 Chemistry
+</div><div class="desc">Atoms • Elements • Reactions
 
-</div><div class="desc">Atoms • Reactions • Elements
+</div></a><a href="biology.html" class="card"><div class="title">🧬 Biology
 
-</div></a><a
-href="biology.html"
-class="card">
+</div><div class="desc">Plants • Human Body • Life
 
-<div class="title">🧬 Biology
+</div></a><a href="space-facts.html" class="card"><div class="title">🚀 Space
 
-</div><div class="desc">Human Body • Plants • Life
+</div><div class="desc">Galaxy • Planets • Universe
 
-</div></a><a
-href="space-facts.html"
-class="card">
+</div></a></div><div class="about"><h2>🔬 About Science
 
-<div class="title">🚀 Space
+</h2><br><p>Explore Physics, Chemistry, Biology and Space.
 
-</div><div class="desc">Planets • Galaxy • Universe
+Practice quizzes and improve knowledge daily.
 
-</div></a></div>
-</a></div><div class="about"><h2>🌍 About Science
-
-</h2><br><p>Practice science quizzes and explore topics from around the world.
-
-Questions will be added soon.
-
-</p></div><br><br>
-
-<div
-style="text-align:center;"><a
+</p></div><div style="text-align:center;"><a
 href="index.html"
-
-style="color:#67e8f9;">
+class="back">
 
 🏠 Back To Home
 
