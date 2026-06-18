@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport"
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport"
 content="width=device-width,initial-scale=1">
 
-<title>
-General Quiz | AgniveerX
-</title>
+<title>General Quiz | AgniveerX
 
-<style>
+</title><style>
 
 *{
 margin:0;
@@ -21,21 +13,27 @@ font-family:Poppins,sans-serif;
 }
 
 body{
+
 background:
 linear-gradient(
 135deg,
-#07111f,
-#111827
+#020617,
+#172554,
+#0f172a,
+#1e1b4b
 );
 
 color:white;
 
 padding:20px;
+
+min-height:100vh;
+
 }
 
 .container{
 
-max-width:1100px;
+max-width:1200px;
 
 margin:auto;
 
@@ -45,16 +43,23 @@ text-align:center;
 
 .logo{
 
-font-size:55px;
+font-size:62px;
 
 font-weight:900;
 
-color:#00e6ff;
+background:
+linear-gradient(
+90deg,
+#60a5fa,
+#22d3ee,
+#38bdf8
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
 
 margin-top:20px;
-
-text-shadow:
-0 0 20px #00e6ff;
 
 }
 
@@ -63,6 +68,8 @@ text-shadow:
 margin-top:10px;
 
 color:#cbd5e1;
+
+font-size:20px;
 
 }
 
@@ -73,54 +80,78 @@ display:grid;
 grid-template-columns:
 repeat(
 auto-fit,
-minmax(250px,1fr)
+minmax(260px,1fr)
 );
 
-gap:22px;
+gap:25px;
 
-margin-top:40px;
+margin-top:45px;
 
 }
 
 .card{
 
-background:#182338;
+background:
+rgba(
+255,
+255,
+255,
+0.08
+);
 
-padding:30px;
+backdrop-filter:
+blur(12px);
 
-border-radius:20px;
+padding:35px;
+
+border-radius:28px;
 
 text-decoration:none;
 
 color:white;
 
-transition:.3s;
+border:
+1px solid
+rgba(
+255,
+255,
+255,
+0.15
+);
+
+transition:.35s;
 
 }
 
 .card:hover{
 
 transform:
-translateY(-8px);
+translateY(-10px);
 
 box-shadow:
-0 0 25px #00e6ff;
+0 0 35px
+rgba(
+34,
+211,
+238,
+0.45
+);
 
 }
 
 .icon{
 
-font-size:60px;
+font-size:70px;
 
-margin-bottom:10px;
+margin-bottom:15px;
 
 }
 
 .title{
 
-font-size:28px;
+font-size:30px;
 
-font-weight:bold;
+font-weight:800;
 
 margin-bottom:10px;
 
@@ -128,7 +159,27 @@ margin-bottom:10px;
 
 .desc{
 
-color:#cbd5e1;
+color:#dbeafe;
+
+line-height:1.8;
+
+}
+
+.about{
+
+margin-top:40px;
+
+padding:35px;
+
+background:
+rgba(
+255,
+255,
+255,
+0.08
+);
+
+border-radius:28px;
 
 }
 
@@ -136,140 +187,63 @@ color:#cbd5e1;
 
 display:inline-block;
 
-margin-top:40px;
+margin-top:35px;
 
-padding:14px 28px;
+padding:15px 35px;
 
-background:#00e6ff;
+background:
+linear-gradient(
+90deg,
+#38bdf8,
+#22d3ee
+);
 
 color:black;
 
-text-decoration:none;
-
-border-radius:12px;
-
 font-weight:bold;
+
+border-radius:15px;
+
+text-decoration:none;
 
 }
 
-</style>
+</style></head><body><div class="container"><div class="logo">🌍 GENERAL QUIZ
 
-</head>
+</div><div class="sub">World Knowledge • Mixed Challenge • Brain Power
 
-<body>
+</div><div class="cards"><a href="worldgk.html" class="card"><div class="icon">🌎
 
-<div class="container">
+</div><div class="title">World GK
 
-<div class="logo">
+</div><div class="desc">Countries • Capitals • Geography
 
-🌍 GENERAL QUIZ
+</div></a><a href="sciencequiz.html" class="card"><div class="icon">🔬
 
-</div>
+</div><div class="title">Science Quiz
 
-<div class="sub">
+</div><div class="desc">Physics • Biology • Chemistry
 
-World GK • Mixed Quiz • Brain Test
+</div></a><a href="brainquiz.html" class="card"><div class="icon">🧠
 
-</div>
+</div><div class="title">Brain Quiz
 
-<div class="cards">
+</div><div class="desc">Logic • IQ • Challenge
 
-<a href="worldgk.html"
-class="card">
+</div></a><a href="generalmock.html" class="card"><div class="icon">🏆
 
-<div class="icon">
-🌎
-</div>
+</div><div class="title">Full Mock Test
 
-<div class="title">
+</div><div class="desc">50 Mixed Questions
 
-World GK
+</div></a></div><div class="about"><h2>🔥 Explore Knowledge
 
-</div>
+</h2><br><p>Play quizzes from different categories and improve your knowledge daily.
 
-<div class="desc">
-
-Countries • Capitals
-
-</div>
-
-</a>
-
-<a href="sciencequiz.html"
-class="card">
-
-<div class="icon">
-🔬
-</div>
-
-<div class="title">
-
-Science Quiz
-
-</div>
-
-<div class="desc">
-
-Physics • Bio • Chemistry
-
-</div>
-
-</a>
-
-<a href="brainquiz.html"
-class="card">
-
-<div class="icon">
-🧠
-</div>
-
-<div class="title">
-
-Brain Quiz
-
-</div>
-
-<div class="desc">
-
-Logic • IQ
-
-</div>
-
-</a>
-
-<a href="generalmock.html"
-class="card">
-
-<div class="icon">
-🏆
-</div>
-
-<div class="title">
-
-Full Mock Test
-
-</div>
-
-<div class="desc">
-
-50 Mixed Questions
-
-</div>
-
-</a>
-
-</div>
-
-<a
+</p></div><a
 href="index.html"
 class="back">
 
-⬅ Back Home
+🏠 Back Home
 
-</a>
-
-</div>
-
-</body>
-
-</html>
+</a></div></body></html>
