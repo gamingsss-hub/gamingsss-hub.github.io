@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGNIVEERX REAL QUIZ PRO</title>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+     crossorigin="anonymous"></script> 
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:95%;
+max-width:750px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+position:relative;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+color:#fbbf24;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option{
+background:#111827;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.option:hover{background:#00e6ff;color:black;}
+
+.correct{background:#22c55e !important;}
+.wrong{background:#ef4444 !important;}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#00e6ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.previewBox{
+position:absolute;
+top:60px;
+left:0;
+right:0;
+background:#0f172a;
+max-height:300px;
+overflow:auto;
+display:none;
+padding:10px;
+border-radius:10px;
+z-index:999;
+}
+
+.previewItem{
+padding:6px;
+margin:5px 0;
+background:#111827;
+cursor:pointer;
+border-radius:6px;
+font-size:12px;
+}
+
+.pop{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px;
+border-radius:8px;
+animation:fade 1s;
+}
+@keyframes fade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+<div id="sec">START</div>
+<div>Score: <span id="score">0</span></div>
+<div id="timer">⏳ 15</div>
+</div>
+
+<h2 id="q"></h2>
+<div id="opt"></div>
+
+<div id="ansBox" style="margin-top:10px;color:#22c55e;font-weight:bold;"></div>
+
+<button onclick="togglePreview()">👁 Preview</button>
+<div class="previewBox" id="preview"></div>
+
+</div>
+
+<audio id="ok" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+<audio id="no" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+<script>
+
+let quiz=[];
+
+function add(sec,arr){
+arr.forEach(q=>{
+quiz.push({sec,q:q.q,o:q.o,c:q.c});
+});
+}
+
+
+/* ================= ENGLISH 25 REAL ================= */
+add("ENGLISH",[
+{
+q:"CPU full form?",
+o:["Central Process Unit","Central Processing Unit","Computer Process Unit","Core Processing Unit"],
+c:1
+},
+{
+q:"Brain of computer?",
+o:["RAM","CPU","SSD","Monitor"],
+c:1
+},
+{
+q:"Which device shows output?",
+o:["Keyboard","Mouse","Monitor","Scanner"],
+c:2
+},
+{
+q:"Shortcut to copy?",
+o:["Ctrl+X","Ctrl+C","Ctrl+V","Ctrl+Z"],
+c:1
+},
+{
+q:"Shortcut to paste?",
+o:["Ctrl+C","Ctrl+X","Ctrl+V","Ctrl+A"],
+c:2
+},
+{
+q:"Which is an input device?",
+o:["Monitor","Printer","Keyboard","Speaker"],
+c:2
+},
+{
+q:"Binary system uses?",
+o:["0,1","1,2","0–9","A,B"],
+c:0
+},
+{
+q:"RAM stands for?",
+o:["Random Access Memory","Read Access Memory","Rapid Access Memory","Run Access Memory"],
+c:0
+},
+{
+q:"Storage device?",
+o:["SSD","Monitor","Mouse","Keyboard"],
+c:0
+},
+{
+q:"Which is an operating system?",
+o:["Windows","Chrome","Google","Intel"],
+c:0
+},
+{
+q:"Shortcut to undo?",
+o:["Ctrl+Y","Ctrl+Z","Ctrl+S","Ctrl+P"],
+c:1
+},
+{
+q:"WWW means?",
+o:["World Wide Web","Wide Web World","Web World Wide","World Web Work"],
+c:0
+},
+{
+q:"Which company created Windows?",
+o:["Apple","Google","Microsoft","Intel"],
+c:2
+},
+{
+q:"Which is browser?",
+o:["Chrome","RAM","CPU","SSD"],
+c:0
+},
+{
+q:"Keyboard has how many function keys?",
+o:["10","12","14","15"],
+c:1
+},
+{
+q:"File extension for HTML?",
+o:[".css",".html",".exe",".js"],
+c:1
+},
+{
+q:"Mouse is used for?",
+o:["Input","Output","Storage","Power"],
+c:0
+},
+{
+q:"Which memory is temporary?",
+o:["ROM","RAM","SSD","DVD"],
+c:1
+},
+{
+q:"Full form of USB?",
+o:["Universal Serial Bus","United System Bus","Universal Storage Board","Ultra Serial Base"],
+c:0
+},
+{
+q:"Which stores data permanently?",
+o:["RAM","ROM","Cache","Register"],
+c:1
+},
+{
+q:"HTML stands for?",
+o:["Hyper Text Markup Language","High Text Machine Language","Home Tool Markup Language","Hyper Tool Machine"],
+c:0
+},
+{
+q:"Internet shortcut refresh?",
+o:["F5","F2","F8","F12"],
+c:0
+},
+{
+q:"1 KB equals?",
+o:["1000 bytes","1024 bytes","2048 bytes","512 bytes"],
+c:1
+},
+{
+q:"Which one is programming language?",
+o:["HTML","Python","SSD","CPU"],
+c:1
+},
+{
+q:"Computer virus affects?",
+o:["Hardware","Software","Monitor","Mouse"],
+c:1
+}
+]);
+
+
+/* SHUFFLE */
+quiz.forEach(q=>{
+let correct=q.o[q.c];
+for(let i=q.o.length-1;i>0;i--){
+let j=Math.floor(Math.random()*i);
+[q.o[i],q.o[j]]=[q.o[j],q.o[i]];
+}
+q.c=q.o.indexOf(correct);
+});
+
+let i=0,score=0,timer,time=15;
+
+function load(){
+if(i>=quiz.length){
+document.body.innerHTML=`<h1>Finished</h1><h2>Score: ${score}</h2>`;
+return;
+}
+
+let q=quiz[i];
+document.getElementById("sec").innerText=q.sec;
+document.getElementById("q").innerText=q.q;
+document.getElementById("score").innerText=score;
+
+let box=document.getElementById("opt");
+box.innerHTML="";
+
+q.o.forEach((op,idx)=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=op;
+d.onclick=()=>check(idx);
+box.appendChild(d);
+});
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(timer);
+time=15;
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="⏳ "+time;
+if(time<=0) next();
+},1000);
+}
+
+function pop(msg,color){
+let d=document.createElement("div");
+d.className="pop";
+d.style.background=color;
+d.innerText=msg;
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),800);
+}
+
+function check(ans){
+
+clearInterval(timer);
+
+let q=quiz[i];
+let correctText=q.o[q.c];
+
+let opt=document.querySelectorAll(".option");
+
+opt.forEach(o=>o.style.pointerEvents="none");
+
+if(ans===q.c){
+
+score++;
+
+document.getElementById("ok").play();
+
+pop("+1 Correct ✔","green");
+
+opt[ans].classList.add("correct");
+
+}else{
+
+score--;
+
+document.getElementById("no").play();
+
+pop("-1 Wrong ❌","red");
+
+opt[ans].classList.add("wrong");
+
+opt[q.c].classList.add("correct");
+
+}
+
+document.getElementById("score").innerText=score;
+
+/* show answer */
+
+document.getElementById("ansBox").innerHTML=
+"✅ Correct Answer: "+correctText;
+
+setTimeout(()=>{
+
+document.getElementById("ansBox").innerHTML="";
+
+i++;
+
+load();
+
+},1500);
+
+}
+
+function togglePreview(){
+
+let p=document.getElementById("preview");
+
+if(p.style.display==="block"){
+p.style.display="none";
+return;
+}
+
+p.style.display="block";
+p.innerHTML="";
+
+quiz.forEach((q,idx)=>{
+
+let d=document.createElement("div");
+
+d.className="previewItem";
+
+d.innerText=(idx+1)+". "+q.q;
+
+d.onclick=()=>{
+i=idx;
+load();
+p.style.display="none";
+};
+
+p.appendChild(d);
+
+});
+
+}
+  
+load();
+
+</script>
+
+</body>
+</html>
