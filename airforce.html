@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport"
 content="width=device-width,initial-scale=1">
 
-<title>Indian Air Force | AgniveerX Quiz</title>
+<title>Indian Air Force | AgniveerX Quiz
 
-<style>
+</title><style>
 
 *{
 margin:0;
@@ -24,20 +17,23 @@ body{
 background:
 linear-gradient(
 135deg,
-#07111f,
+#0b132b,
 #0f172a,
-#111827
+#1e3a8a,
+#082f49
 );
 
 color:white;
 
 padding:20px;
 
+min-height:100vh;
+
 }
 
 .container{
 
-max-width:1100px;
+max-width:1200px;
 
 margin:auto;
 
@@ -47,24 +43,35 @@ text-align:center;
 
 .logo{
 
-font-size:45px;
+font-size:66px;
 
 font-weight:900;
 
-color:#00e6ff;
+margin-top:20px;
 
-margin-bottom:12px;
+background:
+linear-gradient(
+90deg,
+#ffffff,
+#67e8f9,
+#60a5fa
+);
 
-text-shadow:
-0 0 20px #00e6ff;
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
 
 }
 
 .sub{
 
-color:#cbd5e1;
+color:#dbeafe;
 
-margin-bottom:35px;
+font-size:20px;
+
+margin-top:12px;
+
+margin-bottom:40px;
 
 }
 
@@ -75,62 +82,106 @@ display:grid;
 grid-template-columns:
 repeat(
 auto-fit,
-minmax(260px,1fr)
+minmax(280px,1fr)
 );
 
-gap:22px;
+gap:28px;
 
 }
 
 .card{
 
-background:#182338;
+background:
+rgba(
+255,
+255,
+255,
+0.06
+);
 
-padding:30px;
+backdrop-filter:
+blur(16px);
 
-border-radius:20px;
+padding:35px;
+
+border-radius:30px;
 
 text-decoration:none;
 
 color:white;
 
-transition:.3s;
+border:
+1px solid
+rgba(
+96,
+165,
+250,
+0.20
+);
+
+transition:.35s;
 
 }
 
 .card:hover{
 
 transform:
-translateY(-8px);
+translateY(-10px);
 
 box-shadow:
-0 0 25px #00e6ff;
+0 0 40px
+rgba(
+96,
+165,
+250,
+0.40
+);
 
 }
 
 .icon{
 
-font-size:60px;
+font-size:72px;
 
-margin-bottom:14px;
+margin-bottom:15px;
 
 }
 
 .title{
 
-font-size:28px;
+font-size:32px;
 
 font-weight:bold;
 
-margin-bottom:10px;
+margin-bottom:12px;
+
+color:#93c5fd;
 
 }
 
 .desc{
 
-color:#cbd5e1;
+color:#dbeafe;
 
-line-height:1.6;
+line-height:1.8;
+
+}
+
+.about{
+
+margin-top:45px;
+
+padding:35px;
+
+border-radius:30px;
+
+background:
+rgba(
+255,
+255,
+255,
+0.05
+);
 
 }
 
@@ -138,128 +189,71 @@ line-height:1.6;
 
 display:inline-block;
 
-margin-top:30px;
+margin-top:35px;
 
-padding:14px 28px;
+padding:16px 36px;
 
-background:#00e6ff;
+background:
+linear-gradient(
+90deg,
+#67e8f9,
+#60a5fa
+);
 
 color:black;
 
+font-weight:bold;
+
 text-decoration:none;
 
-border-radius:12px;
-
-font-weight:bold;
+border-radius:18px;
 
 }
 
-</style>
+</style></head><body><div class="container"><div class="logo">✈️ INDIAN AIR FORCE
 
-</head>
+</div><div class="sub">Group X • Group Y • Mock Test
 
-<body>
-
-<div class="container">
-
-<div class="logo">
-
-✈️ INDIAN AIR FORCE
-
-</div>
-
-<div class="sub">
-
-Air Force Practice Portal
-
-</div>
-
-<div class="cards">
-
-<a
+</div><div class="cards"><a
 href="airforce-groupx.html"
 class="card">
 
-<div class="icon">
+<div class="icon">🧮
 
-🧮
+</div><div class="title">Group X
 
-</div>
+</div><div class="desc">Maths • Physics • English
 
-<div class="title">
-
-Group X
-
-</div>
-
-<div class="desc">
-
-Maths • Physics • English
-
-</div>
-
-</a>
-
-<a
+</div></a><a
 href="airforce-groupy.html"
 class="card">
 
-<div class="icon">
+<div class="icon">📘
 
-📘
+</div><div class="title">Group Y
 
-</div>
+</div><div class="desc">English • Reasoning • GK
 
-<div class="title">
-
-Group Y
-
-</div>
-
-<div class="desc">
-
-English • Reasoning • GK
-
-</div>
-
-</a>
-
-<a
+</div></a><a
 href="airforce-mocktest.html"
 class="card">
 
-<div class="icon">
+<div class="icon">🏆
 
-🏆
+</div><div class="title">Air Force Mock Test
 
-</div>
+</div><div class="desc">Mixed Questions + Score
 
-<div class="title">
+</div></a></div><div class="about"><h2>☁️ About Air Force
 
-Air Force Mock Test
+</h2><br><p>Prepare for Group X, Group Y and full mock tests.
 
-</div>
+Fly higher with daily practice.
 
-<div class="desc">
-
-Mixed Questions + Score
-
-</div>
-
-</a>
-
-</div>
-
-<a
+</p></div><a
 href="index.html"
 class="back">
 
-⬅ Back Home
+🏠 Back Home
 
-</a>
-
-</div>
-
-</body>
-
-</html>
+</a></div></body></html>
