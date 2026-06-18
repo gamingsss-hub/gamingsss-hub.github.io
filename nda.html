@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport"
 content="width=device-width,initial-scale=1">
 
-<title>NDA | AgniveerX Quiz</title>
+<title>NDA | AgniveerX Quiz
 
-<style>
+</title><style>
 
 *{
 margin:0;
@@ -24,19 +17,23 @@ body{
 background:
 linear-gradient(
 135deg,
-#07111f,
-#111827
+#050816,
+#0f172a,
+#172554,
+#2b1d0e
 );
 
 color:white;
 
 padding:20px;
 
+min-height:100vh;
+
 }
 
 .container{
 
-max-width:1000px;
+max-width:1200px;
 
 margin:auto;
 
@@ -46,24 +43,35 @@ text-align:center;
 
 .logo{
 
-font-size:45px;
+font-size:68px;
 
 font-weight:900;
 
-color:#00e6ff;
+margin-top:20px;
 
-margin-bottom:15px;
+background:
+linear-gradient(
+90deg,
+#fde68a,
+#fbbf24,
+#ffffff
+);
 
-text-shadow:
-0 0 20px #00e6ff;
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
 
 }
 
 .sub{
 
-color:#cbd5e1;
+margin-top:12px;
 
-margin-bottom:35px;
+font-size:20px;
+
+color:#e2e8f0;
+
+margin-bottom:40px;
 
 }
 
@@ -74,54 +82,80 @@ display:grid;
 grid-template-columns:
 repeat(
 auto-fit,
-minmax(250px,1fr)
+minmax(280px,1fr)
 );
 
-gap:20px;
+gap:28px;
 
 }
 
 .card{
 
-background:#182338;
+background:
+rgba(
+255,
+255,
+255,
+0.05
+);
 
-padding:30px;
+backdrop-filter:
+blur(16px);
 
-border-radius:20px;
+padding:35px;
+
+border-radius:30px;
 
 text-decoration:none;
 
 color:white;
 
-transition:.3s;
+border:
+1px solid
+rgba(
+251,
+191,
+36,
+0.20
+);
+
+transition:.35s;
 
 }
 
 .card:hover{
 
 transform:
-translateY(-8px);
+translateY(-10px);
 
 box-shadow:
-0 0 25px #00e6ff;
+0 0 45px
+rgba(
+251,
+191,
+36,
+0.35
+);
 
 }
 
 .icon{
 
-font-size:60px;
+font-size:72px;
 
-margin-bottom:15px;
+margin-bottom:16px;
 
 }
 
 .title{
 
-font-size:28px;
+font-size:32px;
+
+font-weight:bold;
 
 margin-bottom:10px;
 
-font-weight:bold;
+color:#fde68a;
 
 }
 
@@ -129,182 +163,117 @@ font-weight:bold;
 
 color:#cbd5e1;
 
+line-height:1.8;
+
+}
+
+.about{
+
+margin-top:45px;
+
+padding:35px;
+
+border-radius:30px;
+
+background:
+rgba(
+255,
+255,
+255,
+0.05
+);
+
 }
 
 .back{
 
 display:inline-block;
 
-margin-top:30px;
+margin-top:35px;
 
-padding:14px 28px;
+padding:16px 40px;
 
-background:#00e6ff;
+background:
+linear-gradient(
+90deg,
+#fbbf24,
+#fde68a
+);
 
 color:black;
 
+font-weight:bold;
+
 text-decoration:none;
 
-border-radius:12px;
-
-font-weight:bold;
+border-radius:18px;
 
 }
 
-</style>
+</style></head><body><div class="container"><div class="logo">🛩️ NDA
 
-</head>
+</div><div class="sub">National Defence Academy Practice Portal
 
-<body>
-
-<div class="container">
-
-<div class="logo">
-
-✈️ NDA
-
-</div>
-
-<div class="sub">
-
-National Defence Academy Practice Portal
-
-</div>
-
-<div class="cards">
-
-<a
+</div><div class="cards"><a
 href="nda-maths.html"
 class="card">
 
-<div class="icon">
+<div class="icon">➗
 
-➗
+</div><div class="title">NDA Maths
 
-</div>
+</div><div class="desc">Advanced Maths Practice
 
-<div class="title">
-
-NDA Maths
-
-</div>
-
-<div class="desc">
-
-Advanced Maths Practice
-
-</div>
-
-</a>
-
-<a
+</div></a><a
 href="nda-gk.html"
 class="card">
 
-<div class="icon">
+<div class="icon">🌍
 
-🌍
+</div><div class="title">NDA GK
 
-</div>
+</div><div class="desc">Current Affairs + General Knowledge
 
-<div class="title">
-
-NDA GK
-
-</div>
-
-<div class="desc">
-
-Current Affairs + GK
-
-</div>
-
-</a>
-
-<a
+</div></a><a
 href="nda-english.html"
 class="card">
 
-<div class="icon">
+<div class="icon">📖
 
-📖
+</div><div class="title">NDA English
 
-</div>
+</div><div class="desc">Grammar + Vocabulary
 
-<div class="title">
-
-NDA English
-
-</div>
-
-<div class="desc">
-
-Grammar + Vocabulary
-
-</div>
-
-</a>
-
-<a
+</div></a><a
 href="nda-science.html"
 class="card">
 
-<div class="icon">
+<div class="icon">🧪
 
-🧪
+</div><div class="title">NDA Science
 
-</div>
+</div><div class="desc">Physics • Chemistry
 
-<div class="title">
-
-NDA Science
-
-</div>
-
-<div class="desc">
-
-Physics • Chemistry
-
-</div>
-
-</a>
-
-<a
+</div></a><a
 href="nda-mocktest.html"
 class="card">
 
-<div class="icon">
+<div class="icon">🏆
 
-🏆
+</div><div class="title">NDA Mock Test
 
-</div>
+</div><div class="desc">Full Length Practice
 
-<div class="title">
+</div></a></div><div class="about"><h2>🎖️ About NDA
 
-NDA Mock Test
+</h2><br><p>Prepare smarter with Maths, GK, English, Science and full mock tests.
 
-</div>
+Build speed, accuracy and confidence.
 
-<div class="desc">
-
-Full Length Practice
-
-</div>
-
-</a>
-
-</div>
-
-<a
+</p></div><a
 href="index.html"
 class="back">
 
-⬅ Back To Home
+🏠 Back To Home
 
-</a>
-
-</div>
-
-</body>
-
-</html>
+</a></div></body></html>
