@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGNIVEERX REAL QUIZ PRO</title>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+     crossorigin="anonymous"></script> 
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:95%;
+max-width:750px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+position:relative;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+color:#fbbf24;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option{
+background:#111827;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.option:hover{background:#00e6ff;color:black;}
+
+.correct{background:#22c55e !important;}
+.wrong{background:#ef4444 !important;}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#00e6ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.previewBox{
+position:absolute;
+top:60px;
+left:0;
+right:0;
+background:#0f172a;
+max-height:300px;
+overflow:auto;
+display:none;
+padding:10px;
+border-radius:10px;
+z-index:999;
+}
+
+.previewItem{
+padding:6px;
+margin:5px 0;
+background:#111827;
+cursor:pointer;
+border-radius:6px;
+font-size:12px;
+}
+
+.pop{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px;
+border-radius:8px;
+animation:fade 1s;
+}
+@keyframes fade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+<div id="sec">START</div>
+<div>Score: <span id="score">0</span></div>
+<div id="timer">⏳ 15</div>
+</div>
+
+<h2 id="q"></h2>
+<div id="opt"></div>
+
+<div id="ansBox" style="margin-top:10px;color:#22c55e;font-weight:bold;"></div>
+
+<button onclick="togglePreview()">👁 Preview</button>
+<div class="previewBox" id="preview"></div>
+
+</div>
+
+<audio id="ok" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+<audio id="no" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+<script>
+
+let quiz=[];
+
+function add(sec,arr){
+arr.forEach(q=>{
+quiz.push({sec,q:q.q,o:q.o,c:q.c});
+});
+}
+
+
+/* ================= HOLLYWOOD 25 REAL ================= */
+add("HOLLYWOOD",[
+{
+q:"Which movie won Best Picture Oscar in 1998?",
+o:["Titanic","Avatar","Gladiator","Jaws"],
+c:0
+},
+{
+q:"Who played Iron Man in MCU?",
+o:["Chris Evans","Robert Downey Jr.","Tom Holland","Chris Hemsworth"],
+c:1
+},
+{
+q:"Director of Avatar?",
+o:["James Cameron","Christopher Nolan","Spielberg","Ridley Scott"],
+c:0
+},
+{
+q:"Which movie features Joker and Batman?",
+o:["Titanic","The Dark Knight","Frozen","Cars"],
+c:1
+},
+{
+q:"Who played Jack in Titanic?",
+o:["Brad Pitt","Leonardo DiCaprio","Tom Cruise","Johnny Depp"],
+c:1
+},
+{
+q:"Which movie says 'May the Force be with you'?",
+o:["Star Wars","Harry Potter","Avatar","Frozen"],
+c:0
+},
+{
+q:"Highest grossing movie for many years before Avatar?",
+o:["Titanic","Joker","Endgame","Frozen"],
+c:0
+},
+{
+q:"Who directed Interstellar?",
+o:["James Cameron","Christopher Nolan","Kubrick","Tarantino"],
+c:1
+},
+{
+q:"Movie featuring dinosaurs?",
+o:["Jaws","Jurassic Park","Cars","Avatar"],
+c:1
+},
+{
+q:"Who played Captain America?",
+o:["Chris Evans","Chris Pratt","Tom Holland","Hemsworth"],
+c:0
+},
+{
+q:"Which movie includes Hogwarts?",
+o:["Harry Potter","Avatar","Titanic","Joker"],
+c:0
+},
+{
+q:"Movie with blue alien world Pandora?",
+o:["Avatar","Frozen","Cars","Jaws"],
+c:0
+},
+{
+q:"Who played Spider-Man in MCU?",
+o:["Tom Holland","Brad Pitt","Will Smith","Downey"],
+c:0
+},
+{
+q:"Movie about dreams inside dreams?",
+o:["Inception","Titanic","Avatar","Cars"],
+c:0
+},
+{
+q:"Who directed Titanic?",
+o:["James Cameron","Nolan","Spielberg","Scott"],
+c:0
+},
+{
+q:"Movie featuring Wakanda?",
+o:["Black Panther","Batman","Avatar","Cars"],
+c:0
+},
+{
+q:"Oscar award mainly related to?",
+o:["Movies","Cricket","Football","Music only"],
+c:0
+},
+{
+q:"Movie with character Elsa?",
+o:["Frozen","Avatar","Titanic","Cars"],
+c:0
+},
+{
+q:"Which actor played Wolverine for many years?",
+o:["Hugh Jackman","Tom Cruise","Downey","DiCaprio"],
+c:0
+},
+{
+q:"Movie featuring Thanos?",
+o:["Avengers","Titanic","Cars","Frozen"],
+c:0
+},
+{
+q:"Who directed Jurassic Park?",
+o:["Spielberg","Nolan","Cameron","Kubrick"],
+c:0
+},
+{
+q:"Movie with clown villain Joker?",
+o:["The Dark Knight","Avatar","Frozen","Cars"],
+c:0
+},
+{
+q:"Which movie is about a sinking ship?",
+o:["Titanic","Avatar","Interstellar","Jaws"],
+c:0
+},
+{
+q:"Movie with Na'vi species?",
+o:["Avatar","Joker","Cars","Frozen"],
+c:0
+},
+{
+q:"Hollywood is mainly associated with?",
+o:["Film industry","Football","Space","Books"],
+c:0
+}
+]);
+
+
+/* SHUFFLE */
+quiz.forEach(q=>{
+let correct=q.o[q.c];
+for(let i=q.o.length-1;i>0;i--){
+let j=Math.floor(Math.random()*i);
+[q.o[i],q.o[j]]=[q.o[j],q.o[i]];
+}
+q.c=q.o.indexOf(correct);
+});
+
+let i=0,score=0,timer,time=15;
+
+function load(){
+if(i>=quiz.length){
+document.body.innerHTML=`<h1>Finished</h1><h2>Score: ${score}</h2>`;
+return;
+}
+
+let q=quiz[i];
+document.getElementById("sec").innerText=q.sec;
+document.getElementById("q").innerText=q.q;
+document.getElementById("score").innerText=score;
+
+let box=document.getElementById("opt");
+box.innerHTML="";
+
+q.o.forEach((op,idx)=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=op;
+d.onclick=()=>check(idx);
+box.appendChild(d);
+});
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(timer);
+time=15;
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="⏳ "+time;
+if(time<=0) next();
+},1000);
+}
+
+function pop(msg,color){
+let d=document.createElement("div");
+d.className="pop";
+d.style.background=color;
+d.innerText=msg;
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),800);
+}
+
+function check(ans){
+
+clearInterval(timer);
+
+let q=quiz[i];
+let correctText=q.o[q.c];
+
+let opt=document.querySelectorAll(".option");
+
+opt.forEach(o=>o.style.pointerEvents="none");
+
+if(ans===q.c){
+
+score++;
+
+document.getElementById("ok").play();
+
+pop("+1 Correct ✔","green");
+
+opt[ans].classList.add("correct");
+
+}else{
+
+score--;
+
+document.getElementById("no").play();
+
+pop("-1 Wrong ❌","red");
+
+opt[ans].classList.add("wrong");
+
+opt[q.c].classList.add("correct");
+
+}
+
+document.getElementById("score").innerText=score;
+
+/* show answer */
+
+document.getElementById("ansBox").innerHTML=
+"✅ Correct Answer: "+correctText;
+
+setTimeout(()=>{
+
+document.getElementById("ansBox").innerHTML="";
+
+i++;
+
+load();
+
+},1500);
+
+}
+
+function togglePreview(){
+
+let p=document.getElementById("preview");
+
+if(p.style.display==="block"){
+p.style.display="none";
+return;
+}
+
+p.style.display="block";
+p.innerHTML="";
+
+quiz.forEach((q,idx)=>{
+
+let d=document.createElement("div");
+
+d.className="previewItem";
+
+d.innerText=(idx+1)+". "+q.q;
+
+d.onclick=()=>{
+i=idx;
+load();
+p.style.display="none";
+};
+
+p.appendChild(d);
+
+});
+
+}
+  
+load();
+
+</script>
+
+</body>
+</html>
