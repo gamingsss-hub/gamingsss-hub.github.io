@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGNIVEERX REAL QUIZ PRO</title>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+     crossorigin="anonymous"></script> 
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:95%;
+max-width:750px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+position:relative;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+color:#fbbf24;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.option{
+background:#111827;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.option:hover{background:#00e6ff;color:black;}
+
+.correct{background:#22c55e !important;}
+.wrong{background:#ef4444 !important;}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#00e6ff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.previewBox{
+position:absolute;
+top:60px;
+left:0;
+right:0;
+background:#0f172a;
+max-height:300px;
+overflow:auto;
+display:none;
+padding:10px;
+border-radius:10px;
+z-index:999;
+}
+
+.previewItem{
+padding:6px;
+margin:5px 0;
+background:#111827;
+cursor:pointer;
+border-radius:6px;
+font-size:12px;
+}
+
+.pop{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px;
+border-radius:8px;
+animation:fade 1s;
+}
+@keyframes fade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="top">
+<div id="sec">START</div>
+<div>Score: <span id="score">0</span></div>
+<div id="timer">⏳ 15</div>
+</div>
+
+<h2 id="q"></h2>
+<div id="opt"></div>
+
+<div id="ansBox" style="margin-top:10px;color:#22c55e;font-weight:bold;"></div>
+
+<button onclick="togglePreview()">👁 Preview</button>
+<div class="previewBox" id="preview"></div>
+
+</div>
+
+<audio id="ok" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+<audio id="no" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+<script>
+
+let quiz=[];
+
+function add(sec,arr){
+arr.forEach(q=>{
+quiz.push({sec,q:q.q,o:q.o,c:q.c});
+});
+}
+
+
+/* ================= SPACE MISSONS 25 REAL ================= */
+add("SPACE MISSONS",[
+{
+q:"First human in space?",
+o:["Neil Armstrong","Yuri Gagarin","Rakesh Sharma","John Glenn"],
+c:1
+},
+{
+q:"First mission to land humans on Moon?",
+o:["Apollo 11","Apollo 13","Sputnik 1","Voyager 1"],
+c:0
+},
+{
+q:"Country launched Sputnik 1?",
+o:["USA","USSR","India","China"],
+c:1
+},
+{
+q:"First artificial satellite?",
+o:["Sputnik 1","Apollo 11","Aryabhata","Explorer"],
+c:0
+},
+{
+q:"ISRO stands for?",
+o:["Indian Space Research Organisation","Indian Satellite Research Office","International Space Org","None"],
+c:0
+},
+{
+q:"First Indian in space?",
+o:["Rakesh Sharma","Kalpana Chawla","Sunita Williams","Vikram Sarabhai"],
+c:0
+},
+{
+q:"India's Moon mission?",
+o:["Chandrayaan","Mangalyaan","Aditya","Gaganyaan"],
+c:0
+},
+{
+q:"India's Mars mission?",
+o:["Mangalyaan","Chandrayaan","Aditya","Astrosat"],
+c:0
+},
+{
+q:"Mission to study Sun by India?",
+o:["Aditya-L1","Astrosat","Gaganyaan","PSLV"],
+c:0
+},
+{
+q:"Apollo missions belonged to?",
+o:["NASA","ISRO","ESA","JAXA"],
+c:0
+},
+{
+q:"First reusable spacecraft?",
+o:["Space Shuttle","Apollo","Sputnik","Voyager"],
+c:0
+},
+{
+q:"Voyager 1 launched in?",
+o:["1977","1985","1969","1990"],
+c:0
+},
+{
+q:"International Space Station short form?",
+o:["ISS","IRS","IFS","INT"],
+c:0
+},
+{
+q:"SpaceX founder?",
+o:["Jeff Bezos","Elon Musk","Bill Gates","Cook"],
+c:1
+},
+{
+q:"NASA belongs to?",
+o:["USA","India","Russia","Japan"],
+c:0
+},
+{
+q:"India's human space mission?",
+o:["Gaganyaan","Mangalyaan","Chandrayaan","Astrosat"],
+c:0
+},
+{
+q:"First woman in space?",
+o:["Valentina Tereshkova","Kalpana Chawla","Sunita Williams","Mae Jemison"],
+c:0
+},
+{
+q:"Rocket launches from ISRO mainly?",
+o:["Sriharikota","Delhi","Mumbai","Goa"],
+c:0
+},
+{
+q:"First spacewalk by?",
+o:["Alexei Leonov","Yuri Gagarin","Armstrong","Aldrin"],
+c:0
+},
+{
+q:"Mission that carried first humans to Moon?",
+o:["Apollo 11","Apollo 12","Gemini","Artemis"],
+c:0
+},
+{
+q:"Current NASA Moon return program?",
+o:["Artemis","Apollo","Mercury","Gemini"],
+c:0
+},
+{
+q:"Which mission discovered Pluto close-up?",
+o:["New Horizons","Voyager","Cassini","Juno"],
+c:0
+},
+{
+q:"Cassini mission explored?",
+o:["Saturn","Mars","Moon","Jupiter"],
+c:0
+},
+{
+q:"Juno mission studies?",
+o:["Jupiter","Mars","Sun","Moon"],
+c:0
+},
+{
+q:"Chandrayaan-3 achieved?",
+o:["Moon south pole landing","Mars landing","Sun orbit","ISS docking"],
+c:0
+}
+]);
+
+
+/* SHUFFLE */
+quiz.forEach(q=>{
+let correct=q.o[q.c];
+for(let i=q.o.length-1;i>0;i--){
+let j=Math.floor(Math.random()*i);
+[q.o[i],q.o[j]]=[q.o[j],q.o[i]];
+}
+q.c=q.o.indexOf(correct);
+});
+
+let i=0,score=0,timer,time=15;
+
+function load(){
+if(i>=quiz.length){
+document.body.innerHTML=`<h1>Finished</h1><h2>Score: ${score}</h2>`;
+return;
+}
+
+let q=quiz[i];
+document.getElementById("sec").innerText=q.sec;
+document.getElementById("q").innerText=q.q;
+document.getElementById("score").innerText=score;
+
+let box=document.getElementById("opt");
+box.innerHTML="";
+
+q.o.forEach((op,idx)=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=op;
+d.onclick=()=>check(idx);
+box.appendChild(d);
+});
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(timer);
+time=15;
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="⏳ "+time;
+if(time<=0) next();
+},1000);
+}
+
+function pop(msg,color){
+let d=document.createElement("div");
+d.className="pop";
+d.style.background=color;
+d.innerText=msg;
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),800);
+}
+
+function check(ans){
+
+clearInterval(timer);
+
+let q=quiz[i];
+let correctText=q.o[q.c];
+
+let opt=document.querySelectorAll(".option");
+
+opt.forEach(o=>o.style.pointerEvents="none");
+
+if(ans===q.c){
+
+score++;
+
+document.getElementById("ok").play();
+
+pop("+1 Correct ✔","green");
+
+opt[ans].classList.add("correct");
+
+}else{
+
+score--;
+
+document.getElementById("no").play();
+
+pop("-1 Wrong ❌","red");
+
+opt[ans].classList.add("wrong");
+
+opt[q.c].classList.add("correct");
+
+}
+
+document.getElementById("score").innerText=score;
+
+/* show answer */
+
+document.getElementById("ansBox").innerHTML=
+"✅ Correct Answer: "+correctText;
+
+setTimeout(()=>{
+
+document.getElementById("ansBox").innerHTML="";
+
+i++;
+
+load();
+
+},1500);
+
+}
+
+function togglePreview(){
+
+let p=document.getElementById("preview");
+
+if(p.style.display==="block"){
+p.style.display="none";
+return;
+}
+
+p.style.display="block";
+p.innerHTML="";
+
+quiz.forEach((q,idx)=>{
+
+let d=document.createElement("div");
+
+d.className="previewItem";
+
+d.innerText=(idx+1)+". "+q.q;
+
+d.onclick=()=>{
+i=idx;
+load();
+p.style.display="none";
+};
+
+p.appendChild(d);
+
+});
+
+}
+  
+load();
+
+</script>
+
+</body>
+</html>
