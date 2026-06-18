@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport"
 content="width=device-width,initial-scale=1">
 
-<title>SSC CGL | AgniveerX</title>
+<title>SSC CGL | AgniveerX
 
-<style>
+</title><style>
 
 *{
 margin:0;
@@ -24,19 +17,23 @@ body{
 background:
 linear-gradient(
 135deg,
-#07111f,
-#111827
+#0a0f1f,
+#111827,
+#1e293b,
+#2b1d0e
 );
 
 color:white;
 
 padding:20px;
 
+min-height:100vh;
+
 }
 
 .container{
 
-max-width:1000px;
+max-width:1200px;
 
 margin:auto;
 
@@ -46,11 +43,35 @@ text-align:center;
 
 .logo{
 
-font-size:45px;
+font-size:64px;
 
-color:#00e6ff;
+font-weight:900;
 
-margin-bottom:25px;
+margin-top:20px;
+
+background:
+linear-gradient(
+90deg,
+#fde68a,
+#fbbf24,
+#f59e0b
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.sub{
+
+margin-top:10px;
+
+color:#fde68a;
+
+font-size:20px;
+
+margin-bottom:40px;
 
 }
 
@@ -59,38 +80,108 @@ margin-bottom:25px;
 display:grid;
 
 grid-template-columns:
-repeat(auto-fit,minmax(250px,1fr));
+repeat(
+auto-fit,
+minmax(280px,1fr)
+);
 
-gap:20px;
+gap:28px;
 
 }
 
 .card{
 
-background:#182338;
+background:
+rgba(
+255,
+255,
+255,
+0.05
+);
 
-padding:30px;
+backdrop-filter:
+blur(14px);
 
-border-radius:20px;
+padding:35px;
+
+border-radius:30px;
 
 text-decoration:none;
 
 color:white;
 
+border:
+1px solid
+rgba(
+251,
+191,
+36,
+0.25
+);
+
+transition:.35s;
+
 }
 
 .card:hover{
 
+transform:
+translateY(-10px);
+
 box-shadow:
-0 0 20px #00e6ff;
+0 0 40px
+rgba(
+251,
+191,
+36,
+0.45
+);
 
 }
 
 .icon{
 
-font-size:60px;
+font-size:72px;
+
+margin-bottom:15px;
+
+}
+
+.title{
+
+font-size:30px;
+
+font-weight:bold;
 
 margin-bottom:10px;
+
+color:#fde68a;
+
+}
+
+.desc{
+
+color:#d1d5db;
+
+line-height:1.8;
+
+}
+
+.about{
+
+margin-top:45px;
+
+padding:35px;
+
+border-radius:30px;
+
+background:
+rgba(
+255,
+255,
+255,
+0.05
+);
 
 }
 
@@ -98,113 +189,89 @@ margin-bottom:10px;
 
 display:inline-block;
 
-margin-top:30px;
+margin-top:35px;
 
-padding:12px 25px;
+padding:16px 38px;
 
-background:#00e6ff;
+background:
+linear-gradient(
+90deg,
+#fbbf24,
+#fde68a
+);
 
 color:black;
 
+font-weight:bold;
+
 text-decoration:none;
 
-border-radius:10px;
+border-radius:18px;
 
 }
 
-</style>
+</style></head><body><div class="container"><div class="logo">📚 SSC CGL
 
-</head>
+</div><div class="sub">GK • Maths • Reasoning • English • Mock Test
 
-<body>
-
-<div class="container">
-
-<div class="logo">
-
-📚 SSC CGL
-
-</div>
-
-<div class="cards">
-
-<a href="ssccgl-gk.html"
+</div><div class="cards"><a
+href="ssccgl-gk.html"
 class="card">
 
-<div class="icon">
-🌍
-</div>
+<div class="icon">🌍
 
-<h2>
-GK
-</h2>
+</div><div class="title">GK
 
-</a>
+</div><div class="desc">History • Geography • Current Affairs
 
-<a href="ssccgl-maths.html"
+</div></a><a
+href="ssccgl-maths.html"
 class="card">
 
-<div class="icon">
-🧮
-</div>
+<div class="icon">🧮
 
-<h2>
-Maths
-</h2>
+</div><div class="title">Maths
 
-</a>
+</div><div class="desc">Arithmetic • Algebra • DI
 
-<a href="ssccgl-reasoning.html"
+</div></a><a
+href="ssccgl-reasoning.html"
 class="card">
 
-<div class="icon">
-🧠
-</div>
+<div class="icon">🧠
 
-<h2>
-Reasoning
-</h2>
+</div><div class="title">Reasoning
 
-</a>
+</div><div class="desc">Logic • Puzzle • Coding
 
-<a href="ssccgl-english.html"
+</div></a><a
+href="ssccgl-english.html"
 class="card">
 
-<div class="icon">
-📖
-</div>
+<div class="icon">📖
 
-<h2>
-English
-</h2>
+</div><div class="title">English
 
-</a>
+</div><div class="desc">Grammar • Vocabulary
 
-<a href="ssccgl-mocktest.html"
+</div></a><a
+href="ssccgl-mocktest.html"
 class="card">
 
-<div class="icon">
-🏆
-</div>
+<div class="icon">🏆
 
-<h2>
-Full Mock Test
-</h2>
+</div><div class="title">Full Mock Test
 
-</a>
+</div><div class="desc">50 Mixed Questions
 
-</div>
+</div></a></div><div class="about"><h2>🏛️ About SSC CGL
 
-<a
+</h2><br><p>Practice daily and improve speed, accuracy and exam performance.
+
+</p></div><a
 href="index.html"
 class="back">
 
-⬅ Home
+🏠 Back Home
 
-</a>
-
-</div>
-
-</body>
-
-</html>
+</a></div></body></html>
