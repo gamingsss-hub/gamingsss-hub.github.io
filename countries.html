@@ -1,8 +1,30 @@
-<!DOCTYPE html><html><head><title>Country Universe | QuizEmpire
+<!DOCTYPE html>
 
-</title><meta
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
 name="viewport"
-content="width=device-width,initial-scale=1">
+content="width=device-width,initial-scale=1.0">
+
+<title>
+CountryVerse | QuizEmpire
+</title>
+
+<meta
+name="description"
+content="Play country quizzes and explore the world">
+
+<link
+rel="icon"
+href="favicon.png">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap"
+rel="stylesheet">
 
 <style>
 
@@ -14,7 +36,7 @@ padding:0;
 
 box-sizing:border-box;
 
-font-family:Poppins;
+font-family:Poppins,sans-serif;
 
 }
 
@@ -24,40 +46,52 @@ background:
 
 linear-gradient(
 135deg,
-#020617,
-#0f172a,
-#172554,
-#3b0764
+#140021,
+#26003d,
+#45006e,
+#090010
 );
+
+color:white;
+
+overflow-x:hidden;
 
 min-height:100vh;
 
-padding:25px;
+}
 
-color:white;
+.container{
+
+width:90%;
+
+max-width:1500px;
+
+margin:auto;
+
+padding:40px 0;
 
 }
 
 .logo{
 
-text-align:center;
-
-font-size:70px;
+font-size:90px;
 
 font-weight:900;
+
+text-align:center;
 
 background:
 
 linear-gradient(
 90deg,
-#00e6ff,
-#67e8f9,
-#ff4dff
+#ff44ee,
+#7c5cff,
+#00f2ff
 );
 
 -webkit-background-clip:text;
 
--webkit-text-fill-color:transparent;
+color:transparent;
 
 }
 
@@ -65,9 +99,11 @@ linear-gradient(
 
 text-align:center;
 
-color:#cbd5e1;
+margin-top:10px;
 
-margin-top:15px;
+font-size:18px;
+
+color:#ddd;
 
 }
 
@@ -79,19 +115,23 @@ max-width:900px;
 
 display:block;
 
-margin:auto;
-
-margin-top:40px;
+margin:40px auto;
 
 padding:22px;
 
 border:none;
 
-border-radius:999px;
+outline:none;
+
+border-radius:60px;
 
 background:
 
-rgba(255,255,255,.06);
+rgba(255,255,255,.08);
+
+backdrop-filter:
+
+blur(20px);
 
 color:white;
 
@@ -107,10 +147,189 @@ grid-template-columns:
 
 repeat(
 auto-fit,
-minmax(230px,1fr)
+minmax(300px,1fr)
 );
 
 gap:30px;
+
+}
+
+.card{
+
+background:
+
+rgba(255,255,255,.06);
+
+backdrop-filter:
+
+blur(18px);
+
+padding:45px;
+
+border-radius:35px;
+
+text-align:center;
+
+border:
+
+1px solid
+
+rgba(255,255,255,.15);
+
+transition:.5s;
+
+}
+
+.card:hover{
+
+transform:
+
+translateY(-12px);
+
+box-shadow:
+
+0 0 70px
+
+rgba(255,0,255,.4);
+
+}
+
+.flag{
+
+font-size:95px;
+
+margin-bottom:20px;
+
+}
+
+.code{
+
+font-size:60px;
+
+font-weight:900;
+
+color:#00e6ff;
+
+}
+
+.country{
+
+font-size:32px;
+
+margin-top:10px;
+
+}
+
+.badge{
+
+margin-top:20px;
+
+display:inline-block;
+
+padding:14px 36px;
+
+border-radius:50px;
+
+background:
+
+linear-gradient(
+90deg,
+#ff00aa,
+#4f46e5
+);
+
+font-weight:800;
+
+}
+
+<!-- COUNTRY GRID -->
+
+<div class="grid">
+
+<div class="card">
+<div class="flag">🇮🇳</div>
+<h2>INDIA</h2>
+<p>GK • States • Capitals</p>
+<a href="india.html">PLAY NOW</a>
+</div>
+
+<div class="card">
+<div class="flag">🇺🇸</div>
+<h2>USA</h2>
+<p>States • History • Facts</p>
+<a href="usa.html">PLAY NOW</a>
+</div>
+
+<div class="card">
+<div class="flag">🇯🇵</div>
+<h2>JAPAN</h2>
+<p>Culture • Tech • Quiz</p>
+<a href="japan.html">PLAY NOW</a>
+</div>
+
+<div class="card">
+<div class="flag">🇫🇷</div>
+<h2>FRANCE</h2>
+<p>Food • Cities • History</p>
+<a href="france.html">PLAY NOW</a>
+</div>
+
+<div class="card">
+<div class="flag">🇩🇪</div>
+<h2>GERMANY</h2>
+<p>World • GK • Facts</p>
+<a href="germany.html">PLAY NOW</a>
+</div>
+
+<div class="card">
+<div class="flag">🇬🇧</div>
+<h2>UK</h2>
+<p>Flags • Capitals</p>
+<a href="uk.html">PLAY NOW</a>
+</div>
+
+<div class="card">
+<div class="flag">🇰🇷</div>
+<h2>SOUTH KOREA</h2>
+<p>K-pop • Tech • Culture</p>
+<a href="korea.html">PLAY NOW</a>
+</div>
+
+<div class="card">
+<div class="flag">🇨🇦</div>
+<h2>CANADA</h2>
+<p>Nature • Facts</p>
+<a href="canada.html">PLAY NOW</a>
+</div>
+
+</div>
+
+<!-- DAILY CHALLENGE -->
+
+<div class="challenge">
+
+<h1>🔥 DAILY COUNTRY CHALLENGE</h1>
+
+<p>
+Complete quizzes and unlock more countries
+</p>
+
+<button>
+START NOW
+</button>
+
+</div>
+
+<style>
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:28px;
 
 margin-top:60px;
 
@@ -119,69 +338,73 @@ margin-top:60px;
 .card{
 
 background:
-
-rgba(255,255,255,.04);
-
-backdrop-filter:
-
-blur(30px);
-
-padding:40px;
-
-border-radius:35px;
-
-text-align:center;
-
-text-decoration:none;
-
-color:white;
-
-transition:.4s;
+linear-gradient(
+145deg,
+#111827,
+#0f172a
+);
 
 border:
 
 1px solid
 rgba(255,255,255,.08);
 
+border-radius:28px;
+
+padding:40px;
+
+text-align:center;
+
+transition:.35s;
+
+box-shadow:
+
+0 0 50px
+rgba(0,255,255,.05);
+
 }
 
 .card:hover{
 
 transform:
-
-translateY(-15px)
-scale(1.03);
+translateY(-10px);
 
 box-shadow:
 
 0 0 60px
-#00e6ff55;
+rgba(0,255,255,.35);
 
 }
 
 .flag{
 
-font-size:70px;
+font-size:80px;
+
+margin-bottom:20px;
 
 }
 
-.name{
+.card h2{
 
 font-size:34px;
 
-font-weight:900;
-
-margin-top:10px;
+color:#67e8f9;
 
 }
 
-.badge{
+.card p{
 
-margin-top:15px;
+color:#b8c0d4;
+
+margin:15px 0;
+
+}
+
+.card a{
 
 display:inline-block;
 
-padding:10px 20px;
+padding:14px 32px;
 
 border-radius:999px;
 
@@ -189,72 +412,300 @@ background:
 
 linear-gradient(
 90deg,
-#00e6ff,
-#8b5cf6
+#00d4ff,
+#7c3aed
 );
 
-color:black;
+color:white;
 
-font-weight:900;
+text-decoration:none;
+
+font-weight:700;
 
 }
 
-.footer{
+.challenge{
 
-margin-top:70px;
+margin-top:80px;
 
 text-align:center;
 
-color:#94a3b8;
+padding:60px;
+
+border-radius:35px;
+
+background:
+
+linear-gradient(
+135deg,
+#1e1b4b,
+#111827
+);
 
 }
 
-</style></head><body><div class="logo">🌍 COUNTRYVERSE
+.challenge h1{
 
-</div><div class="sub">Travel The World Through Quizzes
+font-size:48px;
 
-</div><input
+color:#00e5ff;
 
-class="search"
+}
 
-placeholder="🔍 Search Country">
+.challenge p{
 
-<div class="cards"><a href="india.html" class="card"><div class="flag">🇮🇳
+margin:20px;
 
-</div><div class="name">India
+color:#d5d8e4;
 
-</div><div class="badge">PLAY
+}
 
-</div></a><a href="usa.html" class="card"><div class="flag">🇺🇸
+.challenge button{
 
-</div><div class="name">USA
+padding:18px 45px;
 
-</div><div class="badge">PLAY
+border:none;
 
-</div></a><a href="japan.html" class="card"><div class="flag">🇯🇵
+border-radius:999px;
 
-</div><div class="name">Japan
+font-size:18px;
 
-</div><div class="badge">PLAY
+background:
 
-</div></a><a href="france.html" class="card"><div class="flag">🇫🇷
+linear-gradient(
+90deg,
+#00e5ff,
+#9333ea
+);
 
-</div><div class="name">France
+color:white;
 
-</div><div class="badge">PLAY
+}
 
-</div></a><a href="germany.html" class="card"><div class="flag">🇩🇪
+</style>
 
-</div><div class="name">Germany
+<!-- FLOATING LIGHTS -->
 
-</div><div class="badge">PLAY
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
 
-</div></a><a href="brazil.html" class="card"><div class="flag">🇧🇷
+<footer>
 
-</div><div class="name">Brazil
+🌍 QuizEmpire • Explore The World
 
-</div><div class="badge">PLAY
+</footer>
 
-</div></a></div><div class="footer">© QuizEmpire
+<style>
 
-</div></body></html>
+.orb{
+
+position:fixed;
+
+border-radius:50%;
+
+filter:blur(120px);
+
+z-index:-1;
+
+animation:
+
+float 12s infinite ease-in-out;
+
+}
+
+.orb1{
+
+width:350px;
+
+height:350px;
+
+background:#ff00ff;
+
+top:-100px;
+
+left:-100px;
+
+}
+
+.orb2{
+
+width:420px;
+
+height:420px;
+
+background:#00e5ff;
+
+right:-120px;
+
+top:300px;
+
+animation-delay:2s;
+
+}
+
+.orb3{
+
+width:300px;
+
+height:300px;
+
+background:#7c3aed;
+
+left:40%;
+
+bottom:-100px;
+
+animation-delay:4s;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:
+
+translateY(0px)
+
+translateX(0px);
+
+}
+
+50%{
+
+transform:
+
+translateY(-80px)
+
+translateX(40px);
+
+}
+
+100%{
+
+transform:
+
+translateY(0px)
+
+translateX(0px);
+
+}
+
+}
+
+footer{
+
+margin-top:90px;
+
+padding:40px;
+
+text-align:center;
+
+color:#b9c0da;
+
+font-size:18px;
+
+}
+
+@media(max-width:700px){
+
+.logo{
+
+font-size:54px;
+
+}
+
+.challenge h1{
+
+font-size:32px;
+
+}
+
+.card{
+
+padding:28px;
+
+}
+
+.flag{
+
+font-size:65px;
+
+}
+
+}
+
+</style>
+
+<script>
+
+const search=
+
+document.querySelector(
+
+".search"
+
+);
+
+const cards=
+
+document.querySelectorAll(
+
+".card"
+
+);
+
+search.addEventListener(
+
+"keyup",
+
+()=>{
+
+let value=
+
+search.value
+
+.toLowerCase();
+
+cards.forEach(
+
+card=>{
+
+if(
+
+card.innerText
+
+.toLowerCase()
+
+.includes(
+
+value
+
+)
+
+){
+
+card.style.display=
+
+"block";
+
+}
+
+else{
+
+card.style.display=
+
+"none";
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>  
