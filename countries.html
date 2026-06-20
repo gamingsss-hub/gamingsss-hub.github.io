@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta
+name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Country Quiz | QuizEmpire
+
+</title><meta
+name="description"
+
+content="Play country quizzes. Flags, Capitals, Geography and World Knowledge.">
+
+<style>
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:Poppins,sans-serif;
+
+}
+
+body{
+
+background:
+
+linear-gradient(
+135deg,
+#020617,
+#111827,
+#172554
+);
+
+color:white;
+
+padding:20px;
+
+}
+
+.container{
+
+max-width:1400px;
+
+margin:auto;
+
+}
+
+.logo{
+
+text-align:center;
+
+font-size:58px;
+
+font-weight:900;
+
+color:#67e8f9;
+
+margin-top:20px;
+
+text-shadow:
+
+0 0 35px
+#00e6ff;
+
+}
+
+.sub{
+
+text-align:center;
+
+margin-top:10px;
+
+color:#cbd5e1;
+
+}
+
+.search{
+
+width:100%;
+
+max-width:800px;
+
+display:block;
+
+margin:auto;
+
+padding:18px;
+
+border:none;
+
+border-radius:20px;
+
+margin-top:40px;
+
+background:#111827;
+
+color:white;
+
+font-size:18px;
+
+}
+
+.cards{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(
+auto-fit,
+minmax(260px,1fr)
+);
+
+gap:25px;
+
+margin-top:40px;
+
+}
+
+.card{
+
+padding:35px;
+
+border-radius:24px;
+
+text-decoration:none;
+
+color:white;
+
+background:
+
+linear-gradient(
+145deg,
+#172554,
+#1e293b
+);
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:
+
+translateY(-10px);
+
+box-shadow:
+
+0 0 40px
+rgba(0,230,255,.4);
+
+}
+
+.title{
+
+font-size:30px;
+
+margin-bottom:10px;
+
+}
+
+.desc{
+
+color:#cbd5e1;
+
+}
+
+.footer{
+
+text-align:center;
+
+margin-top:60px;
+
+color:#94a3b8;
+
+}
+
+</style></head><body><div class="container"><div class="logo">🌍 COUNTRY QUIZ
+
+</div><div class="sub">Flags • Capitals • Geography
+
+</div><input
+
+class="search"
+
+placeholder="Search Country...">
+
+<div class="cards"><a href="india.html" class="card"><div class="title">🇮🇳 India
+
+</div><div class="desc">Capital • States
+
+</div></a><a href="usa.html" class="card"><div class="title">🇺🇸 USA
+
+</div><div class="desc">States • History
+
+</div></a><a href="uk.html" class="card"><div class="title">🇬🇧 UK
+
+</div><div class="desc">Flags • Culture
+
+</div></a><a href="japan.html" class="card"><div class="title">🇯🇵 Japan
+
+</div><div class="desc">Technology • Facts
+
+</div></a><a href="france.html" class="card"><div class="title">🇫🇷 France
+
+</div><div class="desc">History • Capital
+
+</div></a><a href="germany.html" class="card"><div class="title">🇩🇪 Germany
+
+</div><div class="desc">World Quiz
+
+</div></a><a href="brazil.html" class="card"><div class="title">🇧🇷 Brazil
+
+</div><div class="desc">Football • Geography
+
+</div></a><a href="australia.html" class="card"><div class="title">🇦🇺 Australia
+
+</div><div class="desc">Animals • Facts
+
+</div></a></div><div class="footer">© 2026 QuizEmpire
+
+</div></div><script>
+
+let search=
+
+document.querySelector(
+".search"
+);
+
+let cards=
+
+document.querySelectorAll(
+".card"
+);
+
+search.addEventListener(
+
+"keyup",
+
+()=>{
+
+let value=
+
+search.value
+
+.toLowerCase();
+
+cards.forEach(
+
+card=>{
+
+card.style.display=
+
+card.innerText
+
+.toLowerCase()
+
+.includes(value)
+
+?
+
+"block"
+
+:
+
+"none";
+
+}
+
+);
+
+}
+
+);
+
+</script></body></html>
