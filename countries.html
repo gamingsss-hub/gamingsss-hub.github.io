@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
 
 <head>
 
@@ -8,19 +8,13 @@
 
 <meta
 name="viewport"
-content="width=device-width,initial-scale=1.0">
+content="width=device-width,initial-scale=1">
 
 <title>
+
 CountryVerse | QuizEmpire
+
 </title>
-
-<meta
-name="description"
-content="Play country quizzes and explore the world">
-
-<link
-rel="icon"
-href="favicon.png">
 
 <link
 href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap"
@@ -46,17 +40,15 @@ background:
 
 linear-gradient(
 135deg,
-#140021,
-#26003d,
-#45006e,
-#090010
+#120022,
+#190033,
+#23003f,
+#060014
 );
 
 color:white;
 
 overflow-x:hidden;
-
-min-height:100vh;
 
 }
 
@@ -68,13 +60,13 @@ max-width:1500px;
 
 margin:auto;
 
-padding:40px 0;
+padding:40px;
 
 }
 
 .logo{
 
-font-size:90px;
+font-size:85px;
 
 font-weight:900;
 
@@ -84,9 +76,8 @@ background:
 
 linear-gradient(
 90deg,
-#ff44ee,
-#7c5cff,
-#00f2ff
+#ff4dff,
+#00e6ff
 );
 
 -webkit-background-clip:text;
@@ -101,9 +92,9 @@ text-align:center;
 
 margin-top:10px;
 
-font-size:18px;
-
 color:#ddd;
+
+font-size:18px;
 
 }
 
@@ -111,11 +102,11 @@ color:#ddd;
 
 width:100%;
 
-max-width:900px;
+max-width:850px;
 
 display:block;
 
-margin:40px auto;
+margin:35px auto;
 
 padding:22px;
 
@@ -129,13 +120,13 @@ background:
 
 rgba(255,255,255,.08);
 
-backdrop-filter:
-
-blur(20px);
-
 color:white;
 
 font-size:18px;
+
+backdrop-filter:
+
+blur(20px);
 
 }
 
@@ -147,10 +138,12 @@ grid-template-columns:
 
 repeat(
 auto-fit,
-minmax(300px,1fr)
+minmax(290px,1fr)
 );
 
 gap:30px;
+
+margin-top:40px;
 
 }
 
@@ -158,11 +151,11 @@ gap:30px;
 
 background:
 
-rgba(255,255,255,.06);
+rgba(255,255,255,.07);
 
 backdrop-filter:
 
-blur(18px);
+blur(20px);
 
 padding:45px;
 
@@ -170,13 +163,7 @@ border-radius:35px;
 
 text-align:center;
 
-border:
-
-1px solid
-
-rgba(255,255,255,.15);
-
-transition:.5s;
+transition:.4s;
 
 }
 
@@ -184,227 +171,47 @@ transition:.5s;
 
 transform:
 
-translateY(-12px);
+translateY(-10px);
 
 box-shadow:
 
 0 0 70px
 
-rgba(255,0,255,.4);
+rgba(255,0,255,.35);
 
 }
 
 .flag{
 
-font-size:95px;
-
-margin-bottom:20px;
+font-size:90px;
 
 }
 
 .code{
 
-font-size:60px;
+font-size:55px;
 
 font-weight:900;
 
-color:#00e6ff;
+color:#00e5ff;
 
 }
 
 .country{
 
-font-size:32px;
+font-size:30px;
 
 margin-top:10px;
 
 }
 
-.badge{
-
-margin-top:20px;
+.play{
 
 display:inline-block;
+
+margin-top:22px;
 
 padding:14px 36px;
-
-border-radius:50px;
-
-background:
-
-linear-gradient(
-90deg,
-#ff00aa,
-#4f46e5
-);
-
-font-weight:800;
-
-}
-
-<!-- COUNTRY GRID -->
-
-<div class="grid">
-
-<div class="card">
-<div class="flag">🇮🇳</div>
-<h2>INDIA</h2>
-<p>GK • States • Capitals</p>
-<a href="india.html">PLAY NOW</a>
-</div>
-
-<div class="card">
-<div class="flag">🇺🇸</div>
-<h2>USA</h2>
-<p>States • History • Facts</p>
-<a href="usa.html">PLAY NOW</a>
-</div>
-
-<div class="card">
-<div class="flag">🇯🇵</div>
-<h2>JAPAN</h2>
-<p>Culture • Tech • Quiz</p>
-<a href="japan.html">PLAY NOW</a>
-</div>
-
-<div class="card">
-<div class="flag">🇫🇷</div>
-<h2>FRANCE</h2>
-<p>Food • Cities • History</p>
-<a href="france.html">PLAY NOW</a>
-</div>
-
-<div class="card">
-<div class="flag">🇩🇪</div>
-<h2>GERMANY</h2>
-<p>World • GK • Facts</p>
-<a href="germany.html">PLAY NOW</a>
-</div>
-
-<div class="card">
-<div class="flag">🇬🇧</div>
-<h2>UK</h2>
-<p>Flags • Capitals</p>
-<a href="uk.html">PLAY NOW</a>
-</div>
-
-<div class="card">
-<div class="flag">🇰🇷</div>
-<h2>SOUTH KOREA</h2>
-<p>K-pop • Tech • Culture</p>
-<a href="korea.html">PLAY NOW</a>
-</div>
-
-<div class="card">
-<div class="flag">🇨🇦</div>
-<h2>CANADA</h2>
-<p>Nature • Facts</p>
-<a href="canada.html">PLAY NOW</a>
-</div>
-
-</div>
-
-<!-- DAILY CHALLENGE -->
-
-<div class="challenge">
-
-<h1>🔥 DAILY COUNTRY CHALLENGE</h1>
-
-<p>
-Complete quizzes and unlock more countries
-</p>
-
-<button>
-START NOW
-</button>
-
-</div>
-
-<style>
-
-.grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-
-gap:28px;
-
-margin-top:60px;
-
-}
-
-.card{
-
-background:
-linear-gradient(
-145deg,
-#111827,
-#0f172a
-);
-
-border:
-
-1px solid
-rgba(255,255,255,.08);
-
-border-radius:28px;
-
-padding:40px;
-
-text-align:center;
-
-transition:.35s;
-
-box-shadow:
-
-0 0 50px
-rgba(0,255,255,.05);
-
-}
-
-.card:hover{
-
-transform:
-translateY(-10px);
-
-box-shadow:
-
-0 0 60px
-rgba(0,255,255,.35);
-
-}
-
-.flag{
-
-font-size:80px;
-
-margin-bottom:20px;
-
-}
-
-.card h2{
-
-font-size:34px;
-
-color:#67e8f9;
-
-}
-
-.card p{
-
-color:#b8c0d4;
-
-margin:15px 0;
-
-}
-
-.card a{
-
-display:inline-block;
-
-padding:14px 32px;
 
 border-radius:999px;
 
@@ -412,8 +219,8 @@ background:
 
 linear-gradient(
 90deg,
-#00d4ff,
-#7c3aed
+#ff00aa,
+#00e5ff
 );
 
 color:white;
@@ -424,219 +231,276 @@ font-weight:700;
 
 }
 
-.challenge{
+</style>
 
-margin-top:80px;
+</head>
 
-text-align:center;
+<body>
 
-padding:60px;
+<div class="container">
+
+<div class="logo">
+
+🌍 COUNTRYVERSE
+
+</div>
+
+<div class="sub">
+
+Travel The World Through Quizzes
+
+</div>
+
+<input
+
+class="search"
+
+placeholder="🔍 Search Country">
+
+<div class="cards">
+
+<div class="card">
+
+<div class="flag">🇮🇳</div>
+
+<div class="code">IN</div>
+
+<div class="country">
+
+India
+
+</div>
+
+<a
+href="indiaquiz.html"
+class="play">
+
+PLAY
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="flag">🇺🇸</div>
+
+<div class="code">US</div>
+
+<div class="country">
+
+USA
+
+</div>
+
+<a
+href="usaquiz.html"
+class="play">
+
+PLAY
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="flag">🇯🇵</div>
+
+<div class="code">JP</div>
+
+<div class="country">
+
+Japan
+
+</div>
+
+<a
+href="japanquiz.html"
+class="play">
+
+PLAY
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="flag">🇫🇷</div>
+
+<div class="code">FR</div>
+
+<div class="country">
+
+France
+
+</div>
+
+<a
+href="francequiz.html"
+class="play">
+
+PLAY
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="flag">🇩🇪</div>
+
+<div class="code">DE</div>
+
+<div class="country">
+
+Germany
+
+</div>
+
+<a
+href="germanyquiz.html"
+class="play">
+
+PLAY
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="flag">🇬🇧</div>
+
+<div class="code">UK</div>
+
+<div class="country">
+
+United Kingdom
+
+</div>
+
+<a
+href="ukquiz.html"
+class="play">
+
+PLAY
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="flag">🇰🇷</div>
+
+<div class="code">KR</div>
+
+<div class="country">
+
+South Korea
+
+</div>
+
+<a
+href="koreaquiz.html"
+class="play">
+
+PLAY
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="flag">🇧🇷</div>
+
+<div class="code">BR</div>
+
+<div class="country">
+
+Brazil
+
+</div>
+
+<a
+href="brazilquiz.html"
+class="play">
+
+PLAY
+
+</a>
+
+</div>
+
+  </div>
+
+<br><br>
+
+<div
+style="
+
+background:
+rgba(255,255,255,.06);
+
+padding:50px;
 
 border-radius:35px;
 
-background:
+text-align:center;
 
-linear-gradient(
-135deg,
-#1e1b4b,
-#111827
-);
+">
 
-}
+<h1>
 
-.challenge h1{
+🔥 Daily Challenge
 
-font-size:48px;
+</h1>
 
-color:#00e5ff;
+<br>
 
-}
+<p>
 
-.challenge p{
+Play 10 random country questions and unlock rewards.
 
-margin:20px;
+</p>
 
-color:#d5d8e4;
+<br>
 
-}
+<a
 
-.challenge button{
+href="challenge.html"
 
-padding:18px 45px;
+class="play">
 
-border:none;
+START
 
-border-radius:999px;
+</a>
 
-font-size:18px;
+</div>
 
-background:
+<br><br>
 
-linear-gradient(
-90deg,
-#00e5ff,
-#9333ea
-);
-
-color:white;
-
-}
-
-</style>
-
-<!-- FLOATING LIGHTS -->
-
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
-
-<footer>
-
-🌍 QuizEmpire • Explore The World
-
-</footer>
-
-<style>
-
-.orb{
-
-position:fixed;
-
-border-radius:50%;
-
-filter:blur(120px);
-
-z-index:-1;
-
-animation:
-
-float 12s infinite ease-in-out;
-
-}
-
-.orb1{
-
-width:350px;
-
-height:350px;
-
-background:#ff00ff;
-
-top:-100px;
-
-left:-100px;
-
-}
-
-.orb2{
-
-width:420px;
-
-height:420px;
-
-background:#00e5ff;
-
-right:-120px;
-
-top:300px;
-
-animation-delay:2s;
-
-}
-
-.orb3{
-
-width:300px;
-
-height:300px;
-
-background:#7c3aed;
-
-left:40%;
-
-bottom:-100px;
-
-animation-delay:4s;
-
-}
-
-@keyframes float{
-
-0%{
-
-transform:
-
-translateY(0px)
-
-translateX(0px);
-
-}
-
-50%{
-
-transform:
-
-translateY(-80px)
-
-translateX(40px);
-
-}
-
-100%{
-
-transform:
-
-translateY(0px)
-
-translateX(0px);
-
-}
-
-}
-
-footer{
-
-margin-top:90px;
-
-padding:40px;
+<div
+style="
 
 text-align:center;
 
-color:#b9c0da;
+color:#aaa;
 
 font-size:18px;
 
-}
+padding:50px;
 
-@media(max-width:700px){
+">
 
-.logo{
+© 2026 QuizEmpire • Explore The World
 
-font-size:54px;
+</div>
 
-}
-
-.challenge h1{
-
-font-size:32px;
-
-}
-
-.card{
-
-padding:28px;
-
-}
-
-.flag{
-
-font-size:65px;
-
-}
-
-}
-
-</style>
+</div>
 
 <script>
 
@@ -702,10 +566,12 @@ card.style.display=
 
 });
 
-});
+}
+
+);
 
 </script>
 
 </body>
 
-</html>  
+</html>
