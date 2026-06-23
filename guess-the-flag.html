@@ -1,102 +1,101 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1">
 
 <title>
+
 Guess The Flag Quiz 2026 | World Flags Challenge | QuizEmpire
+
 </title>
 
-<meta name="description"
-content="Play Guess The Flag Quiz 2026 and identify country flags from around the world. Fun geography challenge.">
-
-<meta name="keywords"
-content="Guess The Flag Quiz, Flag Quiz, Country Flags, World Geography Quiz">
 <style>
 
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:Arial;
+
 }
 
 body{
 
-background:linear-gradient(135deg,#071320,#122844);
-
-padding:20px;
+background:
+linear-gradient(
+135deg,
+#061425,
+#14335f
+);
 
 color:white;
 
-}
-
-.top{
+padding:20px;
 
 text-align:center;
 
-margin-bottom:25px;
-
 }
 
-.top h1{
+.container{
 
-font-size:34px;
-
-}
-
-.top p{
-
-opacity:.8;
-
-margin-top:8px;
-
-}
-
-.card{
-
-background:#122c4f;
-
-border-radius:22px;
-
-padding:25px;
-
-max-width:500px;
+max-width:520px;
 
 margin:auto;
 
-text-align:center;
+background:#102748;
 
-box-shadow:0 15px 40px rgba(0,0,0,.3);
+padding:25px;
 
-}
+border-radius:25px;
 
-.flag{
-
-font-size:100px;
-
-margin:20px 0;
+box-shadow:
+0 20px 50px
+rgba(0,0,0,.3);
 
 }
 
-button{
+h1{
+
+margin-bottom:20px;
+
+}
+
+#flag{
+
+font-size:120px;
+
+margin:15px;
+
+}
+
+.sub{
+
+opacity:.8;
+
+margin-bottom:20px;
+
+}
+
+.opt{
 
 width:100%;
 
 padding:16px;
 
-margin-top:12px;
+margin:10px 0;
 
 border:none;
 
-border-radius:15px;
+border-radius:14px;
 
-font-size:17px;
-
-font-weight:bold;
+font-size:18px;
 
 cursor:pointer;
 
@@ -106,7 +105,7 @@ color:white;
 
 }
 
-button:hover{
+.opt:hover{
 
 transform:scale(.98);
 
@@ -114,25 +113,27 @@ transform:scale(.98);
 
 #result{
 
-margin-top:20px;
+margin-top:18px;
 
 font-size:22px;
 
 }
 
-.score{
+.info{
 
-margin-top:18px;
+margin-top:20px;
 
-font-size:18px;
+display:flex;
+
+justify-content:space-between;
 
 }
 
-.next{
+.end{
 
-background:#16a34a;
+font-size:35px;
 
-display:none;
+margin-top:100px;
 
 }
 
@@ -142,44 +143,53 @@ display:none;
 
 <body>
 
-<div class="top">
+<div class="container">
 
-<h1>🌍 Guess The Flag</h1>
+<h1>
 
-<p>Choose the correct country</p>
+🌍 Guess The Flag
 
-</div>
+</h1>
 
-<div class="card">
+<div id="flag"></div>
 
-<div id="flag" class="flag">
-🇮🇳
+<div class="sub">
+
+Guess the country
+
 </div>
 
 <div id="options"></div>
 
 <div id="result"></div>
 
-<div class="score">
+<div class="info">
 
-Score:
+<div>
+
+🏆 Score:
 <span id="score">
+
 0
+
 </span>
 
 </div>
 
-<button
-class="next"
-onclick="nextQuiz()">
+<div>
 
-Next
+📍
+<span id="progress">
 
-</button>
+1/15
+
+</span>
 
 </div>
 
-Replace sirf JS wala part:
+</div>
+
+</div>
 
 <script>
 
@@ -187,78 +197,125 @@ let score=0;
 
 let current=0;
 
-const correctSound=
+const right=
+
 new Audio(
+
 "https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"
+
 );
 
-const wrongSound=
+const wrong=
+
 new Audio(
+
 "https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"
+
 );
 
 const quiz=[
 
 ["🇮🇳","India"],
 ["🇺🇸","USA"],
-["🇯🇵","Japan"],
-["🇧🇷","Brazil"],
-["🇫🇷","France"],
-["🇩🇪","Germany"],
-["🇨🇦","Canada"],
 ["🇬🇧","United Kingdom"],
+["🇧🇷","Brazil"],
+["🇯🇵","Japan"],
+
+["🇩🇪","Germany"],
+["🇫🇷","France"],
+["🇨🇦","Canada"],
+["🇰🇷","South Korea"],
 ["🇦🇺","Australia"],
-["🇰🇷","South Korea"]
+
+["🇲🇽","Mexico"],
+["🇨🇳","China"],
+["🇪🇸","Spain"],
+["🇮🇹","Italy"],
+["🇷🇺","Russia"]
 
 ];
 
-function shuffle(a){
+/*
 
-return a.sort(()=>Math.random()-0.5);
+ADD MORE:
+
+["🇳🇵","Nepal"],
+
+*/
+
+function shuffle(x){
+
+return x.sort(
+()=>Math.random()-.5
+);
 
 }
 
 function load(){
 
-document.getElementById("result")
+document
+
+.getElementById(
+
+"flag"
+
+)
+
+.innerHTML=
+
+quiz[current][0];
+
+document
+
+.getElementById(
+
+"progress"
+
+)
+
+.innerHTML=
+
+`${current+1}/15`;
+
+document
+
+.getElementById(
+
+"result"
+
+)
 
 .innerHTML="";
 
-let q=quiz[current];
+let correct=
 
-document.getElementById("flag")
+quiz[current][1];
 
-.innerHTML=`
-
-<div style="font-size:120px">
-
-${q[0]}
-
-</div>
-
-<div
-style="margin-top:10px;
-font-size:18px;
-opacity:.8">
-
-Guess This Flag
-
-</div>
-let arr=
+let options=
 
 shuffle([
 
-q[1],
+correct,
 
 ...shuffle(
 
 quiz
 
-.filter(x=>x[1]!=q[1])
+.filter(
+
+x=>
+
+x[1]!==correct
+
+)
 
 .slice(0,3)
 
-.map(x=>x[1])
+.map(
+
+x=>x[1]
+
+)
 
 )
 
@@ -266,12 +323,18 @@ quiz
 
 let html="";
 
-arr.forEach(v=>{
+options.forEach(v=>{
 
-html+=`
+html+=
+
+`
 
 <button
-onclick="check('${v}')">
+class="opt"
+
+onclick=
+
+"check('${v}')">
 
 ${v}
 
@@ -281,9 +344,17 @@ ${v}
 
 });
 
-document.getElementById("options")
+document
 
-.innerHTML=html;
+.getElementById(
+
+"options"
+
+)
+
+.innerHTML=
+
+html;
 
 }
 
@@ -293,13 +364,23 @@ let correct=
 
 quiz[current][1];
 
-if(v===correct){
+if(
 
-correctSound.play();
+v===correct
+
+){
+
+right.play();
 
 score++;
 
-document.getElementById("result")
+document
+
+.getElementById(
+
+"result"
+
+)
 
 .innerHTML=
 
@@ -309,9 +390,15 @@ document.getElementById("result")
 
 else{
 
-wrongSound.play();
+wrong.play();
 
-document.getElementById("result")
+document
+
+.getElementById(
+
+"result"
+
+)
 
 .innerHTML=
 
@@ -319,15 +406,29 @@ document.getElementById("result")
 
 }
 
-document.getElementById("score")
+document
 
-.innerHTML=score;
+.getElementById(
 
-setTimeout(()=>{
+"score"
+
+)
+
+.innerHTML=
+
+score;
+
+setTimeout(
+
+()=>{
 
 current++;
 
-if(current<quiz.length){
+if(
+
+current<quiz.length
+
+){
 
 load();
 
@@ -339,23 +440,29 @@ document.body.innerHTML=
 
 `
 
-<h1>
+<div class="end">
 
-🏆 Final Score
+🏆
 
-</h1>
+<br><br>
 
-<h2>
+Final Score
 
-${score}/10
+<br>
 
-</h2>
+${score}/15
+
+</div>
 
 `;
 
 }
 
-},1000);
+},
+
+1200
+
+);
 
 }
 
