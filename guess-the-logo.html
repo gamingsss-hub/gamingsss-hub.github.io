@@ -198,33 +198,33 @@ const quiz=[
 
 ["apple.png","Apple"],
 
-["logos/youtube.png","YouTube"],
+["youtube.png","YouTube"],
 
-["logos/netflix.png","Netflix"],
+["netflix.png","Netflix"],
 
-["logos/instagram.png","Instagram"],
+["instagram.png","Instagram"],
 
-["logos/spotify.png","Spotify"],
+["spotify.png","Spotify"],
 
-["logos/amazon.png","Amazon"],
+["amazon.png","Amazon"],
 
-["logos/facebook.png","Facebook"],
+["facebook.png","Facebook"],
 
-["logos/whatsapp.png","WhatsApp"],
+["whatsapp.png","WhatsApp"],
 
-["logos/tiktok.png","TikTok"],
+["tiktok.png","TikTok"],
 
-["logos/playstation.png","PlayStation"],
+["playstation.png","PlayStation"],
 
-["logos/disney.png","Disney"],
+["disney.png","Disney"],
 
-["logos/google.png","Google"],
+["google.png","Google"],
 
-["logos/microsoft.png","Microsoft"],
+["microsoft.png","Microsoft"],
 
-["logos/openai.png","OpenAI"],
+["openai.png","OpenAI"],
 
-["logos/flipkart.png","Flipkart"]
+["flipkart.png","Flipkart"]
 
 ];
 
@@ -240,13 +240,7 @@ return a.sort(
 
 function load(){
 
-document
-
-.getElementById(
-
-"logo"
-
-)
+document.getElementById("logo")
 
 .innerHTML=
 
@@ -254,9 +248,29 @@ document
 
 <img
 
-src=
+src="${quiz[current][0]}"
 
-"${quiz[current][0]}">
+alt="logo"
+
+style="
+
+width:150px;
+
+height:150px;
+
+object-fit:contain;
+
+background:white;
+
+padding:12px;
+
+border-radius:20px;
+
+display:block;
+
+margin:auto;
+
+">
 
 `;
 
