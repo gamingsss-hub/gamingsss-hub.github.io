@@ -12,24 +12,30 @@ content="width=device-width,initial-scale=1.0">
 
 <title>
 
-QuizEmpire | Global Quiz Platform
+QuizEmpire | Play Quiz & Games
 
 </title>
 
 <meta
 name="description"
 
-content="Play free quizzes from around the world. Army, UPSC, Science, Sports, Space, IQ, Movies and more.">
+content=
+
+"Play quiz and games online. World quiz, reaction games, memory games and more.">
 
 <meta
 name="keywords"
 
-content="Quiz, World Quiz, Science Quiz, IQ Quiz, Sports Quiz">
+content=
+
+"quiz,games,world quiz,memory,reaction">
 
 <meta
 name="robots"
 
-content="index,follow">
+content=
+
+"index,follow">
 
 <link
 rel="icon"
@@ -38,92 +44,78 @@ type="image/png"
 
 href="./favicon.png">
 
-<script async
-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
-crossorigin="anonymous">
-</script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-03XF1E6LF7"></script>
-
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'G-03XF1E6LF7');
-</script>
-
 <style>
 
 *{
-
 margin:0;
-
 padding:0;
-
 box-sizing:border-box;
-
 font-family:Poppins,sans-serif;
-
 }
 
 body{
 
 background:
 
-linear-gradient(
-135deg,
-#030712,
-#111827,
-#1e1b4b,
-#0f172a
-);
+#060b14;
 
-color:#ffffff;
-
-padding:20px;
-
-min-height:100vh;
+color:white;
 
 }
 
 .container{
 
-max-width:1400px;
+max-width:1500px;
 
 margin:auto;
+
+padding:24px;
+
+}
+
+.hero{
+
+padding:70px 20px;
+
+text-align:center;
 
 }
 
 .logo{
 
-text-align:center;
-
-font-size:60px;
+font-size:72px;
 
 font-weight:900;
 
-color:#67e8f9;
+color:white;
 
-text-shadow:
-
-0 0 35px
-#00e6ff;
-
-margin-top:20px;
+letter-spacing:3px;
 
 }
 
 .sub{
 
-text-align:center;
+margin-top:12px;
 
-font-size:20px;
+color:#94a3b8;
 
-color:#cbd5e1;
+}
 
-margin-top:10px;
+.search input{
+
+width:100%;
+
+padding:20px;
+
+border:none;
+
+border-radius:20px;
+
+background:#0f172a;
+
+color:white;
+
+font-size:18px;
 
 }
 
@@ -135,10 +127,12 @@ grid-template-columns:
 
 repeat(
 auto-fit,
-minmax(280px,1fr)
-);
+minmax(
+260px,
+1fr
+));
 
-gap:25px;
+gap:20px;
 
 }
 
@@ -146,84 +140,95 @@ gap:25px;
 
 background:
 
-linear-gradient(
-145deg,
-#172554,
-#1e293b
-);
+#0f172a;
 
-padding:35px;
+padding:28px;
 
 border-radius:24px;
 
-color:white;
-
 text-decoration:none;
 
-transition:.3s;
+color:white;
 
 border:
 
 1px solid
-rgba(0,230,255,.15);
+
+rgba(
+255,
+255,
+255,
+.05
+);
+
+transition:.25s;
 
 }
 
 .card:hover{
 
 transform:
-translateY(-8px);
 
-box-shadow:
+translateY(
+-6px
+);
 
-0 0 35px
-rgba(0,230,255,.45);
+background:
 
-}
+#172033;
 
-.title{
+border-color:
 
-font-size:30px;
-
-margin-bottom:10px;
+#38bdf8;
 
 }
 
-.desc{
+.card h3{
 
-color:#cbd5e1;
+font-size:28px;
 
-line-height:1.8;
+margin-bottom:12px;
+
+}
+
+.card p{
+
+color:#94a3b8;
+
+}
+
+.section-title{
+
+font-size:40px;
+
+margin:55px 0 25px;
 
 }
 
 .stats{
 
-display:flex;
+display:grid;
 
-justify-content:center;
+grid-template-columns:
+
+repeat(
+4,
+1fr
+);
 
 gap:20px;
 
-flex-wrap:wrap;
-
-margin:40px 0;
+margin-top:40px;
 
 }
 
 .stat{
 
-width:220px;
-
-padding:25px;
-
 background:
 
-linear-gradient(
-145deg,
-#182338,
-#0f172a
-);
+#0f172a;
+
+padding:25px;
 
 border-radius:22px;
 
@@ -231,39 +236,45 @@ text-align:center;
 
 }
 
-.about{
-
-background:
-
-linear-gradient(
-145deg,
-#182338,
-#111827
-);
-
-padding:30px;
-
-border-radius:25px;
-
-margin-top:30px;
-
-}
-
 .footer{
+
+margin-top:70px;
 
 text-align:center;
 
-margin-top:50px;
+color:#64748b;
+
+}
+
+@media(max-width:700px){
+
+.logo{
+
+font-size:48px;
+
+}
+
+.stats{
+
+grid-template-columns:
+
+repeat(
+2,
+1fr
+);
+
+}
 
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
+
+<div class="hero">
 
 <div class="logo">
 
@@ -273,43 +284,47 @@ margin-top:50px;
 
 <div class="sub">
 
-World Quiz • Science • Sports • Space • Army • UPSC
+Play • Learn • Explore • Compete
 
 </div>
 
-<br><br>
+<div class="search">
 
 <input
 
 type="text"
 
-placeholder="🔍 Search Any Quiz..."
+placeholder="🔍 Search Quiz / Game">
 
-style="
+</div>
 
-width:100%;
+<div class="quick">
 
-max-width:800px;
+<div class="badge">
 
-padding:20px;
+🎮 Games
 
-border:none;
+</div>
 
-border-radius:25px;
+<div class="badge">
 
-display:block;
+🧠 Quiz
 
-margin:auto;
+</div>
 
-font-size:18px;
+<div class="badge">
 
-background:#111827;
+🌍 World
 
-color:white;
+</div>
 
-">
+<div class="badge">
 
-<br><br>
+🏛 Exams
+
+</div>
+
+</div>
 
 <div class="stats">
 
@@ -329,11 +344,11 @@ Questions
 
 <h2>
 
-25+
+40+
 
 </h2>
 
-Categories
+Games
 
 </div>
 
@@ -363,110 +378,23 @@ Free
 
 </div>
 
-<br>
+</div>
 
-<h1
+<div class="section">
 
-style="
-text-align:center;
-color:#67e8f9;
-">
+<div class="section-title">
 
-🔥 Explore Categories
+🎮 Game Zone
 
-</h1>
-
-<br>
+</div>
 
 <div class="cards">
 
-<a
-href="army.html"
-
-class="card">
-
-<div class="title">
-
-🪖 Army Quiz
-
-</div>
-
-<div class="desc">
-
-Army • Defence
-
-</div>
-
-</a>
-
-<a
-href="upsc.html"
-
-class="card">
-
-<div class="title">
-
-🏛️ UPSC
-
-</div>
-
-<div class="desc">
-
-GS • CSAT
-
-</div>
-
-</a>
-
-<a
-href="worldgk.html"
-
-class="card">
-
-<div class="title">
-
-🌍 World GK
-
-</div>
-
-<div class="desc">
-
-Flags • Capitals
-
-</div>
-
-</a>
-
-<a href="countries.html" class="card">
-
-<div class="title">
-
-🌍 Country Quiz
-
-</div>
-
-<div class="desc">
-
-Flags • Capitals • World
-
-</div>
-
-</a>  
-
-<a
-href="reaction-test.html"
-
-class="card">
-
-<div class="icon">
-
-⚡
-
-</div>
+<a href="reaction-test.html" class="card">
 
 <h3>
 
-Reaction Test
+⚡ Reaction Test
 
 </h3>
 
@@ -478,20 +406,12 @@ Test Your Speed
 
 </a>
 
-<a
-href="black-hole-game.html"
 
-class="card">
-
-<div class="icon">
-
-🕳️
-
-</div>
+<a href="black-hole-game.html" class="card">
 
 <h3>
 
-Black Hole
+🕳️ Black Hole
 
 </h3>
 
@@ -503,170 +423,114 @@ Absorb • Survive • Score
 
 </a>
 
-<a
-href="color-reflex.html"
 
-class="card">
-
-<div class="icon">
-
-🧪
-
-</div>
+<a href="color-reflex.html" class="card">
 
 <h3>
 
-Color Reflex
+🧪 Color Reflex
 
 </h3>
 
 <p>
 
-Match • Tap • Win
+Fast Color Challenge
 
 </p>
 
 </a>
 
-<a
-href="escape-room.html"
 
-class="card">
-
-<div class="icon">
-
-🚪
-
-</div>
+<a href="escape-room.html" class="card">
 
 <h3>
 
-Escape Room
+🚪 Escape Room
 
 </h3>
 
 <p>
 
-Solve • Unlock • Escape
+Solve • Escape
 
 </p>
 
 </a>
 
-<a
-href="memory-game.html"
 
-class="card">
-
-<div class="icon">
-
-🧠
-
-</div>
+<a href="memory-game.html" class="card">
 
 <h3>
 
-Memory Game
+🧠 Memory Game
 
 </h3>
 
 <p>
 
-Flip • Match • Win
+Flip • Match
 
 </p>
 
 </a>
 
-<a
-href="pattern-memory.html"
 
-class="card">
-
-<div class="icon">
-
-🌌
-
-</div>
+<a href="pattern-memory.html" class="card">
 
 <h3>
 
-Pattern Memory
+🌌 Pattern Memory
 
 </h3>
 
 <p>
 
-Watch • Repeat • Win
+Watch • Repeat
 
 </p>
 
 </a>
 
-<a
-href="aim-trainer.html"
 
-class="card">
-
-<div class="icon">
-
-🎯
-
-</div>
+<a href="aim-trainer.html" class="card">
 
 <h3>
 
-Aim Trainer
+🎯 Aim Trainer
 
 </h3>
 
 <p>
 
-Hit Targets • Improve Speed
+Improve Aim
 
 </p>
 
 </a>
 
-<a
-href="spin-wheel.html"
 
-class="card">
-
-<div class="icon">
-
-🎡
-
-</div>
+<a href="spin-wheel.html" class="card">
 
 <h3>
 
-Spin Wheel
+🎡 Spin Wheel
 
 </h3>
 
 <p>
 
-Lucky Spin • Random Challenge
+Lucky Challenge
 
 </p>
 
 </a>
 
-<a
-href="speed-click-test.html"
 
-class="card">
-
-<div class="icon">
-
-🏁
-
-</div>
+<a href="speed-click-test.html" class="card">
 
 <h3>
 
-Click Speed
+🏁 Click Speed
 
 </h3>
 
@@ -678,395 +542,518 @@ Fast Click Challenge
 
 </a>
 
-<a
-href="generalquiz.html"
 
-class="card">
-
-<div class="title">
-
-🧠 General Quiz
-
-</div>
-
-<div class="desc">
-
-Mixed Questions
-
-</div>
-
-</a>
-
-<a
-href="guess-the-logo.html"
-
-class="card">
-
-<div class="icon">
-
-🏆
-
-</div>
+<a href="guess-the-logo.html" class="card">
 
 <h3>
 
-Guess The Logo
+🏆 Guess Logo
 
 </h3>
 
 <p>
 
-Logo Quiz • Brand Challenge
+Brand Challenge
 
 </p>
 
 </a>
 
-</div>
-
-<br><br>
-
-<h1
-
-style="
-text-align:center;
-color:#67e8f9;
-">
-
-🌎 Global Quiz Universe
-
-</h1>
-
-<br>
-
-<div class="cards">
-
-<a href="science.html"
-class="card">
-
-<div class="title">
-
-🧪 Science Quiz
-
-</div>
-
-<div class="desc">
-
-Physics • Chemistry • Biology
-
-</div>
-
-</a>
-
-<a href="sports.html"
-class="card">
-
-<div class="title">
-
-⚽ Sports Quiz
-
-</div>
-
-<div class="desc">
-
-Football • Cricket • Olympics
-
-</div>
-
-</a>
-
-<a href="space.html"
-class="card">
-
-<div class="title">
-
-🚀 Space Quiz
-
-</div>
-
-<div class="desc">
-
-NASA • Universe • Planets
-
-</div>
-
-</a>
-
-<a href="english.html"
-class="card">
-
-<div class="title">
-
-📖 English Quiz
-
-</div>
-
-<div class="desc">
-
-Vocabulary • Grammar
-
-</div>
-
-</a>
-
-<a href="movies.html"
-class="card">
-
-<div class="title">
-
-🎬 Movies Quiz
-
-</div>
-
-<div class="desc">
-
-Hollywood • Global Cinema
-
-</div>
-
-</a>
-
-<a href="iq.html"
-class="card">
-
-<div class="title">
-
-🧠 IQ Quiz
-
-</div>
-
-<div class="desc">
-
-Brain • Logic
-
-</div>
-
-</a>
-
-<a href="technology.html"
-class="card">
-
-<div class="title">
-
-💻 Technology Quiz
-
-</div>
-
-<div class="desc">
-
-AI • Internet • Coding
-
-</div>
-
-</a>
-
-<a href="history.html"
-class="card">
-
-<div class="title">
-
-🏺 History Quiz
-
-</div>
-
-<div class="desc">
-
-Ancient • Modern
-
-</div>
-
-</a>
-
-<a href="navy.html"
-class="card">
-
-<div class="title">
-
-⚓ Indian Navy
-
-</div>
-
-<div class="desc">
-
-SSR • MR • Practice
-
-</div>
-
-</a>
-
-<a href="airforce.html"
-class="card">
-
-<div class="title">
-
-⚡ Air Force
-
-</div>
-
-<div class="desc">
-
-X Group • Y Group
-
-</div>
-
-</a>
-
-<a href="railway.html"
-class="card">
-
-<div class="title">
-
-🚆 Railway
-
-</div>
-
-<div class="desc">
-
-RRB • NTPC • Group D
-
-</div>
-
-</a>
-
-<a href="ssccgl.html"
-class="card">
-
-<div class="title">
-
-📚 SSC CGL
-
-</div>
-
-<div class="desc">
-
-Tier 1 • Tier 2
-
-</div>
-
-</a>
-
-<a href="sscgd.html"
-class="card">
-
-<div class="title">
-
-🚔 SSC GD
-
-</div>
-
-<div class="desc">
-
-GK • Maths • Reasoning
-
-</div>
-
-</a>
-
-<a href="cuet.html"
-class="card">
-
-<div class="title">
-
-🎓 CUET
-
-</div>
-
-<div class="desc">
-
-English • Mock Tests
-
-</div>
-
-</a>
-
-<a href="nda.html"
-class="card">
-
-<div class="title">
-
-✈️ NDA
-
-</div>
-
-<div class="desc">
-
-Maths • GK • English
-
-</div>
-
-</a>
 
 <a href="guess-the-flag.html" class="card">
 
-<div class="title">
+<h3>
 
-🌍 Guess The Flag
+🌍 Guess Flag
+
+</h3>
+
+<p>
+
+Country Challenge
+
+</p>
+
+</a>
+
 
 </div>
 
-<div class="desc">
+</div>
 
-Flags • Countries • World Quiz
+
+<div class="section">
+
+<div class="section-title">
+
+🧠 Quiz Zone
 
 </div>
+
+<div class="cards">
+
+<a href="generalquiz.html" class="card">
+
+<h3>
+
+🧠 General Quiz
+
+</h3>
+
+<p>
+
+Mixed Questions
+
+</p>
+
+</a>
+
+
+<a href="science.html" class="card">
+
+<h3>
+
+🧪 Science Quiz
+
+</h3>
+
+<p>
+
+Physics • Chemistry • Biology
+
+</p>
+
+</a>
+
+
+<a href="sports.html" class="card">
+
+<h3>
+
+⚽ Sports Quiz
+
+</h3>
+
+<p>
+
+Sports Challenge
+
+</p>
+
+</a>
+
+
+<a href="space.html" class="card">
+
+<h3>
+
+🚀 Space Quiz
+
+</h3>
+
+<p>
+
+Universe • NASA
+
+</p>
+
+</a>
+
+
+<a href="english.html" class="card">
+
+<h3>
+
+📖 English Quiz
+
+</h3>
+
+<p>
+
+Vocabulary • Grammar
+
+</p>
+
+</a>
+
+
+<a href="movies.html" class="card">
+
+<h3>
+
+🎬 Movies Quiz
+
+</h3>
+
+<p>
+
+Movies Challenge
+
+</p>
+
+</a>
+
+
+<a href="iq.html" class="card">
+
+<h3>
+
+🧠 IQ Quiz
+
+</h3>
+
+<p>
+
+Logic • Brain
+
+</p>
+
+</a>
+
+
+<a href="technology.html" class="card">
+
+<h3>
+
+💻 Technology Quiz
+
+</h3>
+
+<p>
+
+AI • Coding
+
+</p>
+
+</a>
+
+
+<a href="history.html" class="card">
+
+<h3>
+
+🏺 History Quiz
+
+</h3>
+
+<p>
+
+Ancient • Modern
+
+</p>
 
 </a>
 
 </div>
 
-<br><br>
+</div>
 
-<div class="about">
 
-<h2>
 
-🌍 Learn Globally
+<div class="section">
 
-</h2>
+<div class="section-title">
 
-<br>
-
-<p>
-
-Explore quizzes from different categories around the world.
-
-Practice daily and improve knowledge.
-
-New categories added regularly.
-
-</p>
+🌍 World Zone
 
 </div>
 
-<br><br>
+<div class="cards">
 
-<div class="about">
 
-<h2>
+<a href="worldgk.html" class="card">
 
-👑 About QuizEmpire
+<h3>
 
-</h2>
+🌍 World GK
 
-<br>
+</h3>
 
 <p>
 
-QuizEmpire is a free global quiz platform.
-
-Play Army, UPSC, World GK,
-Science, Sports, Space,
-Technology and many more quizzes.
-
-Improve skills every day.
+Flags • Capitals
 
 </p>
 
+</a>
+
+
+<a href="countries.html" class="card">
+
+<h3>
+
+🌎 Country Quiz
+
+</h3>
+
+<p>
+
+Countries • Flags
+
+</p>
+
+</a>
+
+
+<a href="guess-the-flag.html" class="card">
+
+<h3>
+
+🏁 Guess The Flag
+
+</h3>
+
+<p>
+
+World Challenge
+
+</p>
+
+</a>
+
+
 </div>
 
-<br><br>
+</div>
 
-<div class="about">
+
+<div class="section">
+
+<div class="section-title">
+
+🏛 Exam Zone
+
+</div>
+
+<div class="cards">
+
+<a href="army.html" class="card">
+
+<h3>
+
+🪖 Army Quiz
+
+</h3>
+
+<p>
+
+Defence Practice
+
+</p>
+
+</a>
+
+
+<a href="upsc.html" class="card">
+
+<h3>
+
+🏛 UPSC
+
+</h3>
+
+<p>
+
+GS • CSAT
+
+</p>
+
+</a>
+
+
+<a href="nda.html" class="card">
+
+<h3>
+
+✈️ NDA
+
+</h3>
+
+<p>
+
+Maths • GK
+
+</p>
+
+</a>
+
+
+<a href="ssccgl.html" class="card">
+
+<h3>
+
+📚 SSC CGL
+
+</h3>
+
+<p>
+
+Tier 1 • Tier 2
+
+</p>
+
+</a>
+
+
+<a href="sscgd.html" class="card">
+
+<h3>
+
+🚔 SSC GD
+
+</h3>
+
+<p>
+
+GK • Maths
+
+</p>
+
+</a>
+
+
+<a href="navy.html" class="card">
+
+<h3>
+
+⚓ Navy
+
+</h3>
+
+<p>
+
+SSR • MR
+
+</p>
+
+</a>
+
+
+<a href="airforce.html" class="card">
+
+<h3>
+
+⚡ Air Force
+
+</h3>
+
+<p>
+
+X • Y Group
+
+</p>
+
+</a>
+
+
+<a href="railway.html" class="card">
+
+<h3>
+
+🚆 Railway
+
+</h3>
+
+<p>
+
+RRB Practice
+
+</p>
+
+</a>
+
+
+<a href="cuet.html" class="card">
+
+<h3>
+
+🎓 CUET
+
+</h3>
+
+<p>
+
+Mock Tests
+
+</p>
+
+</a>
+
+
+</div>
+
+</div>
+
+<!-- ADS -->
+
+<script async
+src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
+crossorigin="anonymous">
+</script>
+
+
+<!-- ANALYTICS -->
+
+<script async
+src="https://www.googletagmanager.com/gtag/js?id=G-03XF1E6LF7">
+</script>
+
+<script>
+
+window.dataLayer=
+
+window.dataLayer
+
+||
+
+[];
+
+function gtag(){
+
+dataLayer.push(arguments);
+
+}
+
+gtag(
+
+'js',
+
+new Date()
+
+);
+
+gtag(
+
+'config',
+
+'G-03XF1E6LF7'
+
+);
+
+</script>
+
+
+
+<!-- FEATURES -->
+
+<div
+style="
+
+margin-top:60px;
+
+padding:35px;
+
+border-radius:25px;
+
+background:
+
+linear-gradient(
+145deg,
+#111827,
+#172554
+);
+
+">
 
 <h2>
 
@@ -1104,20 +1091,29 @@ Improve skills every day.
 
 </div>
 
-<br><br>
 
-<h1
 
+<!-- LATEST -->
+
+<div
 style="
-text-align:center;
+
+margin-top:60px;
+
+">
+
+<h2
+style="
+
 color:#67e8f9;
+
+margin-bottom:25px;
+
 ">
 
 🔥 Latest Updates
 
-</h1>
-
-<br>
+</h2>
 
 <div class="cards">
 
@@ -1126,11 +1122,11 @@ href="science.html"
 
 class="card">
 
-<div class="title">
+<h3>
 
 🧪 Science Added
 
-</div>
+</h3>
 
 </a>
 
@@ -1139,11 +1135,11 @@ href="space.html"
 
 class="card">
 
-<div class="title">
+<h3>
 
-🚀 Space Added
+🚀 Space Updated
 
-</div>
+</h3>
 
 </a>
 
@@ -1152,61 +1148,32 @@ href="sports.html"
 
 class="card">
 
-<div class="title">
+<h3>
 
 ⚽ Sports Updated
 
-</div>
+</h3>
 
 </a>
 
 </div>
 
-<br><br>
-
-<div class="stats">
-
-<div class="stat">
-
-<h2>
-
-⭐
-
-</h2>
-
-Trusted
-
 </div>
 
-<div class="stat">
 
-<h2>
 
-🌍
+<!-- BIG FOOTER -->
 
-</h2>
+<div
+style="
 
-Worldwide
+text-align:center;
 
-</div>
+margin-top:80px;
 
-<div class="stat">
+padding-bottom:60px;
 
-<h2>
-
-🔥
-
-</h2>
-
-Updated
-
-</div>
-
-</div>
-
-<br><br>
-
-<div class="footer">
+">
 
 <p>
 
@@ -1272,20 +1239,64 @@ Leaderboard
 
 </div>
 
+
+<div
+style="
+
+margin-top:80px;
+
+padding:40px;
+
+border-radius:30px;
+
+background:
+
+linear-gradient(
+145deg,
+#111827,
+#172554
+);
+
+text-align:center;
+
+">
+
+<h2>
+
+👑 About QuizEmpire
+
+</h2>
+
+<br>
+
+<p>
+
+Play games, quizzes and improve your skills daily.
+
+</p>
+
 </div>
+
+
+</div>
+
 
 <script>
 
 const search=
 
 document.querySelector(
+
 "input"
+
 );
 
 const cards=
 
 document.querySelectorAll(
+
 ".card"
+
 );
 
 search.addEventListener(
@@ -1318,17 +1329,13 @@ value
 
 ){
 
-card.style.display=
-
-"block";
+card.style.display="block";
 
 }
 
 else{
 
-card.style.display=
-
-"none";
+card.style.display="none";
 
 }
 
@@ -1345,4 +1352,3 @@ card.style.display=
 </body>
 
 </html>
-
