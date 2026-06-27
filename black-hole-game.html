@@ -129,6 +129,12 @@ box-shadow:
 
 #2d8cff;
 
+touch-action:none;
+
+transition:
+
+transform .05s linear;
+
 }
 
 .star{
@@ -297,23 +303,87 @@ document
 
 );
 
-document.body.onpointermove=
-
-e=>{
+function moveHole(x,y){
 
 hole.style.left=
 
-e.clientX+
+(x-55)
+
++
 
 "px";
 
 hole.style.top=
 
-e.clientY+
+(y-55)
+
++
 
 "px";
 
-};
+}
+
+document.addEventListener(
+
+"mousemove",
+
+e=>{
+
+moveHole(
+
+e.clientX,
+
+e.clientY
+
+);
+
+}
+
+);
+
+document.addEventListener(
+
+"touchmove",
+
+e=>{
+
+e.preventDefault();
+
+moveHole(
+
+e.touches[0].clientX,
+
+e.touches[0].clientY
+
+);
+
+},
+
+{
+
+passive:false
+
+}
+
+);
+
+document.addEventListener(
+
+"touchstart",
+
+e=>{
+
+moveHole(
+
+e.touches[0].clientX,
+
+e.touches[0].clientY
+
+);
+
+}
+
+);
 
 function spawn(){
 
