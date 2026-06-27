@@ -283,8 +283,6 @@ let score=0;
 
 let time=30;
 
-let started=false;
-
 let best=
 
 localStorage
@@ -299,6 +297,14 @@ localStorage
 
 0;
 
+let speed=1000;
+
+let timer;
+
+let changer;
+
+let playing=false;
+
 document
 
 .getElementById(
@@ -311,7 +317,7 @@ document
 
 best;
 
-function next(){
+function randomColor(){
 
 current=
 
@@ -349,45 +355,21 @@ current
 
 }
 
-function start(){
-
-started=true;
-
-next();
-
-let x=
-
-setInterval(
-
-()=>{
-
-time--;
-
-document
-
-.getElementById(
-
-"time"
-
-)
-
-.innerHTML=
-
-time;
-
-if(
-
-time<=0
-
-){
+function gameOver(){
 
 clearInterval(
 
-x
+timer
 
 );
 
-started=false;
+clearInterval(
+
+changer
+
+);
+
+playing=false;
 
 document
 
@@ -399,7 +381,16 @@ document
 
 .innerHTML=
 
-`🏆 ${score}`;
+`
+
+💀 GAME OVER
+
+<br>
+
+Score:
+${score}
+
+`;
 
 if(
 
@@ -437,11 +428,87 @@ best;
 
 }
 
+function start(){
+
+playing=true;
+
+score=0;
+
+time=30;
+
+speed=1000;
+
+document
+
+.getElementById(
+
+"score"
+
+)
+
+.innerHTML=
+
+0;
+
+randomColor();
+
+timer=
+
+setInterval(
+
+()=>{
+
+time--;
+
+document
+
+.getElementById(
+
+"time"
+
+)
+
+.innerHTML=
+
+time;
+
+if(
+
+time<=0
+
+){
+
+gameOver();
+
+}
+
 },
 
 1000
 
 );
+
+changer=
+
+setInterval(
+
+()=>{
+
+randomColor();
+
+if(
+
+speed>300
+
+){
+
+speed-=40;
+
+}
+
+},
+
+speed);
 
 }
 
@@ -449,7 +516,7 @@ function pick(v){
 
 if(
 
-!started
+!playing
 
 ){
 
@@ -461,9 +528,15 @@ return;
 
 if(
 
-v===current
+v!==current
 
 ){
+
+gameOver();
+
+return;
+
+}
 
 score++;
 
@@ -479,9 +552,7 @@ document
 
 score;
 
-}
-
-next();
+randomColor();
 
 }
 
