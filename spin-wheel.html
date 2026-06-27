@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>
+
+Spin The Wheel – Random Challenge Game
+
+</title>
+
+<meta
+name="description"
+
+content=
+
+"Spin the wheel online and get random challenges, rewards and fun tasks instantly.">
+
+<meta
+name="keywords"
+
+content=
+
+"spin wheel, lucky spin, random wheel, challenge game, spin game">
+
+<style>
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:Arial;
+
+}
+
+body{
+
+background:
+
+linear-gradient(
+135deg,
+#05101f,
+#0a1f45,
+#0c2b61
+);
+
+color:white;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+padding:20px;
+
+}
+
+.box{
+
+max-width:550px;
+
+width:100%;
+
+text-align:center;
+
+}
+
+h1{
+
+margin-bottom:20px;
+
+}
+
+#wheel{
+
+width:320px;
+
+height:320px;
+
+margin:auto;
+
+border-radius:50%;
+
+border:
+
+8px solid white;
+
+background:
+
+conic-gradient(
+
+#ff4444 0deg 45deg,
+
+#ffaa00 45deg 90deg,
+
+#00cc66 90deg 135deg,
+
+#00aaff 135deg 180deg,
+
+#8844ff 180deg 225deg,
+
+#ff44aa 225deg 270deg,
+
+#00ffaa 270deg 315deg,
+
+#ffff44 315deg 360deg
+
+);
+
+transition:
+
+transform 5s
+cubic-bezier(
+.2,
+1,
+.2,
+1
+);
+
+}
+
+.pointer{
+
+font-size:40px;
+
+}
+
+button{
+
+margin-top:30px;
+
+padding:18px 40px;
+
+border:none;
+
+border-radius:18px;
+
+font-size:22px;
+
+background:
+
+linear-gradient(
+90deg,
+#00aaff,
+#0055ff
+);
+
+color:white;
+
+}
+
+#result{
+
+margin-top:25px;
+
+font-size:28px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>
+
+🎡 Spin The Wheel
+
+</h1>
+
+<div class="pointer">
+
+⬇️
+
+</div>
+
+<div id="wheel"></div>
+
+<button
+
+onclick=
+
+"spin()">
+
+SPIN
+
+</button>
+
+<div id="result">
+
+Ready?
+
+</div>
+
+</div>
+
+<script>
+
+const rewards=[
+
+"🏆 100 Points",
+
+"😂 Tell Joke",
+
+"🔥 Double Score",
+
+"🌍 Geography Quiz",
+
+"🎁 Bonus Reward",
+
+"🎬 Movie Quiz",
+
+"😎 Lucky Win",
+
+"🎮 Play Again"
+
+];
+
+let rotation=0;
+
+function spin(){
+
+let wheel=
+
+document
+
+.getElementById(
+
+"wheel"
+
+);
+
+let random=
+
+Math.floor(
+
+Math.random()*8
+
+);
+
+rotation+=
+
+1800+
+
+random*45;
+
+wheel.style.transform=
+
+`rotate(${rotation}deg)`;
+
+setTimeout(
+
+()=>{
+
+document
+
+.getElementById(
+
+"result"
+
+)
+
+.innerHTML=
+
+rewards[random];
+
+},
+
+5000
+
+);
+
+}
+
+</script>
+
+</body>
+
+</html>
