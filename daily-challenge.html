@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Daily Challenge | QuizEmpire</title>
+
+<meta name="description"
+content="Play Daily Challenge on QuizEmpire. New challenge every day.">
+
+<meta name="keywords"
+content="daily challenge, quiz game, reaction, memory, quiz empire">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(
+135deg,
+#09090b,
+#111827,
+#172554,
+#0f172a
+);
+
+color:white;
+
+min-height:100vh;
+
+padding:20px;
+
+}
+
+.container{
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.logo{
+
+font-size:50px;
+
+text-align:center;
+
+font-weight:900;
+
+color:#22d3ee;
+
+margin-top:20px;
+
+}
+
+.card{
+
+margin-top:30px;
+
+padding:35px;
+
+border-radius:25px;
+
+background:
+
+rgba(255,255,255,.05);
+
+backdrop-filter:blur(12px);
+
+text-align:center;
+
+}
+
+.day{
+
+font-size:22px;
+
+color:#67e8f9;
+
+}
+
+.challenge{
+
+font-size:34px;
+
+margin:20px 0;
+
+}
+
+.btn{
+
+padding:18px 40px;
+
+border:none;
+
+border-radius:20px;
+
+cursor:pointer;
+
+font-size:18px;
+
+background:
+
+linear-gradient(
+90deg,
+#06b6d4,
+#3b82f6
+);
+
+color:white;
+
+}
+
+.stats{
+
+display:flex;
+
+gap:20px;
+
+justify-content:center;
+
+margin-top:30px;
+
+flex-wrap:wrap;
+
+}
+
+.box{
+
+width:180px;
+
+padding:20px;
+
+background:#111827;
+
+border-radius:20px;
+
+}
+
+#play{
+
+margin-top:35px;
+
+display:none;
+
+}
+
+.timer{
+
+font-size:70px;
+
+color:#67e8f9;
+
+}
+
+.score{
+
+font-size:40px;
+
+margin-top:20px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+
+🔥 DAILY CHALLENGE
+
+</div>
+
+<div class="card">
+
+<div class="day">
+
+Today's Challenge
+
+</div>
+
+<div class="challenge" id="challenge">
+
+Loading...
+
+</div>
+
+<button
+class="btn"
+onclick="start()">
+
+START
+
+</button>
+
+<div id="play">
+
+<div class="timer">
+
+10
+
+</div>
+
+<div class="score">
+
+Score:
+<span id="score">
+
+0
+
+</span>
+
+</div>
+
+<br>
+
+<button
+class="btn"
+onclick="tap()">
+
++ TAP
+
+</button>
+
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="box">
+
+🏆 Best
+<h2 id="best">
+
+0
+
+</h2>
+
+</div>
+
+<div class="box">
+
+🔥 Streak
+<h2 id="streak">
+
+1
+
+</h2>
+
+</div>
+
+<div class="box">
+
+⚡ XP
+<h2 id="xp">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let games=[
+
+"Reaction Test",
+
+"Memory Challenge",
+
+"Speed Click",
+
+"Aim Trainer",
+
+"Color Reflex"
+
+];
+
+document.getElementById(
+"challenge"
+
+).innerHTML=
+
+games[
+new Date().getDate()
+
+%games.length
+
+];
+
+let time=10;
+
+let score=0;
+
+function start(){
+
+document
+.getElementById(
+"play"
+)
+.style.display=
+
+"block";
+
+let t=
+
+setInterval(()=>{
+
+time--;
+
+document
+.querySelector(
+".timer"
+)
+.innerHTML=
+
+time;
+
+if(time<=0){
+
+clearInterval(t);
+
+localStorage.best=
+
+Math.max(
+
+score,
+
+localStorage.best||0
+
+);
+
+document
+.getElementById(
+"best"
+)
+.innerHTML=
+
+localStorage.best;
+
+alert(
+
+"Game Over Score: "+score
+
+);
+
+}
+
+},1000);
+
+}
+
+function tap(){
+
+score++;
+
+document
+.getElementById(
+"score"
+)
+.innerHTML=
+
+score;
+
+document
+.getElementById(
+"xp"
+)
+.innerHTML=
+
+score*10;
+
+}
+
+document
+.getElementById(
+"best"
+)
+.innerHTML=
+
+localStorage.best||0;
+
+</script>
+
+</body>
+
+</html>
