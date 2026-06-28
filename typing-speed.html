@@ -9,15 +9,7 @@
 name="viewport"
 content="width=device-width,initial-scale=1">
 
-<title>
-
-Typing Speed Test | QuizEmpire
-
-</title>
-
-<meta
-name="description"
-content="Test your typing speed and accuracy online on QuizEmpire.">
+<title>Typing Arena | QuizEmpire</title>
 
 <style>
 
@@ -31,12 +23,11 @@ font-family:Poppins,sans-serif;
 body{
 
 background:
-
 linear-gradient(
 135deg,
-#030712,
+#050816,
 #111827,
-#1e1b4b
+#0f172a
 );
 
 color:white;
@@ -47,7 +38,7 @@ padding:20px;
 
 .wrap{
 
-max-width:900px;
+max-width:1000px;
 
 margin:auto;
 
@@ -55,9 +46,9 @@ margin:auto;
 
 .title{
 
-text-align:center;
+font-size:60px;
 
-font-size:58px;
+text-align:center;
 
 color:#67e8f9;
 
@@ -65,31 +56,21 @@ font-weight:900;
 
 }
 
-.box{
+.text{
 
-margin-top:30px;
+margin-top:35px;
 
 padding:35px;
 
-border-radius:25px;
-
-background:
-
-linear-gradient(
-145deg,
-#172554,
-#1e293b
-);
-
-}
-
-.text{
-
-font-size:24px;
+font-size:26px;
 
 line-height:2;
 
-color:#e2e8f0;
+border-radius:25px;
+
+background:#111827;
+
+color:#d1d5db;
 
 }
 
@@ -99,19 +80,19 @@ margin-top:30px;
 
 width:100%;
 
-height:180px;
+height:220px;
 
 border:none;
 
-padding:20px;
+outline:none;
 
-border-radius:20px;
+border-radius:25px;
 
-font-size:20px;
+padding:30px;
 
-resize:none;
+font-size:22px;
 
-background:#0f172a;
+background:#172554;
 
 color:white;
 
@@ -121,9 +102,9 @@ color:white;
 
 display:flex;
 
-justify-content:center;
-
 gap:20px;
+
+justify-content:center;
 
 margin-top:30px;
 
@@ -131,13 +112,13 @@ flex-wrap:wrap;
 
 }
 
-.card{
+.box{
 
 width:180px;
 
-padding:25px;
+padding:22px;
 
-background:#0f172a;
+background:#111827;
 
 border-radius:20px;
 
@@ -145,21 +126,11 @@ text-align:center;
 
 }
 
-.btn{
+.big{
 
-margin-top:30px;
+font-size:40px;
 
-width:100%;
-
-padding:18px;
-
-border:none;
-
-border-radius:18px;
-
-background:#22d3ee;
-
-font-size:20px;
+color:#22d3ee;
 
 }
 
@@ -173,75 +144,72 @@ font-size:20px;
 
 <div class="title">
 
-⌨️ Typing Speed
+⌨️ Typing Arena
 
 </div>
 
-<div class="box">
+<div
+class="text"
+id="sample">
 
-<div class="text" id="text">
-
-Practice typing to improve speed and accuracy.
+Success is the result of consistent effort and focused practice. Every small improvement creates a bigger future.
 
 </div>
 
 <textarea
+
 class="input"
+
 id="input"
+
 placeholder="Start typing...">
+
 </textarea>
 
-<button
-class="btn"
-onclick="finish()">
-
-Finish
-
-</button>
-
-</div>
 
 <div class="stats">
 
-<div class="card">
+<div class="box">
 
 ⏱
 
-<h2 id="time">
+<div
+class="big"
+id="time">
 
 60
 
-</h2>
-
-Sec
+</div>
 
 </div>
 
-<div class="card">
+
+<div class="box">
 
 ⚡
 
-<h2 id="wpm">
+<div
+class="big"
+id="wpm">
 
 0
 
-</h2>
-
-WPM
+</div>
 
 </div>
 
-<div class="card">
+
+<div class="box">
 
 🎯
 
-<h2 id="acc">
+<div
+class="big"
+id="acc">
 
 100
 
-</h2>
-
-%
+</div>
 
 </div>
 
@@ -253,62 +221,84 @@ WPM
 
 let time=60;
 
-let timer=
+let started=false;
+
+let timer;
+
+const input=
+
+document
+.getElementById(
+"input"
+);
+
+input.addEventListener(
+
+"input",
+
+()=>{
+
+if(!started){
+
+started=true;
+
+start();
+
+}
+
+update();
+
+});
+
+function start(){
+
+timer=
 
 setInterval(()=>{
 
 time--;
 
-document
-
-.getElementById(
-
-"time"
-
-)
-
-.innerHTML=
-
-time;
+timeEl.innerHTML=time;
 
 if(time<=0){
 
-finish();
+clearInterval(timer);
+
+input.disabled=true;
+
+alert(
+
+"Finished"
+
+);
 
 }
 
 },1000);
 
+}
 
-function finish(){
+let timeEl=
 
-clearInterval(timer);
+document.getElementById(
+
+"time"
+
+);
+
+function update(){
 
 let typed=
 
-document
-
-.getElementById(
-
-"input"
-
-)
-
-.value;
+input.value;
 
 let words=
 
-typed
+typed.trim()
 
-.trim()
-
-.split(" ")
+.split(/\s+/)
 
 .length;
-
-let wpm=
-
-words;
 
 document
 
@@ -320,21 +310,63 @@ document
 
 .innerHTML=
 
-wpm;
+words;
 
-let accuracy=
+let sample=
 
-Math.max(
+document
 
-60,
+.getElementById(
 
-100-
+"sample"
+
+)
+
+.innerText;
+
+let correct=0;
+
+for(
+
+let i=0;
+
+i<typed.length;
+
+i++
+
+){
+
+if(
+
+typed[i]
+
+===
+
+sample[i]
+
+)
+
+correct++;
+
+}
+
+let acc=
 
 Math.floor(
 
-typed.length/10
+(correct/
+
+Math.max(
+
+typed.length,
+
+1
 
 )
+
+)
+
+*100
 
 );
 
@@ -348,17 +380,7 @@ document
 
 .innerHTML=
 
-accuracy;
-
-localStorage.typing=
-
-wpm;
-
-alert(
-
-"Your Speed: "+wpm+" WPM"
-
-);
+acc;
 
 }
 
