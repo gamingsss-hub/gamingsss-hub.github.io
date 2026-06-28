@@ -5,19 +5,21 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
+<meta name="viewport"
 content="width=device-width,initial-scale=1">
 
-<title>Typing Arena | QuizEmpire</title>
+<title>
+Typing Arena Pro | QuizEmpire
+</title>
 
 <meta
 name="description"
-content="Type paragraphs, improve WPM and accuracy. Premium typing speed challenge on QuizEmpire.">
+content="Complete paragraphs fast and improve typing speed.">
 
 <meta
 name="keywords"
-content="typing speed, wpm test, typing arena, keyboard game, typing challenge">
+content="typing speed,wpm,typing game,keyboard challenge">
+
 <style>
 
 *{
@@ -53,51 +55,73 @@ margin:auto;
 
 .title{
 
-font-size:60px;
+font-size:58px;
 
 text-align:center;
 
 color:#67e8f9;
 
-font-weight:900;
+}
+
+.box{
+
+margin-top:30px;
+
+padding:35px;
+
+background:#111827;
+
+border-radius:25px;
+
+}
+
+.progress{
+
+height:10px;
+
+background:#222;
+
+border-radius:99px;
+
+overflow:hidden;
+
+}
+
+.fill{
+
+height:100%;
+
+width:0;
+
+background:#22d3ee;
 
 }
 
 .text{
 
-margin-top:35px;
+margin-top:20px;
 
-padding:35px;
-
-font-size:26px;
+font-size:24px;
 
 line-height:2;
-
-border-radius:25px;
-
-background:#111827;
-
-color:#d1d5db;
 
 }
 
 .input{
 
-margin-top:30px;
+margin-top:25px;
 
 width:100%;
 
-height:220px;
+height:180px;
 
 border:none;
 
-outline:none;
-
-border-radius:25px;
-
-padding:30px;
+padding:25px;
 
 font-size:22px;
+
+border-radius:20px;
 
 background:#172554;
 
@@ -111,21 +135,21 @@ display:flex;
 
 gap:20px;
 
-justify-content:center;
+margin-top:25px;
 
-margin-top:30px;
+justify-content:center;
 
 flex-wrap:wrap;
 
 }
 
-.box{
+.card{
 
 width:180px;
 
-padding:22px;
+padding:20px;
 
-background:#111827;
+background:#172554;
 
 border-radius:20px;
 
@@ -137,7 +161,27 @@ text-align:center;
 
 font-size:40px;
 
-color:#22d3ee;
+color:#67e8f9;
+
+}
+
+.btn{
+
+width:100%;
+
+margin-top:25px;
+
+padding:18px;
+
+border:none;
+
+border-radius:20px;
+
+font-size:20px;
+
+background:#22d3ee;
+
+display:none;
 
 }
 
@@ -151,7 +195,19 @@ color:#22d3ee;
 
 <div class="title">
 
-⌨️ Typing Arena
+⌨️ Typing Arena Pro
+
+</div>
+
+<div class="box">
+
+<div class="progress">
+
+<div
+class="fill"
+id="fill">
+
+</div>
 
 </div>
 
@@ -159,7 +215,7 @@ color:#22d3ee;
 class="text"
 id="sample">
 
-Success is the result of consistent effort and focused practice. Every small improvement creates a bigger future.
+Success comes from daily effort and continuous improvement.
 
 </div>
 
@@ -169,14 +225,22 @@ class="input"
 
 id="input"
 
-placeholder="Start typing...">
+placeholder="Type here...">
 
 </textarea>
 
+<button
+class="btn"
+id="next"
+onclick="next()">
+
+NEXT →
+
+</button>
 
 <div class="stats">
 
-<div class="box">
+<div class="card">
 
 ⏱
 
@@ -190,8 +254,7 @@ id="time">
 
 </div>
 
-
-<div class="box">
+<div class="card">
 
 ⚡
 
@@ -205,8 +268,7 @@ id="wpm">
 
 </div>
 
-
-<div class="box">
+<div class="card">
 
 🎯
 
@@ -224,19 +286,34 @@ id="acc">
 
 </div>
 
+</div>
+
 <script>
 
-let time=60;
+let list=[
+
+"Success comes from daily effort and continuous improvement.",
+
+"Typing quickly requires focus and accuracy together.",
+
+"Small wins every day become massive achievements later."
+
+];
+
+let index=0;
 
 let started=false;
+
+let time=60;
 
 let timer;
 
 const input=
 
-document
-.getElementById(
+document.getElementById(
+
 "input"
+
 );
 
 input.addEventListener(
@@ -253,7 +330,7 @@ start();
 
 }
 
-update();
+check();
 
 });
 
@@ -269,15 +346,7 @@ timeEl.innerHTML=time;
 
 if(time<=0){
 
-clearInterval(timer);
-
-input.disabled=true;
-
-alert(
-
-"Finished"
-
-);
+end();
 
 }
 
@@ -293,11 +362,27 @@ document.getElementById(
 
 );
 
-function update(){
+function check(){
+
+let text=
+
+sample.innerText;
 
 let typed=
 
 input.value;
+
+let progress=
+
+typed.length/
+
+text.length
+
+*100;
+
+fill.style.width=
+
+progress+"%";
 
 let words=
 
@@ -307,29 +392,9 @@ typed.trim()
 
 .length;
 
-document
-
-.getElementById(
-
-"wpm"
-
-)
-
-.innerHTML=
+wpm.innerHTML=
 
 words;
-
-let sample=
-
-document
-
-.getElementById(
-
-"sample"
-
-)
-
-.innerText;
 
 let correct=0;
 
@@ -349,7 +414,7 @@ typed[i]
 
 ===
 
-sample[i]
+text[i]
 
 )
 
@@ -357,11 +422,11 @@ correct++;
 
 }
 
-let acc=
+acc.innerHTML=
 
 Math.floor(
 
-(correct/
+correct/
 
 Math.max(
 
@@ -371,23 +436,59 @@ typed.length,
 
 )
 
-)
-
 *100
 
 );
 
-document
+if(
 
-.getElementById(
+typed===text
 
-"acc"
+){
 
-)
+next.style.display=
 
-.innerHTML=
+"block";
 
-acc;
+}
+
+}
+
+function next(){
+
+index++;
+
+if(index>=list.length){
+
+end();
+
+return;
+
+}
+
+sample.innerHTML=
+
+list[index];
+
+input.value="";
+
+fill.style.width=0;
+
+next.style.display="none";
+
+}
+
+function end(){
+
+clearInterval(timer);
+
+alert(
+
+"Finished 🔥"
+
+);
+
+input.disabled=true;
 
 }
 
