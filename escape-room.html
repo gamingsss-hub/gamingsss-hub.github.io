@@ -229,121 +229,129 @@ Unlock
 
 <script>
 
-const rooms=[
+const levels={
 
-{
+easy:[
+{q:"2 + 2 ?",a:"4"},
+{q:"Color of sky",a:"blue"},
+{q:"First month",a:"january"},
+{q:"5 × 5",a:"25"},
+{q:"What opens lock?",a:"key"}
+],
 
-q:
+medium:[
+{q:"I speak without mouth. What am I?",a:"echo"},
+{q:"What has keys but no locks?",a:"keyboard"},
+{q:"What comes once in a minute twice in a moment?",a:"m"},
+{q:"7×8+2",a:"58"},
+{q:"Capital of Australia",a:"canberra"}
+],
 
-"2 + 2 ?",
+hard:[
+{q:"I am always coming but never arrive?",a:"tomorrow"},
+{q:"What has one eye but cannot see?",a:"needle"},
+{q:"What gets wetter while drying?",a:"towel"},
+{q:"What belongs to you but others use more?",a:"name"},
+{q:"Decode: 1 1 2 3 5 8 ?",a:"13"}
+]
 
-a:
+};
 
-"4"
+let mode="easy";
+let room=0;
 
-},
+document.querySelector(".box").insertAdjacentHTML(
+"afterbegin",
 
-{
+`
 
-q:
+<select id="mode"
 
-"Color of sky",
+style="
 
-a:
+padding:12px;
 
-"blue"
+margin-bottom:20px;
 
-},
+border-radius:12px;
 
-{
+font-size:18px;
 
-q:
+">
 
-"First month",
+<option value="easy">
 
-a:
+🟢 Easy
 
-"january"
+</option>
 
-},
+<option value="medium">
 
-{
+🟡 Medium
 
-q:
+</option>
 
-"5 × 5",
+<option value="hard">
 
-a:
+🔴 Hard
 
-"25"
+</option>
 
-},
+</select>
 
-{
+`
 
-q:
+);
 
-"What opens lock?",
+document
 
-a:
+.getElementById("mode")
 
-"key"
+.onchange=(e)=>{
 
-}
+mode=e.target.value;
 
-];
+room=0;
 
-let level=0;
+load();
+
+};
 
 function load(){
 
 document
 
-.getElementById(
-
-"room"
-
-)
+.getElementById("room")
 
 .innerHTML=
 
-`Room ${level+1}`;
+`${mode.toUpperCase()} • Room ${room+1}/5`;
 
 document
 
-.getElementById(
-
-"question"
-
-)
+.getElementById("question")
 
 .innerHTML=
 
-rooms[level].q;
+levels[mode][room].q;
 
 document
 
-.getElementById(
+.getElementById("ans").value="";
 
-"ans"
+document
 
-)
-
-.value="";
+.getElementById("msg").innerHTML="";
 
 }
 
 function check(){
 
-let v=
+let input=
 
 document
 
-.getElementById(
-
-"ans"
-
-)
+.getElementById("ans")
 
 .value
 
@@ -353,26 +361,63 @@ document
 
 if(
 
-v===
+input===
 
-rooms[level].a
+levels[mode][room].a
+
+){
+
+room++;
+
+document
+
+.getElementById("msg")
+
+.innerHTML=
+
+"🔓 Correct";
+
+if(room===5){
+
+if(mode==="easy"){
+
+alert(
+
+"🟢 Easy Completed → Medium Unlock"
+
+);
+
+mode="medium";
+
+}
+
+else if(
+
+mode==="medium"
 
 ){
 
-level++;
+alert(
 
-if(
+"🟡 Medium Completed → Hard Unlock"
 
-level===5
+);
 
-){
+mode="hard";
+
+}
+
+else{
 
 document.body.innerHTML=
 
 `
 
 <div
+
 style='
+
+height:100vh;
 
 display:flex;
 
@@ -380,17 +425,21 @@ justify-content:center;
 
 align-items:center;
 
-height:100vh;
-
 background:black;
 
 color:white;
 
-font-size:40px;
+font-size:45px;
 
-'>
+text-align:center;
 
-🏆 YOU ESCAPED
+'
+
+>
+
+🏆 FINAL ESCAPE<br>
+
+You Escaped All Rooms
 
 </div>
 
@@ -400,19 +449,17 @@ return;
 
 }
 
-load();
-
 document
 
-.getElementById(
+.getElementById("mode")
 
-"msg"
+.value=mode;
 
-)
+room=0;
 
-.innerHTML=
+}
 
-"🔓 Opened";
+load();
 
 }
 
@@ -420,19 +467,37 @@ else{
 
 document
 
-.getElementById(
-
-"msg"
-
-)
+.getElementById("msg")
 
 .innerHTML=
 
-"❌ Wrong";
+"❌ Wrong Answer";
 
 }
 
 }
+
+document
+
+.getElementById("ans")
+
+.addEventListener(
+
+"keypress",
+
+(e)=>{
+
+if(
+
+e.key==="Enter"
+
+)
+
+check();
+
+}
+
+);
 
 load();
 
