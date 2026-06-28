@@ -270,50 +270,21 @@ let para=[
 
 `Discipline is the bridge between goals and achievements. Every day that you practice and improve creates a stronger version of yourself in the future.`,
 
-`Typing quickly is not only about speed but also consistency focus rhythm and controlled movement under pressure.`,
+`Typing at high speed requires controlled movement precision rhythm and complete focus under pressure.`,
 
-`People become extraordinary by repeating ordinary actions with extreme consistency over a long period of time.`
+`The strongest people are not always the most talented but the ones who continue after everyone else stops.`
 
 ];
 
-let index=0;
+let current=0;
+
+let totalWords=0;
 
 let startTime=null;
 
-let typedWords=0;
-
-const input=
-document.getElementById(
-"input"
-);
-
-const sample=
-document.getElementById(
-"sample"
-);
-
-const wpm=
-document.getElementById(
-"wpm"
-);
-
-const acc=
-document.getElementById(
-"acc"
-);
-
-const sec=
-document.getElementById(
-"time"
-);
-
-const fill=
-document.getElementById(
-"fill"
-);
-
 sample.innerHTML=
-para[0];
+
+para[current];
 
 input.addEventListener(
 
@@ -321,41 +292,29 @@ input.addEventListener(
 
 ()=>{
 
-if(!startTime){
+if(!startTime)
 
 startTime=
 
 Date.now();
 
-}
-
-update();
+run();
 
 });
 
-function update(){
+function run(){
 
 let target=
 
-para[index];
+para[current]
+
+.trim();
 
 let typed=
 
-input.value;
+input.value
 
-let progress=
-
-typed.length
-
-/
-
-target.length
-
-*100;
-
-fill.style.width=
-
-progress+"%";
+.trim();
 
 let elapsed=
 
@@ -373,27 +332,41 @@ startTime
 
 1000;
 
-sec.innerHTML=
+time.innerHTML=
 
 elapsed.toFixed(1);
+
+let progress=
+
+typed.length/
+
+target.length
+
+*100;
+
+fill.style.width=
+
+Math.min(
+
+progress,
+
+100
+
+)
+
++"%";
 
 let words=
 
 typed
 
-.trim()
-
 .split(/\s+/)
 
-.filter(
-
-x=>x
-
-)
+.filter(Boolean)
 
 .length;
 
-let liveWpm=
+wpm.innerHTML=
 
 Math.floor(
 
@@ -410,10 +383,6 @@ elapsed,
 *60
 
 );
-
-wpm.innerHTML=
-
-liveWpm;
 
 let correct=0;
 
@@ -461,7 +430,8 @@ typed.length,
 
 acc.innerHTML=
 
-accuracy;
+accuracy||0;
+
 
 if(
 
@@ -469,25 +439,30 @@ typed===target
 
 ){
 
-typedWords+=
+totalWords+=
 
-target.split(" ").length;
+target
 
-index++;
+.split(" ")
+
+.length;
+
+current++;
 
 input.value="";
 
-fill.style.width=0;
+fill.style.width="0%";
+
 
 if(
 
-index<para.length
+current<para.length
 
 ){
 
 sample.innerHTML=
 
-para[index];
+para[current];
 
 }
 
@@ -503,7 +478,7 @@ finish();
 
 function finish(){
 
-let totalSec=
+let sec=
 
 (
 
@@ -523,17 +498,25 @@ let final=
 
 Math.floor(
 
-typedWords/
+totalWords/
 
-totalSec
+sec
 
 *60
 
 );
 
+sample.innerHTML=
+
+"🔥 COMPLETED";
+
+input.style.display=
+
+"none";
+
 alert(
 
-"🔥 Finished\n\n⚡ WPM: "
+"🏆 RESULT\n\n⚡ WPM: "
 
 +
 
@@ -545,11 +528,17 @@ final+
 
 acc.innerHTML+
 
-"%"
+"%\n⏱ "
+
++
+
+sec.toFixed(1)
+
++
+
+" Sec"
 
 );
-
-input.disabled=true;
 
 }
 
