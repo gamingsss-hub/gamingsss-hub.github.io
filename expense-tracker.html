@@ -212,17 +212,27 @@ id="list">
 
 <script>
 
-let data=
+const nameInput =
+document.getElementById("name");
 
+const amountInput =
+document.getElementById("amount");
+
+const catInput =
+document.getElementById("cat");
+
+const total =
+document.getElementById("total");
+
+const list =
+document.getElementById("list");
+
+let data =
 JSON.parse(
-
 localStorage.getItem(
 "money"
 )
-
 )||[];
-
-render();
 
 function save(){
 
@@ -242,21 +252,37 @@ function add(){
 
 if(
 
-!name.value||
+nameInput.value.trim()===""||
 
-!amount.value
+amountInput.value===""
 
-)
+){
+
+alert(
+
+"Fill all fields"
+
+);
 
 return;
 
+}
+
 data.push({
 
-n:name.value,
+n:
 
-a:+amount.value,
+nameInput.value,
 
-c:cat.value
+a:
+
+Number(
+amountInput.value
+),
+
+c:
+
+catInput.value
 
 });
 
@@ -264,9 +290,9 @@ save();
 
 render();
 
-name.value="";
+nameInput.value="";
 
-amount.value="";
+amountInput.value="";
 
 }
 
@@ -284,37 +310,44 @@ function render(){
 
 list.innerHTML="";
 
-let t=0;
+let sum=0;
 
 data.forEach(
 
-(x,i)=>{
+(item,index)=>{
 
-t+=x.a;
+sum+=item.a;
 
 list.innerHTML+=`
 
-<div class='item'>
+<div class="item">
 
 <div>
 
-${x.n}
+<b>
+
+${item.n}
+
+</b>
 
 <br>
 
-${x.c}
+${item.c}
 
 </div>
 
 <div>
 
-₹${x.a}
+₹${item.a}
+
+<br><br>
 
 <button
-class='del'
-onclick='del(${i})'>
+class="del"
 
-X
+onclick="del(${index})">
+
+Delete
 
 </button>
 
@@ -328,12 +361,13 @@ X
 
 total.innerHTML=
 
-"₹"+t;
+"₹"+sum;
 
 }
 
-</script>
+render();
 
+</script>
 </body>
 
 </html>
