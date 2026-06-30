@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -8,40 +7,19 @@
 
 <meta
 name="viewport"
-content="width=device-width,initial-scale=1.0">
+content="width=device-width, initial-scale=1">
 
 <title>
-QuizEmpire | Play Free Quizzes, Games & Test Your Knowledge
-</title><meta
+Toolora | Games • Quiz • Tools • Learning
+</title>
+
+<meta
 name="description"
-content="Play free quizzes and games online. Explore Army, UPSC, World GK, Science, Sports, Space, IQ, Memory Games, Guess The Logo, Reaction Test and more on QuizEmpire.">
+content="Play games, quizzes, utilities and learning tools.">
 
-<meta
-name="keywords"
-content="quiz empire, free quiz, online quiz, world quiz, science quiz, sports quiz, games, memory game, reaction test, guess the logo, guess the flag, iq test, upsc quiz, army quiz, gk quiz, educational games">
-
-<meta
-name="robots"
-content="index,follow">
-
-<meta
-property="og:title"
-content="QuizEmpire | Play Free Quizzes & Games">
-
-<meta
-property="og:description"
-content="Play quizzes, games and improve your knowledge every day.">
-
-<meta
-property="og:type"
-content="website">
-  
 <link
-rel="icon"
-
-type="image/png"
-
-href="./favicon.png">
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+rel="stylesheet">
 
 <style>
 
@@ -55,48 +33,122 @@ font-family:Poppins,sans-serif;
 body{
 
 background:
-
-#060b14;
+linear-gradient(
+180deg,
+#020617,
+#030b1d
+);
 
 color:white;
+
+padding-bottom:120px;
 
 }
 
 .container{
 
-max-width:1500px;
+width:100%;
+
+max-width:700px;
 
 margin:auto;
 
-padding:24px;
+padding:22px;
 
 }
 
-.hero{
+.top{
 
-padding:70px 20px;
+display:flex;
 
-text-align:center;
+justify-content:
+space-between;
+
+align-items:center;
+
+}
+
+.circle{
+
+width:58px;
+
+height:58px;
+
+background:
+rgba(255,255,255,.05);
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:24px;
 
 }
 
 .logo{
 
-font-size:72px;
+text-align:center;
 
-font-weight:900;
-
-color:white;
-
-letter-spacing:3px;
+margin-top:25px;
 
 }
 
-.sub{
+.logo h1{
 
-margin-top:12px;
+font-size:58px;
+
+font-weight:800;
+
+background:
+linear-gradient(
+90deg,
+#8b5cf6,
+#60a5fa
+);
+
+-webkit-background-clip:text;
+
+color:transparent;
+
+}
+
+.logo p{
 
 color:#94a3b8;
+
+margin-top:6px;
+
+}
+
+.hero{
+
+margin-top:35px;
+
+text-align:center;
+
+}
+
+.hero h2{
+
+font-size:56px;
+
+line-height:1.05;
+
+}
+
+.hero span{
+
+color:#8b5cf6;
+
+}
+
+.search{
+
+margin-top:30px;
 
 }
 
@@ -104,103 +156,396 @@ color:#94a3b8;
 
 width:100%;
 
-padding:20px;
+height:72px;
 
 border:none;
 
-border-radius:20px;
+outline:none;
 
-background:#0f172a;
+padding:0 28px;
+
+font-size:20px;
+
+border-radius:999px;
 
 color:white;
-
-font-size:18px;
-
-}
-
-.cards{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(
-auto-fit,
-minmax(
-260px,
-1fr
-));
-
-gap:20px;
-
-}
-
-.card{
 
 background:
-
-#0f172a;
-
-padding:28px;
-
-border-radius:24px;
-
-text-decoration:none;
-
-color:white;
-
-border:
-
-1px solid
 
 rgba(
 255,
 255,
 255,
-.05
+.04
 );
-
-transition:.25s;
 
 }
 
-.card:hover{
+.quick{
 
-transform:
+margin-top:30px;
 
-translateY(
--6px
+display:grid;
+
+grid-template-columns:
+repeat(
+2,
+1fr
 );
 
-background:
-
-#172033;
-
-border-color:
-
-#38bdf8;
+gap:18px;
 
 }
 
-.card h3{
+.box{
+
+height:170px;
+
+border-radius:32px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.box div{
+
+font-size:54px;
+
+}
+
+.box h3{
+
+margin-top:12px;
 
 font-size:28px;
 
-margin-bottom:12px;
+}
+
+.games{
+
+background:
+linear-gradient(
+145deg,
+#3b1a80,
+#1f275c
+);
 
 }
 
-.card p{
+.tools{
+
+background:
+linear-gradient(
+145deg,
+#083f90,
+#052b66
+);
+
+}
+
+.quiz{
+
+background:
+linear-gradient(
+145deg,
+#045a56,
+#0d3342
+);
+
+}
+
+.learn{
+
+background:
+linear-gradient(
+145deg,
+#6b3410,
+#4f2208
+);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="top">
+
+<div class="circle">
+
+☰
+
+</div>
+
+<div class="circle">
+
+🔍
+
+</div>
+
+</div>
+
+
+<div class="logo">
+
+<h1>
+
+⚡ Toolora
+
+</h1>
+
+<p>
+
+Games • Tools • Quiz • Learning
+
+</p>
+
+</div>
+
+
+<div class="hero">
+
+<h2>
+
+One Platform.
+
+<br>
+
+<span>
+
+Endless Possibilities.
+
+</span>
+
+</h2>
+
+</div>
+
+
+<div class="search">
+
+<input
+placeholder="Search tools, games, quizzes...">
+
+</div>
+
+
+<div class="quick">
+
+<div class="box games">
+
+<div>
+
+🎮
+
+</div>
+
+<h3>
+
+Games
+
+</h3>
+
+</div>
+
+
+<div class="box tools">
+
+<div>
+
+🛠️
+
+</div>
+
+<h3>
+
+Tools
+
+</h3>
+
+</div>
+
+
+<div class="box quiz">
+
+<div>
+
+🧠
+
+</div>
+
+<h3>
+
+Quiz
+
+</h3>
+
+</div>
+
+
+<div class="box learn">
+
+<div>
+
+🎓
+
+</div>
+
+<h3>
+
+Learn
+
+</h3>
+
+</div>
+
+</div>
+<style>
+
+.section{
+
+margin-top:70px;
+
+}
+
+.section-head{
+
+display:flex;
+
+justify-content:
+space-between;
+
+align-items:center;
+
+margin-bottom:22px;
+
+}
+
+.section-head h2{
+
+font-size:42px;
+
+}
+
+.view{
+
+padding:14px 22px;
+
+border-radius:999px;
+
+background:
+
+rgba(255,255,255,.05);
+
+}
+
+.horizontal{
+
+display:flex;
+
+gap:18px;
+
+overflow-x:auto;
+
+padding-bottom:10px;
+
+}
+
+.horizontal::-webkit-scrollbar{
+
+display:none;
+
+}
+
+.mini{
+
+min-width:210px;
+
+background:
+
+rgba(255,255,255,.04);
+
+border-radius:28px;
+
+padding:28px;
+
+}
+
+.mini .icon{
+
+font-size:52px;
+
+}
+
+.mini h3{
+
+margin-top:18px;
+
+font-size:28px;
+
+}
+
+.mini p{
+
+margin-top:10px;
 
 color:#94a3b8;
 
 }
 
-.section-title{
+.grid{
 
-font-size:40px;
+display:grid;
 
-margin:55px 0 25px;
+grid-template-columns:
+repeat(
+2,
+1fr
+);
+
+gap:18px;
+
+}
+
+.big{
+
+padding:35px;
+
+border-radius:30px;
+
+background:
+
+rgba(255,255,255,.04);
+
+text-align:center;
+
+}
+
+.big div{
+
+font-size:58px;
+
+}
+
+.big h3{
+
+margin-top:16px;
+
+}
+
+.big p{
+
+color:#94a3b8;
 
 }
 
@@ -209,13 +554,12 @@ margin:55px 0 25px;
 display:grid;
 
 grid-template-columns:
-
 repeat(
-4,
+2,
 1fr
 );
 
-gap:20px;
+gap:18px;
 
 margin-top:40px;
 
@@ -223,177 +567,69 @@ margin-top:40px;
 
 .stat{
 
+padding:34px;
+
+border-radius:28px;
+
 background:
 
-#0f172a;
-
-padding:25px;
-
-border-radius:22px;
+rgba(255,255,255,.04);
 
 text-align:center;
 
 }
 
-.footer{
+.stat h1{
 
-margin-top:70px;
-
-text-align:center;
-
-color:#64748b;
+font-size:52px;
 
 }
 
-@media(max-width:700px){
+.stat p{
 
-.logo{
+margin-top:10px;
 
-font-size:48px;
-
-}
-
-.stats{
-
-grid-template-columns:
-
-repeat(
-2,
-1fr
-);
-
-}
+color:#94a3b8;
 
 }
 
 </style>
-</head>
 
-<body>
 
-<div class="container">
-
-<div class="hero">
-
-<div class="logo">
-
-👑 QUIZEMPIRE
-
-</div>
-
-<div class="sub">
-
-Play • Learn • Explore • Compete
-
-</div>
-
-<div class="search">
-
-<input
-
-type="text"
-
-placeholder="🔍 Search Quiz / Game">
-
-</div>
-
-<div class="quick">
-
-<div class="badge">
-
-🎮 Games
-
-</div>
-
-<div class="badge">
-
-🧠 Quiz
-
-</div>
-
-<div class="badge">
-
-🌍 World
-
-</div>
-
-<div class="badge">
-
-🏛 Exams
-
-</div>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-
-<h2>
-
-5000+
-
-</h2>
-
-Questions
-
-</div>
-
-<div class="stat">
-
-<h2>
-
-40+
-
-</h2>
-
-Games
-
-</div>
-
-<div class="stat">
-
-<h2>
-
-150+
-
-</h2>
-
-Countries
-
-</div>
-
-<div class="stat">
-
-<h2>
-
-100%
-
-</h2>
-
-Free
-
-</div>
-
-</div>
-
-</div>
 
 <div class="section">
 
-<div class="section-title">
+<div class="section-head">
 
-🎮 Game Zone
+<h2>
+
+👑 Popular Right Now
+
+</h2>
+
+<div class="view">
+
+View All →
 
 </div>
 
-<div class="cards">
+</div>
 
-<a href="reaction-test.html" class="card">
+
+
+<div class="horizontal">
+
+<div class="mini">
+
+<div class="icon">
+
+⚡
+
+</div>
 
 <h3>
 
-⚡ Reaction Test
+Reaction Test
 
 </h3>
 
@@ -403,347 +639,10 @@ Test Your Speed
 
 </p>
 
-</a>
-
-
-<a href="black-hole-game.html" class="card">
-
-<h3>
-
-🕳️ Black Hole
-
-</h3>
-
-<p>
-
-Absorb • Survive • Score
-
-</p>
-
-</a>
-
-<a
-href="daily-challenge.html"
-
-class="card">
-
-<div class="icon">
-
-🏆
-
 </div>
 
-<h3>
 
-Daily Challenge
-
-</h3>
-
-<p>
-
-New Challenge Every Day • Earn Streak
-
-</p>
-
-</a>
-
-
-<a href="color-reflex.html" class="card">
-
-<h3>
-
-🧪 Color Reflex
-
-</h3>
-
-<p>
-
-Fast Color Challenge
-
-</p>
-
-</a>
-
-
-<a href="escape-room.html" class="card">
-
-<h3>
-
-🚪 Escape Room
-
-</h3>
-
-<p>
-
-Solve • Escape
-
-</p>
-
-</a>
-
-<a href="riddle.html" class="card">
-
-<div class="title">
-
-🧠 Riddle Quiz
-
-</div>
-
-<div class="desc">
-
-Hints • Score • Brain
-
-</div>
-
-</a>
-
-
-<a href="memory-game.html" class="card">
-
-<h3>
-
-🧠 Memory Game
-
-</h3>
-
-<p>
-
-Flip • Match
-
-</p>
-
-</a>
-
-
-<a href="pattern-memory.html" class="card">
-
-<h3>
-
-🌌 Pattern Memory
-
-</h3>
-
-<p>
-
-Watch • Repeat
-
-</p>
-
-</a>
-
-
-<a href="aim-trainer.html" class="card">
-
-<h3>
-
-🎯 Aim Trainer
-
-</h3>
-
-<p>
-
-Improve Aim
-
-</p>
-
-</a>
-
-
-<a href="spin-wheel.html" class="card">
-
-<h3>
-
-🎡 Spin Wheel
-
-</h3>
-
-<p>
-
-Lucky Challenge
-
-</p>
-
-</a>
-
-
-<a href="speed-click-test.html" class="card">
-
-<h3>
-
-🏁 Click Speed
-
-</h3>
-
-<p>
-
-Fast Click Challenge
-
-</p>
-
-</a>
-
-<a href="puzzle.html" class="card">
-
-<div class="title">
-
-🧩 Puzzle Quiz
-
-</div>
-
-<div class="desc">
-
-Easy • Medium • Hard
-
-</div>
-
-</a>
-
-
-<a href="guess-the-logo.html" class="card">
-
-<h3>
-
-🏆 Guess Logo
-
-</h3>
-
-<p>
-
-Brand Challenge
-
-</p>
-
-</a>
-
-<a
-href="age-calculator.html"
-
-class="card">
-
-<div class="icon">
-
-🎂
-
-</div>
-
-<h3>
-
-Age Calculator
-
-</h3>
-
-<p>
-
-Years • Zodiac • Birthday
-
-</p>
-
-</a>
-
-<a
-href="bmi-calculator.html"
-
-class="card">
-
-<div class="icon">
-
-⚖️
-
-</div>
-
-<h3>
-
-BMI Calculator
-
-</h3>
-
-<p>
-
-Health • Height • Weight
-
-</p>
-
-</a>
-
-<a
-href="notes-app.html"
-
-class="card">
-
-<div class="icon">
-
-📝
-
-</div>
-
-<h3>
-
-Notes App
-
-</h3>
-
-<p>
-
-Save • Edit • Notes
-
-</p>
-
-</a>
-
-<a
-href="expense-tracker.html"
-
-class="card">
-
-<div class="icon">
-
-💸
-
-</div>
-
-<h3>
-
-Expense Tracker
-
-</h3>
-
-<p>
-
-Money • Budget
-
-</p>
-
-</a>
-
-<a
-href="world-clock.html"
-
-class="card">
-
-<div class="icon">
-
-🌍
-
-</div>
-
-<h3>
-
-World Clock
-
-</h3>
-
-<p>
-
-Live • Time Zones
-
-</p>
-
-</a>
-
-<a
-href="qr-generator.html"
-
-class="card">
+<div class="mini">
 
 <div class="icon">
 
@@ -759,613 +658,826 @@ QR Generator
 
 <p>
 
-Text • URL • QR
+Create QR
 
 </p>
 
-</a>
+</div>
 
-<a
-href="countdown-timer.html"
 
-class="card">
+<div class="mini">
 
 <div class="icon">
 
-⏳
+💸
 
 </div>
 
 <h3>
 
-Countdown Timer
+Expense Tracker
 
 </h3>
 
 <p>
 
-Hours • Minutes • Seconds
+Track Expenses
 
 </p>
 
-</a>
+</div>
 
-<a
-href="stopwatch-pro.html"
 
-class="card">
+<div class="mini">
 
 <div class="icon">
 
-⏱️
+🌍
 
 </div>
 
 <h3>
 
-Stopwatch Pro
+World Clock
 
 </h3>
 
 <p>
 
-Lap • Milliseconds
+Live Time
 
 </p>
 
-</a>
-  
-<a
-href="typing-speed.html"
+</div>
 
-class="card">
+
+<div class="mini">
 
 <div class="icon">
 
-⌨️
+🧩
 
 </div>
 
 <h3>
 
-Typing Speed
+Puzzle
 
 </h3>
 
 <p>
 
-WPM • Accuracy • Speed Test
+Brain Challenge
 
 </p>
 
-</a>
+</div>
 
-<a href="guess-the-flag.html" class="card">
+
+<div class="mini">
+
+<div class="icon">
+
+🧠
+
+</div>
 
 <h3>
 
-🌍 Guess Flag
+GK Quiz
 
 </h3>
 
 <p>
 
-Country Challenge
+Test Knowledge
 
 </p>
-
-</a>
-
 
 </div>
 
 </div>
 
-
-<div class="section">
-
-<div class="section-title">
-
-🧠 Quiz Zone
-
 </div>
 
-<div class="cards">
-
-<a href="generalquiz.html" class="card">
-
-<h3>
-
-🧠 General Quiz
-
-</h3>
-
-<p>
-
-Mixed Questions
-
-</p>
-
-</a>
-
-
-<a href="science.html" class="card">
-
-<h3>
-
-🧪 Science Quiz
-
-</h3>
-
-<p>
-
-Physics • Chemistry • Biology
-
-</p>
-
-</a>
-
-
-<a href="sports.html" class="card">
-
-<h3>
-
-⚽ Sports Quiz
-
-</h3>
-
-<p>
-
-Sports Challenge
-
-</p>
-
-</a>
-
-
-<a href="space.html" class="card">
-
-<h3>
-
-🚀 Space Quiz
-
-</h3>
-
-<p>
-
-Universe • NASA
-
-</p>
-
-</a>
-
-
-<a href="english.html" class="card">
-
-<h3>
-
-📖 English Quiz
-
-</h3>
-
-<p>
-
-Vocabulary • Grammar
-
-</p>
-
-</a>
-
-
-<a href="movies.html" class="card">
-
-<h3>
-
-🎬 Movies Quiz
-
-</h3>
-
-<p>
-
-Movies Challenge
-
-</p>
-
-</a>
-
-
-<a href="iq.html" class="card">
-
-<h3>
-
-🧠 IQ Quiz
-
-</h3>
-
-<p>
-
-Logic • Brain
-
-</p>
-
-</a>
-
-
-<a href="technology.html" class="card">
-
-<h3>
-
-💻 Technology Quiz
-
-</h3>
-
-<p>
-
-AI • Coding
-
-</p>
-
-</a>
-
-
-<a href="history.html" class="card">
-
-<h3>
-
-🏺 History Quiz
-
-</h3>
-
-<p>
-
-Ancient • Modern
-
-</p>
-
-</a>
-
-</div>
-
-</div>
 
 
 
 <div class="section">
 
-<div class="section-title">
+<div class="section-head">
 
-🌍 World Zone
+<h2>
 
-</div>
+🚀 Explore Categories
 
-<div class="cards">
-
-
-<a href="worldgk.html" class="card">
-
-<h3>
-
-🌍 World GK
-
-</h3>
-
-<p>
-
-Flags • Capitals
-
-</p>
-
-</a>
-
-<a href="country-capital.html" class="card">
-
-<div class="title">
-
-🌍 Country Capital Quiz
-
-</div>
-
-<div class="desc">
-
-World Capitals Challenge
-
-</div>
-
-</a>
-
-<a href="puzzle.html" class="card">
-
-<div class="title">
-
-🧩 Puzzle Quiz
-
-</div>
-
-<div class="desc">
-
-Easy • Medium • Hard
-
-</div>
-
-</a>
-
-
-<a href="countries.html" class="card">
-
-<h3>
-
-🌎 Country Quiz
-
-</h3>
-
-<p>
-
-Countries • Flags
-
-</p>
-
-</a>
-
-
-<a href="guess-the-flag.html" class="card">
-
-<h3>
-
-🏁 Guess The Flag
-
-</h3>
-
-<p>
-
-World Challenge
-
-</p>
-
-</a>
-
-
-</div>
+</h2>
 
 </div>
 
 
-<div class="section">
 
-<div class="section-title">
+<div class="grid">
 
-🏛 Exam Zone
+<div class="big">
+
+<div>
+
+🎮
 
 </div>
 
-<div class="cards">
-
-<a href="army.html" class="card">
-
 <h3>
 
-🪖 Army Quiz
+Games
 
 </h3>
 
 <p>
 
-Defence Practice
+40+ Games
 
 </p>
 
-</a>
+</div>
 
 
-<a href="upsc.html" class="card">
+<div class="big">
+
+<div>
+
+🛠️
+
+</div>
 
 <h3>
 
-🏛 UPSC
+Tools
 
 </h3>
 
 <p>
 
-GS • CSAT
+20+ Tools
 
 </p>
 
-</a>
+</div>
 
 
-<a href="nda.html" class="card">
+<div class="big">
+
+<div>
+
+🧠
+
+</div>
 
 <h3>
 
-✈️ NDA
+Quiz
 
 </h3>
 
 <p>
 
-Maths • GK
+5000+ Questions
 
 </p>
 
-</a>
+</div>
 
 
-<a href="ssccgl.html" class="card">
+<div class="big">
+
+<div>
+
+📖
+
+</div>
 
 <h3>
 
-📚 SSC CGL
+Learning
 
 </h3>
 
 <p>
 
-Tier 1 • Tier 2
+100+ Topics
 
 </p>
 
-</a>
+</div>
 
 
-<a href="sscgd.html" class="card">
+<div class="big">
+
+<div>
+
+⚡
+
+</div>
 
 <h3>
 
-🚔 SSC GD
+Utility
 
 </h3>
 
 <p>
 
-GK • Maths
+Daily Useful
 
 </p>
 
-</a>
+</div>
 
 
-<a href="navy.html" class="card">
+<div class="big">
+
+<div>
+
+💰
+
+</div>
 
 <h3>
 
-⚓ Navy
+Finance
 
 </h3>
 
 <p>
 
-SSR • MR
+Calculators
 
 </p>
 
-</a>
+</div>
 
 
-<a href="airforce.html" class="card">
+<div class="big">
+
+<div>
+
+🌎
+
+</div>
 
 <h3>
 
-⚡ Air Force
+World
 
 </h3>
 
 <p>
 
-X • Y Group
+Countries
 
 </p>
 
-</a>
+</div>
 
 
-<a href="railway.html" class="card">
+<div class="big">
+
+<div>
+
+🎯
+
+</div>
 
 <h3>
 
-🚆 Railway
+Productivity
 
 </h3>
 
 <p>
 
-RRB Practice
+Track Progress
 
 </p>
-
-</a>
-
-
-<a href="cuet.html" class="card">
-
-<h3>
-
-🎓 CUET
-
-</h3>
-
-<p>
-
-Mock Tests
-
-</p>
-
-</a>
-
 
 </div>
 
 </div>
 
-<!-- ADS -->
-
-<script async
-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9899839569140080"
-crossorigin="anonymous">
-</script>
 
 
-<!-- ANALYTICS -->
 
-<script async
-src="https://www.googletagmanager.com/gtag/js?id=G-03XF1E6LF7">
-</script>
+<div class="stats">
 
-<script>
+<div class="stat">
 
-window.dataLayer=
+<h1>
 
-window.dataLayer
+5000+
 
-||
+</h1>
 
-[];
+<p>
 
-function gtag(){
+Questions
 
-dataLayer.push(arguments);
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<h1>
+
+40+
+
+</h1>
+
+<p>
+
+Games
+
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<h1>
+
+150+
+
+</h1>
+
+<p>
+
+Countries
+
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<h1>
+
+100%
+
+</h1>
+
+<p>
+
+Free Forever
+
+</p>
+
+</div>
+
+</div>
+
+<style>
+
+.link-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(
+2,
+1fr
+);
+
+gap:18px;
 
 }
 
-gtag(
+.link{
 
-'js',
+text-decoration:none;
 
-new Date()
+color:white;
 
-);
+padding:28px;
 
-gtag(
-
-'config',
-
-'G-03XF1E6LF7'
-
-);
-
-</script>
-
-
-
-<!-- FEATURES -->
-
-<div
-style="
-
-margin-top:60px;
-
-padding:35px;
-
-border-radius:25px;
+border-radius:28px;
 
 background:
 
-linear-gradient(
-145deg,
-#111827,
-#172554
+rgba(
+255,
+255,
+255,
+.04
 );
 
-">
+display:block;
+
+transition:.2s;
+
+}
+
+.link:hover{
+
+transform:
+translateY(-4px);
+
+}
+
+.link h3{
+
+font-size:26px;
+
+margin-bottom:10px;
+
+}
+
+.link p{
+
+color:#94a3b8;
+
+}
+
+@media(min-width:900px){
+
+.link-grid{
+
+grid-template-columns:
+repeat(
+4,
+1fr
+);
+
+}
+
+}
+
+</style>
+
+
+
+<div class="section">
+
+<div class="section-head">
+
+<h2>
+
+🎮 Game Zone
+
+</h2>
+
+</div>
+
+
+<div class="link-grid">
+
+
+<a href="reaction-test.html" class="link">
+<h3>⚡ Reaction Test</h3>
+<p>Test Speed</p>
+</a>
+
+
+<a href="black-hole-game.html" class="link">
+<h3>🕳️ Black Hole</h3>
+<p>Absorb & Survive</p>
+</a>
+
+
+<a href="memory-game.html" class="link">
+<h3>🧠 Memory Game</h3>
+<p>Flip & Match</p>
+</a>
+
+
+<a href="pattern-memory.html" class="link">
+<h3>🌌 Pattern Memory</h3>
+<p>Watch & Repeat</p>
+</a>
+
+
+<a href="guess-the-logo.html" class="link">
+<h3>🏆 Guess Logo</h3>
+<p>Brand Challenge</p>
+</a>
+
+
+<a href="guess-the-flag.html" class="link">
+<h3>🌍 Guess Flag</h3>
+<p>Country Challenge</p>
+</a>
+
+
+<a href="spin-wheel.html" class="link">
+<h3>🎡 Spin Wheel</h3>
+<p>Lucky Spin</p>
+</a>
+
+
+<a href="speed-click-test.html" class="link">
+<h3>🏁 Click Speed</h3>
+<p>Fast Click</p>
+</a>
+
+
+<a href="puzzle.html" class="link">
+<h3>🧩 Puzzle Quiz</h3>
+<p>Easy • Medium • Hard</p>
+</a>
+
+
+<a href="escape-room.html" class="link">
+<h3>🚪 Escape Room</h3>
+<p>Solve & Escape</p>
+</a>
+
+
+<a href="typing-speed.html" class="link">
+<h3>⌨️ Typing Speed</h3>
+<p>WPM Test</p>
+</a>
+
+
+<a href="daily-challenge.html" class="link">
+<h3>🏆 Daily Challenge</h3>
+<p>New Daily</p>
+</a>
+
+</div>
+
+</div>
+
+
+
+
+<div class="section">
+
+<div class="section-head">
+
+<h2>
+
+🛠 Tool Zone
+
+</h2>
+
+</div>
+
+
+<div class="link-grid">
+
+
+<a href="expense-tracker.html" class="link">
+<h3>💸 Expense Tracker</h3>
+<p>Track Money</p>
+</a>
+
+
+<a href="age-calculator.html" class="link">
+<h3>🎂 Age Calculator</h3>
+<p>Years & Zodiac</p>
+</a>
+
+
+<a href="qr-generator.html" class="link">
+<h3>🔳 QR Generator</h3>
+<p>Create QR</p>
+</a>
+
+
+<a href="world-clock.html" class="link">
+<h3>🌍 World Clock</h3>
+<p>Time Zones</p>
+</a>
+
+
+<a href="countdown-timer.html" class="link">
+<h3>⏳ Countdown</h3>
+<p>Timer</p>
+</a>
+
+
+<a href="stopwatch-pro.html" class="link">
+<h3>⏱ Stopwatch</h3>
+<p>Track Time</p>
+</a>
+
+
+<a href="notes-app.html" class="link">
+<h3>📝 Notes</h3>
+<p>Save Notes</p>
+</a>
+
+
+<a href="bmi-calculator.html" class="link">
+<h3>⚖ BMI</h3>
+<p>Health Tool</p>
+</a>
+
+</div>
+
+</div>
+<div class="section">
+
+<div class="section-head">
+
+<h2>
+
+🧠 Quiz Zone
+
+</h2>
+
+</div>
+
+
+<div class="link-grid">
+
+
+<a href="generalquiz.html" class="link">
+<h3>🧠 General Quiz</h3>
+<p>Mixed Questions</p>
+</a>
+
+
+<a href="science.html" class="link">
+<h3>🧪 Science Quiz</h3>
+<p>Physics • Chemistry</p>
+</a>
+
+
+<a href="sports.html" class="link">
+<h3>⚽ Sports Quiz</h3>
+<p>Sports Challenge</p>
+</a>
+
+
+<a href="space.html" class="link">
+<h3>🚀 Space Quiz</h3>
+<p>Universe</p>
+</a>
+
+
+<a href="english.html" class="link">
+<h3>📖 English Quiz</h3>
+<p>Vocabulary</p>
+</a>
+
+
+<a href="movies.html" class="link">
+<h3>🎬 Movies Quiz</h3>
+<p>Movie Challenge</p>
+</a>
+
+
+<a href="iq.html" class="link">
+<h3>🧠 IQ Quiz</h3>
+<p>Logic</p>
+</a>
+
+
+<a href="technology.html" class="link">
+<h3>💻 Technology</h3>
+<p>AI • Coding</p>
+</a>
+
+
+<a href="history.html" class="link">
+<h3>🏺 History Quiz</h3>
+<p>Ancient • Modern</p>
+</a>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="section">
+
+<div class="section-head">
+
+<h2>
+
+🌍 World Zone
+
+</h2>
+
+</div>
+
+
+<div class="link-grid">
+
+
+<a href="worldgk.html" class="link">
+<h3>🌍 World GK</h3>
+<p>Countries</p>
+</a>
+
+
+<a href="country-capital.html" class="link">
+<h3>🏛 Country Capital</h3>
+<p>World Capitals</p>
+</a>
+
+
+<a href="countries.html" class="link">
+<h3>🌎 Country Quiz</h3>
+<p>Flags</p>
+</a>
+
+
+<a href="guess-the-flag.html" class="link">
+<h3>🏁 Guess Flag</h3>
+<p>World Challenge</p>
+</a>
+
+</div>
+
+</div>
+
+
+
+
+
+
+<div class="section">
+
+<div class="section-head">
+
+<h2>
+
+🏛 Exam Zone
+
+</h2>
+
+</div>
+
+
+<div class="link-grid">
+
+
+<a href="army.html" class="link">
+<h3>🪖 Army Quiz</h3>
+<p>Defence Practice</p>
+</a>
+
+
+<a href="upsc.html" class="link">
+<h3>🏛 UPSC</h3>
+<p>GS • CSAT</p>
+</a>
+
+
+<a href="nda.html" class="link">
+<h3>✈️ NDA</h3>
+<p>Maths • GK</p>
+</a>
+
+
+<a href="sscgd.html" class="link">
+<h3>🚔 SSC GD</h3>
+<p>Practice</p>
+</a>
+
+
+<a href="ssccgl.html" class="link">
+<h3>📚 SSC CGL</h3>
+<p>Tier 1 • Tier 2</p>
+</a>
+
+
+<a href="railway.html" class="link">
+<h3>🚆 Railway Quiz</h3>
+<p>RRB • NTPC</p>
+</a>
+
+
+<a href="navy.html" class="link">
+<h3>⚓ Navy</h3>
+<p>SSR • MR</p>
+</a>
+
+
+<a href="airforce.html" class="link">
+<h3>⚡ Air Force</h3>
+<p>X • Y Group</p>
+</a>
+
+
+<a href="cuet.html" class="link">
+<h3>🎓 CUET</h3>
+<p>Mock Test</p>
+</a>
+
+</div>
+
+</div>
+<div class="section">
+
+<div class="section-head">
 
 <h2>
 
@@ -1373,293 +1485,412 @@ linear-gradient(
 
 </h2>
 
-<br>
+</div>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<h1>
+
+🎮
+
+</h1>
 
 <p>
 
-✅ Free Quizzes
-
-<br><br>
-
-✅ Global Categories
-
-<br><br>
-
-✅ Daily Updates
-
-<br><br>
-
-✅ Fast Loading
-
-<br><br>
-
-✅ Instant Results
-
-<br><br>
-
-✅ Leaderboard
+40+ Games
 
 </p>
 
 </div>
 
 
+<div class="stat">
 
-<!-- LATEST -->
+<h1>
 
-<div
-style="
+🧠
 
-margin-top:60px;
+</h1>
 
-">
+<p>
 
-<h2
-style="
+5000+ Questions
 
-color:#67e8f9;
+</p>
 
-margin-bottom:25px;
+</div>
 
-">
+
+<div class="stat">
+
+<h1>
+
+⚡
+
+</h1>
+
+<p>
+
+Fast Loading
+
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<h1>
+
+🏆
+
+</h1>
+
+<p>
+
+Leaderboard
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="section">
+
+<div class="section-head">
+
+<h2>
 
 🔥 Latest Updates
 
 </h2>
 
-<div class="cards">
-
-<a
-href="science.html"
-
-class="card">
-
-<h3>
-
-🧪 Science Added
-
-</h3>
-
-</a>
-
-<a
-href="space.html"
-
-class="card">
-
-<h3>
-
-🚀 Space Updated
-
-</h3>
-
-</a>
-
-<a
-href="sports.html"
-
-class="card">
-
-<h3>
-
-⚽ Sports Updated
-
-</h3>
-
-</a>
-
-</div>
-
 </div>
 
 
+<div class="horizontal">
 
-<!-- BIG FOOTER -->
 
-<div
-style="
+<div class="mini">
 
-text-align:center;
+<div class="icon">
 
-margin-top:80px;
+🧪
 
-padding-bottom:60px;
+</div>
 
-">
+<h3>
+
+Science Added
+
+</h3>
 
 <p>
 
-© 2026 QuizEmpire
+New Questions
 
 </p>
 
+</div>
+
+
+<div class="mini">
+
+<div class="icon">
+
+🚀
+
+</div>
+
+<h3>
+
+Space Updated
+
+</h3>
+
+<p>
+
+Fresh Content
+
+</p>
+
+</div>
+
+
+<div class="mini">
+
+<div class="icon">
+
+⚽
+
+</div>
+
+<h3>
+
+Sports Updated
+
+</h3>
+
+<p>
+
+New Challenge
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+<div class="section">
+
+<div class="big">
+
+<div>
+
+👑
+
+</div>
+
+<h3>
+
+About Toolora
+
+</h3>
+
+<p>
+
+Play games, solve quizzes, use tools and improve skills daily.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+
+
+
+<footer
+
+style="
+
+margin-top:80px;
+
+padding-bottom:120px;
+
+text-align:center;
+
+"
+
+>
+
+<div
+
+style="
+
+font-size:42px;
+
+font-weight:800;
+
+"
+
+>
+
+⚡ Toolora
+
+</div>
+
 <br>
 
-<a href="about.html">
+
+<div
+
+style="
+
+display:flex;
+
+gap:20px;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+"
+
+>
+
+<a
+href="about.html"
+
+style="color:#94a3b8">
 
 About
 
 </a>
 
-|
 
-<a href="privacy.html">
+<a
+href="privacy.html"
+
+style="color:#94a3b8">
 
 Privacy
 
 </a>
 
-|
 
-<a href="contact.html">
+<a
+href="faq.html"
 
-Contact
-
-</a>
-
-|
-
-<a href="faq.html">
+style="color:#94a3b8">
 
 FAQ
 
 </a>
 
-|
 
-<a href="terms.html">
+<a
+href="terms.html"
+
+style="color:#94a3b8">
 
 Terms
 
 </a>
 
-|
 
-<a href="feedback.html">
+<a
+href="contact.html"
+
+style="color:#94a3b8">
+
+Contact
+
+</a>
+
+
+<a
+href="feedback.html"
+
+style="color:#94a3b8">
 
 Feedback
 
 </a>
 
-|
-
-<a href="leaderboard.html">
-
-Leaderboard
-
-</a>
-
 </div>
 
-
-<div
-style="
-
-margin-top:80px;
-
-padding:40px;
-
-border-radius:30px;
-
-background:
-
-linear-gradient(
-145deg,
-#111827,
-#172554
-);
-
-text-align:center;
-
-">
-
-<h2>
-
-👑 About QuizEmpire
-
-</h2>
 
 <br>
 
-<p>
+<p
 
-Play games, quizzes and improve your skills daily.
+style="color:#64748b"
+
+>
+
+© 2026 Toolora
 
 </p>
 
+</footer>
+
+
+
+
+
+<div
+
+style="
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+right:0;
+
+background:#020617;
+
+padding:18px;
+
+display:flex;
+
+justify-content:space-around;
+
+border-top:
+
+1px solid
+
+rgba(
+255,
+255,
+255,
+.06
+);
+
+"
+
+>
+
+<div>
+
+🏠
+
+</div>
+
+<div>
+
+🎮
+
+</div>
+
+<div>
+
+🔍
+
+</div>
+
+<div>
+
+🧠
+
+</div>
+
+<div>
+
+👤
+
+</div>
+
 </div>
 
 
+
+
+
 </div>
-
-
-<script>
-
-const search=
-
-document.querySelector(
-
-"input"
-
-);
-
-const cards=
-
-document.querySelectorAll(
-
-".card"
-
-);
-
-search.addEventListener(
-
-"keyup",
-
-()=>{
-
-let value=
-
-search.value
-
-.toLowerCase();
-
-cards.forEach(
-
-card=>{
-
-if(
-
-card.innerText
-
-.toLowerCase()
-
-.includes(
-
-value
-
-)
-
-){
-
-card.style.display="block";
-
-}
-
-else{
-
-card.style.display="none";
-
-}
-
-}
-
-);
-
-}
-
-);
-
-</script>
 
 </body>
 
