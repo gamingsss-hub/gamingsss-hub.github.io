@@ -32,34 +32,16 @@ content=
 <style>
 
 *{
-
 margin:0;
-
 padding:0;
-
 box-sizing:border-box;
-
-font-family:Arial;
-
 }
 
 body{
 
-background:
-
-linear-gradient(
-
-135deg,
-
-#f8fafc,
-
-#dbeafe,
-
-#e0e7ff
-
-);
-
 min-height:100vh;
+
+padding:16px;
 
 display:flex;
 
@@ -67,19 +49,28 @@ justify-content:center;
 
 align-items:center;
 
-padding:20px;
+background:
+
+linear-gradient(
+135deg,
+#eef2ff,
+#dbeafe,
+#f8fafc
+);
+
+font-family:Arial;
 
 }
 
 .box{
 
-max-width:700px;
-
 width:100%;
 
-padding:35px;
+max-width:430px;
 
-border-radius:35px;
+padding:24px;
+
+border-radius:30px;
 
 background:
 
@@ -87,60 +78,96 @@ rgba(
 255,
 255,
 255,
-.8
+0.85
 );
 
 backdrop-filter:
 
 blur(20px);
 
-text-align:center;
+box-shadow:
+
+0 20px 60px
+rgba(
+0,
+0,
+0,
+0.12
+);
 
 }
 
 h1{
 
-margin-bottom:30px;
+font-size:28px;
 
-}
-
-.inputs{
-
-display:flex;
-
-gap:10px;
-
-}
-
-input{
-
-flex:1;
-
-padding:18px;
-
-border:none;
-
-border-radius:18px;
-
-font-size:20px;
+margin-bottom:22px;
 
 text-align:center;
 
 }
 
+.inputs{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(
+3,
+1fr
+);
+
+gap:10px;
+
+width:100%;
+
+}
+
+.inputs input{
+
+width:100%;
+
+min-width:0;
+
+padding:16px;
+
+border:none;
+
+border-radius:16px;
+
+text-align:center;
+
+font-size:18px;
+
+background:#fff;
+
+}
+
 .timer{
 
-font-size:70px;
-
-margin:40px 0;
+font-size:52px;
 
 font-weight:900;
+
+margin:30px 0;
+
+text-align:center;
+
+word-break:break-word;
 
 }
 
 .btns{
 
-display:flex;
+display:grid;
+
+grid-template-columns:
+
+repeat(
+3,
+1fr
+);
 
 gap:10px;
 
@@ -148,15 +175,13 @@ gap:10px;
 
 button{
 
-flex:1;
-
-padding:18px;
+padding:15px;
 
 border:none;
 
-border-radius:18px;
+border-radius:16px;
 
-font-size:18px;
+font-size:16px;
 
 color:white;
 
@@ -180,6 +205,26 @@ background:#ef4444;
 
 }
 
+@media(max-width:420px){
+
+.timer{
+
+font-size:42px;
+
+}
+
+.inputs{
+
+grid-template-columns:1fr;
+
+}
+
+.btns{
+
+grid-template-columns:1fr;
+
+}
+
 </style>
 
 </head>
@@ -196,17 +241,11 @@ background:#ef4444;
 
 <div class="inputs">
 
-<input
-id="h"
-placeholder="HH">
+<input id="h" placeholder="Hours">
 
-<input
-id="m"
-placeholder="MM">
+<input id="m" placeholder="Minutes">
 
-<input
-id="s"
-placeholder="SS">
+<input id="s" placeholder="Seconds">
 
 </div>
 
