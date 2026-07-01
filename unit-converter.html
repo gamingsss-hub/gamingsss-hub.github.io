@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>
+Unit Converter – Toolora | Length Weight Temperature
+</title>
+
+<meta
+name="description"
+content="Free Toolora Unit Converter. Convert length weight temperature area speed and more instantly.">
+
+<meta
+name="keywords"
+content="unit converter,length converter,weight converter,temperature converter,toolora">
+
+<meta
+name="author"
+content="Toolora">
+
+<link
+rel="icon"
+href="favicon.png">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:#050b18;
+
+color:white;
+
+padding:24px;
+
+}
+
+.box{
+
+max-width:620px;
+
+margin:auto;
+
+background:#091428;
+
+padding:28px;
+
+border-radius:30px;
+
+}
+
+h1{
+
+font-size:34px;
+
+margin-bottom:20px;
+
+}
+
+select,
+input{
+
+width:100%;
+
+padding:18px;
+
+margin-top:12px;
+
+border:none;
+
+border-radius:18px;
+
+background:#13213f;
+
+color:white;
+
+}
+
+button{
+
+width:100%;
+
+margin-top:18px;
+
+padding:18px;
+
+border:none;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+45deg,
+#6d42ff,
+#009dff
+);
+
+color:white;
+
+font-size:18px;
+
+}
+
+.result{
+
+margin-top:22px;
+
+font-size:28px;
+
+font-weight:800;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>
+
+📏 Unit Converter
+
+</h1>
+
+<input
+id="value"
+type="number"
+placeholder="Enter value">
+
+<select id="type">
+
+<option value="cm-m">
+
+CM → Meter
+
+</option>
+
+<option value="m-cm">
+
+Meter → CM
+
+</option>
+
+<option value="kg-g">
+
+KG → Gram
+
+</option>
+
+<option value="g-kg">
+
+Gram → KG
+
+</option>
+
+<option value="c-f">
+
+Celsius → Fahrenheit
+
+</option>
+
+<option value="f-c">
+
+Fahrenheit → Celsius
+
+</option>
+
+</select>
+
+<button onclick="convert()">
+
+Convert
+
+</button>
+
+<div
+class="result"
+id="result">
+
+0
+
+</div>
+
+</div>
+
+<script>
+
+function convert(){
+
+let v=
+
+Number(
+
+document.getElementById(
+
+"value"
+
+).value
+
+);
+
+let t=
+
+document.getElementById(
+
+"type"
+
+).value;
+
+let r=0;
+
+if(t=="cm-m") r=v/100;
+
+if(t=="m-cm") r=v*100;
+
+if(t=="kg-g") r=v*1000;
+
+if(t=="g-kg") r=v/1000;
+
+if(t=="c-f") r=(v*9/5)+32;
+
+if(t=="f-c") r=(v-32)*5/9;
+
+document.getElementById(
+
+"result"
+
+).innerHTML=r;
+
+}
+
+</script>
+
+</body>
+
+</html>
