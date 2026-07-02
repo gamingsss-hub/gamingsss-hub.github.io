@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>
+
+Country Info | Toolora
+
+</title>
+
+<meta
+name="description"
+content="Explore countries with capital currency famous places and facts">
+
+<meta
+name="keywords"
+content="country info, world countries, capital, flag">
+
+<link
+rel="icon"
+href="favicon.png">
+
+<style>
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:Poppins,sans-serif;
+
+}
+
+body{
+
+background:
+
+linear-gradient(
+145deg,
+#040714,
+#071428,
+#081e35
+);
+
+color:white;
+
+padding:22px;
+
+}
+
+.container{
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.hero{
+
+padding:40px;
+
+border-radius:36px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,255,255,.05),
+rgba(255,255,255,.02)
+);
+
+backdrop-filter:
+
+blur(20px);
+
+}
+
+.back{
+
+color:#89a8ff;
+
+text-decoration:none;
+
+}
+
+.title{
+
+font-size:58px;
+
+font-weight:900;
+
+margin-top:20px;
+
+}
+
+.sub{
+
+margin-top:10px;
+
+color:#9ab0d0;
+
+}
+
+.search{
+
+margin-top:28px;
+
+display:flex;
+
+gap:12px;
+
+}
+
+.search input{
+
+flex:1;
+
+padding:22px;
+
+border:none;
+
+border-radius:22px;
+
+background:#111f3c;
+
+color:white;
+
+font-size:18px;
+
+}
+
+.search button{
+
+padding:22px 32px;
+
+border:none;
+
+border-radius:22px;
+
+background:
+
+linear-gradient(
+45deg,
+#5865ff,
+#0ea5ff
+);
+
+color:white;
+
+font-size:18px;
+
+}
+
+.result{
+
+margin-top:30px;
+
+display:none;
+
+padding:30px;
+
+border-radius:34px;
+
+background:
+
+rgba(
+255,
+255,
+255,
+.05
+);
+
+}
+
+.flag{
+
+font-size:90px;
+
+}
+
+.country{
+
+font-size:44px;
+
+font-weight:900;
+
+margin-top:12px;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(
+2,
+1fr
+);
+
+gap:18px;
+
+margin-top:28px;
+
+}
+
+.card{
+
+padding:22px;
+
+background:#122243;
+
+border-radius:24px;
+
+}
+
+.card h3{
+
+margin-bottom:10px;
+
+}
+
+.places{
+
+margin-top:26px;
+
+padding:24px;
+
+background:#122243;
+
+border-radius:28px;
+
+}
+
+.fact{
+
+margin-top:22px;
+
+padding:22px;
+
+border-radius:24px;
+
+background:
+
+linear-gradient(
+45deg,
+#172554,
+#1e3a8a
+);
+
+}
+
+.notfound{
+
+margin-top:20px;
+
+padding:24px;
+
+background:#13213f;
+
+border-radius:24px;
+
+}
+
+@media(max-width:700px){
+
+.title{
+
+font-size:38px;
+
+}
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+.search{
+
+flex-direction:column;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="hero">
+
+<a
+href="utility.html"
+class="back">
+
+← Utility
+
+</a>
+
+<div class="title">
+
+🌍 Country Info
+
+</div>
+
+<div class="sub">
+
+Explore countries • places • facts
+
+</div>
+
+<div class="search">
+
+<input
+id="countryInput"
+placeholder="Type India">
+
+<button
+onclick="findCountry()">
+
+Search
+
+</button>
+
+</div>
+
+<div
+class="result"
+id="result">
+
+</div>
+
+<div
+class="notfound"
+id="notfound"
+style="display:none">
+
+Country not found
+
+</div>
+
+</div>
+
+</div>
+<script>
+
+const countries={
+
+India:{
+flag:"🇮🇳",
+capital:"New Delhi",
+currency:"Indian Rupee (INR)",
+language:"Hindi, English",
+population:"1.43 Billion",
+places:"Taj Mahal • Red Fort • Goa • Kerala • Ladakh",
+fact:"India is the world's largest democracy."
+},
+
+USA:{
+flag:"🇺🇸",
+capital:"Washington D.C.",
+currency:"US Dollar (USD)",
+language:"English",
+population:"340 Million",
+places:"Statue of Liberty • Grand Canyon • Hollywood",
+fact:"The USA has 50 states."
+},
+
+Japan:{
+flag:"🇯🇵",
+capital:"Tokyo",
+currency:"Yen",
+language:"Japanese",
+population:"123 Million",
+places:"Mount Fuji • Kyoto • Osaka",
+fact:"Japan has over 6800 islands."
+},
+
+China:{
+flag:"🇨🇳",
+capital:"Beijing",
+currency:"Yuan",
+language:"Chinese",
+population:"1.41 Billion",
+places:"Great Wall • Shanghai • Forbidden City",
+fact:"The Great Wall is over 21,000 km long."
+},
+
+Russia:{
+flag:"🇷🇺",
+capital:"Moscow",
+currency:"Ruble",
+language:"Russian",
+population:"144 Million",
+places:"Red Square • Kremlin • Lake Baikal",
+fact:"Russia is the largest country in the world."
+},
+
+France:{
+flag:"🇫🇷",
+capital:"Paris",
+currency:"Euro",
+language:"French",
+population:"68 Million",
+places:"Eiffel Tower • Louvre Museum",
+fact:"France is the world's most visited country."
+},
+
+Germany:{
+flag:"🇩🇪",
+capital:"Berlin",
+currency:"Euro",
+language:"German",
+population:"84 Million",
+places:"Brandenburg Gate • Black Forest",
+fact:"Germany has more than 20,000 castles."
+},
+
+Canada:{
+flag:"🇨🇦",
+capital:"Ottawa",
+currency:"Canadian Dollar",
+language:"English, French",
+population:"40 Million",
+places:"Niagara Falls • Banff National Park",
+fact:"Canada has the world's longest coastline."
+},
+
+Australia:{
+flag:"🇦🇺",
+capital:"Canberra",
+currency:"Australian Dollar",
+language:"English",
+population:"27 Million",
+places:"Sydney Opera House • Great Barrier Reef",
+fact:"Australia is both a country and a continent."
+},
+
+UK:{
+flag:"🇬🇧",
+capital:"London",
+currency:"Pound Sterling",
+language:"English",
+population:"68 Million",
+places:"Big Ben • Buckingham Palace",
+fact:"London has over 170 museums."
+}
+
+};
+
+function findCountry(){
+
+let name=document.getElementById("countryInput").value.trim();
+
+let result=document.getElementById("result");
+
+let notfound=document.getElementById("notfound");
+
+if(countries[name]){
+
+let c=countries[name];
+
+result.style.display="block";
+notfound.style.display="none";
+
+result.innerHTML=`
+
+<div class="flag">${c.flag}</div>
+
+<div class="country">${name}</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>🏛 Capital</h3>
+<p>${c.capital}</p>
+</div>
+
+<div class="card">
+<h3>💰 Currency</h3>
+<p>${c.currency}</p>
+</div>
+
+<div class="card">
+<h3>🗣 Language</h3>
+<p>${c.language}</p>
+</div>
+
+<div class="card">
+<h3>👥 Population</h3>
+<p>${c.population}</p>
+</div>
+
+</div>
+
+<div class="places">
+<h2>📍 Famous Places</h2>
+<br>
+<p>${c.places}</p>
+</div>
+
+<div class="fact">
+<h2>💡 Fun Fact</h2>
+<br>
+<p>${c.fact}</p>
+</div>
+
+`;
+
+}else{
+
+result.style.display="none";
+notfound.style.display="block";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
