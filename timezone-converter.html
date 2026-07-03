@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+
+Time Zone Converter | Toolora
+
+</title>
+
+<meta
+name="description"
+content="Professional Time Zone Converter by Toolora. Compare live time between countries instantly.">
+
+<meta
+name="keywords"
+content="time zone converter, world clock, india time, usa time, dubai time, london time, toolora">
+
+<link
+rel="icon"
+href="favicon.png">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:'Poppins',sans-serif;
+
+}
+
+body{
+
+background:
+linear-gradient(
+135deg,
+#050816,
+#081528,
+#0d1f38
+);
+
+min-height:100vh;
+
+color:white;
+
+padding:25px;
+
+}
+
+.container{
+
+max-width:1100px;
+
+margin:auto;
+
+}
+
+.header{
+
+text-align:center;
+
+margin-bottom:35px;
+
+}
+
+.header h1{
+
+font-size:52px;
+
+font-weight:800;
+
+}
+
+.header p{
+
+margin-top:10px;
+
+color:#9fb4d4;
+
+font-size:18px;
+
+}
+
+.glass{
+
+background:
+
+rgba(255,255,255,.05);
+
+backdrop-filter:
+
+blur(22px);
+
+border:
+
+1px solid rgba(255,255,255,.08);
+
+border-radius:32px;
+
+padding:35px;
+
+box-shadow:
+
+0 20px 60px rgba(0,0,0,.35);
+
+}
+
+.row{
+
+display:grid;
+
+grid-template-columns:
+
+1fr 1fr;
+
+gap:25px;
+
+margin-top:25px;
+
+}
+
+.box{
+
+background:#132343;
+
+padding:22px;
+
+border-radius:24px;
+
+}
+
+.box h3{
+
+margin-bottom:14px;
+
+font-size:20px;
+
+}
+
+select{
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:18px;
+
+background:#0f1d38;
+
+color:white;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+.liveClock{
+
+margin-top:18px;
+
+text-align:center;
+
+font-size:38px;
+
+font-weight:800;
+
+color:#64e6ff;
+
+}
+
+.date{
+
+margin-top:10px;
+
+color:#b7c9e8;
+
+font-size:15px;
+
+text-align:center;
+
+}
+
+.info{
+
+margin-top:30px;
+
+display:grid;
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+gap:20px;
+
+}
+
+.card{
+
+background:#132343;
+
+padding:22px;
+
+border-radius:22px;
+
+text-align:center;
+
+}
+
+.card h4{
+
+margin-bottom:12px;
+
+font-size:18px;
+
+}
+
+.big{
+
+font-size:28px;
+
+font-weight:800;
+
+color:#7a8cff;
+
+}
+
+@media(max-width:850px){
+
+.row{
+
+grid-template-columns:1fr;
+
+}
+
+.info{
+
+grid-template-columns:1fr;
+
+}
+
+.header h1{
+
+font-size:38px;
+
+}
+
+.liveClock{
+
+font-size:30px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>
+
+🌍 Time Zone Converter
+
+</h1>
+
+<p>
+
+Compare live time between countries instantly
+
+</p>
+
+</div>
+
+<div class="glass">
+
+<div class="row">
+
+<div class="box">
+
+<h3>
+
+🌎 From Country
+
+</h3>
+
+<select id="fromZone">
+
+<option value="Asia/Kolkata">🇮🇳 India</option>
+<option value="America/New_York">🇺🇸 USA (New York)</option>
+<option value="America/Los_Angeles">🇺🇸 USA (Los Angeles)</option>
+<option value="Europe/London">🇬🇧 United Kingdom</option>
+<option value="Europe/Paris">🇫🇷 France</option>
+<option value="Europe/Berlin">🇩🇪 Germany</option>
+<option value="Europe/Rome">🇮🇹 Italy</option>
+<option value="Europe/Madrid">🇪🇸 Spain</option>
+<option value="Europe/Moscow">🇷🇺 Russia</option>
+<option value="Asia/Dubai">🇦🇪 UAE (Dubai)</option>
+<option value="Asia/Riyadh">🇸🇦 Saudi Arabia</option>
+<option value="Asia/Doha">🇶🇦 Qatar</option>
+<option value="Asia/Kuwait">🇰🇼 Kuwait</option>
+<option value="Asia/Muscat">🇴🇲 Oman</option>
+<option value="Asia/Karachi">🇵🇰 Pakistan</option>
+<option value="Asia/Dhaka">🇧🇩 Bangladesh</option>
+<option value="Asia/Kathmandu">🇳🇵 Nepal</option>
+<option value="Asia/Colombo">🇱🇰 Sri Lanka</option>
+<option value="Asia/Thimphu">🇧🇹 Bhutan</option>
+<option value="Asia/Bangkok">🇹🇭 Thailand</option>
+<option value="Asia/Singapore">🇸🇬 Singapore</option>
+<option value="Asia/Kuala_Lumpur">🇲🇾 Malaysia</option>
+<option value="Asia/Jakarta">🇮🇩 Indonesia</option>
+<option value="Asia/Manila">🇵🇭 Philippines</option>
+<option value="Asia/Tokyo">🇯🇵 Japan</option>
+<option value="Asia/Seoul">🇰🇷 South Korea</option>
+<option value="Asia/Shanghai">🇨🇳 China</option>
+<option value="Australia/Sydney">🇦🇺 Australia</option>
+<option value="Pacific/Auckland">🇳🇿 New Zealand</option>
+<option value="America/Toronto">🇨🇦 Canada</option>
+<option value="America/Mexico_City">🇲🇽 Mexico</option>
+<option value="America/Sao_Paulo">🇧🇷 Brazil</option>
+<option value="America/Buenos_Aires">🇦🇷 Argentina</option>
+<option value="Africa/Cairo">🇪🇬 Egypt</option>
+<option value="Africa/Nairobi">🇰🇪 Kenya</option>
+<option value="Africa/Johannesburg">🇿🇦 South Africa</option>
+
+</select>
+
+</div>
+
+<div class="box">
+
+<h3>
+
+🌍 To Country
+
+</h3>
+
+<select id="toZone">
+
+<option value="Asia/Kolkata">🇮🇳 India</option>
+<option value="America/New_York">🇺🇸 USA (New York)</option>
+<option value="America/Los_Angeles">🇺🇸 USA (Los Angeles)</option>
+<option value="Europe/London">🇬🇧 United Kingdom</option>
+<option value="Europe/Paris">🇫🇷 France</option>
+<option value="Europe/Berlin">🇩🇪 Germany</option>
+<option value="Europe/Rome">🇮🇹 Italy</option>
+<option value="Europe/Madrid">🇪🇸 Spain</option>
+<option value="Europe/Moscow">🇷🇺 Russia</option>
+<option value="Asia/Dubai">🇦🇪 UAE (Dubai)</option>
+<option value="Asia/Riyadh">🇸🇦 Saudi Arabia</option>
+<option value="Asia/Doha">🇶🇦 Qatar</option>
+<option value="Asia/Kuwait">🇰🇼 Kuwait</option>
+<option value="Asia/Muscat">🇴🇲 Oman</option>
+<option value="Asia/Karachi">🇵🇰 Pakistan</option>
+<option value="Asia/Dhaka">🇧🇩 Bangladesh</option>
+<option value="Asia/Kathmandu">🇳🇵 Nepal</option>
+<option value="Asia/Colombo">🇱🇰 Sri Lanka</option>
+<option value="Asia/Thimphu">🇧🇹 Bhutan</option>
+<option value="Asia/Bangkok">🇹🇭 Thailand</option>
+<option value="Asia/Singapore">🇸🇬 Singapore</option>
+<option value="Asia/Kuala_Lumpur">🇲🇾 Malaysia</option>
+<option value="Asia/Jakarta">🇮🇩 Indonesia</option>
+<option value="Asia/Manila">🇵🇭 Philippines</option>
+<option value="Asia/Tokyo">🇯🇵 Japan</option>
+<option value="Asia/Seoul">🇰🇷 South Korea</option>
+<option value="Asia/Shanghai">🇨🇳 China</option>
+<option value="Australia/Sydney">🇦🇺 Australia</option>
+<option value="Pacific/Auckland">🇳🇿 New Zealand</option>
+<option value="America/Toronto">🇨🇦 Canada</option>
+<option value="America/Mexico_City">🇲🇽 Mexico</option>
+<option value="America/Sao_Paulo">🇧🇷 Brazil</option>
+<option value="America/Buenos_Aires">🇦🇷 Argentina</option>
+<option value="Africa/Cairo">🇪🇬 Egypt</option>
+<option value="Africa/Nairobi">🇰🇪 Kenya</option>
+<option value="Africa/Johannesburg">🇿🇦 South Africa</option>
+
+</select>
+
+</div>
+
+</div>
+
+  <div class="liveClock" id="fromClock">
+
+00:00:00
+
+</div>
+
+<div class="date" id="fromDate">
+
+Loading...
+
+</div>
+
+</div>
+
+
+
+<div class="info">
+
+<div class="card">
+
+<h4>
+
+🕒 Time Difference
+
+</h4>
+
+<div class="big" id="difference">
+
+--
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h4>
+
+📅 Day Status
+
+</h4>
+
+<div class="big" id="dayStatus">
+
+Today
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h4>
+
+⚡ Live Update
+
+</h4>
+
+<div class="big">
+
+Every 1 Sec
+
+</div>
+
+</div>
+
+</div>
+
+<div class="box" style="margin-top:30px;">
+
+<h3>
+
+🌍 Converted Time
+
+</h3>
+
+<div class="liveClock" id="toClock">
+
+00:00:00
+
+</div>
+
+<div class="date" id="toDate">
+
+Loading...
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+function updateClocks(){
+
+const from=document.getElementById("fromZone").value;
+
+const to=document.getElementById("toZone").value;
+
+const now=new Date();
+
+
+
+const optTime={
+
+hour:"2-digit",
+
+minute:"2-digit",
+
+second:"2-digit",
+
+hour12:true
+
+};
+
+
+
+const optDate={
+
+weekday:"long",
+
+day:"numeric",
+
+month:"long",
+
+year:"numeric"
+
+};
+
+
+
+fromClock.innerHTML=
+
+new Intl.DateTimeFormat(
+
+"en-US",
+
+{
+
+...optTime,
+
+timeZone:from
+
+}
+
+).format(now);
+
+
+
+toClock.innerHTML=
+
+new Intl.DateTimeFormat(
+
+"en-US",
+
+{
+
+...optTime,
+
+timeZone:to
+
+}
+
+).format(now);
+
+
+
+fromDate.innerHTML=
+
+new Intl.DateTimeFormat(
+
+"en-US",
+
+{
+
+...optDate,
+
+timeZone:from
+
+}
+
+).format(now);
+
+
+
+toDate.innerHTML=
+
+new Intl.DateTimeFormat(
+
+"en-US",
+
+{
+
+...optDate,
+
+timeZone:to
+
+}
+
+).format(now);
+
+
+
+const fromOffset=
+
+-now.getTimezoneOffset()/60;
+
+
+
+difference.innerHTML=
+
+"Live";
+
+dayStatus.innerHTML=
+
+"Today";
+
+}
+
+
+
+updateClocks();
+
+setInterval(updateClocks,1000);
+
+
+
+fromZone.onchange=updateClocks;
+
+toZone.onchange=updateClocks;
+
+</script>
+
+</body>
+
+</html>
