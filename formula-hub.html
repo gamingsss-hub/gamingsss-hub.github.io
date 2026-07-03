@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Formula Hub | Toolora</title>
+
+<meta name="description" content="Premium Formula Hub with Maths, Physics, Chemistry, Statistics and Finance formulas.">
+
+<meta name="keywords" content="Formula Hub, Maths Formula, Physics Formula, Chemistry Formula, Statistics Formula, Finance Formula, Toolora">
+
+<link rel="icon" href="favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(135deg,#050816,#0b1022,#182848,#4b6cb7);
+
+min-height:100vh;
+
+color:#fff;
+
+}
+
+.container{
+
+max-width:1400px;
+
+margin:auto;
+
+padding:30px;
+
+}
+
+.hero{
+
+background:rgba(255,255,255,.06);
+
+backdrop-filter:blur(22px);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:35px;
+
+padding:45px;
+
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+text-align:center;
+
+}
+
+.hero h1{
+
+font-size:60px;
+
+font-weight:800;
+
+}
+
+.hero p{
+
+margin-top:15px;
+
+font-size:18px;
+
+color:#b7c8ea;
+
+}
+
+.searchBox{
+
+margin-top:35px;
+
+}
+
+.searchBox input{
+
+width:100%;
+
+padding:20px;
+
+border:none;
+
+border-radius:18px;
+
+background:#0f1d38;
+
+color:#fff;
+
+font-size:17px;
+
+outline:none;
+
+}
+
+.layout{
+
+display:grid;
+
+grid-template-columns:260px 1fr;
+
+gap:30px;
+
+margin-top:35px;
+
+}
+
+.sidebar{
+
+background:rgba(255,255,255,.05);
+
+border-radius:28px;
+
+padding:25px;
+
+backdrop-filter:blur(20px);
+
+}
+
+.sidebar h2{
+
+margin-bottom:20px;
+
+}
+
+.menu button{
+
+width:100%;
+
+padding:16px;
+
+margin-bottom:14px;
+
+border:none;
+
+border-radius:15px;
+
+background:#16213e;
+
+color:white;
+
+cursor:pointer;
+
+font-size:16px;
+
+transition:.3s;
+
+}
+
+.menu button:hover{
+
+background:linear-gradient(45deg,#7c3aed,#2563eb);
+
+transform:translateX(6px);
+
+}
+
+.content{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:24px;
+
+}
+
+@media(max-width:900px){
+
+.layout{
+
+grid-template-columns:1fr;
+
+}
+
+.content{
+
+grid-template-columns:1fr;
+
+}
+
+.hero h1{
+
+font-size:42px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="hero">
+
+<h1>📚 Formula Hub</h1>
+
+<p>Learn, Copy & Explore Premium Formulas</p>
+
+<div class="searchBox">
+
+<input
+type="text"
+id="search"
+placeholder="Search any formula...">
+
+</div>
+
+</div>
+
+<div class="layout">
+
+<div class="sidebar">
+
+<h2>Categories</h2>
+
+<div class="menu">
+
+<button>➗ Maths</button>
+
+<button>⚛ Physics</button>
+
+<button>🧪 Chemistry</button>
+
+<button>📊 Statistics</button>
+
+<button>💰 Finance</button>
+
+<button>⭐ Favourite</button>
+
+</div>
+
+</div>
+
+<div class="content" id="formulaContainer">
+
+  <!-- ================= PREMIUM MATHS CARDS ================= -->
+
+<div class="formula-card" data-category="math">
+
+<div class="badge">Maths</div>
+
+<h2>📐 Quadratic Formula</h2>
+
+<div class="formula">
+
+x = (-b ± √(b²-4ac)) / 2a
+
+</div>
+
+<p class="desc">
+
+Find the roots of any quadratic equation.
+
+</p>
+
+<div class="example">
+
+<b>Example:</b>
+
+2x²+5x−3=0
+
+</div>
+
+<div class="uses">
+
+<b>Used In:</b>
+
+Algebra, SSC, NDA, UPSC, JEE
+
+</div>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('x=(-b±√(b²-4ac))/2a')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="math">
+
+<div class="badge">Maths</div>
+
+<h2>⭕ Circle Area</h2>
+
+<div class="formula">
+
+A = πr²
+
+</div>
+
+<p class="desc">
+
+Area enclosed by a circle.
+
+</p>
+
+<div class="example">
+
+<b>Example:</b>
+
+r=7 → A=154
+
+</div>
+
+<div class="uses">
+
+Geometry • Mensuration
+
+</div>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('A=πr²')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="math">
+
+<div class="badge">Maths</div>
+
+<h2>📏 Distance Formula</h2>
+
+<div class="formula">
+
+d = √((x₂-x₁)²+(y₂-y₁)²)
+
+</div>
+
+<p class="desc">
+
+Distance between two coordinate points.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('d=√((x₂-x₁)²+(y₂-y₁)²)')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="math">
+
+<div class="badge">Maths</div>
+
+<h2>📍 Mid Point</h2>
+
+<div class="formula">
+
+((x₁+x₂)/2,(y₁+y₂)/2)
+
+</div>
+
+<p class="desc">
+
+Find midpoint of a line.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('((x₁+x₂)/2,(y₁+y₂)/2)')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="math">
+
+<div class="badge">Maths</div>
+
+<h2>📐 Trigonometry Table</h2>
+
+<table style="width:100%;text-align:center;margin-top:15px">
+
+<tr>
+
+<th>θ</th>
+
+<th>Sin</th>
+
+<th>Cos</th>
+
+<th>Tan</th>
+
+</tr>
+
+<tr>
+
+<td>0°</td>
+
+<td>0</td>
+
+<td>1</td>
+
+<td>0</td>
+
+</tr>
+
+<tr>
+
+<td>30°</td>
+
+<td>1/2</td>
+
+<td>√3/2</td>
+
+<td>1/√3</td>
+
+</tr>
+
+<tr>
+
+<td>45°</td>
+
+<td>√2/2</td>
+
+<td>√2/2</td>
+
+<td>1</td>
+
+</tr>
+
+<tr>
+
+<td>60°</td>
+
+<td>√3/2</td>
+
+<td>1/2</td>
+
+<td>√3</td>
+
+</tr>
+
+<tr>
+
+<td>90°</td>
+
+<td>1</td>
+
+<td>0</td>
+
+<td>∞</td>
+
+</tr>
+
+</table>
+
+</div>
+
+  <!-- ================= PREMIUM PHYSICS FORMULAS ================= -->
+
+<div class="formula-card" data-category="physics">
+
+<div class="badge">Physics</div>
+
+<h2>🚀 Velocity</h2>
+
+<div class="formula">
+
+v = s / t
+
+</div>
+
+<p class="desc">
+
+Velocity = Distance ÷ Time
+
+</p>
+
+<div class="example">
+
+<b>Example:</b>
+
+100 m ÷ 20 s = 5 m/s
+
+</div>
+
+<div class="uses">
+
+Motion • Mechanics • NDA • SSC • JEE
+
+</div>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('v = s / t')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="physics">
+
+<div class="badge">Physics</div>
+
+<h2>⚡ Force</h2>
+
+<div class="formula">
+
+F = m × a
+
+</div>
+
+<p class="desc">
+
+Newton's Second Law
+
+</p>
+
+<div class="example">
+
+<b>Example:</b>
+
+5kg × 2m/s² = 10N
+
+</div>
+
+<div class="uses">
+
+Mechanics • Motion
+
+</div>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('F = m × a')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="physics">
+
+<div class="badge">Physics</div>
+
+<h2>🔋 Work Done</h2>
+
+<div class="formula">
+
+W = F × d
+
+</div>
+
+<p class="desc">
+
+Work = Force × Distance
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('W = F × d')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="physics">
+
+<div class="badge">Physics</div>
+
+<h2>💡 Power</h2>
+
+<div class="formula">
+
+P = W / t
+
+</div>
+
+<p class="desc">
+
+Power = Work ÷ Time
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('P = W / t')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="physics">
+
+<div class="badge">Physics</div>
+
+<h2>⚖ Momentum</h2>
+
+<div class="formula">
+
+p = m × v
+
+</div>
+
+<p class="desc">
+
+Momentum = Mass × Velocity
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('p = m × v')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="physics">
+
+<div class="badge">Physics</div>
+
+<h2>⚡ Ohm's Law</h2>
+
+<div class="formula">
+
+V = I × R
+
+</div>
+
+<p class="desc">
+
+Voltage = Current × Resistance
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('V = I × R')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="physics">
+
+<div class="badge">Physics</div>
+
+<h2>🌍 Weight</h2>
+
+<div class="formula">
+
+W = m × g
+
+</div>
+
+<p class="desc">
+
+Weight = Mass × Gravity
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('W = m × g')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="physics">
+
+<div class="badge">Physics</div>
+
+<h2>🏔 Potential Energy</h2>
+
+<div class="formula">
+
+PE = mgh
+
+</div>
+
+<p class="desc">
+
+Gravitational Potential Energy
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('PE = mgh')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="physics">
+
+<div class="badge">Physics</div>
+
+<h2>🌊 Wave Speed</h2>
+
+<div class="formula">
+
+v = fλ
+
+</div>
+
+<p class="desc">
+
+Wave Speed = Frequency × Wavelength
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('v = fλ')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="physics">
+
+<div class="badge">Physics</div>
+
+<h2>🔄 Frequency</h2>
+
+<div class="formula">
+
+f = 1 / T
+
+</div>
+
+<p class="desc">
+
+Frequency = 1 ÷ Time Period
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('f = 1 / T')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+  <!-- ================= PREMIUM CHEMISTRY FORMULAS ================= -->
+
+<div class="formula-card" data-category="chemistry">
+
+<div class="badge">Chemistry</div>
+
+<h2>🧪 Ideal Gas Law</h2>
+
+<div class="formula">
+
+PV = nRT
+
+</div>
+
+<p class="desc">
+
+Relationship between pressure, volume, moles and temperature.
+
+</p>
+
+<div class="example">
+
+<b>Example:</b>
+
+Calculate gas volume at STP.
+
+</div>
+
+<div class="uses">
+
+Physical Chemistry • JEE • NEET • NDA
+
+</div>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('PV = nRT')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="chemistry">
+
+<div class="badge">Chemistry</div>
+
+<h2>⚗️ Density</h2>
+
+<div class="formula">
+
+ρ = m / V
+
+</div>
+
+<p class="desc">
+
+Density = Mass ÷ Volume
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('ρ = m / V')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="chemistry">
+
+<div class="badge">Chemistry</div>
+
+<h2>🧫 Molarity</h2>
+
+<div class="formula">
+
+M = n / V
+
+</div>
+
+<p class="desc">
+
+Moles of solute per litre of solution.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('M = n / V')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="chemistry">
+
+<div class="badge">Chemistry</div>
+
+<h2>💧 pH Formula</h2>
+
+<div class="formula">
+
+pH = -log[H⁺]
+
+</div>
+
+<p class="desc">
+
+Measures acidity or alkalinity.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('pH = -log[H⁺]')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="chemistry">
+
+<div class="badge">Chemistry</div>
+
+<h2>🌡 Charles Law</h2>
+
+<div class="formula">
+
+V₁/T₁ = V₂/T₂
+
+</div>
+
+<p class="desc">
+
+Volume is directly proportional to temperature.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('V₁/T₁ = V₂/T₂')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="chemistry">
+
+<div class="badge">Chemistry</div>
+
+<h2>🔥 Boyle's Law</h2>
+
+<div class="formula">
+
+P₁V₁ = P₂V₂
+
+</div>
+
+<p class="desc">
+
+Pressure is inversely proportional to volume.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('P₁V₁ = P₂V₂')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="chemistry">
+
+<div class="badge">Chemistry</div>
+
+<h2>⚛ Avogadro Constant</h2>
+
+<div class="formula">
+
+6.022 × 10²³
+
+</div>
+
+<p class="desc">
+
+Particles present in one mole.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('6.022 × 10²³')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="chemistry">
+
+<div class="badge">Chemistry</div>
+
+<h2>🧬 Mole Formula</h2>
+
+<div class="formula">
+
+n = m / M
+
+</div>
+
+<p class="desc">
+
+Moles = Mass ÷ Molar Mass
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('n = m / M')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+  <!-- ================= STATISTICS ================= -->
+
+<div class="formula-card" data-category="statistics">
+
+<div class="badge">Statistics</div>
+
+<h2>📊 Mean (Average)</h2>
+
+<div class="formula">
+
+Mean = Σx / n
+
+</div>
+
+<p class="desc">
+
+Average of all observations.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('Mean = Σx / n')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="statistics">
+
+<div class="badge">Statistics</div>
+
+<h2>📈 Median</h2>
+
+<div class="formula">
+
+Median = Middle Value
+
+</div>
+
+<p class="desc">
+
+Middle value after arranging data.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('Median = Middle Value')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="statistics">
+
+<div class="badge">Statistics</div>
+
+<h2>📉 Mode</h2>
+
+<div class="formula">
+
+Mode = Most Frequent Value
+
+</div>
+
+<p class="desc">
+
+Most repeated observation.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('Mode = Most Frequent Value')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="statistics">
+
+<div class="badge">Statistics</div>
+
+<h2>📏 Standard Deviation</h2>
+
+<div class="formula">
+
+σ = √(Σ(x-μ)²/N)
+
+</div>
+
+<p class="desc">
+
+Measures data spread.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('σ = √(Σ(x-μ)²/N)')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= FINANCE ================= -->
+
+<div class="formula-card" data-category="finance">
+
+<div class="badge">Finance</div>
+
+<h2>💰 Simple Interest</h2>
+
+<div class="formula">
+
+SI = (P × R × T) / 100
+
+</div>
+
+<p class="desc">
+
+Simple Interest Formula.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('SI = (P × R × T)/100')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="finance">
+
+<div class="badge">Finance</div>
+
+<h2>🏦 Compound Interest</h2>
+
+<div class="formula">
+
+A = P(1+r/n)<sup>nt</sup>
+
+</div>
+
+<p class="desc">
+
+Compound Interest Formula.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('A=P(1+r/n)^nt')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="finance">
+
+<div class="badge">Finance</div>
+
+<h2>📈 Profit</h2>
+
+<div class="formula">
+
+Profit = SP − CP
+
+</div>
+
+<p class="desc">
+
+Selling Price minus Cost Price.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('Profit = SP - CP')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="finance">
+
+<div class="badge">Finance</div>
+
+<h2>📉 Loss</h2>
+
+<div class="formula">
+
+Loss = CP − SP
+
+</div>
+
+<p class="desc">
+
+Cost Price minus Selling Price.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('Loss = CP - SP')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="finance">
+
+<div class="badge">Finance</div>
+
+<h2>💹 Profit %</h2>
+
+<div class="formula">
+
+Profit % = (Profit / CP) × 100
+
+</div>
+
+<p class="desc">
+
+Profit Percentage Formula.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('Profit % = (Profit/CP)×100')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="formula-card" data-category="finance">
+
+<div class="badge">Finance</div>
+
+<h2>📊 CAGR</h2>
+
+<div class="formula">
+
+CAGR=(FV/PV)<sup>1/n</sup>-1
+
+</div>
+
+<p class="desc">
+
+Compound Annual Growth Rate.
+
+</p>
+
+<div class="actions">
+
+<button class="copy"
+onclick="copyFormula('CAGR=(FV/PV)^(1/n)-1')">
+
+📋 Copy
+
+</button>
+
+<button class="fav">
+
+⭐ Save
+
+</button>
+
+</div>
+
+</div>
+
+  <script>
+
+// ================= COPY FORMULA =================
+
+function copyFormula(text){
+
+navigator.clipboard.writeText(text);
+
+const toast=document.createElement("div");
+
+toast.innerHTML="✅ Formula Copied";
+
+toast.style.position="fixed";
+toast.style.bottom="25px";
+toast.style.right="25px";
+toast.style.padding="15px 22px";
+toast.style.background="#22c55e";
+toast.style.color="#fff";
+toast.style.borderRadius="15px";
+toast.style.fontWeight="600";
+toast.style.zIndex="99999";
+toast.style.boxShadow="0 15px 40px rgba(0,0,0,.3)";
+
+document.body.appendChild(toast);
+
+setTimeout(()=>{
+
+toast.remove();
+
+},1800);
+
+}
+
+
+
+// ================= SEARCH =================
+
+const search=document.getElementById("search");
+
+search.addEventListener("keyup",()=>{
+
+const value=search.value.toLowerCase();
+
+document.querySelectorAll(".formula-card").forEach(card=>{
+
+const txt=card.innerText.toLowerCase();
+
+card.style.display=
+
+txt.includes(value)
+
+?
+
+"block"
+
+:
+
+"none";
+
+});
+
+});
+
+
+
+// ================= CATEGORY FILTER =================
+
+const buttons=document.querySelectorAll(".menu button");
+
+buttons.forEach(btn=>{
+
+btn.onclick=()=>{
+
+const type=btn.innerText.toLowerCase();
+
+document.querySelectorAll(".formula-card").forEach(card=>{
+
+if(type.includes("favourite")) return;
+
+if(card.dataset.category==type){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+};
+
+});
+
+
+
+// ================= FAVOURITE =================
+
+let fav=[];
+
+if(localStorage.getItem("tooloraFav")){
+
+fav=JSON.parse(localStorage.getItem("tooloraFav"));
+
+}
+
+document.querySelectorAll(".fav").forEach(btn=>{
+
+btn.onclick=()=>{
+
+const title=
+
+btn.parentElement.parentElement.querySelector("h2").innerText;
+
+if(!fav.includes(title)){
+
+fav.push(title);
+
+localStorage.setItem(
+
+"tooloraFav",
+
+JSON.stringify(fav)
+
+);
+
+btn.innerHTML="❤️ Saved";
+
+}else{
+
+btn.innerHTML="❤️ Saved";
+
+}
+
+};
+
+});
+
+
+
+// ================= SHOW FAVOURITES =================
+
+buttons[5].onclick=()=>{
+
+document.querySelectorAll(".formula-card").forEach(card=>{
+
+const title=
+
+card.querySelector("h2").innerText;
+
+if(fav.includes(title)){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+};
+
+</script>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
