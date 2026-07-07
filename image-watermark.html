@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Image Watermark | Toolora</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(135deg,#050816,#111827,#1e3a8a,#7c3aed);
+
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:20px;
+
+color:white;
+
+}
+
+.container{
+
+width:100%;
+max-width:950px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border-radius:30px;
+
+padding:35px;
+
+border:1px solid rgba(255,255,255,.12);
+
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+}
+
+h1{
+
+text-align:center;
+font-size:38px;
+margin-bottom:10px;
+
+}
+
+.sub{
+
+text-align:center;
+color:#d1d5db;
+margin-bottom:30px;
+
+}
+
+.upload{
+
+border:3px dashed #60a5fa;
+
+border-radius:25px;
+
+padding:45px;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.upload:hover{
+
+background:rgba(255,255,255,.05);
+
+}
+
+input[type=file]{
+
+display:none;
+
+}
+
+.editor{
+
+display:none;
+
+margin-top:30px;
+
+grid-template-columns:2fr 1fr;
+
+gap:25px;
+
+}
+
+.canvasBox{
+
+background:#111827;
+
+padding:15px;
+
+border-radius:20px;
+
+text-align:center;
+
+}
+
+canvas{
+
+max-width:100%;
+
+border-radius:15px;
+
+background:black;
+
+}
+
+.controls{
+
+background:#111827;
+
+padding:20px;
+
+border-radius:20px;
+
+}
+
+.controls input,
+.controls select{
+
+width:100%;
+
+margin-bottom:15px;
+
+padding:14px;
+
+border:none;
+
+border-radius:14px;
+
+background:#1f2937;
+
+color:white;
+
+outline:none;
+
+}
+
+button{
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:18px;
+
+background:linear-gradient(45deg,#2563eb,#7c3aed);
+
+color:white;
+
+font-size:17px;
+
+font-weight:700;
+
+cursor:pointer;
+
+margin-top:10px;
+
+}
+
+#downloadBtn{
+
+display:none;
+
+background:#22c55e;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💧 Image Watermark</h1>
+
+<p class="sub">
+
+Add Beautiful Watermarks to Your Images
+
+</p>
+
+<label class="upload">
+
+<input
+type="file"
+id="imageInput"
+accept="image/*">
+
+<div style="font-size:70px;">📤</div>
+
+<h2>Choose Image</h2>
+
+<p>Upload JPG, PNG or WEBP</p>
+
+</label>
+
+<div
+class="editor"
+id="editor">
+
+<div class="canvasBox">
+
+<canvas id="canvas"></canvas>
+
+</div>
+
+<div class="controls">
+
+<input
+type="text"
+id="watermarkText"
+placeholder="Enter Watermark Text">
+
+<input
+type="color"
+id="textColor"
+value="#ffffff">
+
+<input
+type="range"
+id="fontSize"
+min="20"
+max="100"
+value="40">
+
+<select id="position">
+
+<option value="top-left">Top Left</option>
+<option value="top-right">Top Right</option>
+<option value="center">Center</option>
+<option value="bottom-left">Bottom Left</option>
+<option value="bottom-right" selected>Bottom Right</option>
+
+</select>
+
+<button id="applyBtn">
+
+💧 Apply Watermark
+
+</button>
+
+<button id="downloadBtn">
+
+⬇ Download Image
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const imageInput=document.getElementById("imageInput");
+const editor=document.getElementById("editor");
+
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+
+const watermarkText=document.getElementById("watermarkText");
+const textColor=document.getElementById("textColor");
+const fontSize=document.getElementById("fontSize");
+const position=document.getElementById("position");
+
+const applyBtn=document.getElementById("applyBtn");
+const downloadBtn=document.getElementById("downloadBtn");
+
+let img=new Image();
+
+// ========= Upload =========
+
+imageInput.addEventListener("change",function(){
+
+const file=this.files[0];
+
+if(!file) return;
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+editor.style.display="grid";
+
+img.onload=function(){
+
+canvas.width=img.width;
+canvas.height=img.height;
+
+ctx.drawImage(img,0,0);
+
+};
+
+img.src=e.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
+// ========= Apply Watermark =========
+
+applyBtn.addEventListener("click",()=>{
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.drawImage(img,0,0);
+
+ctx.font=fontSize.value+"px Poppins";
+
+ctx.fillStyle=textColor.value;
+
+ctx.globalAlpha=0.55;
+
+let x=20;
+let y=50;
+
+switch(position.value){
+
+case "top-right":
+x=canvas.width-250;
+y=50;
+break;
+
+case "center":
+x=canvas.width/2-120;
+y=canvas.height/2;
+break;
+
+case "bottom-left":
+x=20;
+y=canvas.height-30;
+break;
+
+case "bottom-right":
+x=canvas.width-260;
+y=canvas.height-30;
+break;
+
+}
+
+ctx.fillText(watermarkText.value,x,y);
+
+ctx.globalAlpha=1;
+
+downloadBtn.style.display="block";
+
+showToast("✅ Watermark Applied");
+
+});
+
+  // ========= Download =========
+
+downloadBtn.addEventListener("click",()=>{
+
+const link=document.createElement("a");
+
+link.download="toolora-watermarked-image.png";
+
+link.href=canvas.toDataURL("image/png");
+
+link.click();
+
+showToast("⬇ Download Started");
+
+});
+
+// ========= Toast =========
+
+function showToast(message){
+
+const toast=document.createElement("div");
+
+toast.innerHTML=message;
+
+toast.style.position="fixed";
+toast.style.bottom="20px";
+toast.style.right="20px";
+toast.style.background="#22c55e";
+toast.style.color="#fff";
+toast.style.padding="15px 22px";
+toast.style.borderRadius="14px";
+toast.style.fontWeight="700";
+toast.style.boxShadow="0 10px 30px rgba(0,0,0,.35)";
+toast.style.zIndex="9999";
+
+document.body.appendChild(toast);
+
+setTimeout(()=>{
+
+toast.remove();
+
+},2000);
+
+}
+
+// ========= Drag & Drop =========
+
+const upload=document.querySelector(".upload");
+
+upload.addEventListener("dragover",(e)=>{
+
+e.preventDefault();
+
+upload.style.borderColor="#22c55e";
+
+});
+
+upload.addEventListener("dragleave",()=>{
+
+upload.style.borderColor="#60a5fa";
+
+});
+
+upload.addEventListener("drop",(e)=>{
+
+e.preventDefault();
+
+upload.style.borderColor="#60a5fa";
+
+imageInput.files=e.dataTransfer.files;
+
+imageInput.dispatchEvent(new Event("change"));
+
+});
+
+</script>
+
+</div>
+
+</body>
+</html>
