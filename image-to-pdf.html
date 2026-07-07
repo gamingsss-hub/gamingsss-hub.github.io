@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Image to PDF | Toolora</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#050816,#111827,#1e3a8a,#7c3aed);
+
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:20px;
+
+color:#fff;
+
+}
+
+.container{
+
+width:100%;
+max-width:950px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+padding:35px;
+
+border-radius:30px;
+
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+}
+
+h1{
+
+text-align:center;
+
+font-size:38px;
+
+margin-bottom:10px;
+
+}
+
+.sub{
+
+text-align:center;
+
+color:#d1d5db;
+
+margin-bottom:30px;
+
+}
+
+.upload{
+
+border:3px dashed #60a5fa;
+
+padding:45px;
+
+border-radius:25px;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.upload:hover{
+
+background:rgba(255,255,255,.05);
+
+}
+
+.upload h2{
+
+margin-top:15px;
+
+}
+
+input[type=file]{
+
+display:none;
+
+}
+
+.preview{
+
+display:none;
+
+margin-top:30px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+
+gap:15px;
+
+}
+
+.preview img{
+
+width:100%;
+
+height:180px;
+
+object-fit:cover;
+
+border-radius:15px;
+
+background:#111827;
+
+}
+
+button{
+
+margin-top:30px;
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:18px;
+
+background:linear-gradient(45deg,#2563eb,#7c3aed);
+
+color:white;
+
+font-size:17px;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📷 Image to PDF</h1>
+
+<p class="sub">
+
+Convert Multiple Images into One PDF
+
+</p>
+
+<label class="upload">
+
+<input
+type="file"
+id="imageInput"
+accept="image/*"
+multiple>
+
+<div style="font-size:70px;">📤</div>
+
+<h2>Select Images</h2>
+
+<p>JPG • PNG • WEBP Supported</p>
+
+</label>
+
+<div
+class="preview"
+id="preview">
+
+</div>
+
+<button id="createPDF">
+
+📄 Create PDF
+
+</button>
+
+<script>
+
+const imageInput=document.getElementById("imageInput");
+
+const preview=document.getElementById("preview");
+
+const createPDF=document.getElementById("createPDF");
+
+let imageList=[];
+
+// ========= Upload Images =========
+
+imageInput.addEventListener("change",()=>{
+
+preview.innerHTML="";
+
+imageList=[];
+
+const files=imageInput.files;
+
+if(files.length===0) return;
+
+preview.style.display="grid";
+
+Array.from(files).forEach(file=>{
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+imageList.push(e.target.result);
+
+const img=document.createElement("img");
+
+img.src=e.target.result;
+
+preview.appendChild(img);
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
+});
+
+// ========= Create PDF =========
+
+createPDF.addEventListener("click",async()=>{
+
+if(imageList.length===0){
+
+alert("Please upload images first.");
+
+return;
+
+}
+
+const { jsPDF } = window.jspdf;
+
+const pdf=new jsPDF();
+
+for(let i=0;i<imageList.length;i++){
+
+const img=new Image();
+
+img.src=imageList[i];
+
+await new Promise(resolve=>{
+
+img.onload=function(){
+
+const pageWidth=210;
+
+const pageHeight=(img.height*pageWidth)/img.width;
+
+if(i!==0){
+
+pdf.addPage();
+
+}
+
+pdf.addImage(
+
+imageList[i],
+
+"JPEG",
+
+0,
+
+0,
+
+pageWidth,
+
+pageHeight
+
+);
+
+resolve();
+
+};
+
+});
+
+}
+
+pdf.save("toolora-images.pdf");
+
+showToast("✅ PDF Created Successfully");
+
+});
+
+// ========= Toast =========
+
+function showToast(message){
+
+const toast=document.createElement("div");
+
+toast.innerHTML=message;
+
+toast.style.position="fixed";
+toast.style.bottom="20px";
+toast.style.right="20px";
+toast.style.background="#22c55e";
+toast.style.color="#fff";
+toast.style.padding="15px 22px";
+toast.style.borderRadius="14px";
+toast.style.fontWeight="700";
+toast.style.boxShadow="0 10px 30px rgba(0,0,0,.35)";
+toast.style.zIndex="9999";
+
+document.body.appendChild(toast);
+
+setTimeout(()=>{
+
+toast.remove();
+
+},2000);
+
+}
+
+// ========= Drag & Drop =========
+
+const upload=document.querySelector(".upload");
+
+upload.addEventListener("dragover",(e)=>{
+
+e.preventDefault();
+
+upload.style.borderColor="#22c55e";
+
+});
+
+upload.addEventListener("dragleave",()=>{
+
+upload.style.borderColor="#60a5fa";
+
+});
+
+upload.addEventListener("drop",(e)=>{
+
+e.preventDefault();
+
+upload.style.borderColor="#60a5fa";
+
+imageInput.files=e.dataTransfer.files;
+
+imageInput.dispatchEvent(new Event("change"));
+
+});
+
+</script>
+
+</div>
+
+</body>
+
+</html>
