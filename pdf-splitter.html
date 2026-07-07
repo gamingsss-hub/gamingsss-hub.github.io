@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PDF Splitter | Toolora</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#050816,#111827,#1e3a8a,#7c3aed);
+
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:20px;
+
+color:white;
+
+}
+
+.container{
+
+width:100%;
+max-width:900px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+padding:35px;
+
+border-radius:30px;
+
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+}
+
+h1{
+
+text-align:center;
+font-size:38px;
+margin-bottom:10px;
+
+}
+
+.sub{
+
+text-align:center;
+color:#d1d5db;
+margin-bottom:30px;
+
+}
+
+.upload{
+
+border:3px dashed #60a5fa;
+
+padding:45px;
+
+border-radius:25px;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.upload:hover{
+
+background:rgba(255,255,255,.05);
+
+}
+
+input[type=file]{
+
+display:none;
+
+}
+
+#info{
+
+display:none;
+
+margin-top:25px;
+
+background:#111827;
+
+padding:20px;
+
+border-radius:18px;
+
+}
+
+#pageNumber{
+
+width:100%;
+
+margin-top:20px;
+
+padding:16px;
+
+border:none;
+
+border-radius:15px;
+
+background:#1f2937;
+
+color:white;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+button{
+
+width:100%;
+
+margin-top:25px;
+
+padding:18px;
+
+border:none;
+
+border-radius:18px;
+
+background:linear-gradient(45deg,#2563eb,#7c3aed);
+
+color:white;
+
+font-size:17px;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>✂️ PDF Splitter</h1>
+
+<p class="sub">
+
+Extract Any Page from Your PDF
+
+</p>
+
+<label class="upload">
+
+<input
+type="file"
+id="pdfInput"
+accept=".pdf">
+
+<div style="font-size:70px;">📤</div>
+
+<h2>Select PDF</h2>
+
+<p>Upload a PDF File</p>
+
+</label>
+
+<div id="info">
+
+<div id="pdfName"></div>
+
+<input
+type="number"
+id="pageNumber"
+placeholder="Enter Page Number">
+
+</div>
+
+<button id="splitBtn">
+
+✂️ Split PDF
+
+</button>
+
+<script>
+
+const pdfInput=document.getElementById("pdfInput");
+
+const pdfName=document.getElementById("pdfName");
+
+const info=document.getElementById("info");
+
+const pageNumber=document.getElementById("pageNumber");
+
+const splitBtn=document.getElementById("splitBtn");
+
+let pdfFile;
+
+// ========= Upload =========
+
+pdfInput.addEventListener("change",()=>{
+
+pdfFile=pdfInput.files[0];
+
+if(!pdfFile) return;
+
+info.style.display="block";
+
+pdfName.innerHTML="📄 "+pdfFile.name;
+
+});
+
+// ========= Split PDF =========
+
+splitBtn.addEventListener("click",async()=>{
+
+if(!pdfFile){
+
+alert("Please upload a PDF.");
+
+return;
+
+}
+
+const page=parseInt(pageNumber.value);
+
+if(isNaN(page)||page<1){
+
+alert("Enter a valid page number.");
+
+return;
+
+}
+
+const bytes=await pdfFile.arrayBuffer();
+
+const pdfDoc=await PDFLib.PDFDocument.load(bytes);
+
+const totalPages=pdfDoc.getPageCount();
+
+if(page>totalPages){
+
+alert("PDF has only "+totalPages+" pages.");
+
+return;
+
+}
+
+const newPdf=await PDFLib.PDFDocument.create();
+
+const [copiedPage]=await newPdf.copyPages(
+
+pdfDoc,
+
+[page-1]
+
+);
+
+newPdf.addPage(copiedPage);
+
+const pdfBytes=await newPdf.save();
+
+const blob=new Blob(
+
+[pdfBytes],
+
+{type:"application/pdf"}
+
+);
+
+const url=URL.createObjectURL(blob);
+
+const link=document.createElement("a");
+
+link.href=url;
+
+link.download="toolora-page-"+page+".pdf";
+
+link.click();
+
+showToast("✅ Page Extracted Successfully");
+
+});
+
+// ========= Toast =========
+
+function showToast(message){
+
+const toast=document.createElement("div");
+
+toast.innerHTML=message;
+
+toast.style.position="fixed";
+toast.style.bottom="20px";
+toast.style.right="20px";
+toast.style.background="#22c55e";
+toast.style.color="#fff";
+toast.style.padding="15px 22px";
+toast.style.borderRadius="14px";
+toast.style.fontWeight="700";
+toast.style.boxShadow="0 10px 30px rgba(0,0,0,.35)";
+toast.style.zIndex="9999";
+
+document.body.appendChild(toast);
+
+setTimeout(()=>{
+
+toast.remove();
+
+},2000);
+
+}
+
+// ========= Drag & Drop =========
+
+const upload=document.querySelector(".upload");
+
+upload.addEventListener("dragover",(e)=>{
+
+e.preventDefault();
+
+upload.style.borderColor="#22c55e";
+
+});
+
+upload.addEventListener("dragleave",()=>{
+
+upload.style.borderColor="#60a5fa";
+
+});
+
+upload.addEventListener("drop",(e)=>{
+
+e.preventDefault();
+
+upload.style.borderColor="#60a5fa";
+
+pdfInput.files=e.dataTransfer.files;
+
+pdfInput.dispatchEvent(new Event("change"));
+
+});
+
+</script>
+
+</div>
+
+</body>
+</html>
