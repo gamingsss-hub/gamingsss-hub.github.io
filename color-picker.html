@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Color Picker | Pick & Copy Colors | Toolora</title>
+
+<meta name="description" content="Free online Color Picker. Pick any color and instantly copy HEX, RGB and HSL values.">
+
+<meta name="keywords" content="color picker, hex color picker, rgb converter, hsl color, toolora">
+
+<link rel="icon" href="favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(135deg,#09111f,#141e30,#1e3a8a,#4f46e5);
+
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+
+padding:20px;
+
+color:white;
+
+}
+
+.container{
+
+width:100%;
+max-width:520px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+padding:30px;
+
+border-radius:25px;
+
+text-align:center;
+
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+}
+
+h1{
+
+margin-bottom:20px;
+
+}
+
+.colorBox{
+
+width:170px;
+height:170px;
+
+border-radius:20px;
+
+margin:20px auto;
+
+background:#3b82f6;
+
+border:4px solid rgba(255,255,255,.2);
+
+}
+
+input[type=color]{
+
+width:100%;
+height:60px;
+
+border:none;
+
+background:none;
+
+cursor:pointer;
+
+margin:20px 0;
+
+}
+
+.info{
+
+background:#111827;
+
+padding:15px;
+
+border-radius:15px;
+
+margin:12px 0;
+
+font-size:16px;
+
+}
+
+button{
+
+width:100%;
+
+padding:16px;
+
+margin-top:12px;
+
+border:none;
+
+border-radius:15px;
+
+background:#2563eb;
+
+color:white;
+
+font-size:17px;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#1d4ed8;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎨 Color Picker</h1>
+
+<div
+class="colorBox"
+id="box">
+
+</div>
+
+<input
+type="color"
+id="picker"
+value="#3b82f6">
+
+<div
+class="info"
+id="hex">
+
+HEX : #3B82F6
+
+</div>
+
+<div
+class="info"
+id="rgb">
+
+RGB :
+
+59,130,246
+
+</div>
+
+<button onclick="copyHex()">
+
+📋 Copy HEX
+
+</button>
+
+<button onclick="randomColor()">
+
+🎲 Random Color
+
+</button>
+
+</div>
+
+<script>
+
+const picker=document.getElementById("picker");
+
+const box=document.getElementById("box");
+
+const hex=document.getElementById("hex");
+
+const rgb=document.getElementById("rgb");
+
+picker.oninput=function(){
+
+update(this.value);
+
+}
+
+function update(color){
+
+box.style.background=color;
+
+hex.innerHTML="HEX : "+color.toUpperCase();
+
+let r=parseInt(color.substr(1,2),16);
+
+let g=parseInt(color.substr(3,2),16);
+
+let b=parseInt(color.substr(5,2),16);
+
+rgb.innerHTML=`RGB : ${r}, ${g}, ${b}`;
+
+}
+
+function copyHex(){
+
+navigator.clipboard.writeText(picker.value);
+
+alert("HEX Copied!");
+
+}
+
+function randomColor(){
+
+let letters="0123456789ABCDEF";
+
+let color="#";
+
+for(let i=0;i<6;i++){
+
+color+=letters[Math.floor(Math.random()*16)];
+
+}
+
+picker.value=color;
+
+update(color);
+
+}
+
+</script>
+
+</body>
+</html>
