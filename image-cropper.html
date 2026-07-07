@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Image Cropper | Toolora</title>
+
+<meta name="description" content="Crop JPG, PNG & WEBP images online for free.">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(135deg,#050816,#111827,#1e3a8a,#7c3aed);
+
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:20px;
+
+color:white;
+
+}
+
+.container{
+
+width:100%;
+max-width:1000px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border-radius:30px;
+
+padding:35px;
+
+border:1px solid rgba(255,255,255,.12);
+
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+}
+
+h1{
+
+text-align:center;
+
+font-size:38px;
+
+margin-bottom:10px;
+
+}
+
+.sub{
+
+text-align:center;
+
+color:#d1d5db;
+
+margin-bottom:35px;
+
+}
+
+.upload{
+
+border:3px dashed #60a5fa;
+
+border-radius:25px;
+
+padding:45px;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.upload:hover{
+
+background:rgba(255,255,255,.05);
+
+}
+
+.upload h2{
+
+margin-top:18px;
+
+font-size:28px;
+
+}
+
+.upload p{
+
+margin-top:10px;
+
+color:#cbd5e1;
+
+}
+
+input[type=file]{
+
+display:none;
+
+}
+
+.editor{
+
+display:none;
+
+margin-top:35px;
+
+grid-template-columns:2fr 1fr;
+
+gap:25px;
+
+}
+
+.imageBox{
+
+background:#111827;
+
+padding:15px;
+
+border-radius:20px;
+
+}
+
+.imageBox img{
+
+max-width:100%;
+
+display:block;
+
+}
+
+.previewBox{
+
+background:#111827;
+
+padding:20px;
+
+border-radius:20px;
+
+text-align:center;
+
+}
+
+.preview{
+
+width:220px;
+
+height:220px;
+
+margin:auto;
+
+overflow:hidden;
+
+border-radius:15px;
+
+background:black;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>✂️ Image Cropper</h1>
+
+<p class="sub">
+
+Crop Images for Instagram, YouTube, Passport & More
+
+</p>
+
+<label class="upload">
+
+<input
+type="file"
+id="imageInput"
+accept="image/*">
+
+<div style="font-size:70px">
+
+📤
+
+</div>
+
+<h2>
+
+Choose Image
+
+</h2>
+
+<p>
+
+Upload JPG, PNG or WEBP Image
+
+</p>
+
+</label>
+
+<div
+class="editor"
+id="editor">
+
+<div class="imageBox">
+
+<img id="image">
+
+</div>
+
+<div class="previewBox">
+
+<h3>
+
+Live Preview
+
+</h3>
+
+<div
+class="preview">
+
+</div>
+
+</div>
+
+</div>
+
+<div style="margin-top:30px;">
+
+<h3 style="margin-bottom:15px;">
+
+Crop Options
+
+</h3>
+
+<div style="display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:12px;">
+
+<button onclick="setRatio(NaN)">
+🆓 Free
+</button>
+
+<button onclick="setRatio(1)">
+⬜ Square
+</button>
+
+<button onclick="setRatio(16/9)">
+▶ YouTube
+</button>
+
+<button onclick="setRatio(9/16)">
+📱 Story
+</button>
+
+<button onclick="setRatio(4/3)">
+🖼 Landscape
+</button>
+
+<button onclick="setRatio(3/4)">
+📷 Portrait
+</button>
+
+<button onclick="setRatio(35/45)">
+🪪 Passport
+</button>
+
+</div>
+
+<div style="margin-top:25px;display:flex;gap:15px;">
+
+<button
+id="cropBtn"
+style="flex:1;
+padding:18px;
+border:none;
+border-radius:18px;
+background:linear-gradient(45deg,#2563eb,#7c3aed);
+color:#fff;
+font-size:17px;
+font-weight:700;
+cursor:pointer;">
+
+✂ Crop Image
+
+</button>
+
+<button
+id="downloadBtn"
+style="flex:1;
+padding:18px;
+border:none;
+border-radius:18px;
+background:#22c55e;
+color:#fff;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+display:none;">
+
+⬇ Download
+
+</button>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js"></script>
+
+  <script>
+
+let cropper;
+
+const image=document.getElementById("image");
+const imageInput=document.getElementById("imageInput");
+
+const editor=document.getElementById("editor");
+
+const cropBtn=document.getElementById("cropBtn");
+const downloadBtn=document.getElementById("downloadBtn");
+
+let croppedCanvas;
+
+// ========= Upload =========
+
+imageInput.addEventListener("change",function(){
+
+const file=this.files[0];
+
+if(!file) return;
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+editor.style.display="grid";
+
+image.src=e.target.result;
+
+if(cropper){
+
+cropper.destroy();
+
+}
+
+image.onload=function(){
+
+cropper=new Cropper(image,{
+
+viewMode:1,
+
+preview:".preview",
+
+autoCropArea:1,
+
+responsive:true,
+
+background:false
+
+});
+
+};
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
+// ========= Aspect Ratio =========
+
+function setRatio(ratio){
+
+if(cropper){
+
+cropper.setAspectRatio(ratio);
+
+}
+
+}
+
+// ========= Crop =========
+
+cropBtn.addEventListener("click",()=>{
+
+if(!cropper) return;
+
+croppedCanvas=cropper.getCroppedCanvas({
+
+imageSmoothingQuality:"high"
+
+});
+
+image.src=croppedCanvas.toDataURL();
+
+cropper.destroy();
+
+cropper=new Cropper(image,{
+
+viewMode:1,
+
+preview:".preview"
+
+});
+
+downloadBtn.style.display="block";
+
+showToast("✅ Image Cropped");
+
+});
+
+// ========= Download =========
+
+downloadBtn.addEventListener("click",()=>{
+
+if(!croppedCanvas) return;
+
+const link=document.createElement("a");
+
+link.download="toolora-cropped-image.png";
+
+link.href=croppedCanvas.toDataURL("image/png");
+
+link.click();
+
+});
+
+// ========= Toast =========
+
+function showToast(msg){
+
+const toast=document.createElement("div");
+
+toast.innerHTML=msg;
+
+toast.style.position="fixed";
+toast.style.bottom="20px";
+toast.style.right="20px";
+toast.style.background="#22c55e";
+toast.style.color="#fff";
+toast.style.padding="15px 20px";
+toast.style.borderRadius="14px";
+toast.style.fontWeight="700";
+toast.style.boxShadow="0 10px 30px rgba(0,0,0,.35)";
+toast.style.zIndex="9999";
+
+document.body.appendChild(toast);
+
+setTimeout(()=>{
+
+toast.remove();
+
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>
