@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Image Compressor | Compress JPG, PNG & WEBP Online | Toolora</title>
+
+<meta name="description" content="Compress JPG, PNG and WEBP images online for free. Reduce image size while keeping quality. Fast and secure Image Compressor by Toolora.">
+
+<meta name="keywords" content="image compressor,image optimizer,jpg compressor,png compressor,webp compressor,toolora">
+
+<link rel="icon" href="favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(135deg,#050816,#0f172a,#1e3a8a,#312e81);
+
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:20px;
+
+color:white;
+
+}
+
+.container{
+
+width:100%;
+max-width:900px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.1);
+
+border-radius:28px;
+
+padding:35px;
+
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+}
+
+h1{
+
+font-size:38px;
+
+text-align:center;
+
+margin-bottom:10px;
+
+}
+
+.sub{
+
+text-align:center;
+
+color:#d1d5db;
+
+margin-bottom:35px;
+
+}
+
+.upload{
+
+border:3px dashed #60a5fa;
+
+border-radius:25px;
+
+padding:50px;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.upload:hover{
+
+background:rgba(255,255,255,.05);
+
+}
+
+.upload h2{
+
+margin-top:20px;
+
+font-size:28px;
+
+}
+
+.upload p{
+
+margin-top:10px;
+
+color:#cbd5e1;
+
+}
+
+input[type=file]{
+
+display:none;
+
+}
+
+.previewArea{
+
+display:none;
+
+margin-top:35px;
+
+grid-template-columns:1fr 1fr;
+
+gap:25px;
+
+}
+
+.previewCard{
+
+background:#111827;
+
+padding:20px;
+
+border-radius:20px;
+
+text-align:center;
+
+}
+
+.previewCard img{
+
+width:100%;
+
+max-height:280px;
+
+object-fit:contain;
+
+border-radius:15px;
+
+background:#000;
+
+}
+
+.previewCard h3{
+
+margin:15px 0;
+
+}
+
+.info{
+
+margin-top:10px;
+
+color:#d1d5db;
+
+}
+
+.buttons{
+
+margin-top:30px;
+
+display:flex;
+
+gap:15px;
+
+}
+
+.buttons button{
+
+flex:1;
+
+padding:18px;
+
+border:none;
+
+border-radius:18px;
+
+font-size:17px;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+.compress{
+
+background:linear-gradient(45deg,#2563eb,#7c3aed);
+
+color:white;
+
+}
+
+.download{
+
+background:#22c55e;
+
+color:white;
+
+display:none;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🖼 Image Compressor</h1>
+
+<p class="sub">
+
+Compress JPG, PNG & WEBP Images Without Losing Quality
+
+</p>
+
+<label class="upload">
+
+<input
+type="file"
+id="imageInput"
+accept="image/*">
+
+<div style="font-size:70px;">
+📤
+</div>
+
+<h2>
+
+Choose Image
+
+</h2>
+
+<p>
+
+Click here to upload your image
+
+</p>
+
+</label>
+
+<div
+class="previewArea"
+id="previewArea">
+
+<div class="previewCard">
+
+<h3>
+
+Original Image
+
+</h3>
+
+<img id="originalImage">
+
+<p
+class="info"
+id="originalSize">
+
+</p>
+
+</div>
+
+<div class="previewCard">
+
+<h3>
+
+Compressed Image
+
+</h3>
+
+<img id="compressedImage">
+
+<p
+class="info"
+id="compressedSize">
+
+</p>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button
+class="compress"
+id="compressBtn">
+
+⚡ Compress Image
+
+</button>
+
+<button
+class="download"
+id="downloadBtn">
+
+⬇ Download
+
+</button>
+
+</div>
+
+<script>
+
+const imageInput=document.getElementById("imageInput");
+const previewArea=document.getElementById("previewArea");
+
+const originalImage=document.getElementById("originalImage");
+const compressedImage=document.getElementById("compressedImage");
+
+const originalSize=document.getElementById("originalSize");
+const compressedSize=document.getElementById("compressedSize");
+
+const compressBtn=document.getElementById("compressBtn");
+const downloadBtn=document.getElementById("downloadBtn");
+
+let compressedBlob;
+
+// ========= IMAGE UPLOAD =========
+
+imageInput.addEventListener("change",function(){
+
+const file=this.files[0];
+
+if(!file) return;
+
+previewArea.style.display="grid";
+
+originalImage.src=URL.createObjectURL(file);
+
+originalSize.innerHTML=
+"Size : "+(file.size/1024).toFixed(2)+" KB";
+
+});
+
+// ========= COMPRESS =========
+
+compressBtn.addEventListener("click",()=>{
+
+const file=imageInput.files[0];
+
+if(!file){
+
+alert("Please select an image.");
+
+return;
+
+}
+
+const img=new Image();
+
+img.onload=function(){
+
+const canvas=document.createElement("canvas");
+
+const ctx=canvas.getContext("2d");
+
+canvas.width=img.width;
+canvas.height=img.height;
+
+ctx.drawImage(img,0,0);
+
+canvas.toBlob(function(blob){
+
+compressedBlob=blob;
+
+compressedImage.src=URL.createObjectURL(blob);
+
+compressedSize.innerHTML=
+"Compressed : "+
+(blob.size/1024).toFixed(2)+
+" KB";
+
+downloadBtn.style.display="block";
+
+},"image/jpeg",0.6);
+
+};
+
+img.src=URL.createObjectURL(file);
+
+});
+
+
+// ========= DOWNLOAD =========
+
+downloadBtn.addEventListener("click",()=>{
+
+const link=document.createElement("a");
+
+link.href=URL.createObjectURL(compressedBlob);
+
+link.download="toolora-compressed.jpg";
+
+link.click();
+
+});
+
+  // ========= SUCCESS POPUP =========
+
+function showToast(message){
+
+const toast=document.createElement("div");
+
+toast.innerHTML=message;
+
+toast.style.position="fixed";
+toast.style.bottom="25px";
+toast.style.right="25px";
+toast.style.background="#22c55e";
+toast.style.color="#fff";
+toast.style.padding="15px 22px";
+toast.style.borderRadius="14px";
+toast.style.fontWeight="600";
+toast.style.boxShadow="0 10px 30px rgba(0,0,0,.35)";
+toast.style.zIndex="9999";
+
+document.body.appendChild(toast);
+
+setTimeout(()=>{
+
+toast.remove();
+
+},2000);
+
+}
+
+// Download success
+
+downloadBtn.addEventListener("click",()=>{
+
+showToast("✅ Image Download Started");
+
+});
+
+// ========= DRAG & DROP =========
+
+const upload=document.querySelector(".upload");
+
+upload.addEventListener("dragover",(e)=>{
+
+e.preventDefault();
+
+upload.style.borderColor="#22c55e";
+
+});
+
+upload.addEventListener("dragleave",()=>{
+
+upload.style.borderColor="#60a5fa";
+
+});
+
+upload.addEventListener("drop",(e)=>{
+
+e.preventDefault();
+
+upload.style.borderColor="#60a5fa";
+
+imageInput.files=e.dataTransfer.files;
+
+imageInput.dispatchEvent(new Event("change"));
+
+});
+
+</script>
+
+</body>
+</html>
