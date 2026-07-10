@@ -1,22 +1,18 @@
-// =========================
-// TOOLORA AI CHAT V2
-// Part 1
-// =========================
+// ============================
+// TOOLORA AI V3
+// ============================
 
-// Worker URL
 const WORKER_URL = "https://toolora-ai.yt3766701.workers.dev";
 
-// Elements
 const input = document.getElementById("prompt");
 const sendBtn = document.getElementById("send");
 const chatBox = document.getElementById("chatBox");
 const typing = document.getElementById("typing");
 const clearBtn = document.getElementById("clearChat");
 
-// Chat History
-let history = JSON.parse(localStorage.getItem("toolora_history")) || [];
+let history =
+JSON.parse(localStorage.getItem("toolora_history")) || [];
 
-// Load Old Messages
 window.onload = () => {
 
 if(history.length===0) return;
@@ -25,7 +21,7 @@ chatBox.innerHTML="";
 
 history.forEach(msg=>{
 
-addMessage(msg.text,msg.sender,false);
+createMessage(msg.text,msg.sender,false);
 
 });
 
@@ -33,15 +29,13 @@ scrollBottom();
 
 };
 
-// Scroll
 function scrollBottom(){
 
 chatBox.scrollTop=chatBox.scrollHeight;
 
 }
 
-// Save
-function saveHistory(){
+function save(){
 
 localStorage.setItem(
 
@@ -53,12 +47,11 @@ JSON.stringify(history)
 
 }
 
-// Add Message
-function addMessage(text,sender,save=true){
+function createMessage(text,sender,saveChat=true){
 
-const div=document.createElement("div");
+const box=document.createElement("div");
 
-div.className=
+box.className=
 
 sender==="user"
 
@@ -72,41 +65,31 @@ sender==="user"
 
 if(sender==="user"){
 
-div.innerHTML=`
-
+box.innerHTML=`
 <div class="message">
-
 ${text}
-
 </div>
-
 `;
 
 }else{
 
-div.innerHTML=`
-
-<div class="avatar">
-
-🤖
-
-</div>
+box.innerHTML=`
+<div class="avatar">🤖</div>
 
 <div class="message">
 
 ${text}
 
 </div>
-
 `;
 
 }
 
-chatBox.appendChild(div);
+chatBox.appendChild(box);
 
 scrollBottom();
 
-if(save){
+if(saveChat){
 
 history.push({
 
@@ -116,75 +99,90 @@ sender
 
 });
 
-saveHistory();
+save();
 
 }
 
 }
 
-// =========================
+// ============================
 // SEND MESSAGE
-// =========================
+// ============================
 
-async function sendMessage(){
+async function sendMessage() {
 
-const message=input.value.trim();
+const message = input.value.trim();
 
-if(message==="") return;
+if (!message) return;
 
-addMessage(message,"user");
+createMessage(message, "user");
 
-input.value="";
+input.value = "";
 
-typing.style.display="block";
+typing.style.display = "block";
 
-try{
+sendBtn.disabled = true;
+sendBtn.innerHTML = "⏳";
 
-const response=await fetch(WORKER_URL,{
+try {
 
-method:"POST",
+const response = await fetch(WORKER_URL, {
 
-headers:{
+method: "POST",
 
-"Content-Type":"application/json"
+headers: {
+
+"Content-Type": "application/json"
 
 },
 
-body:JSON.stringify({
+body: JSON.stringify({
 
-message:message
+message: message
 
 })
 
 });
 
-const data=await response.json();
+const data = await response.json();
 
-typing.style.display="none";
+typing.style.display = "none";
 
-let reply=data.reply;
+sendBtn.disabled = false;
 
-if(!reply){
+sendBtn.innerHTML = "➤";
 
-reply="Sorry, I couldn't generate a response.";
+if (data.success) {
 
-}
+createMessage(data.reply, "ai");
 
-addMessage(reply,"ai");
+} else {
 
-}catch(e){
+createMessage(
 
-typing.style.display="none";
-
-addMessage(
-
-"❌ Unable to connect to Toolora AI.",
+"❌ " + (data.error?.message || JSON.stringify(data.error)),
 
 "ai"
 
 );
 
-console.error(e);
+}
+
+} catch (err) {
+
+typing.style.display = "none";
+
+sendBtn.disabled = false;
+
+sendBtn.innerHTML = "➤";
+
+createMessage(
+
+"❌ Network Error\n" + err.message,
+
+"ai"
+
+);
 
 }
 
@@ -192,13 +190,13 @@ console.error(e);
 
 // Button
 
-sendBtn.onclick=sendMessage;
+sendBtn.addEventListener("click", sendMessage);
 
 // Enter Key
 
-input.addEventListener("keydown",(e)=>{
+input.addEventListener("keydown", (e) => {
 
-if(e.key==="Enter"){
+if (e.key === "Enter") {
 
 sendMessage();
 
@@ -206,25 +204,22 @@ sendMessage();
 
 });
 
-// =========================
+// ============================
 // CLEAR CHAT
-// =========================
+// ============================
 
-clearBtn.addEventListener("click",()=>{
+clearBtn.addEventListener("click", () => {
 
-if(!confirm("Clear all chat?")) return;
+if (!confirm("Clear all chats?")) return;
 
-history=[];
+history = [];
 
 localStorage.removeItem("toolora_history");
 
-chatBox.innerHTML=`
-
+chatBox.innerHTML = `
 <div class="ai-message">
 
-<div class="avatar">
-🤖
-</div>
+<div class="avatar">🤖</div>
 
 <div class="message">
 
@@ -237,131 +232,76 @@ How can I help you today?
 </div>
 
 </div>
-
 `;
 
 });
 
-// =========================
+// ============================
 // COPY AI MESSAGE
-// =========================
+// ============================
 
-chatBox.addEventListener("click",(e)=>{
+chatBox.addEventListener("click", (e) => {
 
-const bubble=e.target.closest(".message");
+const bubble = e.target.closest(".message");
 
-if(!bubble) return;
+if (!bubble) return;
 
-const parent=bubble.parentElement;
+const parent = bubble.parentElement;
 
-if(parent.classList.contains("ai-message")){
+if (parent.classList.contains("ai-message")) {
 
-navigator.clipboard.writeText(
+navigator.clipboard.writeText(bubble.innerText);
 
-bubble.innerText
+bubble.style.outline = "2px solid #5b6cff";
 
-);
+setTimeout(() => {
 
-bubble.style.outline="2px solid #5b6cff";
+bubble.style.outline = "none";
 
-setTimeout(()=>{
-
-bubble.style.outline="none";
-
-},500);
+}, 500);
 
 }
 
 });
 
-// =========================
-// INPUT AUTO FOCUS
-// =========================
+// ============================
+// TYPING ANIMATION
+// ============================
 
-input.focus();
+let dots = 0;
 
-// =========================
-// TYPING EFFECT
-// =========================
+setInterval(() => {
 
-let dots=0;
+if (typing.style.display === "block") {
 
-setInterval(()=>{
+dots = (dots + 1) % 4;
 
-if(typing.style.display==="block"){
-
-dots=(dots+1)%4;
-
-typing.innerHTML="Toolora AI is typing"+".".repeat(dots);
+typing.innerHTML = "Toolora AI is typing" + ".".repeat(dots);
 
 }
 
-},400);
+}, 400);
 
-// =========================
+// ============================
 // CONNECTION STATUS
-// =========================
+// ============================
 
-window.addEventListener("online",()=>{
+window.addEventListener("offline", () => {
 
-typing.style.display="none";
-
-console.log("Online");
+createMessage("⚠️ No Internet Connection", "ai");
 
 });
 
-window.addEventListener("offline",()=>{
+window.addEventListener("online", () => {
 
-addMessage(
-
-"⚠️ Internet connection lost.",
-
-"ai"
-
-);
+console.log("Internet Connected");
 
 });
 
-// =========================
-// LOADING BUTTON
-// =========================
-
-async function toggleButton(state){
-
-if(state){
-
-sendBtn.disabled=true;
-
-sendBtn.innerHTML="⏳";
-
-}else{
-
-sendBtn.disabled=false;
-
-sendBtn.innerHTML="➤";
-
-}
-
-}
-
-// Wrap original function
-const oldSend=sendMessage;
-
-sendMessage=async()=>{
-
-await toggleButton(true);
-
-await oldSend();
-
-await toggleButton(false);
-
-};
-
-// =========================
-// WELCOME
-// =========================
+// ============================
+// READY
+// ============================
 
 console.log("✅ Toolora AI Ready");
 
-// Focus input
 input.focus();
