@@ -1,3 +1,4 @@
+alert("JS Loaded Successfully");
 // ==========================
 // TOOLORA AI ESSAY WRITER
 // ==========================
