@@ -1,342 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>🤖 Toolora AI</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-
-background:#060B16;
-
-overflow:hidden;
-
-color:white;
-
-}
-
-/* Aurora Background */
-
-body::before{
-
-content:"";
-
-position:fixed;
-
-width:650px;
-
-height:650px;
-
-background:#6C63FF55;
-
-filter:blur(120px);
-
-top:-180px;
-
-left:-180px;
-
-animation:move1 8s ease-in-out infinite alternate;
-
-}
-
-body::after{
-
-content:"";
-
-position:fixed;
-
-width:600px;
-
-height:600px;
-
-background:#2DA8FF44;
-
-filter:blur(120px);
-
-bottom:-200px;
-
-right:-150px;
-
-animation:move2 8s ease-in-out infinite alternate;
-
-}
-
-@keyframes move1{
-
-to{
-
-transform:translate(120px,70px);
-
-}
-
-}
-
-@keyframes move2{
-
-to{
-
-transform:translate(-100px,-70px);
-
-}
-
-}
-
-.chat{
-
-width:min(900px,95%);
-
-height:92vh;
-
-margin:20px auto;
-
-background:rgba(18,25,45,.72);
-
-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,.08);
-
-border-radius:28px;
-
-display:flex;
-
-flex-direction:column;
-
-overflow:hidden;
-
-box-shadow:0 0 50px rgba(0,0,0,.4);
-
-}
-
-.header{
-
-height:80px;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:0 25px;
-
-background:rgba(255,255,255,.05);
-
-}
-
-.logo{
-
-font-size:28px;
-
-font-weight:800;
-
-}
-
-.logo span{
-
-color:#6C63FF;
-
-}
-
-.icons{
-
-display:flex;
-
-gap:12px;
-
-}
-
-.icons button{
-
-width:48px;
-
-height:48px;
-
-border:none;
-
-border-radius:50%;
-
-background:#1A2545;
-
-color:white;
-
-font-size:20px;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-.icons button:hover{
-
-background:#6C63FF;
-
-transform:scale(1.08);
-
-}
-
-.messages{
-
-flex:1;
-
-padding:20px;
-
-overflow-y:auto;
-
-}
-
-.ai{
-
-display:flex;
-
-gap:12px;
-
-margin-bottom:18px;
-
-}
-
-.avatar{
-
-width:46px;
-
-height:46px;
-
-border-radius:50%;
-
-background:#6C63FF;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:22px;
-
-}
-
-.bubble{
-
-background:#101A33;
-
-padding:18px;
-
-border-radius:18px;
-
-max-width:75%;
-
-line-height:1.7;
-
-}
-
-.input{
-
-height:90px;
-
-display:flex;
-
-padding:18px;
-
-gap:12px;
-
-background:rgba(255,255,255,.04);
-
-}
-
-.input input{
-
-flex:1;
-
-background:#0E1730;
-
-border:none;
-
-outline:none;
-
-border-radius:16px;
-
-padding:0 20px;
-
-font-size:17px;
-
-color:white;
-
-}
-
-.input button{
-
-width:70px;
-
-border:none;
-
-border-radius:16px;
-
-background:linear-gradient(135deg,#6C63FF,#2DA8FF);
-
-color:white;
-
-font-size:22px;
-
-cursor:pointer;
-
-}
-
-</style>
+<link rel="stylesheet" href="ai-chat.css">
 
 </head>
 
 <body>
 
-<div class="chat">
+<div class="bg"></div>
 
-<div class="header">
+<div class="chat-container">
+
+<header>
 
 <div class="logo">
+🤖 Toolora AI
+</div>
 
-🤖 <span>Toolora AI</span>
+<div class="header-buttons">
+
+<button id="clearChat">
+🗑️
+</button>
 
 </div>
 
-<div class="icons">
+</header>
 
-<button>🗑️</button>
+<div id="chatBox" class="chat-box">
 
-<button>🌙</button>
+<div class="ai-message">
 
+<div class="avatar">
+🤖
 </div>
 
-</div>
+<div class="message">
 
-<div class="messages">
-
-<div class="ai">
-
-<div class="avatar">🤖</div>
-
-<div class="bubble">
-
-<b>Toolora AI</b><br><br>
-
-Hello 👋
+Hello 👋<br><br>
 
 I'm Toolora AI.
 
-How can I help you today?
+Ask me anything.
 
 </div>
 
@@ -344,16 +60,33 @@ How can I help you today?
 
 </div>
 
-<div class="input">
+<div class="typing" id="typing">
 
-<input type="text" placeholder="Ask anything...">
+Toolora AI is typing...
 
-<button>➤</button>
+</div>
+
+<div class="input-box">
+
+<input
+
+id="prompt"
+
+type="text"
+
+placeholder="Ask anything...">
+
+<button id="send">
+
+➤
+
+</button>
 
 </div>
 
 </div>
+
+<script src="ai-chat.js"></script>
 
 </body>
-
 </html>
