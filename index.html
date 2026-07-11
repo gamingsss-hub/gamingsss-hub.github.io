@@ -6,3092 +6,1363 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width,initial-scale=1">
+content="width=device-width, initial-scale=1.0">
 
-<title>Toolora</title>
+<meta name="theme-color"
+content="#050308">
 
-  <link
-rel="icon"
-type="image/png"
-href="./favicon.png">
+<title>Toolora AI - Premium AI Tools, Quiz Hub & Utilities</title>
 
-<link
-rel="apple-touch-icon"
-href="./favicon.png">
+<meta name="description"
+content="Toolora AI - 100+ AI Tools, Quiz Hub, Utility Tools and Premium AI Platform.">
+
+<meta name="keywords"
+content="AI Tools, ChatGPT, Quiz, Utilities, Toolora AI">
+
+<link rel="icon"
+href="assets/logo.png">
 
 <link rel="preconnect"
 href="https://fonts.googleapis.com">
 
-<link href="
-https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap"
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
 rel="stylesheet">
 
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins;
-}
-
-body{
-
-background:
-linear-gradient(
-180deg,
-#020617,
-#071128
-);
-
-color:white;
-
-overflow-x:hidden;
-
-}
-
-a{
-
-text-decoration:none;
-
-color:white;
-
-}
-
-.container{
-
-max-width:1500px;
-
-margin:auto;
-
-padding:
-
-20px
-20px
-120px;
-
-}
-
-/* TOP */
-
-.top{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-}
-
-.icon-btn{
-
-width:56px;
-
-height:56px;
-
-border-radius:50%;
-
-background:
-
-rgba(
-255,
-255,
-255,
-.05
-);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:26px;
-
-}
-
-/* HERO */
-
-.hero{
-
-text-align:center;
-
-padding:
-
-30px
-0
-45px;
-
-}
-
-.logo{
-
-font-size:58px;
-
-font-weight:900;
-
-}
-
-.grad{
-
-background:
-linear-gradient(
-90deg,
-#6d5cff,
-#52a8ff
-);
-
--webkit-background-clip:text;
-
-color:transparent;
-
-}
-
-.sub{
-
-margin-top:12px;
-
-color:#8ea2c8;
-
-}
-
-.title{
-
-font-size:72px;
-
-font-weight:900;
-
-line-height:1.05;
-
-margin-top:26px;
-
-}
-
-.search{
-
-margin-top:36px;
-
-}
-
-.search input{
-
-width:100%;
-
-max-width:950px;
-
-height:80px;
-
-border:none;
-
-padding:0 34px;
-
-border-radius:999px;
-
-background:
-
-#091326;
-
-color:white;
-
-font-size:24px;
-
-}
-
-/* QUICK */
-
-.quick{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(
-4,
-1fr
-);
-
-gap:22px;
-
-margin-top:42px;
-
-}
-
-.quick a{
-
-height:180px;
-
-border-radius:34px;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:26px;
-
-font-weight:700;
-
-}
-
-.games{
-background:
-linear-gradient(
-135deg,
-#522cff,
-#2f4cff
-);
-}
-
-.tools{
-background:
-linear-gradient(
-135deg,
-#006dff,
-#009dff
-);
-}
-
-.quiz{
-background:
-linear-gradient(
-135deg,
-#008a82,
-#00c6a9
-);
-}
-
-.learn{
-background:
-linear-gradient(
-135deg,
-#9a4f00,
-#d17d32
-);
-}
-
-/* SECTION */
-
-.section{
-
-margin-top:65px;
-
-}
-
-.section-head{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin-bottom:25px;
-
-}
-
-.section-head h2{
-
-font-size:44px;
-
-}
-
-.view{
-
-padding:
-
-14px
-28px;
-
-background:#101d39;
-
-border-radius:999px;
-
-}
-
-/* CARDS */
-
-.cards{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(
-auto-fit,
-minmax(
-220px,
-1fr
-));
-
-gap:20px;
-
-}
-
-.card{
-
-background:
-
-#081325;
-
-padding:30px;
-
-border-radius:28px;
-
-min-height:220px;
-
-transition:.2s;
-
-}
-
-.card:hover{
-
-transform:
-translateY(-6px);
-
-}
-
-.card .emoji{
-
-font-size:60px;
-
-}
-
-.card h3{
-
-margin-top:18px;
-
-font-size:28px;
-
-}
-
-.card p{
-
-margin-top:10px;
-
-color:#8ea2c8;
-
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.logo{
-font-size:32px;
-}
-
-.title{
-font-size:34px;
-}
-
-.search input{
-
-height:62px;
-
-font-size:18px;
-
-}
-
-.quick{
-
-grid-template-columns:
-
-repeat(
-2,
-1fr
-);
-
-}
-
-.quick a{
-
-height:140px;
-
-font-size:22px;
-
-}
-
-.section-head h2{
-
-font-size:28px;
-
-}
-
-.cards{
-
-grid-template-columns:
-
-repeat(
-2,
-1fr
-);
-
-}
-
-.card{
-
-min-height:180px;
-
-}
-
-}
-
-/* MOBILE FIX */
-
-@media(max-width:700px){
-
-body{
-
-padding-bottom:120px;
-
-}
-
-
-.section-head{
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-gap:12px;
-
-}
-
-
-.section-head h2{
-
-font-size:34px;
-
-line-height:1.2;
-
-}
-
-
-.cards{
-
-grid-template-columns:
-
-repeat(
-2,
-1fr
-)!important;
-
-gap:16px;
-
-}
-
-
-.card{
-
-min-height:220px;
-
-padding:22px;
-
-border-radius:26px;
-
-}
-
-
-.card h3{
-
-font-size:18px;
-
-line-height:1.35;
-
-}
-
-
-.card p{
-
-font-size:14px;
-
-}
-
-
-.bottom-nav{
-
-height:74px!important;
-
-padding-bottom:8px;
-
-}
-
-
-.bottom-nav span{
-
-font-size:11px;
-
-}
-
-
-.hero{
-
-padding-top:40px;
-
-}
-
-
-.logo{
-
-font-size:44px!important;
-
-}
-
-}
-
-</style>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet"
+href="style.css">
 
 </head>
 
 <body>
 
-<div class="container">
+<!-- Aurora Background -->
 
-<div class="top">
+<div class="aurora aurora1"></div>
 
-<div class="icon-btn">
-☰
-</div>
-
-<div class="icon-btn">
-🔍
-</div>
-
-</div>
-
-<div class="hero">
-
-<div class="logo">
-
-⚡
-<span class="grad">
-Toolora
-</span>
-
-</div>
-
-<div class="sub">
-
-Games • Tools • Quiz • Learning
-
-</div>
-
-<div class="title">
-
-One Platform.<br>
-
-<span class="grad">
-
-Endless Possibilities.
-
-</span>
-
-</div>
-
-<div class="search">
-
-<input
-placeholder="Search tools, games, quizzes...">
-
-</div>
-
-<div class="quick">
-
-<a href="games.html"
-class="games">
-
-🎮
-
-Games
-
-</a>
-
-<a href="tools.html"
-class="tools">
-
-🛠
-
-Tools
-
-</a>
-
-<a href="quiz.html"
-class="quiz">
-
-🧠
-
-Quiz
-
-</a>
-
-<a href="#learn"
-class="learn">
-
-🎓
-
-Learn
-
-</a>
-
-</div>
-
-</div>
-<!-- POPULAR -->
-
-<section class="section">
-
-<div class="section-head">
-
-<h2>
-
-👑 Popular Right Now
-
-</h2>
-
-<a
-href="all.html"
-class="view">
-
-View All →
-
-</a>
-
-</div>
-
-
-<div class="cards">
-
-<a
-href="reaction-test.html"
-class="card">
-
-<div class="emoji">
-
-⚡
-
-</div>
-
-<h3>
-
-Reaction Test
-
-</h3>
-
-<p>
-
-Test Your Speed
-
-</p>
-
-</a>
-
-<a href="formula-hub.html" class="card">
-
-📚
-
-<h2>
-
-Formula Hub
-
-</h2>
-
-<p>
-
-Formulas
-
-</p>
-
-</a>
-
-
-<a
-href="qr-generator.html"
-class="card">
-
-<div class="emoji">
-
-🔳
-
-</div>
-
-<h3>
-
-QR Generator
-
-</h3>
-
-<p>
-
-Create QR Code
-
-</p>
-
-</a>
-
-
-<a
-href="expense-tracker.html"
-class="card">
-
-<div class="emoji">
-
-💸
-
-</div>
-
-<h3>
-
-Expense Tracker
-
-</h3>
-
-<p>
-
-Track Expenses
-
-</p>
-
-</a>
-
-
-<a
-href="world-clock.html"
-class="card">
-
-<div class="emoji">
-
-🌍
-
-</div>
-
-<h3>
-
-World Clock
-
-</h3>
-
-<p>
-
-Live Time Zones
-
-</p>
-
-</a>
-
-
-<a
-href="puzzle.html"
-class="card">
-
-<div class="emoji">
-
-🧩
-
-</div>
-
-<h3>
-
-Puzzle Games
-
-</h3>
-
-<p>
-
-Brain Challenge
-
-</p>
-
-</a>
-
-
-<a
-href="generalquiz.html"
-class="card">
-
-<div class="emoji">
-
-🧠
-
-</div>
-
-<h3>
-
-GK Quiz
-
-</h3>
-
-<p>
-
-Test Knowledge
-
-</p>
-
-</a>
-
-</div>
-
-</section>
-
-
-
-<!-- EXPLORE -->
-
-<section class="section">
-
-<div class="section-head">
-
-<h2>
-
-🚀 Explore Categories
-
-</h2>
-
-</div>
-
-
-<div class="cards">
-
-
-<a
-href="#games"
-class="card">
-
-<div class="emoji">
-
-🎮
-
-</div>
-
-<h3>
-
-Games
-
-</h3>
-
-<p>
-
-40+ Games
-
-</p>
-
-</a>
-
-
-<a
-href="#tools"
-class="card">
-
-<div class="emoji">
-
-🛠
-
-</div>
-
-<h3>
-
-Tools
-
-</h3>
-
-<p>
-
-20+ Tools
-
-</p>
-
-</a>
-
-
-<a
-href="#quiz"
-class="card">
-
-<div class="emoji">
-
-🧠
-
-</div>
-
-<h3>
-
-Quiz
-
-</h3>
-
-<p>
-
-5000+ Questions
-
-</p>
-
-</a>
-
-
-<a
-href="#learn"
-class="card">
-
-<div class="emoji">
-
-📖
-
-</div>
-
-<h3>
-
-Learning
-
-</h3>
-
-<p>
-
-100+ Topics
-
-</p>
-
-</a>
-
-
-<a
-href="utility.html"
-class="card">
-
-<div class="emoji">
-
-⚡
-
-</div>
-
-<h3>
-
-Utility
-
-</h3>
-
-<p>
-
-Daily Useful
-
-</p>
-
-</a>
-
-
-<a
-href="expense-tracker.html"
-class="card">
-
-<div class="emoji">
-
-💰
-
-</div>
-
-<h3>
-
-Finance
-
-</h3>
-
-<p>
-
-Calculators
-
-</p>
-
-</a>
-
-
-<a
-href="worldgk.html"
-class="card">
-
-<div class="emoji">
-
-🌎
-
-</div>
-
-<h3>
-
-World
-
-</h3>
-
-<p>
-
-Countries & More
-
-</p>
-
-</a>
-
-
-<a
-href="notes-app.html"
-class="card">
-
-<div class="emoji">
-
-🎯
-
-</div>
-
-<h3>
-
-Productivity
-
-</h3>
-
-<p>
-
-Track & Improve
-
-</p>
-
-</a>
-
-
-</div>
-
-</section>
-<!-- GAME ZONE -->
-
-<section
-id="games"
-class="section">
-
-<div class="section-head">
-
-<h2>
-
-🎮 Game Zone
-
-</h2>
-
-<a
-href="games.html"
-class="view">
-
-View All →
-
-</a>
-
-</div>
-
-
-<div class="cards">
-
-<a
-href="black-hole-game.html"
-class="card">
-
-<div class="emoji">
-🕳️
-</div>
-
-<h3>
-
-Black Hole
-
-</h3>
-
-<p>
-
-Absorb • Survive
-
-</p>
-
-</a>
-
-
-<a
-href="memory-game.html"
-class="card">
-
-<div class="emoji">
-🧠
-</div>
-
-<h3>
-
-Memory Game
-
-</h3>
-
-<p>
-
-Flip & Match
-
-</p>
-
-</a>
-
-
-<a
-href="aim-trainer.html"
-class="card">
-
-<div class="emoji">
-🎯
-</div>
-
-<h3>
-
-Aim Trainer
-
-</h3>
-
-<p>
-
-Improve Accuracy
-
-</p>
-
-</a>
-
-
-<a
-href="speed-click-test.html"
-class="card">
-
-<div class="emoji">
-🏁
-</div>
-
-<h3>
-
-Click Speed
-
-</h3>
-
-<p>
-
-Fast Tap Test
-
-</p>
-
-</a>
-
-
-<a
-href="guess-the-logo.html"
-class="card">
-
-<div class="emoji">
-🏆
-</div>
-
-<h3>
-
-Guess Logo
-
-</h3>
-
-<p>
-
-Brand Challenge
-
-</p>
-
-</a>
-
-
-<a
-href="guess-the-flag.html"
-class="card">
-
-<div class="emoji">
-🌍
-</div>
-
-<h3>
-
-Guess Flag
-
-</h3>
-
-<p>
-
-World Challenge
-
-</p>
-
-</a>
-
-<a href="formula-hub.html" class="card">
-
-📚
-
-<h2>
-
-Formula Hub
-
-</h2>
-
-<p>
-
-Formulas
-
-</p>
-
-</a>
-
-</div>
-
-</section>
-
-
-
-<!-- TOOLS -->
-
-<section
-id="tools"
-class="section">
-
-<div class="section-head">
-
-<h2>
-
-🛠 Tools Zone
-
-</h2>
-
-<a
-href="tools.html"
-class="view">
-
-View All →
-
-</a>
-
-</div>
-
-
-<div class="cards">
-
-
-<a
-href="age-calculator.html"
-class="card">
-
-<div class="emoji">
-🎂
-</div>
-
-<h3>
-
-Age Calculator
-
-</h3>
-
-<p>
-
-Age • Zodiac
-
-</p>
-
-</a>
-
-
-<a
-href="bmi-calculator.html"
-class="card">
-
-<div class="emoji">
-⚖️
-</div>
-
-<h3>
-
-BMI Calculator
-
-</h3>
-
-<p>
-
-Health Tracker
-
-</p>
-
-</a>
-
-
-<a
-href="notes-app.html"
-class="card">
-
-<div class="emoji">
-📝
-</div>
-
-<h3>
-
-Notes App
-
-</h3>
-
-<p>
-
-Save Notes
-
-</p>
-
-</a>
-
-
-<a
-href="countdown-timer.html"
-class="card">
-
-<div class="emoji">
-⏳
-</div>
-
-<h3>
-
-Countdown
-
-</h3>
-
-<p>
-
-Timer Utility
-
-</p>
-
-</a>
-
-
-<a
-href="stopwatch-pro.html"
-class="card">
-
-<div class="emoji">
-⏱️
-</div>
-
-<h3>
-
-Stopwatch
-
-</h3>
-
-<p>
-
-Track Time
-
-</p>
-
-</a>
-
-
-<a
-href="typing-speed.html"
-class="card">
-
-<div class="emoji">
-⌨️
-</div>
-
-<h3>
-
-Typing Speed
-
-</h3>
-
-<p>
-
-WPM Test
-
-</p>
-
-</a>
-
-</div>
-
-</section>
-<!-- QUIZ -->
-
-<section
-id="quiz"
-class="section">
-
-<div class="section-head">
-
-<h2>
-
-🧠 Quiz Zone
-
-</h2>
-
-<a
-href="all-quiz.html"
-class="view">
-
-View All →
-
-</a>
-
-</div>
-
-
-<div class="cards">
-
-<a href="generalquiz.html" class="card">
-<div class="emoji">🧠</div>
-<h3>General Quiz</h3>
-<p>Mixed Questions</p>
-</a>
-
-<a href="science.html" class="card">
-<div class="emoji">🧪</div>
-<h3>Science</h3>
-<p>Physics • Chemistry</p>
-</a>
-
-<a href="sports.html" class="card">
-<div class="emoji">⚽</div>
-<h3>Sports</h3>
-<p>Sports Quiz</p>
-</a>
-
-<a href="technology.html" class="card">
-<div class="emoji">💻</div>
-<h3>Technology</h3>
-<p>AI • Coding</p>
-</a>
-
-<a href="history.html" class="card">
-<div class="emoji">🏺</div>
-<h3>History</h3>
-<p>Ancient • Modern</p>
-</a>
-
-<a href="iq.html" class="card">
-<div class="emoji">🎯</div>
-<h3>IQ Quiz</h3>
-<p>Brain Test</p>
-</a>
-
-</div>
-
-</section>
-
-
-
-<!-- WORLD -->
-
-<section
-class="section">
-
-<div class="section-head">
-
-<h2>
-
-🌍 World Zone
-
-</h2>
-
-</div>
-
-
-<div class="cards">
-
-<a href="worldgk.html" class="card">
-<div class="emoji">🌎</div>
-<h3>World GK</h3>
-<p>Countries • Facts</p>
-</a>
-
-<a href="country-capital.html" class="card">
-<div class="emoji">🏛️</div>
-<h3>Country Capital</h3>
-<p>Capitals Quiz</p>
-</a>
-
-<a href="guess-the-flag.html" class="card">
-<div class="emoji">🏁</div>
-<h3>Guess Flag</h3>
-<p>World Challenge</p>
-</a>
-
-</div>
-
-</section>
-
-
-
-<!-- LEARN -->
-
-<section
-id="learn"
-class="section">
-
-<div class="section-head">
-
-<h2>
-
-🏛 Exam Zone
-
-</h2>
-
-</div>
-
-
-<div class="cards">
-
-<a href="railway.html" class="card">
-<div class="emoji">🚆</div>
-<h3>Railway Quiz</h3>
-<p>RRB Practice</p>
-</a>
-
-<a href="ssccgl.html" class="card">
-<div class="emoji">📚</div>
-<h3>SSC CGL</h3>
-<p>Tier 1 • Tier 2</p>
-</a>
-
-<a href="sscgd.html" class="card">
-<div class="emoji">🚔</div>
-<h3>SSC GD</h3>
-<p>GK • Maths</p>
-</a>
-
-<a href="upsc.html" class="card">
-<div class="emoji">🏛️</div>
-<h3>UPSC</h3>
-<p>GS • CSAT</p>
-</a>
-
-<a href="nda.html" class="card">
-<div class="emoji">✈️</div>
-<h3>NDA</h3>
-<p>Defence Prep</p>
-</a>
-
-<a href="army.html" class="card">
-<div class="emoji">🪖</div>
-<h3>Army Quiz</h3>
-<p>Practice</p>
-</a>
-
-<a href="navy.html" class="card"><h3>
-⚓ Navy
-</h3><p>
-SSR • MR • Navy Practice
-</p></a><a href="airforce.html" class="card"><h3>
-✈️ Air Force
-</h3><p>
-X Group • Y Group • Mock Tests
-</p></a>
-
-</div>
-
-</section>
-<!-- FINAL SECTION -->
-
-<section class="section">
-
-<div class="section-head">
-
-<h2>
-
-🔥 Latest Updates
-
-</h2>
-
-</div>
-
-
-<div class="cards">
-
-
-<a href="science.html" class="card">
-
-<div class="emoji">
-
-🧪
-
-</div>
-
-<h3>
-
-Science Updated
-
-</h3>
-
-<p>
-
-Fresh Questions Added
-
-</p>
-
-</a>
-
-
-
-<a href="space.html" class="card">
-
-<div class="emoji">
-
-🚀
-
-</div>
-
-<h3>
-
-Space Updated
-
-</h3>
-
-<p>
-
-Explore Universe
-
-</p>
-
-</a>
-
-
-
-<a href="sports.html" class="card">
-
-<div class="emoji">
-
-⚽
-
-</div>
-
-<h3>
-
-Sports Updated
-
-</h3>
-
-<p>
-
-New Quiz Added
-
-</p>
-
-</a>
-
-</div>
-
-</section>
-
-
-
-
-
-<section class="section">
-
-<div class="card"
-
-style="
-
-text-align:center;
-
-padding:60px;
-
-">
-
-<div
-
-style="
-
-font-size:70px;
-
-">
-
-👑
-
-</div>
-
-
-<h2>
-
-About Toolora
-
-</h2>
-
-<br>
-
-<p
-style="
-
-color:#94a3b8
-
-">
-
-Play quizzes, games and use useful tools daily.
-
-</p>
-
-</div>
-
-</section>
-
-
-
-
-
-
-<footer
-
-style="
-
-margin-top:70px;
-
-padding-bottom:150px;
-
-text-align:center;
-
-"
-
->
-
-<div
-
-style="
-
-font-size:52px;
-
-font-weight:900;
-
-"
-
->
-
-⚡ Toolora
-
-</div>
-
-<br>
-
-
-<div
-
-style="
-
-display:flex;
-
-gap:18px;
-
-justify-content:center;
-
-flex-wrap:wrap;
-
-"
-
->
-
-
-<a href="about.html">
-
-About
-
-</a>
-
-|
-
-<a href="privacy.html">
-
-Privacy
-
-</a>
-
-|
-
-<a href="faq.html">
-
-FAQ
-
-</a>
-
-|
-
-<a href="terms.html">
-
-Terms
-
-</a>
-
-|
-
-<a href="contact.html">
-
-Contact
-
-</a>
-
-|
-
-<a href="feedback.html">
-
-Feedback
-
-</a>
-
-|
-
-<a href="leaderboard.html">
-
-Leaderboard
-
-</a>
-
-
-</div>
-
-
-<br>
-
-
-<p
-
-style="
-
-color:#64748b
-
-"
-
->
-
-© 2026 Toolora
-
-</p>
-
-</footer>
-
-<!-- PREMIUM FEATURES -->
-
-<style>
-
-.loader{
-
-position:fixed;
-
-inset:0;
-
-background:#020617;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-z-index:999999;
-
-transition:.5s;
-
-}
-
-.spin{
-
-width:80px;
-
-height:80px;
-
-border:
-
-6px solid
-
-rgba(
-255,
-255,
-255,
-.1
-);
-
-border-top:
-
-6px solid
-
-#6d5cff;
-
-border-radius:50%;
-
-animation:
-
-rot 1s linear infinite;
-
-}
-
-@keyframes rot{
-
-100%{
-
-transform:
-
-rotate(
-360deg
-);
-
-}
-
-}
-
-
-
-.install{
-
-position:fixed;
-
-right:20px;
-
-bottom:110px;
-
-width:64px;
-
-height:64px;
-
-border-radius:50%;
-
-background:
-
-linear-gradient(
-135deg,
-#5b4cff,
-#3793ff
-);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:28px;
-
-z-index:999;
-
-}
-
-
-
-.toast{
-
-position:fixed;
-
-top:20px;
-
-left:50%;
-
-transform:
-
-translateX(-50%);
-
-background:#081325;
-
-padding:16px 26px;
-
-border-radius:999px;
-
-display:none;
-
-z-index:9999;
-
-}
-
-</style>
-
-
-
-<div class="loader">
-
-<div class="spin">
-
-</div>
+<div class="aurora aurora2"></div>
 
-</div>
-
-
-
-<div class="install">
-
-⬇️
-
-</div>
-
-
-
-<div class="toast">
-
-Welcome Back 👑
-
-</div>
-
-
-
-
-<script>
-
-window.addEventListener(
-
-"load",
-
-()=>{
-
-setTimeout(
-
-()=>{
-
-document
-
-.querySelector(
-
-".loader"
-
-)
-
-.style.opacity="0";
-
-setTimeout(
-
-()=>{
-
-document
-
-.querySelector(
-
-".loader"
-
-)
-
-.style.display="none";
-
-},
-
-400
-
-);
-
-},
-
-700
-
-);
-
-});
-
-
-
-setTimeout(
-
-()=>{
-
-document
-
-.querySelector(
-
-".toast"
-
-)
-
-.style.display="block";
-
-},
-
-1400
-
-);
-
-
-
-setTimeout(
-
-()=>{
-
-document
-
-.querySelector(
-
-".toast"
-
-)
-
-.style.display="none";
-
-},
-
-3000
-
-);
-
-
-
-document
-
-.querySelector(
-
-".install"
-
-)
-
-.onclick=()=>{
-
-alert(
-
-"Toolora Installed 🚀"
-
-);
-
-};
-
-</script>
-<!-- EXTRA PREMIUM SECTION -->
-
-<section class="section">
-
-<div class="section-head">
-
-<h2>
-
-🏆 Daily Streak
-
-</h2>
-
-</div>
-
-<div class="cards">
-
-
-<div class="card">
-
-<div class="emoji">
-
-🔥
-
-</div>
-
-<h3>
-
-Current Streak
-
-</h3>
-
-<p id="streak">
-
-0 Days
-
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="emoji">
-
-⭐
-
-</div>
-
-<h3>
-
-Total Visits
-
-</h3>
-
-<p id="visit">
-
-0
-
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="emoji">
-
-🏅
-
-</div>
-
-<h3>
-
-Level
-
-</h3>
-
-<p>
-
-Explorer
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-
-
-<section class="section">
-
-<div class="card"
-
-style="text-align:center;">
-
-<div class="emoji">
-
-🚀
-
-</div>
-
-<h2>
-
-Discover More Daily
-
-</h2>
-
-<br>
-
-<p
-style="color:#94a3b8;">
-
-New quizzes and games added regularly.
-
-</p>
-
-</div>
-
-</section>
-
-
-
-
-
-<script>
-
-/* VISITS */
-
-let visit=
-
-localStorage.getItem(
-
-"visit"
-
-)
-
-||0;
-
-visit++;
-
-localStorage.setItem(
-
-"visit",
-
-visit
-
-);
-
-document.getElementById(
-
-"visit"
-
-).innerHTML=
-
-visit;
-
-
-
-/* STREAK */
-
-let streak=
-
-localStorage.getItem(
-
-"streak"
-
-)
-
-||1;
-
-document.getElementById(
-
-"streak"
-
-).innerHTML=
-
-streak+" Days";
-
-</script>
-<!-- FINAL BOOST -->
-
-<section class="section">
-
-<div class="section-head">
-
-<h2>
-
-⚡ Quick Access
-
-</h2>
-
-</div>
-
-<div class="cards">
+<div class="aurora aurora3"></div>
 
-<a href="daily-challenge.html" class="card">
+<div class="grid-bg"></div>
 
-<div class="emoji">
-🏆
-</div>
-
-<h3>
-Daily Challenge
-</h3>
-
-<p>
-Play Every Day
-</p>
-
-</a>
-
-
-<a href="leaderboard.html" class="card">
-
-<div class="emoji">
-👑
-</div>
+<!-- ========================= -->
 
-<h3>
-Leaderboard
-</h3>
+<header>
 
-<p>
-Top Players
-</p>
+<nav class="navbar">
 
-</a>
+<a href="#"
+class="logo">
 
+<div class="logo-icon">
 
-<a href="feedback.html" class="card">
+<i class="fa-solid fa-bolt"></i>
 
-<div class="emoji">
-💬
 </div>
-
-<h3>
-Feedback
-</h3>
-
-<p>
-Improve Toolora
-</p>
 
-</a>
+<div>
 
+<h2>Toolora AI</h2>
 
-<a href="contact.html" class="card">
+<span>AI • Quiz • Utilities</span>
 
-<div class="emoji">
-📩
 </div>
-
-<h3>
-Contact
-</h3>
 
-<p>
-Reach Us
-</p>
-
 </a>
-
-</div>
-
-</section>
-
-
-
-
-
-<section class="section">
-
-<div class="card"
-
-style="
-
-text-align:center;
-
-padding:55px;
-
-">
-
-<h2>
-
-🌍 Built For Mobile & Desktop
-
-</h2>
-
-<br>
 
-<p
-style="color:#94a3b8;">
-
-Fast • Clean • Responsive • SEO Friendly
-
-</p>
-
-</div>
-
-</section>
-
-
-
-
-
-<script>
-
-/* SAVE LAST VISIT */
-
-localStorage.setItem(
-
-"last_visit",
-
-new Date()
-
-.toLocaleDateString()
-
-);
-
-
-
-console.log(
-
-"Toolora Loaded 🚀"
-
-);
-
-</script>
-<!-- SMART FEATURES -->
-
-<section class="section">
-
-<div class="section-head">
-
-<h2>
-
-
-</h2>
-
-</div>
-
-
-
-</div>
+<ul class="nav-links">
 
-</section>
+<li><a href="#">Home</a></li>
 
+<li><a href="#">AI Tools</a></li>
 
+<li><a href="#">Quiz Hub</a></li>
 
+<li><a href="#">Utilities</a></li>
 
-<div
+<li><a href="#">Pricing</a></li>
 
-style="
-position:fixed;
-top:22px;
-right:22px;
-z-index:99999;
-"
+<li><a href="#">Contact</a></li>
 
->
+</ul>
 
-<button
-id="themeBtn"
+<div class="nav-right">
 
-style="
-height:58px;
-width:58px;
-border:none;
-border-radius:50%;
-font-size:22px;
-background:#111827;
-color:white;
-">
+<button class="theme-btn">
 
-🌙
+<i class="fa-solid fa-moon"></i>
 
 </button>
 
+<a href="#"
+class="login-btn">
+
+Login
+
+</a>
+
+<a href="#"
+class="start-btn">
+
+Get Started
+
+</a>
+
 </div>
-
-
-
-
-
-<script>
-
-/* SEARCH SUGGEST */
-
-const input=
-
-document.querySelector(
-
-".search input"
-
-);
-
-if(input){
-
-input.addEventListener(
-
-"focus",
-
-()=>{
-
-input.placeholder=
-
-"Search Games • Quiz • Tools";
-
-}
-
-);
-
-}
-
-
-
-/* THEME */
-
-const btn=
-
-document.getElementById(
-
-"themeBtn"
-
-);
-
-
-
-btn.onclick=()=>{
-
-document.body.classList.toggle(
-
-"light"
-
-);
-
-
-
-if(
-
-document.body.classList.contains(
-
-"light"
-
-)
-
-){
-
-document.body.style.background=
-
-"#f4f6fb";
-
-document.body.style.color=
-
-"#000";
-
-btn.innerHTML="☀️";
-
-}
-
-else{
-
-document.body.style.background="";
-
-document.body.style.color="";
-
-btn.innerHTML="🌙";
-
-}
-
-};
-
-</script>
-<!-- PART 4 — BOTTOM NAV -->
-
-<nav class="bottom-nav">
-
-<a href="#top" class="active">
-🏠
-<span>Home</span>
-</a>
-
-<a href="#games">
-🎮
-<span>Games</span>
-</a>
-
-<a href="#searchArea">
-🔍
-<span>Search</span>
-</a>
-
-<a href="#tools">
-🛠
-<span>Tools</span>
-</a>
-
-<a href="#quiz">
-🧠
-<span>Quiz</span>
-</a>
 
 </nav>
 
+</header>
 
+<!-- ========================================= -->
+<!-- HERO SECTION -->
+<!-- ========================================= -->
 
-<style>
+<section class="hero">
 
-html{
+<div class="hero-left">
 
-scroll-behavior:smooth;
+<div class="hero-badge">
+🔥 #1 All-in-One AI Platform
+</div>
 
-}
+<h1>
 
-.bottom-nav{
+All AI Tools,
 
-position:fixed;
+<span class="gradient-text">
 
-left:50%;
+Quizzes & Utilities
 
-transform:translateX(-50%);
+</span>
 
-bottom:14px;
+In One Place
 
-width:min(95%,760px);
+</h1>
 
-height:78px;
+<p>
 
-background:
+100+ AI Tools, 5000+ Quizzes, 50+ Utilities.
 
-rgba(
-6,
-12,
-28,
-.92
-);
+Everything you need to learn, create and grow smarter with AI.
 
-backdrop-filter:
+</p>
 
-blur(22px);
+<div class="hero-buttons">
 
-display:grid;
+<a href="#tools" class="primary-btn">
 
-grid-template-columns:
+Explore AI Tools
 
-repeat(
-5,
-1fr
-);
+<i class="fa-solid fa-arrow-right"></i>
 
-border-radius:28px;
+</a>
 
-border:
+<a href="#quiz" class="secondary-btn">
 
-1px solid
+Browse Quiz Hub
 
-rgba(
-255,
-255,
-255,
-.08
-);
+</a>
 
-z-index:99999;
+</div>
 
-}
+<div class="hero-users">
 
-.bottom-nav a{
+<div class="user-icons">
 
-display:flex;
+<img src="assets/user1.jpg">
 
-flex-direction:column;
+<img src="assets/user2.jpg">
 
-justify-content:center;
+<img src="assets/user3.jpg">
 
-align-items:center;
+<img src="assets/user4.jpg">
 
-text-decoration:none;
+</div>
 
-color:#93a3bf;
+<div>
 
-font-size:23px;
+<h4>Trusted by 50K+ Users</h4>
 
-gap:4px;
+<span>⭐⭐⭐⭐⭐ 4.9/5 Rating</span>
 
-transition:.2s;
+</div>
 
-}
+</div>
 
-.bottom-nav span{
+</div>
 
-font-size:12px;
+<div class="hero-right">
 
-}
+<div class="robot-box">
 
-.bottom-nav a:hover{
+<img src="assets/robot.png"
 
-color:white;
+alt="AI Robot">
 
-}
+</div>
 
-.bottom-nav a.active{
+</div>
 
-color:#7a5cff;
+</section>
 
-}
+<!-- ========================================= -->
+<!-- LIVE STATS -->
+<!-- ========================================= -->
 
-@media(max-width:700px){
+<section class="stats">
 
-.bottom-nav{
+<div class="stat-card">
 
-height:70px;
+<i class="fa-solid fa-cube"></i>
 
-bottom:10px;
+<h2>100+</h2>
 
-}
+<p>AI Tools</p>
 
-.bottom-nav a{
+</div>
 
-font-size:20px;
+<div class="stat-card">
 
-}
+<i class="fa-solid fa-graduation-cap"></i>
 
-}
+<h2>5000+</h2>
 
-</style>
+<p>Quizzes</p>
 
+</div>
 
+<div class="stat-card">
 
-<script>
+<i class="fa-solid fa-toolbox"></i>
 
-const links=
+<h2>50+</h2>
 
-document.querySelectorAll(
+<p>Utilities</p>
 
-".bottom-nav a"
+</div>
 
-);
+<div class="stat-card">
 
-links.forEach(
+<i class="fa-solid fa-users"></i>
 
-i=>{
+<h2>50K+</h2>
 
-i.onclick=()=>{
+<p>Users</p>
 
-links.forEach(
+</div>
 
-x=>
+<div class="stat-card">
 
-x.classList.remove(
+<i class="fa-solid fa-shield-halved"></i>
 
-"active"
+<h2>99.9%</h2>
 
-)
+<p>Uptime</p>
 
-);
+</div>
 
-i.classList.add(
+</section>
 
-"active"
+<!-- ========================================= -->
+<!-- PREMIUM BENTO GRID -->
+<!-- ========================================= -->
 
-);
+<section class="bento-section" id="tools">
 
-};
+<div class="section-heading">
 
-}
+<span>🚀 Explore Everything</span>
 
-);
+<h2>One Platform. Unlimited Possibilities.</h2>
 
+<p>
+Powerful AI Tools, Competitive Quiz Hub and Smart Utility Apps
+designed with a premium experience.
+</p>
 
+</div>
 
-document
+<div class="bento-grid">
 
-.querySelector(
+<!-- AI TOOLS -->
 
-'a[href="#searchArea"]'
+<div class="bento-card large">
 
-)
+<div class="card-top">
 
-.onclick=(e)=>{
+<span class="card-badge">100+ AI Tools</span>
 
-e.preventDefault();
+</div>
 
-window.scrollTo({
+<h2>AI Tools</h2>
 
-top:250,
+<p>
 
-behavior:"smooth"
+Generate text, images, videos, code,
+presentations and much more using
+the latest AI technology.
 
-});
+</p>
 
-setTimeout(
+<a href="ai-tools.html"
+class="card-btn">
 
-()=>{
+Explore AI Tools
 
-const s=
+<i class="fa-solid fa-arrow-right"></i>
 
-document.querySelector(
+</a>
 
-".search input"
+<div class="card-icon">
 
-);
+<i class="fa-solid fa-brain"></i>
 
-if(s)
+</div>
 
-s.focus();
+</div>
 
-},
+<!-- QUIZ HUB -->
 
-250
+<div class="bento-card">
 
-);
+<div class="card-top">
 
-};
+<span class="card-badge">5000+ Questions</span>
 
-</script>
-<!-- PART 5 — WORKING LINKS + SECTION TARGETS -->
+</div>
 
-<script>
+<h2>Quiz Hub</h2>
 
-/* SECTION IDS AUTO MAP */
+<p>
 
-document.addEventListener("DOMContentLoaded",()=>{
+Army, NDA, Navy, Air Force,
+SSC GD, Railway, UPSC,
+CUET and many more.
 
-const titles=[...document.querySelectorAll("h2")];
+</p>
 
-titles.forEach(t=>{
+<a href="quiz.html"
+class="card-btn">
 
-let txt=t.innerText.toLowerCase();
+Start Quiz
 
-if(txt.includes("popular")){
+</a>
 
-t.parentElement.id="games";
+<div class="card-icon">
 
-}
+<i class="fa-solid fa-trophy"></i>
 
-if(txt.includes("explore")){
+</div>
 
-t.parentElement.id="tools";
+</div>
 
-}
+<!-- UTILITIES -->
 
-if(txt.includes("quiz")){
+<div class="bento-card">
 
-t.parentElement.id="quiz";
+<div class="card-top">
 
-}
+<span class="card-badge">50+ Utilities</span>
 
-});
+</div>
 
-/* HERO CARDS */
+<h2>Utility Tools</h2>
 
-document.querySelectorAll(".hero-box").forEach(box=>{
+<p>
 
-box.style.cursor="pointer";
+PDF Tools,
+Image Converter,
+QR Generator,
+Password Generator
+and more.
 
-box.onclick=()=>{
+</p>
 
-let txt=
+<a href="utility.html"
+class="card-btn">
 
-box.innerText.toLowerCase();
+Open Tools
 
-if(txt.includes("game")){
+</a>
 
-location.hash="games";
+<div class="card-icon">
 
-}
+<i class="fa-solid fa-toolbox"></i>
 
-else if(txt.includes("tool")){
+</div>
 
-location.hash="tools";
+</div>
 
-}
+<!-- AI CHAT -->
 
-else if(txt.includes("quiz")){
+<div class="bento-card">
 
-location.hash="quiz";
+<div class="card-top">
 
-}
+<span class="card-badge">New</span>
 
-else{
+</div>
 
-window.scrollTo({
+<h2>AI Chat</h2>
 
-top:
+<p>
 
-document.body.scrollHeight,
+Ask anything.
+Get instant answers.
+Write, code and learn
+with AI.
 
-behavior:"smooth"
+</p>
 
-});
+<a href="#"
+class="card-btn">
 
-}
+Chat Now
 
-};
+</a>
 
-});
+<div class="card-icon">
 
-/* VIEW ALL */
+<i class="fa-solid fa-robot"></i>
 
-document.querySelectorAll(".view-btn").forEach(btn=>{
+</div>
 
-btn.onclick=()=>{
+</div>
 
-location.hash="games";
+</div>
 
-};
+</section>
 
-});
+<!-- ========================================= -->
+<!-- EXPLORE CATEGORIES -->
+<!-- ========================================= -->
 
-/* SEARCH */
+<section class="categories-section">
 
-const search=
+<div class="section-heading">
 
-document.querySelector(
+<span>✨ Explore by Categories</span>
 
-".search input"
+<h2>Find The Right Tool Instantly</h2>
 
-);
+<p>
 
-if(search){
+Choose from 100+ premium AI categories.
 
-search.addEventListener(
+</p>
 
-"keyup",
+</div>
 
-()=>{
+<div class="categories-grid">
 
-let val=
+<a href="#" class="category-card">
 
-search.value.toLowerCase();
+<i class="fa-solid fa-pen-nib"></i>
 
-document
+<h3>AI Writing</h3>
 
-.querySelectorAll(
+<p>Blogs, Emails, Articles</p>
 
-".card"
+</a>
 
-)
+<a href="#" class="category-card">
 
-.forEach(card=>{
+<i class="fa-solid fa-image"></i>
 
-card.style.display=
+<h3>Image Tools</h3>
 
-card.innerText
+<p>Generate & Edit Images</p>
 
-.toLowerCase()
+</a>
 
-.includes(val)
+<a href="#" class="category-card">
 
-?
+<i class="fa-solid fa-video"></i>
 
-"block"
+<h3>Video Tools</h3>
 
-:
+<p>Create AI Videos</p>
 
-"none";
+</a>
 
-});
+<a href="#" class="category-card">
 
-});
+<i class="fa-solid fa-code"></i>
 
-}
+<h3>Code Tools</h3>
 
-/* BOTTOM NAV */
+<p>Generate & Debug Code</p>
 
-document
+</a>
 
-.querySelectorAll(
+<a href="#" class="category-card">
 
-".bottom-nav a"
+<i class="fa-solid fa-rocket"></i>
 
-)
+<h3>Productivity</h3>
 
-.forEach(a=>{
+<p>Boost Daily Workflow</p>
 
-a.addEventListener(
+</a>
 
-"click",
+<a href="#" class="category-card">
 
-()=>{
+<i class="fa-solid fa-bullhorn"></i>
 
-document
+<h3>Marketing</h3>
 
-.querySelectorAll(
+<p>Ads & Social Content</p>
 
-".bottom-nav a"
+</a>
 
-)
+<a href="#" class="category-card">
 
-.forEach(
+<i class="fa-solid fa-graduation-cap"></i>
 
-x=>
+<h3>Education</h3>
 
-x.classList.remove(
+<p>Learning & Study AI</p>
 
-"active"
+</a>
 
-)
+<a href="#" class="category-card">
 
-);
+<i class="fa-solid fa-briefcase"></i>
 
-a.classList.add(
+<h3>Business</h3>
 
-"active"
+<p>Business Automation</p>
 
-);
+</a>
 
-});
+<a href="#" class="category-card">
 
-});
+<i class="fa-solid fa-palette"></i>
 
-});
+<h3>Design</h3>
 
-</script>
+<p>Logos, UI & Graphics</p>
 
+</a>
 
+<a href="#" class="category-card">
 
-<script>
+<i class="fa-solid fa-globe"></i>
 
-/* FINAL LOAD */
+<h3>Translation</h3>
 
-window.addEventListener(
+<p>100+ Languages</p>
 
-"load",
+</a>
 
-()=>{
+<a href="#" class="category-card">
 
-console.log(
+<i class="fa-solid fa-music"></i>
 
-"Toolora Ready 🚀"
+<h3>Music AI</h3>
 
-);
+<p>Create Songs & Audio</p>
 
-});
+</a>
 
-</script>
+<a href="#" class="category-card">
 
+<i class="fa-solid fa-chart-line"></i>
 
+<h3>Analytics</h3>
+
+<p>Reports & Insights</p>
+
+</a>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- TRENDING AI TOOLS -->
+<!-- ========================================= -->
+
+<section class="trending-tools">
+
+<div class="section-heading">
+
+<span>🔥 Trending AI Tools</span>
+
+<h2>Most Popular AI Tools</h2>
+
+<p>
+The world's most-used AI tools in one place.
+</p>
+
+</div>
+
+<div class="tool-grid">
+
+<!-- ChatGPT -->
+
+<div class="tool-card">
+
+<div class="tool-badge">Popular</div>
+
+<i class="fa-solid fa-comment-dots tool-icon"></i>
+
+<h3>ChatGPT</h3>
+
+<p>Smart AI chatbot for writing, coding and learning.</p>
+
+<div class="tool-footer">
+
+<span>⭐ 4.9</span>
+
+<span>10M+ Users</span>
+
+</div>
+
+</div>
+
+<!-- Gemini -->
+
+<div class="tool-card">
+
+<div class="tool-badge">Google</div>
+
+<i class="fa-solid fa-gem tool-icon"></i>
+
+<h3>Gemini</h3>
+
+<p>Google's powerful multimodal AI assistant.</p>
+
+<div class="tool-footer">
+
+<span>⭐ 4.8</span>
+
+<span>8M+ Users</span>
+
+</div>
+
+</div>
+
+<!-- Claude -->
+
+<div class="tool-card">
+
+<div class="tool-badge">Safe AI</div>
+
+<i class="fa-solid fa-brain tool-icon"></i>
+
+<h3>Claude</h3>
+
+<p>Long-form writing and document analysis.</p>
+
+<div class="tool-footer">
+
+<span>⭐ 4.8</span>
+
+<span>6M+ Users</span>
+
+</div>
+
+</div>
+
+<!-- Perplexity -->
+
+<div class="tool-card">
+
+<div class="tool-badge">Search</div>
+
+<i class="fa-solid fa-magnifying-glass tool-icon"></i>
+
+<h3>Perplexity</h3>
+
+<p>AI-powered search with cited answers.</p>
+
+<div class="tool-footer">
+
+<span>⭐ 4.8</span>
+
+<span>5M+ Users</span>
+
+</div>
+
+</div>
+
+<!-- Midjourney -->
+
+<div class="tool-card">
+
+<div class="tool-badge">Image AI</div>
+
+<i class="fa-solid fa-image tool-icon"></i>
+
+<h3>Midjourney</h3>
+
+<p>Create stunning AI-generated artwork.</p>
+
+<div class="tool-footer">
+
+<span>⭐ 4.9</span>
+
+<span>7M+ Users</span>
+
+</div>
+
+</div>
+
+<!-- Cursor -->
+
+<div class="tool-card">
+
+<div class="tool-badge">Coding</div>
+
+<i class="fa-solid fa-code tool-icon"></i>
+
+<h3>Cursor AI</h3>
+
+<p>Modern AI-powered code editor.</p>
+
+<div class="tool-footer">
+
+<span>⭐ 4.9</span>
+
+<span>3M+ Users</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- PREMIUM QUIZ HUB -->
+<!-- ========================================= -->
+
+<section class="quiz-section" id="quiz">
+
+<div class="section-heading">
+
+<span>🎯 Quiz Hub</span>
+
+<h2>Practice. Learn. Crack Every Exam.</h2>
+
+<p>
+
+5000+ Questions with Mock Tests, Leaderboards,
+Daily Challenges and Detailed Solutions.
+
+</p>
+
+</div>
+
+<div class="quiz-grid">
+
+<div class="quiz-card featured">
+
+<div class="quiz-top">
+
+<span class="live-badge">🔥 Most Popular</span>
+
+</div>
+
+<h3>🪖 Indian Army</h3>
+
+<p>
+
+GD • Clerk • Tradesman • Technical
+
+</p>
+
+<div class="quiz-bottom">
+
+<span>1200+ Questions</span>
+
+<a href="army.html">
+
+Start →
+
+</a>
+
+</div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>🎖 NDA</h3>
+
+<p>Maths • GAT • English</p>
+
+<div class="quiz-bottom">
+
+<span>800+ Questions</span>
+
+<a href="nda.html">
+
+Open →
+
+</a>
+
+</div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>⚓ Navy</h3>
+
+<p>SSR • MR • AA</p>
+
+<div class="quiz-bottom">
+
+<span>700+ Questions</span>
+
+<a href="navy.html">
+
+Open →
+
+</a>
+
+</div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>✈ Air Force</h3>
+
+<p>Group X • Group Y</p>
+
+<div class="quiz-bottom">
+
+<span>750+ Questions</span>
+
+<a href="airforce.html">
+
+Open →
+
+</a>
+
+</div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>👮 SSC GD</h3>
+
+<p>Mock Test & Practice</p>
+
+<div class="quiz-bottom">
+
+<span>1000+ Questions</span>
+
+<a href="sscgd.html">
+
+Open →
+
+</a>
+
+</div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>📊 SSC CGL</h3>
+
+<p>Tier 1 • Tier 2</p>
+
+<div class="quiz-bottom">
+
+<span>1300+ Questions</span>
+
+<a href="ssccgl.html">
+
+Open →
+
+</a>
+
+</div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>🚔 Police</h3>
+
+<p>Constable • SI</p>
+
+<div class="quiz-bottom">
+
+<span>900+ Questions</span>
+
+<a href="police.html">
+
+Open →
+
+</a>
+
+</div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>🚆 Railway</h3>
+
+<p>RRB • NTPC • Group D</p>
+
+<div class="quiz-bottom">
+
+<span>1200+ Questions</span>
+
+<a href="railway.html">
+
+Open →
+
+</a>
+
+</div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>📚 UPSC</h3>
+
+<p>Prelims • GS • CSAT</p>
+
+<div class="quiz-bottom">
+
+<span>1500+ Questions</span>
+
+<a href="upsc.html">
+
+Open →
+
+</a>
+
+</div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>🎓 CUET</h3>
+
+<p>Science • Commerce • Arts</p>
+
+<div class="quiz-bottom">
+
+<span>1000+ Questions</span>
+
+<a href="cuet.html">
+
+Open →
+
+</a>
+
+</div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>🌍 World GK</h3>
+
+<p>Countries • Capitals • Flags</p>
+
+<div class="quiz-bottom">
+
+<span>600+ Questions</span>
+
+<a href="worldgk.html">
+
+Open →
+
+</a>
+
+</div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>🧠 IQ & Reasoning</h3>
+
+<p>Puzzles • Logical Reasoning</p>
+
+<div class="quiz-bottom">
+
+<span>900+ Questions</span>
+
+<a href="iq.html">
+
+Open →
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- PREMIUM UTILITY TOOLS -->
+<!-- ========================================= -->
+
+<section class="utility-section" id="utilities">
+
+<div class="section-heading">
+
+<span>🛠 Smart Utility Tools</span>
+
+<h2>Everything You Need In One Place</h2>
+
+<p>
+
+Fast, secure and powerful online tools for daily use.
+
+</p>
+
+</div>
+
+<div class="utility-grid">
+
+<div class="utility-card">
+<i class="fa-solid fa-file-pdf"></i>
+<h3>PDF Tools</h3>
+<p>Merge, Split, Compress & Convert PDFs.</p>
+<a href="pdf-tools.html">Open →</a>
+</div>
+
+<div class="utility-card">
+<i class="fa-solid fa-image"></i>
+<h3>Image Tools</h3>
+<p>Resize, Compress & Convert Images.</p>
+<a href="image-tools.html">Open →</a>
+</div>
+
+<div class="utility-card">
+<i class="fa-solid fa-qrcode"></i>
+<h3>QR Generator</h3>
+<p>Create beautiful QR Codes instantly.</p>
+<a href="qr.html">Open →</a>
+</div>
+
+<div class="utility-card">
+<i class="fa-solid fa-key"></i>
+<h3>Password Generator</h3>
+<p>Create strong & secure passwords.</p>
+<a href="password.html">Open →</a>
+</div>
+
+<div class="utility-card">
+<i class="fa-solid fa-palette"></i>
+<h3>Color Palette</h3>
+<p>Generate beautiful color combinations.</p>
+<a href="palette.html">Open →</a>
+</div>
+
+<div class="utility-card">
+<i class="fa-solid fa-calculator"></i>
+<h3>Calculator</h3>
+<p>Scientific & Normal Calculator.</p>
+<a href="calculator.html">Open →</a>
+</div>
+
+<div class="utility-card">
+<i class="fa-solid fa-ruler-combined"></i>
+<h3>Unit Converter</h3>
+<p>Convert Length, Weight & Temperature.</p>
+<a href="converter.html">Open →</a>
+</div>
+
+<div class="utility-card">
+<i class="fa-solid fa-money-bill-wave"></i>
+<h3>Currency Converter</h3>
+<p>Convert currencies worldwide.</p>
+<a href="currency.html">Open →</a>
+</div>
+
+<div class="utility-card">
+<i class="fa-solid fa-calendar-days"></i>
+<h3>Age Calculator</h3>
+<p>Calculate exact age instantly.</p>
+<a href="age.html">Open →</a>
+</div>
+
+<div class="utility-card">
+<i class="fa-solid fa-font"></i>
+<h3>Text Tools</h3>
+<p>Case Converter, Word Counter & more.</p>
+<a href="text-tools.html">Open →</a>
+</div>
+
+<div class="utility-card">
+<i class="fa-solid fa-file-zipper"></i>
+<h3>ZIP Tools</h3>
+<p>Extract & Compress ZIP files.</p>
+<a href="zip.html">Open →</a>
+</div>
+
+<div class="utility-card featured">
+
+<span class="coming-badge">NEW</span>
+
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+
+<h3>100+ More Utilities</h3>
+
+<p>
+
+More premium tools are being added regularly.
+
+</p>
+
+<a href="utility.html">
+
+Explore All →
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- TESTIMONIALS -->
+<!-- ========================================= -->
+
+<section class="testimonial-section">
+
+<div class="section-heading">
+
+<span>⭐ Loved By Thousands</span>
+
+<h2>What Users Say About Toolora AI</h2>
+
+<p>
+
+Trusted by students, creators, developers and professionals.
+
+</p>
+
+</div>
+
+<div class="testimonial-grid">
+
+<div class="testimonial-card">
+
+<div class="quote">
+<i class="fa-solid fa-quote-left"></i>
+</div>
+
+<p>
+
+"The best AI platform I've used. Everything is in one place."
+
+</p>
+
+<div class="user">
+
+<h4>Rahul Sharma</h4>
+
+<span>Developer</span>
+
+</div>
+
+</div>
+
+<div class="testimonial-card">
+
+<div class="quote">
+<i class="fa-solid fa-quote-left"></i>
+</div>
+
+<p>
+
+"The Quiz Hub helped me prepare for competitive exams."
+
+</p>
+
+<div class="user">
+
+<h4>Priya Singh</h4>
+
+<span>Student</span>
+
+</div>
+
+</div>
+
+<div class="testimonial-card">
+
+<div class="quote">
+<i class="fa-solid fa-quote-left"></i>
+</div>
+
+<p>
+
+"Beautiful UI and incredibly fast tools."
+
+</p>
+
+<div class="user">
+
+<h4>Aman Verma</h4>
+
+<span>Designer</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- NEWSLETTER -->
+<!-- ========================================= -->
+
+<section class="newsletter">
+
+<div class="newsletter-box">
+
+<h2>
+
+Stay Updated With Toolora AI
+
+</h2>
+
+<p>
+
+Get new AI tools, quizzes and updates every week.
+
+</p>
+
+<form>
+
+<input
+type="email"
+placeholder="Enter your email">
+
+<button>
+
+Subscribe
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- FOOTER -->
+<!-- ========================================= -->
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+
+<h2>Toolora AI</h2>
+
+<p>
+
+The Ultimate Platform for AI Tools,
+Quiz Hub and Smart Utilities.
+
+</p>
+
+</div>
+
+<div>
+
+<h3>Quick Links</h3>
+
+<a href="#">Home</a>
+
+<a href="#">AI Tools</a>
+
+<a href="#">Quiz Hub</a>
+
+<a href="#">Utilities</a>
+
+</div>
+
+<div>
+
+<h3>Support</h3>
+
+<a href="#">Privacy Policy</a>
+
+<a href="#">Terms</a>
+
+<a href="#">Contact</a>
+
+<a href="#">Help Center</a>
+
+</div>
+
+<div>
+
+<h3>Follow Us</h3>
+
+<div class="social-links">
+
+<a href="#"><i class="fab fa-instagram"></i></a>
+
+<a href="#"><i class="fab fa-youtube"></i></a>
+
+<a href="#"><i class="fab fa-discord"></i></a>
+
+<a href="#"><i class="fab fa-github"></i></a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<p>
+
+© 2026 Toolora AI. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<button id="backToTop">
+
+<i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<script src="main.js"></script>
 
 </body>
 
