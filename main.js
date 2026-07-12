@@ -954,3 +954,116 @@ a.download="toolora-ai-writing.txt";
 a.click();
 
 };
+
+// ==========================================
+// Live Search
+// ==========================================
+
+const searchBox = document.createElement("input");
+
+searchBox.type = "text";
+
+searchBox.placeholder = "🔍 Search AI Writing Tool...";
+
+searchBox.className = "tool-search";
+
+const toolsSection = document.querySelector(".tools-section");
+
+toolsSection.insertBefore(searchBox, document.querySelector(".tools-grid"));
+
+searchBox.addEventListener("keyup", function () {
+
+const value = this.value.toLowerCase();
+
+document.querySelectorAll(".tool-card").forEach(card => {
+
+const text = card.innerText.toLowerCase();
+
+card.style.display = text.includes(value) ? "block" : "none";
+
+});
+
+});
+
+// ==========================================
+// Generate Animation
+// ==========================================
+
+generateBtn.addEventListener("click", () => {
+
+generateBtn.innerHTML =
+'<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
+
+setTimeout(() => {
+
+generateBtn.innerHTML =
+'<i class="fa-solid fa-wand-magic-sparkles"></i> Generate Content';
+
+},1500);
+
+});
+
+// ==========================================
+// History
+// ==========================================
+
+let history = [];
+
+generateBtn.addEventListener("click",()=>{
+
+const prompt=document.getElementById("prompt").value;
+
+if(prompt!=""){
+
+history.unshift(prompt);
+
+if(history.length>8){
+
+history.pop();
+
+}
+
+localStorage.setItem("tooloraHistory",
+JSON.stringify(history));
+
+}
+
+});
+
+// ==========================================
+// Load History
+// ==========================================
+
+window.onload=()=>{
+
+const data=localStorage.getItem("tooloraHistory");
+
+if(data){
+
+history=JSON.parse(data);
+
+}
+
+};
+
+// ==========================================
+// Smooth Scroll
+// ==========================================
+
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+
+link.addEventListener("click",function(e){
+
+e.preventDefault();
+
+document.querySelector(this.getAttribute("href"))
+
+.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+});
+
+});
