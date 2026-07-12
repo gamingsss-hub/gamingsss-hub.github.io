@@ -2729,3 +2729,65 @@ border-color:#ff2965;
 box-shadow:0 0 25px rgba(255,0,80,.35);
 
 }
+
+/* Template */
+
+.template-box{
+
+margin-bottom:25px;
+
+}
+
+.template-grid{
+
+display:flex;
+
+gap:12px;
+
+flex-wrap:wrap;
+
+margin-top:15px;
+
+}
+
+.template-btn{
+
+padding:12px 18px;
+
+border:none;
+
+border-radius:30px;
+
+cursor:pointer;
+
+background:linear-gradient(135deg,#ff004f,#8b00ff);
+
+color:#fff;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.template-btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+/* Counter */
+
+.counter-box{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:12px;
+
+font-size:14px;
+
+color:#bdbdbd;
+
+}
