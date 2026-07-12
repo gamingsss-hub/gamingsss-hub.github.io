@@ -5,12 +5,22 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<title>AI Writing Tools | Toolora AI</title>
+<meta name="theme-color"
+content="#050816">
+
+<title>AI Writing | Toolora AI</title>
 
 <meta name="description"
-content="Create blogs, articles, emails, essays and more with premium AI writing tools.">
+content="Premium AI Writing Platform by Toolora AI">
+
+<meta name="keywords"
+content="AI Writing, AI Blog Writer, AI Essay Writer, AI Email Writer, Toolora AI">
+
+<link rel="icon"
+href="assets/logo.png">
 
 <link rel="preconnect"
 href="https://fonts.googleapis.com">
@@ -32,11 +42,14 @@ href="style.css">
 
 <body>
 
-<!-- Aurora Background -->
+<!-- Aurora -->
 
 <div class="aurora aurora1"></div>
+
 <div class="aurora aurora2"></div>
+
 <div class="aurora aurora3"></div>
+
 <div class="grid-bg"></div>
 
 <!-- Header -->
@@ -48,7 +61,9 @@ href="style.css">
 <a href="index.html" class="logo">
 
 <div class="logo-icon">
+
 <i class="fa-solid fa-feather"></i>
+
 </div>
 
 <div>
@@ -76,11 +91,15 @@ href="style.css">
 <div class="nav-right">
 
 <a href="index.html" class="login-btn">
+
 Home
+
 </a>
 
-<a href="#writing-tools" class="start-btn">
-Explore
+<a href="#workspace" class="start-btn">
+
+Start Writing
+
 </a>
 
 </div>
@@ -103,11 +122,11 @@ Explore
 
 <h1>
 
-Write Faster With
+Create Amazing Content
 
 <span class="gradient-text">
 
-AI Writing Tools
+With AI Writing
 
 </span>
 
@@ -115,24 +134,23 @@ AI Writing Tools
 
 <p>
 
-Generate blogs, articles, emails, essays, resumes,
-captions, scripts and professional content in seconds.
+Generate blogs, articles, emails, essays,
+SEO content, captions, scripts and much more
+using powerful AI tools.
 
 </p>
 
 <div class="hero-buttons">
 
-<a href="#writing-tools" class="primary-btn">
+<a href="#tools" class="primary-btn">
 
 Explore Tools
 
-<i class="fa-solid fa-arrow-right"></i>
-
 </a>
 
-<a href="index.html" class="secondary-btn">
+<a href="#workspace" class="secondary-btn">
 
-Back Home
+Start Writing
 
 </a>
 
@@ -153,46 +171,66 @@ style="font-size:170px;"></i>
 
 </section>
 
-<!-- Writing Tools Section -->
+<!-- Writing Tools -->
 
-<section class="tools-section" id="writing-tools">
+<section
+class="tools-section"
+id="tools">
 
 <div class="section-heading">
 
-<span>✍️ AI Writing</span>
+<span>
 
-<h2>Choose Your Writing Tool</h2>
+🚀 AI Writing Tools
+
+</span>
+
+<h2>
+
+Choose Your AI Tool
+
+</h2>
 
 <p>
 
-Professional AI writing tools for creators,
-students and businesses.
+Select any tool below to start writing instantly.
 
 </p>
 
 </div>
 
+<!-- Search Bar -->
+
+<input
+type="text"
+class="tool-search"
+placeholder="🔍 Search AI Writing Tool...">
+
+<!-- Tool Grid -->
+
 <div class="tools-grid">
 
-  <!-- Blog Writer -->
+  <!-- AI Blog Writer -->
 
-<div class="tool-card featured">
-
-<span class="tool-badge">Popular</span>
+<div class="tool-card active-tool" data-tool="blog">
 
 <i class="fa-solid fa-blog tool-icon"></i>
 
 <h3>AI Blog Writer</h3>
 
-<p>Create SEO-friendly blog posts in seconds.</p>
+<p>Create SEO-friendly blogs in seconds.</p>
 
-<a href="blog-writer.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- Article Writer -->
+<!-- AI Article Writer -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="article">
 
 <i class="fa-solid fa-newspaper tool-icon"></i>
 
@@ -200,69 +238,71 @@ students and businesses.
 
 <p>Generate professional articles instantly.</p>
 
-<a href="article-writer.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- Essay -->
+<!-- AI Essay Writer -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="essay">
 
 <i class="fa-solid fa-book-open tool-icon"></i>
 
 <h3>AI Essay Writer</h3>
 
-<p>Write essays with proper structure.</p>
+<p>Create high-quality essays easily.</p>
 
-<a href="essay-writer.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
 
-</div>
+Use Tool →
 
-<!-- Story -->
-
-<div class="tool-card">
-
-<i class="fa-solid fa-feather tool-icon"></i>
-
-<h3>AI Story Generator</h3>
-
-<p>Create stories with AI.</p>
-
-<a href="story-generator.html" class="card-btn">Open →</a>
+</button>
 
 </div>
 
-<!-- Email -->
+<!-- AI Email Writer -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="email">
 
 <i class="fa-solid fa-envelope tool-icon"></i>
 
 <h3>AI Email Writer</h3>
 
-<p>Professional email drafts instantly.</p>
+<p>Write formal and business emails.</p>
 
-<a href="email-writer.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- Resume -->
+<!-- AI Resume Builder -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="resume">
 
 <i class="fa-solid fa-file-lines tool-icon"></i>
 
 <h3>AI Resume Builder</h3>
 
-<p>Create ATS-friendly resumes.</p>
+<p>Create ATS-friendly resumes instantly.</p>
 
-<a href="resume-builder.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- Grammar -->
+<!-- AI Grammar Checker -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="grammar">
 
 <i class="fa-solid fa-spell-check tool-icon"></i>
 
@@ -270,55 +310,71 @@ students and businesses.
 
 <p>Fix grammar and spelling mistakes.</p>
 
-<a href="grammar-checker.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- Paraphraser -->
+<!-- AI Paraphraser -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="paraphrase">
 
-<i class="fa-solid fa-rotate tool-icon"></i>
+<i class="fa-solid fa-repeat tool-icon"></i>
 
 <h3>AI Paraphraser</h3>
 
-<p>Rewrite text naturally.</p>
+<p>Rewrite sentences naturally.</p>
 
-<a href="paraphraser.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- Summarizer -->
+<!-- AI Summarizer -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="summary">
 
 <i class="fa-solid fa-file-word tool-icon"></i>
 
 <h3>AI Summarizer</h3>
 
-<p>Summarize long content quickly.</p>
+<p>Summarize long content instantly.</p>
 
-<a href="summarizer.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- Translator -->
+<!-- AI Translator -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="translator">
 
 <i class="fa-solid fa-language tool-icon"></i>
 
 <h3>AI Translator</h3>
 
-<p>Translate into 100+ languages.</p>
+<p>Translate content into multiple languages.</p>
 
-<a href="translator.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- SEO -->
+<!-- AI SEO Writer -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="seo">
 
 <i class="fa-solid fa-chart-line tool-icon"></i>
 
@@ -326,266 +382,912 @@ students and businesses.
 
 <p>Generate SEO-optimized content.</p>
 
-<a href="seo-writer.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- Caption -->
+<!-- AI Caption Generator -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="caption">
 
 <i class="fa-solid fa-camera tool-icon"></i>
 
 <h3>AI Caption Generator</h3>
 
-<p>Create Instagram captions instantly.</p>
+<p>Create captions for Instagram & Facebook.</p>
 
-<a href="caption-generator.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-  <!-- YouTube Script -->
+<!-- AI YouTube Script -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="youtube">
 
 <i class="fa-brands fa-youtube tool-icon"></i>
 
 <h3>AI YouTube Script</h3>
 
-<p>Create engaging YouTube video scripts.</p>
+<p>Generate engaging YouTube scripts.</p>
 
-<a href="youtube-script.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- LinkedIn -->
+  <!-- AI LinkedIn Writer -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="linkedin">
 
 <i class="fa-brands fa-linkedin tool-icon"></i>
 
 <h3>AI LinkedIn Writer</h3>
 
-<p>Professional LinkedIn posts in seconds.</p>
+<p>Create professional LinkedIn posts.</p>
 
-<a href="linkedin-writer.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
 
-</div>
+Use Tool →
 
-<!-- Facebook -->
-
-<div class="tool-card">
-
-<i class="fa-brands fa-facebook tool-icon"></i>
-
-<h3>AI Facebook Post</h3>
-
-<p>Create viral Facebook posts.</p>
-
-<a href="facebook-post.html" class="card-btn">Open →</a>
+</button>
 
 </div>
 
-<!-- Twitter -->
+<!-- AI Tweet Generator -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="tweet">
 
 <i class="fa-brands fa-x-twitter tool-icon"></i>
 
 <h3>AI Tweet Generator</h3>
 
-<p>Generate engaging tweets instantly.</p>
+<p>Create engaging X (Twitter) posts.</p>
 
-<a href="tweet-generator.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
 
-</div>
+Use Tool →
 
-<!-- Hashtag -->
-
-<div class="tool-card">
-
-<i class="fa-solid fa-hashtag tool-icon"></i>
-
-<h3>AI Hashtag Generator</h3>
-
-<p>Trending hashtags for social media.</p>
-
-<a href="hashtag-generator.html" class="card-btn">Open →</a>
+</button>
 
 </div>
 
-<!-- Slogan -->
+<!-- AI Story Writer -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="story">
 
-<i class="fa-solid fa-lightbulb tool-icon"></i>
+<i class="fa-solid fa-feather"></i>
 
-<h3>AI Slogan Generator</h3>
+<h3>AI Story Writer</h3>
 
-<p>Create catchy brand slogans.</p>
+<p>Generate creative stories instantly.</p>
 
-<a href="slogan-generator.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
 
-</div>
+Use Tool →
 
-<!-- Business Name -->
-
-<div class="tool-card">
-
-<i class="fa-solid fa-building tool-icon"></i>
-
-<h3>AI Business Name</h3>
-
-<p>Unique business and startup names.</p>
-
-<a href="business-name.html" class="card-btn">Open →</a>
+</button>
 
 </div>
 
-<!-- Poetry -->
+<!-- AI Poetry -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="poetry">
 
-<i class="fa-solid fa-heart tool-icon"></i>
+<i class="fa-solid fa-heart"></i>
 
 <h3>AI Poetry Writer</h3>
 
-<p>Generate poems in different styles.</p>
+<p>Create poems in different styles.</p>
 
-<a href="poetry-writer.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- Homework -->
+<!-- AI Hashtag -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="hashtag">
 
-<i class="fa-solid fa-school tool-icon"></i>
+<i class="fa-solid fa-hashtag"></i>
+
+<h3>AI Hashtag Generator</h3>
+
+<p>Generate trending hashtags.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI Slogan -->
+
+<div class="tool-card" data-tool="slogan">
+
+<i class="fa-solid fa-lightbulb"></i>
+
+<h3>AI Slogan Generator</h3>
+
+<p>Create catchy business slogans.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI Business Name -->
+
+<div class="tool-card" data-tool="business">
+
+<i class="fa-solid fa-building"></i>
+
+<h3>AI Business Name</h3>
+
+<p>Generate unique startup names.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI Homework -->
+
+<div class="tool-card" data-tool="homework">
+
+<i class="fa-solid fa-school"></i>
 
 <h3>AI Homework Helper</h3>
 
-<p>Get help solving homework quickly.</p>
+<p>Solve homework with AI.</p>
 
-<a href="homework-helper.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- Notes -->
+<!-- AI Notes -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="notes">
 
-<i class="fa-solid fa-note-sticky tool-icon"></i>
+<i class="fa-solid fa-note-sticky"></i>
 
 <h3>AI Notes Generator</h3>
 
-<p>Convert long text into short notes.</p>
+<p>Convert long text into notes.</p>
 
-<a href="notes-generator.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- MCQ -->
+<!-- AI MCQ -->
 
-<div class="tool-card">
+<div class="tool-card" data-tool="mcq">
 
-<i class="fa-solid fa-list-check tool-icon"></i>
+<i class="fa-solid fa-list-check"></i>
 
 <h3>AI MCQ Generator</h3>
 
 <p>Create MCQs from any topic.</p>
 
-<a href="mcq-generator.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
-<!-- Prompt -->
+<!-- AI Prompt -->
 
-<div class="tool-card featured">
+<div class="tool-card" data-tool="prompt">
 
-<span class="tool-badge">New</span>
-
-<i class="fa-solid fa-wand-magic-sparkles tool-icon"></i>
+<i class="fa-solid fa-wand-magic-sparkles"></i>
 
 <h3>AI Prompt Generator</h3>
 
-<p>Create powerful prompts for ChatGPT and other AI models.</p>
+<p>Create prompts for AI models.</p>
 
-<a href="prompt-generator.html" class="card-btn">Open →</a>
+<button class="card-btn select-tool">
 
-</div>
+Use Tool →
 
-  <!-- Search -->
-
-<div class="tools-search">
-
-<input
-type="text"
-id="toolSearch"
-placeholder="🔍 Search AI Writing Tool...">
+</button>
 
 </div>
 
-<!-- Filters -->
+<!-- AI Rewriter -->
 
-<div class="filter-buttons">
+<div class="tool-card" data-tool="rewriter">
 
-<button class="active">All</button>
+<i class="fa-solid fa-pen-to-square"></i>
 
-<button>Blog</button>
+<h3>AI Text Rewriter</h3>
 
-<button>Email</button>
+<p>Rewrite text with better clarity.</p>
 
-<button>SEO</button>
+<button class="card-btn select-tool">
 
-<button>Social</button>
+Use Tool →
 
-<button>Study</button>
+</button>
+
+</div>
+
+  <!-- AI Product Description -->
+
+<div class="tool-card" data-tool="product">
+
+<i class="fa-solid fa-box-open tool-icon"></i>
+
+<h3>AI Product Description</h3>
+
+<p>Create eCommerce product descriptions.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI Ad Copy -->
+
+<div class="tool-card" data-tool="adcopy">
+
+<i class="fa-solid fa-bullhorn tool-icon"></i>
+
+<h3>AI Ad Copy Writer</h3>
+
+<p>Generate high-converting ad copy.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI Facebook Post -->
+
+<div class="tool-card" data-tool="facebook">
+
+<i class="fa-brands fa-facebook tool-icon"></i>
+
+<h3>AI Facebook Post</h3>
+
+<p>Create engaging Facebook posts.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI Instagram -->
+
+<div class="tool-card" data-tool="instagram">
+
+<i class="fa-brands fa-instagram tool-icon"></i>
+
+<h3>AI Instagram Caption</h3>
+
+<p>Create viral Instagram captions.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI Speech -->
+
+<div class="tool-card" data-tool="speech">
+
+<i class="fa-solid fa-microphone-lines tool-icon"></i>
+
+<h3>AI Speech Writer</h3>
+
+<p>Write speeches for any occasion.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI Letter -->
+
+<div class="tool-card" data-tool="letter">
+
+<i class="fa-solid fa-envelope-open-text tool-icon"></i>
+
+<h3>AI Letter Writer</h3>
+
+<p>Create professional letters instantly.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI Cover Letter -->
+
+<div class="tool-card" data-tool="cover">
+
+<i class="fa-solid fa-file-signature tool-icon"></i>
+
+<h3>AI Cover Letter</h3>
+
+<p>Create job-winning cover letters.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI Job Description -->
+
+<div class="tool-card" data-tool="job">
+
+<i class="fa-solid fa-briefcase tool-icon"></i>
+
+<h3>AI Job Description</h3>
+
+<p>Generate professional job descriptions.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI FAQ -->
+
+<div class="tool-card" data-tool="faq">
+
+<i class="fa-solid fa-circle-question tool-icon"></i>
+
+<h3>AI FAQ Generator</h3>
+
+<p>Create FAQs for websites and products.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
+
+</div>
+
+<!-- AI Review -->
+
+<div class="tool-card" data-tool="review">
+
+<i class="fa-solid fa-star tool-icon"></i>
+
+<h3>AI Review Generator</h3>
+
+<p>Create realistic product reviews.</p>
+
+<button class="card-btn select-tool">
+
+Use Tool →
+
+</button>
 
 </div>
 
 </div>
 
 </section>
+
+  <!-- ========================================= -->
+<!-- AI WORKSPACE -->
+<!-- ========================================= -->
+
+<section class="workspace-section" id="workspace">
+
+<div class="section-heading">
+
+<span>🤖 AI Workspace</span>
+
+<h2 id="toolTitle">
+
+AI Blog Writer
+
+</h2>
+
+<p id="toolDesc">
+
+Choose any AI Writing Tool and start creating amazing content instantly.
+
+</p>
+
+</div>
+
+<div class="workspace-box">
+
+<!-- LEFT PANEL -->
+
+<div class="input-area">
+
+<h3>
+
+Create Content
+
+</h3>
+
+<!-- Templates -->
+
+<div class="template-box">
+
+<h4>
+
+Quick Templates
+
+</h4>
+
+<div class="template-grid">
+
+<button class="template-btn"
+data-template="Write a professional blog about Artificial Intelligence.">
+
+📝 Blog
+
+</button>
+
+<button class="template-btn"
+data-template="Write a formal email to apply for a job.">
+
+📧 Email
+
+</button>
+
+<button class="template-btn"
+data-template="Write an essay about Climate Change.">
+
+📚 Essay
+
+</button>
+
+<button class="template-btn"
+data-template="Write SEO optimized content about Digital Marketing.">
+
+📈 SEO
+
+</button>
+
+<button class="template-btn"
+data-template="Write an Instagram caption for a travel post.">
+
+📱 Caption
+
+</button>
+
+<button class="template-btn"
+data-template="Write a YouTube script about AI Tools.">
+
+🎬 Script
+
+</button>
+
+</div>
+
+</div>
+
+<label>
+
+Topic / Prompt
+
+</label>
+
+<textarea
+
+id="prompt"
+
+placeholder="Describe what you want AI to write...">
+
+</textarea>
+
+<div class="counter-box">
+
+<span id="wordCount">
+
+Words : 0
+
+</span>
+
+<span id="charCount">
+
+Characters : 0
+
+</span>
+
+</div>
+
+<div class="options">
+
+<div>
+
+<label>
+
+Tone
+
+</label>
+
+<select id="tone">
+
+<option>Professional</option>
+
+<option>Friendly</option>
+
+<option>Creative</option>
+
+<option>Formal</option>
+
+<option>Funny</option>
+
+<option>Luxury</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+
+Length
+
+</label>
+
+<select id="length">
+
+<option>Short</option>
+
+<option>Medium</option>
+
+<option>Long</option>
+
+<option>Very Long</option>
+
+</select>
+
+</div>
+
+</div>
+
+<button
+
+id="generateBtn"
+
+class="primary-btn">
+
+✨ Generate Content
+
+</button>
+
+</div>
+
+<!-- RIGHT PANEL -->
+
+<div class="output-area">
+
+<h3>
+
+Generated Result
+
+</h3>
+
+<div id="outputBox">
+
+Your AI generated content will appear here...
+
+</div>
+
+<div class="output-buttons">
+
+<button
+
+id="copyBtn"
+
+class="secondary-btn">
+
+📋 Copy
+
+</button>
+
+<button
+
+id="downloadBtn"
+
+class="secondary-btn">
+
+⬇ Download
+
+</button>
+
+<button
+
+id="clearBtn"
+
+class="secondary-btn">
+
+🗑 Clear
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+  <!-- ========================================= -->
+<!-- HISTORY & STATS -->
+<!-- ========================================= -->
+
+<section class="history-section">
+
+<div class="section-heading">
+
+<span>📊 Dashboard</span>
+
+<h2>Your AI Writing Activity</h2>
+
+<p>
+
+Track your recent prompts and writing progress.
+
+</p>
+
+</div>
+
+<div class="history-grid">
+
+<!-- History -->
+
+<div class="history-card">
+
+<h3>
+
+🕒 Recent Prompts
+
+</h3>
+
+<div id="historyList">
+
+<p>No history yet.</p>
+
+</div>
+
+</div>
 
 <!-- Stats -->
 
-<section class="stats">
+<div class="history-card">
 
-<div class="stat-card">
+<h3>
+
+📈 Statistics
+
+</h3>
+
+<div class="stats-grid">
+
+<div class="mini-stat">
 
 <h2>30+</h2>
 
-<p>Writing Tools</p>
+<span>Writing Tools</span>
 
 </div>
 
-<div class="stat-card">
+<div class="mini-stat">
 
 <h2>100K+</h2>
 
-<p>Content Generated</p>
+<span>Words Generated</span>
 
 </div>
 
-<div class="stat-card">
+<div class="mini-stat">
 
 <h2>50K+</h2>
 
-<p>Active Users</p>
+<span>Users</span>
 
 </div>
 
-<div class="stat-card">
+<div class="mini-stat">
 
 <h2>99%</h2>
 
-<p>Accuracy</p>
+<span>Success Rate</span>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
 
-<!-- Footer -->
+<!-- ========================================= -->
+<!-- FEATURES -->
+<!-- ========================================= -->
+
+<section class="features-section">
+
+<div class="section-heading">
+
+<span>🚀 Features</span>
+
+<h2>Why Choose Toolora AI?</h2>
+
+</div>
+
+<div class="features-grid">
+
+<div class="feature-card">
+
+<i class="fa-solid fa-bolt"></i>
+
+<h3>Fast Generation</h3>
+
+<p>Create content within seconds.</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-copy"></i>
+
+<h3>Copy Instantly</h3>
+
+<p>One-click copy support.</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-download"></i>
+
+<h3>Download</h3>
+
+<p>Download generated content anytime.</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-mobile-screen"></i>
+
+<h3>Responsive</h3>
+
+<p>Works perfectly on every device.</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<h3>Secure</h3>
+
+<p>Your prompts stay private.</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+
+<h3>30+ AI Tools</h3>
+
+<p>Everything in one place.</p>
+
+</div>
+
+</div>
+
+</section>
+
+  <!-- ========================================= -->
+<!-- CTA SECTION -->
+<!-- ========================================= -->
+
+<section class="cta-section">
+
+<div class="cta-box">
+
+<span>🚀 Toolora AI</span>
+
+<h2>
+
+Ready to Write Smarter?
+
+</h2>
+
+<p>
+
+Generate blogs, emails, essays, captions,
+SEO content and much more with powerful AI.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#workspace" class="primary-btn">
+
+Start Writing
+
+</a>
+
+<a href="index.html" class="secondary-btn">
+
+Back Home
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- FOOTER -->
+<!-- ========================================= -->
 
 <footer>
 
@@ -597,8 +1299,8 @@ placeholder="🔍 Search AI Writing Tool...">
 
 <p>
 
-Premium AI Writing Platform for creators,
-students and professionals.
+Premium AI Platform for Writing,
+Images, Videos, Coding and Productivity.
 
 </p>
 
@@ -624,9 +1326,29 @@ students and professionals.
 
 <a href="#">Privacy Policy</a>
 
-<a href="#">Terms</a>
+<a href="#">Terms of Service</a>
 
 <a href="#">Contact</a>
+
+<a href="#">Help Center</a>
+
+</div>
+
+<div>
+
+<h3>Follow Us</h3>
+
+<div class="social-links">
+
+<a href="#"><i class="fab fa-instagram"></i></a>
+
+<a href="#"><i class="fab fa-youtube"></i></a>
+
+<a href="#"><i class="fab fa-discord"></i></a>
+
+<a href="#"><i class="fab fa-github"></i></a>
+
+</div>
 
 </div>
 
@@ -634,11 +1356,49 @@ students and professionals.
 
 <div class="footer-bottom">
 
-© 2026 Toolora AI • All Rights Reserved
+<p>
+
+© 2026 Toolora AI. All Rights Reserved.
+
+</p>
 
 </div>
 
 </footer>
+
+<!-- Back To Top -->
+
+<button id="backToTop">
+
+<i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- Loading Screen -->
+
+<div id="loader">
+
+<div class="loader-circle"></div>
+
+<h2>Toolora AI</h2>
+
+<p>Loading AI Writing...</p>
+
+</div>
+
+<!-- Toast -->
+
+<div id="toast">
+
+<i class="fa-solid fa-circle-check"></i>
+
+<span id="toastText">
+
+Success
+
+</span>
+
+</div>
 
 <script src="main.js"></script>
 
