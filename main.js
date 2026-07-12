@@ -1158,3 +1158,75 @@ loader.style.display="none";
 }
 
 });
+
+// ==========================
+// Toast
+// ==========================
+
+function showToast(msg){
+
+const toast=document.getElementById("toast");
+
+const text=document.getElementById("toastText");
+
+text.innerText=msg;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2500);
+
+}
+
+// Copy
+
+document.getElementById("copyBtn").onclick=()=>{
+
+navigator.clipboard.writeText(
+
+document.getElementById("outputBox").innerText
+
+);
+
+showToast("Copied Successfully");
+
+};
+
+// Download
+
+document.getElementById("downloadBtn").onclick=()=>{
+
+const text=document.getElementById("outputBox").innerText;
+
+const blob=new Blob([text],{
+
+type:"text/plain"
+
+});
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="toolora-ai.txt";
+
+a.click();
+
+showToast("Download Complete");
+
+};
+
+// Ctrl + Enter
+
+document.addEventListener("keydown",e=>{
+
+if(e.ctrlKey && e.key==="Enter"){
+
+document.getElementById("generateBtn").click();
+
+}
+
+});
