@@ -1108,3 +1108,33 @@ document.getElementById("charCount").innerHTML=
 }
 
 prompt.addEventListener("input",updateCounter);
+
+// Back To Top
+
+const back=document.getElementById("backToTop");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>500){
+
+back.style.display="flex";
+
+}else{
+
+back.style.display="none";
+
+}
+
+});
+
+back.onclick=()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
