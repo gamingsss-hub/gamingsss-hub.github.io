@@ -792,3 +792,165 @@ loadQuestion();
 });
 
 }
+
+// ===============================
+// Toolora AI Writing Workspace
+// ===============================
+
+const cards = document.querySelectorAll(".tool-card");
+const title = document.getElementById("toolTitle");
+const desc = document.getElementById("toolDesc");
+
+const tools = {
+
+blog:{
+title:"AI Blog Writer",
+desc:"Generate SEO-friendly blog articles in seconds."
+},
+
+article:{
+title:"AI Article Writer",
+desc:"Create professional articles instantly."
+},
+
+essay:{
+title:"AI Essay Writer",
+desc:"Write high-quality essays with AI."
+},
+
+email:{
+title:"AI Email Writer",
+desc:"Write professional emails quickly."
+},
+
+resume:{
+title:"AI Resume Builder",
+desc:"Create ATS-friendly resumes."
+},
+
+grammar:{
+title:"AI Grammar Checker",
+desc:"Fix grammar and spelling mistakes."
+},
+
+paraphrase:{
+title:"AI Paraphraser",
+desc:"Rewrite your text naturally."
+},
+
+summary:{
+title:"AI Summarizer",
+desc:"Summarize long content instantly."
+},
+
+translator:{
+title:"AI Translator",
+desc:"Translate content into multiple languages."
+},
+
+seo:{
+title:"AI SEO Writer",
+desc:"Generate SEO optimized content."
+}
+
+};
+
+cards.forEach(card=>{
+
+card.addEventListener("click",()=>{
+
+cards.forEach(c=>c.classList.remove("active-tool"));
+
+card.classList.add("active-tool");
+
+const tool=card.dataset.tool;
+
+title.textContent=tools[tool].title;
+
+desc.textContent=tools[tool].desc;
+
+document.getElementById("workspace").scrollIntoView({
+behavior:"smooth"
+});
+
+});
+
+});
+
+// ===============================
+// Generate Demo
+// ===============================
+
+const btn=document.getElementById("generateBtn");
+
+btn.onclick=()=>{
+
+const prompt=document.getElementById("prompt").value.trim();
+
+const output=document.getElementById("outputBox");
+
+if(prompt===""){
+
+alert("Please enter a topic.");
+
+return;
+
+}
+
+output.innerHTML=`
+<h3>✨ Demo Output</h3>
+
+<p><b>Topic:</b> ${prompt}</p>
+
+<p>This is a demo response for <b>${title.textContent}</b>.
+Later you can connect Gemini API, OpenAI API or any AI model here.</p>
+`;
+
+};
+
+// ===============================
+// Copy
+// ===============================
+
+document.getElementById("copyBtn").onclick=()=>{
+
+navigator.clipboard.writeText(
+document.getElementById("outputBox").innerText
+);
+
+alert("Copied!");
+
+};
+
+// ===============================
+// Clear
+// ===============================
+
+document.getElementById("clearBtn").onclick=()=>{
+
+document.getElementById("prompt").value="";
+
+document.getElementById("outputBox").innerHTML=
+"Your generated content will appear here...";
+
+};
+
+// ===============================
+// Download
+// ===============================
+
+document.getElementById("downloadBtn").onclick=()=>{
+
+const text=document.getElementById("outputBox").innerText;
+
+const blob=new Blob([text],{type:"text/plain"});
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="toolora-ai-writing.txt";
+
+a.click();
+
+};
