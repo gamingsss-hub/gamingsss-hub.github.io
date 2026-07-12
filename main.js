@@ -1067,3 +1067,44 @@ behavior:"smooth"
 });
 
 });
+
+// ===============================
+// Prompt Templates
+// ===============================
+
+document.querySelectorAll(".template-btn").forEach(btn=>{
+
+btn.onclick=()=>{
+
+document.getElementById("prompt").value=
+btn.dataset.template;
+
+updateCounter();
+
+};
+
+});
+
+// ===============================
+// Word Counter
+// ===============================
+
+const prompt=document.getElementById("prompt");
+
+function updateCounter(){
+
+const text=prompt.value.trim();
+
+const words=text===""
+?0
+:text.split(/\s+/).length;
+
+document.getElementById("wordCount").innerHTML=
+"Words : "+words;
+
+document.getElementById("charCount").innerHTML=
+"Characters : "+text.length;
+
+}
+
+prompt.addEventListener("input",updateCounter);
