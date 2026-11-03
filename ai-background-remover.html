@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080611">
+
+  <title>AI Background Remover Free Online – Remove Image Background | Toolora AI</title>
+  <meta name="description" content="Remove image backgrounds online for free with Toolora AI. Create transparent PNG images using AI directly in your browser. No account or upload required.">
+  <meta name="keywords" content="AI background remover, remove background online, free background remover, transparent PNG maker, image background remover, remove image background, background eraser">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gamingsss-hub.github.io/ai-background-remover.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free AI Background Remover – Toolora AI">
+  <meta property="og:description" content="Remove image backgrounds and download transparent PNGs with AI.">
+  <meta property="og:url" content="https://gamingsss-hub.github.io/ai-background-remover.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080611;
+      --panel: rgba(255,255,255,.055);
+      --border: rgba(255,255,255,.11);
+      --text: #fff;
+      --muted: #aaa4ba;
+      --purple: #985cff;
+      --pink: #ff416c;
+      --cyan: #00e5ff;
+      --green: #42dfa1;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(152,92,255,.17), transparent 32%),
+        radial-gradient(ellipse at 90% 22%, rgba(255,65,108,.12), transparent 30%),
+        var(--bg);
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+
+    .navbar {
+      max-width: 1150px;
+      margin: auto;
+      padding: 21px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -.7px;
+    }
+
+    .logo span {
+      background: linear-gradient(90deg, var(--pink), var(--purple), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .home-link {
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--panel);
+      color: #e6e1ef;
+      font-size: 14px;
+    }
+
+    .home-link:hover { border-color: var(--purple); }
+
+    .container {
+      width: min(100% - 32px, 1050px);
+      margin: auto;
+      padding: 42px 0 75px;
+    }
+
+    .hero { text-align: center; margin-bottom: 32px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(152,92,255,.35);
+      border-radius: 30px;
+      background: rgba(152,92,255,.1);
+      color: #d2b9ff;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(35px, 6vw, 59px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      font-weight: 800;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #ff416c, #a36aff, #00e5ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 14px auto 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .privacy-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #8de9c3;
+      font-size: 12px;
+      margin-top: 14px;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+    }
+
+    .panel {
+      min-width: 0;
+      padding: 21px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.18);
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 17px;
+    }
+
+    .panel-title h2 { font-size: 17px; }
+    .panel-title span { color: var(--muted); font-size: 12px; }
+
+    .drop-zone {
+      min-height: 310px;
+      border: 1.5px dashed rgba(174,137,255,.5);
+      border-radius: 17px;
+      background: rgba(152,92,255,.055);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+      transition: .2s;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .drop-zone.dragover {
+      border-color: var(--cyan);
+      background: rgba(0,229,255,.08);
+    }
+
+    .upload-icon {
+      width: 65px;
+      height: 65px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 25px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      box-shadow: 0 10px 30px rgba(152,92,255,.25);
+      margin-bottom: 17px;
+    }
+
+    .drop-zone h3 { font-size: 17px; margin-bottom: 7px; }
+    .drop-zone p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+    .browse-btn {
+      margin-top: 16px;
+      border: 0;
+      border-radius: 11px;
+      padding: 11px 18px;
+      color: white;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+    }
+
+    .file-hint { margin-top: 14px; font-size: 11px !important; }
+
+    .preview-image {
+      width: 100%;
+      max-height: 275px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .preview-info {
+      width: 100%;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .checkerboard {
+      background-color: #f3f3f3;
+      background-image:
+        linear-gradient(45deg, #d6d6d6 25%, transparent 25%),
+        linear-gradient(-45deg, #d6d6d6 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #d6d6d6 75%),
+        linear-gradient(-45deg, transparent 75%, #d6d6d6 75%);
+      background-size: 22px 22px;
+      background-position: 0 0, 0 11px, 11px -11px, -11px 0;
+    }
+
+    .result-box {
+      min-height: 310px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 18px;
+      overflow: hidden;
+      text-align: center;
+      background: rgba(0,0,0,.16);
+    }
+
+    .result-placeholder { color: #8b849b; }
+    .result-placeholder i { font-size: 42px; margin-bottom: 14px; }
+    .result-placeholder p { font-size: 13px; }
+
+    .result-image {
+      display: block;
+      width: 100%;
+      max-height: 275px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .status {
+      display: none;
+      margin-top: 17px;
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(0,0,0,.2);
+    }
+
+    .status-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      color: #ded8eb;
+      margin-bottom: 9px;
+    }
+
+    .progress-track {
+      height: 7px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.1);
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--pink), var(--purple), var(--cyan));
+      transition: width .2s;
+    }
+
+    .main-btn {
+      width: 100%;
+      margin-top: 15px;
+      border: 0;
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: white;
+      font-weight: 700;
+      background: linear-gradient(110deg, var(--pink), var(--purple));
+      box-shadow: 0 8px 25px rgba(152,92,255,.18);
+      transition: .2s;
+    }
+
+    .main-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(152,92,255,.3);
+    }
+
+    .main-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    .download-btn {
+      display: none;
+      width: 100%;
+      margin-top: 11px;
+      border: 1px solid rgba(66,223,161,.35);
+      border-radius: 12px;
+      padding: 13px;
+      color: #9bf1ca;
+      background: rgba(66,223,161,.09);
+      font-weight: 700;
+    }
+
+    .download-btn:hover { background: rgba(66,223,161,.16); }
+
+    .message {
+      display: none;
+      margin-top: 13px;
+      padding: 11px 13px;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .message.error {
+      display: block;
+      color: #ffb2c1;
+      background: rgba(255,65,108,.1);
+      border: 1px solid rgba(255,65,108,.22);
+    }
+
+    .message.success {
+      display: block;
+      color: #9bf1ca;
+      background: rgba(66,223,161,.08);
+      border: 1px solid rgba(66,223,161,.2);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 13px;
+      margin-top: 22px;
+    }
+
+    .feature {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 17px;
+    }
+
+    .feature i {
+      color: #bd9aff;
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 { font-size: 14px; margin-bottom: 5px; }
+    .feature p { color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+    .content-section {
+      margin-top: 48px;
+    }
+
+    .content-section h2 {
+      font-size: 24px;
+      margin-bottom: 13px;
+    }
+
+    .content-section p,
+    .content-section li {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .content-section ol {
+      padding-left: 22px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .faq-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item h3 { font-size: 15px; margin-bottom: 7px; }
+    .faq-item p { font-size: 13px; }
+
+    .footer {
+      text-align: center;
+      color: #777186;
+      font-size: 12px;
+      padding: 35px 15px;
+    }
+
+    .footer a { color: #c7a9ff; }
+
+    @media(max-width: 760px) {
+      .workspace { grid-template-columns: 1fr; }
+      .drop-zone, .result-box { min-height: 260px; }
+      .features { grid-template-columns: 1fr; }
+      .container { padding-top: 28px; }
+    }
+
+    @media(max-width: 430px) {
+      .navbar { padding: 17px 15px; }
+      .logo { font-size: 20px; }
+      .home-link { padding: 9px 11px; font-size: 12px; }
+      .panel { padding: 14px; }
+      .hero h1 { letter-spacing: -1.3px; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <a class="logo" href="index.html">TOOLORA <span>AI</span></a>
+    <a class="home-link" href="index.html">
+      <i class="fa-solid fa-house"></i> Home
+    </a>
+  </nav>
+
+  <main class="container">
+    <header class="hero">
+      <div class="eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> AI IMAGE TOOL</div>
+      <h1>AI Background <span class="gradient-text">Remover</span></h1>
+      <p>Remove image backgrounds in seconds. Create clean, transparent PNG images directly in your browser.</p>
+      <div class="privacy-note">
+        <i class="fa-solid fa-shield-halved"></i>
+        Your selected image is processed on your device.
+      </div>
+    </header>
+
+    <section class="workspace" aria-label="Background removal workspace">
+      <div class="panel">
+        <div class="panel-title">
+          <h2><i class="fa-regular fa-image"></i> Original Image</h2>
+          <span>Step 1</span>
+        </div>
+
+        <label class="drop-zone" id="dropZone" for="fileInput">
+          <div id="uploadPrompt">
+            <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+            <h3>Upload your image</h3>
+            <p>Drag and drop an image here<br>or choose a file from your device.</p>
+            <span class="browse-btn">Choose Image</span>
+            <p class="file-hint">JPG, JPEG, PNG or WebP · Maximum 12 MB</p>
+          </div>
+          <img id="originalPreview" class="preview-image" alt="Original image preview" hidden>
+          <div id="fileInfo" class="preview-info" hidden></div>
+        </label>
+
+        <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+
+        <button id="removeBtn" class="main-btn" type="button" disabled>
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Remove Background
+        </button>
+
+        <div class="status" id="statusBox" role="status" aria-live="polite">
+          <div class="status-line">
+            <span id="statusText">Preparing AI model...</span>
+            <span id="progressText">0%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+        </div>
+
+        <div id="message" class="message" role="alert"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          <h2><i class="fa-solid fa-sparkles"></i> Removed Background</h2>
+          <span>Step 2</span>
+        </div>
+
+        <div class="result-box checkerboard" id="resultBox">
+          <div class="result-placeholder" id="resultPlaceholder">
+            <i class="fa-solid fa-image"></i>
+            <p>Your transparent image will appear here.</p>
+          </div>
+          <img id="resultPreview" class="result-image" alt="AI background removed image" hidden>
+        </div>
+
+        <button id="downloadBtn" class="download-btn" type="button">
+          <i class="fa-solid fa-download"></i> Download Transparent PNG
+        </button>
+      </div>
+    </section>
+
+    <section class="features">
+      <article class="feature">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <h3>AI Powered</h3>
+        <p>AI segmentation identifies the main subject and separates it from the background.</p>
+      </article>
+      <article class="feature">
+        <i class="fa-solid fa-file-image"></i>
+        <h3>Transparent PNG</h3>
+        <p>Download your result as a PNG that preserves transparency.</p>
+      </article>
+      <article class="feature">
+        <i class="fa-solid fa-lock"></i>
+        <h3>Browser Processing</h3>
+        <p>Your chosen image is processed locally in your browser, not sent to Toolora AI servers.</p>
+      </article>
+    </section>
+
+    <section class="content-section">
+      <h2>How to remove an image background</h2>
+      <ol>
+        <li>Choose a JPG, PNG or WebP image from your device.</li>
+        <li>Click the <strong>Remove Background</strong> button.</li>
+        <li>Wait while the AI model processes your image.</li>
+        <li>Preview the result and download your transparent PNG.</li>
+      </ol>
+    </section>
+
+    <section class="content-section">
+      <h2>Free AI Background Remover Online</h2>
+      <p>
+        Toolora AI Background Remover helps you create transparent image backgrounds
+        for product photos, profile pictures, creative projects and presentations.
+        Select an image, let the AI identify the foreground subject, and download
+        the result as a PNG file. Processing happens in your browser using an
+        AI model, so your image does not need to be uploaded to a Toolora AI server.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <h3>Is this AI background remover free?</h3>
+        <p>Toolora AI does not charge you to use this page. The AI model is downloaded to your browser and processing uses your device's resources and internet connection.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does the result have a transparent background?</h3>
+        <p>Yes. The tool produces a PNG image with the background removed and transparency preserved.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Are my images uploaded to a server?</h3>
+        <p>The selected image is passed to the in-browser removal model. It is not uploaded to Toolora AI's server. The model files themselves are fetched from the model provider.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Why does the first removal take longer?</h3>
+        <p>The browser needs to download the AI model and supporting files the first time. Later processing may be faster if those files remain cached.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Which image formats are supported?</h3>
+        <p>This page accepts JPG, JPEG, PNG and WebP images up to 12 MB. The processed result is downloaded as PNG.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2026 Toolora AI ·
+    <a href="index.html">Home</a>
+  </footer>
+
+  <script type="module">
+    const fileInput = document.getElementById("fileInput");
+    const dropZone = document.getElementById("dropZone");
+    const originalPreview = document.getElementById("originalPreview");
+    const fileInfo = document.getElementById("fileInfo");
+    const uploadPrompt = document.getElementById("uploadPrompt");
+    const removeBtn = document.getElementById("removeBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const resultPreview = document.getElementById("resultPreview");
+    const resultPlaceholder = document.getElementById("resultPlaceholder");
+    const statusBox = document.getElementById("statusBox");
+    const statusText = document.getElementById("statusText");
+    const progressText = document.getElementById("progressText");
+    const progressBar = document.getElementById("progressBar");
+    const message = document.getElementById("message");
+
+    const MAX_SIZE = 12 * 1024 * 1024;
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+
+    let selectedFile = null;
+    let originalURL = null;
+    let resultURL = null;
+    let resultBlob = null;
+    let isProcessing = false;
+    let removeBackgroundFunction = null;
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = "message " + type;
+    }
+
+    function clearMessage() {
+      message.textContent = "";
+      message.className = "message";
+    }
+
+    function setProgress(percent, text) {
+      const safePercent = Math.max(0, Math.min(100, percent));
+      progressBar.style.width = safePercent + "%";
+      progressText.textContent = Math.round(safePercent) + "%";
+      if (text) statusText.textContent = text;
+    }
+
+    function formatBytes(bytes) {
+      if (bytes < 1024 * 1024) {
+        return (bytes / 1024).toFixed(0) + " KB";
+      }
+      return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+    }
+
+    function clearResult() {
+      if (resultURL) URL.revokeObjectURL(resultURL);
+      resultURL = null;
+      resultBlob = null;
+      resultPreview.hidden = true;
+      resultPreview.removeAttribute("src");
+      resultPlaceholder.hidden = false;
+      downloadBtn.style.display = "none";
+    }
+
+    function selectFile(file) {
+      clearMessage();
+
+      if (!file) return;
+
+      if (!allowedTypes.includes(file.type)) {
+        showMessage("Please choose a JPG, PNG or WebP image.", "error");
+        return;
+      }
+
+      if (file.size > MAX_SIZE) {
+        showMessage("This image is larger than 12 MB. Please choose a smaller image.", "error");
+        return;
+      }
+
+      if (isProcessing) return;
+
+      selectedFile = file;
+      clearResult();
+
+      if (originalURL) URL.revokeObjectURL(originalURL);
+      originalURL = URL.createObjectURL(file);
+
+      originalPreview.src = originalURL;
+      originalPreview.hidden = false;
+      uploadPrompt.hidden = true;
+      fileInfo.hidden = false;
+      fileInfo.textContent = `${file.name} · ${formatBytes(file.size)}`;
+
+      removeBtn.disabled = false;
+      removeBtn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Remove Background';
+    }
+
+    fileInput.addEventListener("change", event => {
+      selectFile(event.target.files[0]);
+    });
+
+    ["dragenter", "dragover"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        dropZone.classList.add("dragover");
+      });
+    });
+
+    ["dragleave", "drop"].forEach(eventName => {
+      dropZone.addEventListener(eventName, event => {
+        event.preventDefault();
+        dropZone.classList.remove("dragover");
+      });
+    });
+
+    dropZone.addEventListener("drop", event => {
+      const file = event.dataTransfer.files[0];
+      selectFile(file);
+    });
+
+    async function loadAI() {
+      if (removeBackgroundFunction) return removeBackgroundFunction;
+
+      statusBox.style.display = "block";
+      setProgress(2, "Loading AI engine...");
+
+      const module = await import(
+        "https://esm.sh/@imgly/background-removal@1.7.0"
+      );
+
+      removeBackgroundFunction = module.default;
+      return removeBackgroundFunction;
+    }
+
+    removeBtn.addEventListener("click", async () => {
+      if (!selectedFile || isProcessing) return;
+
+      isProcessing = true;
+      removeBtn.disabled = true;
+      downloadBtn.style.display = "none";
+      clearMessage();
+      statusBox.style.display = "block";
+      setProgress(0, "Starting AI background removal...");
+
+      try {
+        const removeBackground = await loadAI();
+
+        setProgress(5, "Preparing image and AI model...");
+
+        const outputBlob = await removeBackground(selectedFile, {
+          model: "isnet_quint8",
+          output: {
+            format: "image/png",
+            type: "foreground"
+          },
+          progress: (key, current, total) => {
+            if (total > 0) {
+              const percent = 8 + (current / total) * 82;
+              setProgress(percent, "Loading AI model...");
+            }
+          }
+        });
+
+        if (!(outputBlob instanceof Blob) || outputBlob.size === 0) {
+          throw new Error("The AI model did not return a valid image.");
+        }
+
+        setProgress(95, "Preparing transparent PNG...");
+
+        resultBlob = outputBlob;
+        resultURL = URL.createObjectURL(outputBlob);
+
+        resultPreview.src = resultURL;
+        resultPreview.hidden = false;
+        resultPlaceholder.hidden = true;
+        downloadBtn.style.display = "block";
+
+        setProgress(100, "Background removed successfully!");
+        showMessage("Done! Your transparent PNG is ready to download.", "success");
+      } catch (error) {
+        console.error("Background removal error:", error);
+        statusBox.style.display = "none";
+
+        const detail = error && error.message ? error.message : "Unknown error";
+        showMessage(
+          "Could not remove the background. Please check your internet connection, try a smaller image, or use an updated browser. Details: " + detail,
+          "error"
+        );
+      } finally {
+        isProcessing = false;
+        removeBtn.disabled = !selectedFile;
+        removeBtn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Try Again';
+      }
+    });
+
+    downloadBtn.addEventListener("click", () => {
+      if (!resultBlob || !resultURL) return;
+
+      const link = document.createElement("a");
+      link.href = resultURL;
+      link.download = "toolora-ai-background-removed.png";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    });
+
+    window.addEventListener("beforeunload", () => {
+      if (originalURL) URL.revokeObjectURL(originalURL);
+      if (resultURL) URL.revokeObjectURL(resultURL);
+    });
+  </script>
+</body>
+</html>
