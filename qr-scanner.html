@@ -1,0 +1,510 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Free QR Code Scanner Online | Scan QR with Camera - Toolora AI</title>
+
+<meta name="description" content="Scan QR codes online for free using your mobile camera or upload a QR code image. Fast, easy and secure QR Code Scanner by Toolora AI.">
+
+<meta name="keywords" content="QR scanner, free QR code scanner, online QR scanner, scan QR code online, QR code reader, camera QR scanner, QR image scanner, scan QR from image, QR scanner online free, Toolora AI">
+
+<meta name="author" content="Toolora AI">
+
+<meta name="robots" content="index, follow">
+
+<meta name="theme-color" content="#080d18">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free QR Code Scanner Online | Toolora AI">
+<meta property="og:description" content="Scan QR codes instantly using your camera or upload a QR image. Free online QR scanner.">
+<meta property="og:url" content="https://gamingsss-hub.github.io/qr-scanner.html">
+<meta property="og:site_name" content="Toolora AI">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free QR Code Scanner | Toolora AI">
+<meta name="twitter:description" content="Scan QR codes online for free with your camera or an uploaded image.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: #080d18;
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.navbar {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0 35px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.logo i {
+    background: linear-gradient(135deg,#2563eb,#06b6d4);
+    padding: 11px;
+    border-radius: 12px;
+}
+
+.back {
+    color: #fff;
+    text-decoration: none;
+    background: #182235;
+    padding: 10px 17px;
+    border-radius: 10px;
+}
+
+.container {
+    max-width: 650px;
+    margin: 25px auto 60px;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    background: #142b45;
+    color: #38bdf8;
+    border: 1px solid #23476b;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(30px,6vw,45px);
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #9ba9bc;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.scanner-card {
+    background: #111a2a;
+    border: 1px solid #26354a;
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow: 0 20px 60px #0005;
+}
+
+#reader {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #080d18;
+    min-height: 250px;
+}
+
+#reader video {
+    border-radius: 12px;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+button, .upload-label {
+    border: none;
+    padding: 13px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover, .upload-label:hover {
+    transform: translateY(-2px);
+}
+
+.primary {
+    background: linear-gradient(135deg,#2563eb,#0891b2);
+    color: white;
+}
+
+.secondary, .upload-label {
+    background: #202d42;
+    color: white;
+}
+
+button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.upload-label {
+    display: block;
+    margin-top: 12px;
+}
+
+#fileInput {
+    display: none;
+}
+
+.status {
+    margin-top: 17px;
+    color: #9ba9bc;
+    font-size: 14px;
+    min-height: 22px;
+}
+
+.result {
+    display: none;
+    text-align: left;
+    margin-top: 22px;
+    background: #0b1423;
+    border: 1px solid #29405c;
+    border-radius: 16px;
+    padding: 18px;
+}
+
+.result h3 {
+    color: #38bdf8;
+    margin-bottom: 12px;
+}
+
+#resultText {
+    color: #dbeafe;
+    word-break: break-word;
+    line-height: 1.6;
+    font-size: 14px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.result-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.result-buttons button, .result-buttons a {
+    flex: 1;
+    min-width: 110px;
+    text-align: center;
+    text-decoration: none;
+    padding: 11px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.open-link {
+    display: none;
+    background: #075e48;
+    color: white;
+}
+
+.copy-btn {
+    background: #24344c;
+    color: white;
+}
+
+.footer {
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+    padding: 25px 0;
+}
+
+@media(max-width:480px) {
+    body { padding: 14px; }
+    .scanner-card { padding: 13px; }
+    .controls { gap: 8px; }
+    button, .upload-label { font-size: 13px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <i class="fa-solid fa-qrcode"></i>
+        Toolora AI
+    </div>
+    <a href="index.html" class="back">← Home</a>
+</header>
+
+<main class="container">
+
+    <div class="badge">⚡ Free Online QR Scanner</div>
+
+    <h1>QR Code Scanner</h1>
+
+    <p class="subtitle">
+        Scan any QR code using your camera or upload a QR image.
+        Fast, simple and free.
+    </p>
+
+    <div class="scanner-card">
+
+        <div id="reader"></div>
+
+        <div class="controls">
+            <button class="primary" id="startBtn">
+                Start Scanner
+            </button>
+
+            <button class="secondary" id="stopBtn" disabled>
+                Stop Scanner
+            </button>
+        </div>
+
+        <label for="fileInput" class="upload-label">
+            📁 Upload QR Image
+        </label>
+
+        <input
+            type="file"
+            id="fileInput"
+            accept="image/*"
+        >
+
+        <div class="status" id="status">
+            Scanner is ready. Press Start Scanner.
+        </div>
+
+        <div class="result" id="resultBox">
+
+            <h3>✓ QR Code Detected</h3>
+
+            <p id="resultText"></p>
+
+            <div class="result-buttons">
+
+                <button class="copy-btn" id="copyBtn">
+                    Copy Result
+                </button>
+
+                <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="open-link"
+                    id="openLink"
+                >
+                    Open Link ↗
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer class="footer">
+    © 2026 Toolora AI. All Rights Reserved.
+</footer>
+
+<script>
+const statusText = document.getElementById("status");
+const startBtn = document.getElementById("startBtn");
+const stopBtn = document.getElementById("stopBtn");
+const fileInput = document.getElementById("fileInput");
+
+const resultBox = document.getElementById("resultBox");
+const resultText = document.getElementById("resultText");
+const copyBtn = document.getElementById("copyBtn");
+const openLink = document.getElementById("openLink");
+
+let scanner = null;
+let isRunning = false;
+let lastResult = "";
+
+function showResult(text) {
+    lastResult = text;
+
+    resultText.textContent = text;
+    resultBox.style.display = "block";
+
+    openLink.style.display = "none";
+    openLink.removeAttribute("href");
+
+    try {
+        const url = new URL(text);
+
+        if (
+            url.protocol === "https:" ||
+            url.protocol === "http:"
+        ) {
+            openLink.href = url.href;
+            openLink.style.display = "block";
+        }
+    } catch (error) {
+        // Result is text, not a valid URL.
+    }
+
+    statusText.textContent = "QR code successfully scanned!";
+}
+
+async function startScanner() {
+
+    if (isRunning) return;
+
+    if (!window.Html5Qrcode) {
+        statusText.textContent =
+            "QR scanner library failed to load. Check your internet.";
+        return;
+    }
+
+    if (!window.isSecureContext) {
+        statusText.textContent =
+            "Camera requires HTTPS. Open your GitHub Pages website.";
+        return;
+    }
+
+    try {
+        if (!scanner) {
+            scanner = new Html5Qrcode("reader");
+        }
+
+        statusText.textContent = "Starting camera...";
+
+        await scanner.start(
+            { facingMode: "environment" },
+            {
+                fps: 10,
+                qrbox: { width: 230, height: 230 },
+                aspectRatio: 1
+            },
+            (decodedText) => {
+                showResult(decodedText);
+                stopScanner();
+            },
+            () => {}
+        );
+
+        isRunning = true;
+
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+
+        statusText.textContent = "Camera is active. Point it at a QR code.";
+
+    } catch (error) {
+
+        statusText.textContent =
+            "Camera could not start. Allow camera permission and try again.";
+
+        console.error(error);
+    }
+}
+
+async function stopScanner() {
+
+    if (!scanner || !isRunning) return;
+
+    try {
+        await scanner.stop();
+        isRunning = false;
+
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+
+        statusText.textContent = "Scanner stopped.";
+
+    } catch (error) {
+        console.error(error);
+        statusText.textContent = "Unable to stop scanner.";
+    }
+}
+
+startBtn.addEventListener("click", startScanner);
+stopBtn.addEventListener("click", stopScanner);
+
+fileInput.addEventListener("change", async function(event) {
+
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    if (!window.Html5Qrcode) {
+        statusText.textContent = "Scanner library is unavailable.";
+        return;
+    }
+
+    try {
+
+        if (isRunning) {
+            await stopScanner();
+        }
+
+        if (!scanner) {
+            scanner = new Html5Qrcode("reader");
+        }
+
+        statusText.textContent = "Scanning uploaded image...";
+
+        const decodedText = await scanner.scanFile(file, true);
+
+        showResult(decodedText);
+
+    } catch (error) {
+
+        resultBox.style.display = "none";
+
+        statusText.textContent =
+            "No QR code found in this image. Try another image.";
+
+    } finally {
+        fileInput.value = "";
+    }
+});
+
+copyBtn.addEventListener("click", async function() {
+
+    if (!lastResult) return;
+
+    try {
+        await navigator.clipboard.writeText(lastResult);
+        copyBtn.textContent = "Copied ✓";
+
+        setTimeout(() => {
+            copyBtn.textContent = "Copy Result";
+        }, 1800);
+
+    } catch (error) {
+        statusText.textContent =
+            "Copy failed. Please select and copy the result manually.";
+    }
+});
+</script>
+
+</body>
+</html>
