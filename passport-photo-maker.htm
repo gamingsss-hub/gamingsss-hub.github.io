@@ -1,0 +1,856 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Passport Size Photo Maker Online | Toolora AI</title>
+  <meta name="description" content="Create passport size photos online for free. Change photo backgrounds, choose passport photo sizes and make printable A4 photo sheets with Toolora AI.">
+  <meta name="keywords" content="passport size photo maker, passport photo online, 2x2 photo maker, Indian passport photo, photo background changer">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gamingsss-hub.github.io/passport-photo-maker.html">
+
+  <meta property="og:title" content="Passport Size Photo Maker - Toolora AI">
+  <meta property="og:description" content="Create passport-size photos and printable photo sheets online.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #070711;
+      --panel: #11111f;
+      --panel2: #171729;
+      --border: rgba(255,255,255,.09);
+      --text: #f6f6ff;
+      --muted: #a4a4bb;
+      --blue: #4f7cff;
+      --purple: #9b5cff;
+      --cyan: #00d9ff;
+      --green: #28d99b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(79,124,255,.16), transparent 30%),
+        radial-gradient(circle at 90% 15%, rgba(155,92,255,.14), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+    }
+
+    button, input, select { font: inherit; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      width: min(1150px, 92%);
+      margin: auto;
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .brand {
+      font-family: 'Outfit', sans-serif;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
+
+    .brand span {
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--cyan));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .home-link {
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .home-link:hover {
+      color: white;
+      border-color: var(--blue);
+    }
+
+    .hero {
+      text-align: center;
+      width: min(760px, 92%);
+      margin: 30px auto 32px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(79,124,255,.12);
+      border: 1px solid rgba(79,124,255,.25);
+      color: #a9bdff;
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(32px, 6vw, 52px);
+      line-height: 1.08;
+      margin: 19px 0 12px;
+      letter-spacing: -1.5px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #6c9aff, #b58aff, #4ce4ff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .workspace {
+      width: min(1150px, 92%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.2);
+      min-width: 0;
+    }
+
+    .panel-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 18px;
+    }
+
+    .upload-box {
+      border: 1.5px dashed rgba(119,148,255,.45);
+      background: rgba(79,124,255,.055);
+      border-radius: 17px;
+      min-height: 165px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .upload-box:hover, .upload-box.dragover {
+      background: rgba(79,124,255,.13);
+      border-color: var(--cyan);
+    }
+
+    .upload-icon {
+      font-size: 32px;
+      color: #8caaff;
+      margin-bottom: 10px;
+    }
+
+    .upload-box strong { font-size: 14px; }
+
+    .upload-box small {
+      color: var(--muted);
+      margin-top: 7px;
+      font-size: 11px;
+    }
+
+    #fileInput { display: none; }
+
+    .field { margin-top: 20px; }
+
+    .field label {
+      display: block;
+      color: #e7e7f5;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 9px;
+    }
+
+    select {
+      width: 100%;
+      background: #19192b;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: white;
+      padding: 13px;
+      outline: none;
+    }
+
+    select:focus { border-color: var(--blue); }
+
+    .color-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 9px;
+    }
+
+    .color-choice {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #19192b;
+      color: white;
+      padding: 10px 5px;
+      cursor: pointer;
+      font-size: 11px;
+      transition: .2s;
+    }
+
+    .color-choice.active {
+      border-color: var(--cyan);
+      background: rgba(0,217,255,.1);
+    }
+
+    .swatch {
+      width: 23px;
+      height: 23px;
+      display: block;
+      margin: 0 auto 6px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.3);
+    }
+
+    .custom-color {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #19192b;
+      padding: 11px 13px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    input[type="color"] {
+      width: 35px;
+      height: 30px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .preview-area {
+      background:
+        linear-gradient(45deg, #222234 25%, transparent 25%),
+        linear-gradient(-45deg, #222234 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #222234 75%),
+        linear-gradient(-45deg, transparent 75%, #222234 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+      background-color: #151525;
+      min-height: 330px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    #photoCanvas {
+      display: none;
+      max-width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      box-shadow: 0 8px 30px rgba(0,0,0,.3);
+    }
+
+    .empty-preview {
+      text-align: center;
+      color: #88889f;
+      font-size: 13px;
+    }
+
+    .empty-preview i {
+      display: block;
+      font-size: 42px;
+      margin-bottom: 12px;
+      opacity: .65;
+    }
+
+    .photo-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 12px;
+    }
+
+    .action-btn {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 13px;
+      color: white;
+      background: linear-gradient(100deg, var(--blue), var(--purple));
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: .2s;
+      box-shadow: 0 8px 25px rgba(79,124,255,.18);
+    }
+
+    .action-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .action-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+    .secondary-btn {
+      background: #222238;
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .two-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .status {
+      display: none;
+      color: #9fe9ff;
+      background: rgba(0,217,255,.07);
+      border: 1px solid rgba(0,217,255,.2);
+      padding: 11px;
+      border-radius: 10px;
+      font-size: 12px;
+      margin-top: 13px;
+      line-height: 1.6;
+    }
+
+    .sheet-preview {
+      display: none;
+      width: 100%;
+      margin-top: 20px;
+      background: white;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .sheet-preview img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .features {
+      width: min(1150px, 92%);
+      margin: 25px auto 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .feature {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
+      padding: 17px;
+      border-radius: 15px;
+    }
+
+    .feature i {
+      color: #8daaff;
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      margin: 0 0 7px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .notice {
+      width: min(1150px, 92%);
+      margin: -30px auto 55px;
+      border: 1px solid rgba(255,190,90,.2);
+      background: rgba(255,190,90,.05);
+      border-radius: 13px;
+      padding: 14px 16px;
+      color: #d8c6a4;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      padding: 25px 15px;
+      font-size: 11px;
+    }
+
+    @media(max-width: 760px) {
+      .workspace { grid-template-columns: 1fr; }
+      .hero { margin-top: 20px; }
+      .panel { padding: 17px; }
+      .features { grid-template-columns: 1fr; }
+      .preview-area { min-height: 280px; }
+    }
+
+    @media(max-width: 390px) {
+      .color-options { grid-template-columns: repeat(2, 1fr); }
+      .two-buttons { grid-template-columns: 1fr; }
+      .brand { font-size: 21px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html">Toolora <span>AI</span></a>
+  <a class="home-link" href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+</header>
+
+<section class="hero">
+  <div class="eyebrow"><i class="fa-solid fa-id-card"></i> FREE ONLINE PHOTO TOOL</div>
+  <h1>Passport Size <span>Photo Maker</span></h1>
+  <p>Upload your photo, select a size, choose a background and create a printable photo sheet in seconds.</p>
+</section>
+
+<main class="workspace">
+
+  <section class="panel">
+    <h2 class="panel-title"><i class="fa-solid fa-sliders"></i> Photo Settings</h2>
+
+    <label class="upload-box" id="uploadBox" for="fileInput">
+      <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+      <strong>Click or drag your photo here</strong>
+      <small>JPG, PNG or WebP · Maximum 15 MB</small>
+    </label>
+    <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp">
+
+    <div class="field">
+      <label for="sizeSelect">Photo Size</label>
+      <select id="sizeSelect">
+        <option value="35x45">Indian Passport / Visa · 35 × 45 mm</option>
+        <option value="2x2">Square Photo · 2 × 2 inches</option>
+        <option value="35x35">Square Photo · 35 × 35 mm</option>
+        <option value="30x40">Photo · 30 × 40 mm</option>
+        <option value="custom">Custom Ratio · 4:5</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Background Color</label>
+      <div class="color-options">
+        <button class="color-choice active" data-color="#ffffff">
+          <span class="swatch" style="background:#ffffff"></span>White
+        </button>
+        <button class="color-choice" data-color="#dceeff">
+          <span class="swatch" style="background:#dceeff"></span>Light Blue
+        </button>
+        <button class="color-choice" data-color="#e53935">
+          <span class="swatch" style="background:#e53935"></span>Red
+        </button>
+        <button class="color-choice" data-color="#eeeeee">
+          <span class="swatch" style="background:#eeeeee"></span>Grey
+        </button>
+      </div>
+
+      <div class="custom-color">
+        <span>Custom background</span>
+        <input type="color" id="customColor" value="#ffffff">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="countSelect">Photos on A4 Sheet</label>
+      <select id="countSelect">
+        <option value="4">4 Photos</option>
+        <option value="6">6 Photos</option>
+        <option value="8" selected>8 Photos</option>
+        <option value="12">12 Photos</option>
+        <option value="16">16 Photos</option>
+      </select>
+    </div>
+
+    <button class="action-btn" id="createBtn" disabled>
+      <i class="fa-solid fa-wand-magic-sparkles"></i> Create Passport Photo
+    </button>
+
+    <div class="status" id="status"></div>
+  </section>
+
+  <section class="panel">
+    <h2 class="panel-title"><i class="fa-solid fa-image"></i> Photo Preview</h2>
+
+    <div class="preview-area">
+      <div class="empty-preview" id="emptyPreview">
+        <i class="fa-regular fa-image"></i>
+        Your photo preview will appear here
+      </div>
+      <canvas id="photoCanvas"></canvas>
+    </div>
+
+    <div class="photo-info">
+      <span id="photoDimensions">No photo selected</span>
+      <span id="photoSizeLabel">Passport format</span>
+    </div>
+
+    <div class="two-buttons">
+      <button class="action-btn" id="downloadBtn" disabled>
+        <i class="fa-solid fa-download"></i> Download Photo
+      </button>
+      <button class="action-btn secondary-btn" id="sheetBtn" disabled>
+        <i class="fa-solid fa-file-image"></i> Make A4 Sheet
+      </button>
+    </div>
+
+    <div class="sheet-preview" id="sheetPreview">
+      <img id="sheetImage" alt="A4 passport photo sheet preview">
+    </div>
+
+    <button class="action-btn secondary-btn" id="downloadSheetBtn" style="display:none">
+      <i class="fa-solid fa-download"></i> Download A4 Sheet
+    </button>
+  </section>
+
+</main>
+
+<section class="features">
+  <article class="feature">
+    <i class="fa-solid fa-ruler-combined"></i>
+    <h3>Multiple Photo Sizes</h3>
+    <p>Choose common passport and square photo dimensions.</p>
+  </article>
+  <article class="feature">
+    <i class="fa-solid fa-palette"></i>
+    <h3>Background Colors</h3>
+    <p>Choose white, light blue, red, grey or a custom color.</p>
+  </article>
+  <article class="feature">
+    <i class="fa-solid fa-print"></i>
+    <h3>Printable A4 Sheet</h3>
+    <p>Arrange multiple copies of your photo on one sheet.</p>
+  </article>
+</section>
+
+<div class="notice">
+  <i class="fa-solid fa-circle-info"></i>
+  This tool changes the background color behind your photo; it does not automatically remove the original background or detect a person. For official applications, always check the required photo dimensions, background and other rules of the relevant authority.
+</div>
+
+<footer>
+  © 2026 Toolora AI · Free Online Photo Tools
+</footer>
+
+<script>
+(() => {
+  const fileInput = document.getElementById("fileInput");
+  const uploadBox = document.getElementById("uploadBox");
+  const sizeSelect = document.getElementById("sizeSelect");
+  const countSelect = document.getElementById("countSelect");
+  const customColor = document.getElementById("customColor");
+  const canvas = document.getElementById("photoCanvas");
+  const ctx = canvas.getContext("2d");
+  const emptyPreview = document.getElementById("emptyPreview");
+  const createBtn = document.getElementById("createBtn");
+  const downloadBtn = document.getElementById("downloadBtn");
+  const sheetBtn = document.getElementById("sheetBtn");
+  const downloadSheetBtn = document.getElementById("downloadSheetBtn");
+  const sheetPreview = document.getElementById("sheetPreview");
+  const sheetImage = document.getElementById("sheetImage");
+  const statusBox = document.getElementById("status");
+  const photoDimensions = document.getElementById("photoDimensions");
+  const photoSizeLabel = document.getElementById("photoSizeLabel");
+
+  let sourceImage = null;
+  let background = "#ffffff";
+  let currentSheetURL = null;
+
+  const photoSizes = {
+    "35x45": { width: 35, height: 45, label: "35 × 45 mm" },
+    "2x2": { width: 2, height: 2, label: "2 × 2 inches" },
+    "35x35": { width: 35, height: 35, label: "35 × 35 mm" },
+    "30x40": { width: 30, height: 40, label: "30 × 40 mm" },
+    "custom": { width: 4, height: 5, label: "4:5 ratio" }
+  };
+
+  function showStatus(message, isError = false) {
+    statusBox.style.display = "block";
+    statusBox.textContent = message;
+    statusBox.style.color = isError ? "#ffaaaa" : "#9fe9ff";
+  }
+
+  function getSize() {
+    return photoSizes[sizeSelect.value];
+  }
+
+  function getRatio() {
+    const size = getSize();
+    return size.width / size.height;
+  }
+
+  function loadPhoto(file) {
+    if (!file) return;
+
+    const validTypes = ["image/jpeg", "image/png", "image/webp"];
+
+    if (!validTypes.includes(file.type)) {
+      showStatus("Please select a JPG, PNG or WebP image.", true);
+      return;
+    }
+
+    if (file.size > 15 * 1024 * 1024) {
+      showStatus("Image is too large. Please choose an image under 15 MB.", true);
+      return;
+    }
+
+    const objectURL = URL.createObjectURL(file);
+    const img = new Image();
+
+    img.onload = () => {
+      if (sourceImage) URL.revokeObjectURL(sourceImage.src);
+
+      sourceImage = img;
+      emptyPreview.style.display = "none";
+      canvas.style.display = "block";
+      createBtn.disabled = false;
+
+      photoDimensions.textContent = `${img.naturalWidth} × ${img.naturalHeight} px`;
+      showStatus("Photo loaded. Choose your settings and create your photo.");
+      renderPhoto();
+      URL.revokeObjectURL(objectURL);
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(objectURL);
+      showStatus("Could not open this image. Please try another photo.", true);
+    };
+
+    img.src = objectURL;
+  }
+
+  function renderPhoto() {
+    if (!sourceImage) return;
+
+    const ratio = getRatio();
+    const outputWidth = 700;
+    const outputHeight = Math.round(outputWidth / ratio);
+
+    canvas.width = outputWidth;
+    canvas.height = outputHeight;
+
+    ctx.fillStyle = background;
+    ctx.fillRect(0, 0, outputWidth, outputHeight);
+
+    // Center-crop the image to the selected photo ratio.
+    const imageRatio = sourceImage.naturalWidth / sourceImage.naturalHeight;
+    let sx = 0, sy = 0, sw = sourceImage.naturalWidth, sh = sourceImage.naturalHeight;
+
+    if (imageRatio > ratio) {
+      sw = sourceImage.naturalHeight * ratio;
+      sx = (sourceImage.naturalWidth - sw) / 2;
+    } else {
+      sh = sourceImage.naturalWidth / ratio;
+      sy = (sourceImage.naturalHeight - sh) / 2;
+    }
+
+    ctx.drawImage(
+      sourceImage,
+      sx, sy, sw, sh,
+      0, 0, outputWidth, outputHeight
+    );
+
+    photoSizeLabel.textContent = getSize().label;
+    downloadBtn.disabled = false;
+    sheetBtn.disabled = false;
+    sheetPreview.style.display = "none";
+    downloadSheetBtn.style.display = "none";
+
+    if (currentSheetURL) {
+      URL.revokeObjectURL(currentSheetURL);
+      currentSheetURL = null;
+    }
+  }
+
+  function downloadCanvas(targetCanvas, filename) {
+    targetCanvas.toBlob(blob => {
+      if (!blob) {
+        showStatus("Could not create image. Please try again.", true);
+        return;
+      }
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    }, "image/png");
+  }
+
+  function makeSheet() {
+    if (!sourceImage) return;
+
+    const a4Width = 2480;
+    const a4Height = 3508;
+    const margin = 120;
+    const gap = 55;
+    const count = Number(countSelect.value);
+
+    const photoWidth = 430;
+    const photoHeight = Math.round(photoWidth / getRatio());
+
+    const columns = Math.min(4, Math.ceil(Math.sqrt(count)));
+    const rows = Math.ceil(count / columns);
+
+    const totalWidth = columns * photoWidth + (columns - 1) * gap;
+    const totalHeight = rows * photoHeight + (rows - 1) * gap;
+
+    if (totalWidth > a4Width - margin * 2 || totalHeight > a4Height - margin * 2) {
+      showStatus("These settings do not fit on an A4 sheet. Choose fewer photos or another size.", true);
+      return;
+    }
+
+    const sheet = document.createElement("canvas");
+    sheet.width = a4Width;
+    sheet.height = a4Height;
+
+    const sctx = sheet.getContext("2d");
+    sctx.fillStyle = "#ffffff";
+    sctx.fillRect(0, 0, a4Width, a4Height);
+
+    const startX = (a4Width - totalWidth) / 2;
+    const startY = (a4Height - totalHeight) / 2;
+
+    for (let i = 0; i < count; i++) {
+      const col = i % columns;
+      const row = Math.floor(i / columns);
+      const x = startX + col * (photoWidth + gap);
+      const y = startY + row * (photoHeight + gap);
+
+      sctx.drawImage(canvas, x, y, photoWidth, photoHeight);
+
+      sctx.strokeStyle = "#cccccc";
+      sctx.lineWidth = 3;
+      sctx.strokeRect(x, y, photoWidth, photoHeight);
+    }
+
+    sheet.toBlob(blob => {
+      if (!blob) {
+        showStatus("Could not create the A4 sheet.", true);
+        return;
+      }
+
+      if (currentSheetURL) URL.revokeObjectURL(currentSheetURL);
+      currentSheetURL = URL.createObjectURL(blob);
+
+      sheetImage.src = currentSheetURL;
+      sheetPreview.style.display = "block";
+      downloadSheetBtn.style.display = "block";
+      showStatus(`A4 sheet created with ${count} photos. Download it below.`);
+    }, "image/png");
+  }
+
+  fileInput.addEventListener("change", event => {
+    loadPhoto(event.target.files[0]);
+  });
+
+  uploadBox.addEventListener("dragover", event => {
+    event.preventDefault();
+    uploadBox.classList.add("dragover");
+  });
+
+  uploadBox.addEventListener("dragleave", () => {
+    uploadBox.classList.remove("dragover");
+  });
+
+  uploadBox.addEventListener("drop", event => {
+    event.preventDefault();
+    uploadBox.classList.remove("dragover");
+    loadPhoto(event.dataTransfer.files[0]);
+  });
+
+  document.querySelectorAll(".color-choice").forEach(button => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".color-choice").forEach(item => item.classList.remove("active"));
+      button.classList.add("active");
+      background = button.dataset.color;
+      customColor.value = background;
+      renderPhoto();
+    });
+  });
+
+  customColor.addEventListener("input", () => {
+    background = customColor.value;
+    document.querySelectorAll(".color-choice").forEach(item => item.classList.remove("active"));
+    renderPhoto();
+  });
+
+  sizeSelect.addEventListener("change", renderPhoto);
+
+  createBtn.addEventListener("click", () => {
+    if (!sourceImage) return;
+    renderPhoto();
+    showStatus("Your passport-size photo is ready to download.");
+  });
+
+  downloadBtn.addEventListener("click", () => {
+    if (!sourceImage) return;
+    downloadCanvas(canvas, "toolora-passport-photo.png");
+  });
+
+  sheetBtn.addEventListener("click", makeSheet);
+
+  downloadSheetBtn.addEventListener("click", () => {
+    if (!currentSheetURL) return;
+
+    const link = document.createElement("a");
+    link.href = currentSheetURL;
+    link.download = "toolora-passport-photo-a4-sheet.png";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  });
+})();
+</script>
+
+</body>
+</html>
