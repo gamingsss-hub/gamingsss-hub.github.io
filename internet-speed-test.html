@@ -1,0 +1,837 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Check your internet connection speed with Toolora AI. Measure download speed, upload speed, ping and jitter for free.">
+  <meta name="theme-color" content="#070711">
+  <title>Internet Speed Test | Toolora AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #070711;
+      --panel: rgba(255,255,255,.055);
+      --border: rgba(255,255,255,.10);
+      --text: #f5f5ff;
+      --muted: #9999b4;
+      --blue: #4f7cff;
+      --purple: #9b5cff;
+      --cyan: #00e5ff;
+      --green: #37e6a0;
+      --red: #ff637d;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 5%, rgba(79,124,255,.17), transparent 35%),
+        radial-gradient(ellipse at 90% 20%, rgba(155,92,255,.15), transparent 32%),
+        var(--bg);
+    }
+
+    button { font: inherit; }
+
+    .topbar {
+      width: min(1120px, 92%);
+      margin: auto;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .logo-icon {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      box-shadow: 0 0 25px rgba(79,124,255,.3);
+    }
+
+    .back-link {
+      color: #c6c6dc;
+      text-decoration: none;
+      font-size: 13px;
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: .2s;
+    }
+
+    .back-link:hover {
+      color: white;
+      border-color: var(--blue);
+      background: rgba(79,124,255,.12);
+    }
+
+    main {
+      width: min(1000px, 92%);
+      margin: 48px auto 60px;
+    }
+
+    .heading { text-align: center; margin-bottom: 30px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    .heading h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(32px, 6vw, 49px);
+      line-height: 1.12;
+      margin-bottom: 12px;
+    }
+
+    .heading h1 span {
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .heading p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .test-card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+      box-shadow: 0 25px 80px rgba(0,0,0,.28);
+    }
+
+    .test-card::before {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(79,124,255,.10);
+      filter: blur(70px);
+      top: -150px;
+      left: 35%;
+      pointer-events: none;
+    }
+
+    .status-row {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    .status.testing .status-dot {
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink { 50% { opacity: .25; } }
+
+    .phase {
+      font-size: 11px;
+      color: var(--cyan);
+      background: rgba(0,229,255,.08);
+      border: 1px solid rgba(0,229,255,.16);
+      padding: 7px 11px;
+      border-radius: 20px;
+    }
+
+    .gauge-area {
+      display: grid;
+      place-items: center;
+      padding: 8px 0 28px;
+    }
+
+    .gauge {
+      width: 230px;
+      height: 230px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: conic-gradient(from 220deg, var(--blue) 0deg, var(--purple) 100deg, rgba(255,255,255,.08) 100deg 280deg, transparent 280deg);
+      transform: rotate(0deg);
+      box-shadow: 0 0 50px rgba(79,124,255,.12);
+    }
+
+    .gauge::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      background: #0c0c1b;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .gauge-content {
+      z-index: 1;
+      text-align: center;
+    }
+
+    .gauge-content .label {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .speed-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 54px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 5px 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .speed-unit { color: var(--cyan); font-size: 13px; }
+
+    .metrics {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 13px;
+    }
+
+    .metric {
+      padding: 19px 14px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: rgba(255,255,255,.035);
+      text-align: center;
+      min-width: 0;
+    }
+
+    .metric-icon {
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 10px;
+      border-radius: 12px;
+      background: rgba(79,124,255,.13);
+      color: #83a4ff;
+    }
+
+    .metric:nth-child(2) .metric-icon {
+      color: var(--purple);
+      background: rgba(155,92,255,.13);
+    }
+
+    .metric:nth-child(3) .metric-icon {
+      color: var(--cyan);
+      background: rgba(0,229,255,.10);
+    }
+
+    .metric-name { color: var(--muted); font-size: 11px; }
+
+    .metric-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 27px;
+      font-weight: 700;
+      margin: 4px 0 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-unit { color: var(--muted); font-size: 10px; }
+
+    .progress-wrap {
+      margin: 23px 0 0;
+      display: none;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 9px;
+    }
+
+    .progress-track {
+      height: 7px;
+      overflow: hidden;
+      background: rgba(255,255,255,.08);
+      border-radius: 20px;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--cyan));
+      transition: width .25s ease;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 27px;
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 13px;
+      padding: 14px 24px;
+      font-weight: 700;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .btn-primary {
+      min-width: 190px;
+      color: white;
+      background: linear-gradient(110deg, var(--blue), var(--purple));
+      box-shadow: 0 10px 30px rgba(79,124,255,.25);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(79,124,255,.38);
+    }
+
+    .btn-secondary {
+      color: #d8d8ee;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+    }
+
+    .btn-secondary:hover:not(:disabled) { background: rgba(255,255,255,.1); }
+
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    .message {
+      min-height: 20px;
+      margin-top: 17px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .message.error { color: var(--red); }
+    .message.success { color: var(--green); }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 22px;
+    }
+
+    .info-card {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .info-card i {
+      color: var(--cyan);
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+
+    .info-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .notice {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border: 1px solid rgba(0,229,255,.14);
+      border-radius: 13px;
+      background: rgba(0,229,255,.045);
+      color: #aebbd0;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .notice i { color: var(--cyan); margin-right: 6px; }
+
+    footer {
+      width: min(1000px, 92%);
+      margin: 0 auto 25px;
+      color: #777790;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    @media (max-width: 650px) {
+      main { margin-top: 32px; }
+      .test-card { padding: 20px 15px; border-radius: 20px; }
+      .gauge { width: 195px; height: 195px; }
+      .speed-number { font-size: 47px; }
+      .metrics { gap: 8px; }
+      .metric { padding: 15px 7px; }
+      .metric-value { font-size: 22px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .info-card { display: flex; gap: 13px; align-items: flex-start; }
+      .info-card i { margin-top: 3px; }
+      .status-row { align-items: flex-start; }
+    }
+
+    @media (max-width: 370px) {
+      .metric-name { font-size: 10px; }
+      .metric-value { font-size: 19px; }
+      .gauge { width: 180px; height: 180px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="logo" href="index.html">
+      <span class="logo-icon"><i class="fa-solid fa-bolt"></i></span>
+      Toolora AI
+    </a>
+    <a class="back-link" href="index.html">
+      <i class="fa-solid fa-arrow-left"></i> Back to Home
+    </a>
+  </header>
+
+  <main>
+    <section class="heading">
+      <div class="eyebrow"><i class="fa-solid fa-gauge-high"></i> Network Utility</div>
+      <h1>Internet <span>Speed Test</span></h1>
+      <p>Check your connection performance in seconds.</p>
+    </section>
+
+    <section class="test-card">
+      <div class="status-row">
+        <div class="status" id="status">
+          <span class="status-dot"></span>
+          <span id="statusText">Ready to test</span>
+        </div>
+        <div class="phase" id="phase">NOT STARTED</div>
+      </div>
+
+      <div class="gauge-area">
+        <div class="gauge">
+          <div class="gauge-content">
+            <div class="label" id="gaugeLabel">Your speed</div>
+            <div class="speed-number" id="mainSpeed">0.00</div>
+            <div class="speed-unit">Mbps</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-icon"><i class="fa-solid fa-download"></i></div>
+          <div class="metric-name">DOWNLOAD</div>
+          <div class="metric-value" id="download">--</div>
+          <div class="metric-unit">Mbps</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-icon"><i class="fa-solid fa-upload"></i></div>
+          <div class="metric-name">UPLOAD</div>
+          <div class="metric-value" id="upload">--</div>
+          <div class="metric-unit">Mbps</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-icon"><i class="fa-solid fa-wifi"></i></div>
+          <div class="metric-name">PING</div>
+          <div class="metric-value" id="ping">--</div>
+          <div class="metric-unit">ms</div>
+        </div>
+      </div>
+
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-info">
+          <span id="progressLabel">Preparing test...</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="startBtn">
+          <i class="fa-solid fa-play"></i> Start Speed Test
+        </button>
+        <button class="btn btn-secondary" id="copyBtn" disabled>
+          <i class="fa-regular fa-copy"></i> Copy Results
+        </button>
+      </div>
+
+      <div class="message" id="message" aria-live="polite">
+        Press Start to measure your internet connection.
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <article class="info-card">
+        <i class="fa-solid fa-download"></i>
+        <div>
+          <h3>Download Speed</h3>
+          <p>How quickly your device receives data from the internet.</p>
+        </div>
+      </article>
+
+      <article class="info-card">
+        <i class="fa-solid fa-upload"></i>
+        <div>
+          <h3>Upload Speed</h3>
+          <p>How quickly your device sends data to the internet.</p>
+        </div>
+      </article>
+
+      <article class="info-card">
+        <i class="fa-solid fa-stopwatch"></i>
+        <div>
+          <h3>Ping & Jitter</h3>
+          <p>Ping measures response time. Jitter measures variation in ping.</p>
+        </div>
+      </article>
+    </section>
+
+    <div class="notice">
+      <i class="fa-solid fa-circle-info"></i>
+      This test uses Cloudflare's public speed-test endpoint. Results are estimates and can vary with Wi-Fi signal, server load, VPN use and other network activity. The test transfers data, so it may use your internet data allowance.
+    </div>
+  </main>
+
+  <footer>© 2026 Toolora AI. All rights reserved.</footer>
+
+  <script>
+    const DOWN_URL = "https://speed.cloudflare.com/__down";
+    const UP_URL = "https://speed.cloudflare.com/__up";
+
+    const $ = (id) => document.getElementById(id);
+
+    const startBtn = $("startBtn");
+    const copyBtn = $("copyBtn");
+    const status = $("status");
+    const statusText = $("statusText");
+    const phase = $("phase");
+    const mainSpeed = $("mainSpeed");
+    const gaugeLabel = $("gaugeLabel");
+    const downloadEl = $("download");
+    const uploadEl = $("upload");
+    const pingEl = $("ping");
+    const progressWrap = $("progressWrap");
+    const progressBar = $("progressBar");
+    const progressLabel = $("progressLabel");
+    const progressPercent = $("progressPercent");
+    const message = $("message");
+
+    let isRunning = false;
+    let finalResults = null;
+
+    function setMessage(text, type = "") {
+      message.textContent = text;
+      message.className = "message " + type;
+    }
+
+    function setProgress(percent, label) {
+      const safePercent = Math.max(0, Math.min(100, percent));
+      progressBar.style.width = safePercent + "%";
+      progressPercent.textContent = Math.round(safePercent) + "%";
+      progressLabel.textContent = label;
+    }
+
+    function setPhase(name, label) {
+      phase.textContent = name.toUpperCase();
+      statusText.textContent = label;
+      gaugeLabel.textContent = name;
+    }
+
+    function formatSpeed(value) {
+      if (!Number.isFinite(value) || value < 0) return "--";
+      return value.toFixed(2);
+    }
+
+    function setMainSpeed(value) {
+      mainSpeed.textContent = formatSpeed(value);
+    }
+
+    function makeRandomBlob(size) {
+      const chunks = [];
+      const chunkSize = 65536;
+
+      for (let offset = 0; offset < size; offset += chunkSize) {
+        const length = Math.min(chunkSize, size - offset);
+        const bytes = new Uint8Array(length);
+        crypto.getRandomValues(bytes);
+        chunks.push(bytes);
+      }
+
+      return new Blob(chunks, { type: "application/octet-stream" });
+    }
+
+    async function measurePing() {
+      const samples = [];
+
+      for (let i = 0; i < 5; i++) {
+        const url = DOWN_URL + "?bytes=0&cache=" + Date.now() + "_" + i;
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 12000);
+        const start = performance.now();
+
+        try {
+          const response = await fetch(url, {
+            cache: "no-store",
+            signal: controller.signal
+          });
+
+          if (!response.ok) throw new Error("Ping request failed");
+          await response.arrayBuffer();
+
+          samples.push(performance.now() - start);
+        } finally {
+          clearTimeout(timer);
+        }
+      }
+
+      const average = samples.reduce((a, b) => a + b, 0) / samples.length;
+      const variance = samples.reduce((sum, n) => sum + Math.pow(n - average, 2), 0) / samples.length;
+      const jitter = Math.sqrt(variance);
+
+      return {
+        ping: average,
+        jitter
+      };
+    }
+
+    async function downloadTest() {
+      const sizes = [1000000, 3000000, 5000000];
+      const values = [];
+
+      for (let i = 0; i < sizes.length; i++) {
+        const bytes = sizes[i];
+        const url = DOWN_URL + "?bytes=" + bytes + "&cache=" + Date.now() + "_" + i;
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 25000);
+        const start = performance.now();
+
+        try {
+          const response = await fetch(url, {
+            cache: "no-store",
+            signal: controller.signal
+          });
+
+          if (!response.ok) throw new Error("Download request failed");
+
+          const data = await response.arrayBuffer();
+          const elapsed = (performance.now() - start) / 1000;
+
+          if (elapsed <= 0 || data.byteLength === 0) {
+            throw new Error("Invalid download measurement");
+          }
+
+          values.push((data.byteLength * 8) / elapsed / 1000000);
+        } finally {
+          clearTimeout(timer);
+        }
+
+        setProgress(20 + ((i + 1) / sizes.length) * 35, "Measuring download speed...");
+        setMainSpeed(values[values.length - 1]);
+      }
+
+      // Use the average of the last two measurements to reduce the effect
+      // of the initial connection warm-up.
+      const selected = values.length > 1 ? values.slice(-2) : values;
+      return selected.reduce((a, b) => a + b, 0) / selected.length;
+    }
+
+    async function uploadTest() {
+      const sizes = [500000, 1500000, 2500000];
+      const values = [];
+
+      for (let i = 0; i < sizes.length; i++) {
+        const blob = makeRandomBlob(sizes[i]);
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 25000);
+        const start = performance.now();
+
+        try {
+          const response = await fetch(UP_URL + "?cache=" + Date.now() + "_" + i, {
+            method: "POST",
+            body: blob,
+            cache: "no-store",
+            signal: controller.signal
+          });
+
+          if (!response.ok) throw new Error("Upload request failed");
+
+          await response.arrayBuffer();
+          const elapsed = (performance.now() - start) / 1000;
+
+          if (elapsed <= 0) throw new Error("Invalid upload measurement");
+
+          values.push((blob.size * 8) / elapsed / 1000000);
+        } finally {
+          clearTimeout(timer);
+        }
+
+        setProgress(55 + ((i + 1) / sizes.length) * 40, "Measuring upload speed...");
+        setMainSpeed(values[values.length - 1]);
+      }
+
+      const selected = values.length > 1 ? values.slice(-2) : values;
+      return selected.reduce((a, b) => a + b, 0) / selected.length;
+    }
+
+    async function runTest() {
+      if (isRunning) return;
+
+      isRunning = true;
+      finalResults = null;
+      startBtn.disabled = true;
+      startBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Testing...';
+      copyBtn.disabled = true;
+
+      status.classList.add("testing");
+      progressWrap.style.display = "block";
+      setProgress(2, "Connecting to test server...");
+      setMessage("Please keep this tab open while the test runs.");
+
+      downloadEl.textContent = "--";
+      uploadEl.textContent = "--";
+      pingEl.textContent = "--";
+      setMainSpeed(0);
+
+      try {
+        setPhase("Ping", "Measuring response time...");
+        setProgress(8, "Measuring ping and jitter...");
+
+        const latency = await measurePing();
+        pingEl.textContent = latency.ping.toFixed(0);
+
+        setPhase("Download", "Measuring download speed...");
+        const download = await downloadTest();
+        downloadEl.textContent = formatSpeed(download);
+
+        setPhase("Upload", "Measuring upload speed...");
+        const upload = await uploadTest();
+        uploadEl.textContent = formatSpeed(upload);
+
+        finalResults = {
+          download,
+          upload,
+          ping: latency.ping,
+          jitter: latency.jitter,
+          date: new Date().toLocaleString()
+        };
+
+        setProgress(100, "Test completed");
+        setPhase("Complete", "Speed test completed");
+        setMainSpeed(download);
+        setMessage(
+          "Test complete! Your results are estimates for this connection.",
+          "success"
+        );
+        copyBtn.disabled = false;
+      } catch (error) {
+        console.error("Speed test error:", error);
+
+        setPhase("Error", "Test could not finish");
+        setMessage(
+          "The test could not connect to the speed-test server. Check your internet connection, disable any blocking extension, and try again.",
+          "error"
+        );
+        setProgress(0, "Test failed");
+      } finally {
+        isRunning = false;
+        startBtn.disabled = false;
+        startBtn.innerHTML = '<i class="fa-solid fa-rotate-right"></i> Test Again';
+        status.classList.remove("testing");
+      }
+    }
+
+    async function copyResults() {
+      if (!finalResults) return;
+
+      const text = [
+        "Toolora AI - Internet Speed Test",
+        "Download: " + formatSpeed(finalResults.download) + " Mbps",
+        "Upload: " + formatSpeed(finalResults.upload) + " Mbps",
+        "Ping: " + finalResults.ping.toFixed(0) + " ms",
+        "Jitter: " + finalResults.jitter.toFixed(1) + " ms",
+        "Tested: " + finalResults.date
+      ].join("\n");
+
+      try {
+        await navigator.clipboard.writeText(text);
+        setMessage("Results copied to clipboard!", "success");
+      } catch {
+        setMessage("Clipboard access was blocked by your browser.", "error");
+      }
+    }
+
+    startBtn.addEventListener("click", runTest);
+    copyBtn.addEventListener("click", copyResults);
+  </script>
+</body>
+</html>
