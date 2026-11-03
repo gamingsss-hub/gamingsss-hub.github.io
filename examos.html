@@ -1,0 +1,938 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070711">
+<meta name="description" content="Toolora ExamOS - Plan your study, track syllabus progress, take mock tests and monitor your exam preparation.">
+<title>Toolora ExamOS | Your Preparation Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#070711;--panel:#101020;--panel2:#15152a;
+  --line:rgba(255,255,255,.09);--text:#f5f5ff;--muted:#9696b0;
+  --blue:#4f7cff;--purple:#9b5cff;--cyan:#00e5ff;
+  --green:#37e6a0;--red:#ff637d;--yellow:#ffd166;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(ellipse at 10% 0%,rgba(79,124,255,.14),transparent 35%),radial-gradient(ellipse at 90% 20%,rgba(155,92,255,.12),transparent 32%),var(--bg);color:var(--text);font-family:Poppins,sans-serif;min-height:100vh}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.app{display:grid;grid-template-columns:245px 1fr;min-height:100vh}
+.sidebar{background:rgba(10,10,22,.92);border-right:1px solid var(--line);padding:25px 17px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:11px;font:800 23px Outfit,sans-serif;margin:0 8px 36px}
+.brand-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--purple));box-shadow:0 0 25px #4f7cff44}
+.brand small{display:block;color:var(--cyan);font:600 9px Poppins,sans-serif;letter-spacing:2px}
+.nav-label{font-size:10px;color:#6f6f8b;letter-spacing:1.7px;margin:23px 10px 10px;text-transform:uppercase}
+.nav-btn{width:100%;border:0;background:transparent;color:#a8a8c0;text-align:left;padding:12px 13px;border-radius:11px;margin:3px 0;font-size:12px;display:flex;align-items:center;gap:12px;transition:.2s}
+.nav-btn i{width:17px;text-align:center}
+.nav-btn:hover,.nav-btn.active{background:linear-gradient(100deg,#4f7cff28,#9b5cff18);color:white}
+.nav-btn.active{box-shadow:inset 3px 0 var(--blue)}
+.sidebar-bottom{position:absolute;bottom:22px;left:17px;right:17px}
+.home-link{border:1px solid var(--line);border-radius:12px;padding:12px;color:#bdbdd1;font-size:11px;display:block;text-align:center}
+.main{min-width:0;padding:27px clamp(17px,4vw,48px) 50px;max-width:1500px;width:100%;margin:auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:30px}
+.mobile-brand{display:none;font:800 20px Outfit}
+.top-actions{display:flex;align-items:center;gap:10px}
+.date-pill,.profile-pill{border:1px solid var(--line);background:#ffffff08;padding:10px 13px;border-radius:12px;color:#bdbdd0;font-size:11px}
+.profile-pill{color:white;display:flex;gap:9px;align-items:center}
+.profile-avatar{width:27px;height:27px;display:grid;place-items:center;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--purple))}
+.page{display:none;animation:fade .25s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
+.eyebrow{font-size:10px;color:var(--cyan);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+h1,h2,h3{font-family:Outfit,sans-serif}
+.page-title{font-size:clamp(27px,4vw,37px);line-height:1.15;margin-bottom:8px}
+.sub{color:var(--muted);font-size:12px;line-height:1.7}
+.gradient-text{background:linear-gradient(90deg,var(--blue),var(--purple),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{padding:28px;border:1px solid #647fff38;border-radius:21px;background:linear-gradient(115deg,#19254a,#211638 70%,#102438);position:relative;overflow:hidden;margin-bottom:19px}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:#4f7cff2b;filter:blur(55px);right:0;top:-130px}
+.hero-content{position:relative;z-index:1;max-width:650px}
+.hero h1{font-size:clamp(27px,4vw,39px);margin-bottom:9px}
+.hero p{color:#c2c7e0;font-size:12px;line-height:1.8;max-width:560px}
+.hero-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.exam-select{margin-top:19px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+select,input{background:#0c0c1b;color:white;border:1px solid var(--line);border-radius:10px;padding:11px 12px;outline:none;font-size:12px;min-width:0}
+select:focus,input:focus{border-color:var(--blue)}
+.hero select{background:#11172e;border-color:#5268a5}
+.btn{border:0;border-radius:10px;padding:11px 16px;font-size:11px;font-weight:700;transition:.2s}
+.btn-primary{color:white;background:linear-gradient(110deg,var(--blue),var(--purple));box-shadow:0 8px 22px #4f7cff33}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.12)}
+.btn-ghost{color:#d4d4e8;background:#ffffff0b;border:1px solid var(--line)}
+.btn-danger{color:#ff9cac;background:#ff637d17;border:1px solid #ff637d35}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:19px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px}
+.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:10px}
+.stat-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:#4f7cff20;color:#88a5ff}
+.stat:nth-child(2) .stat-icon{background:#37e6a01a;color:var(--green)}
+.stat:nth-child(3) .stat-icon{background:#9b5cff20;color:#c49aff}
+.stat:nth-child(4) .stat-icon{background:#ffd1661a;color:var(--yellow)}
+.stat strong{display:block;font:700 27px Outfit;margin-top:10px}
+.stat small{color:var(--muted);font-size:10px}
+.grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:15px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:20px;margin-bottom:15px;min-width:0}
+.card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}
+.card-head h2{font-size:16px}
+.card-head p{font-size:10px;color:var(--muted);margin-top:4px}
+.progress-track{height:8px;background:#ffffff12;border-radius:20px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--purple),var(--cyan));border-radius:20px;transition:width .3s}
+.progress-summary{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin:10px 0 8px}
+.topic-list{display:grid;gap:11px}
+.topic-row{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:center}
+.topic-row span{font-size:11px}
+.topic-row small{color:var(--muted);font-size:10px}
+.topic-row .progress-track{grid-column:1/-1;height:5px}
+.task-list{display:grid;gap:9px}
+.task{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid var(--line);border-radius:11px;background:#ffffff04}
+.task input{accent-color:var(--blue);width:16px;height:16px}
+.task-text{font-size:11px;flex:1;overflow-wrap:anywhere}
+.task.done .task-text{text-decoration:line-through;color:#74748c}
+.task small{font-size:9px;color:var(--muted)}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.quick{border:1px solid var(--line);background:#ffffff05;border-radius:14px;padding:16px;text-align:left;color:white;transition:.2s}
+.quick:hover{border-color:#4f7cff88;transform:translateY(-3px);background:#4f7cff12}
+.quick i{font-size:19px;color:var(--cyan);margin-bottom:12px}
+.quick strong{display:block;font:600 14px Outfit;margin-bottom:4px}
+.quick span{font-size:10px;color:var(--muted)}
+.form-row{display:flex;gap:9px;flex-wrap:wrap}
+.form-row input,.form-row select{flex:1}
+.empty{padding:25px 10px;text-align:center;color:var(--muted);font-size:11px;border:1px dashed var(--line);border-radius:12px}
+.empty i{display:block;font-size:23px;margin-bottom:10px;color:#62627e}
+.subject-item{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.subject-item:last-child{border:0}
+.subject-item .subject-name{flex:1;font-size:12px}
+.subject-item .subject-count{font-size:10px;color:var(--muted)}
+.subject-item button{padding:6px 9px;font-size:10px}
+.question-box{padding:20px;border:1px solid var(--line);background:#ffffff04;border-radius:15px;margin:15px 0}
+.question-box h3{font-size:17px;line-height:1.6;margin-bottom:15px}
+.option{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;font-size:12px;cursor:pointer}
+.option:hover{border-color:var(--blue);background:#4f7cff10}
+.option.selected{border-color:var(--blue);background:#4f7cff20}
+.option input{accent-color:var(--blue)}
+.quiz-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:11px}
+.result-score{font:800 54px Outfit;color:var(--green);text-align:center;margin:15px}
+.result-detail{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.result-detail div{background:#ffffff08;padding:15px;border-radius:12px;text-align:center}
+.result-detail strong{display:block;font:700 23px Outfit}
+.result-detail small{font-size:10px;color:var(--muted)}
+.table{width:100%;border-collapse:collapse;font-size:11px}
+.table th,.table td{padding:12px 9px;border-bottom:1px solid var(--line);text-align:left}
+.table th{color:var(--muted);font-weight:500}
+.table-wrap{overflow-x:auto}
+.section-note{color:var(--muted);font-size:10px;line-height:1.7;margin-top:12px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#20203a;border:1px solid var(--line);border-radius:12px;padding:12px 17px;font-size:11px;z-index:10;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.app{grid-template-columns:205px 1fr}.stats{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}}
+@media(max-width:650px){
+ .app{display:block}.sidebar{position:fixed;z-index:5;top:auto;bottom:0;left:0;right:0;width:100%;height:auto;padding:7px 5px;background:#0d0d1bf5;border-right:0;border-top:1px solid var(--line)}
+ .brand,.nav-label,.sidebar-bottom{display:none}
+ .sidebar nav{display:flex;justify-content:space-around;gap:2px}
+ .nav-btn{width:auto;flex:1;display:flex;flex-direction:column;gap:4px;text-align:center;padding:8px 3px;margin:0;font-size:9px;border-radius:9px}
+ .nav-btn i{font-size:16px;width:auto}
+ .main{padding:18px 14px 95px}
+ .topbar{margin-bottom:22px}.mobile-brand{display:block}.date-pill{display:none}
+ .hero{padding:21px 17px}.stats{gap:9px}.stat{padding:13px}.stat strong{font-size:23px}
+ .quick-grid{grid-template-columns:repeat(2,1fr)}
+ .card{padding:16px}
+ .result-detail{gap:6px}.result-detail div{padding:11px 5px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <a class="brand" href="index.html">
+      <span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+      <span>Toolora <small>EXAMOS</small></span>
+    </a>
+
+    <div class="nav-label">Workspace</div>
+    <nav>
+      <button class="nav-btn active" data-page="dashboard"><i class="fa-solid fa-house"></i> Dashboard</button>
+      <button class="nav-btn" data-page="planner"><i class="fa-solid fa-calendar-check"></i> Study Planner</button>
+      <button class="nav-btn" data-page="syllabus"><i class="fa-solid fa-list-check"></i> Syllabus Tracker</button>
+      <button class="nav-btn" data-page="mock"><i class="fa-solid fa-clipboard-question"></i> Mock Test</button>
+      <button class="nav-btn" data-page="analytics"><i class="fa-solid fa-chart-line"></i> Performance</button>
+    </nav>
+
+    <div class="nav-label">More</div>
+    <button class="nav-btn" id="exportBtn"><i class="fa-solid fa-file-export"></i> Export My Data</button>
+    <button class="nav-btn" id="resetBtn"><i class="fa-solid fa-rotate-left"></i> Reset Workspace</button>
+
+    <div class="sidebar-bottom">
+      <a class="home-link" href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Toolora Home</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="mobile-brand">Toolora <span class="gradient-text">ExamOS</span></div>
+      <div class="date-pill"><i class="fa-regular fa-calendar"></i> <span id="todayDate"></span></div>
+      <div class="top-actions">
+        <div class="profile-pill"><span class="profile-avatar"><i class="fa-solid fa-user"></i></span> My Workspace</div>
+      </div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section class="page active" id="page-dashboard">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="eyebrow">YOUR PREPARATION COMMAND CENTER</div>
+          <h1>Prepare smarter.<br><span class="gradient-text">Track every improvement.</span></h1>
+          <p>Your personal study workspace. Plan sessions, track topics, attempt practice tests and understand your progress.</p>
+          <div class="exam-select">
+            <select id="examSelect" aria-label="Choose your exam">
+              <option value="Agniveer Army GD">Agniveer Army GD</option>
+              <option value="Agniveer Army Clerk">Agniveer Army Clerk</option>
+              <option value="Agniveer Technical">Agniveer Technical</option>
+              <option value="NDA">NDA</option>
+              <option value="Navy SSR/MR">Navy SSR/MR</option>
+              <option value="Air Force">Air Force</option>
+              <option value="SSC GD">SSC GD</option>
+              <option value="SSC CGL">SSC CGL</option>
+              <option value="Police">Police</option>
+              <option value="Railway">Railway</option>
+              <option value="UPSC">UPSC</option>
+              <option value="CUET">CUET</option>
+              <option value="Other">Other</option>
+            </select>
+            <button class="btn btn-primary" id="saveExam"><i class="fa-solid fa-check"></i> Save Exam</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="stat-top">Syllabus completed <span class="stat-icon"><i class="fa-solid fa-book-open"></i></span></div><strong id="statSyllabus">0%</strong><small>Topics marked complete</small></div>
+        <div class="stat"><div class="stat-top">Tasks completed <span class="stat-icon"><i class="fa-solid fa-check"></i></span></div><strong id="statTasks">0</strong><small>Study tasks finished</small></div>
+        <div class="stat"><div class="stat-top">Mock tests taken <span class="stat-icon"><i class="fa-solid fa-clipboard-list"></i></span></div><strong id="statMocks">0</strong><small>Practice sessions</small></div>
+        <div class="stat"><div class="stat-top">Average score <span class="stat-icon"><i class="fa-solid fa-chart-simple"></i></span></div><strong id="statAverage">--</strong><small>Across your saved tests</small></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-head"><div><h2>Syllabus progress</h2><p>Your overall topic completion</p></div><button class="btn btn-ghost" data-goto="syllabus">Manage</button></div>
+          <div class="progress-summary"><span>Overall completion</span><strong id="dashSyllabusText">0%</strong></div>
+          <div class="progress-track"><div class="progress-fill" id="dashSyllabusBar"></div></div>
+          <div class="topic-list" id="dashSubjects" style="margin-top:20px"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div><h2>Today's study plan</h2><p>Stay consistent, one task at a time</p></div><button class="btn btn-ghost" data-goto="planner">View all</button></div>
+          <div class="task-list" id="dashTasks"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div><h2>Quick actions</h2><p>Jump into your preparation</p></div></div>
+        <div class="quick-grid">
+          <button class="quick" data-goto="planner"><i class="fa-solid fa-calendar-plus"></i><strong>Plan study</strong><span>Add a new study task</span></button>
+          <button class="quick" data-goto="syllabus"><i class="fa-solid fa-list-check"></i><strong>Update syllabus</strong><span>Track topic completion</span></button>
+          <button class="quick" data-goto="mock"><i class="fa-solid fa-stopwatch"></i><strong>Take a mock</strong><span>Practice your questions</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANNER -->
+    <section class="page" id="page-planner">
+      <div class="eyebrow">BUILD YOUR ROUTINE</div>
+      <h1 class="page-title">Study <span class="gradient-text">Planner</span></h1>
+      <p class="sub">Add study sessions and check them off as you complete them.</p>
+
+      <div class="card" style="margin-top:22px">
+        <div class="card-head"><div><h2>Add a study task</h2><p>Keep your daily targets clear and manageable.</p></div></div>
+        <form id="taskForm" class="form-row">
+          <input id="taskName" type="text" placeholder="e.g. Revise Motion chapter" maxlength="100" required>
+          <select id="taskSubject" aria-label="Task subject">
+            <option>General Knowledge</option><option>Maths</option><option>Science</option><option>English</option><option>Reasoning</option><option>Computer</option><option>Other</option>
+          </select>
+          <input id="taskDate" type="date" required>
+          <button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i> Add Task</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div><h2>Your study tasks</h2><p>All saved tasks appear here.</p></div><span class="phase" id="taskCount">0 TASKS</span></div>
+        <div class="task-list" id="allTasks"></div>
+      </div>
+    </section>
+
+    <!-- SYLLABUS -->
+    <section class="page" id="page-syllabus">
+      <div class="eyebrow">KNOW WHAT IS LEFT</div>
+      <h1 class="page-title">Syllabus <span class="gradient-text">Tracker</span></h1>
+      <p class="sub">Create your own subjects and topics, then mark each topic complete.</p>
+
+      <div class="card" style="margin-top:22px">
+        <div class="card-head"><div><h2>Add a subject</h2><p>Example: Physics, Maths, GK or English.</p></div></div>
+        <form id="subjectForm" class="form-row">
+          <input id="subjectName" type="text" placeholder="Enter subject name" maxlength="50" required>
+          <button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i> Add Subject</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div><h2>Add a topic</h2><p>Choose a subject and enter a topic to track.</p></div></div>
+        <form id="topicForm" class="form-row">
+          <select id="topicSubject" required aria-label="Choose subject"></select>
+          <input id="topicName" type="text" placeholder="e.g. Laws of Motion" maxlength="100" required>
+          <button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i> Add Topic</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div><h2>Your subjects & topics</h2><p>Tick topics when you finish studying them.</p></div><span class="phase" id="syllabusTotal">0 TOPICS</span></div>
+        <div id="subjectList"></div>
+      </div>
+    </section>
+
+    <!-- MOCK TEST -->
+    <section class="page" id="page-mock">
+      <div class="eyebrow">PRACTICE WITH PURPOSE</div>
+      <h1 class="page-title">Mock <span class="gradient-text">Test Studio</span></h1>
+      <p class="sub">Create your own multiple-choice question bank and attempt timed practice tests.</p>
+
+      <div id="mockSetup">
+        <div class="card" style="margin-top:22px">
+          <div class="card-head"><div><h2>Add your questions</h2><p>Enter a question and four answer options. Your question bank stays saved in this browser.</p></div></div>
+          <form id="questionForm">
+            <input id="questionText" type="text" placeholder="Write your question here" maxlength="300" required style="width:100%;margin-bottom:10px">
+            <div class="form-row" style="margin-bottom:10px">
+              <input class="option-input" placeholder="Option A" maxlength="150" required>
+              <input class="option-input" placeholder="Option B" maxlength="150" required>
+            </div>
+            <div class="form-row" style="margin-bottom:10px">
+              <input class="option-input" placeholder="Option C" maxlength="150" required>
+              <input class="option-input" placeholder="Option D" maxlength="150" required>
+            </div>
+            <div class="form-row">
+              <select id="correctOption" aria-label="Correct answer">
+                <option value="0">Correct answer: A</option><option value="1">Correct answer: B</option><option value="2">Correct answer: C</option><option value="3">Correct answer: D</option>
+              </select>
+              <input id="questionSubject" placeholder="Subject (optional)" maxlength="40">
+              <button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i> Save Question</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div><h2>Your question bank</h2><p id="questionCount">0 saved questions</p></div><button class="btn btn-ghost" id="clearQuestions">Clear bank</button></div>
+          <div id="questionList"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div><h2>Start a practice test</h2><p>Choose how many questions you want to attempt.</p></div></div>
+          <div class="form-row">
+            <select id="testLength" aria-label="Number of questions">
+              <option value="5">5 Questions</option><option value="10">10 Questions</option><option value="20">20 Questions</option><option value="all">All Questions</option>
+            </select>
+            <select id="testMinutes" aria-label="Test duration">
+              <option value="5">5 Minutes</option><option value="10">10 Minutes</option><option value="20">20 Minutes</option><option value="30">30 Minutes</option><option value="0">No time limit</option>
+            </select>
+            <button class="btn btn-primary" id="startMock"><i class="fa-solid fa-play"></i> Start Mock Test</button>
+          </div>
+          <p class="section-note">You need at least one saved question. The test uses your own question bank; it does not automatically fetch official exam questions.</p>
+        </div>
+      </div>
+
+      <div class="card" id="quizArea" style="display:none">
+        <div class="quiz-bar">
+          <span id="questionPosition">Question 1</span>
+          <span id="quizTimer">Time: --:--</span>
+        </div>
+        <div class="progress-track" style="margin-top:12px"><div class="progress-fill" id="quizProgress"></div></div>
+        <div class="question-box">
+          <h3 id="activeQuestion"></h3>
+          <div id="activeOptions"></div>
+        </div>
+        <div class="form-row" style="justify-content:space-between">
+          <button class="btn btn-ghost" id="quitMock">Quit test</button>
+          <button class="btn btn-primary" id="nextQuestion">Next Question <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div class="card" id="quizResult" style="display:none">
+        <div class="eyebrow" style="text-align:center">TEST COMPLETED</div>
+        <h2 style="text-align:center">Your practice result</h2>
+        <div class="result-score" id="resultPercent">0%</div>
+        <div class="result-detail">
+          <div><strong id="resultCorrect">0</strong><small>Correct</small></div>
+          <div><strong id="resultWrong">0</strong><small>Wrong</small></div>
+          <div><strong id="resultSkipped">0</strong><small>Skipped</small></div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" id="againMock">Try Again</button>
+          <button class="btn btn-ghost" id="reviewMock">Review Answers</button>
+        </div>
+        <div id="reviewArea" style="display:none;margin-top:20px"></div>
+      </div>
+    </section>
+
+    <!-- ANALYTICS -->
+    <section class="page" id="page-analytics">
+      <div class="eyebrow">MEASURE YOUR PROGRESS</div>
+      <h1 class="page-title">Performance <span class="gradient-text">Analytics</span></h1>
+      <p class="sub">Review your saved mock-test history and preparation progress.</p>
+
+      <div class="stats" style="margin-top:22px">
+        <div class="stat"><div class="stat-top">Tests taken <span class="stat-icon"><i class="fa-solid fa-file-lines"></i></span></div><strong id="anaTests">0</strong><small>Total saved tests</small></div>
+        <div class="stat"><div class="stat-top">Average score <span class="stat-icon"><i class="fa-solid fa-chart-line"></i></span></div><strong id="anaAvg">--</strong><small>Average percentage</small></div>
+        <div class="stat"><div class="stat-top">Best score <span class="stat-icon"><i class="fa-solid fa-trophy"></i></span></div><strong id="anaBest">--</strong><small>Your highest result</small></div>
+        <div class="stat"><div class="stat-top">Completed topics <span class="stat-icon"><i class="fa-solid fa-book"></i></span></div><strong id="anaTopics">0</strong><small>Syllabus topics done</small></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div><h2>Mock test history</h2><p>Your recent completed practice tests.</p></div></div>
+        <div class="table-wrap" id="historyTable"></div>
+      </div>
+      <p class="section-note">Analytics are calculated from tests you complete inside this browser. They are not official exam predictions or guarantees of exam performance.</p>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  "use strict";
+
+  const KEY = "toolora_examos_v1";
+  const defaultData = {
+    exam: "Agniveer Army GD",
+    tasks: [],
+    subjects: [],
+    questions: [],
+    history: []
+  };
+
+  function loadData() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY));
+      if (!saved || typeof saved !== "object") return structuredClone(defaultData);
+      return {
+        ...structuredClone(defaultData),
+        ...saved,
+        tasks: Array.isArray(saved.tasks) ? saved.tasks : [],
+        subjects: Array.isArray(saved.subjects) ? saved.subjects : [],
+        questions: Array.isArray(saved.questions) ? saved.questions : [],
+        history: Array.isArray(saved.history) ? saved.history : []
+      };
+    } catch {
+      return structuredClone(defaultData);
+    }
+  }
+
+  let data = loadData();
+  let quiz = null;
+  let timerInterval = null;
+  let remainingSeconds = 0;
+
+  const $ = id => document.getElementById(id);
+  const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  })[char]);
+
+  function save() {
+    localStorage.setItem(KEY, JSON.stringify(data));
+    renderAll();
+  }
+
+  function toast(text) {
+    const el = $("toast");
+    el.textContent = text;
+    el.classList.add("show");
+    setTimeout(() => el.classList.remove("show"), 2300);
+  }
+
+  function syllabusStats() {
+    const topics = data.subjects.flatMap(subject => subject.topics || []);
+    const completed = topics.filter(topic => topic.done).length;
+    return {
+      total: topics.length,
+      completed,
+      percent: topics.length ? Math.round(completed / topics.length * 100) : 0
+    };
+  }
+
+  function averageScore() {
+    return data.history.length
+      ? Math.round(data.history.reduce((sum, item) => sum + item.percent, 0) / data.history.length)
+      : null;
+  }
+
+  function showPage(name) {
+    document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
+    const target = $("page-" + name);
+    if (target) target.classList.add("active");
+
+    document.querySelectorAll(".nav-btn[data-page]").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.page === name);
+    });
+
+    if (name === "analytics") renderAnalytics();
+    if (name === "syllabus") renderSyllabus();
+    if (name === "planner") renderTasks();
+    if (name === "mock") renderQuestions();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  document.querySelectorAll("[data-page]").forEach(btn => {
+    btn.addEventListener("click", () => showPage(btn.dataset.page));
+  });
+
+  document.querySelectorAll("[data-goto]").forEach(btn => {
+    btn.addEventListener("click", () => showPage(btn.dataset.goto));
+  });
+
+  $("todayDate").textContent = new Date().toLocaleDateString(undefined, {
+    weekday: "short", day: "numeric", month: "short", year: "numeric"
+  });
+
+  $("taskDate").value = new Date().toISOString().slice(0, 10);
+  $("examSelect").value = data.exam;
+  $("saveExam").addEventListener("click", () => {
+    data.exam = $("examSelect").value;
+    save();
+    toast("Exam preference saved");
+  });
+
+  // STUDY PLANNER
+  $("taskForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const title = $("taskName").value.trim();
+    if (!title) return;
+
+    data.tasks.push({
+      id: crypto.randomUUID(),
+      title,
+      subject: $("taskSubject").value,
+      date: $("taskDate").value,
+      done: false
+    });
+
+    $("taskName").value = "";
+    save();
+    toast("Study task added");
+  });
+
+  function taskHTML(task) {
+    return `
+      <div class="task ${task.done ? "done" : ""}">
+        <input type="checkbox" data-task-toggle="${task.id}" ${task.done ? "checked" : ""} aria-label="Mark task complete">
+        <span class="task-text">${escapeHTML(task.title)}</span>
+        <small>${escapeHTML(task.subject)} · ${escapeHTML(task.date)}</small>
+        <button class="btn btn-danger" data-task-delete="${task.id}" aria-label="Delete task"><i class="fa-solid fa-trash"></i></button>
+      </div>`;
+  }
+
+  function renderTasks() {
+    const sorted = [...data.tasks].sort((a,b) => a.date.localeCompare(b.date));
+    $("taskCount").textContent = `${data.tasks.length} TASKS`;
+    $("allTasks").innerHTML = sorted.length
+      ? sorted.map(taskHTML).join("")
+      : `<div class="empty"><i class="fa-solid fa-calendar-plus"></i>No tasks yet. Add your first study task above.</div>`;
+
+    $("dashTasks").innerHTML = sorted.length
+      ? sorted.slice(0, 5).map(taskHTML).join("")
+      : `<div class="empty"><i class="fa-solid fa-mug-hot"></i>Your study plan is empty.</div>`;
+  }
+
+  document.addEventListener("change", event => {
+    const id = event.target.dataset.taskToggle;
+    if (!id) return;
+    const task = data.tasks.find(item => item.id === id);
+    if (task) {
+      task.done = event.target.checked;
+      save();
+    }
+  });
+
+  document.addEventListener("click", event => {
+    const deleteButton = event.target.closest("[data-task-delete]");
+    if (!deleteButton) return;
+    const id = deleteButton.dataset.taskDelete;
+    data.tasks = data.tasks.filter(task => task.id !== id);
+    save();
+    toast("Task deleted");
+  });
+
+  // SYLLABUS TRACKER
+  $("subjectForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const name = $("subjectName").value.trim();
+    if (!name) return;
+    if (data.subjects.some(s => s.name.toLowerCase() === name.toLowerCase())) {
+      toast("That subject already exists");
+      return;
+    }
+    data.subjects.push({ id: crypto.randomUUID(), name, topics: [] });
+    $("subjectName").value = "";
+    save();
+    toast("Subject added");
+  });
+
+  $("topicForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const subject = data.subjects.find(s => s.id === $("topicSubject").value);
+    const name = $("topicName").value.trim();
+    if (!subject || !name) {
+      toast("Add a subject first");
+      return;
+    }
+    subject.topics.push({ id: crypto.randomUUID(), name, done: false });
+    $("topicName").value = "";
+    save();
+    toast("Topic added");
+  });
+
+  function renderSyllabus() {
+    $("topicSubject").innerHTML = data.subjects.length
+      ? data.subjects.map(s => `<option value="${s.id}">${escapeHTML(s.name)}</option>`).join("")
+      : `<option value="">Add a subject first</option>`;
+
+    const stats = syllabusStats();
+    $("syllabusTotal").textContent = `${stats.completed}/${stats.total} COMPLETE`;
+
+    $("subjectList").innerHTML = data.subjects.length
+      ? data.subjects.map(subject => {
+        const topics = subject.topics || [];
+        const done = topics.filter(t => t.done).length;
+        const percent = topics.length ? Math.round(done / topics.length * 100) : 0;
+
+        return `
+          <div style="padding:15px 0;border-bottom:1px solid var(--line)">
+            <div class="card-head" style="margin-bottom:9px">
+              <div><h3 style="font-size:15px">${escapeHTML(subject.name)}</h3><p>${done} of ${topics.length} topics complete</p></div>
+              <button class="btn btn-danger" data-subject-delete="${subject.id}">Delete subject</button>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width:${percent}%"></div></div>
+            ${topics.length ? topics.map(topic => `
+              <div class="subject-item">
+                <input type="checkbox" data-topic-toggle="${topic.id}" data-subject-id="${subject.id}" ${topic.done ? "checked" : ""} aria-label="Mark topic complete">
+                <span class="subject-name" style="${topic.done ? "text-decoration:line-through;color:#777" : ""}">${escapeHTML(topic.name)}</span>
+                <span class="subject-count">${topic.done ? "Done" : "Pending"}</span>
+                <button class="btn btn-danger" data-topic-delete="${topic.id}" data-parent-id="${subject.id}"><i class="fa-solid fa-trash"></i></button>
+              </div>`).join("") : `<p class="section-note">No topics added to this subject yet.</p>`}
+          </div>`;
+      }).join("")
+      : `<div class="empty"><i class="fa-solid fa-book-open"></i>No subjects yet. Add your first subject above.</div>`;
+  }
+
+  document.addEventListener("change", event => {
+    const topicId = event.target.dataset.topicToggle;
+    if (!topicId) return;
+    const subject = data.subjects.find(s => s.id === event.target.dataset.subjectId);
+    const topic = subject?.topics.find(t => t.id === topicId);
+    if (topic) {
+      topic.done = event.target.checked;
+      save();
+    }
+  });
+
+  document.addEventListener("click", event => {
+    const subjectDelete = event.target.closest("[data-subject-delete]");
+    if (subjectDelete) {
+      data.subjects = data.subjects.filter(s => s.id !== subjectDelete.dataset.subjectDelete);
+      save();
+      toast("Subject deleted");
+      return;
+    }
+
+    const topicDelete = event.target.closest("[data-topic-delete]");
+    if (topicDelete) {
+      const subject = data.subjects.find(s => s.id === topicDelete.dataset.parentId);
+      if (subject) {
+        subject.topics = subject.topics.filter(t => t.id !== topicDelete.dataset.topicDelete);
+        save();
+        toast("Topic deleted");
+      }
+    }
+  });
+
+  // MOCK TEST QUESTION BANK
+  $("questionForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const options = [...document.querySelectorAll(".option-input")].map(input => input.value.trim());
+    const question = $("questionText").value.trim();
+
+    if (!question || options.some(option => !option)) {
+      toast("Please complete all question fields");
+      return;
+    }
+
+    data.questions.push({
+      id: crypto.randomUUID(),
+      question,
+      options,
+      answer: Number($("correctOption").value),
+      subject: $("questionSubject").value.trim() || "General"
+    });
+
+    $("questionForm").reset();
+    save();
+    toast("Question saved");
+  });
+
+  $("clearQuestions").addEventListener("click", () => {
+    if (!data.questions.length) return;
+    if (!confirm("Delete all questions in your question bank?")) return;
+    data.questions = [];
+    save();
+    toast("Question bank cleared");
+  });
+
+  function renderQuestions() {
+    $("questionCount").textContent = `${data.questions.length} saved questions`;
+    $("questionList").innerHTML = data.questions.length
+      ? data.questions.map((q, index) => `
+        <div class="subject-item">
+          <span class="subject-count">${index + 1}.</span>
+          <span class="subject-name">${escapeHTML(q.question)}</span>
+          <small>${escapeHTML(q.subject)}</small>
+          <button class="btn btn-danger" data-question-delete="${q.id}"><i class="fa-solid fa-trash"></i></button>
+        </div>`).join("")
+      : `<div class="empty"><i class="fa-solid fa-circle-question"></i>No questions saved yet. Add your first question above.</div>`;
+  }
+
+  document.addEventListener("click", event => {
+    const button = event.target.closest("[data-question-delete]");
+    if (!button) return;
+    data.questions = data.questions.filter(q => q.id !== button.dataset.questionDelete);
+    save();
+    toast("Question deleted");
+  });
+
+  // MOCK TEST ENGINE
+  function stopTimer() {
+    if (timerInterval) clearInterval(timerInterval);
+    timerInterval = null;
+  }
+
+  function startMock() {
+    if (!data.questions.length) {
+      toast("Add at least one question first");
+      return;
+    }
+
+    const lengthValue = $("testLength").value;
+    const count = lengthValue === "all"
+      ? data.questions.length
+      : Math.min(Number(lengthValue), data.questions.length);
+
+    const shuffled = [...data.questions].sort(() => Math.random() - .5).slice(0, count);
+
+    quiz = {
+      questions: shuffled,
+      answers: Array(count).fill(null),
+      index: 0,
+      startedAt: Date.now()
+    };
+
+    const minutes = Number($("testMinutes").value);
+    remainingSeconds = minutes * 60;
+
+    $("mockSetup").style.display = "none";
+    $("quizResult").style.display = "none";
+    $("quizArea").style.display = "block";
+
+    if (minutes > 0) {
+      $("quizTimer").style.display = "block";
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        remainingSeconds--;
+        updateTimerDisplay();
+        if (remainingSeconds <= 0) finishMock();
+      }, 1000);
+    } else {
+      $("quizTimer").textContent = "No time limit";
+    }
+
+    renderQuestion();
+  }
+
+  function updateTimerDisplay() {
+    const mins = Math.floor(remainingSeconds / 60);
+    const secs = remainingSeconds % 60;
+    $("quizTimer").textContent = `Time: ${String(mins).padStart(2,"0")}:${String(secs).padStart(2,"0")}`;
+  }
+
+  function renderQuestion() {
+    const q = quiz.questions[quiz.index];
+    $("questionPosition").textContent = `Question ${quiz.index + 1} of ${quiz.questions.length}`;
+    $("quizProgress").style.width = ((quiz.index + 1) / quiz.questions.length * 100) + "%";
+    $("activeQuestion").textContent = q.question;
+    $("activeOptions").innerHTML = q.options.map((option, index) => `
+      <label class="option ${quiz.answers[quiz.index] === index ? "selected" : ""}">
+        <input type="radio" name="activeAnswer" value="${index}" ${quiz.answers[quiz.index] === index ? "checked" : ""}>
+        <span><strong>${String.fromCharCode(65 + index)}.</strong> ${escapeHTML(option)}</span>
+      </label>`).join("");
+
+    $("nextQuestion").innerHTML = quiz.index === quiz.questions.length - 1
+      ? 'Submit Test <i class="fa-solid fa-check"></i>'
+      : 'Next Question <i class="fa-solid fa-arrow-right"></i>';
+  }
+
+  $("activeOptions").addEventListener("change", event => {
+    if (event.target.name !== "activeAnswer") return;
+    quiz.answers[quiz.index] = Number(event.target.value);
+    renderQuestion();
+  });
+
+  $("nextQuestion").addEventListener("click", () => {
+    if (quiz.index < quiz.questions.length - 1) {
+      quiz.index++;
+      renderQuestion();
+    } else {
+      if (confirm("Submit this mock test?")) finishMock();
+    }
+  });
+
+  $("quitMock").addEventListener("click", () => {
+    if (confirm("Quit this test? Your current attempt will not be saved.")) {
+      stopTimer();
+      quiz = null;
+      $("quizArea").style.display = "none";
+      $("mockSetup").style.display = "block";
+    }
+  });
+
+  function finishMock() {
+    if (!quiz) return;
+    stopTimer();
+
+    const correct = quiz.questions.reduce((sum, q, index) =>
+      sum + (quiz.answers[index] === q.answer ? 1 : 0), 0);
+    const skipped = quiz.answers.filter(answer => answer === null).length;
+    const wrong = quiz.questions.length - correct - skipped;
+    const percent = Math.round(correct / quiz.questions.length * 100);
+
+    const record = {
+      id: crypto.randomUUID(),
+      date: new Date().toLocaleString(),
+      total: quiz.questions.length,
+      correct,
+      wrong,
+      skipped,
+      percent
+    };
+
+    data.history.unshift(record);
+    data.history = data.history.slice(0, 100);
+    save();
+
+    $("quizArea").style.display = "none";
+    $("quizResult").style.display = "block";
+    $("resultPercent").textContent = percent + "%";
+    $("resultCorrect").textContent = correct;
+    $("resultWrong").textContent = wrong;
+    $("resultSkipped").textContent = skipped;
+    $("reviewArea").style.display = "none";
+    $("reviewArea").innerHTML = quiz.questions.map((q, index) => {
+      const picked = quiz.answers[index];
+      const isCorrect = picked === q.answer;
+      return `
+        <div class="question-box">
+          <h3>${index + 1}. ${escapeHTML(q.question)}</h3>
+          <p class="section-note">Your answer: ${picked === null ? "Skipped" : escapeHTML(q.options[picked])}</p>
+          <p class="section-note">Correct answer: ${escapeHTML(q.options[q.answer])}</p>
+          <p style="font-size:11px;color:${isCorrect ? "var(--green)" : "var(--red)"};margin-top:7px">${isCorrect ? "Correct" : "Incorrect / skipped"}</p>
+        </div>`;
+    }).join("");
+
+    quiz = null;
+  }
+
+  $("reviewMock").addEventListener("click", () => {
+    const area = $("reviewArea");
+    area.style.display = area.style.display === "none" ? "block" : "none";
+  });
+
+  $("againMock").addEventListener("click", () => {
+    $("quizResult").style.display = "none";
+    $("mockSetup").style.display = "block";
+    renderQuestions();
+  });
+
+  $("startMock").addEventListener("click", startMock);
+
+  // DASHBOARD + ANALYTICS
+  function renderDashboard() {
+    const syllabus = syllabusStats();
+    const completedTasks = data.tasks.filter(task => task.done).length;
+    const average = averageScore();
+
+    $("statSyllabus").textContent = syllabus.percent + "%";
+    $("statTasks").textContent = completedTasks;
+    $("statMocks").textContent = data.history.length;
+    $("statAverage").textContent = average === null ? "--" : average + "%";
+    $("dashSyllabusText").textContent = syllabus.percent + "%";
+    $("dashSyllabusBar").style.width = syllabus.percent + "%";
+
+    const subjects = data.subjects.filter(s => s.topics.length);
+    $("dashSubjects").innerHTML = subjects.length
+      ? subjects.slice(0, 5).map(s => {
+        const done = s.topics.filter(t => t.done).length;
+        const percent = Math.round(done / s.topics.length * 100);
+        return `<div><div class="progress-summary"><span>${escapeHTML(s.name)}</span><span>${percent}%</span></div><div class="progress-track"><div class="progress-fill" style="width:${percent}%"></div></div></div>`;
+      }).join("")
+      : `<div class="empty">Add subjects and topics in the Syllabus Tracker to see your progress here.</div>`;
+
+    renderTasks();
+  }
+
+  function renderAnalytics() {
+    const average = averageScore();
+    const best = data.history.length ? Math.max(...data.history.map(x => x.percent)) : null;
+    $("anaTests").textContent = data.history.length;
+    $("anaAvg").textContent = average === null ? "--" : average + "%";
+    $("anaBest").textContent = best === null ? "--" : best + "%";
+    $("anaTopics").textContent = syllabusStats().completed;
+
+    $("historyTable").innerHTML = data.history.length
+      ? `<table class="table"><thead><tr><th>Date</th><th>Score</th><th>Correct</th><th>Result</th></tr></thead><tbody>${data.history.map(h => `
+        <tr><td>${escapeHTML(h.date)}</td><td>${h.percent}%</td><td>${h.correct}/${h.total}</td><td style="color:${h.percent >= 60 ? "var(--green)" : "var(--yellow)"}">${h.percent >= 60 ? "Good progress" : "Keep practising"}</td></tr>`).join("")}</tbody></table>`
+      : `<div class="empty"><i class="fa-solid fa-chart-line"></i>Your completed mock tests will appear here.</div>`;
+  }
+
+  // EXPORT / RESET
+  $("exportBtn").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "toolora-examos-backup.json";
+    a.click();
+    URL.revokeObjectURL(url);
+    toast("Your data backup has been downloaded");
+  });
+
+  $("resetBtn").addEventListener("click", () => {
+    if (!confirm("This will permanently clear your ExamOS data in this browser. Continue?")) return;
+    stopTimer();
+    data = structuredClone(defaultData);
+    localStorage.removeItem(KEY);
+    $("examSelect").value = data.exam;
+    $("quizArea").style.display = "none";
+    $("quizResult").style.display = "none";
+    $("mockSetup").style.display = "block";
+    save();
+    toast("Workspace reset");
+  });
+
+  function renderAll() {
+    $("examSelect").value = data.exam;
+    renderDashboard();
+    renderSyllabus();
+    renderQuestions();
+    renderAnalytics();
+  }
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
