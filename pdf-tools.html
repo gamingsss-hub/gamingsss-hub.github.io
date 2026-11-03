@@ -1,0 +1,811 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Free PDF Tools Online | PDF Editor & Manager - Toolora AI</title>
+
+<meta name="description" content="Free online PDF tools by Toolora AI. Merge, split, extract, delete and rotate PDF pages or add text watermarks. Edit and manage PDF files directly in your browser.">
+
+<meta name="keywords" content="PDF tools, free PDF editor, online PDF editor, merge PDF, split PDF, extract PDF pages, delete PDF pages, rotate PDF, PDF manager, PDF watermark, manage PDF online, Toolora AI">
+
+<meta name="author" content="Toolora AI">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#080d18">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free PDF Tools Online - Toolora AI">
+<meta property="og:description" content="Merge, split, rotate, extract and manage PDF files online for free.">
+<meta property="og:url" content="https://gamingsss-hub.github.io/pdf-tools.html">
+<meta property="og:site_name" content="Toolora AI">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: #080d18;
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.navbar {
+    max-width: 1150px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0 35px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.logo-icon {
+    background: linear-gradient(135deg,#2563eb,#06b6d4);
+    padding: 11px;
+    border-radius: 12px;
+}
+
+.back {
+    color: white;
+    text-decoration: none;
+    background: #19253a;
+    padding: 10px 17px;
+    border-radius: 10px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.hero {
+    text-align: center;
+    padding: 35px 10px 45px;
+}
+
+.badge {
+    display: inline-block;
+    background: #142b45;
+    color: #38bdf8;
+    border: 1px solid #23476b;
+    padding: 8px 17px;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(32px,6vw,49px);
+    margin-bottom: 13px;
+}
+
+.hero p {
+    color: #9ba9bc;
+    line-height: 1.7;
+    max-width: 620px;
+    margin: auto;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 17px;
+    margin-bottom: 35px;
+}
+
+.tool-card {
+    background: #111a2a;
+    border: 1px solid #26354a;
+    border-radius: 19px;
+    padding: 23px;
+    transition: .25s;
+}
+
+.tool-card:hover {
+    transform: translateY(-4px);
+    border-color: #3b82f6;
+}
+
+.tool-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    background: #1c3150;
+    color: #60a5fa;
+    border-radius: 13px;
+    font-size: 22px;
+    margin-bottom: 17px;
+}
+
+.tool-card h3 {
+    font-size: 19px;
+    margin-bottom: 8px;
+}
+
+.tool-card p {
+    color: #94a3b8;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 42px;
+}
+
+.tool-card button {
+    width: 100%;
+    margin-top: 17px;
+    border: none;
+    background: linear-gradient(135deg,#2563eb,#0891b2);
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.editor {
+    display: none;
+    background: #111a2a;
+    border: 1px solid #2b3c54;
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 35px;
+}
+
+.editor h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.editor-desc {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.drop-zone {
+    border: 2px dashed #365477;
+    background: #0b1423;
+    border-radius: 15px;
+    padding: 35px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.drop-zone:hover {
+    border-color: #38bdf8;
+    background: #12243a;
+}
+
+.drop-zone .big-icon {
+    font-size: 36px;
+    color: #38bdf8;
+    margin-bottom: 13px;
+}
+
+.drop-zone p {
+    color: #9ba9bc;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+input[type=file] {
+    display: none;
+}
+
+.file-list {
+    margin-top: 15px;
+    display: grid;
+    gap: 8px;
+}
+
+.file-item {
+    background: #1b293d;
+    padding: 12px;
+    border-radius: 9px;
+    font-size: 13px;
+    color: #dbeafe;
+    word-break: break-all;
+}
+
+.fields {
+    margin-top: 18px;
+    display: grid;
+    gap: 13px;
+}
+
+.fields label {
+    font-size: 14px;
+    color: #cbd5e1;
+}
+
+.fields input {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    background: #0b1423;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    outline: none;
+    color: white;
+    font-family: inherit;
+}
+
+.action-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    border: none;
+    padding: 13px 20px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.process-btn {
+    background: linear-gradient(135deg,#2563eb,#0891b2);
+    color: white;
+}
+
+.reset-btn {
+    background: #25354b;
+    color: white;
+}
+
+.action-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.status {
+    margin-top: 17px;
+    color: #38bdf8;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.info {
+    background: #111a2a;
+    border: 1px solid #26354a;
+    padding: 23px;
+    border-radius: 17px;
+    margin-bottom: 30px;
+}
+
+.info h3 {
+    margin-bottom: 12px;
+}
+
+.info p {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.footer {
+    text-align: center;
+    color: #64748b;
+    padding: 30px 0;
+    font-size: 13px;
+}
+
+@media(max-width:750px) {
+    .tools-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:480px) {
+    body { padding: 13px; }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-card {
+        padding: 20px;
+    }
+
+    .editor {
+        padding: 16px;
+    }
+
+    .action-btn {
+        flex: 1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <div class="logo-icon">📄</div>
+        <span>Toolora AI</span>
+    </div>
+
+    <a href="index.html" class="back">← Home</a>
+</header>
+
+<main class="container">
+
+<section class="hero">
+    <div class="badge">⚡ Free Online PDF Workspace</div>
+
+    <h1>PDF Tools & Editor</h1>
+
+    <p>
+        Merge, split, extract, rotate and manage your PDF files
+        with simple browser-based tools. No account required.
+    </p>
+</section>
+
+<section class="tools-grid">
+
+    <div class="tool-card">
+        <div class="tool-icon">📚</div>
+        <h3>Merge PDF</h3>
+        <p>Combine multiple PDF files into one document.</p>
+        <button onclick="openTool('merge')">Use Tool</button>
+    </div>
+
+    <div class="tool-card">
+        <div class="tool-icon">✂️</div>
+        <h3>Split PDF</h3>
+        <p>Extract a selected page range into a new PDF.</p>
+        <button onclick="openTool('split')">Use Tool</button>
+    </div>
+
+    <div class="tool-card">
+        <div class="tool-icon">📑</div>
+        <h3>Extract Pages</h3>
+        <p>Save selected pages as a separate PDF.</p>
+        <button onclick="openTool('extract')">Use Tool</button>
+    </div>
+
+    <div class="tool-card">
+        <div class="tool-icon">🗑️</div>
+        <h3>Delete Pages</h3>
+        <p>Remove unwanted pages from your PDF.</p>
+        <button onclick="openTool('delete')">Use Tool</button>
+    </div>
+
+    <div class="tool-card">
+        <div class="tool-icon">🔄</div>
+        <h3>Rotate PDF</h3>
+        <p>Rotate all pages clockwise or anticlockwise.</p>
+        <button onclick="openTool('rotate')">Use Tool</button>
+    </div>
+
+    <div class="tool-card">
+        <div class="tool-icon">💧</div>
+        <h3>Text Watermark</h3>
+        <p>Add a text watermark to every PDF page.</p>
+        <button onclick="openTool('watermark')">Use Tool</button>
+    </div>
+
+</section>
+
+<section class="editor" id="editor">
+
+    <h2 id="editorTitle">PDF Editor</h2>
+
+    <p class="editor-desc" id="editorDesc">
+        Select your PDF files to begin.
+    </p>
+
+    <label class="drop-zone" for="pdfInput">
+        <div class="big-icon">📂</div>
+        <h3>Select PDF Files</h3>
+        <p>Click here to browse your device</p>
+        <p>PDF files only</p>
+    </label>
+
+    <input type="file" id="pdfInput" accept="application/pdf,.pdf" multiple>
+
+    <div class="file-list" id="fileList"></div>
+
+    <div class="fields" id="fields"></div>
+
+    <div class="action-row">
+        <button class="action-btn process-btn" id="processBtn">
+            Process PDF
+        </button>
+
+        <button class="action-btn reset-btn" onclick="resetEditor()">
+            Reset
+        </button>
+    </div>
+
+    <div class="status" id="status" aria-live="polite"></div>
+
+</section>
+
+<section class="info">
+    <h3>🔒 Your Privacy Matters</h3>
+    <p>
+        PDF processing takes place locally in your browser using
+        the PDF-Lib library. Your selected PDF files are not
+        intentionally uploaded to a Toolora AI server.
+        Avoid using this page for sensitive documents on shared devices.
+    </p>
+</section>
+
+</main>
+
+<footer class="footer">
+    © 2026 Toolora AI. All Rights Reserved.
+</footer>
+
+<script>
+const { PDFDocument, degrees, rgb, StandardFonts } = PDFLib;
+
+const editor = document.getElementById("editor");
+const editorTitle = document.getElementById("editorTitle");
+const editorDesc = document.getElementById("editorDesc");
+const pdfInput = document.getElementById("pdfInput");
+const fileList = document.getElementById("fileList");
+const fields = document.getElementById("fields");
+const statusBox = document.getElementById("status");
+const processBtn = document.getElementById("processBtn");
+
+let currentTool = "";
+let selectedFiles = [];
+
+const toolInfo = {
+    merge: {
+        title: "Merge PDF Files",
+        desc: "Select two or more PDF files to combine them."
+    },
+    split: {
+        title: "Split PDF",
+        desc: "Enter the page range you want to save."
+    },
+    extract: {
+        title: "Extract PDF Pages",
+        desc: "Select specific pages to extract."
+    },
+    delete: {
+        title: "Delete PDF Pages",
+        desc: "Enter the page numbers you want to remove."
+    },
+    rotate: {
+        title: "Rotate PDF",
+        desc: "Rotate every page in your document."
+    },
+    watermark: {
+        title: "Add Text Watermark",
+        desc: "Add your own text to every page."
+    }
+};
+
+function openTool(type) {
+    currentTool = type;
+    selectedFiles = [];
+
+    editor.style.display = "block";
+
+    editorTitle.textContent = toolInfo[type].title;
+    editorDesc.textContent = toolInfo[type].desc;
+
+    pdfInput.multiple = type === "merge";
+
+    pdfInput.value = "";
+    fileList.innerHTML = "";
+    fields.innerHTML = "";
+    statusBox.textContent = "";
+
+    if (type === "split" || type === "extract" || type === "delete") {
+        fields.innerHTML = `
+            <label>
+                Page numbers / range
+                <input id="pageRange" type="text"
+                placeholder="Example: 1-3,5,7">
+            </label>
+        `;
+    }
+
+    if (type === "rotate") {
+        fields.innerHTML = `
+            <label>
+                Rotation
+                <select id="rotation"
+                style="width:100%;padding:13px;margin-top:8px;background:#0b1423;color:white;border:1px solid #334155;border-radius:10px;">
+                    <option value="90">90° Clockwise</option>
+                    <option value="180">180°</option>
+                    <option value="270">270° Clockwise</option>
+                </select>
+            </label>
+        `;
+    }
+
+    if (type === "watermark") {
+        fields.innerHTML = `
+            <label>
+                Watermark Text
+                <input id="watermarkText" type="text"
+                placeholder="Enter watermark text">
+            </label>
+        `;
+    }
+
+    editor.scrollIntoView({ behavior: "smooth" });
+}
+
+pdfInput.addEventListener("change", function() {
+    selectedFiles = Array.from(pdfInput.files);
+
+    fileList.innerHTML = "";
+
+    selectedFiles.forEach(file => {
+        const item = document.createElement("div");
+        item.className = "file-item";
+        item.textContent = "📄 " + file.name;
+        fileList.appendChild(item);
+    });
+
+    statusBox.textContent =
+        selectedFiles.length + " PDF file(s) selected.";
+});
+
+function parsePages(value, total) {
+    if (!value.trim()) {
+        throw new Error("Please enter page numbers.");
+    }
+
+    const pages = new Set();
+
+    const parts = value.split(",");
+
+    for (const part of parts) {
+        const item = part.trim();
+
+        if (/^\d+$/.test(item)) {
+            const page = Number(item);
+
+            if (page < 1 || page > total) {
+                throw new Error("Page number is outside the document.");
+            }
+
+            pages.add(page - 1);
+
+        } else if (/^\d+\s*-\s*\d+$/.test(item)) {
+            const [start, end] = item.split("-").map(Number);
+
+            if (
+                start < 1 ||
+                end > total ||
+                start > end
+            ) {
+                throw new Error("Invalid page range.");
+            }
+
+            for (let i = start; i <= end; i++) {
+                pages.add(i - 1);
+            }
+
+        } else {
+            throw new Error("Invalid format. Example: 1-3,5,7");
+        }
+    }
+
+    return [...pages].sort((a,b) => a-b);
+}
+
+async function readPDF(file) {
+    if (!file || file.type !== "application/pdf") {
+        throw new Error("Please select a valid PDF file.");
+    }
+
+    const bytes = await file.arrayBuffer();
+
+    return await PDFDocument.load(bytes);
+}
+
+async function downloadPDF(pdfDoc, name) {
+    const bytes = await pdfDoc.save();
+
+    const blob = new Blob([bytes], {
+        type: "application/pdf"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = name;
+    link.click();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+processBtn.addEventListener("click", async function() {
+
+    if (!selectedFiles.length) {
+        statusBox.textContent = "Please select a PDF file first.";
+        return;
+    }
+
+    processBtn.disabled = true;
+    processBtn.textContent = "Processing...";
+    statusBox.textContent = "Please wait...";
+
+    try {
+
+        if (currentTool === "merge") {
+
+            if (selectedFiles.length < 2) {
+                throw new Error("Select at least two PDF files.");
+            }
+
+            const merged = await PDFDocument.create();
+
+            for (const file of selectedFiles) {
+                const source = await readPDF(file);
+                const pages = await merged.copyPages(
+                    source,
+                    source.getPageIndices()
+                );
+
+                pages.forEach(page => merged.addPage(page));
+            }
+
+            await downloadPDF(merged, "merged.pdf");
+        }
+
+        else {
+
+            const source = await readPDF(selectedFiles[0]);
+            const total = source.getPageCount();
+
+            if (currentTool === "split") {
+
+                const pages = parsePages(
+                    document.getElementById("pageRange").value,
+                    total
+                );
+
+                const output = await PDFDocument.create();
+                const copied = await output.copyPages(source, pages);
+
+                copied.forEach(page => output.addPage(page));
+
+                await downloadPDF(output, "split.pdf");
+            }
+
+            if (currentTool === "extract") {
+
+                const pages = parsePages(
+                    document.getElementById("pageRange").value,
+                    total
+                );
+
+                const output = await PDFDocument.create();
+                const copied = await output.copyPages(source, pages);
+
+                copied.forEach(page => output.addPage(page));
+
+                await downloadPDF(output, "extracted-pages.pdf");
+            }
+
+            if (currentTool === "delete") {
+
+                const pages = parsePages(
+                    document.getElementById("pageRange").value,
+                    total
+                );
+
+                if (pages.length >= total) {
+                    throw new Error("You cannot delete every page.");
+                }
+
+                pages.sort((a,b) => b-a).forEach(index => {
+                    source.removePage(index);
+                });
+
+                await downloadPDF(source, "edited.pdf");
+            }
+
+            if (currentTool === "rotate") {
+
+                const angle = Number(
+                    document.getElementById("rotation").value
+                );
+
+                source.getPages().forEach(page => {
+                    const existing = page.getRotation().angle;
+                    page.setRotation(degrees((existing + angle) % 360));
+                });
+
+                await downloadPDF(source, "rotated.pdf");
+            }
+
+            if (currentTool === "watermark") {
+
+                const text = document.getElementById("watermarkText").value.trim();
+
+                if (!text) {
+                    throw new Error("Enter watermark text first.");
+                }
+
+                const font = await source.embedFont(StandardFonts.Helvetica);
+
+                source.getPages().forEach(page => {
+
+                    const { width, height } = page.getSize();
+
+                    page.drawText(text, {
+                        x: 40,
+                        y: height / 2,
+                        size: 28,
+                        font: font,
+                        color: rgb(0.5, 0.5, 0.5),
+                        opacity: 0.35,
+                        rotate: degrees(35)
+                    });
+
+                });
+
+                await downloadPDF(source, "watermarked.pdf");
+            }
+
+        }
+
+        statusBox.textContent =
+            "✓ Done! Your PDF download has started.";
+
+    } catch (error) {
+
+        console.error(error);
+
+        statusBox.textContent =
+            "Error: " + (error.message || "Unable to process PDF.");
+
+    } finally {
+
+        processBtn.disabled = false;
+        processBtn.textContent = "Process PDF";
+
+    }
+
+});
+
+function resetEditor() {
+    selectedFiles = [];
+    pdfInput.value = "";
+    fileList.innerHTML = "";
+    fields.innerHTML = "";
+    statusBox.textContent = "";
+}
+</script>
+
+</body>
+</html>
