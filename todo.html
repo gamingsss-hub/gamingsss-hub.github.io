@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>To-Do List Manager – Toolora AI</title>
+  <meta name="description" content="Organize your day with Toolora AI To-Do List. Add tasks, set priorities, track completed tasks and manage your daily plans for free.">
+  <meta name="keywords" content="todo list, task manager, daily planner, online todo app, Toolora AI">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#080611">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #080611;
+      --card: rgba(255,255,255,.055);
+      --border: rgba(255,255,255,.1);
+      --text: #fff;
+      --muted: #a6a1b5;
+      --purple: #9b5cff;
+      --red: #ff416c;
+      --cyan: #00e5ff;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 5%, rgba(155,92,255,.16), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(255,65,108,.12), transparent 30%),
+        var(--bg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .navbar {
+      max-width: 1100px;
+      margin: auto;
+      padding: 22px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .logo span {
+      background: linear-gradient(90deg, var(--red), var(--purple));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .home-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 10px 16px;
+      border-radius: 12px;
+      color: #ddd;
+      font-size: 14px;
+    }
+
+    .home-btn:hover {
+      border-color: var(--purple);
+    }
+
+    .container {
+      max-width: 850px;
+      padding: 35px 18px 70px;
+      margin: auto;
+    }
+
+    .heading {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .heading .tag {
+      display: inline-block;
+      padding: 7px 14px;
+      border: 1px solid rgba(155,92,255,.35);
+      background: rgba(155,92,255,.1);
+      color: #c9a9ff;
+      border-radius: 30px;
+      font-size: 12px;
+      margin-bottom: 17px;
+    }
+
+    .heading h1 {
+      font-size: clamp(34px, 6vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+    }
+
+    .heading h1 span {
+      background: linear-gradient(90deg, #ff416c, #a66aff, #00e5ff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .heading p {
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 15px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 23px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.2);
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    input, select {
+      font-family: inherit;
+      color: white;
+      background: rgba(0,0,0,.25);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      padding: 14px;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--purple);
+    }
+
+    #taskInput {
+      flex: 1;
+      min-width: 0;
+      font-size: 15px;
+    }
+
+    input::placeholder {
+      color: #827d91;
+    }
+
+    select option {
+      background: #171225;
+    }
+
+    .add-btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 0 20px;
+      color: white;
+      font-family: inherit;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff416c, #985cff);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .add-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(155,92,255,.25);
+    }
+
+    .options-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .options-row select,
+    .options-row input {
+      flex: 1;
+      min-width: 0;
+      font-size: 13px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 17px 10px;
+      text-align: center;
+    }
+
+    .stat h2 {
+      font-size: 25px;
+      margin-bottom: 4px;
+    }
+
+    .stat p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .stat:nth-child(1) h2 { color: var(--cyan); }
+    .stat:nth-child(2) h2 { color: #b58aff; }
+    .stat:nth-child(3) h2 { color: #55e6a5; }
+
+    .progress-area {
+      margin: 20px 0 25px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 9px;
+    }
+
+    .progress-track {
+      height: 8px;
+      background: rgba(255,255,255,.09);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, var(--red), var(--purple), var(--cyan));
+      transition: width .3s;
+    }
+
+    .list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 25px 0 15px;
+    }
+
+    .list-header h2 {
+      font-size: 19px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .filter-btn {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 11px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .filter-btn.active {
+      color: white;
+      background: rgba(155,92,255,.2);
+      border-color: var(--purple);
+    }
+
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .task {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: .2s;
+    }
+
+    .task:hover {
+      border-color: rgba(155,92,255,.5);
+      background: rgba(255,255,255,.06);
+    }
+
+    .task-check {
+      width: 19px;
+      height: 19px;
+      accent-color: #9b5cff;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .task-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .task-title {
+      font-size: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    .task.done .task-title {
+      color: #777286;
+      text-decoration: line-through;
+    }
+
+    .task-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .priority {
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+
+    .priority.High {
+      color: #ff7b94;
+      background: rgba(255,65,108,.12);
+    }
+
+    .priority.Medium {
+      color: #ffd27b;
+      background: rgba(255,190,70,.12);
+    }
+
+    .priority.Low {
+      color: #70e7b1;
+      background: rgba(70,220,150,.12);
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 7px;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: #bbb5ca;
+      cursor: pointer;
+    }
+
+    .icon-btn:hover {
+      color: white;
+      border-color: var(--purple);
+    }
+
+    .delete-btn:hover {
+      color: #ff6685;
+      border-color: var(--red);
+    }
+
+    .empty {
+      text-align: center;
+      padding: 45px 10px;
+      color: var(--muted);
+    }
+
+    .empty i {
+      font-size: 38px;
+      color: #8b5cff;
+      margin-bottom: 12px;
+    }
+
+    .empty p {
+      font-size: 14px;
+    }
+
+    .footer-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .small-btn {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 9px;
+      padding: 9px 12px;
+      font-family: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .small-btn:hover {
+      color: white;
+      border-color: var(--purple);
+    }
+
+    .footer {
+      text-align: center;
+      color: #777286;
+      font-size: 12px;
+      margin-top: 25px;
+    }
+
+    @media(max-width: 600px) {
+      .container {
+        padding-top: 20px;
+      }
+
+      .panel {
+        padding: 16px;
+      }
+
+      .input-row {
+        flex-direction: column;
+      }
+
+      .add-btn {
+        padding: 14px;
+      }
+
+      .options-row {
+        flex-direction: column;
+      }
+
+      .list-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .task {
+        padding: 12px 10px;
+        gap: 9px;
+      }
+
+      .task-actions {
+        gap: 4px;
+      }
+
+      .icon-btn {
+        width: 31px;
+        height: 31px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">TOOLORA <span>AI</span></a>
+    <a href="index.html" class="home-btn">
+      <i class="fa-solid fa-house"></i> Home
+    </a>
+  </nav>
+
+  <main class="container">
+
+    <header class="heading">
+      <span class="tag"><i class="fa-solid fa-bolt"></i> PRODUCTIVITY TOOL</span>
+      <h1>Plan Your <span>Day.</span></h1>
+      <p>Organize your tasks, focus on priorities and get things done.</p>
+    </header>
+
+    <section class="panel">
+
+      <form id="taskForm">
+        <div class="input-row">
+          <input
+            type="text"
+            id="taskInput"
+            placeholder="What do you need to do today?"
+            maxlength="150"
+            required
+          >
+          <button class="add-btn" type="submit">
+            <i class="fa-solid fa-plus"></i> Add Task
+          </button>
+        </div>
+
+        <div class="options-row">
+          <select id="priorityInput" aria-label="Task priority">
+            <option value="Medium">Medium Priority</option>
+            <option value="High">High Priority</option>
+            <option value="Low">Low Priority</option>
+          </select>
+
+          <input type="date" id="dateInput" aria-label="Due date">
+        </div>
+      </form>
+
+      <div class="stats">
+        <div class="stat">
+          <h2 id="totalCount">0</h2>
+          <p>Total Tasks</p>
+        </div>
+        <div class="stat">
+          <h2 id="pendingCount">0</h2>
+          <p>Pending</p>
+        </div>
+        <div class="stat">
+          <h2 id="completedCount">0</h2>
+          <p>Completed</p>
+        </div>
+      </div>
+
+      <div class="progress-area">
+        <div class="progress-info">
+          <span>Your Progress</span>
+          <span id="progressText">0% completed</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="list-header">
+        <h2><i class="fa-solid fa-list-check"></i> My Tasks</h2>
+
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="pending">Pending</button>
+          <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+      </div>
+
+      <div class="task-list" id="taskList"></div>
+
+      <div class="footer-actions">
+        <span id="taskSummary" style="color:var(--muted);font-size:12px;">
+          No tasks yet
+        </span>
+        <button class="small-btn" id="clearCompleted">
+          <i class="fa-solid fa-trash"></i> Clear Completed
+        </button>
+      </div>
+
+    </section>
+
+    <div class="footer">
+      © 2026 Toolora AI · Your personal productivity space
+    </div>
+
+  </main>
+
+  <script>
+    const taskForm = document.getElementById("taskForm");
+    const taskInput = document.getElementById("taskInput");
+    const priorityInput = document.getElementById("priorityInput");
+    const dateInput = document.getElementById("dateInput");
+    const taskList = document.getElementById("taskList");
+
+    const totalCount = document.getElementById("totalCount");
+    const pendingCount = document.getElementById("pendingCount");
+    const completedCount = document.getElementById("completedCount");
+    const progressText = document.getElementById("progressText");
+    const progressFill = document.getElementById("progressFill");
+    const taskSummary = document.getElementById("taskSummary");
+
+    const STORAGE_KEY = "toolora_todo_tasks";
+
+    let tasks = [];
+    let currentFilter = "all";
+
+    try {
+      const savedTasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      tasks = Array.isArray(savedTasks) ? savedTasks : [];
+    } catch {
+      tasks = [];
+    }
+
+    function saveTasks() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    }
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      })[char]);
+    }
+
+    function formatDate(date) {
+      if (!date) return "No due date";
+
+      const parts = date.split("-");
+      if (parts.length !== 3) return "No due date";
+
+      return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    }
+
+    function addTask(text, priority, dueDate) {
+      tasks.unshift({
+        id: Date.now().toString() + Math.random().toString(16).slice(2),
+        text,
+        priority,
+        dueDate,
+        completed: false,
+        createdAt: new Date().toISOString()
+      });
+
+      saveTasks();
+      renderTasks();
+    }
+
+    taskForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const text = taskInput.value.trim();
+      if (!text) return;
+
+      addTask(text, priorityInput.value, dateInput.value);
+
+      taskInput.value = "";
+      dateInput.value = "";
+      priorityInput.value = "Medium";
+      taskInput.focus();
+    });
+
+    function toggleTask(id) {
+      tasks = tasks.map(task =>
+        task.id === id
+          ? { ...task, completed: !task.completed }
+          : task
+      );
+
+      saveTasks();
+      renderTasks();
+    }
+
+    function deleteTask(id) {
+      if (!confirm("Delete this task?")) return;
+
+      tasks = tasks.filter(task => task.id !== id);
+      saveTasks();
+      renderTasks();
+    }
+
+    function editTask(id) {
+      const task = tasks.find(item => item.id === id);
+      if (!task) return;
+
+      const updatedText = prompt("Edit your task:", task.text);
+      if (updatedText === null) return;
+
+      const cleanText = updatedText.trim();
+      if (!cleanText) {
+        alert("Task cannot be empty.");
+        return;
+      }
+
+      task.text = cleanText;
+      saveTasks();
+      renderTasks();
+    }
+
+    function getFilteredTasks() {
+      if (currentFilter === "pending") {
+        return tasks.filter(task => !task.completed);
+      }
+
+      if (currentFilter === "completed") {
+        return tasks.filter(task => task.completed);
+      }
+
+      return tasks;
+    }
+
+    function renderTasks() {
+      const completed = tasks.filter(task => task.completed).length;
+      const pending = tasks.length - completed;
+      const percentage = tasks.length
+        ? Math.round((completed / tasks.length) * 100)
+        : 0;
+
+      totalCount.textContent = tasks.length;
+      pendingCount.textContent = pending;
+      completedCount.textContent = completed;
+
+      progressText.textContent = percentage + "% completed";
+      progressFill.style.width = percentage + "%";
+
+      taskSummary.textContent =
+        `${pending} pending · ${completed} completed`;
+
+      const visibleTasks = getFilteredTasks();
+
+      if (!visibleTasks.length) {
+        taskList.innerHTML = `
+          <div class="empty">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <p>${
+              tasks.length
+                ? "No tasks in this filter."
+                : "Your task list is empty. Add your first task!"
+            }</p>
+          </div>
+        `;
+        return;
+      }
+
+      taskList.innerHTML = visibleTasks.map(task => `
+        <div class="task ${task.completed ? "done" : ""}">
+          <input
+            class="task-check"
+            type="checkbox"
+            ${task.completed ? "checked" : ""}
+            aria-label="Mark task complete"
+            onchange="toggleTask('${task.id}')"
+          >
+
+          <div class="task-content">
+            <div class="task-title">${escapeHTML(task.text)}</div>
+
+            <div class="task-meta">
+              <span class="priority ${escapeHTML(task.priority)}">
+                ${escapeHTML(task.priority)} Priority
+              </span>
+              <span>
+                <i class="fa-regular fa-calendar"></i>
+                ${escapeHTML(formatDate(task.dueDate))}
+              </span>
+            </div>
+          </div>
+
+          <div class="task-actions">
+            <button class="icon-btn"
+              onclick="editTask('${task.id}')"
+              title="Edit task"
+              aria-label="Edit task">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+
+            <button class="icon-btn delete-btn"
+              onclick="deleteTask('${task.id}')"
+              title="Delete task"
+              aria-label="Delete task">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    document.querySelectorAll(".filter-btn").forEach(button => {
+      button.addEventListener("click", function() {
+        document.querySelectorAll(".filter-btn").forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+        this.classList.add("active");
+        currentFilter = this.dataset.filter;
+        renderTasks();
+      });
+    });
+
+    document.getElementById("clearCompleted")
+      .addEventListener("click", function() {
+        const completed = tasks.filter(task => task.completed).length;
+
+        if (!completed) {
+          alert("There are no completed tasks to clear.");
+          return;
+        }
+
+        if (!confirm(`Delete all ${completed} completed tasks?`)) return;
+
+        tasks = tasks.filter(task => !task.completed);
+        saveTasks();
+        renderTasks();
+      });
+
+    renderTasks();
+  </script>
+
+</body>
+</html>
