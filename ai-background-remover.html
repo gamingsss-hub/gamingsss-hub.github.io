@@ -702,20 +702,35 @@
       selectFile(file);
     });
 
-    async function loadAI() {
-      if (removeBackgroundFunction) return removeBackgroundFunction;
+   async function loadAI() {
+  if (typeof removeBackgroundFunction === "function") {
+    return removeBackgroundFunction;
+  }
 
-      statusBox.style.display = "block";
-      setProgress(2, "Loading AI engine...");
+  statusBox.style.display = "block";
+  setProgress(2, "Loading AI engine...");
 
-      const module = await import(
-        "https://esm.sh/@imgly/background-removal@1.7.0"
-      );
+  const module = await import(
+    "https://esm.sh/@imgly/background-removal@1.7.0?bundle"
+  );
 
-      removeBackgroundFunction = module.default;
-      return removeBackgroundFunction;
-    }
+  const candidate =
+    module.removeBackground ||
+    module.default?.removeBackground ||
+    module.default?.default ||
+    module.default;
 
+  if (typeof candidate !== "function") {
+    console.error("IMG.LY module exports:", module);
+
+    throw new Error(
+      "AI library loaded, but its background removal function was not found. Please refresh and try again."
+    );
+  }
+
+  removeBackgroundFunction = candidate;
+  return removeBackgroundFunction;
+}
     removeBtn.addEventListener("click", async () => {
       if (!selectedFile || isProcessing) return;
 
