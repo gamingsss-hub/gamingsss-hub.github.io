@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Check website health, SEO metadata, HTTPS and mobile readiness with Toolora Website Health Checker.">
+<title>Website Health Checker | Toolora AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#070711;--panel:#121326;--panel2:#191a30;--blue:#4f7cff;--purple:#9b5cff;--cyan:#00e5ff;--text:#f6f6ff;--muted:#999bb7;--border:rgba(255,255,255,.09);--green:#46dfaa;--red:#ff697d;--yellow:#ffc66d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:radial-gradient(ellipse at 15% 0%,#17224b 0,transparent 38%),radial-gradient(ellipse at 95% 20%,#28133d 0,transparent 32%),var(--bg);color:var(--text);font-family:Poppins,sans-serif}
+header{height:74px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:#070711b8;backdrop-filter:blur(16px);position:sticky;top:0;z-index:5}
+.logo{font:800 23px Outfit,sans-serif}.logo span{color:var(--cyan)}.logo i{color:var(--purple);margin-right:8px}
+.header-pill{font-size:11px;color:#b7c4ff;border:1px solid #4f7cff55;background:#4f7cff18;padding:8px 13px;border-radius:30px}
+main{max-width:1000px;margin:auto;padding:50px 20px 70px}
+.hero{text-align:center;margin-bottom:32px}
+.eyebrow{display:inline-block;padding:8px 13px;border-radius:30px;background:#4f7cff19;border:1px solid #4f7cff55;color:#b9c9ff;font-size:11px}
+h1{font:800 clamp(34px,6vw,54px) Outfit;margin:18px 0 10px;letter-spacing:-1.5px}
+h1 span{background:linear-gradient(90deg,var(--cyan),#8b79ff,var(--purple));background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:13px;line-height:1.8;max-width:610px;margin:auto}
+.search-card,.result-card,.info-card{background:linear-gradient(145deg,#17182d,#10111f);border:1px solid var(--border);border-radius:20px}
+.search-card{padding:24px;margin-bottom:20px}
+.search-card label{font:600 15px Outfit;display:block;margin-bottom:12px}
+.url-row{display:flex;gap:10px}
+.url-input{flex:1;min-width:0;background:#090a17;border:1px solid #343650;border-radius:11px;padding:15px;color:white;outline:none;font-size:13px}
+.url-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #4f7cff22}
+.check-btn{border:0;border-radius:11px;padding:0 22px;background:linear-gradient(110deg,var(--blue),var(--purple));color:white;font-weight:700;font-size:13px;white-space:nowrap}
+.check-btn:disabled{opacity:.6;cursor:wait}
+.hint{font-size:11px;color:var(--muted);margin-top:11px;line-height:1.7}
+.loading{display:none;text-align:center;padding:25px;color:#bdcaff;font-size:13px}
+.spinner{width:30px;height:30px;border:3px solid #343653;border-top-color:var(--cyan);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.error{display:none;margin-top:15px;background:#421b2a;border:1px solid #9b4055;color:#ffb5c1;padding:13px;border-radius:10px;font-size:12px;line-height:1.7}
+.results{display:none}
+.summary{display:grid;grid-template-columns:180px 1fr;gap:16px;margin-bottom:17px}
+.score-card,.site-card{background:linear-gradient(145deg,#17182d,#10111f);border:1px solid var(--border);border-radius:18px;padding:21px}
+.score-card{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-circle{width:100px;height:100px;border-radius:50%;display:grid;place-items:center;border:6px solid #4f7cff;background:#4f7cff13;font:800 29px Outfit;color:var(--cyan)}
+.score-label{font-size:11px;color:var(--muted);margin-top:10px}
+.site-card{min-width:0}
+.site-card h2{font:700 20px Outfit;overflow-wrap:anywhere;margin-bottom:8px}
+.site-card p{font-size:12px;color:var(--muted);line-height:1.8;overflow-wrap:anywhere}
+.site-url{color:#9bb8ff!important;margin-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.result-card{padding:18px}
+.result-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}
+.result-top h3{font:600 14px Outfit}
+.icon{height:34px;width:34px;border-radius:10px;display:grid;place-items:center;background:#4f7cff20;color:#9bb6ff}
+.status{font-size:10px;padding:6px 9px;border-radius:30px;background:#25302c;color:var(--green);white-space:nowrap}
+.status.warn{background:#3a3020;color:var(--yellow)}
+.status.bad{background:#3b2029;color:#ff91a1}
+.status.info{background:#252c43;color:#b9caff}
+.result-card p{font-size:12px;color:var(--muted);line-height:1.7;overflow-wrap:anywhere}
+.metric{font:700 22px Outfit;margin-bottom:5px;overflow-wrap:anywhere}
+.report-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.secondary{border:1px solid var(--border);background:#191a30;color:white;padding:11px 15px;border-radius:10px;font-size:12px}
+.disclaimer{margin-top:18px;padding:15px;border:1px solid #8b6b334a;background:#382b171c;border-radius:12px;color:#d6c49c;font-size:11px;line-height:1.8}
+.info-card{padding:19px;margin-top:20px}
+.info-card h3{font:700 16px Outfit;margin-bottom:10px}
+.info-card p{font-size:12px;color:var(--muted);line-height:1.8}
+footer{text-align:center;color:#777993;font-size:11px;border-top:1px solid var(--border);padding:22px}
+@media(max-width:650px){header{padding:0 17px}.header-pill{font-size:9px}main{padding:34px 13px 55px}.url-row{flex-direction:column}.check-btn{padding:14px}.summary{grid-template-columns:1fr}.score-card{padding:18px}.grid{grid-template-columns:1fr}.search-card{padding:17px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo"><i class="fa-solid fa-shield-halved"></i>TOOLORA<span> AI</span></div>
+ <div class="header-pill"><i class="fa-solid fa-globe"></i> WEBSITE HEALTH CHECKER</div>
+</header>
+
+<main>
+ <section class="hero">
+  <div class="eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> SMART WEBSITE ANALYSIS</div>
+  <h1>Check Your Website <span>Health.</span></h1>
+  <p>Enter a website URL to inspect basic availability, security and SEO metadata using an external website data service.</p>
+ </section>
+
+ <section class="search-card">
+  <label for="website"><i class="fa-solid fa-link" style="color:var(--cyan)"></i> Enter Website URL</label>
+  <div class="url-row">
+   <input id="website" class="url-input" type="text" placeholder="https://example.com" autocomplete="url">
+   <button class="check-btn" id="checkBtn" onclick="runCheck()"><i class="fa-solid fa-magnifying-glass"></i> Analyze Website</button>
+  </div>
+  <p class="hint">Example: https://example.com · Enter a public website address.</p>
+  <div class="loading" id="loading"><div class="spinner"></div>Analyzing website data... Please wait.</div>
+  <div class="error" id="error"></div>
+ </section>
+
+ <section class="results" id="results">
+  <div class="summary">
+   <div class="score-card">
+    <div class="score-circle" id="score">--</div>
+    <div class="score-label">Basic Check Score</div>
+   </div>
+   <div class="site-card">
+    <h2 id="siteTitle">Website Analysis</h2>
+    <p class="site-url" id="siteUrl"></p>
+    <p id="siteDescription">Website information will appear here.</p>
+   </div>
+  </div>
+
+  <div class="grid">
+   <article class="result-card">
+    <div class="result-top"><h3>Website Availability</h3><div class="icon"><i class="fa-solid fa-globe"></i></div></div>
+    <div class="metric" id="availability">--</div>
+    <p id="availabilityText">Availability result</p>
+   </article>
+   <article class="result-card">
+    <div class="result-top"><h3>HTTPS Security</h3><div class="icon"><i class="fa-solid fa-lock"></i></div></div>
+    <div class="metric" id="httpsResult">--</div>
+    <p id="httpsText">Security result</p>
+   </article>
+   <article class="result-card">
+    <div class="result-top"><h3>Website Title</h3><div class="icon"><i class="fa-solid fa-heading"></i></div></div>
+    <div class="metric" id="titleResult">--</div>
+    <p id="titleText">Page title information</p>
+   </article>
+   <article class="result-card">
+    <div class="result-top"><h3>Meta Description</h3><div class="icon"><i class="fa-solid fa-align-left"></i></div></div>
+    <div class="metric" id="descriptionResult">--</div>
+    <p id="descriptionText">Meta description information</p>
+   </article>
+   <article class="result-card">
+    <div class="result-top"><h3>Mobile Viewport</h3><div class="icon"><i class="fa-solid fa-mobile-screen"></i></div></div>
+    <div class="metric" id="mobileResult">Not verified</div>
+    <p id="mobileText">The external data service does not provide reliable viewport-tag verification.</p>
+   </article>
+   <article class="result-card">
+    <div class="result-top"><h3>Analysis Duration</h3><div class="icon"><i class="fa-solid fa-stopwatch"></i></div></div>
+    <div class="metric" id="duration">--</div>
+    <p>Time taken by the external data service to return its result. This is not a direct server response-time measurement.</p>
+   </article>
+  </div>
+
+  <div class="report-actions">
+   <button class="secondary" onclick="copyReport()"><i class="fa-solid fa-copy"></i> Copy Report</button>
+   <button class="secondary" onclick="window.print()"><i class="fa-solid fa-file-pdf"></i> Print / Save PDF</button>
+   <button class="secondary" onclick="resetChecker()"><i class="fa-solid fa-rotate"></i> New Check</button>
+  </div>
+  <div class="disclaimer"><i class="fa-solid fa-circle-info"></i> This is a basic metadata and availability check, not a full technical SEO or security audit. A successful response from the data service does not guarantee that every visitor can access the website. Mobile viewport is not verified in this version.</div>
+ </section>
+
+ <section class="info-card">
+  <h3><i class="fa-solid fa-circle-question" style="color:var(--cyan)"></i> What does this tool check?</h3>
+  <p>It requests public website metadata from Microlink. It checks whether the service can retrieve the page, reads its title and description when available, and identifies whether the submitted URL uses HTTPS. The duration shown measures the external service request, not the website's raw loading speed.</p>
+ </section>
+</main>
+
+<footer>© 2026 TOOLORA AI · SMART TOOLS FOR EVERYONE</footer>
+
+<script>
+let lastReport = "";
+
+function normalizeUrl(value){
+ let input = value.trim();
+ if(!input) throw new Error("Please enter a website URL.");
+ if(!/^https?:\/\//i.test(input)) input = "https://" + input;
+ let parsed;
+ try{parsed = new URL(input)}catch(e){throw new Error("Please enter a valid website URL.")}
+ if(!["http:","https:"].includes(parsed.protocol)) throw new Error("Only HTTP and HTTPS website URLs are supported.");
+ if(!parsed.hostname.includes(".") || parsed.hostname.includes(" ")) throw new Error("Please enter a valid public domain name.");
+ return parsed;
+}
+
+function setStatus(id,text,type=""){
+ const el=document.getElementById(id);
+ el.textContent=text;
+ el.className="status "+type;
+}
+
+function showError(message){
+ const box=document.getElementById("error");
+ box.style.display="block";
+ box.textContent=message;
+}
+
+async function runCheck(){
+ const btn=document.getElementById("checkBtn");
+ const loading=document.getElementById("loading");
+ const error=document.getElementById("error");
+ const results=document.getElementById("results");
+ error.style.display="none";
+ results.style.display="none";
+
+ let url;
+ try{url=normalizeUrl(document.getElementById("website").value)}
+ catch(e){showError(e.message);return}
+
+ btn.disabled=true;
+ loading.style.display="block";
+ const started=performance.now();
+
+ try{
+  const endpoint="https://api.microlink.io/?url="+encodeURIComponent(url.href);
+  const response=await fetch(endpoint,{method:"GET"});
+  if(!response.ok) throw new Error("The metadata service returned HTTP "+response.status+". Please try again later.");
+  const json=await response.json();
+  if(json.status!=="success" || !json.data) throw new Error(json.message || "The website information could not be retrieved.");
+
+  const data=json.data;
+  const elapsed=((performance.now()-started)/1000).toFixed(2);
+  const title=data.title || "";
+  const description=data.description || "";
+  const finalUrl=data.url || url.href;
+  const secure=url.protocol==="https:";
+
+  document.getElementById("siteTitle").textContent=title || "Title not found";
+  document.getElementById("siteUrl").textContent=finalUrl;
+  document.getElementById("siteDescription").textContent=description || "No meta description was returned by the service.";
+  document.getElementById("availability").textContent="Retrieved";
+  document.getElementById("availabilityText").textContent="The external service successfully retrieved website data. This does not guarantee universal availability.";
+  document.getElementById("httpsResult").textContent=secure?"HTTPS":"HTTP";
+  document.getElementById("httpsText").textContent=secure?"The submitted URL uses HTTPS. Certificate validity and security configuration have not been independently audited.":"The submitted URL does not use HTTPS. Consider enabling HTTPS.";
+  document.getElementById("titleResult").textContent=title?"Found":"Missing";
+  document.getElementById("titleText").textContent=title?title:"A page title was not returned. Check the HTML title tag.";
+  document.getElementById("descriptionResult").textContent=description?"Found":"Missing";
+  document.getElementById("descriptionText").textContent=description?description:"A meta description was not returned. Check the page's meta description tag.";
+  document.getElementById("mobileResult").textContent="Not verified";
+  document.getElementById("mobileText").textContent="Viewport metadata is not reliably supplied by this service.";
+  document.getElementById("duration").textContent=elapsed+" s";
+
+  const points=(secure?1:0)+(title?1:0)+(description?1:0)+1;
+  const score=Math.round(points/4*100);
+  document.getElementById("score").textContent=score;
+  lastReport=[
+   "TOOLORA WEBSITE HEALTH REPORT",
+   "Website: "+finalUrl,
+   "Title: "+(title||"Not returned"),
+   "Meta description: "+(description||"Not returned"),
+   "Availability: Data retrieved by external service",
+   "HTTPS: "+(secure?"Yes":"No"),
+   "Mobile viewport: Not verified",
+   "External service duration: "+elapsed+" seconds",
+   "Basic check score: "+score+"/100",
+   "Note: This is not a full SEO, speed or security audit."
+  ].join("\n");
+
+  results.style.display="block";
+  results.scrollIntoView({behavior:"smooth",block:"start"});
+ }catch(e){
+  showError("Unable to complete the check. "+e.message+" Check your internet connection, verify the URL, or try again later.");
+ }finally{
+  loading.style.display="none";
+  btn.disabled=false;
+ }
+}
+
+function copyReport(){
+ if(!lastReport)return;
+ if(navigator.clipboard && window.isSecureContext){
+  navigator.clipboard.writeText(lastReport).then(()=>alert("Report copied!")).catch(()=>fallbackCopy());
+ }else fallbackCopy();
+}
+function fallbackCopy(){
+ const area=document.createElement("textarea");
+ area.value=lastReport;
+ document.body.appendChild(area);
+ area.select();
+ try{document.execCommand("copy");alert("Report copied!")}catch(e){alert("Could not copy. Please select and copy the report manually.")}
+ area.remove();
+}
+function resetChecker(){
+ document.getElementById("website").value="";
+ document.getElementById("results").style.display="none";
+ document.getElementById("error").style.display="none";
+ document.getElementById("website").focus();
+}
+document.getElementById("website").addEventListener("keydown",e=>{
+ if(e.key==="Enter")runCheck();
+});
+</script>
+</body>
+</html>
