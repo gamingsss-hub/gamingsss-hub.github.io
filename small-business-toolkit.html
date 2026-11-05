@@ -1,0 +1,710 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070914">
+
+<title>Small Business Toolkit | Invoice, Inventory & Customer Manager | Toolora AI</title>
+<meta name="description" content="Manage your small business with Toolora's free toolkit. Create invoices and quotations, track inventory, save customer records and view business reports.">
+<meta name="keywords" content="small business toolkit, free invoice generator, quotation maker, inventory manager, customer management, business reports, invoice creator, Toolora AI">
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#070914;--panel:#11172c;--panel2:#0b1124;
+  --border:rgba(145,160,255,.16);
+  --blue:#4f7cff;--purple:#8b5cff;--cyan:#00e5ff;
+  --text:#f5f7ff;--muted:#929bb8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:
+  radial-gradient(ellipse at 10% 0%,rgba(79,124,255,.15),transparent 35%),
+  radial-gradient(ellipse at 90% 80%,rgba(139,92,255,.12),transparent 35%),
+  var(--bg);
+  color:var(--text);font-family:'Poppins',sans-serif;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.topbar{
+  height:68px;padding:0 5%;display:flex;
+  align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);
+  background:rgba(7,9,20,.92);position:sticky;top:0;z-index:10;
+}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Outfit';font-size:21px;font-weight:800}
+.brand-icon{
+  width:37px;height:37px;border-radius:11px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+}
+.brand span{color:var(--cyan)}
+.back{
+  color:#d5dcf7;text-decoration:none;font-size:11px;
+  border:1px solid var(--border);padding:9px 13px;border-radius:10px;
+}
+.hero{text-align:center;padding:28px 15px 20px}
+.eyebrow{
+  color:var(--cyan);font-size:10px;letter-spacing:2px;
+  padding:7px 13px;border-radius:30px;
+  border:1px solid rgba(0,229,255,.2);background:rgba(0,229,255,.06);
+  display:inline-block;
+}
+h1{font-family:'Outfit';font-size:clamp(29px,5vw,45px);margin:13px 0 5px}
+.hero p{color:var(--muted);font-size:12px;margin:5px}
+.wrap{width:min(1250px,94%);margin:18px auto 40px}
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:15px;
+}
+.stat,.card{
+  background:rgba(17,23,44,.92);border:1px solid var(--border);
+  border-radius:15px;
+}
+.stat{padding:14px}
+.stat strong{display:block;font-family:'Outfit';font-size:22px}
+.stat small{font-size:9px;color:var(--muted)}
+.tabs{
+  display:flex;gap:8px;flex-wrap:wrap;padding:10px;
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;margin-bottom:14px;
+}
+.tab{
+  background:transparent;border:1px solid transparent;
+  color:#b9c4e5;padding:10px 13px;border-radius:9px;font-size:10px;
+}
+.tab.active,.tab:hover{
+  background:rgba(79,124,255,.16);border-color:var(--blue);color:white;
+}
+.panel{display:none}
+.panel.active{display:block}
+.card{padding:19px;margin-bottom:13px}
+.card h2{font-family:'Outfit';font-size:19px;margin:0 0 15px}
+.card h3{font-family:'Outfit';font-size:15px;margin:0 0 12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{margin-bottom:12px}
+.field label{display:block;color:#cbd4f4;font-size:10px;margin-bottom:6px}
+.field input,.field select,.field textarea{
+  width:100%;padding:11px 12px;border-radius:9px;
+  background:#090e20;border:1px solid var(--border);
+  color:white;outline:none;font-size:11px;
+}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--blue)}
+.field textarea{resize:vertical;min-height:65px}
+.btn{
+  border:1px solid var(--border);border-radius:9px;
+  padding:10px 13px;color:#eaf0ff;background:#1a2342;
+  font-size:10px;font-weight:600;
+}
+.btn.primary{background:linear-gradient(110deg,var(--blue),var(--purple));border:0;color:white}
+.btn.danger{background:rgba(230,70,90,.1);border-color:rgba(230,70,90,.3);color:#ff9ba8}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:540px}
+th,td{
+  text-align:left;padding:11px 9px;border-bottom:1px solid var(--border);
+  font-size:10px;vertical-align:middle;
+}
+th{color:var(--muted);font-weight:500}
+td input{
+  width:100%;min-width:65px;background:#090e20;color:white;
+  border:1px solid var(--border);padding:8px;border-radius:7px;font-size:10px;
+}
+.total-box{
+  margin:14px 0 0 auto;max-width:280px;
+  padding:14px;background:#0a1022;border:1px solid var(--border);
+  border-radius:12px;
+}
+.total-line{display:flex;justify-content:space-between;font-size:11px;padding:5px 0;color:#c8d2f0}
+.total-line.final{font-weight:700;color:var(--cyan);border-top:1px solid var(--border);margin-top:6px;padding-top:10px}
+.list-item{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;padding:12px 0;border-bottom:1px solid var(--border);
+  font-size:11px;
+}
+.list-item:last-child{border:0}
+.list-item small{display:block;color:var(--muted);font-size:9px;margin-top:4px}
+.empty{color:var(--muted);font-size:11px;padding:15px 0}
+.badge{font-size:9px;padding:5px 8px;border-radius:20px;background:rgba(0,229,255,.1);color:var(--cyan)}
+.search{max-width:360px;margin-bottom:12px}
+.search input{width:100%;background:#090e20;border:1px solid var(--border);border-radius:9px;color:white;padding:11px;font-size:11px}
+.report-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.report-box{padding:15px;background:#0a1022;border:1px solid var(--border);border-radius:12px}
+.report-box small{color:var(--muted);font-size:9px}
+.report-box strong{display:block;font-family:'Outfit';font-size:23px;margin-top:5px}
+.toast{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  padding:11px 17px;border-radius:10px;background:#192443;
+  border:1px solid rgba(0,229,255,.3);font-size:11px;
+  display:none;z-index:30;
+}
+.footer{text-align:center;padding:20px;border-top:1px solid var(--border);color:#697492;font-size:10px}
+@media(max-width:700px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .grid2{grid-template-columns:1fr}
+  .report-grid{grid-template-columns:1fr}
+  .card{padding:14px}
+  .topbar{padding:0 3%}
+  .brand{font-size:17px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><div class="brand-icon">🏪</div>Toolora <span>Business</span></div>
+  <a href="index.html" class="back">← Back to Toolora</a>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">SMART BUSINESS MANAGEMENT</div>
+  <h1>Small Business <span style="color:#8b9fff">Toolkit</span></h1>
+  <p>Create invoices, manage stock, save customers and review your records.</p>
+</section>
+
+<main class="wrap">
+  <section class="stats">
+    <div class="stat"><strong id="statSales">₹0</strong><small>RECORDED SALES</small></div>
+    <div class="stat"><strong id="statInvoices">0</strong><small>INVOICES</small></div>
+    <div class="stat"><strong id="statProducts">0</strong><small>PRODUCTS</small></div>
+    <div class="stat"><strong id="statCustomers">0</strong><small>CUSTOMERS</small></div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="invoice">🧾 Invoice</button>
+    <button class="tab" data-tab="quotation">📄 Quotation</button>
+    <button class="tab" data-tab="inventory">📦 Inventory</button>
+    <button class="tab" data-tab="customers">👥 Customers</button>
+    <button class="tab" data-tab="reports">📊 Reports</button>
+  </nav>
+
+  <!-- INVOICE -->
+  <section class="panel active" id="invoice">
+    <div class="card">
+      <h2>🧾 Create Invoice</h2>
+      <div class="grid2">
+        <div class="field"><label>BUSINESS NAME</label><input id="businessName" placeholder="Your business name"></div>
+        <div class="field"><label>BUSINESS EMAIL / PHONE</label><input id="businessContact" placeholder="Email or phone"></div>
+        <div class="field"><label>INVOICE NUMBER</label><input id="invoiceNumber"></div>
+        <div class="field"><label>INVOICE DATE</label><input id="invoiceDate" type="date"></div>
+        <div class="field"><label>CUSTOMER NAME</label><input id="invoiceCustomer" placeholder="Customer name"></div>
+        <div class="field"><label>CUSTOMER CONTACT</label><input id="invoiceCustomerContact" placeholder="Phone or email"></div>
+      </div>
+
+      <h3>Items</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item / Service</th><th>Qty</th><th>Price (₹)</th><th>Amount</th><th></th></tr></thead>
+          <tbody id="invoiceItems"></tbody>
+        </table>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="addInvoiceItem">＋ Add Item</button>
+      </div>
+
+      <div class="grid2" style="margin-top:15px">
+        <div class="field">
+          <label>TAX RATE (%)</label>
+          <input id="taxRate" type="number" min="0" max="100" value="0">
+        </div>
+        <div class="field">
+          <label>DISCOUNT (₹)</label>
+          <input id="discount" type="number" min="0" value="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>NOTES / PAYMENT TERMS</label>
+        <textarea id="invoiceNotes" placeholder="Payment due within 7 days..."></textarea>
+      </div>
+
+      <div class="total-box">
+        <div class="total-line"><span>Subtotal</span><strong id="subtotal">₹0.00</strong></div>
+        <div class="total-line"><span>Tax</span><strong id="taxAmount">₹0.00</strong></div>
+        <div class="total-line"><span>Discount</span><strong id="discountAmount">₹0.00</strong></div>
+        <div class="total-line final"><span>Total</span><strong id="grandTotal">₹0.00</strong></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" id="saveInvoice">Save Invoice</button>
+        <button class="btn" id="printInvoice">Print / Save PDF</button>
+        <button class="btn" id="resetInvoice">Reset</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Saved Invoices</h3>
+      <div id="invoiceList" class="empty">No invoices saved yet.</div>
+    </div>
+  </section>
+
+  <!-- QUOTATION -->
+  <section class="panel" id="quotation">
+    <div class="card">
+      <h2>📄 Create Quotation</h2>
+      <div class="grid2">
+        <div class="field"><label>BUSINESS NAME</label><input id="quoteBusiness" placeholder="Your business name"></div>
+        <div class="field"><label>QUOTATION NUMBER</label><input id="quoteNumber"></div>
+        <div class="field"><label>CUSTOMER NAME</label><input id="quoteCustomer" placeholder="Customer name"></div>
+        <div class="field"><label>VALID UNTIL</label><input id="quoteValid" type="date"></div>
+      </div>
+      <div class="field"><label>DESCRIPTION OF WORK / ITEMS</label><textarea id="quoteDescription" placeholder="Describe the products or services..."></textarea></div>
+      <div class="grid2">
+        <div class="field"><label>QUANTITY</label><input id="quoteQty" type="number" min="1" value="1"></div>
+        <div class="field"><label>PRICE PER UNIT (₹)</label><input id="quotePrice" type="number" min="0" value="0"></div>
+      </div>
+      <div class="total-box"><div class="total-line final"><span>Estimated Total</span><strong id="quoteTotal">₹0.00</strong></div></div>
+      <div class="btn-row">
+        <button class="btn primary" id="saveQuote">Save Quotation</button>
+        <button class="btn" id="printQuote">Print / Save PDF</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Saved Quotations</h3>
+      <div id="quoteList" class="empty">No quotations saved yet.</div>
+    </div>
+  </section>
+
+  <!-- INVENTORY -->
+  <section class="panel" id="inventory">
+    <div class="card">
+      <h2>📦 Inventory Manager</h2>
+      <div class="grid2">
+        <div class="field"><label>PRODUCT NAME</label><input id="productName" placeholder="Product name"></div>
+        <div class="field"><label>SKU / PRODUCT CODE</label><input id="productSku" placeholder="SKU-001"></div>
+        <div class="field"><label>QUANTITY IN STOCK</label><input id="productQty" type="number" min="0" placeholder="0"></div>
+        <div class="field"><label>PRICE PER UNIT (₹)</label><input id="productPrice" type="number" min="0" placeholder="0"></div>
+      </div>
+      <button class="btn primary" id="addProduct">＋ Add Product</button>
+    </div>
+    <div class="card">
+      <h3>Stock List</h3>
+      <div class="search"><input id="inventorySearch" placeholder="Search products..."></div>
+      <div id="inventoryList" class="empty">No products added yet.</div>
+    </div>
+  </section>
+
+  <!-- CUSTOMERS -->
+  <section class="panel" id="customers">
+    <div class="card">
+      <h2>👥 Customer Records</h2>
+      <div class="grid2">
+        <div class="field"><label>CUSTOMER NAME</label><input id="customerName" placeholder="Full name"></div>
+        <div class="field"><label>PHONE NUMBER</label><input id="customerPhone" placeholder="Phone number"></div>
+        <div class="field"><label>EMAIL</label><input id="customerEmail" type="email" placeholder="Email address"></div>
+        <div class="field"><label>CITY / ADDRESS</label><input id="customerAddress" placeholder="City or address"></div>
+      </div>
+      <button class="btn primary" id="addCustomer">＋ Save Customer</button>
+    </div>
+    <div class="card">
+      <h3>Customer Directory</h3>
+      <div class="search"><input id="customerSearch" placeholder="Search customers..."></div>
+      <div id="customerList" class="empty">No customers added yet.</div>
+    </div>
+  </section>
+
+  <!-- REPORTS -->
+  <section class="panel" id="reports">
+    <div class="card">
+      <h2>📊 Business Summary</h2>
+      <div class="report-grid">
+        <div class="report-box"><small>TOTAL INVOICE VALUE</small><strong id="reportSales">₹0</strong></div>
+        <div class="report-box"><small>NUMBER OF INVOICES</small><strong id="reportCount">0</strong></div>
+        <div class="report-box"><small>QUOTATIONS CREATED</small><strong id="reportQuotes">0</strong></div>
+        <div class="report-box"><small>INVENTORY VALUE</small><strong id="reportStock">₹0</strong></div>
+      </div>
+      <p style="color:var(--muted);font-size:10px;line-height:1.7;margin-top:15px">
+        This summary is based on the invoices and stock records saved in this browser. It is not a verified accounting or tax report.
+      </p>
+      <div class="btn-row">
+        <button class="btn primary" id="exportData">↓ Export Business Data (CSV)</button>
+        <button class="btn" id="backupData">↓ Download Backup (JSON)</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">TOOLORA AI · SMALL BUSINESS TOOLKIT · Simple tools for everyday business</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const STORAGE_KEY = 'tooloraSmallBusinessV1';
+
+function defaultData(){
+  return {invoices:[],quotes:[],products:[],customers:[]};
+}
+function loadData(){
+  try{
+    return {...defaultData(),...JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')};
+  }catch(e){return defaultData()}
+}
+let data=loadData();
+
+function saveData(){
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+  renderAll();
+}
+function money(value){
+  return '₹'+Number(value||0).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function escapeHTML(value=''){
+  return String(value).replace(/[&<>"']/g,c=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  })[c]);
+}
+function toast(message){
+  const el=$('toast');el.textContent=message;el.style.display='block';
+  clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.style.display='none',2400);
+}
+function newId(prefix){
+  return prefix+'-'+Date.now().toString(36).toUpperCase();
+}
+
+/* NAVIGATION */
+document.querySelectorAll('.tab').forEach(button=>{
+  button.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b===button));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===button.dataset.tab));
+  });
+});
+
+/* INVOICE ITEMS */
+function addInvoiceRow(name='',qty=1,price=0){
+  const tr=document.createElement('tr');
+  tr.innerHTML=`
+    <td><input class="item-name" placeholder="Item name" value="${escapeHTML(name)}"></td>
+    <td><input class="item-qty" type="number" min="0" value="${qty}"></td>
+    <td><input class="item-price" type="number" min="0" step="0.01" value="${price}"></td>
+    <td class="item-total">₹0.00</td>
+    <td><button class="btn danger remove-row" type="button">✕</button></td>`;
+  $('invoiceItems').appendChild(tr);
+  tr.querySelectorAll('input').forEach(input=>input.addEventListener('input',calculateInvoice));
+  tr.querySelector('.remove-row').addEventListener('click',()=>{tr.remove();calculateInvoice()});
+  calculateInvoice();
+}
+function getInvoiceItems(){
+  return [...$('invoiceItems').querySelectorAll('tr')].map(row=>({
+    name:row.querySelector('.item-name').value.trim(),
+    qty:Math.max(0,Number(row.querySelector('.item-qty').value)||0),
+    price:Math.max(0,Number(row.querySelector('.item-price').value)||0)
+  })).filter(item=>item.name && item.qty>0);
+}
+function invoiceTotals(){
+  const items=getInvoiceItems();
+  const subtotal=items.reduce((sum,item)=>sum+item.qty*item.price,0);
+  const taxRate=Math.max(0,Math.min(100,Number($('taxRate').value)||0));
+  const discount=Math.max(0,Number($('discount').value)||0);
+  const tax=subtotal*taxRate/100;
+  const total=Math.max(0,subtotal+tax-discount);
+  return {items,subtotal,taxRate,tax,discount,total};
+}
+function calculateInvoice(){
+  const rows=$('invoiceItems').querySelectorAll('tr');
+  rows.forEach(row=>{
+    const qty=Math.max(0,Number(row.querySelector('.item-qty').value)||0);
+    const price=Math.max(0,Number(row.querySelector('.item-price').value)||0);
+    row.querySelector('.item-total').textContent=money(qty*price);
+  });
+  const t=invoiceTotals();
+  $('subtotal').textContent=money(t.subtotal);
+  $('taxAmount').textContent=money(t.tax);
+  $('discountAmount').textContent=money(t.discount);
+  $('grandTotal').textContent=money(t.total);
+}
+$('addInvoiceItem').addEventListener('click',()=>addInvoiceRow());
+$('taxRate').addEventListener('input',calculateInvoice);
+$('discount').addEventListener('input',calculateInvoice);
+
+function invoiceForm(){
+  const t=invoiceTotals();
+  return {
+    id:$('invoiceNumber').value.trim()||newId('INV'),
+    date:$('invoiceDate').value,
+    business:$('businessName').value.trim(),
+    contact:$('businessContact').value.trim(),
+    customer:$('invoiceCustomer').value.trim(),
+    customerContact:$('invoiceCustomerContact').value.trim(),
+    notes:$('invoiceNotes').value.trim(),
+    ...t
+  };
+}
+function saveInvoice(){
+  const invoice=invoiceForm();
+  if(!invoice.customer){toast('Enter the customer name first.');return}
+  if(!invoice.items.length){toast('Add at least one valid item.');return}
+  if(data.invoices.some(i=>i.id===invoice.id)){toast('This invoice number already exists.');return}
+  data.invoices.push(invoice);
+  saveData();
+  toast('Invoice saved successfully.');
+  resetInvoice(false);
+}
+$('saveInvoice').addEventListener('click',saveInvoice);
+
+function resetInvoice(clearNumber=true){
+  if(clearNumber)$('invoiceNumber').value='';
+  $('invoiceCustomer').value='';
+  $('invoiceCustomerContact').value='';
+  $('invoiceNotes').value='';
+  $('taxRate').value=0;
+  $('discount').value=0;
+  $('invoiceItems').innerHTML='';
+  addInvoiceRow();
+}
+$('resetInvoice').addEventListener('click',()=>resetInvoice());
+
+function invoiceHTML(inv){
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Invoice ${escapeHTML(inv.id)}</title>
+  <style>
+  body{font-family:Arial,sans-serif;color:#182033;padding:35px;max-width:850px;margin:auto}
+  h1{color:#385de0;margin-bottom:5px}.muted{color:#65708a;font-size:13px}
+  .top{display:flex;justify-content:space-between;gap:20px}
+  table{width:100%;border-collapse:collapse;margin-top:30px}
+  th,td{text-align:left;padding:12px;border-bottom:1px solid #ddd;font-size:13px}
+  .totals{margin:20px 0 0 auto;max-width:280px}
+  .line{display:flex;justify-content:space-between;padding:6px;font-size:13px}
+  .grand{font-size:18px;font-weight:bold;border-top:2px solid #222}
+  .notes{margin-top:30px;font-size:13px;white-space:pre-wrap}
+  @media print{body{padding:0}}
+  </style></head><body>
+  <div class="top"><div><h1>INVOICE</h1><h2>${escapeHTML(inv.business||'Your Business')}</h2><p class="muted">${escapeHTML(inv.contact)}</p></div>
+  <div><b>Invoice:</b> ${escapeHTML(inv.id)}<br><b>Date:</b> ${escapeHTML(inv.date||'')}</div></div>
+  <hr><h3>Bill To</h3><b>${escapeHTML(inv.customer)}</b><p class="muted">${escapeHTML(inv.customerContact)}</p>
+  <table><thead><tr><th>Item</th><th>Qty</th><th>Price</th><th>Amount</th></tr></thead><tbody>
+  ${inv.items.map(i=>`<tr><td>${escapeHTML(i.name)}</td><td>${i.qty}</td><td>${money(i.price)}</td><td>${money(i.qty*i.price)}</td></tr>`).join('')}
+  </tbody></table>
+  <div class="totals">
+  <div class="line"><span>Subtotal</span><b>${money(inv.subtotal)}</b></div>
+  <div class="line"><span>Tax (${inv.taxRate}%)</span><b>${money(inv.tax)}</b></div>
+  <div class="line"><span>Discount</span><b>${money(inv.discount)}</b></div>
+  <div class="line grand"><span>Total</span><b>${money(inv.total)}</b></div></div>
+  <div class="notes"><b>Notes / Payment Terms</b><br>${escapeHTML(inv.notes)}</div>
+  <p class="muted" style="margin-top:45px">Thank you for your business.</p>
+  <script>window.onload=()=>window.print();<\/script>
+  </body></html>`;
+}
+function printHTML(html){
+  const win=window.open('','_blank');
+  if(!win){toast('Allow pop-ups to print or save as PDF.');return}
+  win.document.open();win.document.write(html);win.document.close();
+}
+$('printInvoice').addEventListener('click',()=>{
+  const inv=invoiceForm();
+  if(!inv.customer||!inv.items.length){toast('Enter customer and add items first.');return}
+  printHTML(invoiceHTML(inv));
+});
+
+/* QUOTATIONS */
+function quoteTotal(){
+  return Math.max(0,Number($('quoteQty').value)||0)*
+    Math.max(0,Number($('quotePrice').value)||0);
+}
+function updateQuoteTotal(){$('quoteTotal').textContent=money(quoteTotal())}
+$('quoteQty').addEventListener('input',updateQuoteTotal);
+$('quotePrice').addEventListener('input',updateQuoteTotal);
+
+function quoteForm(){
+  return {
+    id:$('quoteNumber').value.trim()||newId('QUO'),
+    business:$('quoteBusiness').value.trim(),
+    customer:$('quoteCustomer').value.trim(),
+    valid:$('quoteValid').value,
+    description:$('quoteDescription').value.trim(),
+    qty:Math.max(0,Number($('quoteQty').value)||0),
+    price:Math.max(0,Number($('quotePrice').value)||0),
+    total:quoteTotal()
+  };
+}
+$('saveQuote').addEventListener('click',()=>{
+  const q=quoteForm();
+  if(!q.customer||!q.description){toast('Enter customer and description.');return}
+  if(data.quotes.some(x=>x.id===q.id)){toast('Quotation number already exists.');return}
+  data.quotes.push(q);saveData();renderQuotes();toast('Quotation saved.');
+});
+function quoteHTML(q){
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Quotation ${escapeHTML(q.id)}</title>
+  <style>body{font-family:Arial;padding:40px;max-width:800px;margin:auto;color:#17213a}
+  h1{color:#4f65d8}table{width:100%;border-collapse:collapse;margin-top:30px}
+  td,th{padding:12px;border-bottom:1px solid #ddd;text-align:left}
+  .total{text-align:right;font-size:20px;margin-top:30px}
+  @media print{body{padding:0}}</style></head><body>
+  <h1>QUOTATION</h1><h2>${escapeHTML(q.business||'Your Business')}</h2>
+  <p>Quotation No: ${escapeHTML(q.id)}</p><p>Prepared for: <b>${escapeHTML(q.customer)}</b></p>
+  <p>Valid until: ${escapeHTML(q.valid)}</p>
+  <table><tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr>
+  <tr><td>${escapeHTML(q.description)}</td><td>${q.qty}</td><td>${money(q.price)}</td><td>${money(q.total)}</td></tr></table>
+  <div class="total"><b>Estimated Total: ${money(q.total)}</b></div>
+  <p style="margin-top:40px">This quotation is an estimate and is not an invoice.</p>
+  <script>window.onload=()=>window.print();<\/script></body></html>`;
+}
+$('printQuote').addEventListener('click',()=>{
+  const q=quoteForm();
+  if(!q.customer||!q.description){toast('Enter customer and description first.');return}
+  printHTML(quoteHTML(q));
+});
+
+/* INVENTORY */
+$('addProduct').addEventListener('click',()=>{
+  const name=$('productName').value.trim();
+  const sku=$('productSku').value.trim();
+  const qty=Number($('productQty').value);
+  const price=Number($('productPrice').value);
+  if(!name||!Number.isFinite(qty)||qty<0||!Number.isFinite(price)||price<0){
+    toast('Enter a product name, valid quantity and price.');return;
+  }
+  if(sku&&data.products.some(p=>p.sku.toLowerCase()===sku.toLowerCase())){
+    toast('This SKU already exists.');return;
+  }
+  data.products.push({id:newId('PRD'),name,sku,qty,price});
+  ['productName','productSku','productQty','productPrice'].forEach(id=>$(id).value='');
+  saveData();toast('Product added to inventory.');
+});
+function renderInventory(){
+  const query=$('inventorySearch').value.toLowerCase();
+  const items=data.products.filter(p=>
+    p.name.toLowerCase().includes(query)||p.sku.toLowerCase().includes(query)
+  );
+  $('inventoryList').innerHTML=items.length?items.map(p=>`
+    <div class="list-item">
+      <div><b>${escapeHTML(p.name)}</b><small>SKU: ${escapeHTML(p.sku||'—')} · ${p.qty} units · ${money(p.price)} each</small></div>
+      <div style="text-align:right"><span class="badge">${p.qty<=5?'Low Stock':'In Stock'}</span><br>
+      <button class="btn danger delete-product" data-id="${p.id}" style="margin-top:7px">Delete</button></div>
+    </div>`).join(''):'<p class="empty">No matching products.</p>';
+
+  document.querySelectorAll('.delete-product').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      data.products=data.products.filter(p=>p.id!==btn.dataset.id);
+      saveData();
+    });
+  });
+}
+$('inventorySearch').addEventListener('input',renderInventory);
+
+/* CUSTOMERS */
+$('addCustomer').addEventListener('click',()=>{
+  const name=$('customerName').value.trim();
+  const phone=$('customerPhone').value.trim();
+  const email=$('customerEmail').value.trim();
+  const address=$('customerAddress').value.trim();
+  if(!name){toast('Enter customer name.');return}
+  data.customers.push({id:newId('CUS'),name,phone,email,address});
+  ['customerName','customerPhone','customerEmail','customerAddress'].forEach(id=>$(id).value='');
+  saveData();toast('Customer saved.');
+});
+function renderCustomers(){
+  const query=$('customerSearch').value.toLowerCase();
+  const items=data.customers.filter(c=>
+    [c.name,c.phone,c.email,c.address].join(' ').toLowerCase().includes(query)
+  );
+  $('customerList').innerHTML=items.length?items.map(c=>`
+    <div class="list-item">
+      <div><b>${escapeHTML(c.name)}</b>
+      <small>${escapeHTML(c.phone)} · ${escapeHTML(c.email)}<br>${escapeHTML(c.address)}</small></div>
+      <button class="btn danger delete-customer" data-id="${c.id}">Delete</button>
+    </div>`).join(''):'<p class="empty">No matching customers.</p>';
+
+  document.querySelectorAll('.delete-customer').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      data.customers=data.customers.filter(c=>c.id!==btn.dataset.id);
+      saveData();
+    });
+  });
+}
+$('customerSearch').addEventListener('input',renderCustomers);
+
+/* RENDER LISTS & REPORTS */
+function renderInvoices(){
+  $('invoiceList').innerHTML=data.invoices.length?[...data.invoices].reverse().map(i=>`
+    <div class="list-item">
+      <div><b>${escapeHTML(i.id)} · ${escapeHTML(i.customer)}</b>
+      <small>${escapeHTML(i.date||'')} · ${i.items.length} item(s)</small></div>
+      <div style="text-align:right"><b>${money(i.total)}</b><br>
+      <button class="btn print-saved" data-id="${i.id}" style="margin-top:6px">Print</button>
+      <button class="btn danger delete-invoice" data-id="${i.id}" style="margin-top:6px">Delete</button></div>
+    </div>`).join(''):'<p class="empty">No invoices saved yet.</p>';
+
+  document.querySelectorAll('.print-saved').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const inv=data.invoices.find(i=>i.id===btn.dataset.id);
+      if(inv)printHTML(invoiceHTML(inv));
+    });
+  });
+  document.querySelectorAll('.delete-invoice').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      data.invoices=data.invoices.filter(i=>i.id!==btn.dataset.id);
+      saveData();
+    });
+  });
+}
+function renderQuotes(){
+  $('quoteList').innerHTML=data.quotes.length?[...data.quotes].reverse().map(q=>`
+    <div class="list-item">
+      <div><b>${escapeHTML(q.id)} · ${escapeHTML(q.customer)}</b>
+      <small>${escapeHTML(q.description)}</small></div>
+      <div style="text-align:right"><b>${money(q.total)}</b><br>
+      <button class="btn print-quote" data-id="${q.id}" style="margin-top:6px">Print</button>
+      <button class="btn danger delete-quote" data-id="${q.id}" style="margin-top:6px">Delete</button></div>
+    </div>`).join(''):'<p class="empty">No quotations saved yet.</p>';
+
+  document.querySelectorAll('.print-quote').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const q=data.quotes.find(x=>x.id===btn.dataset.id);
+      if(q)printHTML(quoteHTML(q));
+    });
+  });
+  document.querySelectorAll('.delete-quote').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      data.quotes=data.quotes.filter(q=>q.id!==btn.dataset.id);
+      saveData();
+    });
+  });
+}
+function renderReports(){
+  const sales=data.invoices.reduce((s,i)=>s+i.total,0);
+  const stock=data.products.reduce((s,p)=>s+p.qty*p.price,0);
+  $('reportSales').textContent=money(sales);
+  $('reportCount').textContent=data.invoices.length;
+  $('reportQuotes').textContent=data.quotes.length;
+  $('reportStock').textContent=money(stock);
+}
+function renderAll(){
+  const sales=data.invoices.reduce((s,i)=>s+i.total,0);
+  $('statSales').textContent=money(sales);
+  $('statInvoices').textContent=data.invoices.length;
+  $('statProducts').textContent=data.products.length;
+  $('statCustomers').textContent=data.customers.length;
+  renderInvoices();renderQuotes();renderInventory();renderCustomers();renderReports();
+}
+
+/* EXPORTS */
+function downloadFile(filename,content,type){
+  const blob=new Blob([content],{type});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download=filename;document.body.appendChild(a);
+  a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+$('backupData').addEventListener('click',()=>{
+  downloadFile('toolora-business-backup.json',JSON.stringify(data,null,2),'application/json');
+  toast('Backup downloaded.');
+});
+$('exportData').addEventListener('click',()=>{
+  const rows=[['Type','ID','Name','Date','Amount','Details']];
+  data.invoices.forEach(i=>rows.push(['Invoice',i.id,i.customer,i.date,i.total,i.items.map(x=>x.name).join('; ')]));
+  data.quotes.forEach(q=>rows.push(['Quotation',q.id,q.customer,q.valid,q.total,q.description]));
+  data.products.forEach(p=>rows.push(['Product',p.sku,p.name,'',p.qty*p.price,`Qty ${p.qty}; Price ${p.price}`]));
+  data.customers.forEach(c=>rows.push(['Customer',c.id,c.name,'','',`${c.phone}; ${c.email}; ${c.address}`]));
+  const csv=rows.map(row=>row.map(value=>'"'+String(value??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+  downloadFile('toolora-business-data.csv','\uFEFF'+csv,'text/csv;charset=utf-8');
+  toast('CSV report downloaded.');
+});
+
+/* INIT */
+$('invoiceDate').value=new Date().toISOString().slice(0,10);
+$('invoiceNumber').value=newId('INV');
+$('quoteNumber').value=newId('QUO');
+addInvoiceRow();
+renderAll();
+</script>
+</body>
+</html>
