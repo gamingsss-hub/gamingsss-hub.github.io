@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070914">
+<title>Skill Arena | Toolora AI</title>
+<meta name="description" content="Play typing, memory, reaction, vocabulary and problem-solving challenges with Toolora Skill Arena.">
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#070914;--panel:#11172c;--panel2:#0b1124;
+  --border:rgba(145,160,255,.16);
+  --blue:#4f7cff;--purple:#8b5cff;--cyan:#00e5ff;
+  --text:#f5f7ff;--muted:#929bb8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:
+  radial-gradient(ellipse at 10% 0%,rgba(79,124,255,.15),transparent 35%),
+  radial-gradient(ellipse at 90% 80%,rgba(139,92,255,.13),transparent 35%),
+  var(--bg);
+  color:var(--text);font-family:'Poppins',sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+.topbar{
+  height:68px;padding:0 5%;display:flex;
+  justify-content:space-between;align-items:center;
+  border-bottom:1px solid var(--border);
+  background:rgba(7,9,20,.9);backdrop-filter:blur(15px);
+  position:sticky;top:0;z-index:10;
+}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Outfit';font-size:21px;font-weight:800}
+.brand-icon{
+  width:37px;height:37px;border-radius:11px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+}
+.brand span{color:var(--cyan)}
+.back{
+  color:#d5dcf7;text-decoration:none;font-size:11px;
+  border:1px solid var(--border);padding:9px 13px;border-radius:10px;
+}
+.hero{text-align:center;padding:30px 15px 20px}
+.eyebrow{
+  color:var(--cyan);font-size:10px;letter-spacing:2px;
+  padding:7px 13px;border-radius:30px;
+  border:1px solid rgba(0,229,255,.2);background:rgba(0,229,255,.06);
+  display:inline-block;
+}
+h1{font-family:'Outfit';font-size:clamp(32px,5vw,48px);margin:13px 0 5px}
+h1 span{
+  background:linear-gradient(90deg,#70a1ff,#b58aff,#00e5ff);
+  color:transparent;background-clip:text;
+}
+.hero p{color:var(--muted);font-size:12px;margin:5px}
+.stats{
+  width:min(800px,92%);margin:20px auto 0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+}
+.stat{
+  background:rgba(255,255,255,.035);border:1px solid var(--border);
+  border-radius:13px;padding:12px;
+}
+.stat strong{display:block;font-family:'Outfit';font-size:20px}
+.stat small{font-size:9px;color:var(--muted)}
+.layout{
+  width:min(1250px,94%);margin:20px auto 40px;
+  display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:15px;
+}
+.main,.sidebar{min-width:0}
+.game-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.game-card{
+  padding:18px;background:rgba(17,23,44,.9);
+  border:1px solid var(--border);border-radius:16px;
+  transition:.2s;
+}
+.game-card:hover{border-color:rgba(0,229,255,.5);transform:translateY(-2px)}
+.game-card.active{border-color:var(--cyan);background:rgba(0,229,255,.06)}
+.game-icon{font-size:28px}
+.game-card h3{font-family:'Outfit';font-size:17px;margin:9px 0 4px}
+.game-card p{font-size:10px;color:var(--muted);line-height:1.6;min-height:32px}
+.game-meta{display:flex;justify-content:space-between;align-items:center;margin-top:13px}
+.game-meta small{color:#aab5d6;font-size:9px}
+.play-btn{
+  background:linear-gradient(110deg,var(--blue),var(--purple));
+  border:0;color:white;padding:8px 13px;border-radius:9px;
+  font-size:10px;font-weight:600;
+}
+.game-panel{
+  display:none;margin-top:14px;padding:20px;
+  background:rgba(17,23,44,.95);border:1px solid var(--border);
+  border-radius:17px;min-height:280px;
+}
+.game-panel.show{display:block}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.panel-head h2{font-family:'Outfit';font-size:20px;margin:0}
+.close-btn{
+  border:1px solid var(--border);background:transparent;
+  color:#cbd5f5;border-radius:8px;padding:7px 11px;font-size:11px;
+}
+.game-content{text-align:center;padding:25px 5px 10px}
+.game-content h3{font-family:'Outfit';font-size:23px;margin:5px 0 12px}
+.game-content p{color:var(--muted);font-size:11px;line-height:1.7}
+.primary-btn{
+  background:linear-gradient(110deg,var(--blue),var(--purple));
+  color:white;border:0;border-radius:10px;padding:11px 18px;
+  font-size:11px;font-weight:600;margin:8px 3px;
+}
+.secondary-btn{
+  background:#1a2342;color:#dce4ff;border:1px solid var(--border);
+  border-radius:10px;padding:10px 15px;font-size:11px;margin:8px 3px;
+}
+.game-input{
+  display:block;width:min(480px,100%);margin:15px auto;
+  background:#080e20;border:1px solid var(--border);
+  color:white;padding:13px;border-radius:10px;outline:none;
+  font-size:12px;
+}
+.game-input:focus{border-color:var(--cyan)}
+.big-number{font-family:'Outfit';font-size:40px;font-weight:800;color:var(--cyan)}
+.timer{font-size:13px;color:var(--cyan);font-weight:600}
+.progress{
+  height:7px;background:#242b43;border-radius:20px;
+  overflow:hidden;margin:12px auto;max-width:400px;
+}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:.2s}
+.memory-grid{
+  display:grid;grid-template-columns:repeat(3,65px);
+  justify-content:center;gap:9px;margin:18px auto;
+}
+.memory-cell{
+  width:65px;height:58px;border-radius:11px;
+  background:#1b2545;border:1px solid var(--border);
+}
+.memory-cell.flash{background:var(--cyan);box-shadow:0 0 20px rgba(0,229,255,.4)}
+.memory-cell:disabled{cursor:default;opacity:.8}
+.reaction-box{
+  max-width:430px;height:155px;margin:18px auto;
+  border-radius:15px;background:#27314c;
+  display:grid;place-items:center;font-weight:700;
+  font-size:15px;cursor:pointer;user-select:none;
+}
+.reaction-box.ready{background:#10a96e;color:white}
+.reaction-box.wait{background:#a34350}
+.answers{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:9px;max-width:500px;margin:18px auto;
+}
+.answer-btn{
+  padding:12px;background:#1a2342;color:#e9edff;
+  border:1px solid var(--border);border-radius:10px;font-size:11px;
+}
+.answer-btn:hover{border-color:var(--cyan)}
+.answer-btn.correct{background:rgba(22,170,112,.2);border-color:#20c98b}
+.answer-btn.wrong{background:rgba(230,70,90,.15);border-color:#e65a70}
+.feedback{font-size:12px;min-height:22px;color:var(--cyan)}
+.sidebar{display:flex;flex-direction:column;gap:13px}
+.side-card{
+  padding:17px;background:rgba(17,23,44,.9);
+  border:1px solid var(--border);border-radius:16px;
+}
+.side-card h3{font-family:'Outfit';font-size:16px;margin:0 0 13px}
+.leader-row{
+  display:flex;justify-content:space-between;gap:10px;
+  padding:10px 0;border-bottom:1px solid var(--border);
+  font-size:10px;
+}
+.leader-row:last-child{border-bottom:0}
+.leader-row span:last-child{color:var(--cyan);font-weight:600}
+.empty{color:var(--muted);font-size:10px;line-height:1.7}
+.history-item{
+  padding:9px 0;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;gap:8px;font-size:10px;
+}
+.history-item:last-child{border:0}
+.history-item span:last-child{color:var(--cyan)}
+.clear-btn{
+  margin-top:10px;background:transparent;border:1px solid var(--border);
+  color:#aeb8d6;padding:8px 10px;border-radius:8px;font-size:9px;
+}
+.footer{text-align:center;padding:20px;border-top:1px solid var(--border);color:#697492;font-size:10px}
+.toast{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  padding:11px 17px;border-radius:10px;background:#192443;
+  border:1px solid rgba(0,229,255,.3);font-size:11px;
+  display:none;z-index:30;
+}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr}}
+@media(max-width:560px){
+  .game-grid{grid-template-columns:1fr}
+  .sidebar{display:flex}
+  .stats{gap:6px}.stat{padding:9px 4px}
+  .stat strong{font-size:17px}
+  .game-panel{padding:14px}
+  .memory-grid{grid-template-columns:repeat(3,58px)}
+  .memory-cell{width:58px;height:54px}
+  .topbar{padding:0 3%}
+  .brand{font-size:17px}
+}
+</style>
+</head>
+
+<body>
+<header class="topbar">
+  <div class="brand"><div class="brand-icon">🏆</div>Toolora <span>Arena</span></div>
+  <a href="index.html" class="back">← Back to Toolora</a>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">PLAY · PRACTICE · IMPROVE</div>
+  <h1>Welcome to <span>Skill Arena</span></h1>
+  <p>Challenge your mind, test your skills and beat your personal best.</p>
+  <div class="stats">
+    <div class="stat"><strong id="totalGames">0</strong><small>GAMES PLAYED</small></div>
+    <div class="stat"><strong id="totalScore">0</strong><small>TOTAL POINTS</small></div>
+    <div class="stat"><strong id="bestScore">0</strong><small>BEST SCORE</small></div>
+  </div>
+</section>
+
+<main class="layout">
+  <section class="main">
+    <div class="game-grid">
+      <article class="game-card" data-game="typing">
+        <div class="game-icon">⌨️</div>
+        <h3>Typing Speed Test</h3>
+        <p>Type the given passage accurately before the timer ends.</p>
+        <div class="game-meta"><small>⏱ 30 seconds</small><button class="play-btn">Play Now →</button></div>
+      </article>
+
+      <article class="game-card" data-game="memory">
+        <div class="game-icon">🧠</div>
+        <h3>Memory Challenge</h3>
+        <p>Remember the light sequence and repeat it correctly.</p>
+        <div class="game-meta"><small>🎯 Increasing levels</small><button class="play-btn">Play Now →</button></div>
+      </article>
+
+      <article class="game-card" data-game="reaction">
+        <div class="game-icon">⚡</div>
+        <h3>Reaction Test</h3>
+        <p>Wait for the green signal and test your response time.</p>
+        <div class="game-meta"><small>⏱ 5 rounds</small><button class="play-btn">Play Now →</button></div>
+      </article>
+
+      <article class="game-card" data-game="vocabulary">
+        <div class="game-icon">📚</div>
+        <h3>Vocabulary Quiz</h3>
+        <p>Choose the correct meaning of useful English words.</p>
+        <div class="game-meta"><small>❓ 10 questions</small><button class="play-btn">Play Now →</button></div>
+      </article>
+
+      <article class="game-card" data-game="logic">
+        <div class="game-icon">🧩</div>
+        <h3>Problem Solving</h3>
+        <p>Use logical thinking to solve number and reasoning puzzles.</p>
+        <div class="game-meta"><small>🧠 10 questions</small><button class="play-btn">Play Now →</button></div>
+      </article>
+    </div>
+
+    <section class="game-panel" id="gamePanel">
+      <div class="panel-head">
+        <h2 id="panelTitle">Challenge</h2>
+        <button class="close-btn" id="closeGame">✕ Close</button>
+      </div>
+      <div class="game-content" id="gameContent"></div>
+    </section>
+  </section>
+
+  <aside class="sidebar">
+    <section class="side-card">
+      <h3>🏆 Local Leaderboard</h3>
+      <div id="leaderboard" class="empty">Play a challenge to appear on the leaderboard.</div>
+      <p class="empty">Scores are saved only in this browser on this device.</p>
+    </section>
+
+    <section class="side-card">
+      <h3>📊 Recent Results</h3>
+      <div id="history" class="empty">Your completed games will appear here.</div>
+      <button class="clear-btn" id="clearHistory">Clear My Records</button>
+    </section>
+
+    <section class="side-card">
+      <h3>💡 Arena Rules</h3>
+      <p class="empty">
+        • Each correct answer earns points.<br>
+        • Complete games to update your stats.<br>
+        • Your personal results stay in this browser.<br>
+        • Try again to beat your best score.
+      </p>
+    </section>
+  </aside>
+</main>
+
+<footer class="footer">TOOLORA AI · SKILL ARENA · Practice makes progress</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const content = $('gameContent');
+const panel = $('gamePanel');
+
+let activeGame = null;
+let gameTimer = null;
+let gameData = {};
+let records = loadRecords();
+
+function loadRecords(){
+  try{
+    return JSON.parse(localStorage.getItem('tooloraSkillArena') || '[]');
+  }catch(e){return []}
+}
+
+function saveRecords(){
+  localStorage.setItem('tooloraSkillArena',JSON.stringify(records));
+  renderStats();
+}
+
+function showToast(message){
+  const toast = $('toast');
+  toast.textContent = message;
+  toast.style.display = 'block';
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(()=>toast.style.display='none',2200);
+}
+
+function renderStats(){
+  $('totalGames').textContent = records.length;
+  $('totalScore').textContent = records.reduce((sum,r)=>sum+r.score,0);
+  $('bestScore').textContent = records.length
+    ? Math.max(...records.map(r=>r.score)) : 0;
+
+  const sorted = [...records].sort((a,b)=>b.score-a.score).slice(0,5);
+  $('leaderboard').innerHTML = sorted.length
+    ? sorted.map((r,i)=>`
+      <div class="leader-row">
+        <span>${['🥇','🥈','🥉','4.','5.'][i]} ${r.game}</span>
+        <span>${r.score} pts</span>
+      </div>`).join('')
+    : '<p class="empty">No scores yet. Start playing!</p>';
+
+  $('history').innerHTML = records.length
+    ? [...records].reverse().slice(0,5).map(r=>`
+      <div class="history-item">
+        <span>${r.game}</span><span>${r.score} pts</span>
+      </div>`).join('')
+    : 'Your completed games will appear here.';
+}
+
+function stopTimer(){
+  if(gameTimer) clearInterval(gameTimer);
+  gameTimer = null;
+}
+
+function openGame(game){
+  stopTimer();
+  activeGame = game;
+  gameData = {};
+  document.querySelectorAll('.game-card').forEach(card=>
+    card.classList.toggle('active',card.dataset.game===game)
+  );
+  panel.classList.add('show');
+  $('panelTitle').textContent = {
+    typing:'⌨️ Typing Speed Test',
+    memory:'🧠 Memory Challenge',
+    reaction:'⚡ Reaction Test',
+    vocabulary:'📚 Vocabulary Quiz',
+    logic:'🧩 Problem Solving'
+  }[game];
+  panel.scrollIntoView({behavior:'smooth',block:'start'});
+
+  if(game==='typing') startTyping();
+  if(game==='memory') startMemory();
+  if(game==='reaction') startReaction();
+  if(game==='vocabulary') startQuiz('vocabulary');
+  if(game==='logic') startQuiz('logic');
+}
+
+document.querySelectorAll('.game-card').forEach(card=>{
+  card.querySelector('button').addEventListener('click',()=>openGame(card.dataset.game));
+});
+
+$('closeGame').addEventListener('click',()=>{
+  stopTimer();
+  panel.classList.remove('show');
+  document.querySelectorAll('.game-card').forEach(c=>c.classList.remove('active'));
+  activeGame=null;
+});
+
+function finishGame(game,score,detail=''){
+  stopTimer();
+  score=Math.max(0,Math.round(score));
+  records.push({
+    game,score,detail,
+    date:new Date().toLocaleDateString()
+  });
+  if(records.length>100) records=records.slice(-100);
+  saveRecords();
+  content.innerHTML=`
+    <div style="font-size:40px">🏆</div>
+    <h3>Challenge Completed!</h3>
+    <div class="big-number">${score}</div>
+    <p>Points earned · ${detail}</p>
+    <button class="primary-btn" onclick="openGame('${activeGame}')">Play Again ↻</button>
+    <button class="secondary-btn" onclick="closePanel()">Back to Arena</button>
+  `;
+}
+
+function closePanel(){
+  stopTimer();
+  panel.classList.remove('show');
+  activeGame=null;
+  document.querySelectorAll('.game-card').forEach(c=>c.classList.remove('active'));
+}
+
+/* TYPING GAME */
+const passages=[
+  'Practice every day and improve your skills step by step.',
+  'Technology makes learning more creative and accessible.',
+  'Great achievements begin with small consistent actions.',
+  'Focus on accuracy first and speed will follow naturally.',
+  'Learning something new can open many exciting opportunities.'
+];
+
+function startTyping(){
+  gameData={
+    text:passages[Math.floor(Math.random()*passages.length)],
+    time:30,started:false,finished:false
+  };
+  content.innerHTML=`
+    <h3>Type the sentence below</h3>
+    <p id="typingPassage" style="color:#dce6ff;font-size:15px;max-width:550px;margin:15px auto">${gameData.text}</p>
+    <input class="game-input" id="typingInput" placeholder="Start typing here..." autocomplete="off">
+    <div class="timer" id="typingTimer">30 seconds remaining</div>
+    <div class="progress"><div id="typingProgress"></div></div>
+    <p id="typingFeedback" class="feedback">Timer starts when you begin typing.</p>
+    <button class="secondary-btn" onclick="startTyping()">Restart</button>
+  `;
+  const input=$('typingInput');
+  input.addEventListener('input',()=>{
+    if(gameData.finished)return;
+    if(!gameData.started){
+      gameData.started=true;
+      gameTimer=setInterval(()=>{
+        gameData.time--;
+        $('typingTimer').textContent=gameData.time+' seconds remaining';
+        $('typingProgress').style.width=((30-gameData.time)/30*100)+'%';
+        if(gameData.time<=0) endTyping();
+      },1000);
+    }
+    const typed=input.value;
+    if(typed===gameData.text){
+      endTyping();
+      return;
+    }
+    const correct=typed.split('').filter((ch,i)=>ch===gameData.text[i]).length;
+    $('typingFeedback').textContent=`Correct characters: ${correct} / ${typed.length}`;
+  });
+}
+
+function endTyping(){
+  if(gameData.finished)return;
+  gameData.finished=true;
+  const input=$('typingInput');
+  const typed=input.value;
+  const words=typed.trim()?typed.trim().split(/\s+/).length:0;
+  const elapsed=Math.max(1,30-gameData.time);
+  const wpm=Math.round(words/(elapsed/60));
+  const accuracy=gameData.text.length
+    ?Math.round(typed.split('').filter((c,i)=>c===gameData.text[i]).length/gameData.text.length*100):0;
+  const score=Math.round(wpm*1.2+accuracy*.5);
+  finishGame('Typing Test',score,`${wpm} WPM · ${accuracy}% accuracy`);
+}
+
+/* MEMORY GAME */
+function startMemory(){
+  gameData={sequence:[],level:0,inputIndex:0,locked:true,score:0};
+  content.innerHTML=`
+    <h3>Remember the sequence</h3>
+    <p>Watch the glowing squares, then repeat the same sequence.</p>
+    <div class="big-number" id="memoryLevel">Level 1</div>
+    <div class="memory-grid" id="memoryGrid">
+      ${Array.from({length:9},(_,i)=>`<button class="memory-cell" data-index="${i}" disabled></button>`).join('')}
+    </div>
+    <p id="memoryMessage" class="feedback">Press Start to begin.</p>
+    <button class="primary-btn" id="memoryStart">Start Challenge</button>
+  `;
+  $('memoryStart').addEventListener('click',nextMemoryLevel);
+  document.querySelectorAll('.memory-cell').forEach(cell=>{
+    cell.addEventListener('click',()=>memoryClick(Number(cell.dataset.index)));
+  });
+}
+
+function flashCell(index){
+  const cell=document.querySelector(`.memory-cell[data-index="${index}"]`);
+  if(!cell)return;
+  cell.classList.add('flash');
+  setTimeout(()=>cell.classList.remove('flash'),380);
+}
+
+function nextMemoryLevel(){
+  gameData.level++;
+  gameData.sequence.push(Math.floor(Math.random()*9));
+  gameData.inputIndex=0;
+  gameData.locked=true;
+  $('memoryLevel').textContent='Level '+gameData.level;
+  $('memoryMessage').textContent='Watch carefully...';
+  document.querySelectorAll('.memory-cell').forEach(c=>c.disabled=true);
+
+  let i=0;
+  stopTimer();
+  gameTimer=setInterval(()=>{
+    if(i>=gameData.sequence.length){
+      stopTimer();
+      gameData.locked=false;
+      document.querySelectorAll('.memory-cell').forEach(c=>c.disabled=false);
+      $('memoryMessage').textContent='Your turn! Repeat the sequence.';
+      return;
+    }
+    flashCell(gameData.sequence[i]);
+    i++;
+  },650);
+}
+
+function memoryClick(index){
+  if(gameData.locked)return;
+  flashCell(index);
+  if(index!==gameData.sequence[gameData.inputIndex]){
+    finishGame('Memory Challenge',(gameData.level-1)*10,`Reached level ${gameData.level}`);
+    return;
+  }
+  gameData.inputIndex++;
+  if(gameData.inputIndex===gameData.sequence.length){
+    gameData.score=gameData.level*10;
+    gameData.locked=true;
+    $('memoryMessage').textContent='Correct! Next level loading...';
+    setTimeout(nextMemoryLevel,650);
+  }
+}
+
+/* REACTION GAME */
+function startReaction(){
+  gameData={round:0,times:[],state:'idle',startTime:0};
+  content.innerHTML=`
+    <h3>Test Your Reaction Speed</h3>
+    <p>Wait until the box turns green, then click it as quickly as you can. Complete 5 rounds.</p>
+    <div class="big-number" id="reactionRound">Round 1 / 5</div>
+    <div class="reaction-box" id="reactionBox">Press Start to begin</div>
+    <p id="reactionFeedback" class="feedback">Don't click before the green signal!</p>
+    <button class="primary-btn" id="reactionStart">Start Test</button>
+  `;
+  $('reactionStart').addEventListener('click',reactionStartRound);
+  $('reactionBox').addEventListener('click',reactionClick);
+}
+
+function reactionStartRound(){
+  gameData.state='waiting';
+  $('reactionBox').className='reaction-box wait';
+  $('reactionBox').textContent='Wait for GREEN...';
+  $('reactionFeedback').textContent='Stay ready...';
+  $('reactionStart').disabled=true;
+
+  const delay=1500+Math.random()*3000;
+  gameTimer=setTimeout(()=>{
+    gameData.state='ready';
+    gameData.startTime=performance.now();
+    $('reactionBox').className='reaction-box ready';
+    $('reactionBox').textContent='CLICK NOW!';
+  },delay);
+}
+
+function reactionClick(){
+  if(gameData.state==='waiting'){
+    stopTimer();
+    gameData.state='idle';
+    $('reactionBox').className='reaction-box';
+    $('reactionBox').textContent='Too early!';
+    $('reactionFeedback').textContent='Wait for green next time.';
+    $('reactionStart').disabled=false;
+    return;
+  }
+  if(gameData.state!=='ready')return;
+
+  const time=Math.round(performance.now()-gameData.startTime);
+  gameData.times.push(time);
+  gameData.round++;
+  gameData.state='idle';
+
+  if(gameData.round>=5){
+    const avg=Math.round(gameData.times.reduce((a,b)=>a+b,0)/gameData.times.length);
+    const score=Math.max(0,Math.round(500-avg));
+    finishGame('Reaction Test',score,`Average reaction: ${avg} ms`);
+    return;
+  }
+
+  $('reactionRound').textContent=`Round ${gameData.round+1} / 5`;
+  $('reactionBox').className='reaction-box';
+  $('reactionBox').textContent=time+' ms';
+  $('reactionFeedback').textContent='Nice! Get ready for the next round.';
+  $('reactionStart').disabled=false;
+  $('reactionStart').textContent='Next Round';
+}
+
+/* QUIZZES */
+const vocabularyQuestions=[
+  {q:'What does “Abundant” mean?',a:['Rare','Plentiful','Tiny','Weak'],c:1},
+  {q:'Choose the meaning of “Rapid”.',a:['Slow','Fast','Quiet','Careful'],c:1},
+  {q:'What is the opposite of “Ancient”?',a:['Old','Historic','Modern','Past'],c:2},
+  {q:'What does “Fragile” mean?',a:['Easily broken','Very strong','Very large','Heavy'],c:0},
+  {q:'Choose the synonym of “Brave”.',a:['Cowardly','Courageous','Lazy','Silent'],c:1},
+  {q:'What does “Observe” mean?',a:['Ignore','Watch carefully','Forget','Create'],c:1},
+  {q:'What is the meaning of “Expand”?',a:['Make larger','Make smaller','Hide','Remove'],c:0},
+  {q:'Choose the opposite of “Generous”.',a:['Kind','Helpful','Stingy','Friendly'],c:2},
+  {q:'What does “Accurate” mean?',a:['Correct','Unclear','Late','Difficult'],c:0},
+  {q:'Choose the synonym of “Begin”.',a:['Finish','Start','Stop','Wait'],c:1}
+];
+
+const logicQuestions=[
+  {q:'Find the next number: 2, 4, 8, 16, ?',a:['20','24','32','30'],c:2},
+  {q:'If 5 pens cost ₹50, what do 8 pens cost?',a:['₹60','₹70','₹80','₹90'],c:2},
+  {q:'Find the odd one out.',a:['Apple','Mango','Carrot','Banana'],c:2},
+  {q:'What comes next: 1, 4, 9, 16, ?',a:['20','25','30','36'],c:1},
+  {q:'A week has how many days?',a:['5','6','7','8'],c:2},
+  {q:'If today is Monday, what day is after 3 days?',a:['Tuesday','Wednesday','Thursday','Friday'],c:2},
+  {q:'Which is the largest number?',a:['0.5','0.05','0.55','0.505'],c:2},
+  {q:'Complete the series: 3, 6, 9, 12, ?',a:['13','14','15','18'],c:2},
+  {q:'How many sides does a hexagon have?',a:['5','6','7','8'],c:1},
+  {q:'If 12 = 3 × 4, then 20 = ?',a:['4 × 5','2 × 8','3 × 6','5 × 5'],c:0}
+];
+
+function startQuiz(type){
+  gameData={
+    questions:type==='vocabulary'?vocabularyQuestions:logicQuestions,
+    index:0,correct:0,type
+  };
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const q=gameData.questions[gameData.index];
+  const total=gameData.questions.length;
+  content.innerHTML=`
+    <h3>${gameData.type==='vocabulary'?'Vocabulary Quiz':'Problem Solving Quiz'}</h3>
+    <p>Question ${gameData.index+1} of ${total}</p>
+    <div class="progress"><div style="width:${(gameData.index/total)*100}%"></div></div>
+    <h3 style="font-size:18px;margin-top:20px">${q.q}</h3>
+    <div class="answers">
+      ${q.a.map((answer,i)=>`<button class="answer-btn" data-answer="${i}">${escapeText(answer)}</button>`).join('')}
+    </div>
+    <div id="quizFeedback" class="feedback"></div>
+  `;
+
+  document.querySelectorAll('.answer-btn').forEach(button=>{
+    button.addEventListener('click',()=>answerQuiz(Number(button.dataset.answer)));
+  });
+}
+
+function escapeText(text){
+  return String(text).replace(/[&<>"']/g,c=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  })[c]);
+}
+
+function answerQuiz(index){
+  const q=gameData.questions[gameData.index];
+  const buttons=document.querySelectorAll('.answer-btn');
+  buttons.forEach(button=>button.disabled=true);
+  buttons[q.c].classList.add('correct');
+
+  if(index===q.c){
+    gameData.correct++;
+    $('quizFeedback').textContent='✓ Correct answer!';
+  }else{
+    buttons[index].classList.add('wrong');
+    $('quizFeedback').textContent='✕ Correct answer: '+q.a[q.c];
+  }
+
+  setTimeout(()=>{
+    gameData.index++;
+    if(gameData.index>=gameData.questions.length){
+      const score=gameData.correct*10;
+      finishGame(
+        gameData.type==='vocabulary'?'Vocabulary Quiz':'Problem Solving',
+        score,
+        `${gameData.correct} / ${gameData.questions.length} correct`
+      );
+    }else{
+      renderQuizQuestion();
+    }
+  },900);
+}
+
+$('clearHistory').addEventListener('click',()=>{
+  if(!confirm('Delete all saved Skill Arena scores from this browser?'))return;
+  records=[];
+  saveRecords();
+  showToast('Local records cleared.');
+});
+
+renderStats();
+</script>
+</body>
+</html>
