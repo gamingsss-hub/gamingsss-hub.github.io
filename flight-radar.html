@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>Toolora Live Flight Radar | Aircraft Tracker</title>
+<meta name="description" content="Explore aircraft positions on an interactive map. View available public ADS-B aircraft data, altitude, speed and heading.">
+<meta name="keywords" content="live flight radar, aircraft tracker, flight map, ADS-B, Toolora Radar">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#07111f;
+  --panel:rgba(8,20,35,.96);
+  --line:rgba(148,184,218,.17);
+  --muted:#91a6ba;
+  --text:#edf6ff;
+  --cyan:#50dcff;
+  --green:#62e6b0;
+  --red:#ff929c;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+html,body {
+  margin:0;
+  height:100%;
+  font-family:Manrope,system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow:hidden;
+}
+
+#map {
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 50% 40%,#18334a,#081522 70%);
+}
+
+.topbar {
+  position:absolute;
+  z-index:800;
+  top:14px;
+  left:14px;
+  right:14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  pointer-events:none;
+}
+
+.brand,.livepill,.top-actions {
+  pointer-events:auto;
+  background:var(--panel);
+  border:1px solid var(--line);
+  backdrop-filter:blur(18px);
+  box-shadow:0 12px 40px #0005;
+}
+
+.brand {
+  padding:10px 14px;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+}
+
+.brandmark {
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#38cfff,#637dff);
+  display:grid;
+  place-items:center;
+  color:#061321;
+  font-size:18px;
+}
+
+.brand small {
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1.5px;
+  margin-top:2px;
+}
+
+.top-actions {
+  display:flex;
+  gap:7px;
+  padding:6px;
+  border-radius:14px;
+}
+
+button,select {
+  font:inherit;
+}
+
+button {
+  cursor:pointer;
+  border:1px solid var(--line);
+  background:#13263a;
+  color:var(--text);
+  border-radius:10px;
+  padding:9px 12px;
+  font-size:12px;
+  font-weight:800;
+}
+
+button:hover {
+  border-color:#50dcff88;
+  background:#18334c;
+}
+
+.livepill {
+  padding:10px 13px;
+  border-radius:30px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.dot {
+  display:inline-block;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 12px var(--green);
+  margin-right:7px;
+}
+
+.panel {
+  position:absolute;
+  z-index:700;
+  top:83px;
+  left:14px;
+  bottom:16px;
+  width:330px;
+  display:flex;
+  flex-direction:column;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 18px 55px #0006;
+  overflow:hidden;
+}
+
+.panelhead {
+  padding:17px 16px 13px;
+  border-bottom:1px solid var(--line);
+}
+
+.eyebrow {
+  font:10px 'DM Mono',monospace;
+  color:var(--cyan);
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+}
+
+h1 {
+  font-size:20px;
+  margin:7px 0 5px;
+  letter-spacing:-.7px;
+}
+
+.sub {
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+.searchrow {
+  display:flex;
+  gap:7px;
+  margin-top:13px;
+}
+
+.searchrow select {
+  min-width:0;
+  flex:1;
+  background:#10243a;
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px;
+  font-size:12px;
+  outline:none;
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  padding:11px 13px;
+  border-bottom:1px solid var(--line);
+}
+
+.stat {
+  background:#102238;
+  border:1px solid #ffffff0c;
+  border-radius:11px;
+  padding:9px;
+}
+
+.stat b {
+  display:block;
+  font:700 18px 'DM Mono',monospace;
+  color:var(--cyan);
+}
+
+.stat span {
+  font-size:9px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.listhead {
+  padding:12px 15px 8px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:11px;
+  font-weight:800;
+}
+
+#aircraftList {
+  overflow:auto;
+  padding:0 9px 12px;
+  scrollbar-width:thin;
+  scrollbar-color:#28445e transparent;
+}
+
+.flight {
+  padding:11px 9px;
+  border:1px solid transparent;
+  border-radius:12px;
+  display:flex;
+  gap:9px;
+  align-items:center;
+  cursor:pointer;
+}
+
+.flight:hover,.flight.active {
+  background:#142b42;
+  border-color:#50dcff44;
+}
+
+.planeicon {
+  width:33px;
+  height:33px;
+  border-radius:10px;
+  background:#1a3850;
+  color:var(--cyan);
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  flex:none;
+}
+
+.flightmain {
+  min-width:0;
+  flex:1;
+}
+
+.callsign {
+  font:500 12px 'DM Mono',monospace;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.route {
+  font-size:10px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.flightmeta {
+  text-align:right;
+  font:10px 'DM Mono',monospace;
+  color:#c4d5e4;
+  line-height:1.7;
+}
+
+.empty {
+  padding:20px 13px;
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.7;
+}
+
+.error {
+  color:var(--red);
+}
+
+.detail {
+  position:absolute;
+  z-index:750;
+  right:14px;
+  top:83px;
+  width:270px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:15px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 18px 55px #0006;
+  display:none;
+}
+
+.detail.show {
+  display:block;
+}
+
+.detailtop {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.detail h2 {
+  font:700 19px 'DM Mono',monospace;
+  margin:12px 0 4px;
+}
+
+.detail p {
+  font-size:10px;
+  color:var(--muted);
+  margin:0 0 12px;
+}
+
+.detailgrid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.dcell {
+  padding:9px;
+  border-radius:10px;
+  background:#102238;
+}
+
+.dcell span {
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+}
+
+.dcell b {
+  display:block;
+  margin-top:5px;
+  font:500 12px 'DM Mono',monospace;
+}
+
+.mapnote {
+  position:absolute;
+  z-index:600;
+  right:14px;
+  bottom:15px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px 13px;
+  max-width:285px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.5;
+  backdrop-filter:blur(14px);
+}
+
+.mapnote strong {
+  color:var(--text);
+}
+
+.leaflet-control-attribution {
+  font-size:9px!important;
+  background:#081523dd!important;
+  color:#9eb2c5!important;
+}
+
+.leaflet-control-attribution a {
+  color:#62c9e9!important;
+}
+
+.leaflet-control-zoom a {
+  background:#102238!important;
+  color:#eaf4ff!important;
+  border-color:#ffffff22!important;
+}
+
+.aircraft-marker {
+  background:transparent;
+  border:0;
+}
+
+.aircraft-marker div {
+  font-size:22px;
+  color:#6ce5ff;
+  text-shadow:0 0 7px #00bfff,0 2px 5px #001;
+  transform-origin:center;
+  line-height:1;
+}
+
+#mapStatus {
+  position:absolute;
+  z-index:650;
+  right:14px;
+  top:83px;
+  padding:8px 11px;
+  background:#081523dc;
+  border:1px solid var(--line);
+  border-radius:10px;
+  color:var(--muted);
+  font-size:10px;
+  max-width:240px;
+}
+
+@media(max-width:700px) {
+  .topbar {
+    top:8px;
+    left:8px;
+    right:8px;
+    flex-wrap:wrap;
+  }
+
+  .brand {
+    padding:8px 10px;
+  }
+
+  .brandmark {
+    width:29px;
+    height:29px;
+  }
+
+  .livepill {
+    padding:8px 10px;
+  }
+
+  .top-actions {
+    padding:4px;
+  }
+
+  .top-actions button {
+    padding:8px;
+  }
+
+  .panel {
+    top:auto;
+    left:8px;
+    right:8px;
+    bottom:8px;
+    width:auto;
+    height:42%;
+    min-height:250px;
+    border-radius:17px;
+  }
+
+  .panelhead {
+    padding:11px 13px 9px;
+  }
+
+  h1 {
+    font-size:17px;
+    margin:4px 0;
+  }
+
+  .sub {
+    display:none;
+  }
+
+  .searchrow {
+    margin-top:8px;
+  }
+
+  .stats {
+    padding:8px;
+  }
+
+  .stat {
+    padding:7px;
+  }
+
+  .stat b {
+    font-size:15px;
+  }
+
+  .listhead {
+    padding:8px 12px 5px;
+  }
+
+  .detail {
+    top:72px;
+    right:8px;
+    width:220px;
+    padding:11px;
+  }
+
+  .mapnote {
+    right:8px;
+    bottom:calc(42% + 16px);
+    max-width:190px;
+  }
+
+  #mapStatus {
+    top:72px;
+    right:8px;
+    max-width:170px;
+  }
+
+  .leaflet-bottom {
+    bottom:42%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brandmark">✈</div>
+    <div>
+      TOOLORA <span style="color:var(--cyan)">RADAR</span>
+      <small>LIVE AIRCRAFT EXPLORER</small>
+    </div>
+  </div>
+
+  <div class="livepill">
+    <span class="dot"></span>
+    <span id="liveState">CONNECTING</span>
+  </div>
+
+  <div class="top-actions">
+    <button id="refreshBtn">↻ Refresh</button>
+    <button id="locateBtn">◎ Locate</button>
+  </div>
+</header>
+
+<aside class="panel">
+  <div class="panelhead">
+    <div class="eyebrow">Air traffic intelligence</div>
+    <h1>Aircraft around you</h1>
+
+    <div class="sub">
+      Explore aircraft broadcasting public ADS-B signals.
+      Select an aircraft to inspect its position and available flight data.
+    </div>
+
+    <div class="searchrow">
+      <select id="areaSelect" aria-label="Choose map area">
+        <option value="28.6139,77.2090">Delhi • India</option>
+        <option value="19.0760,72.8777">Mumbai • India</option>
+        <option value="12.9716,77.5946">Bengaluru • India</option>
+        <option value="25.2048,55.2708">Dubai • UAE</option>
+        <option value="51.5072,-0.1276">London • UK</option>
+        <option value="40.7128,-74.0060">New York • USA</option>
+        <option value="35.6762,139.6503">Tokyo • Japan</option>
+        <option value="48.8566,2.3522">Paris • France</option>
+      </select>
+
+      <button id="goBtn">Go</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <b id="count">—</b>
+      <span>Aircraft</span>
+    </div>
+
+    <div class="stat">
+      <b id="highCount">—</b>
+      <span>Above 30k ft</span>
+    </div>
+
+    <div class="stat">
+      <b id="updated">—</b>
+      <span>Updated</span>
+    </div>
+  </div>
+
+  <div class="listhead">
+    <span>NEARBY AIRCRAFT</span>
+    <span style="color:var(--muted);font:10px 'DM Mono',monospace">
+      100 NM RANGE
+    </span>
+  </div>
+
+  <div id="aircraftList">
+    <div class="empty">Loading aircraft feed…</div>
+  </div>
+</aside>
+
+<section class="detail" id="detail">
+  <div class="detailtop">
+    <span class="eyebrow">Flight details</span>
+    <button id="closeDetail" style="padding:5px 8px">✕</button>
+  </div>
+
+  <h2 id="dCall">—</h2>
+  <p id="dHex">ICAO24 —</p>
+
+  <div class="detailgrid">
+    <div class="dcell">
+      <span>Altitude</span>
+      <b id="dAlt">—</b>
+    </div>
+
+    <div class="dcell">
+      <span>Ground speed</span>
+      <b id="dSpeed">—</b>
+    </div>
+
+    <div class="dcell">
+      <span>Heading</span>
+      <b id="dHeading">—</b>
+    </div>
+
+    <div class="dcell">
+      <span>Vertical rate</span>
+      <b id="dVrate">—</b>
+    </div>
+
+    <div class="dcell">
+      <span>Latitude</span>
+      <b id="dLat">—</b>
+    </div>
+
+    <div class="dcell">
+      <span>Longitude</span>
+      <b id="dLon">—</b>
+    </div>
+  </div>
+</section>
+
+<div id="mapStatus">
+  Map tiles load from OpenStreetMap. If the map stays dark, check network settings.
+</div>
+
+<div class="mapnote">
+  <strong>Public ADS-B data</strong><br>
+  Aircraft visibility depends on receiver coverage.
+  Positions may be delayed or unavailable.
+  Not for navigation or air-traffic control.
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+(() => {
+
+  const $ = id => document.getElementById(id);
+
+  if (!window.L) {
+    $('aircraftList').innerHTML =
+      '<div class="empty error">Map library could not load. Check internet/CDN access.</div>';
+    return;
+  }
+
+  const map = L.map('map', {
+    zoomControl:false
+  }).setView([28.6139,77.2090],6);
+
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      maxZoom:19,
+      attribution:'&copy; OpenStreetMap contributors',
+      crossOrigin:true
+    }
+  ).addTo(map);
+
+  L.control.zoom({
+    position:'bottomright'
+  }).addTo(map);
+
+  const aircraftLayer = L.layerGroup().addTo(map);
+  const markers = new Map();
+
+  let aircraft = [];
+  let selected = null;
+  let center = {
+    lat:28.6139,
+    lon:77.2090
+  };
+  let busy = false;
+
+  const setState = text => {
+    $('liveState').textContent = text;
+  };
+
+  const altitude = value =>
+    value == null ? '—' : Math.round(value).toLocaleString() + ' ft';
+
+  const speed = value =>
+    value == null ? '—' : Math.round(value * 1.15078) + ' mph';
+
+  const aircraftIcon = track => {
+    return L.divIcon({
+      className:'aircraft-marker',
+      html:`<div style="transform:rotate(${Number(track)||0}deg)">✈</div>`,
+      iconSize:[26,26],
+      iconAnchor:[13,13]
+    });
+  };
+
+  function showDetails(a) {
+    selected = a;
+
+    $('detail').classList.add('show');
+
+    $('dCall').textContent =
+      (a.flight || a.hex || 'UNKNOWN').trim();
+
+    $('dHex').textContent =
+      'ICAO24 • ' + (a.hex || '—');
+
+    $('dAlt').textContent = altitude(a.alt_baro);
+    $('dSpeed').textContent = speed(a.gs);
+
+    $('dHeading').textContent =
+      a.track == null ? '—' : Math.round(a.track) + '°';
+
+    $('dVrate').textContent =
+      a.baro_rate == null ? '—' : Math.round(a.baro_rate) + ' ft/min';
+
+    $('dLat').textContent = a.lat.toFixed(3);
+    $('dLon').textContent = a.lon.toFixed(3);
+  }
+
+  function renderList() {
+    const list = $('aircraftList');
+    list.innerHTML = '';
+
+    if (!aircraft.length) {
+      list.innerHTML =
+        '<div class="empty">No aircraft found in this area in the current feed.<br>Try another city or refresh shortly.</div>';
+      return;
+    }
+
+    aircraft.slice(0,100).forEach(a => {
+
+      const row = document.createElement('div');
+
+      row.className =
+        'flight' +
+        (selected && selected.hex === a.hex ? ' active' : '');
+
+      row.innerHTML = `
+        <div class="planeicon">✈</div>
+
+        <div class="flightmain">
+          <div class="callsign"></div>
+          <div class="route"></div>
+        </div>
+
+        <div class="flightmeta"></div>
+      `;
+
+      row.querySelector('.callsign').textContent =
+        (a.flight || a.hex || 'UNKNOWN').trim();
+
+      row.querySelector('.route').textContent =
+        (a.r || 'Route unavailable') + ' · ' + (a.hex || '');
+
+      row.querySelector('.flightmeta').innerHTML =
+        altitude(a.alt_baro) + '<br>' + speed(a.gs);
+
+      row.onclick = () => {
+        showDetails(a);
+
+        map.flyTo(
+          [a.lat,a.lon],
+          Math.max(8,map.getZoom()),
+          {duration:.6}
+        );
+
+        renderList();
+      };
+
+      list.appendChild(row);
+    });
+  }
+
+  async function requestData(url) {
+
+    const controller = new AbortController();
+
+    const timeout = setTimeout(() => {
+      controller.abort();
+    },12000);
+
+    try {
+
+      const response = await fetch(url,{
+        cache:'no-store',
+        signal:controller.signal,
+        mode:'cors'
+      });
+
+      if (!response.ok) {
+        throw new Error('HTTP ' + response.status);
+      }
+
+      return await response.json();
+
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
+  async function loadAircraft() {
+
+    if (busy) return;
+
+    busy = true;
+    setState('UPDATING');
+
+    $('aircraftList').innerHTML =
+      '<div class="empty">Requesting public ADS-B feed…</div>';
+
+    const urls = [
+
+      `https://api.adsb.lol/v2/lat/${center.lat}/lon/${center.lon}/dist/100`,
+
+      `https://api.airplanes.live/v2/point/${center.lat}/${center.lon}/100`
+
+    ];
+
+    let data = null;
+    let lastError = '';
+
+    for (const url of urls) {
+
+      try {
+
+        data = await requestData(url);
+
+        if (data && Array.isArray(data.aircraft)) {
+          break;
+        }
+
+        data = null;
+        lastError = 'Unexpected data format';
+
+      } catch(error) {
+
+        lastError =
+          error.name === 'AbortError'
+            ? 'Request timed out'
+            : error.message;
+
+      }
+    }
+
+    busy = false;
+
+    if (!data) {
+
+      setState('DATA OFFLINE');
+
+      $('count').textContent = '—';
+      $('highCount').textContent = '—';
+      $('updated').textContent = '—';
+
+      $('aircraftList').innerHTML = `
+        <div class="empty error">
+          Aircraft feed could not be reached.<br>
+          Possible causes: API downtime, browser network restrictions or CORS blocking.
+          <br><br>
+          <small>${lastError}</small>
+        </div>
+      `;
+
+      return;
+    }
+
+    aircraft = (data.aircraft || [])
+      .filter(a =>
+        Number.isFinite(Number(a.lat)) &&
+        Number.isFinite(Number(a.lon))
+      )
+      .map(a => ({
+        ...a,
+        lat:Number(a.lat),
+        lon:Number(a.lon)
+      }));
+
+    const activeHex = new Set(
+      aircraft.map(a => a.hex)
+    );
+
+    for (const [hex,marker] of markers) {
+
+      if (!activeHex.has(hex)) {
+        aircraftLayer.removeLayer(marker);
+        markers.delete(hex);
+      }
+
+    }
+
+    aircraft.forEach(a => {
+
+      let marker = markers.get(a.hex);
+
+      if (!marker) {
+
+        marker = L.marker(
+          [a.lat,a.lon],
+          {icon:aircraftIcon(a.track)}
+        ).addTo(aircraftLayer);
+
+        markers.set(a.hex,marker);
+
+      } else {
+
+        marker.setLatLng([a.lat,a.lon]);
+        marker.setIcon(aircraftIcon(a.track));
+
+      }
+
+      marker.off('click');
+
+      marker.on('click',() => {
+        showDetails(a);
+        renderList();
+      });
+
+    });
+
+    $('count').textContent = aircraft.length;
+
+    $('highCount').textContent =
+      aircraft.filter(a =>
+        typeof a.alt_baro === 'number' &&
+        a.alt_baro > 30000
+      ).length;
+
+    $('updated').textContent =
+      new Date().toLocaleTimeString([],{
+        hour:'2-digit',
+        minute:'2-digit'
+      });
+
+    setState('LIVE');
+
+    $('mapStatus').textContent =
+      'Map: OpenStreetMap • Aircraft: public ADS-B feed';
+
+    renderList();
+
+    if (selected) {
+
+      const fresh = aircraft.find(
+        a => a.hex === selected.hex
+      );
+
+      if (fresh) {
+        showDetails(fresh);
+      } else {
+        $('detail').classList.remove('show');
+        selected = null;
+      }
+
+    }
+  }
+
+  function chooseArea() {
+
+    const [lat,lon] =
+      $('areaSelect').value.split(',').map(Number);
+
+    center = {lat,lon};
+
+    selected = null;
+
+    $('detail').classList.remove('show');
+
+    map.flyTo(
+      [lat,lon],
+      6,
+      {duration:.7}
+    );
+
+    loadAircraft();
+  }
+
+  $('goBtn').onclick = chooseArea;
+
+  $('areaSelect').onchange = chooseArea;
+
+  $('refreshBtn').onclick = loadAircraft;
+
+  $('closeDetail').onclick = () => {
+    $('detail').classList.remove('show');
+  };
+
+  $('locateBtn').onclick = () => {
+
+    if (!navigator.geolocation) {
+      alert('Geolocation is not supported.');
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+      position => {
+
+        center = {
+          lat:position.coords.latitude,
+          lon:position.coords.longitude
+        };
+
+        map.flyTo(
+          [center.lat,center.lon],
+          7
+        );
+
+        loadAircraft();
+
+      },
+
+      () => {
+        alert('Location permission denied or unavailable.');
+      }
+
+    );
+
+  };
+
+  loadAircraft();
+
+  setInterval(loadAircraft,30000);
+
+})();
+</script>
+
+</body>
+</html>
