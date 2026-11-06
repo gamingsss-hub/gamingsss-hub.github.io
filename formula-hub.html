@@ -1,1925 +1,1298 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Formula Hub – Maths, Physics, Chemistry & Finance Formulas | Toolora</title>
+<meta name="description" content="Explore a free formula library with Maths, Physics, Chemistry, Statistics and Finance formulas. Search equations, understand variables, view examples and save favourites.">
+<meta name="keywords" content="maths formulas, physics formulas, chemistry formulas, statistics formulas, finance formulas, formula calculator, NDA formulas, SSC maths formulas, science equations">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/formula-hub.html">
 
-<title>Formula Hub | Toolora</title>
+<meta property="og:title" content="Toolora Formula Hub">
+<meta property="og:description" content="Search, understand and save useful Maths, Physics, Chemistry, Statistics and Finance formulas.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gamingsss-hub.github.io/formula-hub.html">
 
-<meta name="description" content="Premium Formula Hub containing Maths, Physics, Chemistry, Statistics and Finance formulas.">
-
-<meta name="keywords" content="Formula Hub, Maths Formula, Physics Formula, Chemistry Formula, NDA Formula, JEE Formula, SSC Formula">
-
-<link rel="icon" href="favicon.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --bg:#050816;
+  --panel:#0c1729;
+  --panel2:#10223a;
+  --blue:#4f7cff;
+  --purple:#8b5cff;
+  --cyan:#00e5ff;
+  --text:#f2f6ff;
+  --muted:#9aabc1;
+  --border:rgba(255,255,255,.09);
+}
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-
-background:
-linear-gradient(135deg,#050816,#0a1128,#182848,#274690);
-
-color:#fff;
-
-min-height:100vh;
-
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse at 10% 0%,rgba(79,124,255,.16),transparent 35%),
+    radial-gradient(ellipse at 90% 15%,rgba(139,92,255,.13),transparent 35%),
+    var(--bg);
+  color:var(--text);
+  font-family:'Poppins',sans-serif;
 }
 
-.container{
+button,input{
+  font:inherit;
+}
 
-width:95%;
+button{
+  cursor:pointer;
+}
 
-max-width:1500px;
+.topbar{
+  max-width:1450px;
+  margin:auto;
+  padding:20px 25px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 
-margin:auto;
+.logo{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-family:'Outfit',sans-serif;
+  font-size:23px;
+  font-weight:800;
+}
 
-padding:30px;
+.logo-icon{
+  width:43px;
+  height:43px;
+  display:grid;
+  place-items:center;
+  border-radius:13px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  box-shadow:0 5px 25px rgba(79,124,255,.3);
+}
 
+.logo span{
+  color:var(--cyan);
+}
+
+.home-link{
+  color:var(--muted);
+  text-decoration:none;
+  font-size:13px;
+}
+
+.home-link:hover{
+  color:var(--cyan);
 }
 
 .hero{
+  max-width:950px;
+  margin:45px auto 35px;
+  padding:25px;
+  text-align:center;
+}
 
-padding:45px;
-
-text-align:center;
-
-border-radius:30px;
-
-background:rgba(255,255,255,.06);
-
-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,.08);
-
-box-shadow:0 20px 60px rgba(0,0,0,.35);
-
+.eyebrow{
+  display:inline-block;
+  padding:7px 14px;
+  border:1px solid rgba(0,229,255,.2);
+  background:rgba(0,229,255,.06);
+  color:var(--cyan);
+  border-radius:40px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:18px;
 }
 
 .hero h1{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(34px,5vw,55px);
+  line-height:1.12;
+  letter-spacing:-1.5px;
+}
 
-font-size:55px;
-
-font-weight:800;
-
+.gradient{
+  background:linear-gradient(90deg,#55a1ff,#a78bfa,#00e5ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
 .hero p{
-
-margin-top:10px;
-
-color:#b6c9ef;
-
+  max-width:720px;
+  margin:16px auto 0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.9;
 }
 
-.search{
-
-margin-top:30px;
-
+.stats{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:25px;
 }
 
-.search input{
+.stat{
+  min-width:120px;
+  padding:13px 18px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:rgba(255,255,255,.035);
+}
 
-width:100%;
+.stat strong{
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-size:22px;
+  color:var(--cyan);
+}
 
-padding:18px;
+.stat span{
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1px;
+}
 
-border:none;
+.main{
+  max-width:1450px;
+  margin:auto;
+  padding:0 25px 55px;
+}
 
-border-radius:15px;
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
 
-background:#111c38;
+.search-wrap{
+  flex:1;
+  min-width:230px;
+  position:relative;
+}
 
-color:#fff;
+.search-wrap input{
+  width:100%;
+  padding:15px 17px 15px 45px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  outline:none;
+  background:var(--panel);
+  color:white;
+}
 
-font-size:16px;
+.search-wrap input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(79,124,255,.1);
+}
 
-outline:none;
+.search-icon{
+  position:absolute;
+  left:16px;
+  top:13px;
+  color:var(--cyan);
+}
 
+.result-count{
+  color:var(--muted);
+  font-size:12px;
 }
 
 .layout{
-
-display:grid;
-
-grid-template-columns:260px 1fr;
-
-gap:30px;
-
-margin-top:35px;
-
+  display:grid;
+  grid-template-columns:230px minmax(0,1fr);
+  gap:22px;
+  align-items:start;
 }
 
 .sidebar{
-
-position:sticky;
-
-top:20px;
-
-height:max-content;
-
-padding:25px;
-
-border-radius:25px;
-
-background:rgba(255,255,255,.05);
-
-backdrop-filter:blur(20px);
-
+  position:sticky;
+  top:15px;
+  padding:19px;
+  border:1px solid var(--border);
+  border-radius:19px;
+  background:rgba(12,23,41,.88);
 }
 
 .sidebar h2{
-
-margin-bottom:20px;
-
+  font-family:'Outfit',sans-serif;
+  font-size:18px;
+  margin-bottom:14px;
 }
 
-.menu button{
-
-width:100%;
-
-padding:16px;
-
-margin-bottom:14px;
-
-border:none;
-
-border-radius:14px;
-
-background:#16213e;
-
-color:white;
-
-font-size:16px;
-
-cursor:pointer;
-
-transition:.3s;
-
+.category-list{
+  display:grid;
+  gap:8px;
 }
 
-.menu button:hover{
+.category-btn{
+  width:100%;
+  padding:12px;
+  border:1px solid transparent;
+  border-radius:11px;
+  text-align:left;
+  color:var(--muted);
+  background:transparent;
+  font-size:13px;
+  transition:.2s;
+}
 
-background:linear-gradient(45deg,#7c3aed,#2563eb);
+.category-btn:hover,
+.category-btn.active{
+  color:white;
+  border-color:rgba(79,124,255,.3);
+  background:linear-gradient(90deg,rgba(79,124,255,.2),rgba(139,92,255,.1));
+}
 
-transform:translateX(5px);
+.sidebar-note{
+  margin-top:20px;
+  padding:13px;
+  border-radius:12px;
+  background:rgba(0,229,255,.05);
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.7;
+}
 
+.content-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:17px;
+}
+
+.content-head h2{
+  font-family:'Outfit',sans-serif;
+  font-size:23px;
+}
+
+.sort-select{
+  padding:10px;
+  color:white;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:10px;
+  outline:none;
 }
 
 .cards{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
-
-gap:25px;
-
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:15px;
 }
 
 .formula-card{
-
-background:rgba(255,255,255,.05);
-
-padding:25px;
-
-border-radius:22px;
-
-border:1px solid rgba(255,255,255,.06);
-
-transition:.35s;
-
+  position:relative;
+  min-width:0;
+  padding:21px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+  transition:.25s;
 }
 
 .formula-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(79,124,255,.4);
+  box-shadow:0 16px 40px rgba(0,0,0,.2);
+}
 
-transform:translateY(-8px);
-
-box-shadow:0 20px 50px rgba(0,0,0,.35);
-
+.card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-bottom:14px;
 }
 
 .badge{
+  display:inline-block;
+  padding:6px 11px;
+  border-radius:30px;
+  color:#8bdcff;
+  background:rgba(79,124,255,.13);
+  font-size:10px;
+  font-weight:700;
+}
 
-display:inline-block;
+.favorite-btn{
+  width:34px;
+  height:34px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--panel);
+  color:#aab8cc;
+  font-size:17px;
+}
 
-padding:6px 14px;
+.favorite-btn.saved{
+  color:#fbbf24;
+  border-color:rgba(251,191,36,.3);
+}
 
-border-radius:30px;
-
-background:#2563eb;
-
-font-size:13px;
-
-margin-bottom:15px;
-
+.formula-card h3{
+  font-family:'Outfit',sans-serif;
+  font-size:19px;
 }
 
 .formula{
-
-margin:15px 0;
-
-font-size:22px;
-
-font-weight:700;
-
-color:#67e8f9;
-
+  overflow-wrap:anywhere;
+  margin:15px 0;
+  padding:16px 10px;
+  text-align:center;
+  border:1px solid rgba(0,229,255,.1);
+  border-radius:12px;
+  background:rgba(0,229,255,.045);
+  color:var(--cyan);
+  font-family:'Outfit',sans-serif;
+  font-size:21px;
+  font-weight:700;
 }
 
-.desc{
+.description{
+  min-height:42px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
 
-color:#d1d5db;
-
-margin-bottom:12px;
-
+.variables{
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid var(--border);
+  color:#c3d0e2;
+  font-size:11px;
+  line-height:1.8;
 }
 
 .example{
-
-margin-top:10px;
-
-font-size:14px;
-
-color:#fbbf24;
-
+  margin-top:10px;
+  color:#fbbf24;
+  font-size:11px;
+  line-height:1.7;
 }
 
-.actions{
-
-display:flex;
-
-gap:10px;
-
-margin-top:18px;
-
+.card-actions{
+  display:flex;
+  gap:9px;
+  margin-top:17px;
 }
 
-.actions button{
-
-flex:1;
-
-padding:12px;
-
-border:none;
-
-border-radius:12px;
-
-cursor:pointer;
-
-font-weight:600;
-
+.copy-btn{
+  flex:1;
+  padding:11px;
+  border:0;
+  border-radius:10px;
+  color:white;
+  background:linear-gradient(100deg,var(--blue),var(--purple));
+  font-size:12px;
+  font-weight:700;
 }
 
-.copy{
-
-background:#2563eb;
-
-color:white;
-
+.copy-btn:hover{
+  filter:brightness(1.15);
 }
 
-.fav{
-
-background:#f59e0b;
-
-color:white;
-
+.empty{
+  grid-column:1/-1;
+  padding:55px 15px;
+  text-align:center;
+  border:1px dashed var(--border);
+  border-radius:18px;
+  color:var(--muted);
 }
 
-@media(max-width:900px){
-
-.layout{
-
-grid-template-columns:1fr;
-
+.empty strong{
+  display:block;
+  color:white;
+  font-size:19px;
+  margin-bottom:7px;
 }
 
-.sidebar{
-
-position:relative;
-
+.info-section{
+  max-width:1050px;
+  margin:60px auto 0;
 }
 
-.hero h1{
-
-font-size:38px;
-
+.info-card{
+  padding:25px;
+  margin-bottom:16px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:rgba(255,255,255,.03);
 }
 
+.info-card h2{
+  font-family:'Outfit',sans-serif;
+  font-size:23px;
+  margin-bottom:12px;
 }
 
+.info-card h3{
+  font-family:'Outfit',sans-serif;
+  font-size:17px;
+  margin:20px 0 8px;
+}
+
+.info-card p,
+.info-card li{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.9;
+}
+
+.info-card ul{
+  padding-left:20px;
+}
+
+.faq{
+  padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.faq:last-child{
+  border:0;
+}
+
+.faq h3{
+  margin:0 0 7px;
+  font-size:15px;
+}
+
+.footer{
+  padding:25px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  z-index:20;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  padding:12px 18px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#14243a;
+  color:white;
+  font-size:12px;
+  transition:.25s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+@media(max-width:850px){
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  .sidebar{
+    position:static;
+  }
+
+  .category-list{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(max-width:600px){
+  .topbar{
+    padding:15px;
+  }
+
+  .main{
+    padding:0 13px 40px;
+  }
+
+  .hero{
+    margin:25px auto;
+    padding:15px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .formula-card{
+    padding:18px;
+  }
+
+  .toolbar{
+    align-items:stretch;
+  }
+
+  .result-count{
+    width:100%;
+  }
+
+  .info-card{
+    padding:19px;
+  }
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
-
-<div class="hero">
-
-<h1>📚 Formula Hub</h1>
-
-<p>Learn • Search • Copy • Save Premium Formulas</p>
-
-<div class="search">
-
-<input
-type="text"
-id="search"
-placeholder="Search Formula...">
-
-</div>
-
-</div>
-
-<div class="layout">
-
-<div class="sidebar">
-
-<h2>Categories</h2>
-
-<div class="menu">
-
-<button id="allBtn">🏠 All Formulas</button>
-
-<button id="mathBtn">➗ Maths</button>
-
-<button id="physicsBtn">🚀 Physics</button>
-
-<button id="chemBtn">🧪 Chemistry</button>
-
-<button id="statsBtn">📊 Statistics</button>
-
-<button id="financeBtn">💰 Finance</button>
-
-<button id="favBtn">⭐ Favourite</button>
-
-</div>
-
-</div>
-
-<div class="cards" id="cards">
-
-<!-- ================= PREMIUM MATHS ================= -->
-
-<div class="formula-card" data-category="math">
-
-<div class="badge">➗ Maths</div>
-
-<h2>📐 Quadratic Formula</h2>
-
-<div class="formula">
-
-x = (-b ± √(b² - 4ac)) / 2a
-
-</div>
-
-<p class="desc">
-
-Find roots of any quadratic equation.
-
-</p>
-
-<div class="example">
-
-<b>Example:</b> 2x² + 5x − 3 = 0
-
-</div>
-
-<div class="actions">
-
-<button class="copy"
-onclick="copyFormula('x=(-b±√(b²-4ac))/2a')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="math">
-
-<div class="badge">➗ Maths</div>
-
-<h2>⭕ Circle Area</h2>
-
-<div class="formula">
-
-A = πr²
-
-</div>
-
-<p class="desc">
-
-Area enclosed by a circle.
-
-</p>
-
-<div class="example">
-
-r = 7 → A = 154
-
-</div>
-
-<div class="actions">
-
-<button class="copy"
-onclick="copyFormula('A=πr²')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="math">
-
-<div class="badge">➗ Maths</div>
-
-<h2>📏 Circle Circumference</h2>
-
-<div class="formula">
-
-C = 2πr
-
-</div>
-
-<p class="desc">
-
-Perimeter of a circle.
-
-</p>
-
-<div class="actions">
-
-<button class="copy"
-onclick="copyFormula('C=2πr')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="math">
-
-<div class="badge">➗ Maths</div>
-
-<h2>📐 Triangle Area</h2>
-
-<div class="formula">
-
-A = ½ × b × h
-
-</div>
-
-<p class="desc">
-
-Area of a triangle.
-
-</p>
-
-<div class="actions">
-
-<button class="copy"
-onclick="copyFormula('A=½×b×h')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="math">
-
-<div class="badge">➗ Maths</div>
-
-<h2>📦 Cube Volume</h2>
-
-<div class="formula">
-
-V = a³
-
-</div>
-
-<p class="desc">
-
-Volume of a cube.
-
-</p>
-
-<div class="actions">
-
-<button class="copy"
-onclick="copyFormula('V=a³')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="math">
-
-<div class="badge">➗ Maths</div>
-
-<h2>📍 Distance Formula</h2>
-
-<div class="formula">
-
-d = √((x₂-x₁)²+(y₂-y₁)²)
-
-</div>
-
-<p class="desc">
-
-Distance between two coordinate points.
-
-</p>
-
-<div class="actions">
-
-<button class="copy"
-onclick="copyFormula('d=√((x₂-x₁)²+(y₂-y₁)²)')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="math">
-
-<div class="badge">➗ Maths</div>
-
-<h2>📍 Mid Point</h2>
-
-<div class="formula">
-
-((x₁+x₂)/2,(y₁+y₂)/2)
-
-</div>
-
-<p class="desc">
-
-Midpoint of two coordinates.
-
-</p>
-
-<div class="actions">
-
-<button class="copy"
-onclick="copyFormula('((x₁+x₂)/2,(y₁+y₂)/2)')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="math">
-
-<div class="badge">➗ Maths</div>
-
-<h2>📊 Trigonometry Table</h2>
-
-<table style="width:100%;text-align:center;margin-top:15px">
-
-<tr>
-
-<th>θ</th>
-
-<th>Sin</th>
-
-<th>Cos</th>
-
-<th>Tan</th>
-
-</tr>
-
-<tr><td>0°</td><td>0</td><td>1</td><td>0</td></tr>
-
-<tr><td>30°</td><td>1/2</td><td>√3/2</td><td>1/√3</td></tr>
-
-<tr><td>45°</td><td>√2/2</td><td>√2/2</td><td>1</td></tr>
-
-<tr><td>60°</td><td>√3/2</td><td>1/2</td><td>√3</td></tr>
-
-<tr><td>90°</td><td>1</td><td>0</td><td>∞</td></tr>
-
-</table>
-
-</div>
-
-<!-- ================= PREMIUM PHYSICS ================= -->
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>⚡ Velocity</h2>
-
-<div class="formula">v = s / t</div>
-
-<p class="desc">Velocity = Distance ÷ Time</p>
-
-<div class="example"><b>Example:</b> 100m ÷ 20s = 5m/s</div>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('v=s/t')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>🏃 Acceleration</h2>
-
-<div class="formula">a = (v-u)/t</div>
-
-<p class="desc">Rate of change of velocity.</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('a=(v-u)/t')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>💪 Force</h2>
-
-<div class="formula">F = m × a</div>
-
-<p class="desc">Newton's Second Law.</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('F=m×a')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>📦 Momentum</h2>
-
-<div class="formula">p = m × v</div>
-
-<p class="desc">Momentum = Mass × Velocity.</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('p=m×v')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>🔋 Work</h2>
-
-<div class="formula">W = F × d</div>
-
-<p class="desc">Work = Force × Distance.</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('W=F×d')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>⚙ Power</h2>
-
-<div class="formula">P = W / t</div>
-
-<p class="desc">Power = Work ÷ Time.</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('P=W/t')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>⚡ Ohm's Law</h2>
-
-<div class="formula">V = I × R</div>
-
-<p class="desc">Voltage = Current × Resistance.</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('V=I×R')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>🌍 Weight</h2>
-
-<div class="formula">W = m × g</div>
-
-<p class="desc">Weight of an object.</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('W=m×g')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>🏔 Potential Energy</h2>
-
-<div class="formula">PE = mgh</div>
-
-<p class="desc">Gravitational Potential Energy.</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('PE=mgh')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>⚡ Kinetic Energy</h2>
-
-<div class="formula">KE = ½mv²</div>
-
-<p class="desc">Energy due to motion.</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('KE=½mv²')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>🌊 Wave Speed</h2>
-
-<div class="formula">v = fλ</div>
-
-<p class="desc">Wave Speed = Frequency × Wavelength.</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('v=fλ')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="physics">
-
-<div class="badge">🚀 Physics</div>
-
-<h2>🔄 Frequency</h2>
-
-<div class="formula">f = 1/T</div>
-
-<p class="desc">Frequency = 1 ÷ Time Period.</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('f=1/T')">📋 Copy</button>
-
-<button class="fav">⭐ Save</button>
-
-</div>
-
-</div>
-
-<!-- ================= PREMIUM CHEMISTRY ================= -->
-
-<div class="formula-card" data-category="chemistry">
-
-<div class="badge">🧪 Chemistry</div>
-
-<h2>⚗️ Ideal Gas Law</h2>
-
-<div class="formula">
-
-PV = nRT
-
-</div>
-
-<p class="desc">
-
-Relates Pressure, Volume, Temperature and Moles.
-
-</p>
-
-<div class="example">
-
-Example: Gas calculations at STP.
-
-</div>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('PV=nRT')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="chemistry">
-
-<div class="badge">🧪 Chemistry</div>
-
-<h2>💧 Density</h2>
-
-<div class="formula">
-
-ρ = m / V
-
-</div>
-
-<p class="desc">
-
-Density = Mass ÷ Volume
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('ρ=m/V')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="chemistry">
-
-<div class="badge">🧪 Chemistry</div>
-
-<h2>🧫 Molarity</h2>
-
-<div class="formula">
-
-M = n / V
-
-</div>
-
-<p class="desc">
-
-Moles of Solute ÷ Litres of Solution
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('M=n/V')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="chemistry">
-
-<div class="badge">🧪 Chemistry</div>
-
-<h2>🔥 Boyle's Law</h2>
-
-<div class="formula">
-
-P₁V₁ = P₂V₂
-
-</div>
-
-<p class="desc">
-
-Pressure is inversely proportional to Volume.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('P₁V₁=P₂V₂')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="chemistry">
-
-<div class="badge">🧪 Chemistry</div>
-
-<h2>🌡 Charles Law</h2>
-
-<div class="formula">
-
-V₁/T₁ = V₂/T₂
-
-</div>
-
-<p class="desc">
-
-Volume is directly proportional to Temperature.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('V₁/T₁=V₂/T₂')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="chemistry">
-
-<div class="badge">🧪 Chemistry</div>
-
-<h2>⚛ Avogadro Constant</h2>
-
-<div class="formula">
-
-6.022 × 10²³
-
-</div>
-
-<p class="desc">
-
-Particles present in one mole.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('6.022×10²³')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="chemistry">
-
-<div class="badge">🧪 Chemistry</div>
-
-<h2>🧬 Mole Formula</h2>
-
-<div class="formula">
-
-n = m / M
-
-</div>
-
-<p class="desc">
-
-Moles = Mass ÷ Molar Mass
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('n=m/M')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="chemistry">
-
-<div class="badge">🧪 Chemistry</div>
-
-<h2>🧪 pH Formula</h2>
-
-<div class="formula">
-
-pH = -log[H⁺]
-
-</div>
-
-<p class="desc">
-
-Measures acidity or basicity.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('pH=-log[H⁺]')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="chemistry">
-
-<div class="badge">🧪 Chemistry</div>
-
-<h2>⚖ Mass Percentage</h2>
-
-<div class="formula">
-
-(Mass of Solute / Mass of Solution) × 100
-
-</div>
-
-<p class="desc">
-
-Percentage composition by mass.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('(Mass of Solute/Mass of Solution)×100')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="chemistry">
-
-<div class="badge">🧪 Chemistry</div>
-
-<h2>☣ Normality</h2>
-
-<div class="formula">
-
-N = Gram Equivalent / Litre
-
-</div>
-
-<p class="desc">
-
-Concentration of solution in equivalents.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('N=Gram Equivalent/Litre')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-<!-- ================= PREMIUM STATISTICS ================= -->
-
-<div class="formula-card" data-category="statistics">
-
-<div class="badge">📊 Statistics</div>
-
-<h2>📈 Mean</h2>
-
-<div class="formula">
-
-Mean = Σx / n
-
-</div>
-
-<p class="desc">
-
-Average of all observations.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('Mean=Σx/n')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="statistics">
-
-<div class="badge">📊 Statistics</div>
-
-<h2>📉 Median</h2>
-
-<div class="formula">
-
-Median = Middle Value
-
-</div>
-
-<p class="desc">
-
-Middle value after arranging data.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('Median=Middle Value')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="statistics">
-
-<div class="badge">📊 Statistics</div>
-
-<h2>📊 Mode</h2>
-
-<div class="formula">
-
-Mode = Most Frequent Value
-
-</div>
-
-<p class="desc">
-
-Most repeated observation.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('Mode=Most Frequent Value')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="statistics">
-
-<div class="badge">📊 Statistics</div>
-
-<h2>📏 Standard Deviation</h2>
-
-<div class="formula">
-
-σ = √(Σ(x-μ)²/N)
-
-</div>
-
-<p class="desc">
-
-Measures data spread.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('σ=√(Σ(x-μ)²/N)')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- ================= PREMIUM FINANCE ================= -->
-
-<div class="formula-card" data-category="finance">
-
-<div class="badge">💰 Finance</div>
-
-<h2>🏦 Simple Interest</h2>
-
-<div class="formula">
-
-SI = (P×R×T)/100
-
-</div>
-
-<p class="desc">
-
-Simple Interest Formula.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('SI=(P×R×T)/100')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="finance">
-
-<div class="badge">💰 Finance</div>
-
-<h2>💳 Compound Interest</h2>
-
-<div class="formula">
-
-A=P(1+r/n)<sup>nt</sup>
-
-</div>
-
-<p class="desc">
-
-Compound Interest Formula.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('A=P(1+r/n)^nt')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="finance">
-
-<div class="badge">💰 Finance</div>
-
-<h2>📈 Profit</h2>
-
-<div class="formula">
-
-Profit = SP − CP
-
-</div>
-
-<p class="desc">
-
-Selling Price minus Cost Price.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('Profit=SP-CP')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="finance">
-
-<div class="badge">💰 Finance</div>
-
-<h2>📉 Loss</h2>
-
-<div class="formula">
-
-Loss = CP − SP
-
-</div>
-
-<p class="desc">
-
-Cost Price minus Selling Price.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('Loss=CP-SP')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="finance">
-
-<div class="badge">💰 Finance</div>
-
-<h2>📊 CAGR</h2>
-
-<div class="formula">
-
-CAGR=(FV/PV)<sup>1/n</sup>-1
-
-</div>
-
-<p class="desc">
-
-Compound Annual Growth Rate.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('CAGR=(FV/PV)^(1/n)-1')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<div class="formula-card" data-category="finance">
-
-<div class="badge">💰 Finance</div>
-
-<h2>💹 Profit %</h2>
-
-<div class="formula">
-
-Profit %=(Profit/CP)×100
-
-</div>
-
-<p class="desc">
-
-Profit Percentage Formula.
-
-</p>
-
-<div class="actions">
-
-<button class="copy" onclick="copyFormula('Profit%=(Profit/CP)×100')">
-
-📋 Copy
-
-</button>
-
-<button class="fav">
-
-⭐ Save
-
-</button>
-
-</div>
-
-</div>
+<header class="topbar">
+  <div class="logo">
+    <div class="logo-icon">📚</div>
+    <div>TOOLORA<span> HUB</span></div>
+  </div>
+  <a class="home-link" href="index.html">← Back to Home</a>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">THE STUDENT FORMULA LIBRARY</div>
+  <h1>Explore the <span class="gradient">Formula Hub</span></h1>
+  <p>
+    Find useful equations from Mathematics, Physics, Chemistry,
+    Statistics and Finance. Search a formula, understand its variables,
+    check an example and save the formulas you use most.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><strong id="totalStat">0</strong><span>FORMULAS</span></div>
+    <div class="stat"><strong>5</strong><span>SUBJECTS</span></div>
+    <div class="stat"><strong>FREE</strong><span>TO EXPLORE</span></div>
+  </div>
+</section>
+
+<main class="main">
+
+  <div class="toolbar">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input id="search" type="search" placeholder="Search formula, topic or keyword..." aria-label="Search formulas">
+    </div>
+    <span class="result-count" id="resultCount" aria-live="polite"></span>
+  </div>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>Browse Subjects</h2>
+
+      <div class="category-list">
+        <button class="category-btn active" data-category="all">🏠 All Formulas</button>
+        <button class="category-btn" data-category="math">➗ Mathematics</button>
+        <button class="category-btn" data-category="physics">🚀 Physics</button>
+        <button class="category-btn" data-category="chemistry">🧪 Chemistry</button>
+        <button class="category-btn" data-category="statistics">📊 Statistics</button>
+        <button class="category-btn" data-category="finance">💰 Finance</button>
+        <button class="category-btn" data-category="favorites">⭐ My Favourites</button>
+      </div>
+
+      <div class="sidebar-note">
+        <strong>Study tip</strong><br>
+        Learn what each variable represents before substituting values into a formula.
+      </div>
+    </aside>
+
+    <section>
+      <div class="content-head">
+        <h2 id="sectionTitle">All Formulas</h2>
+        <select class="sort-select" id="sort">
+          <option value="default">Default order</option>
+          <option value="az">Name A–Z</option>
+        </select>
+      </div>
+
+      <div class="cards" id="cards"></div>
+    </section>
+
+  </div>
+
+  <section class="info-section">
+
+    <article class="info-card">
+      <h2>What Is a Formula Hub?</h2>
+      <p>
+        A formula hub is a reference library that brings important
+        equations together in one place. Students can use formula
+        references while studying topics, revising for examinations
+        and practising numerical problems.
+      </p>
+      <p>
+        This library groups formulas into five subjects: Mathematics,
+        Physics, Chemistry, Statistics and Finance. Each entry includes
+        the equation, a short explanation, variable meanings and an
+        example where applicable.
+      </p>
+    </article>
+
+    <article class="info-card">
+      <h2>How to Use This Formula Library</h2>
+      <ul>
+        <li>Select a subject from the category panel.</li>
+        <li>Search by formula name or topic.</li>
+        <li>Read the variable definitions before using an equation.</li>
+        <li>Check the example to understand how values are substituted.</li>
+        <li>Copy a formula or save it to your favourites.</li>
+      </ul>
+    </article>
+
+    <article class="info-card">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq">
+        <h3>1. Is Toolora Formula Hub free?</h3>
+        <p>Yes. You can browse, search, copy and save formulas without a subscription.</p>
+      </div>
+
+      <div class="faq">
+        <h3>2. Which subjects are included?</h3>
+        <p>The library includes Mathematics, Physics, Chemistry, Statistics and Finance.</p>
+      </div>
+
+      <div class="faq">
+        <h3>3. Can I search for a particular equation?</h3>
+        <p>Yes. Use the search field to find formulas by their names, topics or keywords.</p>
+      </div>
+
+      <div class="faq">
+        <h3>4. Can I save formulas for later?</h3>
+        <p>Yes. Select the star icon on a formula card. Your favourites are saved in this browser.</p>
+      </div>
+
+      <div class="faq">
+        <h3>5. Are the examples suitable for every examination?</h3>
+        <p>Examples are for learning and revision. Always follow the syllabus, notation and instructions of your own course or examination.</p>
+      </div>
+    </article>
+
+    <article class="info-card">
+      <h2>Important Note</h2>
+      <p>
+        This page is an educational reference. Always check the
+        assumptions, units and conditions of a formula before applying
+        it to a problem. Some equations have different forms depending
+        on the topic and sign convention being used.
+      </p>
+    </article>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+  © 2026 Toolora AI · Formula Hub · Educational Reference Library
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
+"use strict";
 
-// ================= COPY FORMULA =================
+const formulas = [
+  {
+    id:"quadratic",
+    category:"math",
+    name:"Quadratic Formula",
+    formula:"x = (−b ± √(b² − 4ac)) / 2a",
+    description:"Find the roots of a quadratic equation ax² + bx + c = 0.",
+    variables:"a, b, c = coefficients; x = root of the equation.",
+    example:"For x² − 5x + 6 = 0, the roots are 2 and 3.",
+    keywords:"algebra equation roots discriminant"
+  },
+  {
+    id:"circle-area",
+    category:"math",
+    name:"Area of a Circle",
+    formula:"A = πr²",
+    description:"Calculate the area enclosed by a circle.",
+    variables:"A = area; r = radius; π ≈ 3.14159.",
+    example:"For r = 7, A = 49π ≈ 153.94 square units.",
+    keywords:"geometry circle radius"
+  },
+  {
+    id:"circumference",
+    category:"math",
+    name:"Circle Circumference",
+    formula:"C = 2πr",
+    description:"Calculate the distance around a circle.",
+    variables:"C = circumference; r = radius.",
+    example:"For r = 7, C = 14π ≈ 43.98 units.",
+    keywords:"circle perimeter diameter"
+  },
+  {
+    id:"triangle-area",
+    category:"math",
+    name:"Triangle Area",
+    formula:"A = ½bh",
+    description:"Calculate the area of a triangle using its base and perpendicular height.",
+    variables:"A = area; b = base; h = perpendicular height.",
+    example:"For b = 10 and h = 6, A = 30 square units.",
+    keywords:"geometry triangle"
+  },
+  {
+    id:"pythagoras",
+    category:"math",
+    name:"Pythagorean Theorem",
+    formula:"a² + b² = c²",
+    description:"Relates the sides of a right-angled triangle.",
+    variables:"a and b = shorter sides; c = hypotenuse.",
+    example:"For a = 3 and b = 4, c = 5.",
+    keywords:"right triangle hypotenuse geometry"
+  },
+  {
+    id:"distance",
+    category:"math",
+    name:"Distance Formula",
+    formula:"d = √((x₂−x₁)² + (y₂−y₁)²)",
+    description:"Find the straight-line distance between two coordinate points.",
+    variables:"(x₁,y₁) and (x₂,y₂) = two points.",
+    example:"Between (0,0) and (3,4), distance = 5 units.",
+    keywords:"coordinate geometry points"
+  },
+  {
+    id:"midpoint",
+    category:"math",
+    name:"Midpoint Formula",
+    formula:"M = ((x₁+x₂)/2, (y₁+y₂)/2)",
+    description:"Find the point exactly halfway between two coordinates.",
+    variables:"(x₁,y₁) and (x₂,y₂) = endpoints.",
+    example:"Midpoint of (2,4) and (6,8) is (4,6).",
+    keywords:"coordinate geometry"
+  },
+  {
+    id:"slope",
+    category:"math",
+    name:"Slope of a Line",
+    formula:"m = (y₂−y₁)/(x₂−x₁)",
+    description:"Calculate the slope between two points when x₂ ≠ x₁.",
+    variables:"m = slope; x and y = point coordinates.",
+    example:"Between (1,2) and (3,6), m = 2.",
+    keywords:"coordinate geometry gradient"
+  },
+  {
+    id:"simple-interest",
+    category:"math",
+    name:"Simple Interest",
+    formula:"SI = (P × R × T) / 100",
+    description:"Calculate interest on the original principal.",
+    variables:"P = principal; R = annual rate in percent; T = time in years.",
+    example:"P = 1000, R = 5%, T = 2 years gives SI = 100.",
+    keywords:"interest maths"
+  },
+  {
+    id:"cube-volume",
+    category:"math",
+    name:"Volume of a Cube",
+    formula:"V = a³",
+    description:"Calculate the volume of a cube.",
+    variables:"V = volume; a = side length.",
+    example:"For a = 3, V = 27 cubic units.",
+    keywords:"geometry solid"
+  },
+  {
+    id:"percentage",
+    category:"math",
+    name:"Percentage",
+    formula:"Percentage = (Part / Whole) × 100",
+    description:"Express a part as a percentage of the whole.",
+    variables:"Part = selected amount; Whole = total amount.",
+    example:"25 out of 100 = 25%.",
+    keywords:"ratio proportion"
+  },
+  {
+    id:"velocity",
+    category:"physics",
+    name:"Average Speed",
+    formula:"Speed = Distance / Time",
+    description:"Calculate average speed for a journey.",
+    variables:"Distance = total distance; Time = total elapsed time.",
+    example:"100 m in 20 s gives 5 m/s.",
+    keywords:"motion speed distance"
+  },
+  {
+    id:"acceleration",
+    category:"physics",
+    name:"Acceleration",
+    formula:"a = (v − u) / t",
+    description:"Calculate constant average acceleration from a velocity change.",
+    variables:"v = final velocity; u = initial velocity; t = time.",
+    example:"Velocity changes from 0 to 20 m/s in 5 s: a = 4 m/s².",
+    keywords:"motion kinematics"
+  },
+  {
+    id:"newton",
+    category:"physics",
+    name:"Newton's Second Law",
+    formula:"F = ma",
+    description:"Relates net force, mass and acceleration.",
+    variables:"F = net force; m = mass; a = acceleration.",
+    example:"A 2 kg object accelerating at 3 m/s² has net force 6 N.",
+    keywords:"force mechanics"
+  },
+  {
+    id:"momentum",
+    category:"physics",
+    name:"Momentum",
+    formula:"p = mv",
+    description:"Calculate linear momentum.",
+    variables:"p = momentum; m = mass; v = velocity.",
+    example:"A 2 kg object moving at 4 m/s has momentum 8 kg·m/s.",
+    keywords:"motion mechanics"
+  },
+  {
+    id:"work",
+    category:"physics",
+    name:"Work Done",
+    formula:"W = Fd cos θ",
+    description:"Work done by a constant force over a displacement.",
+    variables:"F = force; d = displacement; θ = angle between force and displacement.",
+    example:"A 10 N force acting through 2 m in the same direction does 20 J of work.",
+    keywords:"energy mechanics"
+  },
+  {
+    id:"power",
+    category:"physics",
+    name:"Power",
+    formula:"P = W / t",
+    description:"Calculate the rate of doing work.",
+    variables:"P = power; W = work; t = time.",
+    example:"100 J of work in 5 s gives 20 W.",
+    keywords:"work energy"
+  },
+  {
+    id:"ohm",
+    category:"physics",
+    name:"Ohm's Law",
+    formula:"V = IR",
+    description:"Relates voltage, current and resistance in an ohmic conductor.",
+    variables:"V = voltage; I = current; R = resistance.",
+    example:"I = 2 A and R = 5 Ω gives V = 10 V.",
+    keywords:"electricity circuit"
+  },
+  {
+    id:"weight",
+    category:"physics",
+    name:"Weight",
+    formula:"F = mg",
+    description:"Calculate gravitational force near a planetary surface.",
+    variables:"F = weight; m = mass; g = gravitational acceleration.",
+    example:"For 2 kg and g = 9.8 m/s², weight = 19.6 N.",
+    keywords:"gravity gravitation"
+  },
+  {
+    id:"potential-energy",
+    category:"physics",
+    name:"Gravitational Potential Energy",
+    formula:"PE = mgh",
+    description:"Calculate gravitational potential energy relative to a chosen reference level.",
+    variables:"m = mass; g = gravitational acceleration; h = height.",
+    example:"For 2 kg at 5 m with g = 9.8 m/s², PE = 98 J.",
+    keywords:"energy gravity"
+  },
+  {
+    id:"kinetic-energy",
+    category:"physics",
+    name:"Kinetic Energy",
+    formula:"KE = ½mv²",
+    description:"Calculate the translational kinetic energy of an object.",
+    variables:"m = mass; v = speed.",
+    example:"For 2 kg moving at 3 m/s, KE = 9 J.",
+    keywords:"energy motion"
+  },
+  {
+    id:"wave-speed",
+    category:"physics",
+    name:"Wave Speed",
+    formula:"v = fλ",
+    description:"Relates wave speed, frequency and wavelength.",
+    variables:"v = wave speed; f = frequency; λ = wavelength.",
+    example:"For f = 5 Hz and λ = 2 m, v = 10 m/s.",
+    keywords:"waves sound"
+  },
+  {
+    id:"frequency",
+    category:"physics",
+    name:"Frequency and Time Period",
+    formula:"f = 1 / T",
+    description:"Frequency is the reciprocal of the time period.",
+    variables:"f = frequency; T = time period.",
+    example:"A period of 0.5 s gives frequency 2 Hz.",
+    keywords:"oscillation waves"
+  },
+  {
+    id:"gravitation",
+    category:"physics",
+    name:"Universal Gravitation",
+    formula:"F = Gm₁m₂ / r²",
+    description:"Calculate the gravitational attraction between two point masses.",
+    variables:"G = gravitational constant; m₁,m₂ = masses; r = separation.",
+    example:"The force depends on both masses and decreases with the square of separation.",
+    keywords:"gravity astronomy"
+  },
+  {
+    id:"density",
+    category:"physics",
+    name:"Density",
+    formula:"ρ = m / V",
+    description:"Calculate mass per unit volume.",
+    variables:"ρ = density; m = mass; V = volume.",
+    example:"A 10 kg object occupying 2 m³ has density 5 kg/m³.",
+    keywords:"matter measurement"
+  },
+  {
+    id:"gas-law",
+    category:"chemistry",
+    name:"Ideal Gas Law",
+    formula:"PV = nRT",
+    description:"Relates the pressure, volume, amount and absolute temperature of an ideal gas.",
+    variables:"P = pressure; V = volume; n = moles; R = gas constant; T = kelvin temperature.",
+    example:"Use consistent SI units and the matching value of R.",
+    keywords:"gas chemistry thermodynamics"
+  },
+  {
+    id:"molarity",
+    category:"chemistry",
+    name:"Molarity",
+    formula:"M = n / V",
+    description:"Calculate concentration in moles per litre of solution.",
+    variables:"M = molarity; n = moles of solute; V = solution volume in litres.",
+    example:"0.5 mol in 1 L gives 0.5 mol/L.",
+    keywords:"concentration solution"
+  },
+  {
+    id:"density-chem",
+    category:"chemistry",
+    name:"Mass Density",
+    formula:"ρ = m / V",
+    description:"Relates the mass of a substance to its volume.",
+    variables:"ρ = density; m = mass; V = volume.",
+    example:"20 g in 10 cm³ gives 2 g/cm³.",
+    keywords:"matter physical chemistry"
+  },
+  {
+    id:"charles-law",
+    category:"chemistry",
+    name:"Charles's Law",
+    formula:"V₁/T₁ = V₂/T₂",
+    description:"For a fixed amount of gas at constant pressure, volume is proportional to absolute temperature.",
+    variables:"V = volume; T = temperature in kelvin.",
+    example:"Always convert temperatures to kelvin before substitution.",
+    keywords:"gas law temperature"
+  },
+  {
+    id:"ph",
+    category:"chemistry",
+    name:"pH",
+    formula:"pH = −log₁₀[H⁺]",
+    description:"Expresses hydrogen ion concentration on the pH scale.",
+    variables:"[H⁺] = hydrogen ion concentration in mol/L.",
+    example:"For [H⁺] = 10⁻³ mol/L, pH = 3.",
+    keywords:"acids bases logarithm"
+  },
+  {
+    id:"beer-lambert",
+    category:"chemistry",
+    name:"Beer-Lambert Law",
+    formula:"A = εlc",
+    description:"Relates absorbance to molar absorptivity, path length and concentration.",
+    variables:"A = absorbance; ε = molar absorptivity; l = path length; c = concentration.",
+    example:"Absorbance increases with concentration when other conditions stay constant.",
+    keywords:"absorbance spectroscopy"
+  },
+  {
+    id:"mean",
+    category:"statistics",
+    name:"Arithmetic Mean",
+    formula:"Mean = Σx / n",
+    description:"Calculate the average of a set of numerical values.",
+    variables:"Σx = sum of observations; n = number of observations.",
+    example:"Mean of 2, 4 and 6 is 4.",
+    keywords:"average data"
+  },
+  {
+    id:"probability",
+    category:"statistics",
+    name:"Basic Probability",
+    formula:"P(A) = Favourable Outcomes / Total Outcomes",
+    description:"For equally likely outcomes, calculate the probability of event A.",
+    variables:"Favourable outcomes = outcomes supporting A; total outcomes = all possible outcomes.",
+    example:"Probability of rolling a 3 on a fair six-sided die is 1/6.",
+    keywords:"chance event"
+  },
+  {
+    id:"zscore",
+    category:"statistics",
+    name:"Z-Score",
+    formula:"z = (x − μ) / σ",
+    description:"Measure how many standard deviations an observation is from the population mean.",
+    variables:"x = observation; μ = population mean; σ = population standard deviation.",
+    example:"For x = 70, μ = 60 and σ = 5, z = 2.",
+    keywords:"standard score distribution"
+  },
+  {
+    id:"variance",
+    category:"statistics",
+    name:"Population Variance",
+    formula:"σ² = Σ(x − μ)² / N",
+    description:"Measure the average squared deviation from the population mean.",
+    variables:"x = observation; μ = population mean; N = population size.",
+    example:"Calculate the mean first, then square each deviation.",
+    keywords:"statistics spread"
+  },
+  {
+    id:"compound",
+    category:"finance",
+    name:"Compound Interest",
+    formula:"A = P(1 + r/n)ⁿᵗ",
+    description:"Calculate the future value when interest is compounded periodically.",
+    variables:"P = principal; r = annual decimal rate; n = compounding periods per year; t = years.",
+    example:"Convert 5% to 0.05 before using the formula.",
+    keywords:"investment savings"
+  },
+  {
+    id:"profit",
+    category:"finance",
+    name:"Profit",
+    formula:"Profit = Selling Price − Cost Price",
+    description:"Calculate profit before any additional expenses or taxes.",
+    variables:"Selling price = sale amount; cost price = purchase or production cost.",
+    example:"Selling for ₹150 after a cost of ₹100 gives ₹50 profit.",
+    keywords:"business money"
+  },
+  {
+    id:"profit-percent",
+    category:"finance",
+    name:"Profit Percentage",
+    formula:"Profit % = (Profit / Cost Price) × 100",
+    description:"Express profit as a percentage of cost price.",
+    variables:"Profit = selling price − cost price.",
+    example:"₹20 profit on ₹100 cost price equals 20%.",
+    keywords:"business percentage"
+  },
+  {
+    id:"discount",
+    category:"finance",
+    name:"Discount",
+    formula:"Discount = Marked Price × Rate / 100",
+    description:"Calculate the reduction from a marked price.",
+    variables:"Marked price = original listed price; rate = discount percentage.",
+    example:"10% off ₹500 equals ₹50 discount.",
+    keywords:"shopping sale"
+  }
+];
 
-function copyFormula(text){
+const categoryNames = {
+  all:"All Formulas",
+  math:"Mathematics",
+  physics:"Physics",
+  chemistry:"Chemistry",
+  statistics:"Statistics",
+  finance:"Finance",
+  favorites:"My Favourites"
+};
 
-navigator.clipboard.writeText(text);
+let activeCategory = "all";
+let searchTerm = "";
+let favorites = [];
 
-const toast=document.createElement("div");
-
-toast.innerHTML="✅ Formula Copied";
-
-toast.style.position="fixed";
-toast.style.bottom="20px";
-toast.style.right="20px";
-toast.style.background="#22c55e";
-toast.style.color="#fff";
-toast.style.padding="14px 22px";
-toast.style.borderRadius="15px";
-toast.style.fontWeight="600";
-toast.style.boxShadow="0 10px 30px rgba(0,0,0,.3)";
-toast.style.zIndex="9999";
-
-document.body.appendChild(toast);
-
-setTimeout(()=>{
-
-toast.remove();
-
-},1800);
-
+try {
+  favorites = JSON.parse(localStorage.getItem("tooloraFormulaFavorites") || "[]");
+  if (!Array.isArray(favorites)) favorites = [];
+} catch {
+  favorites = [];
 }
 
+const cards = document.getElementById("cards");
+const search = document.getElementById("search");
+const resultCount = document.getElementById("resultCount");
+const sectionTitle = document.getElementById("sectionTitle");
+const sort = document.getElementById("sort");
+const toast = document.getElementById("toast");
 
+function showToast(text) {
+  toast.textContent = text;
+  toast.classList.add("show");
 
-// ================= LIVE SEARCH =================
-
-const search=document.getElementById("search");
-
-search.addEventListener("keyup",function(){
-
-let value=this.value.toLowerCase();
-
-document.querySelectorAll(".formula-card").forEach(card=>{
-
-let text=card.innerText.toLowerCase();
-
-if(text.includes(value)){
-
-card.style.display="block";
-
-}else{
-
-card.style.display="none";
-
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2200);
 }
 
+function saveFavorites() {
+  try {
+    localStorage.setItem(
+      "tooloraFormulaFavorites",
+      JSON.stringify(favorites)
+    );
+  } catch {
+    showToast("Browser storage is unavailable.");
+  }
+}
+
+function renderCards() {
+  let filtered = formulas.filter(item => {
+    const matchesCategory =
+      activeCategory === "all" ||
+      (activeCategory === "favorites" && favorites.includes(item.id)) ||
+      item.category === activeCategory;
+
+    const searchable = (
+      item.name + " " +
+      item.formula + " " +
+      item.description + " " +
+      item.variables + " " +
+      item.keywords
+    ).toLowerCase();
+
+    return matchesCategory && searchable.includes(searchTerm);
+  });
+
+  if (sort.value === "az") {
+    filtered.sort((a,b) => a.name.localeCompare(b.name));
+  }
+
+  sectionTitle.textContent = categoryNames[activeCategory];
+  resultCount.textContent = `${filtered.length} formula${filtered.length === 1 ? "" : "s"} found`;
+
+  document.getElementById("totalStat").textContent = formulas.length;
+
+  if (!filtered.length) {
+    cards.innerHTML = `
+      <div class="empty">
+        <strong>No formulas found</strong>
+        Try another search or choose a different subject.
+      </div>
+    `;
+    return;
+  }
+
+  cards.innerHTML = filtered.map(item => `
+    <article class="formula-card">
+      <div class="card-top">
+        <span class="badge">${categoryNames[item.category]}</span>
+        <button
+          class="favorite-btn ${favorites.includes(item.id) ? "saved" : ""}"
+          data-favorite="${item.id}"
+          aria-label="Save ${item.name} to favourites"
+          title="Save favourite"
+        >${favorites.includes(item.id) ? "★" : "☆"}</button>
+      </div>
+
+      <h3>${escapeHTML(item.name)}</h3>
+
+      <div class="formula">${escapeHTML(item.formula)}</div>
+
+      <p class="description">${escapeHTML(item.description)}</p>
+
+      <div class="variables">
+        <strong>Variables:</strong><br>
+        ${escapeHTML(item.variables)}
+      </div>
+
+      <div class="example">
+        <strong>Example:</strong> ${escapeHTML(item.example)}
+      </div>
+
+      <div class="card-actions">
+        <button class="copy-btn" data-copy="${item.id}">📋 Copy Formula</button>
+      </div>
+    </article>
+  `).join("");
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
+}
+
+async function copyFormula(id) {
+  const item = formulas.find(formula => formula.id === id);
+  if (!item) return;
+
+  try {
+    await navigator.clipboard.writeText(item.formula);
+    showToast("Formula copied successfully!");
+  } catch {
+    showToast("Copy unavailable. Please try again.");
+  }
+}
+
+function toggleFavorite(id) {
+  if (favorites.includes(id)) {
+    favorites = favorites.filter(item => item !== id);
+    showToast("Removed from favourites.");
+  } else {
+    favorites.push(id);
+    showToast("Added to favourites.");
+  }
+
+  saveFavorites();
+  renderCards();
+}
+
+document.querySelectorAll(".category-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".category-btn").forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+    activeCategory = button.dataset.category;
+    renderCards();
+  });
 });
 
+search.addEventListener("input", () => {
+  searchTerm = search.value.trim().toLowerCase();
+  renderCards();
 });
 
+sort.addEventListener("change", renderCards);
 
+cards.addEventListener("click", event => {
+  const copyButton = event.target.closest("[data-copy]");
+  const favoriteButton = event.target.closest("[data-favorite]");
 
-// ================= CATEGORY FILTER =================
+  if (copyButton) {
+    copyFormula(copyButton.dataset.copy);
+  }
 
-function showCategory(category){
-
-document.querySelectorAll(".formula-card").forEach(card=>{
-
-if(category=="all"){
-
-card.style.display="block";
-
-}
-
-else if(card.dataset.category===category){
-
-card.style.display="block";
-
-}
-
-else{
-
-card.style.display="none";
-
-}
-
+  if (favoriteButton) {
+    toggleFavorite(favoriteButton.dataset.favorite);
+  }
 });
 
-}
-
-
-
-document.getElementById("allBtn").onclick=function(){
-
-showCategory("all");
-
-}
-
-document.getElementById("mathBtn").onclick=function(){
-
-showCategory("math");
-
-}
-
-document.getElementById("physicsBtn").onclick=function(){
-
-showCategory("physics");
-
-}
-
-document.getElementById("chemBtn").onclick=function(){
-
-showCategory("chemistry");
-
-}
-
-document.getElementById("statsBtn").onclick=function(){
-
-showCategory("statistics");
-
-}
-
-document.getElementById("financeBtn").onclick=function(){
-
-showCategory("finance");
-
-}
-
-
-
-// ================= FAVOURITES =================
-
-let favourites=
-
-JSON.parse(localStorage.getItem("tooloraFormulaFav"))||[];
-
-document.querySelectorAll(".fav").forEach(btn=>{
-
-btn.addEventListener("click",function(){
-
-let title=
-
-this.parentElement.parentElement.querySelector("h2").innerText;
-
-if(!favourites.includes(title)){
-
-favourites.push(title);
-
-localStorage.setItem(
-
-"tooloraFormulaFav",
-
-JSON.stringify(favourites)
-
-);
-
-this.innerHTML="❤️ Saved";
-
-}
-
-});
-
-});
-
-
-
-document.getElementById("favBtn").onclick=function(){
-
-document.querySelectorAll(".formula-card").forEach(card=>{
-
-let title=card.querySelector("h2").innerText;
-
-if(favourites.includes(title)){
-
-card.style.display="block";
-
-}else{
-
-card.style.display="none";
-
-}
-
-});
-
-}
-
+renderCards();
 </script>
 
-</div>
-
-</div>
-
 </body>
-
 </html>
