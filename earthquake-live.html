@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earthquake Live Map | Toolora AI</title>
+  <meta name="description" content="Explore reported earthquakes around the world with an interactive live map. Filter by magnitude and time using USGS earthquake data.">
+  <meta name="keywords" content="earthquake live map, earthquake tracker, recent earthquakes, USGS earthquake map, world earthquake activity">
+  <meta name="theme-color" content="#080812">
+
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg: #080812;
+      --panel: #11111f;
+      --panel2: #17172a;
+      --blue: #4f7cff;
+      --purple: #9b5cff;
+      --cyan: #00e5ff;
+      --text: #f5f5ff;
+      --muted: #9696ae;
+      --border: rgba(255,255,255,.09);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(79,124,255,.13), transparent 35%),
+        radial-gradient(ellipse at 90% 15%, rgba(155,92,255,.11), transparent 30%),
+        var(--bg);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    header {
+      padding: 17px 5%;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      background: rgba(8,8,18,.85);
+    }
+
+    .brand {
+      font: 800 23px 'Outfit', sans-serif;
+      letter-spacing: -.7px;
+    }
+
+    .brand span {
+      color: var(--cyan);
+    }
+
+    .back {
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    .container {
+      width: min(1400px, 92%);
+      margin: auto;
+      padding: 35px 0 55px;
+    }
+
+    .hero {
+      margin-bottom: 25px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font: 800 clamp(30px, 5vw, 48px) 'Outfit', sans-serif;
+      margin: 9px 0;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, var(--cyan), #8c7bff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 700px;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #75f2b0;
+      background: rgba(40,210,130,.09);
+      border: 1px solid rgba(40,210,130,.2);
+      padding: 8px 12px;
+      border-radius: 30px;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #39e99a;
+      box-shadow: 0 0 12px #39e99a;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 13px;
+      margin: 25px 0;
+    }
+
+    .stat, .panel {
+      background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      border: 1px solid var(--border);
+      border-radius: 17px;
+    }
+
+    .stat {
+      padding: 17px;
+    }
+
+    .stat small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .stat strong {
+      display: block;
+      font: 700 27px 'Outfit', sans-serif;
+      margin-top: 5px;
+    }
+
+    .controls {
+      padding: 17px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 145px;
+      flex: 1;
+    }
+
+    label {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    select, button {
+      font: 500 13px 'Poppins', sans-serif;
+      border-radius: 10px;
+      padding: 11px 12px;
+    }
+
+    select {
+      color: white;
+      background: #1b1b30;
+      border: 1px solid var(--border);
+      outline: none;
+    }
+
+    button {
+      border: 0;
+      color: white;
+      background: linear-gradient(100deg, var(--blue), var(--purple));
+      cursor: pointer;
+      font-weight: 600;
+      min-height: 42px;
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(280px, .8fr);
+      gap: 17px;
+      align-items: stretch;
+    }
+
+    .map-panel {
+      padding: 10px;
+      min-width: 0;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 8px 13px;
+    }
+
+    h2 {
+      font: 700 17px 'Outfit', sans-serif;
+      margin: 0;
+    }
+
+    .map-label {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    #map {
+      height: 510px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #171727;
+    }
+
+    .leaflet-container {
+      background: #171727;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .leaflet-popup-content-wrapper,
+    .leaflet-popup-tip {
+      background: #151525;
+      color: #fff;
+    }
+
+    .leaflet-popup-content {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+    }
+
+    .events {
+      padding: 16px;
+      min-height: 100%;
+    }
+
+    .event-list {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 460px;
+      overflow-y: auto;
+    }
+
+    .event {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
+      border-radius: 12px;
+      padding: 12px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .event:hover {
+      border-color: rgba(0,229,255,.45);
+      transform: translateY(-2px);
+    }
+
+    .event-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .mag {
+      font: 700 17px 'Outfit', sans-serif;
+    }
+
+    .event-place {
+      font-size: 12px;
+      margin: 7px 0 5px;
+      line-height: 1.5;
+    }
+
+    .event-meta {
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .empty {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      padding: 35px 10px;
+    }
+
+    .notice {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+      margin-top: 18px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 11px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media(max-width: 850px) {
+      .layout { grid-template-columns: 1fr; }
+      #map { height: 400px; }
+      .event-list { max-height: 420px; }
+    }
+
+    @media(max-width: 500px) {
+      .container { width: 94%; padding-top: 25px; }
+      .stats { gap: 8px; }
+      .stat { padding: 12px 9px; }
+      .stat strong { font-size: 21px; }
+      .stat small { font-size: 9px; }
+      .controls { gap: 10px; }
+      .field { min-width: 125px; }
+      #map { height: 340px; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="brand">TOOLORA<span> AI</span></div>
+  <a class="back" href="index.html">← Back to Home</a>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="eyebrow">GLOBAL EARTH MONITOR</div>
+    <h1>Earthquake <span>Live Map</span></h1>
+    <p>Explore reported earthquakes around the world. View their locations, magnitudes, depths and reported times on an interactive map.</p>
+    <div class="status"><span class="dot"></span> USGS data connection</div>
+  </section>
+
+  <section class="stats">
+    <div class="stat">
+      <small>EARTHQUAKES FOUND</small>
+      <strong id="totalCount">—</strong>
+    </div>
+    <div class="stat">
+      <small>STRONGEST MAGNITUDE</small>
+      <strong id="strongest">—</strong>
+    </div>
+    <div class="stat">
+      <small>LAST UPDATED</small>
+      <strong id="updated" style="font-size:17px">—</strong>
+    </div>
+  </section>
+
+  <section class="panel controls">
+    <div class="field">
+      <label for="timeFilter">TIME PERIOD</label>
+      <select id="timeFilter">
+        <option value="hour">Past hour</option>
+        <option value="day" selected>Past 24 hours</option>
+        <option value="week">Past 7 days</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="magFilter">MINIMUM MAGNITUDE</label>
+      <select id="magFilter">
+        <option value="0">All reported</option>
+        <option value="2.5" selected>2.5+</option>
+        <option value="4">4.0+</option>
+        <option value="5">5.0+</option>
+      </select>
+    </div>
+
+    <button id="refreshBtn" type="button">↻ Refresh Data</button>
+  </section>
+
+  <section class="layout">
+    <div class="panel map-panel">
+      <div class="panel-head">
+        <h2>🌍 Global Earthquake Map</h2>
+        <span class="map-label">Select a marker for details</span>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <aside class="panel events">
+      <div class="panel-head" style="padding:0">
+        <h2>Recent Earthquakes</h2>
+        <span class="map-label" id="eventLabel">Loading...</span>
+      </div>
+      <div class="event-list" id="eventList">
+        <div class="empty">Loading earthquake reports...</div>
+      </div>
+    </aside>
+  </section>
+
+  <p class="notice">
+    Data source: United States Geological Survey (USGS). Reports may be revised as more information becomes available. This page displays reported earthquake activity; it does not predict earthquakes or provide official emergency alerts.
+  </p>
+</main>
+
+<footer>© 2026 Toolora AI · Earthquake information powered by USGS</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(() => {
+  const map = L.map('map', {
+    worldCopyJump: true
+  }).setView([20, 0], 2);
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  const markerLayer = L.layerGroup().addTo(map);
+
+  const timeFilter = document.getElementById('timeFilter');
+  const magFilter = document.getElementById('magFilter');
+  const refreshBtn = document.getElementById('refreshBtn');
+  const eventList = document.getElementById('eventList');
+
+  let allEvents = [];
+
+  function feedURL(period) {
+    const feeds = {
+      hour: 'all_hour.geojson',
+      day: 'all_day.geojson',
+      week: 'all_week.geojson'
+    };
+    return 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/' + feeds[period];
+  }
+
+  function formatTime(timestamp) {
+    return new Date(timestamp).toLocaleString([], {
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    });
+  }
+
+  function markerColor(magnitude) {
+    if (magnitude >= 6) return '#ff3e69';
+    if (magnitude >= 5) return '#ff8b42';
+    if (magnitude >= 4) return '#ffd166';
+    return '#00e5ff';
+  }
+
+  function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>"']/g, char => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    })[char]);
+  }
+
+  function renderEvents() {
+    markerLayer.clearLayers();
+
+    const minMagnitude = Number(magFilter.value);
+    const filtered = allEvents.filter(event =>
+      Number(event.properties.mag ?? 0) >= minMagnitude
+    );
+
+    document.getElementById('totalCount').textContent = filtered.length;
+    document.getElementById('eventLabel').textContent = filtered.length + ' reports';
+
+    const strongest = filtered.reduce((max, event) =>
+      Math.max(max, Number(event.properties.mag ?? 0)), 0
+    );
+
+    document.getElementById('strongest').textContent =
+      filtered.length ? strongest.toFixed(1) : '—';
+
+    if (!filtered.length) {
+      eventList.innerHTML = '<div class="empty">No reports match these filters.</div>';
+      return;
+    }
+
+    eventList.innerHTML = '';
+
+    filtered.sort((a, b) =>
+      (b.properties.time || 0) - (a.properties.time || 0)
+    );
+
+    filtered.forEach(event => {
+      const p = event.properties;
+      const coordinates = event.geometry.coordinates;
+      const longitude = coordinates[0];
+      const latitude = coordinates[1];
+      const depth = coordinates[2];
+      const magnitude = Number(p.mag ?? 0);
+      const color = markerColor(magnitude);
+
+      const marker = L.circleMarker([latitude, longitude], {
+        radius: Math.max(5, Math.min(13, 4 + magnitude * 1.3)),
+        color: color,
+        fillColor: color,
+        fillOpacity: .8,
+        weight: 1.5
+      }).addTo(markerLayer);
+
+      marker.bindPopup(`
+        <b>Magnitude ${magnitude.toFixed(1)}</b><br>
+        ${escapeHTML(p.place || 'Location unavailable')}<br>
+        Depth: ${Number(depth).toFixed(1)} km<br>
+        ${formatTime(p.time)}
+        <br><a href="${escapeHTML(p.url || 'https://earthquake.usgs.gov/earthquakes/search/')}" target="_blank" rel="noopener">USGS event details ↗</a>
+      `);
+
+      const item = document.createElement('div');
+      item.className = 'event';
+      item.innerHTML = `
+        <div class="event-top">
+          <span class="mag" style="color:${color}">M ${magnitude.toFixed(1)}</span>
+          <span class="map-label">${escapeHTML(p.status || 'Reported')}</span>
+        </div>
+        <div class="event-place">${escapeHTML(p.place || 'Location unavailable')}</div>
+        <div class="event-meta">
+          Depth: ${Number(depth).toFixed(1)} km<br>
+          ${formatTime(p.time)}
+        </div>
+      `;
+
+      item.addEventListener('click', () => {
+        map.setView([latitude, longitude], 6);
+        marker.openPopup();
+      });
+
+      eventList.appendChild(item);
+    });
+  }
+
+  async function loadData() {
+    refreshBtn.disabled = true;
+    refreshBtn.textContent = 'Loading...';
+    eventList.innerHTML = '<div class="empty">Fetching USGS reports...</div>';
+
+    try {
+      const response = await fetch(feedURL(timeFilter.value), {
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        throw new Error('USGS service returned ' + response.status);
+      }
+
+      const data = await response.json();
+
+      if (!Array.isArray(data.features)) {
+        throw new Error('Unexpected data format');
+      }
+
+      allEvents = data.features.filter(event =>
+        event.geometry &&
+        Array.isArray(event.geometry.coordinates) &&
+        event.geometry.coordinates.length >= 3
+      );
+
+      renderEvents();
+
+      document.getElementById('updated').textContent =
+        new Date().toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+    } catch (error) {
+      eventList.innerHTML =
+        '<div class="empty">Could not load earthquake data.<br>Please check your internet connection and try again.</div>';
+
+      document.getElementById('eventLabel').textContent = 'Connection error';
+      console.error(error);
+    } finally {
+      refreshBtn.disabled = false;
+      refreshBtn.textContent = '↻ Refresh Data';
+    }
+  }
+
+  refreshBtn.addEventListener('click', loadData);
+  timeFilter.addEventListener('change', loadData);
+  magFilter.addEventListener('change', renderEvents);
+
+  loadData();
+
+  // Refresh reports every 60 seconds.
+  setInterval(() => {
+    if (!document.hidden) loadData();
+  }, 60000);
+})();
+</script>
+</body>
+</html>
