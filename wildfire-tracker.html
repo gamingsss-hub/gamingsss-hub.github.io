@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wildfire Tracker | Toolora AI</title>
+  <meta name="description" content="Explore NASA-curated active wildfire events on an interactive global map. Browse event locations, dates and source information.">
+  <meta name="keywords" content="wildfire tracker, active wildfires map, NASA wildfire events, global fire map, wildfire locations">
+  <meta name="theme-color" content="#080812">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:#080812;
+      --panel:#121221;
+      --panel2:#19192c;
+      --orange:#ff783f;
+      --red:#ff4568;
+      --purple:#9b5cff;
+      --cyan:#00e5ff;
+      --text:#f5f5ff;
+      --muted:#9999b1;
+      --border:rgba(255,255,255,.09);
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      color:var(--text);
+      font-family:'Poppins',sans-serif;
+      background:
+        radial-gradient(ellipse at 10% 0%,rgba(255,100,55,.12),transparent 35%),
+        radial-gradient(ellipse at 90% 15%,rgba(155,92,255,.12),transparent 32%),
+        var(--bg);
+    }
+
+    header {
+      padding:17px 5%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+      border-bottom:1px solid var(--border);
+      background:rgba(8,8,18,.88);
+    }
+
+    .brand {
+      font:800 23px 'Outfit',sans-serif;
+      letter-spacing:-.7px;
+    }
+
+    .brand span { color:var(--orange); }
+
+    .back {
+      color:white;
+      text-decoration:none;
+      border:1px solid var(--border);
+      padding:9px 14px;
+      border-radius:10px;
+      font-size:13px;
+    }
+
+    .container {
+      width:min(1400px,92%);
+      margin:auto;
+      padding:35px 0 55px;
+    }
+
+    .eyebrow {
+      color:var(--orange);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:2px;
+    }
+
+    h1 {
+      font:800 clamp(31px,5vw,49px) 'Outfit',sans-serif;
+      margin:9px 0;
+    }
+
+    h1 span {
+      background:linear-gradient(90deg,#ff9b52,#ff4568);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+
+    .hero p {
+      max-width:720px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.8;
+    }
+
+    .status {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:9px;
+      padding:8px 12px;
+      border:1px solid rgba(255,130,70,.25);
+      border-radius:30px;
+      background:rgba(255,110,60,.08);
+      color:#ffb17f;
+      font-size:12px;
+    }
+
+    .status-dot {
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#ff8b42;
+      box-shadow:0 0 12px #ff8b42;
+    }
+
+    .stats {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:13px;
+      margin:25px 0;
+    }
+
+    .stat,.panel {
+      background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+      border:1px solid var(--border);
+      border-radius:17px;
+    }
+
+    .stat { padding:17px; }
+
+    .stat small {
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    .stat strong {
+      display:block;
+      font:700 27px 'Outfit',sans-serif;
+      margin-top:5px;
+    }
+
+    .controls {
+      display:flex;
+      flex-wrap:wrap;
+      align-items:end;
+      gap:14px;
+      padding:17px;
+      margin-bottom:18px;
+    }
+
+    .field {
+      flex:1;
+      min-width:145px;
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
+
+    label {
+      font-size:11px;
+      color:var(--muted);
+    }
+
+    select,button {
+      font:500 13px 'Poppins',sans-serif;
+      border-radius:10px;
+      padding:11px 12px;
+      min-height:43px;
+    }
+
+    select {
+      color:white;
+      background:#1b1b30;
+      border:1px solid var(--border);
+      outline:none;
+    }
+
+    button {
+      border:0;
+      color:white;
+      background:linear-gradient(100deg,var(--orange),var(--red));
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    button:disabled {
+      opacity:.6;
+      cursor:wait;
+    }
+
+    .layout {
+      display:grid;
+      grid-template-columns:minmax(0,1.65fr) minmax(280px,.8fr);
+      gap:17px;
+    }
+
+    .map-panel {
+      padding:10px;
+      min-width:0;
+    }
+
+    .panel-head {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:8px 8px 13px;
+    }
+
+    h2 {
+      font:700 17px 'Outfit',sans-serif;
+      margin:0;
+    }
+
+    .muted {
+      color:var(--muted);
+      font-size:10px;
+    }
+
+    #map {
+      height:510px;
+      width:100%;
+      border-radius:12px;
+      background:#171727;
+    }
+
+    .leaflet-container {
+      background:#171727;
+      font-family:'Poppins',sans-serif;
+    }
+
+    .leaflet-popup-content-wrapper,
+    .leaflet-popup-tip {
+      background:#171525;
+      color:#fff;
+    }
+
+    .leaflet-popup-content {
+      font-family:'Poppins',sans-serif;
+      font-size:12px;
+      line-height:1.6;
+    }
+
+    .events { padding:16px; }
+
+    .event-list {
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      max-height:460px;
+      overflow-y:auto;
+      margin-top:15px;
+    }
+
+    .event {
+      padding:12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.025);
+      border-radius:12px;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .event:hover {
+      border-color:rgba(255,120,63,.55);
+      transform:translateY(-2px);
+    }
+
+    .event-title {
+      font-size:12px;
+      line-height:1.55;
+      margin:7px 0;
+    }
+
+    .event-meta {
+      color:var(--muted);
+      font-size:10px;
+      line-height:1.8;
+    }
+
+    .event-tag {
+      color:#ffad78;
+      font-size:10px;
+      background:rgba(255,120,63,.1);
+      border:1px solid rgba(255,120,63,.2);
+      border-radius:20px;
+      padding:4px 8px;
+    }
+
+    .empty {
+      text-align:center;
+      color:var(--muted);
+      padding:35px 10px;
+      font-size:12px;
+      line-height:1.8;
+    }
+
+    .notice {
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.8;
+      margin-top:18px;
+    }
+
+    footer {
+      text-align:center;
+      padding:20px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    @media(max-width:850px) {
+      .layout { grid-template-columns:1fr; }
+      #map { height:400px; }
+      .event-list { max-height:420px; }
+    }
+
+    @media(max-width:500px) {
+      .container { width:94%; padding-top:25px; }
+      .stats { gap:8px; }
+      .stat { padding:12px 9px; }
+      .stat strong { font-size:21px; }
+      .stat small { font-size:9px; }
+      .field { min-width:125px; }
+      #map { height:340px; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="brand">TOOLORA<span> AI</span></div>
+  <a class="back" href="index.html">← Back to Home</a>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="eyebrow">GLOBAL FIRE ACTIVITY MONITOR</div>
+    <h1>Wildfire <span>Tracker</span></h1>
+    <p>
+      Explore NASA-curated wildfire events around the world.
+      Browse reported locations, event dates and available source information.
+    </p>
+    <div class="status">
+      <span class="status-dot"></span>
+      NASA EONET data connection
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat">
+      <small>ACTIVE EVENTS</small>
+      <strong id="totalCount">—</strong>
+    </div>
+    <div class="stat">
+      <small>LOCATIONS MAPPED</small>
+      <strong id="mappedCount">—</strong>
+    </div>
+    <div class="stat">
+      <small>LAST UPDATED</small>
+      <strong id="updated" style="font-size:17px">—</strong>
+    </div>
+  </section>
+
+  <section class="panel controls">
+    <div class="field">
+      <label for="daysFilter">EVENT DATE RANGE</label>
+      <select id="daysFilter">
+        <option value="7">Past 7 days</option>
+        <option value="30" selected>Past 30 days</option>
+        <option value="90">Past 90 days</option>
+        <option value="365">Past year</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="statusFilter">EVENT STATUS</label>
+      <select id="statusFilter">
+        <option value="open" selected>Active / Open</option>
+        <option value="all">All events</option>
+        <option value="closed">Closed events</option>
+      </select>
+    </div>
+
+    <button id="refreshBtn" type="button">↻ Refresh Data</button>
+  </section>
+
+  <section class="layout">
+    <div class="panel map-panel">
+      <div class="panel-head">
+        <h2>🔥 Global Wildfire Map</h2>
+        <span class="muted">Select a marker for details</span>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <aside class="panel events">
+      <div class="panel-head" style="padding:0">
+        <h2>Wildfire Events</h2>
+        <span class="muted" id="eventLabel">Loading...</span>
+      </div>
+
+      <div class="event-list" id="eventList">
+        <div class="empty">Loading NASA event reports...</div>
+      </div>
+    </aside>
+  </section>
+
+  <p class="notice">
+    Source: NASA Earth Observatory Natural Event Tracker (EONET).
+    EONET provides curated natural-event metadata. This is not a complete
+    satellite hotspot feed, fire perimeter map, emergency alert service,
+    or fire-spread prediction tool. Always follow official local authorities
+    for safety information.
+  </p>
+</main>
+
+<footer>© 2026 Toolora AI · Wildfire event metadata powered by NASA EONET</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+(() => {
+  const map = L.map('map').setView([20, 0], 2);
+
+  L.tileLayer(
+    'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    {
+      attribution:
+        '&copy; OpenStreetMap contributors &copy; CARTO',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }
+  ).addTo(map);
+
+  const markerLayer = L.layerGroup().addTo(map);
+
+  const daysFilter = document.getElementById('daysFilter');
+  const statusFilter = document.getElementById('statusFilter');
+  const refreshBtn = document.getElementById('refreshBtn');
+  const eventList = document.getElementById('eventList');
+
+  let events = [];
+
+  function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>"']/g, char => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    })[char]);
+  }
+
+  function formatDate(value) {
+    if (!value) return 'Date unavailable';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return 'Date unavailable';
+
+    return date.toLocaleDateString([], {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  }
+
+  function getEventDate(event) {
+    const geometries = event.geometry || [];
+    const dates = geometries
+      .map(item => item.date)
+      .filter(Boolean)
+      .sort();
+
+    return dates[dates.length - 1] || null;
+  }
+
+  function getCoordinates(event) {
+    const geometries = event.geometry || [];
+
+    for (const item of geometries) {
+      const coordinates = item.coordinates;
+
+      if (
+        item.type === 'Point' &&
+        Array.isArray(coordinates) &&
+        coordinates.length >= 2
+      ) {
+        return [coordinates[1], coordinates[0]];
+      }
+
+      if (
+        item.type === 'Polygon' &&
+        Array.isArray(coordinates) &&
+        Array.isArray(coordinates[0]) &&
+        coordinates[0].length
+      ) {
+        const ring = coordinates[0];
+        const valid = ring.filter(point =>
+          Array.isArray(point) &&
+          Number.isFinite(point[0]) &&
+          Number.isFinite(point[1])
+        );
+
+        if (valid.length) {
+          const averageLon =
+            valid.reduce((sum, point) => sum + point[0], 0) / valid.length;
+          const averageLat =
+            valid.reduce((sum, point) => sum + point[1], 0) / valid.length;
+
+          return [averageLat, averageLon];
+        }
+      }
+
+      if (
+        item.type === 'MultiPoint' &&
+        Array.isArray(coordinates) &&
+        coordinates.length
+      ) {
+        const point = coordinates[0];
+        if (Array.isArray(point) && point.length >= 2) {
+          return [point[1], point[0]];
+        }
+      }
+    }
+
+    return null;
+  }
+
+  function getSources(event) {
+    return (event.sources || [])
+      .map(source => source.title)
+      .filter(Boolean);
+  }
+
+  function makePopup(event) {
+    const title = escapeHTML(event.title || 'Wildfire event');
+    const date = formatDate(getEventDate(event));
+    const description = escapeHTML(event.description || 'No additional description supplied.');
+
+    const sources = getSources(event);
+    const sourceText = sources.length
+      ? escapeHTML(sources.join(', '))
+      : 'Source details unavailable';
+
+    const link = event.link || event.sources?.[0]?.url || '';
+
+    return `
+      <strong>${title}</strong><br>
+      <span>${date}</span><br>
+      <span>${description}</span><br>
+      <small>Source: ${sourceText}</small>
+      ${link ? `<br><a href="${escapeHTML(link)}" target="_blank" rel="noopener">View event source ↗</a>` : ''}
+    `;
+  }
+
+  function renderEvents() {
+    markerLayer.clearLayers();
+    eventList.innerHTML = '';
+
+    const mapped = [];
+
+    events.forEach(event => {
+      const coordinates = getCoordinates(event);
+      if (!coordinates) return;
+
+      mapped.push({ event, coordinates });
+
+      const marker = L.circleMarker(coordinates, {
+        radius: 8,
+        color: '#ff9b52',
+        fillColor: '#ff563f',
+        fillOpacity: .85,
+        weight: 2
+      }).addTo(markerLayer);
+
+      marker.bindPopup(makePopup(event));
+    });
+
+    document.getElementById('totalCount').textContent = events.length;
+    document.getElementById('mappedCount').textContent = mapped.length;
+    document.getElementById('eventLabel').textContent =
+      events.length + ' events';
+
+    if (!events.length) {
+      eventList.innerHTML =
+        '<div class="empty">No wildfire events found for these filters.</div>';
+      return;
+    }
+
+    events.forEach(event => {
+      const coordinates = getCoordinates(event);
+      const sources = getSources(event);
+      const date = getEventDate(event);
+      const status = event.closed ? 'Closed' : 'Open';
+
+      const item = document.createElement('div');
+      item.className = 'event';
+
+      item.innerHTML = `
+        <span class="event-tag">${status}</span>
+        <div class="event-title">
+          ${escapeHTML(event.title || 'Wildfire event')}
+        </div>
+        <div class="event-meta">
+          Reported date: ${formatDate(date)}<br>
+          Source: ${escapeHTML(sources.join(', ') || 'Not specified')}<br>
+          ${coordinates ? 'Location available on map' : 'Location coordinates unavailable'}
+        </div>
+      `;
+
+      item.addEventListener('click', () => {
+        if (coordinates) {
+          map.setView(coordinates, 6);
+          markerLayer.eachLayer(marker => {
+            if (
+              marker.getLatLng().lat === coordinates[0] &&
+              marker.getLatLng().lng === coordinates[1]
+            ) {
+              marker.openPopup();
+            }
+          });
+        } else {
+          alert('This event does not include a mappable location.');
+        }
+      });
+
+      eventList.appendChild(item);
+    });
+  }
+
+  async function loadData() {
+    refreshBtn.disabled = true;
+    refreshBtn.textContent = 'Loading...';
+    eventList.innerHTML =
+      '<div class="empty">Fetching NASA wildfire events...</div>';
+
+    const params = new URLSearchParams({
+      category: 'wildfires',
+      status: statusFilter.value,
+      days: daysFilter.value,
+      limit: '500'
+    });
+
+    const url =
+      'https://eonet.gsfc.nasa.gov/api/v3/events/geojson?' +
+      params.toString();
+
+    try {
+      const response = await fetch(url, { cache: 'no-store' });
+
+      if (!response.ok) {
+        throw new Error('NASA EONET returned ' + response.status);
+      }
+
+      const data = await response.json();
+
+      if (!Array.isArray(data.features)) {
+        throw new Error('Unexpected NASA response format');
+      }
+
+      events = data.features
+        .map(feature => ({
+          ...feature.properties,
+          geometry: feature.geometry
+            ? [{
+                type: feature.geometry.type,
+                coordinates: feature.geometry.coordinates,
+                date: feature.properties?.date
+              }]
+            : (feature.properties?.geometry || [])
+        }))
+        .sort((a, b) => {
+          const dateA = new Date(getEventDate(a) || 0).getTime();
+          const dateB = new Date(getEventDate(b) || 0).getTime();
+          return dateB - dateA;
+        });
+
+      renderEvents();
+
+      document.getElementById('updated').textContent =
+        new Date().toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+    } catch (error) {
+      console.error(error);
+      eventList.innerHTML =
+        '<div class="empty">Could not load NASA event data.<br>Check your internet connection and try again.</div>';
+
+      document.getElementById('eventLabel').textContent =
+        'Connection error';
+
+    } finally {
+      refreshBtn.disabled = false;
+      refreshBtn.textContent = '↻ Refresh Data';
+    }
+  }
+
+  refreshBtn.addEventListener('click', loadData);
+  daysFilter.addEventListener('change', loadData);
+  statusFilter.addEventListener('change', loadData);
+
+  loadData();
+
+  // Refresh the curated event feed every five minutes.
+  setInterval(() => {
+    if (!document.hidden) loadData();
+  }, 300000);
+})();
+</script>
+</body>
+</html>
