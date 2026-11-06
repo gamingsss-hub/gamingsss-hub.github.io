@@ -1,383 +1,470 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Image to PDF | Toolora</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
+<meta name="theme-color" content="#070816">
+<title>Image to PDF Converter Online Free | Toolora AI</title>
+<meta name="description" content="Convert JPG, JPEG, PNG and WebP images into a PDF online for free. Reorder images, choose page size and orientation, and download your PDF securely with Toolora AI.">
+<meta name="keywords" content="image to PDF, JPG to PDF, PNG to PDF, convert images to PDF online, photo to PDF converter, free PDF converter">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+:root{
+  --bg:#070816;--card:#11152a;--line:#292f50;
+  --blue:#4f7cff;--purple:#9b5cff;--cyan:#00e5ff;
+  --text:#f6f8ff;--muted:#9ba5c4;--green:#43e6a0;--red:#ff647c;
 }
-
+*{box-sizing:border-box}
 body{
-
-background:linear-gradient(135deg,#050816,#111827,#1e3a8a,#7c3aed);
-
-min-height:100vh;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-padding:20px;
-
-color:#fff;
-
+  margin:0;color:var(--text);font-family:Poppins,Arial,sans-serif;
+  background:radial-gradient(ellipse at 15% 0%,#17204b 0%,transparent 36%),
+  radial-gradient(ellipse at 90% 20%,#28134b 0%,transparent 30%),var(--bg);
+  min-height:100vh;
 }
-
-.container{
-
-width:100%;
-max-width:950px;
-
-background:rgba(255,255,255,.08);
-
-backdrop-filter:blur(18px);
-
-padding:35px;
-
-border-radius:30px;
-
-box-shadow:0 20px 60px rgba(0,0,0,.4);
-
+header{
+  max-width:1150px;margin:auto;padding:22px 20px;
+  display:flex;justify-content:space-between;align-items:center;gap:15px;
 }
-
-h1{
-
-text-align:center;
-
-font-size:38px;
-
-margin-bottom:10px;
-
+.logo{font:800 25px Outfit;letter-spacing:-1px}
+.logo span{color:var(--cyan)}
+.pill{font-size:11px;color:#b9c8ff;border:1px solid #424b78;padding:7px 12px;border-radius:30px;background:#151a35}
+main{max-width:1150px;margin:auto;padding:20px 20px 60px}
+.hero{text-align:center;padding:30px 10px}
+.eyebrow{color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:3px}
+h1{font:800 clamp(32px,6vw,54px) Outfit;margin:12px 0;background:linear-gradient(90deg,#fff,#91b4ff,#d4a1ff);background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:13px;line-height:1.8;max-width:650px;margin:auto}
+.layout{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+.card{background:linear-gradient(145deg,rgba(24,30,57,.97),rgba(13,17,36,.97));border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 15px 40px #0003}
+.drop{
+  border:1.5px dashed #59658e;border-radius:16px;padding:35px 15px;
+  text-align:center;background:#10162b;transition:.2s;
 }
-
-.sub{
-
-text-align:center;
-
-color:#d1d5db;
-
-margin-bottom:30px;
-
+.drop.drag{border-color:var(--cyan);background:#14213b}
+.upload-icon{font-size:38px;margin-bottom:10px}
+.drop h3{font:700 19px Outfit;margin:5px}
+.drop p{color:var(--muted);font-size:12px}
+button,.btn{
+  cursor:pointer;border:0;font:600 12px Poppins;border-radius:10px;
+  padding:11px 15px;transition:.2s;text-decoration:none;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;
 }
-
-.upload{
-
-border:3px dashed #60a5fa;
-
-padding:45px;
-
-border-radius:25px;
-
-text-align:center;
-
-cursor:pointer;
-
-transition:.3s;
-
+button:hover,.btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.primary{background:linear-gradient(110deg,var(--blue),var(--purple));color:white}
+.secondary{background:#222a49;color:#dce5ff;border:1px solid #3b456e}
+.danger{background:#351d31;color:#ff9bab;border:1px solid #66334b}
+#fileInput{display:none}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0 12px}
+.toolbar h2{font:700 19px Outfit;margin:0}
+.count{font-size:11px;color:var(--muted)}
+.image-list{display:grid;gap:10px}
+.image-item{
+ display:grid;grid-template-columns:76px 1fr auto;align-items:center;gap:12px;
+ padding:10px;border:1px solid #303858;background:#0d1227;border-radius:13px;
 }
-
-.upload:hover{
-
-background:rgba(255,255,255,.05);
-
+.thumb{width:76px;height:70px;object-fit:cover;border-radius:9px;background:#222a49}
+.file-name{font-size:12px;font-weight:600;overflow-wrap:anywhere}
+.file-size{font-size:10px;color:var(--muted);margin-top:5px}
+.actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.mini{padding:7px 9px;background:#252d4b;color:white;font-size:11px}
+.empty{color:var(--muted);font-size:12px;text-align:center;padding:25px 5px}
+.side h2{font:700 20px Outfit;margin:0 0 18px}
+.field{margin:14px 0}
+.field label{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}
+.field select,.field input{
+ width:100%;background:#0a0e20;color:white;border:1px solid #343c60;
+ border-radius:10px;padding:11px;font:12px Poppins;outline:none;
 }
-
-.upload h2{
-
-margin-top:15px;
-
+.field select:focus,.field input:focus{border-color:var(--cyan)}
+.field input[type=checkbox]{width:auto;accent-color:var(--blue)}
+.checkrow{display:flex;align-items:center;gap:9px;color:#dce5ff;font-size:12px}
+.summary{background:#101a35;border:1px solid #35436f;border-radius:13px;padding:14px;margin-top:18px}
+.summary-row{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);margin:7px 0}
+.summary-row strong{color:white}
+.convert{width:100%;padding:14px;font-size:13px;margin-top:15px}
+.status{font-size:11px;line-height:1.6;color:var(--muted);margin-top:12px;min-height:20px}
+.progress{height:6px;border-radius:10px;background:#242b49;overflow:hidden;margin-top:10px;display:none}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .2s}
+.privacy{color:#9bb8ad;font-size:10px;line-height:1.7;margin-top:14px}
+.info{margin-top:25px}
+.info h2{font:700 22px Outfit}
+.info p,.info li{font-size:12px;color:var(--muted);line-height:1.9}
+footer{text-align:center;padding:25px;color:#75809f;font-size:11px;border-top:1px solid #242943}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.side{order:0}}
+@media(max-width:480px){
+ header{padding:17px}.logo{font-size:21px}main{padding:10px 13px 40px}
+ .hero{padding:25px 5px}.card{padding:14px;border-radius:16px}
+ .image-item{grid-template-columns:62px 1fr}.thumb{width:62px;height:62px}
+ .actions{grid-column:1/-1;justify-content:flex-start}
 }
-
-input[type=file]{
-
-display:none;
-
-}
-
-.preview{
-
-display:none;
-
-margin-top:30px;
-
-display:grid;
-
-grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-
-gap:15px;
-
-}
-
-.preview img{
-
-width:100%;
-
-height:180px;
-
-object-fit:cover;
-
-border-radius:15px;
-
-background:#111827;
-
-}
-
-button{
-
-margin-top:30px;
-
-width:100%;
-
-padding:18px;
-
-border:none;
-
-border-radius:18px;
-
-background:linear-gradient(45deg,#2563eb,#7c3aed);
-
-color:white;
-
-font-size:17px;
-
-font-weight:700;
-
-cursor:pointer;
-
-}
-
 </style>
-
 </head>
-
 <body>
 
-<div class="container">
+<header>
+  <div class="logo">✦ TOOLORA<span> AI</span></div>
+  <div class="pill">IMAGE TO PDF STUDIO</div>
+</header>
 
-<h1>📷 Image to PDF</h1>
+<main>
+<section class="hero">
+  <div class="eyebrow">FREE ONLINE PDF TOOL</div>
+  <h1>Images to PDF.</h1>
+  <p>Convert your photos into a professional PDF document. Arrange pages, customize layout and download your file in seconds.</p>
+</section>
 
-<p class="sub">
+<div class="layout">
+  <section class="card">
+    <div class="drop" id="drop">
+      <div class="upload-icon">📄</div>
+      <h3>Drop your images here</h3>
+      <p>JPG, JPEG, PNG and WebP supported</p>
+      <button class="primary" id="browseBtn">＋ Choose Images</button>
+      <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+    </div>
 
-Convert Multiple Images into One PDF
+    <div class="toolbar">
+      <h2>Your Images</h2>
+      <div class="count" id="count">0 images selected</div>
+    </div>
+    <div class="image-list" id="imageList">
+      <div class="empty">Your selected images will appear here.</div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:13px">
+      <button class="danger" id="clearBtn">Clear All</button>
+    </div>
+  </section>
 
-</p>
+  <aside class="card side">
+    <h2>⚙ PDF Settings</h2>
 
-<label class="upload">
+    <div class="field">
+      <label>Page Size</label>
+      <select id="pageSize">
+        <option value="a4">A4</option>
+        <option value="letter">US Letter</option>
+        <option value="legal">Legal</option>
+        <option value="fit">Fit to Image</option>
+      </select>
+    </div>
 
-<input
-type="file"
-id="imageInput"
-accept="image/*"
-multiple>
+    <div class="field">
+      <label>Page Orientation</label>
+      <select id="orientation">
+        <option value="portrait">Portrait</option>
+        <option value="landscape">Landscape</option>
+      </select>
+    </div>
 
-<div style="font-size:70px;">📤</div>
+    <div class="field">
+      <label>Image Fit</label>
+      <select id="fitMode">
+        <option value="contain">Fit Entire Image</option>
+        <option value="cover">Fill Page (may crop)</option>
+      </select>
+    </div>
 
-<h2>Select Images</h2>
+    <div class="field">
+      <label>Page Margin</label>
+      <select id="margin">
+        <option value="0">No Margin</option>
+        <option value="10" selected>10 mm</option>
+        <option value="15">15 mm</option>
+        <option value="20">20 mm</option>
+      </select>
+    </div>
 
-<p>JPG • PNG • WEBP Supported</p>
+    <div class="field">
+      <label>Image Quality</label>
+      <select id="quality">
+        <option value="0.95">High Quality</option>
+        <option value="0.80" selected>Balanced</option>
+        <option value="0.60">Smaller File</option>
+      </select>
+    </div>
 
-</label>
+    <div class="field">
+      <label>PDF Filename</label>
+      <input id="filename" type="text" value="toolora-images.pdf">
+    </div>
 
-<div
-class="preview"
-id="preview">
+    <div class="summary">
+      <div class="summary-row"><span>Selected Images</span><strong id="sumCount">0</strong></div>
+      <div class="summary-row"><span>Accepted Formats</span><strong>JPG / PNG / WebP</strong></div>
+      <div class="summary-row"><span>Output</span><strong>PDF</strong></div>
+    </div>
 
+    <button class="primary convert" id="convertBtn">⬇ Convert & Download PDF</button>
+    <div class="progress" id="progress"><div id="progressBar"></div></div>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+    <div class="privacy">🔒 Your images are processed locally in your browser. They are not uploaded to Toolora servers.</div>
+  </aside>
 </div>
 
-<button id="createPDF">
+<section class="info">
+  <h2>How to Convert Images to PDF</h2>
+  <ol>
+    <li>Select or drag and drop your JPG, PNG or WebP images.</li>
+    <li>Arrange the images in the order you want in your PDF.</li>
+    <li>Choose page size, orientation, margins and quality.</li>
+    <li>Click Convert & Download PDF.</li>
+  </ol>
+  <h2>Frequently Asked Questions</h2>
+  <p><strong>Can I convert multiple images into one PDF?</strong><br>Yes. Select multiple supported images and each image will be placed on its own PDF page.</p>
+  <p><strong>Are my images uploaded online?</strong><br>No. This tool processes your images inside your browser.</p>
+  <p><strong>Can I change image order?</strong><br>Yes. Use the up and down buttons beside each image before creating your PDF.</p>
+</section>
+</main>
 
-📄 Create PDF
+<footer>© Toolora AI · Image to PDF Converter · Free browser-based utility</footer>
 
-</button>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
+const fileInput=document.getElementById("fileInput");
+const drop=document.getElementById("drop");
+const imageList=document.getElementById("imageList");
+const statusBox=document.getElementById("status");
+let images=[];
+let nextId=1;
 
-const imageInput=document.getElementById("imageInput");
+const allowed=["image/jpeg","image/png","image/webp"];
+const maxFileSize=20*1024*1024;
+const maxImages=100;
 
-const preview=document.getElementById("preview");
-
-const createPDF=document.getElementById("createPDF");
-
-let imageList=[];
-
-// ========= Upload Images =========
-
-imageInput.addEventListener("change",()=>{
-
-preview.innerHTML="";
-
-imageList=[];
-
-const files=imageInput.files;
-
-if(files.length===0) return;
-
-preview.style.display="grid";
-
-Array.from(files).forEach(file=>{
-
-const reader=new FileReader();
-
-reader.onload=function(e){
-
-imageList.push(e.target.result);
-
-const img=document.createElement("img");
-
-img.src=e.target.result;
-
-preview.appendChild(img);
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-});
-
-// ========= Create PDF =========
-
-createPDF.addEventListener("click",async()=>{
-
-if(imageList.length===0){
-
-alert("Please upload images first.");
-
-return;
-
+function formatBytes(bytes){
+ if(bytes<1024)return bytes+" B";
+ if(bytes<1024*1024)return (bytes/1024).toFixed(1)+" KB";
+ return (bytes/1024/1024).toFixed(2)+" MB";
 }
 
-const { jsPDF } = window.jspdf;
-
-const pdf=new jsPDF();
-
-for(let i=0;i<imageList.length;i++){
-
-const img=new Image();
-
-img.src=imageList[i];
-
-await new Promise(resolve=>{
-
-img.onload=function(){
-
-const pageWidth=210;
-
-const pageHeight=(img.height*pageWidth)/img.width;
-
-if(i!==0){
-
-pdf.addPage();
-
+function showStatus(message,isError=false){
+ statusBox.textContent=message;
+ statusBox.style.color=isError?"#ff8a9c":"#a9b8dc";
 }
 
-pdf.addImage(
+function addFiles(fileCollection){
+ const files=Array.from(fileCollection);
+ let added=0,skipped=0;
 
-imageList[i],
+ for(const file of files){
+  if(!allowed.includes(file.type)||file.size>maxFileSize||file.size===0){
+   skipped++;continue;
+  }
+  if(images.length>=maxImages){skipped+=files.length-added;break;}
 
-"JPEG",
+  const url=URL.createObjectURL(file);
+  const img={id:nextId++,file,url,name:file.name,size:file.size};
+  images.push(img);added++;
+ }
+ renderImages();
 
-0,
-
-0,
-
-pageWidth,
-
-pageHeight
-
-);
-
-resolve();
-
-};
-
-});
-
+ if(added&&skipped)showStatus(added+" image(s) added. "+skipped+" file(s) skipped.");
+ else if(added)showStatus(added+" image(s) added successfully.");
+ else if(skipped)showStatus("No valid images added. Check the format, file size and 100-image limit.",true);
 }
 
-pdf.save("toolora-images.pdf");
+function renderImages(){
+ imageList.innerHTML="";
+ document.getElementById("count").textContent=images.length+" image(s) selected";
+ document.getElementById("sumCount").textContent=images.length;
 
-showToast("✅ PDF Created Successfully");
+ if(!images.length){
+  imageList.innerHTML='<div class="empty">Your selected images will appear here.</div>';
+  return;
+ }
 
-});
+ images.forEach((item,index)=>{
+  const row=document.createElement("div");
+  row.className="image-item";
 
-// ========= Toast =========
+  const thumb=document.createElement("img");
+  thumb.className="thumb";thumb.src=item.url;thumb.alt=item.name;
 
-function showToast(message){
+  const details=document.createElement("div");
+  const name=document.createElement("div");
+  name.className="file-name";
+  name.textContent=(index+1)+". "+item.name;
+  const size=document.createElement("div");
+  size.className="file-size";size.textContent=formatBytes(item.size);
+  details.append(name,size);
 
-const toast=document.createElement("div");
+  const actions=document.createElement("div");
+  actions.className="actions";
 
-toast.innerHTML=message;
+  const up=makeButton("↑","Move image up",()=>moveImage(index,-1));
+  const down=makeButton("↓","Move image down",()=>moveImage(index,1));
+  const remove=makeButton("✕","Remove image",()=>removeImage(item.id));
+  up.disabled=index===0;down.disabled=index===images.length-1;
+  actions.append(up,down,remove);
 
-toast.style.position="fixed";
-toast.style.bottom="20px";
-toast.style.right="20px";
-toast.style.background="#22c55e";
-toast.style.color="#fff";
-toast.style.padding="15px 22px";
-toast.style.borderRadius="14px";
-toast.style.fontWeight="700";
-toast.style.boxShadow="0 10px 30px rgba(0,0,0,.35)";
-toast.style.zIndex="9999";
-
-document.body.appendChild(toast);
-
-setTimeout(()=>{
-
-toast.remove();
-
-},2000);
-
+  row.append(thumb,details,actions);
+  imageList.append(row);
+ });
 }
 
-// ========= Drag & Drop =========
+function makeButton(text,title,callback){
+ const btn=document.createElement("button");
+ btn.type="button";btn.className="mini";btn.textContent=text;
+ btn.title=title;btn.setAttribute("aria-label",title);
+ btn.addEventListener("click",callback);
+ return btn;
+}
 
-const upload=document.querySelector(".upload");
+function moveImage(index,direction){
+ const target=index+direction;
+ if(target<0||target>=images.length)return;
+ [images[index],images[target]]=[images[target],images[index]];
+ renderImages();
+}
 
-upload.addEventListener("dragover",(e)=>{
+function removeImage(id){
+ const index=images.findIndex(x=>x.id===id);
+ if(index<0)return;
+ URL.revokeObjectURL(images[index].url);
+ images.splice(index,1);
+ renderImages();
+ showStatus("Image removed.");
+}
 
-e.preventDefault();
+function clearImages(){
+ images.forEach(x=>URL.revokeObjectURL(x.url));
+ images=[];
+ renderImages();
+ fileInput.value="";
+ showStatus("All images cleared.");
+}
 
-upload.style.borderColor="#22c55e";
-
+document.getElementById("browseBtn").addEventListener("click",()=>fileInput.click());
+fileInput.addEventListener("change",e=>{
+ addFiles(e.target.files);
+ fileInput.value="";
 });
+document.getElementById("clearBtn").addEventListener("click",clearImages);
 
-upload.addEventListener("dragleave",()=>{
-
-upload.style.borderColor="#60a5fa";
-
+["dragenter","dragover"].forEach(eventName=>{
+ drop.addEventListener(eventName,e=>{
+  e.preventDefault();drop.classList.add("drag");
+ });
 });
-
-upload.addEventListener("drop",(e)=>{
-
-e.preventDefault();
-
-upload.style.borderColor="#60a5fa";
-
-imageInput.files=e.dataTransfer.files;
-
-imageInput.dispatchEvent(new Event("change"));
-
+["dragleave","drop"].forEach(eventName=>{
+ drop.addEventListener(eventName,e=>{
+  e.preventDefault();drop.classList.remove("drag");
+ });
 });
+drop.addEventListener("drop",e=>addFiles(e.dataTransfer.files));
 
+function loadImage(url){
+ return new Promise((resolve,reject)=>{
+  const img=new Image();
+  img.onload=()=>resolve(img);
+  img.onerror=()=>reject(new Error("An image could not be read."));
+  img.src=url;
+ });
+}
+
+function pageDimensions(size,orientation){
+ const mm=25.4;
+ let w,h;
+ if(size==="fit")return null;
+ if(size==="a4"){w=210;h=297;}
+ else if(size==="letter"){w=215.9;h=279.4;}
+ else{w=215.9;h=355.6;}
+ if(orientation==="landscape")[w,h]=[h,w];
+ return {w:w/mm*72,h:h/mm*72};
+}
+
+async function imageToJpeg(img,quality){
+ const canvas=document.createElement("canvas");
+ canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
+ const ctx=canvas.getContext("2d");
+ ctx.fillStyle="#ffffff";ctx.fillRect(0,0,canvas.width,canvas.height);
+ ctx.drawImage(img,0,0);
+ return canvas.toDataURL("image/jpeg",quality);
+}
+
+async function convertPDF(){
+ if(!images.length){showStatus("Please select at least one image first.",true);return;}
+ if(!window.jspdf?.jsPDF){showStatus("PDF library did not load. Check your internet connection and reload.",true);return;}
+
+ const button=document.getElementById("convertBtn");
+ const progress=document.getElementById("progress");
+ const bar=document.getElementById("progressBar");
+ button.disabled=true;progress.style.display="block";bar.style.width="0%";
+
+ try{
+  const {jsPDF}=window.jspdf;
+  const size=document.getElementById("pageSize").value;
+  const orientation=document.getElementById("orientation").value;
+  const fitMode=document.getElementById("fitMode").value;
+  const margin=Number(document.getElementById("margin").value)*72/25.4;
+  const quality=Number(document.getElementById("quality").value);
+
+  const first=await loadImage(images[0].url);
+  const firstDims=size==="fit"?{
+   w:first.naturalWidth/first.naturalHeight>1?842:595,
+   h:first.naturalWidth/first.naturalHeight>1?595:842
+  }:pageDimensions(size,orientation);
+
+  const pdf=new jsPDF({
+   orientation:firstDims.w>firstDims.h?"landscape":"portrait",
+   unit:"pt",format:[firstDims.w,firstDims.h],compress:true
+  });
+
+  for(let i=0;i<images.length;i++){
+   const img=i===0?first:await loadImage(images[i].url);
+   let page=firstDims;
+
+   if(size==="fit"){
+    const ratio=img.naturalWidth/img.naturalHeight;
+    page=ratio>1?{w:842,h:842/ratio}:{w:595*ratio,h:595};
+    if(i>0)pdf.addPage([page.w,page.h],page.w>page.h?"landscape":"portrait");
+   }else if(i>0){
+    pdf.addPage([page.w,page.h],page.w>page.h?"landscape":"portrait");
+   }
+
+   const safeMargin=Math.min(margin,page.w/2-1,page.h/2-1);
+   const availableW=page.w-2*safeMargin;
+   const availableH=page.h-2*safeMargin;
+   const imageRatio=img.naturalWidth/img.naturalHeight;
+   const boxRatio=availableW/availableH;
+
+   let drawW,drawH,x,y;
+   if(fitMode==="cover"){
+    if(imageRatio>boxRatio){drawH=availableH;drawW=drawH*imageRatio;}
+    else{drawW=availableW;drawH=drawW/imageRatio;}
+   }else{
+    if(imageRatio>boxRatio){drawW=availableW;drawH=drawW/imageRatio;}
+    else{drawH=availableH;drawW=drawH*imageRatio;}
+   }
+   x=(page.w-drawW)/2;y=(page.h-drawH)/2;
+
+   const data=await imageToJpeg(img,quality);
+   pdf.addImage(data,"JPEG",x,y,drawW,drawH,undefined,"FAST");
+
+   bar.style.width=Math.round((i+1)/images.length*100)+"%";
+   showStatus("Creating PDF: "+(i+1)+" of "+images.length+" images...");
+   await new Promise(resolve=>setTimeout(resolve,0));
+  }
+
+  let filename=document.getElementById("filename").value.trim()||"toolora-images.pdf";
+  filename=filename.replace(/[\\/:*?"<>|]/g,"_");
+  if(!filename.toLowerCase().endsWith(".pdf"))filename+=".pdf";
+  pdf.save(filename);
+  showStatus("Your PDF is ready! Download should start automatically.");
+ }catch(error){
+  console.error(error);
+  showStatus(error.message||"Something went wrong while creating the PDF.",true);
+ }finally{
+  button.disabled=false;
+  setTimeout(()=>{progress.style.display="none";bar.style.width="0%";},900);
+ }
+}
+
+document.getElementById("convertBtn").addEventListener("click",convertPDF);
+window.addEventListener("beforeunload",()=>{
+ images.forEach(item=>URL.revokeObjectURL(item.url));
+});
 </script>
-
-</div>
-
 </body>
-
 </html>
