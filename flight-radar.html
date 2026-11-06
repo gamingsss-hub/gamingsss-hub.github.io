@@ -797,77 +797,148 @@ h1 {
     });
   }
 
-  async function requestData(url) {
+async function requestData() {
+  const url =
+    `https://toolora-flight-api.yt3766701.workers.dev/?lat=${center.lat}&lon=${center.lon}&dist=100`;
 
-    const controller = new AbortController();
+  const response = await fetch(url, {
+    cache: "no-store"
+  });
 
-    const timeout = setTimeout(() => {
-      controller.abort();
-    },12000);
+  const data = await response.json();
 
-    try {
+  if (!response.ok) {
+    throw new Error(data.error || "Aircraft API failed");
+  }
 
-      const response = await fetch(url,{
-        cache:'no-store',
-        signal:controller.signal,
-        mode:'cors'
-      });
+  return data;
+}
 
-      if (!response.ok) {
-        throw new Error('HTTP ' + response.status);
-      }
+ async function loadAircraft() {
 
-      return await response.json();
+  if (busy) return;
 
-    } finally {
-      clearTimeout(timeout);
+  busy = true;
+  setState('UPDATING');
+
+  $('aircraftList').innerHTML =
+    '<div class="empty">Loading live aircraft…</div>';
+
+  let data = null;
+  let lastError = "";
+
+  try {
+    data = await requestData();
+
+    if (!Array.isArray(data.aircraft)) {
+      throw new Error("Invalid aircraft response");
+    }
+
+  } catch (error) {
+    lastError = error.message;
+  }
+
+  busy = false;
+
+  if (!data) {
+    setState('DATA OFFLINE');
+
+    $('count').textContent = '—';
+    $('highCount').textContent = '—';
+    $('updated').textContent = '—';
+
+    $('aircraftList').innerHTML = `
+      <div class="empty error">
+        Aircraft feed could not be reached.
+        <br>${lastError}
+      </div>
+    `;
+
+    return;
+  }
+
+  aircraft = data.aircraft
+    .filter(a =>
+      Number.isFinite(Number(a.lat)) &&
+      Number.isFinite(Number(a.lon))
+    )
+    .map(a => ({
+      ...a,
+      lat: Number(a.lat),
+      lon: Number(a.lon)
+    }));
+
+  const activeHex = new Set(
+    aircraft.map(a => a.hex)
+  );
+
+  for (const [hex, marker] of markers) {
+    if (!activeHex.has(hex)) {
+      aircraftLayer.removeLayer(marker);
+      markers.delete(hex);
     }
   }
 
-  async function loadAircraft() {
+  aircraft.forEach(a => {
 
-    if (busy) return;
+    let marker = markers.get(a.hex);
 
-    busy = true;
-    setState('UPDATING');
+    if (!marker) {
+      marker = L.marker(
+        [a.lat, a.lon],
+        { icon: aircraftIcon(a.track) }
+      ).addTo(aircraftLayer);
 
-    $('aircraftList').innerHTML =
-      '<div class="empty">Requesting public ADS-B feed…</div>';
+      markers.set(a.hex, marker);
 
-    const urls = [
-
-      `https://api.adsb.lol/v2/lat/${center.lat}/lon/${center.lon}/dist/100`,
-
-      `https://api.airplanes.live/v2/point/${center.lat}/${center.lon}/100`
-
-    ];
-
-    let data = null;
-    let lastError = '';
-
-    for (const url of urls) {
-
-      try {
-
-        data = await requestData(url);
-
-        if (data && Array.isArray(data.aircraft)) {
-          break;
-        }
-
-        data = null;
-        lastError = 'Unexpected data format';
-
-      } catch(error) {
-
-        lastError =
-          error.name === 'AbortError'
-            ? 'Request timed out'
-            : error.message;
-
-      }
+    } else {
+      marker.setLatLng([a.lat, a.lon]);
+      marker.setIcon(aircraftIcon(a.track));
     }
 
+    marker.off('click');
+
+    marker.on('click', () => {
+      showDetails(a);
+      renderList();
+    });
+
+  });
+
+  $('count').textContent = aircraft.length;
+
+  $('highCount').textContent =
+    aircraft.filter(a =>
+      typeof a.alt_baro === 'number' &&
+      a.alt_baro > 30000
+    ).length;
+
+  $('updated').textContent =
+    new Date().toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+  setState('LIVE');
+
+  $('mapStatus').textContent =
+    'Map: OpenStreetMap • Aircraft: Cloudflare Worker';
+
+  renderList();
+
+  if (selected) {
+    const fresh = aircraft.find(
+      a => a.hex === selected.hex
+    );
+
+    if (fresh) {
+      showDetails(fresh);
+    } else {
+      $('detail').classList.remove('show');
+      selected = null;
+    }
+  }
+}
     busy = false;
 
     if (!data) {
