@@ -1,0 +1,502 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b16">
+<title>Live AQI Map & Air Quality Checker | Toolora AI</title>
+<meta name="description" content="Check air quality and AQI by city. Explore PM2.5, PM10, ozone, nitrogen dioxide and air quality forecasts with Toolora AirWatch.">
+<meta name="keywords" content="live AQI, air quality near me, air pollution map, PM2.5 checker, PM10, air quality forecast">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://geocoding-api.open-meteo.com">
+<link rel="preconnect" href="https://air-quality-api.open-meteo.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+ --bg:#080b16;--panel:#111729;--panel2:#171f34;--line:#ffffff13;
+ --text:#f5f7ff;--muted:#929db7;--blue:#4f7cff;--purple:#925cff;
+ --cyan:#00e5ff;--green:#39dca0;--yellow:#ffd166;--orange:#ff9d52;
+ --red:#ff657d;--maroon:#c44cff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+ background:radial-gradient(circle at 15% 0%,#182348 0,transparent 35%),var(--bg);
+ color:var(--text);font-family:Poppins,sans-serif;min-height:100vh
+}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.topbar{
+ height:68px;padding:0 4%;display:flex;align-items:center;
+ justify-content:space-between;border-bottom:1px solid var(--line);
+ background:#080b16e8;backdrop-filter:blur(18px);position:relative;z-index:20
+}
+.brand{display:flex;align-items:center;gap:10px;font:800 21px Outfit}
+.brand-icon{
+ width:38px;height:38px;display:grid;place-items:center;border-radius:12px;
+ background:linear-gradient(135deg,var(--blue),var(--purple));
+ box-shadow:0 0 22px #4f7cff55
+}
+.brand span{color:var(--cyan)}
+.back{font-size:12px;color:#bac5df}
+.hero{padding:30px 4% 20px}
+.eyebrow{color:var(--cyan);font-size:10px;letter-spacing:2px;font-weight:700}
+h1{font:800 clamp(29px,4vw,43px) Outfit;margin:8px 0}
+.hero p{color:var(--muted);font-size:12px;line-height:1.8;max-width:720px}
+.wrap{max-width:1600px;margin:auto;padding:0 4% 40px}
+.search-panel{
+ display:flex;gap:10px;align-items:center;padding:13px;
+ background:var(--panel);border:1px solid var(--line);border-radius:15px;
+ margin-bottom:15px
+}
+.search-box{
+ flex:1;display:flex;gap:10px;align-items:center;background:#080d1c;
+ border:1px solid var(--line);border-radius:10px;padding:0 13px;min-width:0
+}
+.search-box i{color:var(--cyan)}
+.search-box input{
+ width:100%;min-width:0;padding:12px 0;background:transparent;border:0;
+ outline:0;color:white;font-size:12px
+}
+.search-btn{
+ border:0;border-radius:10px;padding:12px 20px;color:white;font-size:12px;
+ font-weight:700;background:linear-gradient(135deg,var(--blue),var(--purple))
+}
+.search-btn:disabled{opacity:.5;cursor:wait}
+.location-btn{
+ background:#1a2540;border:1px solid var(--line);color:#dce5ff;
+ padding:11px 13px;border-radius:10px;font-size:11px
+}
+.quick-cities{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.quick-cities button{
+ background:#141c30;border:1px solid var(--line);border-radius:20px;
+ color:#bdc8e3;padding:7px 12px;font-size:10px
+}
+.quick-cities button:hover{border-color:var(--blue);color:white}
+.grid{
+ display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:15px
+}
+.card{
+ background:var(--panel);border:1px solid var(--line);
+ border-radius:17px;overflow:hidden;min-width:0
+}
+.card-head{
+ display:flex;align-items:center;justify-content:space-between;
+ padding:14px 16px;border-bottom:1px solid var(--line);gap:10px
+}
+.card-head h2{font:700 16px Outfit}
+.card-head small{font-size:9px;color:var(--muted)}
+#map{height:480px;background:#111a2c}
+.map-foot{
+ padding:10px 13px;color:var(--muted);font-size:9px;
+ border-top:1px solid var(--line);line-height:1.6
+}
+.map-key{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:5px}
+.key{display:flex;align-items:center;gap:5px}
+.key i{width:8px;height:8px;border-radius:50%}
+.side{display:flex;flex-direction:column;gap:13px}
+.aqi-card{padding:17px;background:linear-gradient(140deg,#182747,#17182e)}
+.aqi-top{display:flex;justify-content:space-between;align-items:center}
+.aqi-top h2{font:700 16px Outfit}
+.aqi-top small{font-size:9px;color:var(--muted)}
+.aqi-main{display:flex;align-items:center;gap:17px;margin:18px 0}
+.aqi-circle{
+ width:112px;height:112px;border-radius:50%;display:grid;place-items:center;
+ background:conic-gradient(var(--aqi-color,#39dca0) 0 78%,#ffffff12 78% 100%);
+ position:relative;flex-shrink:0
+}
+.aqi-circle:before{
+ content:"";position:absolute;inset:9px;background:#131a2c;border-radius:50%
+}
+.aqi-number{position:relative;text-align:center}
+.aqi-number strong{display:block;font:800 30px Outfit}
+.aqi-number small{font-size:9px;color:var(--muted)}
+.aqi-description strong{display:block;font:700 17px Outfit}
+.aqi-description span{font-size:10px;color:var(--muted);line-height:1.7}
+.aqi-scale{display:grid;grid-template-columns:repeat(6,1fr);gap:3px}
+.aqi-scale span{height:6px;border-radius:10px}
+.aqi-scale-labels{display:flex;justify-content:space-between;font-size:8px;color:var(--muted);margin-top:6px}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.metric{
+ background:#0c1221;border:1px solid var(--line);border-radius:12px;padding:12px
+}
+.metric-top{display:flex;justify-content:space-between;align-items:center}
+.metric-top i{color:var(--cyan);font-size:13px}
+.metric small{display:block;color:var(--muted);font-size:9px}
+.metric strong{display:block;font:700 19px Outfit;margin-top:5px}
+.metric em{font-style:normal;font-size:9px;color:var(--muted)}
+.forecast{padding:15px}
+.forecast h3{font:700 15px Outfit;margin-bottom:12px}
+.forecast-list{display:flex;flex-direction:column;gap:8px}
+.forecast-row{
+ display:grid;grid-template-columns:55px 1fr 48px;gap:8px;
+ align-items:center;background:#0b1120;border:1px solid var(--line);
+ border-radius:9px;padding:9px 10px;font-size:10px
+}
+.forecast-date{color:#d8e0f5}
+.bar-bg{height:7px;border-radius:10px;background:#ffffff12;overflow:hidden}
+.bar-fill{height:100%;border-radius:10px}
+.forecast-value{text-align:right;font-weight:700}
+.info{
+ padding:12px;border:1px solid #00e5ff25;background:#00e5ff09;
+ border-radius:11px;color:#a9c7d3;font-size:9px;line-height:1.8
+}
+.section-title{font:700 15px Outfit;margin:0 0 11px}
+.status{font-size:10px;color:var(--muted);line-height:1.7}
+.leaflet-container{font-family:Poppins,sans-serif}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#11182b;color:white}
+.leaflet-popup-content{font-size:11px;line-height:1.6}
+.leaflet-control-zoom a{background:#11182b!important;color:white!important;border-color:#ffffff22!important}
+.leaflet-control-attribution{font-size:8px!important}
+.pin{
+ width:17px;height:17px;border-radius:50%;border:2px solid white;
+ box-shadow:0 0 12px currentColor
+}
+#toast{
+ position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);
+ background:#19233b;border:1px solid #ffffff22;padding:11px 16px;
+ border-radius:10px;font-size:11px;opacity:0;pointer-events:none;
+ transition:.25s;z-index:999
+}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.footer{text-align:center;color:#69738c;font-size:9px;padding:20px}
+@media(max-width:1000px){.grid{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr}.side .info{grid-column:1/-1}}
+@media(max-width:600px){
+ .topbar{height:60px}.brand{font-size:17px}.hero{padding-top:22px}
+ .search-panel{flex-wrap:wrap}.search-box{flex-basis:100%}
+ .search-btn{flex:1}.location-btn{flex:1}
+ #map{height:390px}.side{display:flex}
+ .aqi-main{gap:12px}.aqi-circle{width:100px;height:100px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+ <a href="index.html" class="brand">
+  <div class="brand-icon"><i class="fa-solid fa-wind"></i></div>
+  TOOLORA <span>AIRWATCH</span>
+ </a>
+ <a href="index.html" class="back"><i class="fa-solid fa-arrow-left"></i> Back to tools</a>
+</header>
+
+<section class="hero">
+ <div class="eyebrow">BREATHE SMARTER · EXPLORE YOUR AIR</div>
+ <h1>Know the air <span style="color:var(--cyan)">around you.</span></h1>
+ <p>Search any city to explore estimated air quality, pollution levels and the upcoming forecast.</p>
+</section>
+
+<main class="wrap">
+ <form class="search-panel" id="searchForm">
+  <div class="search-box">
+   <i class="fa-solid fa-location-dot"></i>
+   <input id="cityInput" placeholder="Search city or location — e.g. Delhi, London, Tokyo" autocomplete="off" required>
+  </div>
+  <button class="search-btn" id="searchBtn" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Check AQI</button>
+  <button class="location-btn" id="myLocation" type="button"><i class="fa-solid fa-crosshairs"></i> My location</button>
+ </form>
+
+ <div class="quick-cities">
+  <button type="button" data-city="Delhi">Delhi</button>
+  <button type="button" data-city="Mumbai">Mumbai</button>
+  <button type="button" data-city="Shimla">Shimla</button>
+  <button type="button" data-city="London">London</button>
+  <button type="button" data-city="New York">New York</button>
+  <button type="button" data-city="Tokyo">Tokyo</button>
+ </div>
+
+ <div class="grid">
+  <section class="card">
+   <div class="card-head">
+    <div><h2><i class="fa-solid fa-earth-americas" style="color:var(--cyan)"></i> Air Quality Explorer</h2><small id="mapSubtitle">Select a location to view its air quality</small></div>
+    <small>GLOBAL MAP</small>
+   </div>
+   <div id="map"></div>
+   <div class="map-foot">
+    <div class="map-key">
+     <span class="key"><i style="background:#39dca0"></i> Good</span>
+     <span class="key"><i style="background:#ffd166"></i> Moderate</span>
+     <span class="key"><i style="background:#ff9d52"></i> Unhealthy for sensitive groups</span>
+     <span class="key"><i style="background:#ff657d"></i> Unhealthy</span>
+    </div>
+    <span>Map tiles © OpenStreetMap contributors. Colored pins show searched locations, not a continuous measured pollution heatmap.</span>
+   </div>
+  </section>
+
+  <aside class="side">
+   <section class="card aqi-card">
+    <div class="aqi-top">
+     <div><h2>Air Quality Index</h2><small id="placeName">Waiting for location</small></div>
+     <i class="fa-solid fa-wind" style="color:var(--cyan);font-size:21px"></i>
+    </div>
+    <div class="aqi-main">
+     <div class="aqi-circle" id="aqiCircle">
+      <div class="aqi-number"><strong id="aqiValue">--</strong><small>US AQI</small></div>
+     </div>
+     <div class="aqi-description">
+      <strong id="aqiLabel">Search a city</strong>
+      <span id="aqiAdvice">Your air quality report will appear here.</span>
+     </div>
+    </div>
+    <div class="aqi-scale">
+     <span style="background:#39dca0"></span><span style="background:#ffd166"></span>
+     <span style="background:#ff9d52"></span><span style="background:#ff657d"></span>
+     <span style="background:#b65cff"></span><span style="background:#8e233f"></span>
+    </div>
+    <div class="aqi-scale-labels"><span>Good</span><span>Moderate</span><span>Hazardous</span></div>
+   </section>
+
+   <section>
+    <h3 class="section-title">Pollutant breakdown</h3>
+    <div class="metrics">
+     <div class="metric"><div class="metric-top"><small>PM2.5</small><i class="fa-solid fa-smog"></i></div><strong id="pm25">--</strong><em>µg/m³</em></div>
+     <div class="metric"><div class="metric-top"><small>PM10</small><i class="fa-solid fa-cloud"></i></div><strong id="pm10">--</strong><em>µg/m³</em></div>
+     <div class="metric"><div class="metric-top"><small>Ozone</small><i class="fa-solid fa-sun"></i></div><strong id="ozone">--</strong><em>µg/m³</em></div>
+     <div class="metric"><div class="metric-top"><small>NO₂</small><i class="fa-solid fa-industry"></i></div><strong id="no2">--</strong><em>µg/m³</em></div>
+     <div class="metric"><div class="metric-top"><small>CO</small><i class="fa-solid fa-car"></i></div><strong id="co">--</strong><em>µg/m³</em></div>
+     <div class="metric"><div class="metric-top"><small>SO₂</small><i class="fa-solid fa-flask"></i></div><strong id="so2">--</strong><em>µg/m³</em></div>
+    </div>
+   </section>
+
+   <section class="card forecast">
+    <h3><i class="fa-solid fa-chart-line" style="color:var(--cyan)"></i> 5-Day AQI Forecast</h3>
+    <div class="forecast-list" id="forecastList">
+     <div class="status">Search a location to load the forecast.</div>
+    </div>
+   </section>
+
+   <div class="info">
+    <i class="fa-solid fa-circle-info"></i>
+    AQI is the US Air Quality Index. Values are model-based estimates from Open-Meteo and may differ from official local monitoring stations. This tool is informational, not medical advice.
+   </div>
+   <div class="status" id="updateStatus">No location selected yet.</div>
+  </aside>
+ </div>
+</main>
+
+<footer class="footer">TOOLORA AI · AIRWATCH · DATA PROVIDED BY OPEN-METEO</footer>
+<div id="toast"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(() => {
+"use strict";
+const $ = id => document.getElementById(id);
+const toast = msg => {
+ const el=$("toast");el.textContent=msg;el.classList.add("show");
+ setTimeout(()=>el.classList.remove("show"),2500);
+};
+
+if(!window.L){
+ $("map").innerHTML="<p style='padding:20px;color:white'>Map library failed to load. Check your internet and refresh.</p>";
+ return;
+}
+
+const map=L.map("map").setView([22.5,79],4);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+ maxZoom:18,
+ attribution:'&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+let activeMarker=null;
+let currentPlace=null;
+let busy=false;
+
+function aqiInfo(value){
+ if(value<=50)return {label:"Good",color:"#39dca0",advice:"Air quality is generally satisfactory."};
+ if(value<=100)return {label:"Moderate",color:"#ffd166",advice:"Some people may be unusually sensitive."};
+ if(value<=150)return {label:"Sensitive groups",color:"#ff9d52",advice:"Sensitive groups may experience effects."};
+ if(value<=200)return {label:"Unhealthy",color:"#ff657d",advice:"Everyone may begin to experience effects."};
+ if(value<=300)return {label:"Very unhealthy",color:"#b65cff",advice:"Health alert: increased risk for everyone."};
+ return {label:"Hazardous",color:"#8e233f",advice:"Serious health warning. Check local guidance."};
+}
+
+function setText(id,value,digits=1){
+ const n=Number(value);
+ $(id).textContent=Number.isFinite(n)?n.toFixed(digits):"--";
+}
+
+function setLoading(isLoading){
+ busy=isLoading;
+ $("searchBtn").disabled=isLoading;
+ $("searchBtn").innerHTML=isLoading
+  ? '<i class="fa-solid fa-spinner fa-spin"></i> Loading'
+  : '<i class="fa-solid fa-magnifying-glass"></i> Check AQI';
+}
+
+async function geocode(name){
+ const url="https://geocoding-api.open-meteo.com/v1/search?name="+
+ encodeURIComponent(name)+"&count=1&language=en&format=json";
+ const res=await fetch(url);
+ if(!res.ok)throw new Error("Location search service unavailable");
+ const data=await res.json();
+ if(!data.results?.length)throw new Error("Location not found. Try another city.");
+ return data.results[0];
+}
+
+async function getAirQuality(lat,lon){
+ const params=new URLSearchParams({
+  latitude:lat,
+  longitude:lon,
+  current:"us_aqi,european_aqi,pm2_5,pm10,ozone,nitrogen_dioxide,carbon_monoxide,sulphur_dioxide",
+  hourly:"us_aqi,pm2_5,pm10",
+  timezone:"auto",
+  forecast_days:"5"
+ });
+ const url="https://air-quality-api.open-meteo.com/v1/air-quality?"+params;
+ const res=await fetch(url);
+ if(!res.ok)throw new Error("Air quality data service unavailable");
+ return await res.json();
+}
+
+function renderForecast(hourly){
+ const list=$("forecastList");
+ list.innerHTML="";
+ if(!hourly?.time?.length){
+  list.innerHTML='<div class="status">Forecast data unavailable.</div>';
+  return;
+ }
+
+ // Select one value around midday for each forecast date.
+ const chosen={};
+ hourly.time.forEach((time,i)=>{
+  const date=time.slice(0,10);
+  const hour=Number(time.slice(11,13));
+  if(!(date in chosen) || Math.abs(hour-12)<Math.abs(Number(hourly.time[chosen[date]].slice(11,13))-12)){
+   chosen[date]=i;
+  }
+ });
+
+ const dates=Object.keys(chosen).slice(0,5);
+ dates.forEach(date=>{
+  const i=chosen[date];
+  const value=hourly.us_aqi?.[i];
+  if(value==null)return;
+  const info=aqiInfo(value);
+  const row=document.createElement("div");
+  row.className="forecast-row";
+  const d=new Date(date+"T12:00:00");
+  const label=d.toLocaleDateString(undefined,{weekday:"short"});
+  row.innerHTML=
+   '<span class="forecast-date">'+label+'</span>'+
+   '<div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(100,Math.max(3,value/3.5))+'%;background:'+info.color+'"></div></div>'+
+   '<span class="forecast-value">'+Math.round(value)+'</span>';
+  list.appendChild(row);
+ });
+ if(!list.children.length)list.innerHTML='<div class="status">Forecast data unavailable.</div>';
+}
+
+function renderAir(data,place){
+ const current=data.current||{};
+ const aqi=Number(current.us_aqi);
+ const valid=Number.isFinite(aqi);
+
+ $("placeName").textContent=
+  [place.name,place.admin1,place.country].filter(Boolean).join(", ");
+ $("mapSubtitle").textContent="Selected: "+place.name+", "+(place.country||"");
+ $("aqiValue").textContent=valid?Math.round(aqi):"--";
+
+ const info=valid?aqiInfo(aqi):{label:"Unavailable",color:"#929db7",advice:"AQI value not available for this location."};
+ $("aqiLabel").textContent=info.label;
+ $("aqiAdvice").textContent=info.advice;
+ $("aqiCircle").style.setProperty("--aqi-color",info.color);
+
+ setText("pm25",current.pm2_5);
+ setText("pm10",current.pm10);
+ setText("ozone",current.ozone);
+ setText("no2",current.nitrogen_dioxide);
+ setText("co",current.carbon_monoxide);
+ setText("so2",current.sulphur_dioxide);
+
+ renderForecast(data.hourly);
+
+ const time=current.time?new Date(current.time).toLocaleString():"not supplied";
+ $("updateStatus").textContent=
+  "Model data timestamp: "+time+
+  " · Time zone: "+(data.timezone||"local");
+}
+
+async function searchCity(name){
+ if(busy)return;
+ setLoading(true);
+ $("updateStatus").textContent="Searching for location and air quality...";
+ try{
+  const place=await geocode(name);
+  const data=await getAirQuality(place.latitude,place.longitude);
+  currentPlace=place;
+  renderAir(data,place);
+
+  map.flyTo([place.latitude,place.longitude],7,{duration:1.1});
+  if(activeMarker)map.removeLayer(activeMarker);
+  const value=Number(data.current?.us_aqi);
+  const info=Number.isFinite(value)?aqiInfo(value):{color:"#929db7",label:"AQI unavailable"};
+  const icon=L.divIcon({
+   className:"",
+   html:'<div class="pin" style="background:'+info.color+';color:'+info.color+'"></div>',
+   iconSize:[17,17],iconAnchor:[8,8]
+  });
+  activeMarker=L.marker([place.latitude,place.longitude],{icon}).addTo(map);
+  activeMarker.bindPopup(
+   "<b>"+escapeHTML(place.name)+"</b><br>US AQI: "+
+   (Number.isFinite(value)?Math.round(value):"Unavailable")+
+   "<br>"+info.label
+  ).openPopup();
+
+  $("cityInput").value=name;
+ }catch(error){
+  toast(error.message||"Something went wrong.");
+  $("updateStatus").textContent=error.message||"Unable to load data.";
+ }finally{
+  setLoading(false);
+ }
+}
+
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+$("searchForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const name=$("cityInput").value.trim();
+ if(name)searchCity(name);
+});
+
+document.querySelectorAll("[data-city]").forEach(btn=>{
+ btn.addEventListener("click",()=>searchCity(btn.dataset.city));
+});
+
+$("myLocation").addEventListener("click",()=>{
+ if(!navigator.geolocation){
+  toast("Geolocation is not supported by this browser.");return;
+ }
+ toast("Requesting your location...");
+ navigator.geolocation.getCurrentPosition(async pos=>{
+  const lat=pos.coords.latitude,lon=pos.coords.longitude;
+  const name=lat.toFixed(3)+", "+lon.toFixed(3);
+  setLoading(true);
+  try{
+   const data=await getAirQuality(lat,lon);
+   const place={name:"Your location",admin1:"",country:"",latitude:lat,longitude:lon};
+   currentPlace=place;
+   renderAir(data,place);
+   map.flyTo([lat,lon],8,{duration:1});
+   if(activeMarker)map.removeLayer(activeMarker);
+   activeMarker=L.marker([lat,lon]).addTo(map).bindPopup("Your device location").openPopup();
+  }catch(err){toast(err.message||"Could not load air quality.");}
+  finally{setLoading(false);}
+ },()=>toast("Location permission denied or unavailable."),{timeout:10000});
+});
+
+// Initial view
+searchCity("Delhi");
+setTimeout(()=>map.invalidateSize(),350);
+window.addEventListener("resize",()=>map.invalidateSize());
+})();
+</script>
+</body>
+</html>
