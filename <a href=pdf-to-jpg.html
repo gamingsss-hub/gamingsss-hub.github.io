@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070816">
+<title>PDF to JPG Converter Online Free | Toolora AI</title>
+<meta name="description" content="Convert PDF pages into high-quality JPG or PNG images online for free. Preview pages, choose image quality and download all pages in a ZIP file with Toolora AI.">
+<meta name="keywords" content="PDF to JPG, PDF to PNG, convert PDF to image, PDF page to JPG, free PDF image converter">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070816;--card:#11152a;--line:#292f50;--blue:#4f7cff;--purple:#9b5cff;--cyan:#00e5ff;--text:#f6f8ff;--muted:#9ba5c4}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 15% 0%,#17204b 0%,transparent 36%),radial-gradient(ellipse at 90% 20%,#28134b 0%,transparent 30%),var(--bg);color:var(--text);font-family:Poppins,Arial,sans-serif;min-height:100vh}
+header{max-width:1150px;margin:auto;padding:22px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font:800 25px Outfit;letter-spacing:-1px}.logo span{color:var(--cyan)}
+.pill{font-size:11px;color:#c3caff;border:1px solid #424b78;padding:7px 12px;border-radius:30px;background:#151a35}
+main{max-width:1150px;margin:auto;padding:20px 20px 60px}
+.hero{text-align:center;padding:30px 10px}
+.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:3px;font-weight:700}
+h1{font:800 clamp(32px,6vw,54px) Outfit;margin:12px 0;background:linear-gradient(90deg,#fff,#91b4ff,#d4a1ff);background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:13px;line-height:1.8;max-width:650px;margin:auto}
+.layout{display:grid;grid-template-columns:1fr 330px;gap:18px;align-items:start}
+.card{background:linear-gradient(145deg,rgba(24,30,57,.97),rgba(13,17,36,.97));border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 15px 40px #0003}
+.drop{border:1.5px dashed #59658e;border-radius:16px;padding:35px 15px;text-align:center;background:#10162b}
+.drop.drag{border-color:var(--cyan);background:#14213b}
+.drop h3{font:700 19px Outfit;margin:8px}
+.drop p{font-size:12px;color:var(--muted)}
+button{cursor:pointer;border:0;font:600 12px Poppins;border-radius:10px;padding:11px 15px;transition:.2s}
+button:hover{filter:brightness(1.12);transform:translateY(-1px)}
+button:disabled{opacity:.5;cursor:wait;transform:none}
+.primary{background:linear-gradient(110deg,var(--blue),var(--purple));color:white}
+.secondary{background:#222a49;color:#dce5ff;border:1px solid #3b456e}
+#fileInput{display:none}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0 12px}
+.toolbar h2{font:700 19px Outfit;margin:0}
+.muted{color:var(--muted);font-size:11px}
+.preview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.page{background:#0b1022;border:1px solid #303858;border-radius:12px;padding:9px;min-width:0}
+.page img{width:100%;height:170px;object-fit:contain;background:#fff;border-radius:7px}
+.page-name{font-size:11px;color:#dce5ff;margin-top:8px;text-align:center}
+.empty{color:var(--muted);font-size:12px;text-align:center;padding:25px 5px}
+.side h2{font:700 20px Outfit;margin:0 0 18px}
+.field{margin:15px 0}
+.field label{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}
+.field select,.field input{width:100%;background:#0a0e20;color:white;border:1px solid #343c60;border-radius:10px;padding:11px;font:12px Poppins;outline:none}
+.field select:focus,.field input:focus{border-color:var(--cyan)}
+.range-line{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);margin-bottom:8px}
+input[type=range]{accent-color:var(--cyan)}
+.summary{background:#101a35;border:1px solid #35436f;border-radius:13px;padding:14px;margin-top:18px}
+.summary-row{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);margin:7px 0}
+.summary-row strong{color:white}
+.convert{width:100%;margin-top:15px;padding:14px;font-size:13px}
+.status{font-size:11px;line-height:1.7;color:var(--muted);margin-top:12px;min-height:22px}
+.progress{height:6px;border-radius:10px;background:#242b49;overflow:hidden;margin-top:10px;display:none}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .2s}
+.privacy{font-size:10px;color:#9bb8ad;line-height:1.7;margin-top:14px}
+.info{margin-top:25px}
+.info h2{font:700 22px Outfit}
+.info p,.info li{font-size:12px;color:var(--muted);line-height:1.9}
+footer{text-align:center;padding:25px;color:#75809f;font-size:11px;border-top:1px solid #242943}
+@media(max-width:800px){.layout{grid-template-columns:1fr}}
+@media(max-width:480px){header{padding:17px}.logo{font-size:21px}main{padding:10px 13px 40px}.card{padding:14px}.preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.page img{height:145px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">✦ TOOLORA<span> AI</span></div>
+ <div class="pill">PDF TO IMAGE STUDIO</div>
+</header>
+
+<main>
+<section class="hero">
+ <div class="eyebrow">FREE ONLINE PDF TOOL</div>
+ <h1>PDF to JPG Converter.</h1>
+ <p>Turn PDF pages into high-quality JPG or PNG images. Preview your pages and download them together in one ZIP file.</p>
+</section>
+
+<div class="layout">
+ <section class="card">
+  <div class="drop" id="drop">
+   <div style="font-size:38px">📑</div>
+   <h3>Upload your PDF file</h3>
+   <p>Select a PDF document to preview and convert its pages.</p>
+   <button class="primary" id="browse">＋ Choose PDF</button>
+   <input id="fileInput" type="file" accept="application/pdf,.pdf">
+  </div>
+  <div class="toolbar">
+   <h2>Page Preview</h2>
+   <span class="muted" id="pageCount">No PDF loaded</span>
+  </div>
+  <div class="preview-grid" id="preview">
+   <div class="empty" style="grid-column:1/-1">Your PDF page previews will appear here.</div>
+  </div>
+ </section>
+
+ <aside class="card side">
+  <h2>⚙ Conversion Settings</h2>
+  <div class="field">
+   <label>Image Format</label>
+   <select id="format">
+    <option value="jpeg">JPG / JPEG</option>
+    <option value="png">PNG</option>
+   </select>
+  </div>
+  <div class="field">
+   <div class="range-line"><label for="scale" style="margin:0">Resolution / Scale</label><strong id="scaleValue">1.5×</strong></div>
+   <input id="scale" type="range" min="1" max="3" step="0.5" value="1.5" style="width:100%">
+   <div class="muted">Higher scale produces sharper, larger images.</div>
+  </div>
+  <div class="field">
+   <div class="range-line"><label for="quality" style="margin:0">JPG Quality</label><strong id="qualityValue">85%</strong></div>
+   <input id="quality" type="range" min="40" max="100" step="5" value="85" style="width:100%">
+   <div class="muted">Only applies when JPG format is selected.</div>
+  </div>
+  <div class="field">
+   <label>Download Filename</label>
+   <input id="filename" value="toolora-pdf-pages" type="text">
+  </div>
+  <div class="summary">
+   <div class="summary-row"><span>PDF Pages</span><strong id="sumPages">0</strong></div>
+   <div class="summary-row"><span>Output Format</span><strong id="sumFormat">JPG</strong></div>
+   <div class="summary-row"><span>ZIP Download</span><strong>Enabled</strong></div>
+  </div>
+  <button class="primary convert" id="convert" disabled>⬇ Convert & Download ZIP</button>
+  <div class="progress" id="progress"><div id="bar"></div></div>
+  <div class="status" id="status" role="status" aria-live="polite"></div>
+  <div class="privacy">🔒 Your PDF is processed in your browser. It is not uploaded to Toolora servers.</div>
+ </aside>
+</div>
+
+<section class="info">
+ <h2>How to Convert PDF to JPG</h2>
+ <ol>
+  <li>Upload your PDF file.</li>
+  <li>Preview the document pages.</li>
+  <li>Select JPG or PNG and choose your image quality.</li>
+  <li>Click Convert & Download ZIP.</li>
+ </ol>
+ <h2>Frequently Asked Questions</h2>
+ <p><strong>Can I convert every page?</strong><br>Yes. The tool converts all pages of your uploaded PDF.</p>
+ <p><strong>Can I download PNG images?</strong><br>Yes. Select PNG in the format menu before conversion.</p>
+ <p><strong>Are my documents uploaded to a server?</strong><br>No. PDF rendering happens locally in your browser using PDF.js.</p>
+</section>
+</main>
+
+<footer>© Toolora AI · PDF to JPG Converter · Browser-based utility</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let pdfDocument=null;
+let selectedFile=null;
+let previewURLs=[];
+
+if(window.pdfjsLib){
+ pdfjsLib.GlobalWorkerOptions.workerSrc=
+ "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+}
+
+function status(message,error=false){
+ $("status").textContent=message;
+ $("status").style.color=error?"#ff8a9c":"#a9b8dc";
+}
+function clearPreviews(){
+ previewURLs.forEach(url=>URL.revokeObjectURL(url));
+ previewURLs=[];
+}
+function resetPreviews(){
+ clearPreviews();
+ $("preview").innerHTML='<div class="empty" style="grid-column:1/-1">Your PDF page previews will appear here.</div>';
+ $("pageCount").textContent="No PDF loaded";
+ $("sumPages").textContent="0";
+ $("convert").disabled=true;
+ pdfDocument=null;
+ selectedFile=null;
+}
+function canvasBlob(canvas,type,quality){
+ return new Promise((resolve,reject)=>{
+  canvas.toBlob(blob=>blob?resolve(blob):reject(new Error("Could not create image.")),type,quality);
+ });
+}
+async function renderPreview(pageNumber){
+ const page=await pdfDocument.getPage(pageNumber);
+ const viewport=page.getViewport({scale:0.45});
+ const canvas=document.createElement("canvas");
+ const context=canvas.getContext("2d");
+ canvas.width=Math.ceil(viewport.width);
+ canvas.height=Math.ceil(viewport.height);
+ await page.render({canvasContext:context,viewport}).promise;
+ const blob=await canvasBlob(canvas,"image/jpeg",0.75);
+ const url=URL.createObjectURL(blob);
+ previewURLs.push(url);
+
+ const box=document.createElement("div");
+ box.className="page";
+ const image=document.createElement("img");
+ image.src=url;
+ image.alt="PDF page "+pageNumber;
+ const name=document.createElement("div");
+ name.className="page-name";
+ name.textContent="Page "+pageNumber;
+ box.append(image,name);
+ $("preview").append(box);
+}
+async function loadPDF(file){
+ resetPreviews();
+ if(!file)return;
+ if(file.type!=="application/pdf"&&!file.name.toLowerCase().endsWith(".pdf")){
+  status("Please choose a valid PDF file.",true);return;
+ }
+ if(file.size>50*1024*1024){
+  status("File is too large. Maximum supported upload size is 50 MB.",true);return;
+ }
+ if(!window.pdfjsLib||!window.JSZip){
+  status("Required libraries did not load. Check your internet connection and reload.",true);return;
+ }
+
+ selectedFile=file;
+ status("Opening PDF...");
+ try{
+  const data=await file.arrayBuffer();
+  pdfDocument=await pdfjsLib.getDocument({data}).promise;
+  if(pdfDocument.numPages>150){
+   resetPreviews();
+   status("This tool supports up to 150 pages per PDF.",true);return;
+  }
+  $("pageCount").textContent=pdfDocument.numPages+" pages";
+  $("sumPages").textContent=pdfDocument.numPages;
+  $("convert").disabled=false;
+  $("preview").innerHTML="";
+  for(let i=1;i<=pdfDocument.numPages;i++){
+   await renderPreview(i);
+  }
+  status("PDF loaded successfully. Ready to convert.");
+ }catch(error){
+  console.error(error);
+  resetPreviews();
+  status("Could not open this PDF. It may be damaged, password-protected or unsupported.",true);
+ }
+}
+$("browse").addEventListener("click",()=>$("fileInput").click());
+$("fileInput").addEventListener("change",e=>{
+ const file=e.target.files[0];
+ if(file)loadPDF(file);
+ e.target.value="";
+});
+$("drop").addEventListener("dragover",e=>{
+ e.preventDefault();$("drop").classList.add("drag");
+});
+$("drop").addEventListener("dragleave",e=>{
+ e.preventDefault();$("drop").classList.remove("drag");
+});
+$("drop").addEventListener("drop",e=>{
+ e.preventDefault();$("drop").classList.remove("drag");
+ const file=e.dataTransfer.files[0];
+ if(file)loadPDF(file);
+});
+$("scale").addEventListener("input",()=>{
+ $("scaleValue").textContent=$("scale").value+"×";
+});
+$("quality").addEventListener("input",()=>{
+ $("qualityValue").textContent=$("quality").value+"%";
+});
+$("format").addEventListener("change",()=>{
+ $("sumFormat").textContent=$("format").value.toUpperCase();
+ $("quality").disabled=$("format").value==="png";
+});
+
+async function convertAll(){
+ if(!pdfDocument||!selectedFile){
+  status("Please upload a PDF first.",true);return;
+ }
+ if(!window.JSZip){status("ZIP library is unavailable. Reload the page.",true);return;}
+
+ const button=$("convert");
+ const progress=$("progress");
+ const bar=$("bar");
+ button.disabled=true;
+ progress.style.display="block";
+ bar.style.width="0%";
+
+ try{
+  const zip=new JSZip();
+  const format=$("format").value;
+  const mime=format==="png"?"image/png":"image/jpeg";
+  const quality=Number($("quality").value)/100;
+  const scale=Number($("scale").value);
+
+  for(let i=1;i<=pdfDocument.numPages;i++){
+   const page=await pdfDocument.getPage(i);
+   const viewport=page.getViewport({scale});
+   const canvas=document.createElement("canvas");
+   const context=canvas.getContext("2d",{alpha:false});
+   canvas.width=Math.ceil(viewport.width);
+   canvas.height=Math.ceil(viewport.height);
+
+   await page.render({
+    canvasContext:context,
+    viewport,
+    background:"rgb(255,255,255)"
+   }).promise;
+
+   const blob=await canvasBlob(canvas,mime,quality);
+   zip.file("page-"+String(i).padStart(3,"0")+"."+format,blob);
+   canvas.width=1;canvas.height=1;
+
+   bar.style.width=Math.round(i/pdfDocument.numPages*100)+"%";
+   status("Converting page "+i+" of "+pdfDocument.numPages+"...");
+   await new Promise(resolve=>setTimeout(resolve,0));
+  }
+
+  status("Preparing ZIP file...");
+  const zipBlob=await zip.generateAsync({
+   type:"blob",
+   compression:"DEFLATE",
+   compressionOptions:{level:5}
+  },metadata=>{
+   bar.style.width=Math.round(metadata.percent)+"%";
+  });
+
+  const url=URL.createObjectURL(zipBlob);
+  const link=document.createElement("a");
+  let filename=$("filename").value.trim()||"toolora-pdf-pages";
+  filename=filename.replace(/[\\/:*?"<>|]/g,"_");
+  link.href=url;
+  link.download=filename+".zip";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),60000);
+  status("Success! Your converted images have been packed into a ZIP file.");
+ }catch(error){
+  console.error(error);
+  status(error.message||"Conversion failed. Try a smaller PDF or lower resolution.",true);
+ }finally{
+  button.disabled=false;
+  setTimeout(()=>{
+   progress.style.display="none";
+   bar.style.width="0%";
+  },1000);
+ }
+}
+$("convert").addEventListener("click",convertAll);
+window.addEventListener("beforeunload",clearPreviews);
+</script>
+</body>
+</html>
