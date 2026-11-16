@@ -1,349 +1,629 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Text Case Converter | Toolora</title>
+<title>Free Text Case Converter Online | Uppercase & Lowercase - Toolora</title>
+<meta name="description" content="Convert text online for free with Toolora Text Case Converter. Change text to uppercase, lowercase, title case, sentence case and toggle case instantly.">
+<meta name="keywords" content="text case converter, uppercase converter, lowercase converter, title case converter, sentence case converter, online text converter">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/text-case-converter.html">
 
-<meta name="description" content="Convert text into UPPERCASE, lowercase, Sentence Case, Title Case and Toggle Case instantly.">
+<meta property="og:title" content="Free Text Case Converter Online | Toolora">
+<meta property="og:description" content="Convert text into uppercase, lowercase, title case, sentence case and more with this free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gamingsss-hub.github.io/text-case-converter.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Toolora Text Case Converter">
+<meta name="twitter:description" content="Free online text case converter with live word and character counts.">
 
-<meta name="keywords" content="text case converter, uppercase converter, lowercase converter, title case">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"Toolora Text Case Converter",
+ "url":"https://gamingsss-hub.github.io/text-case-converter.html",
+ "applicationCategory":"UtilitiesApplication",
+ "operatingSystem":"Any",
+ "description":"A free browser-based text case converter for uppercase, lowercase, title case, sentence case and toggle case, with live text statistics."
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+  {
+   "@type":"Question",
+   "name":"What is a text case converter?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"A text case converter changes the capitalization of text into formats such as uppercase, lowercase, title case and sentence case."
+   }
+  },
+  {
+   "@type":"Question",
+   "name":"Can I convert text to uppercase online?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Yes. Paste or type your text into the converter and select the UPPERCASE option to convert all applicable letters to capital letters."
+   }
+  },
+  {
+   "@type":"Question",
+   "name":"Is Toolora Text Case Converter free?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Yes. Toolora Text Case Converter is free to use in a modern web browser."
+   }
+  },
+  {
+   "@type":"Question",
+   "name":"Does the converter work on mobile devices?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Yes. The responsive text converter works on supported mobile phones, tablets and desktop browsers."
+   }
+  }
+ ]
+}
+</script>
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
+    min-height:100vh;
+    background:
+    radial-gradient(circle at 15% 15%,rgba(124,58,237,.28),transparent 35%),
+    radial-gradient(circle at 85% 80%,rgba(37,99,235,.25),transparent 35%),
+    linear-gradient(135deg,#050816,#101a35,#17103b);
+    color:#fff;
+    padding:25px 16px 50px;
+}
 
-background:linear-gradient(135deg,#0f172a,#1e3a8a,#7c3aed);
+.page{
+    width:100%;
+    max-width:1000px;
+    margin:auto;
+}
 
-min-height:100vh;
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:28px;
+}
 
-display:flex;
+.logo{
+    font-size:23px;
+    font-weight:800;
+    color:white;
+    text-decoration:none;
+}
 
-justify-content:center;
+.logo span{
+    color:#60a5fa;
+}
 
-align-items:center;
+.home{
+    color:#dbeafe;
+    text-decoration:none;
+    background:rgba(255,255,255,.08);
+    padding:9px 17px;
+    border-radius:30px;
+    font-size:13px;
+    border:1px solid rgba(255,255,255,.12);
+}
 
-padding:20px;
-
+.home:hover{
+    background:rgba(96,165,250,.2);
 }
 
 .container{
-
-width:100%;
-
-max-width:900px;
-
-background:rgba(255,255,255,.08);
-
-backdrop-filter:blur(20px);
-
-border-radius:25px;
-
-padding:30px;
-
-color:white;
-
-box-shadow:0 20px 60px rgba(0,0,0,.4);
-
+    background:rgba(255,255,255,.07);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:26px;
+    padding:32px;
+    box-shadow:0 25px 70px rgba(0,0,0,.35);
 }
 
 h1{
-
-text-align:center;
-
-margin-bottom:10px;
-
-font-size:38px;
-
+    text-align:center;
+    margin-bottom:10px;
+    font-size:clamp(27px,5vw,38px);
 }
 
 .sub{
-
-text-align:center;
-
-color:#d1d5db;
-
-margin-bottom:25px;
-
+    text-align:center;
+    color:#cbd5e1;
+    margin-bottom:27px;
+    font-size:14px;
+    line-height:1.8;
 }
 
 textarea{
+    width:100%;
+    min-height:230px;
+    background:#0b1224;
+    border:1px solid #334155;
+    border-radius:17px;
+    padding:19px;
+    color:white;
+    font-size:15px;
+    line-height:1.8;
+    outline:none;
+    resize:vertical;
+    margin-bottom:18px;
+}
 
-width:100%;
+textarea:focus{
+    border-color:#60a5fa;
+    box-shadow:0 0 0 3px rgba(96,165,250,.15);
+}
 
-height:220px;
-
-background:#111827;
-
-border:none;
-
-border-radius:18px;
-
-padding:18px;
-
-color:white;
-
-font-size:17px;
-
-outline:none;
-
-resize:none;
-
-margin-bottom:20px;
-
+textarea::placeholder{
+    color:#64748b;
 }
 
 .grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-
-gap:15px;
-
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
 }
 
 button{
-
-padding:16px;
-
-border:none;
-
-border-radius:15px;
-
-cursor:pointer;
-
-font-size:16px;
-
-font-weight:700;
-
-background:linear-gradient(45deg,#2563eb,#7c3aed);
-
-color:white;
-
-transition:.3s;
-
+    padding:15px 12px;
+    border:none;
+    border-radius:13px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:700;
+    background:linear-gradient(45deg,#2563eb,#7c3aed);
+    color:white;
+    transition:.25s;
 }
 
 button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(37,99,235,.25);
+}
 
-transform:translateY(-3px);
+button:focus-visible{
+    outline:3px solid #93c5fd;
+    outline-offset:3px;
+}
 
+.secondary{
+    background:#263449;
+}
+
+.danger{
+    background:linear-gradient(45deg,#be123c,#e11d48);
 }
 
 .stats{
-
-margin-top:25px;
-
-display:flex;
-
-justify-content:space-between;
-
-background:#111827;
-
-padding:18px;
-
-border-radius:15px;
-
-font-weight:600;
-
+    margin-top:22px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
 }
 
-</style>
+.stat{
+    background:#0b1224;
+    padding:17px 10px;
+    border-radius:14px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.07);
+}
 
+.stat strong{
+    display:block;
+    font-size:23px;
+    color:#93c5fd;
+}
+
+.stat span{
+    font-size:12px;
+    color:#cbd5e1;
+}
+
+#notice{
+    min-height:25px;
+    text-align:center;
+    margin-top:16px;
+    color:#86efac;
+    font-size:13px;
+}
+
+.content{
+    margin-top:30px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:22px;
+    padding:28px;
+}
+
+.content h2{
+    color:#93c5fd;
+    font-size:21px;
+    margin:20px 0 10px;
+}
+
+.content h2:first-child{
+    margin-top:0;
+}
+
+.content p,.content li{
+    color:#cbd5e1;
+    font-size:14px;
+    line-height:1.9;
+}
+
+.content ul{
+    padding-left:22px;
+}
+
+.example{
+    margin-top:12px;
+    background:#0b1224;
+    padding:15px;
+    border-radius:12px;
+    color:#bfdbfe;
+    font-size:13px;
+    line-height:1.9;
+    overflow-wrap:anywhere;
+}
+
+.faq-item{
+    padding:16px 0;
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.faq-item h3{
+    font-size:15px;
+    margin-bottom:7px;
+    color:#e2e8f0;
+}
+
+.faq-item p{
+    font-size:13px;
+}
+
+.related{
+    margin-top:25px;
+    padding:22px;
+    background:rgba(37,99,235,.10);
+    border:1px solid rgba(96,165,250,.2);
+    border-radius:18px;
+}
+
+.related h2{
+    font-size:18px;
+    margin-bottom:12px;
+}
+
+.related a{
+    display:inline-block;
+    color:#93c5fd;
+    text-decoration:none;
+    margin:6px 12px 6px 0;
+    font-size:13px;
+}
+
+.related a:hover{
+    text-decoration:underline;
+}
+
+footer{
+    text-align:center;
+    margin-top:28px;
+    color:#94a3b8;
+    font-size:12px;
+    line-height:1.8;
+}
+
+footer a{
+    color:#93c5fd;
+    text-decoration:none;
+    margin:0 6px;
+}
+
+@media(max-width:600px){
+    .container{
+        padding:22px 16px;
+    }
+
+    .content{
+        padding:21px 17px;
+    }
+
+    .grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .grid button{
+        font-size:12px;
+        padding:14px 7px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stat:last-child{
+        grid-column:1/-1;
+    }
+}
+</style>
 </head>
 
 <body>
+<div class="page">
 
-<div class="container">
+<header class="topbar">
+    <a class="logo" href="index.html">TOOLORA<span> AI</span></a>
+    <a class="home" href="index.html">← Home</a>
+</header>
+
+<main>
+
+<section class="container">
 
 <h1>📝 Text Case Converter</h1>
 
 <p class="sub">
-
-Convert your text instantly into different formats.
-
+Convert text into uppercase, lowercase, title case, sentence case and toggle case.
+Free online text converter with live word and character counts.
 </p>
 
-<textarea
-id="text"
-placeholder="Type or Paste your text here..."></textarea>
+<label for="text" style="display:block;margin-bottom:10px;font-size:14px;font-weight:600;color:#e2e8f0;">
+Enter or paste your text
+</label>
+
+<textarea id="text" placeholder="Type or paste your text here..." spellcheck="false"></textarea>
 
 <div class="grid">
+    <button type="button" onclick="convert('upper')">🔠 UPPERCASE</button>
+    <button type="button" onclick="convert('lower')">🔡 lowercase</button>
+    <button type="button" onclick="convert('title')">📖 Title Case</button>
+    <button type="button" onclick="convert('sentence')">✍ Sentence Case</button>
+    <button type="button" onclick="convert('toggle')">🔄 Toggle Case</button>
+    <button type="button" class="secondary" onclick="copyText()">📋 Copy Text</button>
+    <button type="button" class="secondary" onclick="sampleText()">📄 Sample Text</button>
+    <button type="button" class="danger" onclick="clearText()">🗑 Clear Text</button>
+</div>
 
-<button onclick="toUpper()">
-🔠 UPPERCASE
-</button>
+<div class="stats" aria-live="polite">
+    <div class="stat">
+        <strong id="chars">0</strong>
+        <span>Characters</span>
+    </div>
+    <div class="stat">
+        <strong id="words">0</strong>
+        <span>Words</span>
+    </div>
+    <div class="stat">
+        <strong id="sentences">0</strong>
+        <span>Sentences</span>
+    </div>
+</div>
 
-<button onclick="toLower()">
-🔡 lowercase
-</button>
+<div id="notice" aria-live="polite"></div>
 
-<button onclick="toTitle()">
-📖 Title Case
-</button>
+</section>
 
-<button onclick="toSentence()">
-✍ Sentence Case
-</button>
+<section class="content">
 
-<button onclick="toggleCase()">
-🔄 Toggle Case
-</button>
+<h2>What Is a Text Case Converter?</h2>
 
-<button onclick="copyText()">
-📋 Copy
-</button>
+<p>
+A text case converter is an online utility that changes the capitalization of letters in your text. Instead of manually editing every word, you can paste your content and choose a case format with one click.
+</p>
 
-<button onclick="clearText()">
-🗑 Clear
-</button>
+<h2>Different Text Case Formats</h2>
+
+<ul>
+    <li><strong>UPPERCASE:</strong> Converts all applicable letters into capital letters.</li>
+    <li><strong>lowercase:</strong> Changes all applicable letters into small letters.</li>
+    <li><strong>Title Case:</strong> Capitalizes the first letter of each word.</li>
+    <li><strong>Sentence Case:</strong> Capitalizes the first letter of the text.</li>
+    <li><strong>Toggle Case:</strong> Changes uppercase letters to lowercase and lowercase letters to uppercase.</li>
+</ul>
+
+<h2>Text Case Conversion Example</h2>
+
+<div class="example">
+    Original: welcome to toolora text converter<br>
+    UPPERCASE: WELCOME TO TOOLORA TEXT CONVERTER<br>
+    lowercase: welcome to toolora text converter<br>
+    Title Case: Welcome To Toolora Text Converter<br>
+    Sentence Case: Welcome to toolora text converter
+</div>
+
+<h2>Who Can Use This Tool?</h2>
+
+<p>
+Students, writers, bloggers, content creators and office users can use a text case converter to format notes, headings, documents, titles and other text. It can save time when working with large blocks of text.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+    <h3>1. Is this text case converter free?</h3>
+    <p>Yes. You can use all the available conversion options for free.</p>
+</div>
+
+<div class="faq-item">
+    <h3>2. Can I convert lowercase text to uppercase?</h3>
+    <p>Yes. Paste your text and select the UPPERCASE button to convert lowercase letters into capital letters.</p>
+</div>
+
+<div class="faq-item">
+    <h3>3. Does the converter work on mobile?</h3>
+    <p>Yes. The responsive interface works on supported mobile phones, tablets and desktop browsers.</p>
+</div>
+
+<div class="faq-item">
+    <h3>4. What is the difference between Title Case and Sentence Case?</h3>
+    <p>Title Case capitalizes the first letter of each word, while Sentence Case capitalizes the first letter of the text.</p>
+</div>
+
+<div class="faq-item">
+    <h3>5. Does this tool store my text?</h3>
+    <p>No. Conversion happens directly in your browser. The tool does not send your text to a server or save it.</p>
+</div>
+
+</section>
+
+<section class="related">
+    <h2>Explore More Toolora Tools</h2>
+    <a href="word-counter.html">Word Counter</a>
+    <a href="essay-writer.html">Essay Writer</a>
+    <a href="formula-hub.html">Formula Hub</a>
+    <a href="index.html">Explore All Tools</a>
+</section>
+
+</main>
+
+<footer>
+    <p>© 2026 Toolora AI. All rights reserved.</p>
+    <p>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="contact.html">Contact</a>
+    </p>
+</footer>
 
 </div>
 
-<div class="stats">
-
-<div>
-Characters :
-<span id="chars">0</span>
-</div>
-
-<div>
-Words :
-<span id="words">0</span>
-</div>
-
-</div>
-
-  <script>
-
-const text=document.getElementById("text");
-const chars=document.getElementById("chars");
-const words=document.getElementById("words");
-
-// ===== Live Count =====
-
-text.addEventListener("input",updateStats);
+<script>
+const textArea = document.getElementById("text");
+const chars = document.getElementById("chars");
+const words = document.getElementById("words");
+const sentences = document.getElementById("sentences");
+const notice = document.getElementById("notice");
 
 function updateStats(){
+    const value = textArea.value;
 
-chars.innerHTML=text.value.length;
+    chars.textContent = value.length;
 
-const wordCount=text.value.trim()===""
-?0
-:text.value.trim().split(/\s+/).length;
+    const wordCount = value.trim() === ""
+        ? 0
+        : value.trim().split(/\s+/u).length;
 
-words.innerHTML=wordCount;
+    words.textContent = wordCount;
 
+    const sentenceCount = value.trim() === ""
+        ? 0
+        : (value.match(/[.!?]+(?=\s|$)/g) || []).length;
+
+    sentences.textContent = sentenceCount;
 }
 
-// ===== UPPERCASE =====
+function convert(type){
+    const value = textArea.value;
 
-function toUpper(){
+    if(!value){
+        showNotice("Please enter some text first.");
+        return;
+    }
 
-text.value=text.value.toUpperCase();
+    if(type === "upper"){
+        textArea.value = value.toUpperCase();
+    }
 
-updateStats();
+    else if(type === "lower"){
+        textArea.value = value.toLowerCase();
+    }
 
+    else if(type === "title"){
+        textArea.value = value.toLowerCase().replace(
+            /(^|[\s\u2014\u2013-])(\p{L})/gu,
+            (match, separator, letter) => separator + letter.toUpperCase()
+        );
+    }
+
+    else if(type === "sentence"){
+        const lower = value.toLowerCase();
+        textArea.value = lower.replace(
+            /(^\s*|[.!?]\s+)(\p{L})/gu,
+            (match, separator, letter) => separator + letter.toUpperCase()
+        );
+    }
+
+    else if(type === "toggle"){
+        textArea.value = Array.from(value).map(character => {
+            if(character === character.toUpperCase() && character !== character.toLowerCase()){
+                return character.toLowerCase();
+            }
+
+            if(character === character.toLowerCase() && character !== character.toUpperCase()){
+                return character.toUpperCase();
+            }
+
+            return character;
+        }).join("");
+    }
+
+    updateStats();
+    showNotice("✅ Text converted successfully!");
 }
 
-// ===== lowercase =====
+async function copyText(){
+    if(!textArea.value){
+        showNotice("Please enter some text first.");
+        return;
+    }
 
-function toLower(){
-
-text.value=text.value.toLowerCase();
-
-updateStats();
-
+    try{
+        await navigator.clipboard.writeText(textArea.value);
+        showNotice("✅ Text copied successfully!");
+    }catch(error){
+        textArea.focus();
+        textArea.select();
+        const copied = document.execCommand("copy");
+        showNotice(copied ? "✅ Text copied!" : "Copy unavailable. Please copy manually.");
+    }
 }
-
-// ===== Title Case =====
-
-function toTitle(){
-
-text.value=text.value
-.toLowerCase()
-.replace(/\b\w/g,c=>c.toUpperCase());
-
-updateStats();
-
-}
-
-// ===== Sentence Case =====
-
-function toSentence(){
-
-let t=text.value.toLowerCase();
-
-text.value=t.charAt(0).toUpperCase()+t.slice(1);
-
-updateStats();
-
-}
-
-// ===== Toggle Case =====
-
-function toggleCase(){
-
-let result="";
-
-for(let ch of text.value){
-
-result+=
-
-ch===ch.toUpperCase()
-
-?ch.toLowerCase()
-
-:ch.toUpperCase();
-
-}
-
-text.value=result;
-
-updateStats();
-
-}
-
-// ===== Copy =====
-
-function copyText(){
-
-if(text.value==="") return;
-
-navigator.clipboard.writeText(text.value);
-
-alert("✅ Text Copied");
-
-}
-
-// ===== Clear =====
 
 function clearText(){
-
-text.value="";
-
-updateStats();
-
+    textArea.value = "";
+    updateStats();
+    showNotice("Text cleared.");
+    textArea.focus();
 }
 
-updateStats();
+function sampleText(){
+    textArea.value = "welcome to toolora. this is a free online text case converter. use it to format your text quickly!";
+    updateStats();
+    showNotice("Sample text added.");
+}
 
+function showNotice(message){
+    notice.textContent = message;
+}
+
+textArea.addEventListener("input", updateStats);
+updateStats();
 </script>
 
-</div>
-
 </body>
-
 </html>
