@@ -1,23 +1,52 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Formula Hub – Maths, Physics, Chemistry & Finance Formulas | Toolora</title>
-<meta name="description" content="Explore a free formula library with Maths, Physics, Chemistry, Statistics and Finance formulas. Search equations, understand variables, view examples and save favourites.">
-<meta name="keywords" content="maths formulas, physics formulas, chemistry formulas, statistics formulas, finance formulas, formula calculator, NDA formulas, SSC maths formulas, science equations">
+<title>Formula Hub – 38+ Maths, Physics, Chemistry & Finance Formulas | Toolora</title>
+<meta name="description" content="Explore free Maths, Physics, Chemistry, Statistics and Finance formulas. Understand equations, variables and examples with Toolora Formula Hub.">
+<meta name="keywords" content="maths formulas, physics formulas, chemistry formulas, statistics formulas, finance formulas, NDA formulas, SSC maths formulas, science equations">
 <meta name="robots" content="index,follow">
+<meta name="author" content="Toolora">
 <link rel="canonical" href="https://gamingsss-hub.github.io/formula-hub.html">
 
-<meta property="og:title" content="Toolora Formula Hub">
-<meta property="og:description" content="Search, understand and save useful Maths, Physics, Chemistry, Statistics and Finance formulas.">
+<meta property="og:title" content="Toolora Formula Hub – Free Formula Library">
+<meta property="og:description" content="Explore useful Mathematics, Physics, Chemistry, Statistics and Finance formulas with explanations and examples.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gamingsss-hub.github.io/formula-hub.html">
+<meta property="og:site_name" content="Toolora">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Toolora Formula Hub">
+<meta name="twitter:description" content="Free formula library for students and learners.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Toolora Formula Hub",
+  "url": "https://gamingsss-hub.github.io/formula-hub.html",
+  "description": "A free educational formula library covering Mathematics, Physics, Chemistry, Statistics and Finance.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Toolora",
+    "url": "https://gamingsss-hub.github.io/"
+  },
+  "about": [
+    {"@type":"Thing","name":"Mathematics formulas"},
+    {"@type":"Thing","name":"Physics formulas"},
+    {"@type":"Thing","name":"Chemistry formulas"},
+    {"@type":"Thing","name":"Statistics formulas"},
+    {"@type":"Thing","name":"Finance formulas"}
+  ]
+}
+</script>
 
 <style>
 :root{
@@ -32,11 +61,9 @@
   --border:rgba(255,255,255,.09);
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
 
 body{
   min-height:100vh;
@@ -48,13 +75,11 @@ body{
   font-family:'Poppins',sans-serif;
 }
 
-button,input{
-  font:inherit;
-}
+button,input{font:inherit}
+button{cursor:pointer}
 
-button{
-  cursor:pointer;
-}
+a{color:var(--cyan)}
+a:hover{color:white}
 
 .topbar{
   max-width:1450px;
@@ -84,9 +109,7 @@ button{
   box-shadow:0 5px 25px rgba(79,124,255,.3);
 }
 
-.logo span{
-  color:var(--cyan);
-}
+.logo span{color:var(--cyan)}
 
 .home-link{
   color:var(--muted);
@@ -94,9 +117,7 @@ button{
   font-size:13px;
 }
 
-.home-link:hover{
-  color:var(--cyan);
-}
+.home-link:hover{color:var(--cyan)}
 
 .hero{
   max-width:950px;
@@ -239,10 +260,7 @@ button{
   margin-bottom:14px;
 }
 
-.category-list{
-  display:grid;
-  gap:8px;
-}
+.category-list{display:grid;gap:8px}
 
 .category-btn{
   width:100%;
@@ -392,11 +410,7 @@ button{
   line-height:1.7;
 }
 
-.card-actions{
-  display:flex;
-  gap:9px;
-  margin-top:17px;
-}
+.card-actions{display:flex;gap:9px;margin-top:17px}
 
 .copy-btn{
   flex:1;
@@ -409,9 +423,7 @@ button{
   font-weight:700;
 }
 
-.copy-btn:hover{
-  filter:brightness(1.15);
-}
+.copy-btn:hover{filter:brightness(1.15)}
 
 .empty{
   grid-column:1/-1;
@@ -452,6 +464,7 @@ button{
   font-family:'Outfit',sans-serif;
   font-size:17px;
   margin:20px 0 8px;
+  color:#dceaff;
 }
 
 .info-card p,
@@ -461,8 +474,33 @@ button{
   line-height:1.9;
 }
 
-.info-card ul{
-  padding-left:20px;
+.info-card ul{padding-left:20px}
+
+.info-card li{margin:4px 0}
+
+.reference-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:15px;
+}
+
+.reference-item{
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:rgba(255,255,255,.025);
+}
+
+.reference-item h3{margin:0 0 7px;font-size:15px}
+
+.reference-item p{margin:5px 0}
+
+.reference-formula{
+  color:var(--cyan)!important;
+  font-family:'Outfit',sans-serif;
+  font-size:17px!important;
+  font-weight:700;
+  overflow-wrap:anywhere;
 }
 
 .faq{
@@ -470,14 +508,9 @@ button{
   border-bottom:1px solid var(--border);
 }
 
-.faq:last-child{
-  border:0;
-}
+.faq:last-child{border:0}
 
-.faq h3{
-  margin:0 0 7px;
-  font-size:15px;
-}
+.faq h3{margin:0 0 7px;font-size:15px}
 
 .footer{
   padding:25px;
@@ -485,6 +518,8 @@ button{
   color:var(--muted);
   font-size:12px;
 }
+
+.footer a{margin:0 7px;text-decoration:none}
 
 .toast{
   position:fixed;
@@ -509,52 +544,22 @@ button{
 }
 
 @media(max-width:850px){
-  .layout{
-    grid-template-columns:1fr;
-  }
-
-  .sidebar{
-    position:static;
-  }
-
-  .category-list{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .category-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
 @media(max-width:600px){
-  .topbar{
-    padding:15px;
-  }
-
-  .main{
-    padding:0 13px 40px;
-  }
-
-  .hero{
-    margin:25px auto;
-    padding:15px;
-  }
-
-  .cards{
-    grid-template-columns:1fr;
-  }
-
-  .formula-card{
-    padding:18px;
-  }
-
-  .toolbar{
-    align-items:stretch;
-  }
-
-  .result-count{
-    width:100%;
-  }
-
-  .info-card{
-    padding:19px;
-  }
+  .topbar{padding:15px}
+  .main{padding:0 13px 40px}
+  .hero{margin:25px auto;padding:15px}
+  .cards{grid-template-columns:1fr}
+  .reference-grid{grid-template-columns:1fr}
+  .formula-card{padding:18px}
+  .toolbar{align-items:stretch}
+  .result-count{width:100%}
+  .info-card{padding:19px}
+  .content-head h2{font-size:19px}
 }
 </style>
 </head>
@@ -574,12 +579,12 @@ button{
   <h1>Explore the <span class="gradient">Formula Hub</span></h1>
   <p>
     Find useful equations from Mathematics, Physics, Chemistry,
-    Statistics and Finance. Search a formula, understand its variables,
-    check an example and save the formulas you use most.
+    Statistics and Finance. Search formulas, understand variables,
+    check examples and save the formulas you use most.
   </p>
 
   <div class="stats">
-    <div class="stat"><strong id="totalStat">0</strong><span>FORMULAS</span></div>
+    <div class="stat"><strong id="totalStat">38</strong><span>FORMULAS</span></div>
     <div class="stat"><strong>5</strong><span>SUBJECTS</span></div>
     <div class="stat"><strong>FREE</strong><span>TO EXPLORE</span></div>
   </div>
@@ -616,10 +621,10 @@ button{
       </div>
     </aside>
 
-    <section>
+    <section aria-label="Searchable formula collection">
       <div class="content-head">
         <h2 id="sectionTitle">All Formulas</h2>
-        <select class="sort-select" id="sort">
+        <select class="sort-select" id="sort" aria-label="Sort formulas">
           <option value="default">Default order</option>
           <option value="az">Name A–Z</option>
         </select>
@@ -630,32 +635,321 @@ button{
 
   </div>
 
-  <section class="info-section">
+  <!-- Static educational content for visitors and search engines -->
+  <section class="info-section" id="formula-reference">
 
     <article class="info-card">
       <h2>What Is a Formula Hub?</h2>
       <p>
-        A formula hub is a reference library that brings important
-        equations together in one place. Students can use formula
-        references while studying topics, revising for examinations
-        and practising numerical problems.
+        A formula hub is an educational reference library that brings
+        important mathematical and scientific equations together in one
+        place. Students can use these formulas while learning concepts,
+        solving numerical problems and preparing for examinations.
       </p>
       <p>
-        This library groups formulas into five subjects: Mathematics,
-        Physics, Chemistry, Statistics and Finance. Each entry includes
-        the equation, a short explanation, variable meanings and an
-        example where applicable.
+        Toolora Formula Hub covers five subjects: Mathematics, Physics,
+        Chemistry, Statistics and Finance. Each subject includes useful
+        equations and explanations to help learners understand how formulas
+        are used.
       </p>
+    </article>
+
+    <article class="info-card">
+      <h2>Important Mathematics Formulas</h2>
+      <p>
+        Mathematics formulas are used in algebra, geometry, coordinate
+        geometry, percentages and financial calculations. Understanding
+        the variables in an equation makes numerical problems easier.
+      </p>
+
+      <div class="reference-grid">
+        <div class="reference-item">
+          <h3>Quadratic Formula</h3>
+          <p class="reference-formula">x = (−b ± √(b² − 4ac)) / 2a</p>
+          <p>Finds the roots of ax² + bx + c = 0, where a is non-zero.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Area of a Circle</h3>
+          <p class="reference-formula">A = πr²</p>
+          <p>A is area and r is the radius of the circle.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Circle Circumference</h3>
+          <p class="reference-formula">C = 2πr</p>
+          <p>Calculates the distance around a circle.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Triangle Area</h3>
+          <p class="reference-formula">A = ½bh</p>
+          <p>b is the base and h is the perpendicular height.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Pythagorean Theorem</h3>
+          <p class="reference-formula">a² + b² = c²</p>
+          <p>Relates the sides of a right-angled triangle.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Distance Formula</h3>
+          <p class="reference-formula">d = √((x₂−x₁)² + (y₂−y₁)²)</p>
+          <p>Calculates the distance between two coordinate points.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Midpoint Formula</h3>
+          <p class="reference-formula">M = ((x₁+x₂)/2, (y₁+y₂)/2)</p>
+          <p>Finds the midpoint between two points.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Slope of a Line</h3>
+          <p class="reference-formula">m = (y₂−y₁)/(x₂−x₁)</p>
+          <p>Calculates slope when x₂ is not equal to x₁.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Simple Interest</h3>
+          <p class="reference-formula">SI = (P × R × T) / 100</p>
+          <p>P is principal, R is annual rate and T is time in years.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Volume of a Cube</h3>
+          <p class="reference-formula">V = a³</p>
+          <p>a is the side length of the cube.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Percentage</h3>
+          <p class="reference-formula">(Part / Whole) × 100</p>
+          <p>Converts a part of a total into a percentage.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="info-card">
+      <h2>Important Physics Formulas</h2>
+      <p>
+        Physics equations describe motion, forces, energy, electricity,
+        waves and properties of matter. Always use consistent units when
+        substituting values.
+      </p>
+
+      <div class="reference-grid">
+        <div class="reference-item">
+          <h3>Average Speed</h3>
+          <p class="reference-formula">Speed = Distance / Time</p>
+          <p>Calculates distance travelled per unit time.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Acceleration</h3>
+          <p class="reference-formula">a = (v − u) / t</p>
+          <p>v is final velocity, u is initial velocity and t is time.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Newton's Second Law</h3>
+          <p class="reference-formula">F = ma</p>
+          <p>Net force equals mass multiplied by acceleration.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Momentum</h3>
+          <p class="reference-formula">p = mv</p>
+          <p>Momentum is the product of mass and velocity.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Work Done</h3>
+          <p class="reference-formula">W = Fd cos θ</p>
+          <p>Work done by a constant force over displacement d.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Power</h3>
+          <p class="reference-formula">P = W / t</p>
+          <p>Power is the rate of doing work.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Ohm's Law</h3>
+          <p class="reference-formula">V = IR</p>
+          <p>Relates voltage, current and resistance.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Weight</h3>
+          <p class="reference-formula">F = mg</p>
+          <p>Calculates gravitational force on an object.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Gravitational Potential Energy</h3>
+          <p class="reference-formula">PE = mgh</p>
+          <p>m is mass, g is gravitational acceleration and h is height.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Kinetic Energy</h3>
+          <p class="reference-formula">KE = ½mv²</p>
+          <p>Energy associated with an object's motion.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Wave Speed</h3>
+          <p class="reference-formula">v = fλ</p>
+          <p>f is frequency and λ is wavelength.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Frequency</h3>
+          <p class="reference-formula">f = 1 / T</p>
+          <p>Frequency is the reciprocal of time period.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Universal Gravitation</h3>
+          <p class="reference-formula">F = Gm₁m₂ / r²</p>
+          <p>Describes gravitational attraction between two masses.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Density</h3>
+          <p class="reference-formula">ρ = m / V</p>
+          <p>Density is mass per unit volume.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="info-card">
+      <h2>Important Chemistry Formulas</h2>
+      <p>
+        Chemistry formulas help describe gases, solutions, concentration,
+        acids and bases, and chemical properties of substances.
+      </p>
+
+      <div class="reference-grid">
+        <div class="reference-item">
+          <h3>Ideal Gas Law</h3>
+          <p class="reference-formula">PV = nRT</p>
+          <p>Relates pressure, volume, moles and absolute temperature.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Molarity</h3>
+          <p class="reference-formula">M = n / V</p>
+          <p>n is moles of solute and V is solution volume in litres.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Mass Density</h3>
+          <p class="reference-formula">ρ = m / V</p>
+          <p>Mass divided by volume.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Charles's Law</h3>
+          <p class="reference-formula">V₁/T₁ = V₂/T₂</p>
+          <p>Applies to a fixed amount of gas at constant pressure.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>pH Formula</h3>
+          <p class="reference-formula">pH = −log₁₀[H⁺]</p>
+          <p>Expresses hydrogen ion concentration on the pH scale.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Beer-Lambert Law</h3>
+          <p class="reference-formula">A = εlc</p>
+          <p>Relates absorbance to path length and concentration.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="info-card">
+      <h2>Important Statistics Formulas</h2>
+      <p>
+        Statistics formulas are useful for analysing numerical data,
+        calculating averages, measuring variation and understanding
+        probability.
+      </p>
+
+      <div class="reference-grid">
+        <div class="reference-item">
+          <h3>Arithmetic Mean</h3>
+          <p class="reference-formula">Mean = Σx / n</p>
+          <p>Sum of observations divided by their count.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Basic Probability</h3>
+          <p class="reference-formula">P(A) = Favourable / Total</p>
+          <p>For equally likely outcomes.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Z-Score</h3>
+          <p class="reference-formula">z = (x − μ) / σ</p>
+          <p>Measures distance from the mean in standard deviations.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Population Variance</h3>
+          <p class="reference-formula">σ² = Σ(x − μ)² / N</p>
+          <p>Measures average squared deviation from the population mean.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="info-card">
+      <h2>Important Finance Formulas</h2>
+      <p>
+        Finance formulas are commonly used in savings, interest,
+        business calculations, discounts and profit analysis.
+      </p>
+
+      <div class="reference-grid">
+        <div class="reference-item">
+          <h3>Compound Interest</h3>
+          <p class="reference-formula">A = P(1 + r/n)ⁿᵗ</p>
+          <p>Calculates future value with periodic compounding.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Profit</h3>
+          <p class="reference-formula">Profit = SP − CP</p>
+          <p>Selling price minus cost price.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Profit Percentage</h3>
+          <p class="reference-formula">(Profit / CP) × 100</p>
+          <p>Expresses profit as a percentage of cost price.</p>
+        </div>
+
+        <div class="reference-item">
+          <h3>Discount</h3>
+          <p class="reference-formula">Discount = MP × Rate / 100</p>
+          <p>Calculates the reduction from marked price.</p>
+        </div>
+      </div>
     </article>
 
     <article class="info-card">
       <h2>How to Use This Formula Library</h2>
       <ul>
         <li>Select a subject from the category panel.</li>
-        <li>Search by formula name or topic.</li>
-        <li>Read the variable definitions before using an equation.</li>
+        <li>Search by formula name, equation or topic.</li>
+        <li>Read variable definitions before using an equation.</li>
         <li>Check the example to understand how values are substituted.</li>
-        <li>Copy a formula or save it to your favourites.</li>
+        <li>Copy a formula using the copy button.</li>
+        <li>Save useful formulas using the star button.</li>
       </ul>
     </article>
 
@@ -663,39 +957,56 @@ button{
       <h2>Frequently Asked Questions</h2>
 
       <div class="faq">
-        <h3>1. Is Toolora Formula Hub free?</h3>
+        <h3>Is Toolora Formula Hub free?</h3>
         <p>Yes. You can browse, search, copy and save formulas without a subscription.</p>
       </div>
 
       <div class="faq">
-        <h3>2. Which subjects are included?</h3>
+        <h3>Which subjects are included?</h3>
         <p>The library includes Mathematics, Physics, Chemistry, Statistics and Finance.</p>
       </div>
 
       <div class="faq">
-        <h3>3. Can I search for a particular equation?</h3>
+        <h3>Can I search for a particular equation?</h3>
         <p>Yes. Use the search field to find formulas by their names, topics or keywords.</p>
       </div>
 
       <div class="faq">
-        <h3>4. Can I save formulas for later?</h3>
+        <h3>Can I save formulas for later?</h3>
         <p>Yes. Select the star icon on a formula card. Your favourites are saved in this browser.</p>
       </div>
 
       <div class="faq">
-        <h3>5. Are the examples suitable for every examination?</h3>
-        <p>Examples are for learning and revision. Always follow the syllabus, notation and instructions of your own course or examination.</p>
+        <h3>Are these formulas suitable for every examination?</h3>
+        <p>These formulas are for learning and revision. Check the syllabus and notation used by your own course or examination.</p>
+      </div>
+
+      <div class="faq">
+        <h3>Can I use these formulas on mobile?</h3>
+        <p>Yes. The Formula Hub is responsive and can be used on mobile phones, tablets and computers.</p>
       </div>
     </article>
 
     <article class="info-card">
-      <h2>Important Note</h2>
+      <h2>Important Educational Note</h2>
       <p>
-        This page is an educational reference. Always check the
-        assumptions, units and conditions of a formula before applying
-        it to a problem. Some equations have different forms depending
-        on the topic and sign convention being used.
+        This page is an educational reference. Always check the assumptions,
+        units and conditions of a formula before applying it to a problem.
+        Some equations have different forms depending on the topic and
+        sign convention being used.
       </p>
+    </article>
+
+    <article class="info-card">
+      <h2>Explore More Free Learning Tools</h2>
+      <p>Continue learning with other educational resources from Toolora.</p>
+      <ul>
+        <li><a href="index.html">Toolora Home</a></li>
+        <li><a href="nda.html">NDA Practice Quiz</a></li>
+        <li><a href="army.html">Army Exam Practice</a></li>
+        <li><a href="ssccgl.html">SSC CGL Practice</a></li>
+        <li><a href="cuet.html">CUET Practice</a></li>
+      </ul>
     </article>
 
   </section>
@@ -703,7 +1014,13 @@ button{
 </main>
 
 <footer class="footer">
-  © 2026 Toolora AI · Formula Hub · Educational Reference Library
+  <p>© 2026 Toolora AI · Formula Hub · Educational Reference Library</p>
+  <p>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="contact.html">Contact</a>
+  </p>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -712,396 +1029,318 @@ button{
 "use strict";
 
 const formulas = [
-  {
-    id:"quadratic",
-    category:"math",
-    name:"Quadratic Formula",
-    formula:"x = (−b ± √(b² − 4ac)) / 2a",
-    description:"Find the roots of a quadratic equation ax² + bx + c = 0.",
-    variables:"a, b, c = coefficients; x = root of the equation.",
-    example:"For x² − 5x + 6 = 0, the roots are 2 and 3.",
-    keywords:"algebra equation roots discriminant"
-  },
-  {
-    id:"circle-area",
-    category:"math",
-    name:"Area of a Circle",
-    formula:"A = πr²",
-    description:"Calculate the area enclosed by a circle.",
-    variables:"A = area; r = radius; π ≈ 3.14159.",
-    example:"For r = 7, A = 49π ≈ 153.94 square units.",
-    keywords:"geometry circle radius"
-  },
-  {
-    id:"circumference",
-    category:"math",
-    name:"Circle Circumference",
-    formula:"C = 2πr",
-    description:"Calculate the distance around a circle.",
-    variables:"C = circumference; r = radius.",
-    example:"For r = 7, C = 14π ≈ 43.98 units.",
-    keywords:"circle perimeter diameter"
-  },
-  {
-    id:"triangle-area",
-    category:"math",
-    name:"Triangle Area",
-    formula:"A = ½bh",
-    description:"Calculate the area of a triangle using its base and perpendicular height.",
-    variables:"A = area; b = base; h = perpendicular height.",
-    example:"For b = 10 and h = 6, A = 30 square units.",
-    keywords:"geometry triangle"
-  },
-  {
-    id:"pythagoras",
-    category:"math",
-    name:"Pythagorean Theorem",
-    formula:"a² + b² = c²",
-    description:"Relates the sides of a right-angled triangle.",
-    variables:"a and b = shorter sides; c = hypotenuse.",
-    example:"For a = 3 and b = 4, c = 5.",
-    keywords:"right triangle hypotenuse geometry"
-  },
-  {
-    id:"distance",
-    category:"math",
-    name:"Distance Formula",
-    formula:"d = √((x₂−x₁)² + (y₂−y₁)²)",
-    description:"Find the straight-line distance between two coordinate points.",
-    variables:"(x₁,y₁) and (x₂,y₂) = two points.",
-    example:"Between (0,0) and (3,4), distance = 5 units.",
-    keywords:"coordinate geometry points"
-  },
-  {
-    id:"midpoint",
-    category:"math",
-    name:"Midpoint Formula",
-    formula:"M = ((x₁+x₂)/2, (y₁+y₂)/2)",
-    description:"Find the point exactly halfway between two coordinates.",
-    variables:"(x₁,y₁) and (x₂,y₂) = endpoints.",
-    example:"Midpoint of (2,4) and (6,8) is (4,6).",
-    keywords:"coordinate geometry"
-  },
-  {
-    id:"slope",
-    category:"math",
-    name:"Slope of a Line",
-    formula:"m = (y₂−y₁)/(x₂−x₁)",
-    description:"Calculate the slope between two points when x₂ ≠ x₁.",
-    variables:"m = slope; x and y = point coordinates.",
-    example:"Between (1,2) and (3,6), m = 2.",
-    keywords:"coordinate geometry gradient"
-  },
-  {
-    id:"simple-interest",
-    category:"math",
-    name:"Simple Interest",
-    formula:"SI = (P × R × T) / 100",
-    description:"Calculate interest on the original principal.",
-    variables:"P = principal; R = annual rate in percent; T = time in years.",
-    example:"P = 1000, R = 5%, T = 2 years gives SI = 100.",
-    keywords:"interest maths"
-  },
-  {
-    id:"cube-volume",
-    category:"math",
-    name:"Volume of a Cube",
-    formula:"V = a³",
-    description:"Calculate the volume of a cube.",
-    variables:"V = volume; a = side length.",
-    example:"For a = 3, V = 27 cubic units.",
-    keywords:"geometry solid"
-  },
-  {
-    id:"percentage",
-    category:"math",
-    name:"Percentage",
-    formula:"Percentage = (Part / Whole) × 100",
-    description:"Express a part as a percentage of the whole.",
-    variables:"Part = selected amount; Whole = total amount.",
-    example:"25 out of 100 = 25%.",
-    keywords:"ratio proportion"
-  },
-  {
-    id:"velocity",
-    category:"physics",
-    name:"Average Speed",
-    formula:"Speed = Distance / Time",
-    description:"Calculate average speed for a journey.",
-    variables:"Distance = total distance; Time = total elapsed time.",
-    example:"100 m in 20 s gives 5 m/s.",
-    keywords:"motion speed distance"
-  },
-  {
-    id:"acceleration",
-    category:"physics",
-    name:"Acceleration",
-    formula:"a = (v − u) / t",
-    description:"Calculate constant average acceleration from a velocity change.",
-    variables:"v = final velocity; u = initial velocity; t = time.",
-    example:"Velocity changes from 0 to 20 m/s in 5 s: a = 4 m/s².",
-    keywords:"motion kinematics"
-  },
-  {
-    id:"newton",
-    category:"physics",
-    name:"Newton's Second Law",
-    formula:"F = ma",
-    description:"Relates net force, mass and acceleration.",
-    variables:"F = net force; m = mass; a = acceleration.",
-    example:"A 2 kg object accelerating at 3 m/s² has net force 6 N.",
-    keywords:"force mechanics"
-  },
-  {
-    id:"momentum",
-    category:"physics",
-    name:"Momentum",
-    formula:"p = mv",
-    description:"Calculate linear momentum.",
-    variables:"p = momentum; m = mass; v = velocity.",
-    example:"A 2 kg object moving at 4 m/s has momentum 8 kg·m/s.",
-    keywords:"motion mechanics"
-  },
-  {
-    id:"work",
-    category:"physics",
-    name:"Work Done",
-    formula:"W = Fd cos θ",
-    description:"Work done by a constant force over a displacement.",
-    variables:"F = force; d = displacement; θ = angle between force and displacement.",
-    example:"A 10 N force acting through 2 m in the same direction does 20 J of work.",
-    keywords:"energy mechanics"
-  },
-  {
-    id:"power",
-    category:"physics",
-    name:"Power",
-    formula:"P = W / t",
-    description:"Calculate the rate of doing work.",
-    variables:"P = power; W = work; t = time.",
-    example:"100 J of work in 5 s gives 20 W.",
-    keywords:"work energy"
-  },
-  {
-    id:"ohm",
-    category:"physics",
-    name:"Ohm's Law",
-    formula:"V = IR",
-    description:"Relates voltage, current and resistance in an ohmic conductor.",
-    variables:"V = voltage; I = current; R = resistance.",
-    example:"I = 2 A and R = 5 Ω gives V = 10 V.",
-    keywords:"electricity circuit"
-  },
-  {
-    id:"weight",
-    category:"physics",
-    name:"Weight",
-    formula:"F = mg",
-    description:"Calculate gravitational force near a planetary surface.",
-    variables:"F = weight; m = mass; g = gravitational acceleration.",
-    example:"For 2 kg and g = 9.8 m/s², weight = 19.6 N.",
-    keywords:"gravity gravitation"
-  },
-  {
-    id:"potential-energy",
-    category:"physics",
-    name:"Gravitational Potential Energy",
-    formula:"PE = mgh",
-    description:"Calculate gravitational potential energy relative to a chosen reference level.",
-    variables:"m = mass; g = gravitational acceleration; h = height.",
-    example:"For 2 kg at 5 m with g = 9.8 m/s², PE = 98 J.",
-    keywords:"energy gravity"
-  },
-  {
-    id:"kinetic-energy",
-    category:"physics",
-    name:"Kinetic Energy",
-    formula:"KE = ½mv²",
-    description:"Calculate the translational kinetic energy of an object.",
-    variables:"m = mass; v = speed.",
-    example:"For 2 kg moving at 3 m/s, KE = 9 J.",
-    keywords:"energy motion"
-  },
-  {
-    id:"wave-speed",
-    category:"physics",
-    name:"Wave Speed",
-    formula:"v = fλ",
-    description:"Relates wave speed, frequency and wavelength.",
-    variables:"v = wave speed; f = frequency; λ = wavelength.",
-    example:"For f = 5 Hz and λ = 2 m, v = 10 m/s.",
-    keywords:"waves sound"
-  },
-  {
-    id:"frequency",
-    category:"physics",
-    name:"Frequency and Time Period",
-    formula:"f = 1 / T",
-    description:"Frequency is the reciprocal of the time period.",
-    variables:"f = frequency; T = time period.",
-    example:"A period of 0.5 s gives frequency 2 Hz.",
-    keywords:"oscillation waves"
-  },
-  {
-    id:"gravitation",
-    category:"physics",
-    name:"Universal Gravitation",
-    formula:"F = Gm₁m₂ / r²",
-    description:"Calculate the gravitational attraction between two point masses.",
-    variables:"G = gravitational constant; m₁,m₂ = masses; r = separation.",
-    example:"The force depends on both masses and decreases with the square of separation.",
-    keywords:"gravity astronomy"
-  },
-  {
-    id:"density",
-    category:"physics",
-    name:"Density",
-    formula:"ρ = m / V",
-    description:"Calculate mass per unit volume.",
-    variables:"ρ = density; m = mass; V = volume.",
-    example:"A 10 kg object occupying 2 m³ has density 5 kg/m³.",
-    keywords:"matter measurement"
-  },
-  {
-    id:"gas-law",
-    category:"chemistry",
-    name:"Ideal Gas Law",
-    formula:"PV = nRT",
-    description:"Relates the pressure, volume, amount and absolute temperature of an ideal gas.",
-    variables:"P = pressure; V = volume; n = moles; R = gas constant; T = kelvin temperature.",
-    example:"Use consistent SI units and the matching value of R.",
-    keywords:"gas chemistry thermodynamics"
-  },
-  {
-    id:"molarity",
-    category:"chemistry",
-    name:"Molarity",
-    formula:"M = n / V",
-    description:"Calculate concentration in moles per litre of solution.",
-    variables:"M = molarity; n = moles of solute; V = solution volume in litres.",
-    example:"0.5 mol in 1 L gives 0.5 mol/L.",
-    keywords:"concentration solution"
-  },
-  {
-    id:"density-chem",
-    category:"chemistry",
-    name:"Mass Density",
-    formula:"ρ = m / V",
-    description:"Relates the mass of a substance to its volume.",
-    variables:"ρ = density; m = mass; V = volume.",
-    example:"20 g in 10 cm³ gives 2 g/cm³.",
-    keywords:"matter physical chemistry"
-  },
-  {
-    id:"charles-law",
-    category:"chemistry",
-    name:"Charles's Law",
-    formula:"V₁/T₁ = V₂/T₂",
-    description:"For a fixed amount of gas at constant pressure, volume is proportional to absolute temperature.",
-    variables:"V = volume; T = temperature in kelvin.",
-    example:"Always convert temperatures to kelvin before substitution.",
-    keywords:"gas law temperature"
-  },
-  {
-    id:"ph",
-    category:"chemistry",
-    name:"pH",
-    formula:"pH = −log₁₀[H⁺]",
-    description:"Expresses hydrogen ion concentration on the pH scale.",
-    variables:"[H⁺] = hydrogen ion concentration in mol/L.",
-    example:"For [H⁺] = 10⁻³ mol/L, pH = 3.",
-    keywords:"acids bases logarithm"
-  },
-  {
-    id:"beer-lambert",
-    category:"chemistry",
-    name:"Beer-Lambert Law",
-    formula:"A = εlc",
-    description:"Relates absorbance to molar absorptivity, path length and concentration.",
-    variables:"A = absorbance; ε = molar absorptivity; l = path length; c = concentration.",
-    example:"Absorbance increases with concentration when other conditions stay constant.",
-    keywords:"absorbance spectroscopy"
-  },
-  {
-    id:"mean",
-    category:"statistics",
-    name:"Arithmetic Mean",
-    formula:"Mean = Σx / n",
-    description:"Calculate the average of a set of numerical values.",
-    variables:"Σx = sum of observations; n = number of observations.",
-    example:"Mean of 2, 4 and 6 is 4.",
-    keywords:"average data"
-  },
-  {
-    id:"probability",
-    category:"statistics",
-    name:"Basic Probability",
-    formula:"P(A) = Favourable Outcomes / Total Outcomes",
-    description:"For equally likely outcomes, calculate the probability of event A.",
-    variables:"Favourable outcomes = outcomes supporting A; total outcomes = all possible outcomes.",
-    example:"Probability of rolling a 3 on a fair six-sided die is 1/6.",
-    keywords:"chance event"
-  },
-  {
-    id:"zscore",
-    category:"statistics",
-    name:"Z-Score",
-    formula:"z = (x − μ) / σ",
-    description:"Measure how many standard deviations an observation is from the population mean.",
-    variables:"x = observation; μ = population mean; σ = population standard deviation.",
-    example:"For x = 70, μ = 60 and σ = 5, z = 2.",
-    keywords:"standard score distribution"
-  },
-  {
-    id:"variance",
-    category:"statistics",
-    name:"Population Variance",
-    formula:"σ² = Σ(x − μ)² / N",
-    description:"Measure the average squared deviation from the population mean.",
-    variables:"x = observation; μ = population mean; N = population size.",
-    example:"Calculate the mean first, then square each deviation.",
-    keywords:"statistics spread"
-  },
-  {
-    id:"compound",
-    category:"finance",
-    name:"Compound Interest",
-    formula:"A = P(1 + r/n)ⁿᵗ",
-    description:"Calculate the future value when interest is compounded periodically.",
-    variables:"P = principal; r = annual decimal rate; n = compounding periods per year; t = years.",
-    example:"Convert 5% to 0.05 before using the formula.",
-    keywords:"investment savings"
-  },
-  {
-    id:"profit",
-    category:"finance",
-    name:"Profit",
-    formula:"Profit = Selling Price − Cost Price",
-    description:"Calculate profit before any additional expenses or taxes.",
-    variables:"Selling price = sale amount; cost price = purchase or production cost.",
-    example:"Selling for ₹150 after a cost of ₹100 gives ₹50 profit.",
-    keywords:"business money"
-  },
-  {
-    id:"profit-percent",
-    category:"finance",
-    name:"Profit Percentage",
-    formula:"Profit % = (Profit / Cost Price) × 100",
-    description:"Express profit as a percentage of cost price.",
-    variables:"Profit = selling price − cost price.",
-    example:"₹20 profit on ₹100 cost price equals 20%.",
-    keywords:"business percentage"
-  },
-  {
-    id:"discount",
-    category:"finance",
-    name:"Discount",
-    formula:"Discount = Marked Price × Rate / 100",
-    description:"Calculate the reduction from a marked price.",
-    variables:"Marked price = original listed price; rate = discount percentage.",
-    example:"10% off ₹500 equals ₹50 discount.",
-    keywords:"shopping sale"
-  }
+{
+id:"quadratic",category:"math",name:"Quadratic Formula",
+formula:"x = (−b ± √(b² − 4ac)) / 2a",
+description:"Find the roots of a quadratic equation ax² + bx + c = 0.",
+variables:"a, b, c = coefficients; x = root of the equation.",
+example:"For x² − 5x + 6 = 0, the roots are 2 and 3.",
+keywords:"algebra equation roots discriminant"
+},
+{
+id:"circle-area",category:"math",name:"Area of a Circle",
+formula:"A = πr²",
+description:"Calculate the area enclosed by a circle.",
+variables:"A = area; r = radius; π ≈ 3.14159.",
+example:"For r = 7, A = 49π ≈ 153.94 square units.",
+keywords:"geometry circle radius"
+},
+{
+id:"circumference",category:"math",name:"Circle Circumference",
+formula:"C = 2πr",
+description:"Calculate the distance around a circle.",
+variables:"C = circumference; r = radius.",
+example:"For r = 7, C = 14π ≈ 43.98 units.",
+keywords:"circle perimeter diameter"
+},
+{
+id:"triangle-area",category:"math",name:"Triangle Area",
+formula:"A = ½bh",
+description:"Calculate the area of a triangle using its base and perpendicular height.",
+variables:"A = area; b = base; h = perpendicular height.",
+example:"For b = 10 and h = 6, A = 30 square units.",
+keywords:"geometry triangle"
+},
+{
+id:"pythagoras",category:"math",name:"Pythagorean Theorem",
+formula:"a² + b² = c²",
+description:"Relates the sides of a right-angled triangle.",
+variables:"a and b = shorter sides; c = hypotenuse.",
+example:"For a = 3 and b = 4, c = 5.",
+keywords:"right triangle hypotenuse geometry"
+},
+{
+id:"distance",category:"math",name:"Distance Formula",
+formula:"d = √((x₂−x₁)² + (y₂−y₁)²)",
+description:"Find the straight-line distance between two coordinate points.",
+variables:"(x₁,y₁) and (x₂,y₂) = two points.",
+example:"Between (0,0) and (3,4), distance = 5 units.",
+keywords:"coordinate geometry points"
+},
+{
+id:"midpoint",category:"math",name:"Midpoint Formula",
+formula:"M = ((x₁+x₂)/2, (y₁+y₂)/2)",
+description:"Find the point exactly halfway between two coordinates.",
+variables:"(x₁,y₁) and (x₂,y₂) = endpoints.",
+example:"Midpoint of (2,4) and (6,8) is (4,6).",
+keywords:"coordinate geometry"
+},
+{
+id:"slope",category:"math",name:"Slope of a Line",
+formula:"m = (y₂−y₁)/(x₂−x₁)",
+description:"Calculate the slope between two points when x₂ ≠ x₁.",
+variables:"m = slope; x and y = point coordinates.",
+example:"Between (1,2) and (3,6), m = 2.",
+keywords:"coordinate geometry gradient"
+},
+{
+id:"simple-interest",category:"math",name:"Simple Interest",
+formula:"SI = (P × R × T) / 100",
+description:"Calculate interest on the original principal.",
+variables:"P = principal; R = annual rate in percent; T = time in years.",
+example:"P = 1000, R = 5%, T = 2 years gives SI = 100.",
+keywords:"interest maths"
+},
+{
+id:"cube-volume",category:"math",name:"Volume of a Cube",
+formula:"V = a³",
+description:"Calculate the volume of a cube.",
+variables:"V = volume; a = side length.",
+example:"For a = 3, V = 27 cubic units.",
+keywords:"geometry solid"
+},
+{
+id:"percentage",category:"math",name:"Percentage",
+formula:"Percentage = (Part / Whole) × 100",
+description:"Express a part as a percentage of the whole.",
+variables:"Part = selected amount; Whole = total amount.",
+example:"25 out of 100 = 25%.",
+keywords:"ratio proportion"
+},
+{
+id:"velocity",category:"physics",name:"Average Speed",
+formula:"Speed = Distance / Time",
+description:"Calculate average speed for a journey.",
+variables:"Distance = total distance; Time = total elapsed time.",
+example:"100 m in 20 s gives 5 m/s.",
+keywords:"motion speed distance"
+},
+{
+id:"acceleration",category:"physics",name:"Acceleration",
+formula:"a = (v − u) / t",
+description:"Calculate constant average acceleration from a velocity change.",
+variables:"v = final velocity; u = initial velocity; t = time.",
+example:"Velocity changes from 0 to 20 m/s in 5 s: a = 4 m/s².",
+keywords:"motion kinematics"
+},
+{
+id:"newton",category:"physics",name:"Newton's Second Law",
+formula:"F = ma",
+description:"Relates net force, mass and acceleration.",
+variables:"F = net force; m = mass; a = acceleration.",
+example:"A 2 kg object accelerating at 3 m/s² has net force 6 N.",
+keywords:"force mechanics"
+},
+{
+id:"momentum",category:"physics",name:"Momentum",
+formula:"p = mv",
+description:"Calculate linear momentum.",
+variables:"p = momentum; m = mass; v = velocity.",
+example:"A 2 kg object moving at 4 m/s has momentum 8 kg·m/s.",
+keywords:"motion mechanics"
+},
+{
+id:"work",category:"physics",name:"Work Done",
+formula:"W = Fd cos θ",
+description:"Work done by a constant force over a displacement.",
+variables:"F = force; d = displacement; θ = angle between force and displacement.",
+example:"A 10 N force acting through 2 m in the same direction does 20 J of work.",
+keywords:"energy mechanics"
+},
+{
+id:"power",category:"physics",name:"Power",
+formula:"P = W / t",
+description:"Calculate the rate of doing work.",
+variables:"P = power; W = work; t = time.",
+example:"100 J of work in 5 s gives 20 W.",
+keywords:"work energy"
+},
+{
+id:"ohm",category:"physics",name:"Ohm's Law",
+formula:"V = IR",
+description:"Relates voltage, current and resistance in an ohmic conductor.",
+variables:"V = voltage; I = current; R = resistance.",
+example:"I = 2 A and R = 5 Ω gives V = 10 V.",
+keywords:"electricity circuit"
+},
+{
+id:"weight",category:"physics",name:"Weight",
+formula:"F = mg",
+description:"Calculate gravitational force near a planetary surface.",
+variables:"F = weight; m = mass; g = gravitational acceleration.",
+example:"For 2 kg and g = 9.8 m/s², weight = 19.6 N.",
+keywords:"gravity gravitation"
+},
+{
+id:"potential-energy",category:"physics",name:"Gravitational Potential Energy",
+formula:"PE = mgh",
+description:"Calculate gravitational potential energy relative to a chosen reference level.",
+variables:"m = mass; g = gravitational acceleration; h = height.",
+example:"For 2 kg at 5 m with g = 9.8 m/s², PE = 98 J.",
+keywords:"energy gravity"
+},
+{
+id:"kinetic-energy",category:"physics",name:"Kinetic Energy",
+formula:"KE = ½mv²",
+description:"Calculate the translational kinetic energy of an object.",
+variables:"m = mass; v = speed.",
+example:"For 2 kg moving at 3 m/s, KE = 9 J.",
+keywords:"energy motion"
+},
+{
+id:"wave-speed",category:"physics",name:"Wave Speed",
+formula:"v = fλ",
+description:"Relates wave speed, frequency and wavelength.",
+variables:"v = wave speed; f = frequency; λ = wavelength.",
+example:"For f = 5 Hz and λ = 2 m, v = 10 m/s.",
+keywords:"waves sound"
+},
+{
+id:"frequency",category:"physics",name:"Frequency and Time Period",
+formula:"f = 1 / T",
+description:"Frequency is the reciprocal of the time period.",
+variables:"f = frequency; T = time period.",
+example:"A period of 0.5 s gives frequency 2 Hz.",
+keywords:"oscillation waves"
+},
+{
+id:"gravitation",category:"physics",name:"Universal Gravitation",
+formula:"F = Gm₁m₂ / r²",
+description:"Calculate the gravitational attraction between two point masses.",
+variables:"G = gravitational constant; m₁,m₂ = masses; r = separation.",
+example:"The force depends on both masses and decreases with the square of separation.",
+keywords:"gravity astronomy"
+},
+{
+id:"density",category:"physics",name:"Density",
+formula:"ρ = m / V",
+description:"Calculate mass per unit volume.",
+variables:"ρ = density; m = mass; V = volume.",
+example:"A 10 kg object occupying 2 m³ has density 5 kg/m³.",
+keywords:"matter measurement"
+},
+{
+id:"gas-law",category:"chemistry",name:"Ideal Gas Law",
+formula:"PV = nRT",
+description:"Relates pressure, volume, amount and absolute temperature of an ideal gas.",
+variables:"P = pressure; V = volume; n = moles; R = gas constant; T = kelvin temperature.",
+example:"Use consistent SI units and the matching value of R.",
+keywords:"gas chemistry thermodynamics"
+},
+{
+id:"molarity",category:"chemistry",name:"Molarity",
+formula:"M = n / V",
+description:"Calculate concentration in moles per litre of solution.",
+variables:"M = molarity; n = moles of solute; V = solution volume in litres.",
+example:"0.5 mol in 1 L gives 0.5 mol/L.",
+keywords:"concentration solution"
+},
+{
+id:"density-chem",category:"chemistry",name:"Mass Density",
+formula:"ρ = m / V",
+description:"Relates the mass of a substance to its volume.",
+variables:"ρ = density; m = mass; V = volume.",
+example:"20 g in 10 cm³ gives 2 g/cm³.",
+keywords:"matter physical chemistry"
+},
+{
+id:"charles-law",category:"chemistry",name:"Charles's Law",
+formula:"V₁/T₁ = V₂/T₂",
+description:"For a fixed amount of gas at constant pressure, volume is proportional to absolute temperature.",
+variables:"V = volume; T = temperature in kelvin.",
+example:"Always convert temperatures to kelvin before substitution.",
+keywords:"gas law temperature"
+},
+{
+id:"ph",category:"chemistry",name:"pH",
+formula:"pH = −log₁₀[H⁺]",
+description:"Expresses hydrogen ion concentration on the pH scale.",
+variables:"[H⁺] = hydrogen ion concentration in mol/L.",
+example:"For [H⁺] = 10⁻³ mol/L, pH = 3.",
+keywords:"acids bases logarithm"
+},
+{
+id:"beer-lambert",category:"chemistry",name:"Beer-Lambert Law",
+formula:"A = εlc",
+description:"Relates absorbance to molar absorptivity, path length and concentration.",
+variables:"A = absorbance; ε = molar absorptivity; l = path length; c = concentration.",
+example:"Absorbance increases with concentration when other conditions stay constant.",
+keywords:"absorbance spectroscopy"
+},
+{
+id:"mean",category:"statistics",name:"Arithmetic Mean",
+formula:"Mean = Σx / n",
+description:"Calculate the average of a set of numerical values.",
+variables:"Σx = sum of observations; n = number of observations.",
+example:"Mean of 2, 4 and 6 is 4.",
+keywords:"average data"
+},
+{
+id:"probability",category:"statistics",name:"Basic Probability",
+formula:"P(A) = Favourable Outcomes / Total Outcomes",
+description:"For equally likely outcomes, calculate the probability of event A.",
+variables:"Favourable outcomes = outcomes supporting A; total outcomes = all possible outcomes.",
+example:"Probability of rolling a 3 on a fair six-sided die is 1/6.",
+keywords:"chance event"
+},
+{
+id:"zscore",category:"statistics",name:"Z-Score",
+formula:"z = (x − μ) / σ",
+description:"Measure how many standard deviations an observation is from the population mean.",
+variables:"x = observation; μ = population mean; σ = population standard deviation.",
+example:"For x = 70, μ = 60 and σ = 5, z = 2.",
+keywords:"standard score distribution"
+},
+{
+id:"variance",category:"statistics",name:"Population Variance",
+formula:"σ² = Σ(x − μ)² / N",
+description:"Measure the average squared deviation from the population mean.",
+variables:"x = observation; μ = population mean; N = population size.",
+example:"Calculate the mean first, then square each deviation.",
+keywords:"statistics spread"
+},
+{
+id:"compound",category:"finance",name:"Compound Interest",
+formula:"A = P(1 + r/n)ⁿᵗ",
+description:"Calculate the future value when interest is compounded periodically.",
+variables:"P = principal; r = annual decimal rate; n = compounding periods per year; t = years.",
+example:"Convert 5% to 0.05 before using the formula.",
+keywords:"investment savings"
+},
+{
+id:"profit",category:"finance",name:"Profit",
+formula:"Profit = Selling Price − Cost Price",
+description:"Calculate profit before any additional expenses or taxes.",
+variables:"Selling price = sale amount; cost price = purchase or production cost.",
+example:"Selling for ₹150 after a cost of ₹100 gives ₹50 profit.",
+keywords:"business money"
+},
+{
+id:"profit-percent",category:"finance",name:"Profit Percentage",
+formula:"Profit % = (Profit / Cost Price) × 100",
+description:"Express profit as a percentage of cost price.",
+variables:"Profit = selling price − cost price.",
+example:"₹20 profit on ₹100 cost price equals 20%.",
+keywords:"business percentage"
+},
+{
+id:"discount",category:"finance",name:"Discount",
+formula:"Discount = Marked Price × Rate / 100",
+description:"Calculate the reduction from a marked price.",
+variables:"Marked price = original listed price; rate = discount percentage.",
+example:"10% off ₹500 equals ₹50 discount.",
+keywords:"shopping sale"
+}
 ];
 
 const categoryNames = {
@@ -1119,7 +1358,10 @@ let searchTerm = "";
 let favorites = [];
 
 try {
-  favorites = JSON.parse(localStorage.getItem("tooloraFormulaFavorites") || "[]");
+  favorites = JSON.parse(
+    localStorage.getItem("tooloraFormulaFavorites") || "[]"
+  );
+
   if (!Array.isArray(favorites)) favorites = [];
 } catch {
   favorites = [];
@@ -1132,11 +1374,12 @@ const sectionTitle = document.getElementById("sectionTitle");
 const sort = document.getElementById("sort");
 const toast = document.getElementById("toast");
 
-function showToast(text) {
-  toast.textContent = text;
+function showToast(message) {
+  toast.textContent = message;
   toast.classList.add("show");
 
   clearTimeout(showToast.timer);
+
   showToast.timer = setTimeout(() => {
     toast.classList.remove("show");
   }, 2200);
@@ -1151,6 +1394,16 @@ function saveFavorites() {
   } catch {
     showToast("Browser storage is unavailable.");
   }
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
 }
 
 function renderCards() {
@@ -1176,7 +1429,9 @@ function renderCards() {
   }
 
   sectionTitle.textContent = categoryNames[activeCategory];
-  resultCount.textContent = `${filtered.length} formula${filtered.length === 1 ? "" : "s"} found`;
+
+  resultCount.textContent =
+    `${filtered.length} formula${filtered.length === 1 ? "" : "s"} found`;
 
   document.getElementById("totalStat").textContent = formulas.length;
 
@@ -1194,10 +1449,11 @@ function renderCards() {
     <article class="formula-card">
       <div class="card-top">
         <span class="badge">${categoryNames[item.category]}</span>
+
         <button
           class="favorite-btn ${favorites.includes(item.id) ? "saved" : ""}"
           data-favorite="${item.id}"
-          aria-label="Save ${item.name} to favourites"
+          aria-label="Save ${escapeHTML(item.name)} to favourites"
           title="Save favourite"
         >${favorites.includes(item.id) ? "★" : "☆"}</button>
       </div>
@@ -1218,20 +1474,12 @@ function renderCards() {
       </div>
 
       <div class="card-actions">
-        <button class="copy-btn" data-copy="${item.id}">📋 Copy Formula</button>
+        <button class="copy-btn" data-copy="${item.id}">
+          📋 Copy Formula
+        </button>
       </div>
     </article>
   `).join("");
-}
-
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  })[char]);
 }
 
 async function copyFormula(id) {
