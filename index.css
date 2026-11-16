@@ -1337,3 +1337,475 @@ summary:focus-visible {
     transition-duration: .01ms !important;
   }
 }
+
+
+/* ==========================================
+   TOOLORA AI — ACTUAL LAYOUT TRANSFORMATION
+   Append this at the END of index.css
+========================================== */
+
+/* 1. HERO: Premium split-screen dashboard */
+
+.hero {
+    grid-template-columns: 1.05fr .95fr;
+    gap: 65px;
+    min-height: 720px;
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
+
+.hero-left {
+    max-width: 680px;
+}
+
+.hero h1 {
+    font-size: clamp(54px, 6.5vw, 86px);
+    letter-spacing: -3px;
+}
+
+.hero-right {
+    perspective: 1000px;
+}
+
+.hero-glass {
+    position: relative;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    padding: 25px;
+    min-height: 340px;
+    border-radius: 30px;
+    transform: rotateY(-5deg) rotateX(3deg);
+    background:
+        radial-gradient(circle at 50% 0%, rgba(79,124,255,.22), transparent 55%),
+        linear-gradient(145deg, #151d39, #090d1d);
+    box-shadow: 0 30px 90px rgba(0,0,0,.45);
+}
+
+.hero-glass::before {
+    content: "TOOLORA • YOUR DIGITAL WORKSPACE";
+    position: absolute;
+    top: -35px;
+    left: 5px;
+    color: #8292bb;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.hero-glass::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(255,255,255,.055);
+    border-radius: 22px;
+    pointer-events: none;
+}
+
+.mini-card {
+    position: relative;
+    z-index: 1;
+    min-height: 125px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.055);
+}
+
+.mini-card > i {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    font-size: 19px;
+}
+
+.mini-card h4 {
+    font-size: 16px;
+}
+
+.mini-card p {
+    font-size: 12px;
+}
+
+/* 2. SECTION HEADINGS: Editorial layout */
+
+.section-title {
+    position: relative;
+    margin-bottom: 48px;
+}
+
+.section-title h2 {
+    font-size: clamp(32px, 4vw, 45px);
+    letter-spacing: -1.3px;
+}
+
+.section-title p {
+    max-width: 560px;
+}
+
+/* 3. ALL TOOL CARDS: Artwork-style thumbnails */
+
+.bento-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-flow: dense;
+    gap: 19px;
+}
+
+.tool-card {
+    min-height: 310px;
+    padding: 17px;
+    gap: 12px;
+    border-radius: 23px;
+    background: #0c1225;
+}
+
+.tool-card .icon,
+.tool-card .tool-icon,
+.tool-card > span:first-child {
+    width: 100%;
+    height: 132px;
+    min-height: 132px;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 5px;
+    border-radius: 17px;
+    font-size: 43px;
+    border: 1px solid rgba(255,255,255,.09);
+    background:
+        radial-gradient(circle at 25% 20%, rgba(255,255,255,.18), transparent 30%),
+        radial-gradient(circle at 80% 90%, var(--card-accent), transparent 65%),
+        linear-gradient(135deg, #172342, #10162d);
+    overflow: hidden;
+}
+
+.tool-card .icon i,
+.tool-card .tool-icon i {
+    font-size: 43px;
+    filter: drop-shadow(0 5px 12px rgba(0,0,0,.35));
+}
+
+.tool-card h3 {
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.tool-card p {
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.tool-card > span:not(:first-child) {
+    margin-top: auto;
+}
+
+/* 4. AI TOOLS: Feature-style bento arrangement */
+
+#ai-tools .bento-grid > .tool-card:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+#ai-tools .bento-grid > .tool-card:nth-child(1) .icon {
+    height: 155px;
+}
+
+#ai-tools .bento-grid > .tool-card:nth-child(2) {
+    grid-column: span 1;
+}
+
+/* 5. QUIZ HUB: Exam category grid */
+
+#quiz-hub .bento-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#quiz-hub .tool-card {
+    min-height: 265px;
+}
+
+#quiz-hub .tool-card .icon,
+#quiz-hub .tool-card .tool-icon,
+#quiz-hub .tool-card > span:first-child {
+    height: 105px;
+    min-height: 105px;
+}
+
+/* 6. UTILITIES: Compact productivity dashboard */
+
+#utilities .bento-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#utilities .tool-card {
+    min-height: 285px;
+}
+
+#utilities .tool-card .icon,
+#utilities .tool-card .tool-icon,
+#utilities .tool-card > span:first-child {
+    height: 115px;
+    min-height: 115px;
+}
+
+/* 7. GAMES: Gaming gallery */
+
+#games .bento-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 21px;
+}
+
+#games .tool-card {
+    min-height: 280px;
+    background:
+        radial-gradient(circle at 90% 5%, rgba(255,85,200,.10), transparent 45%),
+        linear-gradient(145deg, #17132b, #0c1022);
+}
+
+#games .tool-card .icon {
+    height: 115px;
+    min-height: 115px;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(255,85,200,.22), transparent 65%),
+        linear-gradient(135deg, #29204b, #151a34);
+}
+
+/* 8. FEATURED: Larger premium tiles */
+
+#featured .featured-grid,
+#trending .featured-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.feature-card {
+    min-height: 185px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 23px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(79,124,255,.18), transparent 65%),
+        linear-gradient(145deg, #151d38, #0b1021);
+}
+
+.feature-card::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: -35px;
+    bottom: -45px;
+    border-radius: 50%;
+    background: var(--purple);
+    opacity: .12;
+    filter: blur(25px);
+}
+
+.feature-card i {
+    position: relative;
+    z-index: 1;
+    width: 65px;
+    height: 65px;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    border: 1px solid rgba(0,229,255,.2);
+    border-radius: 20px;
+    background: rgba(0,229,255,.08);
+    font-size: 29px;
+}
+
+.feature-card h3 {
+    position: relative;
+    z-index: 1;
+}
+
+/* 9. STATISTICS: Dashboard blocks */
+
+#statistics .stats-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.stat-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 155px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(139,92,255,.16), transparent 60%),
+        #10162b;
+}
+
+/* 10. WHY SECTION: Consistent premium tiles */
+
+.why-card {
+    min-height: 220px;
+    background: linear-gradient(145deg, #151d36, #0b1020);
+}
+
+.why-card i {
+    width: 59px;
+    height: 59px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(0,229,255,.17);
+    border-radius: 18px;
+    background: rgba(0,229,255,.07);
+}
+
+/* 11. Desktop visual polish */
+
+@media (min-width: 1200px) {
+    .section {
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+
+    #ai-tools .bento-grid > .tool-card:nth-child(1) {
+        grid-column: span 2;
+    }
+
+    .tool-card:hover .icon,
+    .tool-card:hover .tool-icon {
+        transform: scale(1.025);
+    }
+}
+
+/* 12. Tablet */
+
+@media (max-width: 1000px) {
+    .hero {
+        gap: 35px;
+    }
+
+    .bento-grid,
+    #quiz-hub .bento-grid,
+    #utilities .bento-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #games .bento-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #featured .featured-grid,
+    #trending .featured-grid,
+    #statistics .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* 13. Mobile */
+
+@media (max-width: 700px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 55px;
+        min-height: auto;
+    }
+
+    .hero-glass {
+        transform: none;
+    }
+
+    .hero-glass::before {
+        top: -27px;
+    }
+
+    #ai-tools .bento-grid > .tool-card:nth-child(1) {
+        grid-column: span 1;
+    }
+
+    .bento-grid,
+    #quiz-hub .bento-grid,
+    #utilities .bento-grid,
+    #games .bento-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tool-card {
+        min-height: 270px;
+        padding: 13px;
+    }
+
+    .tool-card .icon,
+    .tool-card .tool-icon,
+    .tool-card > span:first-child {
+        height: 105px;
+        min-height: 105px;
+        font-size: 35px;
+    }
+
+    .tool-card .icon i,
+    .tool-card .tool-icon i {
+        font-size: 35px;
+    }
+
+    #featured .featured-grid,
+    #trending .featured-grid,
+    #statistics .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* 14. Small phones */
+
+@media (max-width: 420px) {
+    .hero-glass {
+        grid-template-columns: 1fr 1fr;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .mini-card {
+        min-height: 120px;
+        padding: 12px;
+    }
+
+    .bento-grid,
+    #quiz-hub .bento-grid,
+    #utilities .bento-grid,
+    #games .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-card {
+        min-height: 255px;
+        padding: 17px;
+    }
+
+    .tool-card .icon,
+    .tool-card .tool-icon,
+    .tool-card > span:first-child {
+        height: 120px;
+        min-height: 120px;
+    }
+
+    .tool-card h3 {
+        font-size: 18px;
+    }
+
+    #featured .featured-grid,
+    #trending .featured-grid,
+    #statistics .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* 15. Respect reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-glass,
+    .tool-card,
+    .feature-card,
+    .mini-card {
+        transform: none !important;
+    }
+}
+
