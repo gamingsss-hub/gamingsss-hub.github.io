@@ -4,371 +4,966 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wildfire Tracker | Toolora AI</title>
-  <meta name="description" content="Explore NASA-curated active wildfire events on an interactive global map. Browse event locations, dates and source information.">
-  <meta name="keywords" content="wildfire tracker, active wildfires map, NASA wildfire events, global fire map, wildfire locations">
-  <meta name="theme-color" content="#080812">
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <title>Wildfire Tracker | Global Fire Activity – Toolora AI</title>
+  <meta name="description" content="Explore NASA EONET wildfire events around the world with an interactive map, event search and live activity dashboard.">
+  <meta name="keywords" content="wildfire tracker, NASA EONET, global wildfire map, fire activity, wildfire events">
+  <meta name="theme-color" content="#080a12">
+  <meta name="robots" content="index, follow">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
   <style>
     :root {
-      --bg:#080812;
-      --panel:#121221;
-      --panel2:#19192c;
-      --orange:#ff783f;
-      --red:#ff4568;
-      --purple:#9b5cff;
-      --cyan:#00e5ff;
-      --text:#f5f5ff;
-      --muted:#9999b1;
-      --border:rgba(255,255,255,.09);
+      --bg: #080a12;
+      --panel: #101421;
+      --panel2: #151b2b;
+      --orange: #ff873f;
+      --red: #ff4e63;
+      --yellow: #ffbd59;
+      --purple: #a477ff;
+      --cyan: #55d9ff;
+      --text: #f5f7ff;
+      --muted: #8f9ab1;
+      --border: rgba(255,255,255,.085);
+      --glass: rgba(255,255,255,.035);
+      --shadow: 0 18px 55px rgba(0,0,0,.25);
     }
 
-    * { box-sizing:border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      margin:0;
-      color:var(--text);
-      font-family:'Poppins',sans-serif;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
       background:
-        radial-gradient(ellipse at 10% 0%,rgba(255,100,55,.12),transparent 35%),
-        radial-gradient(ellipse at 90% 15%,rgba(155,92,255,.12),transparent 32%),
+        radial-gradient(ellipse at 5% 0%, rgba(255,105,55,.12), transparent 32%),
+        radial-gradient(ellipse at 95% 15%, rgba(130,75,255,.10), transparent 30%),
+        radial-gradient(ellipse at 50% 100%, rgba(0,180,255,.055), transparent 35%),
         var(--bg);
+      overflow-x: hidden;
     }
 
-    header {
-      padding:17px 5%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:15px;
-      border-bottom:1px solid var(--border);
-      background:rgba(8,8,18,.88);
+    button, input, select {
+      font: inherit;
+    }
+
+    button, a, select {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 3px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 5%;
+      background: rgba(8,10,18,.88);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(18px);
     }
 
     .brand {
-      font:800 23px 'Outfit',sans-serif;
-      letter-spacing:-.7px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: white;
+      text-decoration: none;
+      font: 900 23px 'Outfit', sans-serif;
+      letter-spacing: -.8px;
     }
 
-    .brand span { color:var(--orange); }
+    .brand-icon {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      font-size: 20px;
+      background: linear-gradient(135deg, rgba(255,135,63,.23), rgba(255,78,99,.13));
+      border: 1px solid rgba(255,135,63,.3);
+      box-shadow: 0 0 25px rgba(255,100,55,.12);
+    }
 
-    .back {
-      color:white;
-      text-decoration:none;
-      border:1px solid var(--border);
-      padding:9px 14px;
-      border-radius:10px;
-      font-size:13px;
+    .brand span {
+      color: var(--orange);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .system-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .system-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4cdb9a;
+      box-shadow: 0 0 12px #4cdb9a;
+    }
+
+    .back-btn {
+      text-decoration: none;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: var(--glass);
+      transition: .25s;
+    }
+
+    .back-btn:hover {
+      border-color: rgba(255,135,63,.5);
+      background: rgba(255,135,63,.09);
+      transform: translateY(-2px);
     }
 
     .container {
-      width:min(1400px,92%);
-      margin:auto;
-      padding:35px 0 55px;
+      width: min(1450px, 92%);
+      margin: auto;
+      padding: 38px 0 55px;
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.5fr .7fr;
+      align-items: center;
+      gap: 25px;
+      padding: 30px 0 18px;
     }
 
     .eyebrow {
-      color:var(--orange);
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.3px;
+      margin-bottom: 13px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      background: var(--orange);
+      border-radius: 5px;
     }
 
     h1 {
-      font:800 clamp(31px,5vw,49px) 'Outfit',sans-serif;
-      margin:9px 0;
+      font: 900 clamp(36px,5vw,65px)/1.05 'Outfit', sans-serif;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
     }
 
     h1 span {
-      background:linear-gradient(90deg,#ff9b52,#ff4568);
-      -webkit-background-clip:text;
-      color:transparent;
+      background: linear-gradient(90deg,#ffb65c,#ff704d,#ff4e75);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .hero p {
-      max-width:720px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.8;
+    .hero-description {
+      max-width: 670px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
     }
 
-    .status {
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-top:9px;
-      padding:8px 12px;
-      border:1px solid rgba(255,130,70,.25);
-      border-radius:30px;
-      background:rgba(255,110,60,.08);
-      color:#ffb17f;
-      font-size:12px;
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 19px;
     }
 
-    .status-dot {
-      width:7px;
-      height:7px;
-      border-radius:50%;
-      background:#ff8b42;
-      box-shadow:0 0 12px #ff8b42;
+    .hero-badge {
+      padding: 8px 12px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.035);
+      color: #c5cad8;
+      font-size: 10px;
     }
+
+    .hero-art {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 205px;
+      overflow: hidden;
+      border: 1px solid rgba(255,135,63,.14);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 50% 65%, rgba(255,92,42,.20), transparent 45%),
+        linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.012));
+    }
+
+    .fire-orbit {
+      position: absolute;
+      width: 155px;
+      height: 155px;
+      border: 1px solid rgba(255,155,90,.20);
+      border-radius: 50%;
+      animation: orbit 16s linear infinite;
+    }
+
+    .fire-orbit::before,
+    .fire-orbit::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 16px var(--orange);
+    }
+
+    .fire-orbit::before {
+      top: 18px;
+      left: 20px;
+    }
+
+    .fire-orbit::after {
+      right: 12px;
+      bottom: 32px;
+      background: var(--purple);
+      box-shadow: 0 0 16px var(--purple);
+    }
+
+    @keyframes orbit {
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-fire {
+      font-size: 80px;
+      filter: drop-shadow(0 0 24px rgba(255,100,40,.45));
+      animation: fireFloat 3s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes fireFloat {
+      0%,100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-9px) scale(1.05); }
+    }
+
+    .art-caption {
+      position: absolute;
+      bottom: 13px;
+      color: #ffb27e;
+      font-size: 9px;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    /* STATS */
 
     .stats {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:13px;
-      margin:25px 0;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 14px;
+      margin: 27px 0;
     }
 
-    .stat,.panel {
-      background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
-      border:1px solid var(--border);
-      border-radius:17px;
+    .stat {
+      position: relative;
+      padding: 19px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.016));
+      overflow: hidden;
+      transition: .25s;
     }
 
-    .stat { padding:17px; }
+    .stat:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,135,63,.3);
+    }
 
-    .stat small {
-      color:var(--muted);
-      font-size:11px;
+    .stat::after {
+      content: "";
+      position: absolute;
+      right: -20px;
+      top: -30px;
+      width: 100px;
+      height: 100px;
+      background: rgba(255,135,63,.06);
+      filter: blur(30px);
+      border-radius: 50%;
+    }
+
+    .stat-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .8px;
+    }
+
+    .stat-icon {
+      font-size: 17px;
     }
 
     .stat strong {
-      display:block;
-      font:700 27px 'Outfit',sans-serif;
-      margin-top:5px;
+      display: block;
+      position: relative;
+      z-index: 1;
+      font: 800 32px 'Outfit', sans-serif;
+      margin-top: 10px;
     }
 
+    .stat-sub {
+      color: var(--muted);
+      font-size: 9px;
+      margin-top: 3px;
+    }
+
+    /* GENERAL PANELS */
+
+    .panel {
+      background: linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      box-shadow: var(--shadow);
+    }
+
+    /* FILTER BAR */
+
     .controls {
-      display:flex;
-      flex-wrap:wrap;
-      align-items:end;
-      gap:14px;
-      padding:17px;
-      margin-bottom:18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.4fr auto;
+      align-items: end;
+      gap: 13px;
+      padding: 17px;
+      margin-bottom: 19px;
     }
 
     .field {
-      flex:1;
-      min-width:145px;
-      display:flex;
-      flex-direction:column;
-      gap:7px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
     }
 
-    label {
-      font-size:11px;
-      color:var(--muted);
+    .field label {
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
-    select,button {
-      font:500 13px 'Poppins',sans-serif;
-      border-radius:10px;
-      padding:11px 12px;
-      min-height:43px;
+    .field input,
+    .field select {
+      width: 100%;
+      min-width: 0;
+      height: 44px;
+      padding: 0 12px;
+      color: white;
+      background: #171d2d;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      font-size: 11px;
+      transition: .2s;
     }
 
-    select {
-      color:white;
-      background:#1b1b30;
-      border:1px solid var(--border);
-      outline:none;
+    .field input::placeholder {
+      color: #6e7890;
     }
 
-    button {
-      border:0;
-      color:white;
-      background:linear-gradient(100deg,var(--orange),var(--red));
-      cursor:pointer;
-      font-weight:600;
+    .field input:focus,
+    .field select:focus {
+      border-color: rgba(255,135,63,.6);
+      box-shadow: 0 0 0 3px rgba(255,135,63,.08);
     }
 
-    button:disabled {
-      opacity:.6;
-      cursor:wait;
+    .field select option {
+      background: #171d2d;
+      color: white;
     }
+
+    .refresh-btn {
+      height: 44px;
+      padding: 0 17px;
+      border: 0;
+      border-radius: 10px;
+      color: white;
+      background: linear-gradient(105deg,#ff914c,#ff4d63);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: .25s;
+      box-shadow: 0 5px 20px rgba(255,95,60,.15);
+    }
+
+    .refresh-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255,95,60,.25);
+    }
+
+    .refresh-btn:disabled {
+      opacity: .6;
+      cursor: wait;
+      transform: none;
+    }
+
+    /* MAIN LAYOUT */
 
     .layout {
-      display:grid;
-      grid-template-columns:minmax(0,1.65fr) minmax(280px,.8fr);
-      gap:17px;
+      display: grid;
+      grid-template-columns: minmax(0,1.7fr) minmax(290px,.8fr);
+      gap: 17px;
+      align-items: stretch;
     }
 
     .map-panel {
-      padding:10px;
-      min-width:0;
+      min-width: 0;
+      padding: 13px;
     }
 
     .panel-head {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      padding:8px 8px 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 5px 15px;
     }
 
-    h2 {
-      font:700 17px 'Outfit',sans-serif;
-      margin:0;
+    .panel-title {
+      font: 700 17px 'Outfit',sans-serif;
     }
 
-    .muted {
-      color:var(--muted);
-      font-size:10px;
+    .panel-subtitle {
+      color: var(--muted);
+      font-size: 9px;
+      text-align: right;
+    }
+
+    .map-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,.06);
     }
 
     #map {
-      height:510px;
-      width:100%;
-      border-radius:12px;
-      background:#171727;
+      width: 100%;
+      height: 535px;
+      background: #121827;
+    }
+
+    .map-overlay {
+      position: absolute;
+      z-index: 500;
+      left: 12px;
+      bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 9px;
+      background: rgba(8,10,18,.88);
+      backdrop-filter: blur(10px);
+      color: #d8dce7;
+      font-size: 9px;
+      pointer-events: none;
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff633f;
+      box-shadow: 0 0 10px #ff633f;
     }
 
     .leaflet-container {
-      background:#171727;
-      font-family:'Poppins',sans-serif;
+      font-family: 'Poppins',sans-serif;
     }
 
     .leaflet-popup-content-wrapper,
     .leaflet-popup-tip {
-      background:#171525;
-      color:#fff;
+      color: #f5f7ff;
+      background: #131a29;
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 10px 35px rgba(0,0,0,.35);
     }
 
     .leaflet-popup-content {
-      font-family:'Poppins',sans-serif;
-      font-size:12px;
-      line-height:1.6;
+      min-width: 170px;
+      margin: 13px;
+      font-size: 11px;
+      line-height: 1.8;
     }
 
-    .events { padding:16px; }
+    .leaflet-popup-content a {
+      color: #ffad73;
+      font-weight: 600;
+    }
+
+    .leaflet-control-zoom a {
+      color: #fff !important;
+      background: #151d2b !important;
+      border-color: rgba(255,255,255,.12) !important;
+    }
+
+    .leaflet-control-attribution {
+      background: rgba(8,10,18,.75) !important;
+      color: #9ca5b6 !important;
+      font-size: 8px !important;
+    }
+
+    .leaflet-control-attribution a {
+      color: #ffad73 !important;
+    }
+
+    /* EVENT PANEL */
+
+    .events-panel {
+      padding: 17px;
+      min-width: 0;
+    }
+
+    .event-count {
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
 
     .event-list {
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      max-height:460px;
-      overflow-y:auto;
-      margin-top:15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 535px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-top: 7px;
+      scrollbar-width: thin;
+      scrollbar-color: #41485b transparent;
+    }
+
+    .event-list::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .event-list::-webkit-scrollbar-thumb {
+      background: #41485b;
+      border-radius: 10px;
     }
 
     .event {
-      padding:12px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.025);
-      border-radius:12px;
-      cursor:pointer;
-      transition:.2s;
+      position: relative;
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(255,255,255,.025);
+      cursor: pointer;
+      transition: .23s;
     }
 
     .event:hover {
-      border-color:rgba(255,120,63,.55);
-      transform:translateY(-2px);
+      transform: translateY(-2px);
+      border-color: rgba(255,135,63,.48);
+      background: rgba(255,135,63,.055);
     }
 
-    .event-title {
-      font-size:12px;
-      line-height:1.55;
-      margin:7px 0;
+    .event.active {
+      border-color: rgba(255,135,63,.7);
+      background: rgba(255,135,63,.09);
     }
 
-    .event-meta {
-      color:var(--muted);
-      font-size:10px;
-      line-height:1.8;
+    .event-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
     }
 
     .event-tag {
-      color:#ffad78;
-      font-size:10px;
-      background:rgba(255,120,63,.1);
-      border:1px solid rgba(255,120,63,.2);
-      border-radius:20px;
-      padding:4px 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 8px;
+      border-radius: 20px;
+      color: #ffb77f;
+      background: rgba(255,135,63,.11);
+      border: 1px solid rgba(255,135,63,.2);
+      font-size: 8px;
+      font-weight: 700;
+    }
+
+    .event-tag.closed {
+      color: #83baff;
+      background: rgba(75,150,255,.09);
+      border-color: rgba(75,150,255,.2);
+    }
+
+    .event-arrow {
+      color: #727d91;
+      font-size: 13px;
+    }
+
+    .event-title {
+      font: 600 12px/1.55 'Outfit',sans-serif;
+      margin: 9px 0 7px;
+      color: #f1f3fa;
+    }
+
+    .event-meta {
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.9;
+    }
+
+    .event-location {
+      color: #ffb27c;
     }
 
     .empty {
-      text-align:center;
-      color:var(--muted);
-      padding:35px 10px;
-      font-size:12px;
-      line-height:1.8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 180px;
+      padding: 25px 12px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .empty-icon {
+      font-size: 27px;
     }
 
     .notice {
-      color:var(--muted);
-      font-size:11px;
-      line-height:1.8;
-      margin-top:18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 19px;
+      padding: 15px 17px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.9;
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+    }
+
+    .notice-icon {
+      font-size: 17px;
     }
 
     footer {
-      text-align:center;
-      padding:20px;
-      border-top:1px solid var(--border);
-      color:var(--muted);
-      font-size:11px;
+      padding: 22px 15px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 10px;
     }
 
-    @media(max-width:850px) {
-      .layout { grid-template-columns:1fr; }
-      #map { height:400px; }
-      .event-list { max-height:420px; }
+    footer strong {
+      color: var(--orange);
     }
 
-    @media(max-width:500px) {
-      .container { width:94%; padding-top:25px; }
-      .stats { gap:8px; }
-      .stat { padding:12px 9px; }
-      .stat strong { font-size:21px; }
-      .stat small { font-size:9px; }
-      .field { min-width:125px; }
-      #map { height:340px; }
+    /* RESPONSIVE */
+
+    @media(max-width:1050px) {
+      .hero {
+        grid-template-columns: 1fr .55fr;
+      }
+
+      .layout {
+        grid-template-columns: minmax(0,1.4fr) minmax(260px,.8fr);
+      }
+
+      .controls {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .refresh-btn {
+        width: 100%;
+      }
+    }
+
+    @media(max-width:800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        min-height: 155px;
+      }
+
+      .hero-fire {
+        font-size: 60px;
+      }
+
+      .fire-orbit {
+        width: 120px;
+        height: 120px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      #map {
+        height: 420px;
+      }
+
+      .event-list {
+        max-height: 420px;
+      }
+    }
+
+    @media(max-width:520px) {
+      .topbar {
+        padding: 12px 4%;
+      }
+
+      .brand {
+        font-size: 19px;
+        gap: 7px;
+      }
+
+      .brand-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 17px;
+      }
+
+      .system-status {
+        display: none;
+      }
+
+      .back-btn {
+        font-size: 10px;
+        padding: 9px 11px;
+      }
+
+      .container {
+        width: 94%;
+        padding-top: 24px;
+      }
+
+      h1 {
+        font-size: 40px;
+        letter-spacing: -1.5px;
+      }
+
+      .hero-description {
+        font-size: 11px;
+      }
+
+      .stats {
+        gap: 8px;
+        margin: 20px 0;
+      }
+
+      .stat {
+        padding: 12px 10px;
+      }
+
+      .stat-label {
+        font-size: 8px;
+        letter-spacing: 0;
+      }
+
+      .stat-icon {
+        display: none;
+      }
+
+      .stat strong {
+        font-size: 24px;
+      }
+
+      .stat-sub {
+        font-size: 8px;
+      }
+
+      .controls {
+        grid-template-columns: 1fr 1fr;
+        padding: 12px;
+        gap: 10px;
+      }
+
+      .field label {
+        font-size: 8px;
+      }
+
+      .field input,
+      .field select {
+        font-size: 10px;
+        padding: 0 8px;
+      }
+
+      .refresh-btn {
+        grid-column: 1/-1;
+      }
+
+      .panel-title {
+        font-size: 15px;
+      }
+
+      .panel-subtitle {
+        font-size: 8px;
+      }
+
+      #map {
+        height: 350px;
+      }
+
+      .map-panel {
+        padding: 9px;
+      }
+
+      .events-panel {
+        padding: 13px;
+      }
+
+      .notice {
+        font-size: 9px;
+        padding: 12px;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      *,*::before,*::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
 
 <body>
-<header>
-  <div class="brand">TOOLORA<span> AI</span></div>
-  <a class="back" href="index.html">← Back to Home</a>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="brand-icon">🔥</span>
+    TOOLORA<span> AI</span>
+  </a>
+
+  <div class="topbar-right">
+    <div class="system-status">
+      <span class="system-dot"></span>
+      Dashboard Online
+    </div>
+    <a class="back-btn" href="index.html">← Back to Home</a>
+  </div>
 </header>
 
 <main class="container">
+
+  <!-- HERO -->
   <section class="hero">
-    <div class="eyebrow">GLOBAL FIRE ACTIVITY MONITOR</div>
-    <h1>Wildfire <span>Tracker</span></h1>
-    <p>
-      Explore NASA-curated wildfire events around the world.
-      Browse reported locations, event dates and available source information.
-    </p>
-    <div class="status">
-      <span class="status-dot"></span>
-      NASA EONET data connection
+    <div>
+      <div class="eyebrow">GLOBAL FIRE ACTIVITY MONITOR</div>
+
+      <h1>Wildfire <span>Tracker.</span></h1>
+
+      <p class="hero-description">
+        Explore curated wildfire events around the world using NASA's
+        Earth Observatory Natural Event Tracker. Discover event locations,
+        browse reports and explore activity through an interactive global map.
+      </p>
+
+      <div class="hero-badges">
+        <span class="hero-badge">🌍 Global Coverage</span>
+        <span class="hero-badge">🛰️ NASA EONET</span>
+        <span class="hero-badge">📍 Interactive Map</span>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="fire-orbit"></div>
+      <div class="hero-fire">🔥</div>
+      <div class="art-caption">GLOBAL FIRE MONITOR</div>
     </div>
   </section>
 
+  <!-- STATISTICS -->
   <section class="stats">
+
     <div class="stat">
-      <small>ACTIVE EVENTS</small>
+      <div class="stat-label">
+        ACTIVE EVENTS
+        <span class="stat-icon">🔥</span>
+      </div>
       <strong id="totalCount">—</strong>
+      <div class="stat-sub">Matching selected filters</div>
     </div>
+
     <div class="stat">
-      <small>LOCATIONS MAPPED</small>
+      <div class="stat-label">
+        LOCATIONS MAPPED
+        <span class="stat-icon">📍</span>
+      </div>
       <strong id="mappedCount">—</strong>
+      <div class="stat-sub">Events with coordinates</div>
     </div>
+
     <div class="stat">
-      <small>LAST UPDATED</small>
-      <strong id="updated" style="font-size:17px">—</strong>
+      <div class="stat-label">
+        LAST UPDATED
+        <span class="stat-icon">🕒</span>
+      </div>
+      <strong id="updated" style="font-size:22px">—</strong>
+      <div class="stat-sub" id="updateDate">Waiting for data</div>
     </div>
+
   </section>
 
+  <!-- FILTERS -->
   <section class="panel controls">
+
     <div class="field">
       <label for="daysFilter">EVENT DATE RANGE</label>
       <select id="daysFilter">
@@ -388,52 +983,110 @@
       </select>
     </div>
 
-    <button id="refreshBtn" type="button">↻ Refresh Data</button>
-  </section>
-
-  <section class="layout">
-    <div class="panel map-panel">
-      <div class="panel-head">
-        <h2>🔥 Global Wildfire Map</h2>
-        <span class="muted">Select a marker for details</span>
-      </div>
-      <div id="map"></div>
+    <div class="field">
+      <label for="searchInput">SEARCH EVENTS</label>
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search wildfire or location..."
+        autocomplete="off"
+      >
     </div>
 
-    <aside class="panel events">
-      <div class="panel-head" style="padding:0">
-        <h2>Wildfire Events</h2>
-        <span class="muted" id="eventLabel">Loading...</span>
-      </div>
+    <button class="refresh-btn" id="refreshBtn" type="button">
+      ↻ Refresh Data
+    </button>
 
-      <div class="event-list" id="eventList">
-        <div class="empty">Loading NASA event reports...</div>
-      </div>
-    </aside>
   </section>
 
-  <p class="notice">
-    Source: NASA Earth Observatory Natural Event Tracker (EONET).
-    EONET provides curated natural-event metadata. This is not a complete
-    satellite hotspot feed, fire perimeter map, emergency alert service,
-    or fire-spread prediction tool. Always follow official local authorities
-    for safety information.
-  </p>
+  <!-- MAP AND EVENTS -->
+  <section class="layout">
+
+    <div class="panel map-panel">
+
+      <div class="panel-head">
+        <h2 class="panel-title">🌍 Global Wildfire Map</h2>
+        <span class="panel-subtitle">Select a marker for details</span>
+      </div>
+
+      <div class="map-wrapper">
+        <div id="map" aria-label="Interactive global wildfire map"></div>
+
+        <div class="map-overlay">
+          <span class="legend-dot"></span>
+          Reported wildfire event
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="panel events-panel">
+
+      <div class="panel-head">
+        <h2 class="panel-title">🔥 Event Reports</h2>
+        <span class="event-count" id="eventLabel">Loading...</span>
+      </div>
+
+      <div class="event-list" id="eventList" aria-live="polite">
+        <div class="empty">
+          <span class="empty-icon">🛰️</span>
+          Fetching NASA event reports...
+        </div>
+      </div>
+
+    </aside>
+
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div class="notice">
+    <span class="notice-icon">ℹ️</span>
+    <div>
+      <strong>Data information:</strong>
+      Source: NASA Earth Observatory Natural Event Tracker (EONET).
+      EONET provides curated natural-event metadata. It is not a complete
+      satellite hotspot feed, fire perimeter map, emergency alert service
+      or fire-spread prediction tool. Data availability and reporting times
+      may vary. Always follow official local authorities for safety information.
+    </div>
+  </div>
+
 </main>
 
-<footer>© 2026 Toolora AI · Wildfire event metadata powered by NASA EONET</footer>
+<footer>
+  © 2026 <strong>Toolora AI</strong> · Wildfire event metadata powered by NASA EONET
+</footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
 (() => {
-  const map = L.map('map').setView([20, 0], 2);
+  'use strict';
+
+  const $ = id => document.getElementById(id);
+
+  const mapElement = $('map');
+
+  if (!window.L || !mapElement) {
+    $('eventList').innerHTML = `
+      <div class="empty">
+        <span class="empty-icon">⚠️</span>
+        Map library could not be loaded. Check your internet connection.
+      </div>
+    `;
+    return;
+  }
+
+  // MAP INITIALIZATION
+  const map = L.map('map', {
+    zoomControl: true,
+    worldCopyJump: true
+  }).setView([20, 0], 2);
 
   L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
     {
-      attribution:
-        '&copy; OpenStreetMap contributors &copy; CARTO',
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
       subdomains: 'abcd',
       maxZoom: 19
     }
@@ -441,13 +1094,22 @@
 
   const markerLayer = L.layerGroup().addTo(map);
 
-  const daysFilter = document.getElementById('daysFilter');
-  const statusFilter = document.getElementById('statusFilter');
-  const refreshBtn = document.getElementById('refreshBtn');
-  const eventList = document.getElementById('eventList');
+  // DOM ELEMENTS
+  const daysFilter = $('daysFilter');
+  const statusFilter = $('statusFilter');
+  const searchInput = $('searchInput');
+  const refreshBtn = $('refreshBtn');
+  const eventList = $('eventList');
 
+  // APPLICATION STATE
   let events = [];
+  let markersById = new Map();
+  let selectedEventId = null;
+  let loading = false;
+  let lastSuccessfulUpdate = null;
+  let requestController = null;
 
+  // SAFE HTML
   function escapeHTML(value) {
     return String(value ?? '').replace(/[&<>"']/g, char => ({
       '&': '&amp;',
@@ -458,10 +1120,27 @@
     })[char]);
   }
 
+  // SAFE EXTERNAL URL
+  function safeURL(value) {
+    try {
+      const url = new URL(value);
+      return ['https:', 'http:'].includes(url.protocol)
+        ? url.href
+        : '';
+    } catch {
+      return '';
+    }
+  }
+
+  // DATE FORMAT
   function formatDate(value) {
     if (!value) return 'Date unavailable';
+
     const date = new Date(value);
-    if (Number.isNaN(date.getTime())) return 'Date unavailable';
+
+    if (Number.isNaN(date.getTime())) {
+      return 'Date unavailable';
+    }
 
     return date.toLocaleDateString([], {
       year: 'numeric',
@@ -471,7 +1150,10 @@
   }
 
   function getEventDate(event) {
-    const geometries = event.geometry || [];
+    const geometries = Array.isArray(event.geometry)
+      ? event.geometry
+      : [];
+
     const dates = geometries
       .map(item => item.date)
       .filter(Boolean)
@@ -480,51 +1162,86 @@
     return dates[dates.length - 1] || null;
   }
 
+  // FIND COORDINATES FROM NASA GEOMETRY
   function getCoordinates(event) {
-    const geometries = event.geometry || [];
+    const geometries = Array.isArray(event.geometry)
+      ? event.geometry
+      : [];
 
     for (const item of geometries) {
       const coordinates = item.coordinates;
+      const type = item.type;
 
+      if (!coordinates) continue;
+
+      // POINT
       if (
-        item.type === 'Point' &&
+        type === 'Point' &&
         Array.isArray(coordinates) &&
         coordinates.length >= 2
       ) {
-        return [coordinates[1], coordinates[0]];
-      }
+        const [lon, lat] = coordinates;
 
-      if (
-        item.type === 'Polygon' &&
-        Array.isArray(coordinates) &&
-        Array.isArray(coordinates[0]) &&
-        coordinates[0].length
-      ) {
-        const ring = coordinates[0];
-        const valid = ring.filter(point =>
-          Array.isArray(point) &&
-          Number.isFinite(point[0]) &&
-          Number.isFinite(point[1])
-        );
-
-        if (valid.length) {
-          const averageLon =
-            valid.reduce((sum, point) => sum + point[0], 0) / valid.length;
-          const averageLat =
-            valid.reduce((sum, point) => sum + point[1], 0) / valid.length;
-
-          return [averageLat, averageLon];
+        if (Number.isFinite(lat) && Number.isFinite(lon)) {
+          return [lat, lon];
         }
       }
 
+      // MULTIPOINT
       if (
-        item.type === 'MultiPoint' &&
+        type === 'MultiPoint' &&
         Array.isArray(coordinates) &&
         coordinates.length
       ) {
         const point = coordinates[0];
-        if (Array.isArray(point) && point.length >= 2) {
+
+        if (
+          Array.isArray(point) &&
+          Number.isFinite(point[0]) &&
+          Number.isFinite(point[1])
+        ) {
           return [point[1], point[0]];
+        }
+      }
+
+      // POLYGON / MULTIPOLYGON
+      if (type === 'Polygon' || type === 'MultiPolygon') {
+        const points = [];
+
+        function collectPoints(value) {
+          if (!Array.isArray(value)) return;
+
+          if (
+            value.length >= 2 &&
+            typeof value[0] === 'number' &&
+            typeof value[1] === 'number'
+          ) {
+            if (
+              Number.isFinite(value[0]) &&
+              Number.isFinite(value[1])
+            ) {
+              points.push(value);
+            }
+            return;
+          }
+
+          value.forEach(collectPoints);
+        }
+
+        collectPoints(coordinates);
+
+        if (points.length) {
+          // Ignore the repeated final point when calculating the center.
+          const unique = points.slice(0, -1);
+          const usable = unique.length ? unique : points;
+
+          const lon = usable.reduce((sum, point) => sum + point[0], 0)
+            / usable.length;
+
+          const lat = usable.reduce((sum, point) => sum + point[1], 0)
+            / usable.length;
+
+          return [lat, lon];
         }
       }
     }
@@ -532,113 +1249,238 @@
     return null;
   }
 
+  // SOURCE INFORMATION
   function getSources(event) {
-    return (event.sources || [])
-      .map(source => source.title)
-      .filter(Boolean);
+    return Array.isArray(event.sources)
+      ? event.sources
+          .map(source => source.title)
+          .filter(Boolean)
+      : [];
   }
 
+  function getSourceURL(event) {
+    const candidates = [
+      event.link,
+      ...(event.sources || []).map(source => source.url)
+    ];
+
+    return candidates.map(safeURL).find(Boolean) || '';
+  }
+
+  // CREATE POPUP
   function makePopup(event) {
     const title = escapeHTML(event.title || 'Wildfire event');
     const date = formatDate(getEventDate(event));
-    const description = escapeHTML(event.description || 'No additional description supplied.');
+    const description = escapeHTML(
+      event.description || 'No additional description supplied.'
+    );
 
     const sources = getSources(event);
-    const sourceText = sources.length
-      ? escapeHTML(sources.join(', '))
-      : 'Source details unavailable';
+    const sourceText = escapeHTML(
+      sources.join(', ') || 'Source details unavailable'
+    );
 
-    const link = event.link || event.sources?.[0]?.url || '';
+    const link = getSourceURL(event);
 
     return `
-      <strong>${title}</strong><br>
-      <span>${date}</span><br>
-      <span>${description}</span><br>
-      <small>Source: ${sourceText}</small>
-      ${link ? `<br><a href="${escapeHTML(link)}" target="_blank" rel="noopener">View event source ↗</a>` : ''}
+      <div class="popup-content">
+        <strong>${title}</strong>
+        <br>
+        <span>📅 ${escapeHTML(date)}</span>
+        <br>
+        <span>${description}</span>
+        <br>
+        <small>Source: ${sourceText}</small>
+        ${
+          link
+            ? `<br><a href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer">View event source ↗</a>`
+            : ''
+        }
+      </div>
     `;
   }
 
+  // SEARCH FILTER
+  function getFilteredEvents() {
+    const query = searchInput.value.trim().toLowerCase();
+
+    if (!query) return events;
+
+    return events.filter(event => {
+      const title = (event.title || '').toLowerCase();
+      const description = (event.description || '').toLowerCase();
+      const sources = getSources(event).join(' ').toLowerCase();
+      const id = (event.id || '').toLowerCase();
+
+      return (
+        title.includes(query) ||
+        description.includes(query) ||
+        sources.includes(query) ||
+        id.includes(query)
+      );
+    });
+  }
+
+  // EVENT SELECTION
+  function selectEvent(event, coordinates) {
+    const id = event.id;
+
+    selectedEventId = id;
+
+    document.querySelectorAll('.event').forEach(card => {
+      card.classList.toggle(
+        'active',
+        card.dataset.eventId === String(id)
+      );
+    });
+
+    if (coordinates) {
+      map.setView(coordinates, 6, {
+        animate: true,
+        duration: .7
+      });
+
+      const marker = markersById.get(id);
+
+      if (marker) {
+        marker.openPopup();
+      }
+    }
+  }
+
+  // RENDER EVERYTHING
   function renderEvents() {
     markerLayer.clearLayers();
     eventList.innerHTML = '';
+    markersById.clear();
 
-    const mapped = [];
+    const filteredEvents = getFilteredEvents();
+    let mappedCount = 0;
 
-    events.forEach(event => {
+    filteredEvents.forEach((event, index) => {
       const coordinates = getCoordinates(event);
+
       if (!coordinates) return;
 
-      mapped.push({ event, coordinates });
+      mappedCount++;
 
       const marker = L.circleMarker(coordinates, {
-        radius: 8,
-        color: '#ff9b52',
-        fillColor: '#ff563f',
-        fillOpacity: .85,
+        radius: 7,
+        color: '#ffb36e',
+        fillColor: '#ff593f',
+        fillOpacity: .9,
         weight: 2
       }).addTo(markerLayer);
 
       marker.bindPopup(makePopup(event));
+
+      marker.on('click', () => {
+        selectedEventId = event.id;
+
+        document.querySelectorAll('.event').forEach(card => {
+          card.classList.toggle(
+            'active',
+            card.dataset.eventId === String(event.id)
+          );
+        });
+      });
+
+      markersById.set(event.id, marker);
     });
 
-    document.getElementById('totalCount').textContent = events.length;
-    document.getElementById('mappedCount').textContent = mapped.length;
-    document.getElementById('eventLabel').textContent =
-      events.length + ' events';
+    $('totalCount').textContent = filteredEvents.length.toLocaleString();
+    $('mappedCount').textContent = mappedCount.toLocaleString();
 
-    if (!events.length) {
-      eventList.innerHTML =
-        '<div class="empty">No wildfire events found for these filters.</div>';
+    $('eventLabel').textContent =
+      `${filteredEvents.length} events`;
+
+    if (!filteredEvents.length) {
+      eventList.innerHTML = `
+        <div class="empty">
+          <span class="empty-icon">🔎</span>
+          No matching wildfire events found.
+          <br>
+          Try another search or change your filters.
+        </div>
+      `;
       return;
     }
 
-    events.forEach(event => {
+    filteredEvents.forEach(event => {
       const coordinates = getCoordinates(event);
       const sources = getSources(event);
       const date = getEventDate(event);
-      const status = event.closed ? 'Closed' : 'Open';
+      const isClosed = Boolean(event.closed);
 
       const item = document.createElement('div');
+
       item.className = 'event';
+      item.dataset.eventId = String(event.id);
+
+      if (event.id === selectedEventId) {
+        item.classList.add('active');
+      }
+
+      const title = escapeHTML(event.title || 'Wildfire event');
 
       item.innerHTML = `
-        <span class="event-tag">${status}</span>
-        <div class="event-title">
-          ${escapeHTML(event.title || 'Wildfire event')}
+        <div class="event-top">
+          <span class="event-tag ${isClosed ? 'closed' : ''}">
+            ${isClosed ? '● Closed' : '● Open'}
+          </span>
+          <span class="event-arrow">↗</span>
         </div>
+
+        <div class="event-title">${title}</div>
+
         <div class="event-meta">
-          Reported date: ${formatDate(date)}<br>
-          Source: ${escapeHTML(sources.join(', ') || 'Not specified')}<br>
-          ${coordinates ? 'Location available on map' : 'Location coordinates unavailable'}
+          📅 ${escapeHTML(formatDate(date))}
+          <br>
+          📰 ${escapeHTML(sources.join(', ') || 'Source not specified')}
+          <br>
+          <span class="event-location">
+            ${coordinates ? '📍 Location available on map' : '📍 Coordinates unavailable'}
+          </span>
         </div>
       `;
 
       item.addEventListener('click', () => {
-        if (coordinates) {
-          map.setView(coordinates, 6);
-          markerLayer.eachLayer(marker => {
-            if (
-              marker.getLatLng().lat === coordinates[0] &&
-              marker.getLatLng().lng === coordinates[1]
-            ) {
-              marker.openPopup();
-            }
-          });
-        } else {
-          alert('This event does not include a mappable location.');
-        }
+        selectEvent(event, coordinates);
       });
 
       eventList.appendChild(item);
     });
   }
 
+  // LOADING DISPLAY
+  function showLoading() {
+    eventList.innerHTML = `
+      <div class="empty">
+        <span class="empty-icon">🛰️</span>
+        Fetching NASA wildfire events...
+      </div>
+    `;
+  }
+
+  // LOAD NASA DATA
   async function loadData() {
+    if (loading) {
+      if (requestController) {
+        requestController.abort();
+      }
+    }
+
+    loading = true;
+    requestController = new AbortController();
+
+    const currentController = requestController;
+
     refreshBtn.disabled = true;
     refreshBtn.textContent = 'Loading...';
-    eventList.innerHTML =
-      '<div class="empty">Fetching NASA wildfire events...</div>';
+
+    $('eventLabel').textContent = 'Updating...';
+
+    showLoading();
 
     const params = new URLSearchParams({
       category: 'wildfires',
@@ -647,73 +1489,124 @@
       limit: '500'
     });
 
+    // Use the NASA EONET Events API response format.
     const url =
-      'https://eonet.gsfc.nasa.gov/api/v3/events/geojson?' +
+      'https://eonet.gsfc.nasa.gov/api/v3/events?' +
       params.toString();
 
     try {
-      const response = await fetch(url, { cache: 'no-store' });
+      const response = await fetch(url, {
+        cache: 'no-store',
+        signal: currentController.signal
+      });
 
       if (!response.ok) {
-        throw new Error('NASA EONET returned ' + response.status);
+        throw new Error('NASA EONET returned HTTP ' + response.status);
       }
 
       const data = await response.json();
 
-      if (!Array.isArray(data.features)) {
-        throw new Error('Unexpected NASA response format');
+      if (!Array.isArray(data.events)) {
+        throw new Error('Unexpected NASA API response format.');
       }
 
-      events = data.features
-        .map(feature => ({
-          ...feature.properties,
-          geometry: feature.geometry
-            ? [{
-                type: feature.geometry.type,
-                coordinates: feature.geometry.coordinates,
-                date: feature.properties?.date
-              }]
-            : (feature.properties?.geometry || [])
-        }))
-        .sort((a, b) => {
-          const dateA = new Date(getEventDate(a) || 0).getTime();
-          const dateB = new Date(getEventDate(b) || 0).getTime();
-          return dateB - dateA;
-        });
+      // Normalize events without discarding their geometry.
+      const newEvents = data.events.map(event => ({
+        ...event,
+        geometry: Array.isArray(event.geometry)
+          ? event.geometry
+          : []
+      }));
+
+      newEvents.sort((a, b) => {
+        const dateA = new Date(getEventDate(a) || 0).getTime();
+        const dateB = new Date(getEventDate(b) || 0).getTime();
+
+        return dateB - dateA;
+      });
+
+      // Ignore stale requests.
+      if (currentController !== requestController) return;
+
+      events = newEvents;
+      selectedEventId = null;
 
       renderEvents();
 
-      document.getElementById('updated').textContent =
-        new Date().toLocaleTimeString([], {
+      lastSuccessfulUpdate = new Date();
+
+      $('updated').textContent =
+        lastSuccessfulUpdate.toLocaleTimeString([], {
           hour: '2-digit',
           minute: '2-digit'
         });
 
-    } catch (error) {
-      console.error(error);
-      eventList.innerHTML =
-        '<div class="empty">Could not load NASA event data.<br>Check your internet connection and try again.</div>';
+      $('updateDate').textContent =
+        lastSuccessfulUpdate.toLocaleDateString([], {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        });
 
-      document.getElementById('eventLabel').textContent =
-        'Connection error';
+    } catch (error) {
+      if (error.name === 'AbortError') return;
+
+      console.error('Wildfire data error:', error);
+
+      $('eventLabel').textContent = 'Connection error';
+
+      eventList.innerHTML = `
+        <div class="empty">
+          <span class="empty-icon">⚠️</span>
+          Could not load NASA event data.
+          <br>
+          Check your internet connection and try again.
+          <br><br>
+          <button
+            type="button"
+            class="refresh-btn"
+            id="retryBtn"
+          >Try Again</button>
+        </div>
+      `;
+
+      $('retryBtn')?.addEventListener('click', loadData);
 
     } finally {
-      refreshBtn.disabled = false;
-      refreshBtn.textContent = '↻ Refresh Data';
+      if (currentController === requestController) {
+        loading = false;
+        refreshBtn.disabled = false;
+        refreshBtn.textContent = '↻ Refresh Data';
+      }
     }
   }
 
+  // FILTER EVENTS
   refreshBtn.addEventListener('click', loadData);
+
   daysFilter.addEventListener('change', loadData);
   statusFilter.addEventListener('change', loadData);
 
+  // SEARCH WITHOUT RELOADING API
+  searchInput.addEventListener('input', renderEvents);
+
+  // INITIAL LOAD
   loadData();
 
-  // Refresh the curated event feed every five minutes.
+  // AUTO REFRESH EVERY FIVE MINUTES
   setInterval(() => {
-    if (!document.hidden) loadData();
+    if (!document.hidden && !loading) {
+      loadData();
+    }
   }, 300000);
+
+  // FIX MAP SIZE AFTER PAGE LOAD
+  window.addEventListener('load', () => {
+    setTimeout(() => map.invalidateSize(), 200);
+  });
+
 })();
 </script>
+
 </body>
 </html>
