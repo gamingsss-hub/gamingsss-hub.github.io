@@ -4,591 +4,660 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050816">
 <title>Space Explorer 3D | Interactive Solar System - Toolora AI</title>
-<meta name="description" content="Explore an interactive 3D solar system with Toolora AI. Discover planets, learn astronomy facts, control planetary orbits and take a space knowledge quiz.">
-<meta name="keywords" content="Space Explorer 3D, Solar System, 3D Planets, Astronomy, Space Simulator, Planet Explorer, Toolora AI">
-<meta name="theme-color" content="#050510">
+<meta name="description" content="Explore our solar system with an interactive 3D planet explorer, space facts, NASA missions and a fun astronomy quiz.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
 :root{
- --bg:#050510;
- --panel:#101025;
- --blue:#4f7cff;
- --purple:#8b5cff;
- --cyan:#00e5ff;
- --text:#f5f5ff;
- --muted:#a0a5c0;
- --border:rgba(255,255,255,.1);
+  --bg:#050816;
+  --panel:#10172d;
+  --panel2:#151d38;
+  --blue:#4f7cff;
+  --cyan:#00e5ff;
+  --purple:#9b5cff;
+  --text:#f5f7ff;
+  --muted:#9ba8c7;
+  --border:rgba(255,255,255,.09);
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
- background:radial-gradient(ellipse at 50% 0%,#21154b,#0a0a1d 42%,#050510 80%);
- color:var(--text);
- font-family:Poppins,sans-serif;
- min-height:100vh;
+  background:radial-gradient(ellipse at 50% 0%,#17234a 0%,#080d20 42%,#050816 100%);
+  color:var(--text);
+  font-family:Poppins,sans-serif;
+  overflow-x:hidden;
 }
-button,a{font:inherit}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:radial-gradient(1px 1px at 20% 30%,#fff 99%,transparent),
+  radial-gradient(1px 1px at 70% 60%,#9bdcff 99%,transparent),
+  radial-gradient(2px 2px at 40% 80%,#fff 99%,transparent);
+  background-size:190px 190px,270px 270px,350px 350px;
+  opacity:.35;
+}
+button,select{font:inherit}
 button{cursor:pointer}
 header{
- height:68px;padding:0 6%;
- display:flex;align-items:center;justify-content:space-between;
- background:rgba(5,5,16,.9);
- border-bottom:1px solid var(--border);
- position:sticky;top:0;z-index:10;
- backdrop-filter:blur(15px);
+  height:76px;padding:0 7%;display:flex;align-items:center;
+  justify-content:space-between;position:sticky;top:0;z-index:50;
+  background:rgba(5,8,22,.82);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
 }
-.logo{font:800 23px Outfit}
+.logo{font:800 23px Orbitron;color:white;letter-spacing:1px}
 .logo span{color:var(--cyan)}
-.back{
- color:white;text-decoration:none;font-size:12px;
- padding:9px 15px;border:1px solid var(--border);
- border-radius:11px;
+nav{display:flex;gap:27px}
+nav a{color:#c5cce0;text-decoration:none;font-size:13px;transition:.3s}
+nav a:hover{color:var(--cyan)}
+.header-btn{
+  background:linear-gradient(110deg,var(--blue),var(--purple));
+  color:white;border:0;padding:11px 20px;border-radius:30px;font-weight:600;
 }
-main{max-width:1250px;margin:auto;padding:30px 18px 55px}
-.hero{text-align:center;margin:10px 0 25px}
-.eyebrow{font-size:11px;color:var(--cyan);letter-spacing:3px;font-weight:700}
-h1{font:800 clamp(34px,5vw,54px) Outfit;margin:9px 0}
-h1 span{
- background:linear-gradient(90deg,var(--cyan),#a16aff);
- color:transparent;background-clip:text;
+.hero{
+  min-height:410px;padding:85px 20px 65px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
 }
-.hero p{font-size:13px;color:var(--muted)}
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 315px;gap:17px}
+.hero:before{
+  content:"";position:absolute;width:460px;height:460px;border-radius:50%;
+  background:#4f7cff;filter:blur(160px);opacity:.17;z-index:-1;
+}
+.eyebrow{
+  color:var(--cyan);font-size:12px;letter-spacing:4px;
+  text-transform:uppercase;font-weight:600;margin-bottom:20px;
+}
+.hero h1{
+  font:800 clamp(35px,6vw,68px) Orbitron;
+  line-height:1.2;margin-bottom:20px;
+  background:linear-gradient(90deg,#fff,#82dfff,#b68aff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{max-width:650px;color:var(--muted);font-size:15px;line-height:1.8}
+.hero-buttons{display:flex;gap:13px;margin-top:28px;flex-wrap:wrap;justify-content:center}
+.primary-btn,.secondary-btn{
+  padding:13px 24px;border-radius:30px;font-weight:600;
+  border:1px solid transparent;transition:.3s;
+}
+.primary-btn{background:linear-gradient(110deg,var(--blue),var(--purple));color:white}
+.secondary-btn{background:rgba(255,255,255,.05);border-color:var(--border);color:white}
+.primary-btn:hover,.secondary-btn:hover{transform:translateY(-3px);box-shadow:0 8px 30px #4f7cff44}
+.section{padding:45px 7%;max-width:1500px;margin:auto}
+.section-heading{text-align:center;margin-bottom:28px}
+.section-heading h2{font:700 clamp(23px,4vw,34px) Orbitron;margin-bottom:10px}
+.section-heading p{color:var(--muted);font-size:13px}
+.layout{
+  display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,.8fr);
+  gap:22px;
+}
 .panel{
- background:linear-gradient(145deg,rgba(24,24,54,.96),rgba(10,10,26,.98));
- border:1px solid var(--border);
- border-radius:20px;padding:18px;
- box-shadow:0 15px 45px rgba(0,0,0,.2);
+  background:linear-gradient(145deg,rgba(22,32,63,.94),rgba(10,16,36,.96));
+  border:1px solid var(--border);border-radius:20px;overflow:hidden;
+  box-shadow:0 15px 45px #0004;
 }
-.head{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.head h2{font:700 18px Outfit}
-.status{font-size:10px;color:#65e9b4}
-#space{
- width:100%;height:470px;margin-top:13px;
- border-radius:15px;overflow:hidden;
- background:radial-gradient(ellipse at center,#10142c,#020208 75%);
- position:relative;
+.scene-panel{position:relative;min-height:470px}
+#space{height:470px;width:100%;cursor:grab}
+#space:active{cursor:grabbing}
+.scene-label{
+  position:absolute;top:18px;left:20px;font:600 12px Orbitron;
+  color:var(--cyan);letter-spacing:2px;pointer-events:none;
 }
-#space canvas{display:block;width:100%;height:100%;touch-action:none}
-.error-message{
- display:none;position:absolute;inset:0;
- align-items:center;justify-content:center;text-align:center;
- padding:25px;color:#ffc4ce;font-size:13px;line-height:1.7;
- background:#080817;
+.scene-controls{
+  position:absolute;bottom:16px;left:0;right:0;display:flex;
+  justify-content:center;gap:9px;flex-wrap:wrap;padding:0 10px;
 }
-.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
-.btn{
- color:white;background:#1a1b3a;border:1px solid var(--border);
- padding:9px 13px;border-radius:10px;font-size:11px;
+.scene-controls button{
+  border:1px solid #ffffff20;background:#101a36d9;color:white;
+  border-radius:25px;padding:8px 14px;font-size:11px;
 }
-.btn:hover{border-color:var(--cyan)}
-.btn.primary{background:linear-gradient(100deg,#456df4,#8852e8);border:0}
-.speed{margin-top:15px}
-.speed label{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}
-input[type=range]{width:100%;accent-color:var(--cyan);margin-top:9px}
-.hint{font-size:10px;color:var(--muted);line-height:1.7;margin-top:10px}
-.side{display:flex;flex-direction:column;gap:15px}
-.section-title{font:700 16px Outfit;margin-bottom:12px}
-.planet-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.planet-item{
- display:flex;align-items:center;gap:8px;
- background:#0b0b20;border:1px solid var(--border);
- color:white;padding:10px 8px;border-radius:10px;
- text-align:left;font-size:11px;
+.scene-controls button:hover{background:var(--blue)}
+.sidebar{padding:22px}
+.sidebar h3{font:600 16px Orbitron;margin-bottom:17px}
+select{
+  width:100%;padding:13px;background:#101a35;color:white;
+  border:1px solid var(--border);border-radius:10px;outline:none;
 }
-.planet-item.active{border-color:var(--cyan);background:#14223a}
-.dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.planet-info{text-align:center}
-.big-planet{font-size:45px;margin:6px 0}
-.planet-name{font:700 23px Outfit}
-.desc{font-size:11px;color:var(--muted);line-height:1.7;margin-top:8px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-.stat{background:#0b0b20;padding:10px;border-radius:10px;text-align:left}
-.stat small{display:block;color:var(--muted);font-size:9px}
-.stat strong{font-size:12px}
-.fact{font-size:11px;color:#c1c5db;line-height:1.7;margin-top:12px}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.planet-info{margin-top:22px}
+.planet-info h2{font:700 26px Orbitron;color:var(--cyan);margin-bottom:8px}
+.planet-info p{color:var(--muted);font-size:12px;line-height:1.8}
+.info-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.stat{
+  padding:13px;background:#ffffff08;border:1px solid var(--border);
+  border-radius:12px;
+}
+.stat small{display:block;color:var(--muted);font-size:10px}
+.stat strong{font-size:13px;color:white}
+.fact{
+  margin-top:17px;padding:14px;border-left:3px solid var(--cyan);
+  background:#00e5ff0b;border-radius:0 10px 10px 0;
+  color:#cbd8f6;font-size:12px;line-height:1.7;
+}
+.planet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
 .planet-card{
- background:var(--panel);border:1px solid var(--border);
- border-radius:14px;padding:14px;cursor:pointer;transition:.2s;
+  background:linear-gradient(145deg,#172344,#0d142b);
+  border:1px solid var(--border);border-radius:17px;padding:18px 12px;
+  text-align:center;transition:.3s;cursor:pointer;
 }
-.planet-card:hover{transform:translateY(-3px);border-color:var(--purple)}
-.planet-card .emoji{font-size:27px}
-.planet-card strong{display:block;font-size:12px;margin-top:7px}
-.planet-card small{color:var(--muted);font-size:10px}
-.quiz{margin-top:18px}
-.question{font:600 16px Outfit;margin:15px 0}
-.answers{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.answer{
- color:white;background:#10102a;border:1px solid var(--border);
- border-radius:11px;padding:12px;text-align:left;font-size:12px;
+.planet-card:hover{transform:translateY(-6px);border-color:#4f7cff;box-shadow:0 10px 30px #4f7cff20}
+.planet-ball{
+  width:75px;height:75px;border-radius:50%;margin:0 auto 14px;
+  box-shadow:inset -12px -10px 20px #0008,0 0 25px #ffffff15;
+  position:relative;
 }
-.answer:hover{border-color:var(--cyan)}
-.answer.correct{border-color:#39d99b;background:#12372e}
-.answer.wrong{border-color:#ff617c;background:#391722}
-.quiz-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
-#feedback{font-size:11px;color:var(--muted)}
-footer{text-align:center;color:var(--muted);font-size:10px;margin-top:30px}
-@media(max-width:850px){
- .layout{grid-template-columns:1fr}
- #space{height:390px}
- .cards{grid-template-columns:repeat(2,1fr)}
+.planet-card h3{font:600 13px Orbitron;margin-bottom:6px}
+.planet-card p{font-size:10px;color:var(--muted)}
+.space-showcase{
+  border:1px solid var(--border);border-radius:22px;padding:25px;
+  background:linear-gradient(130deg,#141e3e,#10142d);
+  display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center;
+  overflow:hidden;
 }
-@media(max-width:450px){
- main{padding:23px 12px 40px}
- .panel{padding:14px}
- #space{height:310px}
- .answers{grid-template-columns:1fr}
- header{padding:0 13px}
- .logo{font-size:19px}
+.solar-art{min-height:260px;display:grid;place-items:center;position:relative}
+.sun-art{
+  width:100px;height:100px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff7a5,#ffb32d 45%,#f15a24 75%);
+  box-shadow:0 0 35px #ff9d32,0 0 100px #ff7b284d;
+  position:relative;z-index:2;
+}
+.orbit{
+  position:absolute;border:1px solid #a9bfff42;border-radius:50%;
+  width:170px;height:170px;animation:spin 12s linear infinite;
+}
+.orbit.two{width:235px;height:235px;animation-duration:20s}
+.orbit.three{width:300px;height:300px;animation-duration:28s}
+.orbit:after{
+  content:"";position:absolute;top:50%;left:-5px;width:12px;height:12px;
+  border-radius:50%;background:#58b9ff;box-shadow:0 0 14px #58b9ff;
+}
+.orbit.two:after{background:#d49a70}
+.orbit.three:after{background:#b08cff}
+@keyframes spin{to{transform:rotate(360deg)}}
+.space-copy h2{font:700 23px Orbitron;margin-bottom:14px}
+.space-copy p{font-size:13px;color:var(--muted);line-height:1.9}
+.space-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:22px}
+.fact-card{
+  padding:19px;background:#ffffff08;border:1px solid var(--border);
+  border-radius:15px;
+}
+.fact-card span{font-size:24px}
+.fact-card h3{font-size:13px;margin:10px 0 6px}
+.fact-card p{font-size:11px;color:var(--muted);line-height:1.7}
+.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mission-card{
+  border:1px solid var(--border);border-radius:18px;overflow:hidden;
+  background:linear-gradient(145deg,#17213f,#0c1329);transition:.3s;
+}
+.mission-card:hover{transform:translateY(-5px);border-color:#8b5cff}
+.mission-art{
+  height:140px;display:grid;place-items:center;font-size:55px;
+  background:radial-gradient(circle at 50% 50%,#394c89,#151a39 70%);
+}
+.mission-card div:last-child{padding:17px}
+.mission-card h3{font:600 13px Orbitron;margin-bottom:9px}
+.mission-card p{font-size:11px;color:var(--muted);line-height:1.8}
+.quiz-box{max-width:750px;margin:auto;padding:25px}
+.quiz-question{font-size:17px;font-weight:600;line-height:1.6;margin-bottom:18px}
+.quiz-options{display:grid;gap:10px}
+.quiz-options button{
+  padding:13px 15px;text-align:left;border:1px solid var(--border);
+  border-radius:10px;background:#ffffff08;color:white;font-size:13px;
+}
+.quiz-options button:hover{border-color:var(--cyan);background:#00e5ff12}
+.quiz-options button.correct{background:#1b7e5740;border-color:#31d89b}
+.quiz-options button.wrong{background:#a52c4240;border-color:#ff687c}
+.quiz-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:10px}
+.quiz-bottom span{font-size:12px;color:var(--muted)}
+.quiz-bottom button{padding:10px 19px;background:var(--blue);color:white;border:0;border-radius:25px}
+footer{
+  margin-top:50px;padding:30px 20px;text-align:center;
+  border-top:1px solid var(--border);color:var(--muted);font-size:12px;
+}
+footer strong{color:var(--cyan)}
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .planet-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:600px){
+  header{height:65px;padding:0 5%}
+  .logo{font-size:17px}
+  nav{display:none}
+  .header-btn{padding:9px 13px;font-size:11px}
+  .hero{padding:65px 18px}
+  .section{padding:35px 5%}
+  .scene-panel{min-height:360px}
+  #space{height:360px}
+  .planet-grid{grid-template-columns:repeat(2,1fr)}
+  .space-showcase{grid-template-columns:1fr;padding:18px}
+  .solar-art{min-height:250px}
+  .space-facts{grid-template-columns:1fr}
+  .mission-grid{grid-template-columns:1fr}
+  .scene-controls button{padding:7px 10px;font-size:10px}
 }
 </style>
 </head>
 
 <body>
+
 <header>
- <div class="logo">🚀 TOOLORA <span>SPACE</span></div>
- <a href="index.html" class="back">← Back to Toolora</a>
+  <div class="logo">TOOLORA <span>SPACE</span></div>
+  <nav>
+    <a href="#explorer">3D Explorer</a>
+    <a href="#planets">Planets</a>
+    <a href="#missions">Missions</a>
+    <a href="#quiz">Quiz</a>
+  </nav>
+  <button class="header-btn" onclick="document.getElementById('explorer').scrollIntoView({behavior:'smooth'})">Explore Space ↗</button>
 </header>
 
-<main>
 <section class="hero">
- <div class="eyebrow">BEYOND THE EARTH</div>
- <h1>Space <span>Explorer 3D</span></h1>
- <p>Discover planets, explore the solar system and learn about space.</p>
+  <div class="eyebrow">✦ DISCOVER THE UNIVERSE ✦</div>
+  <h1>SPACE EXPLORER 3D</h1>
+  <p>Travel through our solar system. Discover mysterious planets, explore fascinating space facts and experience the wonders of the universe.</p>
+  <div class="hero-buttons">
+    <button class="primary-btn" onclick="document.getElementById('explorer').scrollIntoView({behavior:'smooth'})">🚀 Start Exploring</button>
+    <button class="secondary-btn" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Take Space Quiz</button>
+  </div>
 </section>
 
-<section class="layout">
- <div class="panel">
-  <div class="head">
-   <h2>🪐 Interactive Solar System</h2>
-   <span class="status" id="engineStatus">● Loading 3D...</span>
+<section class="section" id="explorer">
+  <div class="section-heading">
+    <h2>Interactive Solar System</h2>
+    <p>Drag to rotate • Scroll to zoom • Select a planet to explore</p>
   </div>
 
-  <div id="space">
-   <div class="error-message" id="engineError"></div>
-  </div>
+  <div class="layout">
+    <div class="panel scene-panel">
+      <div class="scene-label">LIVE 3D SOLAR SYSTEM</div>
+      <div id="space"></div>
+      <div class="scene-controls">
+        <button onclick="togglePause()" id="pauseBtn">⏸ Pause</button>
+        <button onclick="resetView()">↺ Reset</button>
+        <button onclick="zoomIn()">＋ Zoom</button>
+        <button onclick="zoomOut()">－ Zoom</button>
+      </div>
+    </div>
 
-  <div class="controls">
-   <button class="btn primary" id="pauseBtn">⏸ Pause</button>
-   <button class="btn" id="resetBtn">↺ Reset</button>
-   <button class="btn" id="zoomIn">＋ Zoom</button>
-   <button class="btn" id="zoomOut">－ Zoom</button>
-  </div>
+    <div class="panel sidebar">
+      <h3>🌍 Planet Explorer</h3>
+      <select id="planetSelect" onchange="selectPlanet(Number(this.value))">
+        <option value="0">Mercury</option>
+        <option value="1">Venus</option>
+        <option value="2">Earth</option>
+        <option value="3">Mars</option>
+        <option value="4">Jupiter</option>
+        <option value="5">Saturn</option>
+        <option value="6">Uranus</option>
+        <option value="7">Neptune</option>
+      </select>
 
-  <div class="speed">
-   <label><span>Orbit speed</span><strong id="speedValue">1.0x</strong></label>
-   <input type="range" id="speedRange" min="0" max="4" step=".1" value="1">
+      <div class="planet-info">
+        <h2 id="planetName">Mercury</h2>
+        <p id="planetDescription">The smallest planet in our solar system.</p>
+        <div class="info-stats">
+          <div class="stat"><small>TYPE</small><strong id="planetType">Terrestrial</strong></div>
+          <div class="stat"><small>MOONS</small><strong id="planetMoons">0</strong></div>
+          <div class="stat"><small>DAY LENGTH</small><strong id="planetDay">59 days</strong></div>
+          <div class="stat"><small>YEAR LENGTH</small><strong id="planetYear">88 days</strong></div>
+        </div>
+        <div class="fact" id="infoFact">💡 Mercury has extreme temperature changes.</div>
+      </div>
+    </div>
   </div>
-  <p class="hint">Drag to rotate · Scroll to zoom · Click a planet to select it.</p>
- </div>
-
- <aside class="side">
-  <div class="panel">
-   <div class="section-title">🌌 Select a Planet</div>
-   <div class="planet-list" id="planetList"></div>
-  </div>
-
-  <div class="panel planet-info">
-   <div class="big-planet" id="infoEmoji">🌍</div>
-   <div class="planet-name" id="infoName">Earth</div>
-   <p class="desc" id="infoDesc"></p>
-   <div class="stats">
-    <div class="stat"><small>Type</small><strong id="infoType"></strong></div>
-    <div class="stat"><small>Known moons</small><strong id="infoMoons"></strong></div>
-    <div class="stat"><small>Day length</small><strong id="infoDay"></strong></div>
-    <div class="stat"><small>Year length</small><strong id="infoYear"></strong></div>
-   </div>
-   <p class="fact" id="infoFact"></p>
-  </div>
- </aside>
 </section>
 
-<section class="panel" style="margin-top:18px">
- <div class="section-title">✨ Explore the Planets</div>
- <div class="cards" id="planetCards"></div>
+<section class="section" id="planets">
+  <div class="section-heading">
+    <h2>Explore The Planets</h2>
+    <p>Choose any planet to view its information in the 3D explorer.</p>
+  </div>
+  <div class="planet-grid" id="planetCards"></div>
 </section>
 
-<section class="panel quiz">
- <div class="head">
-  <h2>🧠 Space Knowledge Quiz</h2>
-  <span class="status" id="score">Score: 0</span>
- </div>
- <div class="question" id="question"></div>
- <div class="answers" id="answers"></div>
- <div class="quiz-bottom">
-  <span id="feedback">Select your answer.</span>
-  <button class="btn primary" id="nextBtn">Next Question →</button>
- </div>
+<section class="section">
+  <div class="space-showcase">
+    <div class="solar-art">
+      <div class="orbit"></div>
+      <div class="orbit two"></div>
+      <div class="orbit three"></div>
+      <div class="sun-art"></div>
+    </div>
+    <div class="space-copy">
+      <div class="eyebrow">OUR COSMIC NEIGHBOURHOOD</div>
+      <h2>A Universe Full of Wonders</h2>
+      <p>Our solar system is home to the Sun, eight planets, dwarf planets, moons, asteroids and comets. Each world has its own unique environment and mysteries waiting to be explored.</p>
+      <p style="margin-top:12px">The planets follow different paths around the Sun, held in orbit by gravity.</p>
+    </div>
+  </div>
+
+  <div class="space-facts">
+    <div class="fact-card">
+      <span>☀️</span>
+      <h3>The Sun</h3>
+      <p>The Sun is a star at the centre of our solar system. Its gravity keeps the planets in orbit.</p>
+    </div>
+    <div class="fact-card">
+      <span>🌌</span>
+      <h3>The Milky Way</h3>
+      <p>Our solar system is part of the Milky Way, a galaxy containing billions of stars.</p>
+    </div>
+    <div class="fact-card">
+      <span>🪐</span>
+      <h3>Saturn's Rings</h3>
+      <p>Saturn has a spectacular ring system made mostly of countless icy and rocky particles.</p>
+    </div>
+  </div>
 </section>
 
-<footer>Toolora AI · Space Explorer · Educational 3D experience</footer>
-</main>
+<section class="section" id="missions">
+  <div class="section-heading">
+    <h2>Legendary Space Missions</h2>
+    <p>Some remarkable missions that expanded our understanding of space.</p>
+  </div>
+  <div class="mission-grid">
+    <div class="mission-card">
+      <div class="mission-art">🚀</div>
+      <div>
+        <h3>Apollo 11</h3>
+        <p>In 1969, NASA's Apollo 11 mission achieved the first crewed Moon landing, a historic milestone in human space exploration.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <div class="mission-art">🔴</div>
+      <div>
+        <h3>Mars Perseverance</h3>
+        <p>NASA's Perseverance rover landed on Mars in 2021 to study the planet's geology and search for signs of ancient microbial life.</p>
+      </div>
+    </div>
+    <div class="mission-card">
+      <div class="mission-art">🔭</div>
+      <div>
+        <h3>James Webb Telescope</h3>
+        <p>The James Webb Space Telescope observes distant galaxies, stars and planets using powerful infrared instruments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="quiz">
+  <div class="section-heading">
+    <h2>Space Knowledge Quiz</h2>
+    <p>Test your knowledge of the universe!</p>
+  </div>
+  <div class="panel quiz-box">
+    <div class="quiz-question" id="question">Loading question...</div>
+    <div class="quiz-options" id="options"></div>
+    <div class="quiz-bottom">
+      <span id="quizProgress">Question 1 of 10</span>
+      <button id="nextBtn" onclick="nextQuestion()" disabled>Next Question →</button>
+    </div>
+    <div id="quizResult" style="margin-top:20px;text-align:center"></div>
+  </div>
+</section>
+
+<footer>
+  <p>Made for curious minds by <strong>TOOLORA AI</strong> ✦ Explore • Learn • Discover</p>
+  <p style="margin-top:8px">3D solar system is an educational illustration. Planet sizes and distances are not to scale.</p>
+</footer>
 
 <script>
-/* PLANET INFORMATION */
 const planets=[
- {name:"Mercury",emoji:"🌑",color:0x9b9189,css:"#9b9189",type:"Terrestrial",moons:"0",day:"59 Earth days",year:"88 Earth days",desc:"Mercury is the smallest planet and the closest planet to the Sun.",fact:"Mercury has extreme temperature differences between day and night."},
- {name:"Venus",emoji:"🟠",color:0xd8a35d,css:"#d8a35d",type:"Terrestrial",moons:"0",day:"243 Earth days",year:"225 Earth days",desc:"Venus is the second planet from the Sun. Its thick atmosphere traps heat.",fact:"Venus is the hottest planet in our solar system."},
- {name:"Earth",emoji:"🌍",color:0x267ce8,css:"#267ce8",type:"Terrestrial",moons:"1",day:"24 hours",year:"365 days",desc:"Earth is our home planet. It has liquid water on its surface and supports known life.",fact:"Earth is the only planet currently known to support life."},
- {name:"Mars",emoji:"🔴",color:0xd65b36,css:"#d65b36",type:"Terrestrial",moons:"2",day:"24.6 hours",year:"687 Earth days",desc:"Mars is called the Red Planet because of iron minerals in its soil.",fact:"Mars has the giant volcano Olympus Mons."},
- {name:"Jupiter",emoji:"🟤",color:0xc99567,css:"#c99567",type:"Gas giant",moons:"95+",day:"9.9 hours",year:"11.86 Earth years",desc:"Jupiter is the largest planet and is known for its giant storms.",fact:"Jupiter's Great Red Spot is a huge storm."},
- {name:"Saturn",emoji:"🪐",color:0xd7c18d,css:"#d7c18d",type:"Gas giant",moons:"146+",day:"10.7 hours",year:"29.4 Earth years",desc:"Saturn is famous for its spectacular rings of ice and rocky material.",fact:"Saturn's rings extend far into space around the planet."},
- {name:"Uranus",emoji:"🔵",color:0x75d6d5,css:"#75d6d5",type:"Ice giant",moons:"28+",day:"17.2 hours",year:"84 Earth years",desc:"Uranus is an ice giant with a blue-green appearance caused by methane.",fact:"Uranus rotates on its side compared with most planets."},
- {name:"Neptune",emoji:"🔵",color:0x315ee7,css:"#315ee7",type:"Ice giant",moons:"16+",day:"16.1 hours",year:"165 Earth years",desc:"Neptune is the eighth planet and is known for its powerful winds.",fact:"Neptune is the most distant recognized planet from the Sun."}
+ {name:"Mercury",color:0xaaa9a5,css:"#aaa9a5",type:"Terrestrial",moons:"0",day:"59 Earth days",year:"88 Earth days",desc:"The smallest planet and the closest planet to the Sun.",fact:"Mercury has extreme temperature changes because it has almost no atmosphere to retain heat.",size:.38,dist:5,speed:.020},
+ {name:"Venus",color:0xe6bd78,css:"#e6bd78",type:"Terrestrial",moons:"0",day:"243 Earth days",year:"225 Earth days",desc:"A rocky world with a very thick and hot atmosphere.",fact:"Venus is the hottest planet in our solar system due to its strong greenhouse effect.",size:.62,dist:7,speed:.015},
+ {name:"Earth",color:0x278ce8,css:"#278ce8",type:"Terrestrial",moons:"1",day:"24 hours",year:"365 days",desc:"Our home planet, with liquid water on its surface and known life.",fact:"Earth is the only world currently known to support life.",size:.68,dist:9,speed:.012},
+ {name:"Mars",color:0xd45b38,css:"#d45b38",type:"Terrestrial",moons:"2",day:"24.6 hours",year:"687 Earth days",desc:"The Red Planet, known for its dusty surface and giant volcanoes.",fact:"Olympus Mons on Mars is the largest known volcano in the solar system.",size:.50,dist:11,speed:.010},
+ {name:"Jupiter",color:0xd9a477,css:"#d9a477",type:"Gas Giant",moons:"Many",day:"9.9 hours",year:"11.86 Earth years",desc:"The largest planet in our solar system, famous for its Great Red Spot.",fact:"Jupiter's Great Red Spot is a gigantic storm that has been observed for centuries.",size:1.45,dist:15,speed:.007},
+ {name:"Saturn",color:0xe7d19a,css:"#e7d19a",type:"Gas Giant",moons:"Many",day:"10.7 hours",year:"29.4 Earth years",desc:"A gas giant famous for its magnificent rings.",fact:"Saturn's rings are made mostly of ice and rocky particles.",size:1.20,dist:19,speed:.005},
+ {name:"Uranus",color:0x83d9e6,css:"#83d9e6",type:"Ice Giant",moons:"Many",day:"17.2 hours",year:"84 Earth years",desc:"An ice giant with a blue-green colour and an unusual tilted rotation.",fact:"Uranus rotates on its side compared with most other planets.",size:.90,dist:23,speed:.0035},
+ {name:"Neptune",color:0x4169e1,css:"#4169e1",type:"Ice Giant",moons:"Many",day:"16.1 hours",year:"165 Earth years",desc:"A distant blue ice giant with extremely powerful winds.",fact:"Neptune is the farthest planet from the Sun.",size:.88,dist:27,speed:.0025}
 ];
 
-let selectedIndex=2;
-const planetList=document.getElementById("planetList");
-const planetCards=document.getElementById("planetCards");
-
-planets.forEach((p,i)=>{
- const b=document.createElement("button");
- b.className="planet-item";
- b.innerHTML=`<span class="dot" style="background:${p.css}"></span>${p.name}`;
- b.addEventListener("click",()=>selectPlanet(i));
- planetList.appendChild(b);
-
- const card=document.createElement("div");
- card.className="planet-card";
- card.innerHTML=`<div class="emoji">${p.emoji}</div><strong>${p.name}</strong><small>${p.type}</small>`;
- card.addEventListener("click",()=>selectPlanet(i));
- planetCards.appendChild(card);
-});
-
 function selectPlanet(i){
- selectedIndex=i;
  const p=planets[i];
- document.getElementById("infoEmoji").textContent=p.emoji;
- document.getElementById("infoName").textContent=p.name;
- document.getElementById("infoDesc").textContent=p.desc;
- document.getElementById("infoType").textContent=p.type;
- document.getElementById("infoMoons").textContent=p.moons;
- document.getElementById("infoDay").textContent=p.day;
- document.getElementById("infoYear").textContent=p.year;
- document.getElementById("infoFact").textContent="💡 "+p.fact;
-
- document.querySelectorAll(".planet-item").forEach((el,j)=>{
-  el.classList.toggle("active",i===j);
- });
- document.querySelectorAll(".planet-card").forEach((el,j)=>{
-  el.style.borderColor=i===j?"#00e5ff":"";
- });
-}
-selectPlanet(2);
-
-/* LOAD THREE.JS WITH FALLBACK */
-function loadThree(){
- return new Promise((resolve,reject)=>{
-  if(window.THREE){resolve(window.THREE);return;}
-  const urls=[
-   "https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js",
-   "https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"
-  ];
-  let index=0;
-  function attempt(){
-   if(index>=urls.length){reject(new Error("3D library could not load. Check your internet connection or CDN access."));return;}
-   const script=document.createElement("script");
-   script.src=urls[index++];
-   script.onload=()=>window.THREE?resolve(window.THREE):attempt();
-   script.onerror=attempt;
-   document.head.appendChild(script);
-  }
-  attempt();
- });
-}
-
-/* THREE.JS SOLAR SYSTEM */
-const container=document.getElementById("space");
-const errorBox=document.getElementById("engineError");
-let scene,camera,renderer,solarGroup;
-let planetMeshes=[],orbitGroups=[];
-let running=true,speed=1;
-let cameraDistance=19;
-let dragging=false,lastX=0,lastY=0;
-let pointerMoved=false;
-
-async function initSpace(){
- try{
-  const THREE=await loadThree();
-
-  scene=new THREE.Scene();
-  camera=new THREE.PerspectiveCamera(
-   45,container.clientWidth/container.clientHeight,.1,300
-  );
-  camera.position.set(0,11,23);
-  camera.lookAt(0,0,0);
-
-  renderer=new THREE.WebGLRenderer({
-   antialias:true,alpha:true,powerPreference:"high-performance"
-  });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.8));
-  renderer.setSize(container.clientWidth,container.clientHeight);
-  container.appendChild(renderer.domElement);
-
-  solarGroup=new THREE.Group();
-  scene.add(solarGroup);
-
-  scene.add(new THREE.AmbientLight(0xffffff,.9));
-
-  const sunLight=new THREE.PointLight(0xffffff,2.8,100);
-  sunLight.position.set(0,0,0);
-  scene.add(sunLight);
-
-  // Sun
-  const sun=new THREE.Mesh(
-   new THREE.SphereGeometry(.8,40,40),
-   new THREE.MeshBasicMaterial({color:0xffc23d})
-  );
-  solarGroup.add(sun);
-
-  const sunGlow=new THREE.Mesh(
-   new THREE.SphereGeometry(1.02,32,32),
-   new THREE.MeshBasicMaterial({
-    color:0xff8d24,transparent:true,opacity:.13,
-    side:THREE.BackSide
-   })
-  );
-  sun.add(sunGlow);
-
-  const distances=[1.6,2.4,3.3,4.2,6,7.6,9.2,10.7];
-  const sizes=[.13,.19,.22,.17,.48,.43,.34,.34];
-  const orbitalSpeeds=[.9,.7,.55,.43,.23,.17,.12,.09];
-
-  planets.forEach((p,i)=>{
-   const orbit=new THREE.Group();
-   solarGroup.add(orbit);
-
-   const mesh=new THREE.Mesh(
-    new THREE.SphereGeometry(sizes[i],32,32),
-    new THREE.MeshStandardMaterial({
-     color:p.color,roughness:.86,metalness:.02
-    })
-   );
-   mesh.position.set(distances[i],0,0);
-   orbit.add(mesh);
-
-   // Saturn rings
-   if(i===5){
-    const ring=new THREE.Mesh(
-     new THREE.RingGeometry(.55,.82,64),
-     new THREE.MeshBasicMaterial({
-      color:0xc7b38a,side:THREE.DoubleSide,
-      transparent:true,opacity:.8
-     })
-    );
-    ring.rotation.x=Math.PI/2.4;
-    mesh.add(ring);
-   }
-
-   // Orbit track
-   const pts=[];
-   for(let j=0;j<180;j++){
-    const angle=j/180*Math.PI*2;
-    pts.push(new THREE.Vector3(
-     Math.cos(angle)*distances[i],0,
-     Math.sin(angle)*distances[i]
-    ));
-   }
-   const orbitLine=new THREE.LineLoop(
-    new THREE.BufferGeometry().setFromPoints(pts),
-    new THREE.LineBasicMaterial({
-     color:0x77779b,transparent:true,opacity:.42
-    })
-   );
-   solarGroup.add(orbitLine);
-
-   orbitGroups.push({
-    orbit:orbit,mesh:mesh,speed:orbitalSpeeds[i]
-   });
-   planetMeshes.push(mesh);
-  });
-
-  // Stars
-  const starPositions=[];
-  for(let i=0;i<1500;i++){
-   starPositions.push(
-    (Math.random()-.5)*85,
-    (Math.random()-.5)*65,
-    (Math.random()-.5)*85
-   );
-  }
-  const starGeometry=new THREE.BufferGeometry();
-  starGeometry.setAttribute(
-   "position",new THREE.Float32BufferAttribute(starPositions,3)
-  );
-  const starField=new THREE.Points(
-   starGeometry,
-   new THREE.PointsMaterial({color:0xffffff,size:.075})
-  );
-  scene.add(starField);
-
-  // Pointer interaction
-  renderer.domElement.addEventListener("pointerdown",e=>{
-   dragging=true;
-   pointerMoved=false;
-   lastX=e.clientX;
-   lastY=e.clientY;
-   renderer.domElement.setPointerCapture(e.pointerId);
-  });
-
-  renderer.domElement.addEventListener("pointermove",e=>{
-   if(!dragging)return;
-   const dx=e.clientX-lastX;
-   const dy=e.clientY-lastY;
-   if(Math.abs(dx)+Math.abs(dy)>3)pointerMoved=true;
-   solarGroup.rotation.y+=dx*.004;
-   solarGroup.rotation.x+=dy*.004;
-   solarGroup.rotation.x=Math.max(-1.1,Math.min(1.1,solarGroup.rotation.x));
-   lastX=e.clientX;
-   lastY=e.clientY;
-  });
-
-  renderer.domElement.addEventListener("pointerup",e=>{
-   dragging=false;
-   try{renderer.domElement.releasePointerCapture(e.pointerId)}catch(_){}
-  });
-  renderer.domElement.addEventListener("pointercancel",()=>dragging=false);
-
-  renderer.domElement.addEventListener("wheel",e=>{
-   e.preventDefault();
-   cameraDistance=Math.max(12,Math.min(34,cameraDistance+e.deltaY*.012));
-   camera.position.setLength(cameraDistance);
-  },{passive:false});
-
-  // Planet selection by clicking the actual 3D mesh
-  renderer.domElement.addEventListener("click",e=>{
-   if(pointerMoved)return;
-   const rect=renderer.domElement.getBoundingClientRect();
-   const mouse=new THREE.Vector2(
-    ((e.clientX-rect.left)/rect.width)*2-1,
-    -((e.clientY-rect.top)/rect.height)*2+1
-   );
-   const raycaster=new THREE.Raycaster();
-   raycaster.setFromCamera(mouse,camera);
-   const hits=raycaster.intersectObjects(planetMeshes);
-   if(hits.length){
-    const index=planetMeshes.indexOf(hits[0].object);
-    if(index!==-1)selectPlanet(index);
-   }
-  });
-
-  function animate(){
-   requestAnimationFrame(animate);
-   if(running){
-    orbitGroups.forEach((item,i)=>{
-     item.orbit.rotation.y+=item.speed*speed*.002;
-     item.mesh.rotation.y+=.004*speed;
-    });
-    sun.rotation.y+=.001*speed;
-   }
-   renderer.render(scene,camera);
-  }
-  animate();
-
-  window.addEventListener("resize",()=>{
-   if(!renderer)return;
-   const w=container.clientWidth;
-   const h=container.clientHeight;
-   if(!w||!h)return;
-   camera.aspect=w/h;
-   camera.updateProjectionMatrix();
-   renderer.setSize(w,h);
-  });
-
-  document.getElementById("engineStatus").textContent="● 3D READY";
-  document.getElementById("engineStatus").style.color="#65e9b4";
-
- }catch(error){
-  console.error("Space Explorer error:",error);
-  document.getElementById("engineStatus").textContent="● 3D ERROR";
-  document.getElementById("engineStatus").style.color="#ff8498";
-  errorBox.style.display="flex";
-  errorBox.textContent="3D Solar System could not start. Please check your internet connection, browser WebGL support, and refresh the page. Details: "+error.message;
+ if(!p)return;
+ document.getElementById("planetSelect").value=i;
+ document.getElementById("planetName").textContent=p.name;
+ document.getElementById("planetDescription").textContent=p.desc;
+ document.getElementById("planetType").textContent=p.type;
+ document.getElementById("planetMoons").textContent=p.moons;
+ document.getElementById("planetDay").textContent=p.day;
+ document.getElementById("planetYear").textContent=p.year;
+ const fact=document.getElementById("infoFact");
+ fact.textContent="💡 "+p.fact;
+ fact.style.borderLeft="3px solid var(--cyan)";
+ fact.style.paddingLeft="14px";
+ if(window.planetMeshes && window.planetMeshes[i]){
+  window.selectedPlanet=i;
  }
 }
 
-/* CONTROLS */
-document.getElementById("pauseBtn").addEventListener("click",()=>{
- running=!running;
- document.getElementById("pauseBtn").textContent=running?"⏸ Pause":"▶ Resume";
+const planetCards=document.getElementById("planetCards");
+planets.forEach((p,i)=>{
+ const card=document.createElement("div");
+ card.className="planet-card";
+ card.innerHTML=`<div class="planet-ball" style="background:radial-gradient(circle at 30% 25%,#fff8,${p.css} 40%,#111 100%)"></div><h3>${p.name}</h3><p>${p.type}</p>`;
+ card.onclick=()=>{
+  selectPlanet(i);
+  document.getElementById("explorer").scrollIntoView({behavior:"smooth"});
+ };
+ planetCards.appendChild(card);
 });
-document.getElementById("resetBtn").addEventListener("click",()=>{
- if(!solarGroup)return;
- solarGroup.rotation.set(0,0,0);
- cameraDistance=23;
- camera.position.set(0,11,23);
- camera.lookAt(0,0,0);
+selectPlanet(0);
+
+/* 3D SOLAR SYSTEM */
+let scene,camera,renderer,planetMeshes=[],sun,paused=false;
+let selectedPlanet=0;
+let speed=1;
+let dragging=false,lastX=0,lastY=0,rotationX=0,rotationY=0;
+let cameraDistance=37;
+
+function initSpace(){
+ const container=document.getElementById("space");
+ if(!window.THREE){
+  container.innerHTML='<p style="padding:30px;color:#cbd8f6">3D view could not load. Please check your internet connection and refresh.</p>';
+  return;
+ }
+ scene=new THREE.Scene();
+ camera=new THREE.PerspectiveCamera(45,container.clientWidth/container.clientHeight,.1,1000);
+ camera.position.set(0,25,cameraDistance);
+
+ renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+ renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+ renderer.setSize(container.clientWidth,container.clientHeight);
+ container.appendChild(renderer.domElement);
+
+ scene.add(new THREE.AmbientLight(0xffffff,.8));
+ const sunLight=new THREE.PointLight(0xffffff,2.5,200);
+ scene.add(sunLight);
+
+ const sunGeo=new THREE.SphereGeometry(1.8,48,48);
+ const sunMat=new THREE.MeshBasicMaterial({color:0xffb52e});
+ sun=new THREE.Mesh(sunGeo,sunMat);
+ scene.add(sun);
+
+ const glow=new THREE.Mesh(
+  new THREE.SphereGeometry(2.2,32,32),
+  new THREE.MeshBasicMaterial({color:0xff8c1a,transparent:true,opacity:.15})
+ );
+ scene.add(glow);
+
+ const starGeo=new THREE.BufferGeometry();
+ const starPositions=[];
+ for(let i=0;i<1800;i++){
+  starPositions.push((Math.random()-.5)*180,(Math.random()-.5)*100,(Math.random()-.5)*180);
+ }
+ starGeo.setAttribute("position",new THREE.Float32BufferAttribute(starPositions,3));
+ const stars=new THREE.Points(starGeo,new THREE.PointsMaterial({color:0xffffff,size:.13}));
+ scene.add(stars);
+
+ planets.forEach((p,i)=>{
+  const geo=new THREE.SphereGeometry(p.size,32,32);
+  const mat=new THREE.MeshStandardMaterial({color:p.color,roughness:.9});
+  const mesh=new THREE.Mesh(geo,mat);
+  mesh.userData={index:i,dist:p.dist,angle:Math.random()*Math.PI*2};
+  mesh.position.set(Math.cos(mesh.userData.angle)*p.dist,0,Math.sin(mesh.userData.angle)*p.dist);
+  scene.add(mesh);
+  planetMeshes.push(mesh);
+
+  const orbitGeo=new THREE.RingGeometry(p.dist-.025,p.dist+.025,120);
+  const orbitMat=new THREE.MeshBasicMaterial({color:0x6579aa,side:THREE.DoubleSide,transparent:true,opacity:.32});
+  const orbit=new THREE.Mesh(orbitGeo,orbitMat);
+  orbit.rotation.x=-Math.PI/2;
+  scene.add(orbit);
+
+  if(p.name==="Saturn"){
+   const ring=new THREE.Mesh(
+    new THREE.RingGeometry(1.45,2.25,64),
+    new THREE.MeshBasicMaterial({color:0xc8b28a,side:THREE.DoubleSide,transparent:true,opacity:.75})
+   );
+   ring.rotation.x=Math.PI/2.3;
+   mesh.add(ring);
+  }
+ });
+
+ const raycaster=new THREE.Raycaster();
+ const pointer=new THREE.Vector2();
+
+ renderer.domElement.addEventListener("pointerdown",e=>{
+  dragging=true;lastX=e.clientX;lastY=e.clientY;
+ });
+ window.addEventListener("pointerup",()=>dragging=false);
+ window.addEventListener("pointermove",e=>{
+  if(!dragging)return;
+  rotationY+=(e.clientX-lastX)*.005;
+  rotationX+=(e.clientY-lastY)*.003;
+  rotationX=Math.max(-1.2,Math.min(1.2,rotationX));
+  lastX=e.clientX;lastY=e.clientY;
+ });
+ renderer.domElement.addEventListener("click",e=>{
+  const rect=renderer.domElement.getBoundingClientRect();
+  pointer.x=((e.clientX-rect.left)/rect.width)*2-1;
+  pointer.y=-((e.clientY-rect.top)/rect.height)*2+1;
+  raycaster.setFromCamera(pointer,camera);
+  const hits=raycaster.intersectObjects(planetMeshes);
+  if(hits.length)selectPlanet(hits[0].object.userData.index);
+ });
+ renderer.domElement.addEventListener("wheel",e=>{
+  cameraDistance=Math.max(15,Math.min(70,cameraDistance+e.deltaY*.025));
+ },{passive:true});
+
+ window.planetMeshes=planetMeshes;
+ animate();
+}
+
+function animate(){
+ requestAnimationFrame(animate);
+ if(!renderer)return;
+ if(!paused){
+  planetMeshes.forEach((mesh,i)=>{
+   mesh.userData.angle+=planets[i].speed*speed;
+   const a=mesh.userData.angle;
+   mesh.position.x=Math.cos(a)*mesh.userData.dist;
+   mesh.position.z=Math.sin(a)*mesh.userData.dist;
+   mesh.rotation.y+=.006;
+  });
+  sun.rotation.y+=.002;
+ }
+ const target=new THREE.Vector3(0,0,0);
+ camera.position.x=Math.sin(rotationY)*cameraDistance;
+ camera.position.y=20+rotationX*20;
+ camera.position.z=Math.cos(rotationY)*cameraDistance;
+ camera.lookAt(target);
+ renderer.render(scene,camera);
+}
+
+function togglePause(){
+ paused=!paused;
+ document.getElementById("pauseBtn").textContent=paused?"▶ Resume":"⏸ Pause";
+}
+function resetView(){
+ rotationX=0;rotationY=0;cameraDistance=37;
+}
+function zoomIn(){cameraDistance=Math.max(15,cameraDistance-4)}
+function zoomOut(){cameraDistance=Math.min(70,cameraDistance+4)}
+
+window.addEventListener("resize",()=>{
+ if(!renderer)return;
+ const container=document.getElementById("space");
+ camera.aspect=container.clientWidth/container.clientHeight;
+ camera.updateProjectionMatrix();
+ renderer.setSize(container.clientWidth,container.clientHeight);
 });
-document.getElementById("zoomIn").addEventListener("click",()=>{
- if(!camera)return;
- cameraDistance=Math.max(12,cameraDistance-2);
- camera.position.setLength(cameraDistance);
-});
-document.getElementById("zoomOut").addEventListener("click",()=>{
- if(!camera)return;
- cameraDistance=Math.min(34,cameraDistance+2);
- camera.position.setLength(cameraDistance);
-});
-document.getElementById("speedRange").addEventListener("input",e=>{
- speed=Number(e.target.value);
- document.getElementById("speedValue").textContent=speed.toFixed(1)+"x";
-});
+
+initSpace();
 
 /* SPACE QUIZ */
 const questions=[
- {q:"Which is the largest planet in our solar system?",a:["Earth","Jupiter","Saturn","Neptune"],c:1},
- {q:"Which planet is known as the Red Planet?",a:["Venus","Mercury","Mars","Uranus"],c:2},
- {q:"Which planet is famous for its rings?",a:["Saturn","Mars","Earth","Mercury"],c:0},
- {q:"What is the closest planet to the Sun?",a:["Venus","Earth","Mercury","Mars"],c:2},
- {q:"Which planet rotates on its side?",a:["Jupiter","Uranus","Neptune","Venus"],c:1},
- {q:"What is Earth's natural satellite?",a:["Europa","Titan","Moon","Phobos"],c:2},
- {q:"Which star is at the centre of our solar system?",a:["Sirius","Polaris","Sun","Vega"],c:2},
- {q:"Which is the most distant recognized planet from the Sun?",a:["Saturn","Uranus","Neptune","Jupiter"],c:2},
- {q:"Which planet is the hottest in our solar system?",a:["Mercury","Venus","Mars","Jupiter"],c:1},
- {q:"What galaxy contains our solar system?",a:["Andromeda","Milky Way","Whirlpool","Sombrero"],c:1}
+ {q:"Which planet is known as the Red Planet?",o:["Venus","Mars","Jupiter","Mercury"],a:1},
+ {q:"Which is the largest planet in our solar system?",o:["Earth","Saturn","Jupiter","Neptune"],a:2},
+ {q:"Which planet is famous for its rings?",o:["Mars","Saturn","Venus","Mercury"],a:1},
+ {q:"What is at the centre of our solar system?",o:["Earth","Moon","Sun","Jupiter"],a:2},
+ {q:"Which planet is closest to the Sun?",o:["Mercury","Venus","Earth","Mars"],a:0},
+ {q:"Which planet is known for its blue colour and powerful winds?",o:["Neptune","Mars","Mercury","Venus"],a:0},
+ {q:"What is the name of our galaxy?",o:["Andromeda","Milky Way","Whirlpool","Sombrero"],a:1},
+ {q:"Which mission first landed humans on the Moon?",o:["Voyager 1","Apollo 11","Artemis I","Sputnik 1"],a:1},
+ {q:"Which planet rotates on its side?",o:["Jupiter","Uranus","Earth","Mars"],a:1},
+ {q:"What force keeps planets in orbit around the Sun?",o:["Friction","Magnetism","Gravity","Electricity"],a:2}
 ];
 
-let qIndex=0,points=0,locked=false;
-function loadQuiz(){
- locked=false;
- const q=questions[qIndex%questions.length];
- document.getElementById("question").textContent=(qIndex+1)+". "+q.q;
- document.getElementById("feedback").textContent="Select your answer.";
- document.getElementById("answers").innerHTML=q.a.map((a,i)=>
-  `<button class="answer" data-i="${i}">${a}</button>`
- ).join("");
-
- document.querySelectorAll(".answer").forEach(btn=>{
-  btn.addEventListener("click",()=>answerQuiz(Number(btn.dataset.i)));
+let qIndex=0,score=0,answered=false;
+function loadQuestion(){
+ answered=false;
+ const q=questions[qIndex];
+ document.getElementById("question").textContent=qIndex+1+". "+q.q;
+ document.getElementById("quizProgress").textContent=`Question ${qIndex+1} of ${questions.length}`;
+ document.getElementById("nextBtn").disabled=true;
+ document.getElementById("nextBtn").textContent=qIndex===questions.length-1?"See Result →":"Next Question →";
+ document.getElementById("quizResult").textContent="";
+ const options=document.getElementById("options");
+ options.innerHTML="";
+ q.o.forEach((option,i)=>{
+  const btn=document.createElement("button");
+  btn.textContent=String.fromCharCode(65+i)+". "+option;
+  btn.onclick=()=>answerQuestion(i,btn);
+  options.appendChild(btn);
  });
 }
-function answerQuiz(i){
- if(locked)return;
- locked=true;
- const q=questions[qIndex%questions.length];
- const buttons=document.querySelectorAll(".answer");
- buttons[q.c].classList.add("correct");
-
- if(i===q.c){
-  points++;
-  document.getElementById("feedback").textContent="Correct answer! 🚀";
+function answerQuestion(i,btn){
+ if(answered)return;
+ answered=true;
+ const q=questions[qIndex];
+ const buttons=document.querySelectorAll(".quiz-options button");
+ buttons.forEach((b,index)=>{
+  b.disabled=true;
+  if(index===q.a)b.classList.add("correct");
+ });
+ if(i===q.a){
+  score++;
+  document.getElementById("quizResult").textContent="✓ Correct answer!";
+  document.getElementById("quizResult").style.color="#31d89b";
  }else{
-  buttons[i].classList.add("wrong");
-  document.getElementById("feedback").textContent="Correct answer: "+q.a[q.c];
+  btn.classList.add("wrong");
+  document.getElementById("quizResult").textContent="Not quite! The correct answer is "+q.o[q.a]+".";
+  document.getElementById("quizResult").style.color="#ff9ba9";
  }
- document.getElementById("score").textContent="Score: "+points;
+ document.getElementById("nextBtn").disabled=false;
 }
-document.getElementById("nextBtn").addEventListener("click",()=>{
+function nextQuestion(){
+ if(!answered)return;
  qIndex++;
- loadQuiz();
-});
-
-loadQuiz();
-initSpace();
+ if(qIndex>=questions.length){
+  document.getElementById("question").textContent="🚀 Quiz Completed!";
+  document.getElementById("options").innerHTML="";
+  document.getElementById("quizProgress").textContent="Your final score";
+  document.getElementById("quizResult").innerHTML=`<h2 style="font:700 34px Orbitron;color:var(--cyan)">${score}/${questions.length}</h2><p style="margin:10px 0;color:#cbd8f6">You scored ${Math.round(score/questions.length*100)}%.</p><button class="primary-btn" onclick="restartQuiz()">↻ Play Again</button>`;
+  document.getElementById("nextBtn").style.display="none";
+  return;
+ }
+ loadQuestion();
+}
+function restartQuiz(){
+ qIndex=0;score=0;
+ document.getElementById("nextBtn").style.display="inline-block";
+ loadQuestion();
+}
+loadQuestion();
 </script>
 </body>
 </html>
