@@ -1,12 +1,13 @@
-/* ========================= */
-/* index.js — Part 3 (Complete) */
-/* ========================= */
+/* ==========================================
+   TOOLORA AI — PREMIUM INTERACTIONS
+   Existing functionality preserved
+========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
     /* -------------------------
        Mobile Menu
-    --------------------------*/
+    -------------------------- */
 
     const menuBtn = document.getElementById("menuBtn");
     const mobileMenu = document.getElementById("mobileMenu");
@@ -15,19 +16,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
         menuBtn.addEventListener("click", () => {
             mobileMenu.classList.toggle("active");
+
+            const isOpen = mobileMenu.classList.contains("active");
+
+            menuBtn.setAttribute("aria-expanded", String(isOpen));
+
+            const icon = menuBtn.querySelector("i");
+
+            if (icon) {
+                icon.classList.toggle("fa-bars", !isOpen);
+                icon.classList.toggle("fa-xmark", isOpen);
+            }
         });
 
         mobileMenu.querySelectorAll("a").forEach(link => {
+
             link.addEventListener("click", () => {
                 mobileMenu.classList.remove("active");
+                menuBtn.setAttribute("aria-expanded", "false");
+
+                const icon = menuBtn.querySelector("i");
+
+                if (icon) {
+                    icon.classList.remove("fa-xmark");
+                    icon.classList.add("fa-bars");
+                }
             });
+
         });
 
     }
 
+
     /* -------------------------
        Search Filter
-    --------------------------*/
+    -------------------------- */
 
     const searchInput = document.getElementById("searchInput");
 
@@ -41,15 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const text = card.textContent.toLowerCase();
 
-                if (text.includes(value)) {
-
-                    card.style.display = "flex";
-
-                } else {
-
-                    card.style.display = "none";
-
-                }
+                card.style.display = text.includes(value) ? "flex" : "none";
 
             });
 
@@ -57,73 +72,90 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
     /* -------------------------
        Animated Statistics
-    --------------------------*/
+    -------------------------- */
 
     const counters = document.querySelectorAll("[data-count]");
 
-    const counterObserver = new IntersectionObserver((entries) => {
+    if ("IntersectionObserver" in window) {
 
-        entries.forEach(entry => {
+        const counterObserver = new IntersectionObserver((entries, observer) => {
 
-            if (!entry.isIntersecting) return;
+            entries.forEach(entry => {
 
-            const counter = entry.target;
+                if (!entry.isIntersecting) return;
 
-            const target = parseInt(counter.dataset.count);
+                const counter = entry.target;
+                const target = parseInt(counter.dataset.count, 10);
 
-            let current = 0;
-
-            const step = Math.max(1, Math.ceil(target / 50));
-
-            const timer = setInterval(() => {
-
-                current += step;
-
-                if (current >= target) {
-
-                    current = target;
-
-                    clearInterval(timer);
-
+                if (Number.isNaN(target)) {
+                    observer.unobserve(counter);
+                    return;
                 }
 
-                counter.textContent = current;
+                let current = 0;
 
-            }, 25);
+                const duration = 1200;
+                const interval = 25;
+                const steps = duration / interval;
+                const increment = target / steps;
 
-            counterObserver.unobserve(counter);
+                const timer = setInterval(() => {
 
+                    current += increment;
+
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+
+                    counter.textContent = Math.floor(current);
+
+                }, interval);
+
+                observer.unobserve(counter);
+
+            });
+
+        }, {
+            threshold: 0.5
         });
 
-    }, {
-        threshold: 0.5
-    });
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
 
-    counters.forEach(counter => counterObserver.observe(counter));
+    } else {
+
+        counters.forEach(counter => {
+            counter.textContent = counter.dataset.count;
+        });
+
+    }
+
 
     /* -------------------------
        Scroll To Top
-    --------------------------*/
+    -------------------------- */
 
     const scrollTopBtn = document.getElementById("scrollTop");
 
-    window.addEventListener("scroll", () => {
+    function updateScrollButton() {
 
         if (!scrollTopBtn) return;
 
-        if (window.scrollY > 500) {
+        scrollTopBtn.style.display =
+            window.scrollY > 500 ? "flex" : "none";
 
-            scrollTopBtn.style.display = "flex";
+    }
 
-        } else {
-
-            scrollTopBtn.style.display = "none";
-
-        }
-
+    window.addEventListener("scroll", updateScrollButton, {
+        passive: true
     });
+
+    updateScrollButton();
 
     if (scrollTopBtn) {
 
@@ -138,92 +170,104 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
     /* -------------------------
        Card Hover Glow
-    --------------------------*/
+    -------------------------- */
 
-    document.querySelectorAll(".tool-card,.feature-card,.stat-card,.why-card,.mini-card")
-        .forEach(card => {
+    const glowCards = document.querySelectorAll(
+        ".tool-card, .feature-card, .stat-card, .why-card, .mini-card"
+    );
 
-            card.addEventListener("mousemove", e => {
+    glowCards.forEach(card => {
 
-                const rect = card.getBoundingClientRect();
+        card.addEventListener("mousemove", event => {
 
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+            const rect = card.getBoundingClientRect();
 
-                card.style.background =
-                    `radial-gradient(circle at ${x}px ${y}px,
-                    rgba(79,124,255,.16),
-                    rgba(255,255,255,.05) 55%)`;
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
 
-            });
-
-            card.addEventListener("mouseleave", () => {
-
-                card.style.background = "";
-
-            });
+            card.style.setProperty("--mouse-x", `${x}px`);
+            card.style.setProperty("--mouse-y", `${y}px`);
 
         });
+
+        card.addEventListener("mouseleave", () => {
+
+            card.style.removeProperty("--mouse-x");
+            card.style.removeProperty("--mouse-y");
+
+        });
+
+    });
+
 
     /* -------------------------
        Reveal Animation
-    --------------------------*/
+    -------------------------- */
 
     const revealItems = document.querySelectorAll(
-        ".tool-card,.feature-card,.stat-card,.why-card,.faq details"
+        ".tool-card, .feature-card, .stat-card, .why-card, .faq details"
     );
 
-    const revealObserver = new IntersectionObserver((entries) => {
+    if ("IntersectionObserver" in window) {
 
-        entries.forEach(entry => {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
 
-            if (entry.isIntersecting) {
+            entries.forEach(entry => {
 
-                entry.target.animate([
+                if (!entry.isIntersecting) return;
+
+                entry.target.animate(
+                    [
+                        {
+                            opacity: 0,
+                            filter: "blur(4px)"
+                        },
+                        {
+                            opacity: 1,
+                            filter: "blur(0px)"
+                        }
+                    ],
                     {
-                        opacity: 0,
-                        transform: "translateY(40px)"
-                    },
-                    {
-                        opacity: 1,
-                        transform: "translateY(0)"
+                        duration: 550,
+                        easing: "ease-out",
+                        fill: "both"
                     }
-                ], {
-                    duration: 600,
-                    easing: "ease-out",
-                    fill: "forwards"
-                });
+                );
 
-                revealObserver.unobserve(entry.target);
+                observer.unobserve(entry.target);
 
-            }
+            });
 
+        }, {
+            threshold: 0.12
         });
 
-    }, {
-        threshold: 0.15
-    });
+        revealItems.forEach(item => {
+            revealObserver.observe(item);
+        });
 
-    revealItems.forEach(item => revealObserver.observe(item));
+    }
+
 
     /* -------------------------
        Active Navbar Link
-    --------------------------*/
+    -------------------------- */
 
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll("nav a");
 
-    window.addEventListener("scroll", () => {
+    function updateActiveNav() {
 
         let current = "";
 
         sections.forEach(section => {
 
-            const top = section.offsetTop - 120;
+            const top = section.getBoundingClientRect().top;
 
-            if (window.scrollY >= top) {
+            if (top <= 140) {
                 current = section.id;
             }
 
@@ -234,14 +278,45 @@ document.addEventListener("DOMContentLoaded", () => {
             link.classList.remove("active");
 
             if (link.getAttribute("href") === "#" + current) {
-
                 link.classList.add("active");
-
             }
 
         });
 
+    }
+
+    window.addEventListener("scroll", updateActiveNav, {
+        passive: true
+    });
+
+    updateActiveNav();
+
+
+    /* -------------------------
+       Close Mobile Menu on Outside Click
+    -------------------------- */
+
+    document.addEventListener("click", event => {
+
+        if (!menuBtn || !mobileMenu) return;
+
+        const clickedInsideMenu = mobileMenu.contains(event.target);
+        const clickedMenuButton = menuBtn.contains(event.target);
+
+        if (!clickedInsideMenu && !clickedMenuButton) {
+
+            mobileMenu.classList.remove("active");
+            menuBtn.setAttribute("aria-expanded", "false");
+
+            const icon = menuBtn.querySelector("i");
+
+            if (icon) {
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            }
+
+        }
+
     });
 
 });
-
