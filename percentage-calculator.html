@@ -1,240 +1,585 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Free Percentage Calculator Online – Marks & Normal Percentage | Toolora AI</title>
+  <meta name="description" content="Calculate exam marks percentage and find any percentage of a number instantly with Toolora AI's free online percentage calculator. Easy, accurate and mobile-friendly.">
+  <meta name="keywords" content="percentage calculator, marks percentage calculator, exam percentage calculator, calculate percentage online, find percentage of a number, free percentage calculator">
+  <meta name="author" content="Toolora AI">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gamingsss-hub.github.io/percentage-calculator.html">
+  <link rel="icon" href="favicon.png">
 
-<title>
-Percentage Calculator | Toolora
-</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Percentage Calculator Online | Toolora AI">
+  <meta property="og:description" content="Calculate exam marks percentage or find a percentage of any number with this free online calculator.">
+  <meta property="og:url" content="https://gamingsss-hub.github.io/percentage-calculator.html">
+  <meta property="og:site_name" content="Toolora AI">
 
-<meta
-name="description"
-content="Marks percentage + normal percentage calculator">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Percentage Calculator Online | Toolora AI">
+  <meta name="twitter:description" content="Calculate marks percentage and normal percentage quickly with Toolora AI.">
 
-<meta
-name="keywords"
-content="percentage calculator, marks percentage, toolora">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="icon" href="favicon.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Toolora AI Percentage Calculator",
+    "url": "https://gamingsss-hub.github.io/percentage-calculator.html",
+    "description": "A free online percentage calculator for calculating exam marks percentage and finding a percentage of any number.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    }
+  }
+  </script>
 
-<style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate my exam marks percentage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide your obtained marks by the total marks and multiply the result by 100. For example, 450 out of 500 is 90%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I find a percentage of a number?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply the number by the percentage and divide by 100. For example, 20% of 500 is 100."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this percentage calculator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Toolora AI's percentage calculator is free to use online."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this calculator on my phone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The calculator works in modern mobile and desktop browsers."
+        }
+      }
+    ]
+  }
+  </script>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-body{
-background:#050b18;
-color:white;
-padding:24px;
-}
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(109, 66, 255, 0.16), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(0, 157, 255, 0.13), transparent 35%),
+        #050b18;
+      color: #fff;
+      padding: 24px;
+      line-height: 1.7;
+    }
 
-.box{
-max-width:650px;
-margin:auto;
-background:#0d1730;
-padding:30px;
-border-radius:28px;
-}
+    .box {
+      max-width: 720px;
+      margin: 25px auto;
+      background: rgba(13, 23, 48, 0.96);
+      padding: 32px;
+      border: 1px solid rgba(125, 211, 252, 0.12);
+      border-radius: 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+    }
 
-h1{
-margin-bottom:18px;
-}
+    .top-label {
+      display: inline-block;
+      color: #7dd3fc;
+      background: rgba(0, 157, 255, 0.1);
+      border: 1px solid rgba(125, 211, 252, 0.18);
+      padding: 6px 13px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
 
-.section{
-margin-top:30px;
-}
+    h1 {
+      font-size: clamp(25px, 5vw, 34px);
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
 
-input{
-width:100%;
-padding:18px;
-margin-top:12px;
-border:none;
-border-radius:18px;
-background:#13213f;
-color:white;
-}
+    .intro {
+      color: #a9bad4;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
 
-button{
-width:100%;
-padding:18px;
-margin-top:16px;
-border:none;
-border-radius:18px;
+    .section {
+      margin-top: 28px;
+      padding: 22px;
+      background: rgba(19, 33, 63, 0.55);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: 22px;
+    }
 
-background:
-linear-gradient(
-45deg,
-#6d42ff,
-#009dff
-);
+    h2 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
 
-color:white;
+    .section-description {
+      color: #9aacc7;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
 
-}
+    label {
+      display: block;
+      margin-top: 14px;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 500;
+    }
 
-.result{
-margin-top:18px;
-font-size:30px;
-font-weight:900;
-}
+    input {
+      width: 100%;
+      padding: 15px 16px;
+      margin-top: 7px;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 14px;
+      outline: none;
+      background: #13213f;
+      color: white;
+      font-size: 16px;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
 
-.small{
-color:#7dd3fc;
-margin-top:10px;
-}
+    input:focus {
+      border-color: #6d8cff;
+      box-shadow: 0 0 0 3px rgba(109, 66, 255, 0.15);
+    }
 
-</style>
+    input::placeholder {
+      color: #7183a2;
+    }
 
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 17px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(45deg, #6d42ff, #009dff);
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      opacity: 0.93;
+    }
+
+    button:focus-visible {
+      outline: 3px solid #7dd3fc;
+      outline-offset: 3px;
+    }
+
+    .result {
+      margin-top: 18px;
+      padding: 15px;
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow-wrap: anywhere;
+      background: rgba(5, 11, 24, 0.7);
+      border: 1px solid rgba(125, 211, 252, 0.12);
+      border-radius: 15px;
+      color: #7dd3fc;
+      font-size: 30px;
+      font-weight: 800;
+    }
+
+    .small {
+      color: #7dd3fc;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .error {
+      color: #fca5a5;
+      font-size: 13px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .info {
+      margin-top: 30px;
+      color: #cbd5e1;
+    }
+
+    .info h2 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .info p {
+      color: #a9bad4;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .formula {
+      padding: 14px;
+      margin: 12px 0;
+      border-radius: 13px;
+      background: #13213f;
+      color: #7dd3fc;
+      font-weight: 600;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    .faq-item {
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.13);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item h3 {
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .faq-item p {
+      margin: 0;
+    }
+
+    .related {
+      margin-top: 25px;
+      padding: 18px;
+      background: rgba(19, 33, 63, 0.55);
+      border-radius: 18px;
+    }
+
+    .related h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .related a {
+      display: inline-block;
+      color: #7dd3fc;
+      text-decoration: none;
+      margin: 5px 12px 5px 0;
+      font-size: 14px;
+    }
+
+    .related a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      max-width: 720px;
+      margin: 0 auto 20px;
+      text-align: center;
+      color: #7183a2;
+      font-size: 12px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+
+      .box {
+        margin: 10px auto;
+        padding: 20px;
+        border-radius: 21px;
+      }
+
+      .section {
+        padding: 17px;
+      }
+
+      .result {
+        font-size: 26px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="box">
+<main class="box">
+  <span class="top-label">FREE ONLINE TOOL</span>
 
-<h1>
-📊 Percentage Calculator
-</h1>
+  <h1>📊 Percentage Calculator</h1>
 
-<div class="section">
+  <p class="intro">
+    Calculate your exam marks percentage or find a percentage of any number.
+    This free calculator gives quick results on mobile and desktop.
+  </p>
 
-<h2>
-Marks Percentage
-</h2>
+  <section class="section" aria-labelledby="marks-heading">
+    <h2 id="marks-heading">Marks Percentage Calculator</h2>
 
-<input
-id="total"
-type="number"
-placeholder="Total Marks">
+    <p class="section-description">
+      Enter your total marks and the marks you obtained to calculate your percentage.
+    </p>
 
-<input
-id="obtained"
-type="number"
-placeholder="Obtained Marks">
+    <label for="total">Total Marks</label>
+    <input
+      id="total"
+      type="number"
+      min="0"
+      step="any"
+      placeholder="Example: 500"
+      inputmode="decimal"
+    >
 
-<button onclick="marksCalc()">
+    <label for="obtained">Obtained Marks</label>
+    <input
+      id="obtained"
+      type="number"
+      min="0"
+      step="any"
+      placeholder="Example: 425"
+      inputmode="decimal"
+    >
 
-Calculate %
+    <button type="button" onclick="marksCalc()">Calculate Marks Percentage</button>
 
-</button>
+    <div class="result" id="marksResult" aria-live="polite">0%</div>
+    <div class="small" id="grade" aria-live="polite">Your result will appear here</div>
+    <div class="error" id="marksError" role="alert"></div>
+  </section>
 
-<div
-class="result"
-id="marksResult">
+  <section class="section" aria-labelledby="normal-heading">
+    <h2 id="normal-heading">Normal Percentage Calculator</h2>
 
-0%
+    <p class="section-description">
+      Find out how much a particular percentage is of a number.
+    </p>
 
-</div>
+    <label for="number">Enter Number</label>
+    <input
+      id="number"
+      type="number"
+      step="any"
+      placeholder="Example: 500"
+      inputmode="decimal"
+    >
 
-<div
-class="small"
-id="grade">
+    <label for="percent">Enter Percentage (%)</label>
+    <input
+      id="percent"
+      type="number"
+      step="any"
+      placeholder="Example: 20"
+      inputmode="decimal"
+    >
 
-—
+    <button type="button" onclick="normalCalc()">Find Percentage</button>
 
-</div>
+    <div class="result" id="normalResult" aria-live="polite">0</div>
+    <div class="error" id="normalError" role="alert"></div>
+  </section>
 
-</div>
+  <section class="info">
+    <h2>How to Calculate Percentage?</h2>
 
+    <p>
+      A percentage represents a number as a fraction of 100. It is commonly
+      used to calculate exam results, discounts, marks, statistics and more.
+    </p>
 
+    <h2>1. Exam Marks Percentage Formula</h2>
 
-<div class="section">
+    <div class="formula">
+      Percentage = (Obtained Marks ÷ Total Marks) × 100
+    </div>
 
-<h2>
+    <p>
+      Example: If you score 425 marks out of 500, your percentage is:
+      (425 ÷ 500) × 100 = 85%.
+    </p>
 
-Normal Percentage
+    <h2>2. Find a Percentage of a Number</h2>
 
-</h2>
+    <div class="formula">
+      Result = (Number × Percentage) ÷ 100
+    </div>
 
-<input
-id="number"
-type="number"
-placeholder="Enter Number">
+    <p>
+      Example: To find 20% of 500, calculate (500 × 20) ÷ 100.
+      The answer is 100.
+    </p>
+  </section>
 
-<input
-id="percent"
-type="number"
-placeholder="Enter %">
+  <section class="info">
+    <h2>Frequently Asked Questions</h2>
 
-<button onclick="normalCalc()">
+    <div class="faq-item">
+      <h3>How do I calculate my exam marks percentage?</h3>
+      <p>
+        Divide your obtained marks by the total marks and multiply the answer
+        by 100. For example, 450 out of 500 is 90%.
+      </p>
+    </div>
 
-Find %
+    <div class="faq-item">
+      <h3>How do I find 20% of a number?</h3>
+      <p>
+        Multiply the number by 20 and divide the result by 100. For example,
+        20% of 500 is 100.
+      </p>
+    </div>
 
-</button>
+    <div class="faq-item">
+      <h3>Is this percentage calculator free?</h3>
+      <p>
+        Yes. You can use this Toolora AI percentage calculator for free.
+      </p>
+    </div>
 
-<div
-class="result"
-id="normalResult">
+    <div class="faq-item">
+      <h3>Can I use this calculator on my phone?</h3>
+      <p>
+        Yes. It works in modern mobile and desktop web browsers.
+      </p>
+    </div>
+  </section>
 
-0
+  <nav class="related" aria-label="Related tools">
+    <h2>Explore More Free Tools</h2>
+    <a href="formula-hub.html">Math Formula Hub</a>
+    <a href="text-case-converter.html">Text Case Converter</a>
+    <a href="password-strength-checker.html">Password Strength Checker</a>
+    <a href="essay-writer.html">AI Essay Writer</a>
+    <a href="index.html">Explore All Tools</a>
+  </nav>
+</main>
 
-</div>
-
-</div>
-
-</div>
-
-
+<footer>
+  <p>© 2026 Toolora AI. Free online tools for everyday tasks.</p>
+  <p><a href="index.html">Back to Home</a></p>
+</footer>
 
 <script>
+  function marksCalc() {
+    const totalInput = document.getElementById("total").value.trim();
+    const obtainedInput = document.getElementById("obtained").value.trim();
 
-function marksCalc(){
+    const result = document.getElementById("marksResult");
+    const grade = document.getElementById("grade");
+    const error = document.getElementById("marksError");
 
-let t=+total.value;
-let o=+obtained.value;
+    error.textContent = "";
 
-if(!t||o>t){
+    if (totalInput === "" || obtainedInput === "") {
+      result.textContent = "—";
+      grade.textContent = "";
+      error.textContent = "Please enter both total marks and obtained marks.";
+      return;
+    }
 
-marksResult.innerHTML="Invalid";
+    const total = Number(totalInput);
+    const obtained = Number(obtainedInput);
 
-return;
+    if (!Number.isFinite(total) || !Number.isFinite(obtained) ||
+        total <= 0 || obtained < 0 || obtained > total) {
+      result.textContent = "—";
+      grade.textContent = "";
+      error.textContent = "Enter valid marks. Obtained marks must be between 0 and total marks.";
+      return;
+    }
 
-}
+    const percentage = (obtained / total) * 100;
 
-let p=(o/t)*100;
+    result.textContent = percentage.toFixed(2) + "%";
 
-marksResult.innerHTML=
-p.toFixed(2)+"%";
+    if (percentage >= 90) {
+      grade.textContent = "🏆 Excellent";
+    } else if (percentage >= 75) {
+      grade.textContent = "🔥 Very Good";
+    } else if (percentage >= 60) {
+      grade.textContent = "✅ Good";
+    } else if (percentage >= 40) {
+      grade.textContent = "🙂 Pass";
+    } else {
+      grade.textContent = "Keep Practising";
+    }
+  }
 
-if(p>=90)
-grade.innerHTML="🏆 Excellent";
+  function normalCalc() {
+    const numberInput = document.getElementById("number").value.trim();
+    const percentInput = document.getElementById("percent").value.trim();
 
-else if(p>=75)
-grade.innerHTML="🔥 Very Good";
+    const result = document.getElementById("normalResult");
+    const error = document.getElementById("normalError");
 
-else if(p>=60)
-grade.innerHTML="✅ Good";
+    error.textContent = "";
 
-else if(p>=40)
-grade.innerHTML="🙂 Pass";
+    if (numberInput === "" || percentInput === "") {
+      result.textContent = "—";
+      error.textContent = "Please enter both the number and percentage.";
+      return;
+    }
 
-else
-grade.innerHTML="❌ Fail";
+    const number = Number(numberInput);
+    const percentage = Number(percentInput);
 
-}
+    if (!Number.isFinite(number) || !Number.isFinite(percentage)) {
+      result.textContent = "—";
+      error.textContent = "Please enter valid numbers.";
+      return;
+    }
 
+    const answer = (number * percentage) / 100;
 
-
-function normalCalc(){
-
-let n=+number.value;
-
-let p=+percent.value;
-
-normalResult.innerHTML=
-((n*p)/100)
-.toFixed(2);
-
-}
-
+    result.textContent = Number(answer.toFixed(2)).toString();
+  }
 </script>
 
 </body>
-
 </html>
