@@ -1,291 +1,836 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080816">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>QR Code Generator | Toolora AI</title>
+<meta name="description" content="Create customized QR codes online for URLs, text, email, phone and Wi-Fi. Download high-quality QR codes for free.">
+<meta name="keywords" content="QR code generator, free QR maker, custom QR code, WiFi QR generator">
 
-<title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-QR Code Generator | Create QR Online
-
-</title>
-
-<meta
-name="description"
-
-content=
-
-"Generate QR codes instantly online.">
-
-<meta
-name="keywords"
-
-content=
-
-"qr generator,qr code maker">
-
-<script
-src=
-
-"https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
+:root{
+  --bg:#080816;
+  --card:#111126;
+  --card2:#17172f;
+  --blue:#4f7cff;
+  --purple:#985cff;
+  --cyan:#00e5ff;
+  --text:#f7f7ff;
+  --muted:#9696b5;
+  --border:rgba(255,255,255,.09);
+}
 
 *{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-font-family:Arial;
-
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Outfit','Poppins',sans-serif;
 }
 
 body{
-
-background:
-
-linear-gradient(
-135deg,
-#eef2ff,
-#f8fafc,
-#dbeafe
-);
-
-min-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-padding:20px;
-
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(79,124,255,.17),transparent 35%),
+    radial-gradient(circle at 90% 85%,rgba(152,92,255,.16),transparent 35%),
+    var(--bg);
+  color:var(--text);
+  padding:25px 16px 50px;
 }
 
-.box{
-
-max-width:600px;
-
-width:100%;
-
-padding:30px;
-
-background:white;
-
-border-radius:30px;
-
-box-shadow:
-
-0 20px 60px
-rgba(
-0,
-0,
-0,
-.12
-);
-
-text-align:center;
-
+.container{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
 }
 
-h1{
-
-margin-bottom:20px;
-
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:45px;
 }
 
-input{
-
-width:100%;
-
-padding:18px;
-
-border:none;
-
-background:#f3f4f6;
-
-border-radius:18px;
-
-font-size:18px;
-
+.logo{
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:-1px;
+  background:linear-gradient(90deg,#fff,#8daaff,#bd8aff);
+  -webkit-background-clip:text;
+  color:transparent;
 }
 
-button{
+.logo span{
+  color:#7c8fff;
+}
 
-margin-top:15px;
+.nav-tag{
+  padding:9px 16px;
+  border:1px solid var(--border);
+  border-radius:30px;
+  color:#b5b5d1;
+  font-size:12px;
+  background:rgba(255,255,255,.04);
+}
 
-width:100%;
+.hero{
+  text-align:center;
+  margin-bottom:35px;
+}
 
-padding:16px;
+.badge{
+  display:inline-block;
+  padding:8px 15px;
+  border-radius:30px;
+  color:#a9baff;
+  background:rgba(79,124,255,.12);
+  border:1px solid rgba(79,124,255,.25);
+  font-size:12px;
+  margin-bottom:17px;
+}
 
-border:none;
+.hero h1{
+  font-size:clamp(32px,6vw,52px);
+  font-weight:800;
+  letter-spacing:-1.5px;
+  line-height:1.15;
+}
 
-border-radius:18px;
+.gradient{
+  background:linear-gradient(90deg,#4f8cff,#a56bff,#00e5ff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
 
-background:
+.hero p{
+  color:var(--muted);
+  margin-top:13px;
+  font-size:15px;
+  line-height:1.7;
+}
 
-linear-gradient(
-90deg,
-#2563eb,
-#7c3aed
-);
+.main-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:22px;
+  align-items:stretch;
+}
 
-color:white;
+.panel{
+  background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:27px;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+}
 
-font-size:18px;
+.panel-title{
+  font-size:19px;
+  font-weight:700;
+  margin-bottom:22px;
+}
 
+.label{
+  display:block;
+  color:#c8c8df;
+  font-size:13px;
+  margin-bottom:9px;
+  font-weight:500;
+}
+
+.input-group{
+  margin-bottom:19px;
+}
+
+input,textarea,select{
+  width:100%;
+  padding:14px 15px;
+  border-radius:13px;
+  border:1px solid var(--border);
+  background:#0c0c1c;
+  color:white;
+  outline:none;
+  font-size:14px;
+  transition:.25s;
+}
+
+input:focus,textarea:focus,select:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(79,124,255,.12);
+}
+
+textarea{
+  resize:vertical;
+  min-height:110px;
+}
+
+select option{
+  background:#111126;
+}
+
+.type-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+
+.type-btn{
+  padding:11px 4px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#0c0c1c;
+  color:#aaaac5;
+  cursor:pointer;
+  font-size:11px;
+  transition:.2s;
+}
+
+.type-btn.active{
+  background:rgba(79,124,255,.16);
+  border-color:#668aff;
+  color:white;
+}
+
+.type-btn span{
+  display:block;
+  font-size:19px;
+  margin-bottom:5px;
+}
+
+.color-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.color-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#0c0c1c;
+  border:1px solid var(--border);
+  padding:9px;
+  border-radius:12px;
+}
+
+.color-box input{
+  width:38px;
+  height:32px;
+  padding:0;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+}
+
+.color-box small{
+  color:#b8b8d0;
+  font-size:12px;
+}
+
+.primary-btn{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(100deg,#426eff,#985cff);
+  color:white;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:5px;
+  box-shadow:0 8px 25px rgba(79,124,255,.22);
+  transition:.25s;
+}
+
+.primary-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(79,124,255,.35);
+}
+
+.preview-panel{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.preview-panel .panel-title{
+  align-self:flex-start;
+}
+
+.qr-preview{
+  width:100%;
+  min-height:310px;
+  background:rgba(255,255,255,.035);
+  border:1px dashed rgba(255,255,255,.15);
+  border-radius:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  margin-bottom:20px;
 }
 
 #qr{
-
-margin-top:30px;
-
-display:flex;
-
-justify-content:center;
-
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:white;
+  padding:12px;
+  border-radius:10px;
+  min-width:0;
+  min-height:0;
 }
 
-.download{
-
-margin-top:15px;
-
-background:#22c55e;
-
+#qr:empty{
+  width:100%;
+  height:260px;
+  background:transparent;
+  padding:0;
 }
 
+.placeholder{
+  color:#8585a6;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.placeholder span{
+  display:block;
+  font-size:50px;
+  margin-bottom:10px;
+}
+
+#qr img,#qr canvas{
+  max-width:100%;
+  height:auto;
+}
+
+.download-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  width:100%;
+}
+
+.action-btn{
+  padding:13px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#1a1a35;
+  color:white;
+  cursor:pointer;
+  font-weight:600;
+  transition:.2s;
+}
+
+.action-btn:hover{
+  background:#27274a;
+}
+
+.action-btn.green{
+  background:linear-gradient(100deg,#119b67,#20bd83);
+  border:0;
+}
+
+.action-btn:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+.status{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:15px;
+  min-height:18px;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:25px;
+}
+
+.feature{
+  padding:18px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--border);
+  border-radius:17px;
+  text-align:center;
+}
+
+.feature span{
+  font-size:25px;
+}
+
+.feature h3{
+  font-size:14px;
+  margin:9px 0 5px;
+}
+
+.feature p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
+}
+
+.footer{
+  text-align:center;
+  color:#777792;
+  font-size:12px;
+  margin-top:40px;
+}
+
+.field-note{
+  color:#8585a6;
+  font-size:11px;
+  margin-top:7px;
+}
+
+@media(max-width:750px){
+  .main-grid{
+    grid-template-columns:1fr;
+  }
+  .navbar{
+    margin-bottom:35px;
+  }
+  .panel{
+    padding:20px;
+  }
+  .features{
+    grid-template-columns:1fr;
+  }
+  .type-grid{
+    grid-template-columns:repeat(5,1fr);
+  }
+}
+
+@media(max-width:390px){
+  .type-btn{
+    font-size:10px;
+  }
+  .type-btn span{
+    font-size:16px;
+  }
+  .color-row{
+    grid-template-columns:1fr;
+  }
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
 
-<h1>
+  <nav class="navbar">
+    <div class="logo">TOOLORA<span> AI</span></div>
+    <div class="nav-tag">✦ FREE ONLINE TOOL</div>
+  </nav>
 
-🔳 QR Generator
+  <header class="hero">
+    <div class="badge">⚡ SMART QR TECHNOLOGY</div>
+    <h1>Create Your <span class="gradient">QR Code</span></h1>
+    <p>Generate custom QR codes for links, text, email, phone and Wi-Fi.<br>Simple, fast and completely free.</p>
+  </header>
 
-</h1>
+  <main class="main-grid">
 
-<input
+    <section class="panel">
 
-id="text"
+      <h2 class="panel-title">⚙️ Customize QR Code</h2>
 
-placeholder=
+      <div class="input-group">
+        <label class="label">Select QR Type</label>
 
-"Enter text or URL">
+        <div class="type-grid">
+          <button class="type-btn active" data-type="url">
+            <span>🔗</span>URL
+          </button>
+          <button class="type-btn" data-type="text">
+            <span>📝</span>Text
+          </button>
+          <button class="type-btn" data-type="email">
+            <span>✉️</span>Email
+          </button>
+          <button class="type-btn" data-type="phone">
+            <span>📞</span>Phone
+          </button>
+          <button class="type-btn" data-type="wifi">
+            <span>📶</span>Wi-Fi
+          </button>
+        </div>
+      </div>
 
-<button
+      <div id="dynamicFields">
 
-onclick=
+        <div class="input-group">
+          <label class="label">Website URL</label>
+          <input id="urlInput" type="url" placeholder="https://example.com">
+        </div>
 
-"make()">
+      </div>
 
-Generate
+      <div class="input-group">
+        <label class="label">QR Code Size</label>
+        <select id="size">
+          <option value="180">Small (180 × 180)</option>
+          <option value="260" selected>Medium (260 × 260)</option>
+          <option value="350">Large (350 × 350)</option>
+          <option value="450">HD (450 × 450)</option>
+        </select>
+      </div>
 
-</button>
+      <div class="input-group">
+        <label class="label">QR Colors</label>
+        <div class="color-row">
+          <div class="color-box">
+            <input type="color" id="qrColor" value="#000000">
+            <small>QR Color</small>
+          </div>
 
-<button
+          <div class="color-box">
+            <input type="color" id="bgColor" value="#ffffff">
+            <small>Background</small>
+          </div>
+        </div>
+      </div>
 
-class="download"
+      <button class="primary-btn" id="generateBtn">
+        ✨ Generate QR Code
+      </button>
 
-onclick=
+    </section>
 
-"downloadQR()">
+    <section class="panel preview-panel">
 
-Download
+      <h2 class="panel-title">🎯 QR Preview</h2>
 
-</button>
+      <div class="qr-preview">
+        <div id="qr">
+          <div class="placeholder">
+            <span>▦</span>
+            Your QR code will appear here
+          </div>
+        </div>
+      </div>
 
-<div
-id="qr">
+      <div class="download-actions">
+        <button class="action-btn green" id="downloadBtn" disabled>
+          ↓ Download PNG
+        </button>
 
-</div>
+        <button class="action-btn" id="copyBtn" disabled>
+          ◫ Copy Image
+        </button>
+      </div>
+
+      <p class="status" id="status">Ready to generate your QR code.</p>
+
+    </section>
+
+  </main>
+
+  <section class="features">
+    <div class="feature">
+      <span>⚡</span>
+      <h3>Instant Generation</h3>
+      <p>Create your QR code in seconds.</p>
+    </div>
+
+    <div class="feature">
+      <span>🎨</span>
+      <h3>Custom Colors</h3>
+      <p>Choose your own QR and background colors.</p>
+    </div>
+
+    <div class="feature">
+      <span>📥</span>
+      <h3>Easy Download</h3>
+      <p>Save your QR code as a PNG image.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 Toolora AI · Free QR Code Generator
+  </footer>
 
 </div>
 
 <script>
+const qrContainer = document.getElementById("qr");
+const statusText = document.getElementById("status");
+const generateBtn = document.getElementById("generateBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+const copyBtn = document.getElementById("copyBtn");
+const dynamicFields = document.getElementById("dynamicFields");
 
-function make(){
+let currentType = "url";
+let qrInstance = null;
+let generated = false;
 
-qr.innerHTML="";
+const templates = {
+  url: `
+    <div class="input-group">
+      <label class="label">Website URL</label>
+      <input id="urlInput" type="url" placeholder="https://example.com">
+    </div>
+  `,
+  text: `
+    <div class="input-group">
+      <label class="label">Enter Your Text</label>
+      <textarea id="textInput" placeholder="Write anything here..."></textarea>
+    </div>
+  `,
+  email: `
+    <div class="input-group">
+      <label class="label">Email Address</label>
+      <input id="emailInput" type="email" placeholder="example@gmail.com">
+    </div>
+    <div class="input-group">
+      <label class="label">Email Subject (Optional)</label>
+      <input id="emailSubject" placeholder="Enter subject">
+    </div>
+  `,
+  phone: `
+    <div class="input-group">
+      <label class="label">Phone Number</label>
+      <input id="phoneInput" type="tel" placeholder="+91 9876543210">
+    </div>
+  `,
+  wifi: `
+    <div class="input-group">
+      <label class="label">Wi-Fi Network Name (SSID)</label>
+      <input id="wifiName" placeholder="My WiFi">
+    </div>
+    <div class="input-group">
+      <label class="label">Wi-Fi Password</label>
+      <input id="wifiPassword" type="password" placeholder="Enter password">
+    </div>
+    <div class="input-group">
+      <label class="label">Security Type</label>
+      <select id="wifiSecurity">
+        <option value="WPA">WPA/WPA2</option>
+        <option value="WEP">WEP</option>
+        <option value="nopass">No Password</option>
+      </select>
+    </div>
+    <p class="field-note">Wi-Fi QR mein password encoded hota hai. Sirf trusted logon ke saath share karein.</p>
+  `
+};
 
-new QRCode(
+document.querySelectorAll(".type-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".type-btn").forEach(b => b.classList.remove("active"));
 
-document.getElementById(
+    button.classList.add("active");
+    currentType = button.dataset.type;
+    dynamicFields.innerHTML = templates[currentType];
 
-"qr"
+    clearQR();
+    statusText.textContent = "Enter your details and generate a new QR.";
+  });
+});
 
-),
+function getQRData(){
+  if(currentType === "url"){
+    let value = document.getElementById("urlInput").value.trim();
 
-{
+    if(!value) throw new Error("Please enter a website URL.");
 
-text:
+    let parsed;
+    try{
+      parsed = new URL(value);
+    }catch{
+      throw new Error("Please enter a valid URL.");
+    }
 
-text.value,
+    if(!["http:","https:"].includes(parsed.protocol)){
+      throw new Error("Only HTTP and HTTPS links are supported.");
+    }
 
-width:260,
+    return parsed.href;
+  }
 
-height:260
+  if(currentType === "text"){
+    const value = document.getElementById("textInput").value.trim();
+    if(!value) throw new Error("Please enter some text.");
+    return value;
+  }
 
+  if(currentType === "email"){
+    const email = document.getElementById("emailInput").value.trim();
+    const subject = document.getElementById("emailSubject").value.trim();
+
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      throw new Error("Please enter a valid email address.");
+    }
+
+    return "mailto:" + email + "?subject=" + encodeURIComponent(subject);
+  }
+
+  if(currentType === "phone"){
+    const phone = document.getElementById("phoneInput").value.trim();
+
+    if(!/^\+?[0-9\s()-]{7,20}$/.test(phone)){
+      throw new Error("Please enter a valid phone number.");
+    }
+
+    return "tel:" + phone.replace(/[\s()-]/g,"");
+  }
+
+  if(currentType === "wifi"){
+    const ssid = document.getElementById("wifiName").value;
+    const password = document.getElementById("wifiPassword").value;
+    const security = document.getElementById("wifiSecurity").value;
+
+    if(!ssid.trim()) throw new Error("Please enter your Wi-Fi name.");
+
+    if(security !== "nopass" && !password){
+      throw new Error("Please enter your Wi-Fi password.");
+    }
+
+    const escapeWifi = value => value.replace(/([\\;,:"])/g,"\\$1");
+
+    return "WIFI:T:" + security +
+      ";S:" + escapeWifi(ssid) +
+      ";P:" + escapeWifi(password) +
+      ";;";
+  }
 }
 
-);
+function clearQR(){
+  qrContainer.innerHTML = `
+    <div class="placeholder">
+      <span>▦</span>
+      Your QR code will appear here
+    </div>
+  `;
 
+  generated = false;
+  qrInstance = null;
+  downloadBtn.disabled = true;
+  copyBtn.disabled = true;
+}
+
+function makeQR(){
+  try{
+    if(typeof QRCode === "undefined"){
+      throw new Error("QR library could not load. Check your internet connection.");
+    }
+
+    const data = getQRData();
+    const size = Number(document.getElementById("size").value);
+    const color = document.getElementById("qrColor").value;
+    const background = document.getElementById("bgColor").value;
+
+    qrContainer.innerHTML = "";
+
+    qrInstance = new QRCode(qrContainer,{
+      text:data,
+      width:size,
+      height:size,
+      colorDark:color,
+      colorLight:background,
+      correctLevel:QRCode.CorrectLevel.H
+    });
+
+    generated = true;
+    downloadBtn.disabled = false;
+    copyBtn.disabled = false;
+
+    statusText.textContent = "✓ QR code generated successfully!";
+  }catch(error){
+    clearQR();
+    statusText.textContent = error.message;
+  }
+}
+
+function getQRImage(){
+  const canvas = qrContainer.querySelector("canvas");
+  if(canvas) return canvas;
+
+  const img = qrContainer.querySelector("img");
+  if(img && img.complete) return img;
+
+  return null;
 }
 
 function downloadQR(){
+  const source = getQRImage();
 
-let img=
+  if(!source || !generated){
+    statusText.textContent = "Please generate a QR code first.";
+    return;
+  }
 
-document.querySelector(
+  const canvas = document.createElement("canvas");
+  canvas.width = source.width || source.naturalWidth;
+  canvas.height = source.height || source.naturalHeight;
 
-"#qr img"
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(source,0,0);
 
-);
+  const link = document.createElement("a");
+  link.download = "toolora-qr-code.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
 
-if(
-
-!img
-
-)
-
-return;
-
-let a=
-
-document.createElement(
-
-"a"
-
-);
-
-a.href=
-
-img.src;
-
-a.download=
-
-"qrcode.png";
-
-a.click();
-
+  statusText.textContent = "✓ QR code downloaded!";
 }
 
+async function copyQR(){
+  const source = getQRImage();
+
+  if(!source || !generated) return;
+
+  try{
+    const canvas = document.createElement("canvas");
+    canvas.width = source.width || source.naturalWidth;
+    canvas.height = source.height || source.naturalHeight;
+
+    canvas.getContext("2d").drawImage(source,0,0);
+
+    const blob = await new Promise(resolve => canvas.toBlob(resolve,"image/png"));
+
+    if(!blob) throw new Error("Could not prepare image.");
+
+    await navigator.clipboard.write([
+      new ClipboardItem({"image/png":blob})
+    ]);
+
+    statusText.textContent = "✓ QR image copied!";
+  }catch(error){
+    statusText.textContent = "Copy not supported here. Please download the PNG instead.";
+  }
+}
+
+generateBtn.addEventListener("click",makeQR);
+downloadBtn.addEventListener("click",downloadQR);
+copyBtn.addEventListener("click",copyQR);
+
+// Generate again when customization changes
+document.getElementById("size").addEventListener("change",() => {
+  if(generated) makeQR();
+});
+
+document.getElementById("qrColor").addEventListener("input",() => {
+  if(generated) makeQR();
+});
+
+document.getElementById("bgColor").addEventListener("input",() => {
+  if(generated) makeQR();
+});
 </script>
 
 </body>
-
 </html>
