@@ -1,446 +1,590 @@
+
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08050c">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Free Online Word Counter – Word & Character Count | Toolora AI</title>
+<meta name="description" content="Use Toolora AI's free online word counter to count words, characters, sentences, paragraphs and spaces. Check reading time instantly.">
+<meta name="keywords" content="free word counter, online word counter, character counter, sentence counter, paragraph counter, reading time calculator, Toolora AI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/word-counter.html">
+<link rel="icon" href="favicon.png">
 
-<title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Online Word Counter | Toolora AI">
+<meta property="og:description" content="Count words, characters, sentences and reading time instantly with Toolora AI.">
+<meta property="og:url" content="https://gamingsss-hub.github.io/word-counter.html">
+<meta property="og:site_name" content="Toolora AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Online Word Counter | Toolora AI">
+<meta name="twitter:description" content="Count words, characters and reading time instantly.">
 
-Word Counter – Toolora | Count Words Characters
-
-</title>
-
-<meta
-name="description"
-content="Toolora Word Counter. Count words, characters, reading time instantly.">
-
-<meta
-name="keywords"
-content="word counter, character counter, text counter, toolora">
-
-<link
-rel="icon"
-href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+:root{
+ --bg:#08050c;
+ --panel:#120b18;
+ --panel2:#1a1022;
+ --red:#ff3155;
+ --purple:#9b5cff;
+ --pink:#e64dff;
+ --text:#fff;
+ --muted:#aaa0b7;
+ --border:rgba(255,255,255,.09);
 }
+
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-
-min-height:100vh;
-
-background:
-
-linear-gradient(
-145deg,
-#0d0628,
-#13092f,
-#22074f
-);
-
-color:white;
-
-padding:24px;
-
+ min-height:100vh;
+ background:
+ radial-gradient(ellipse at 10% 5%,rgba(255,35,75,.15),transparent 35%),
+ radial-gradient(ellipse at 90% 15%,rgba(145,65,255,.17),transparent 35%),
+ var(--bg);
+ color:var(--text);
+ font-family:'Poppins',sans-serif;
+ padding:24px;
 }
 
-.box{
+a{color:inherit;text-decoration:none}
 
-max-width:900px;
+.container{max-width:1100px;margin:auto}
 
-margin:auto;
+nav{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px;
+ margin-bottom:55px;
+}
 
-padding:34px;
+.logo{
+ font-family:'Outfit',sans-serif;
+ font-size:25px;
+ font-weight:900;
+ letter-spacing:-1px;
+}
 
-border-radius:36px;
-
-background:
-
-rgba(
-255,
-255,
-255,
-.05
-);
-
-backdrop-filter:
-
-blur(
-18px
-);
-
+.logo span{
+ background:linear-gradient(90deg,var(--red),var(--purple));
+ -webkit-background-clip:text;
+ color:transparent;
 }
 
 .back{
-
-color:#b9a7ff;
-
-text-decoration:none;
-
+ color:#d1baff;
+ font-size:14px;
+ padding:10px 17px;
+ border:1px solid var(--border);
+ border-radius:30px;
+ background:rgba(255,255,255,.04);
 }
 
-.title{
+.hero{text-align:center;margin-bottom:35px}
 
-font-size:52px;
-
-font-weight:900;
-
-margin:20px 0;
-
+.tag{
+ display:inline-block;
+ color:#ff8da2;
+ background:rgba(255,49,85,.1);
+ border:1px solid rgba(255,49,85,.25);
+ border-radius:30px;
+ padding:8px 16px;
+ font-size:12px;
+ font-weight:700;
+ letter-spacing:1px;
 }
 
-.sub{
+h1{
+ font-family:'Outfit',sans-serif;
+ font-size:clamp(36px,6vw,62px);
+ font-weight:900;
+ line-height:1.12;
+ margin:20px 0 13px;
+ letter-spacing:-2px;
+}
 
-color:#a8a5d6;
+h1 span{
+ background:linear-gradient(90deg,#ff3155,#ad63ff);
+ -webkit-background-clip:text;
+ color:transparent;
+}
 
-margin-bottom:30px;
+.hero p{
+ color:var(--muted);
+ max-width:650px;
+ margin:auto;
+ line-height:1.8;
+ font-size:14px;
+}
 
+.tool-box{
+ background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.02));
+ border:1px solid var(--border);
+ border-radius:28px;
+ padding:25px;
+ box-shadow:0 25px 80px rgba(0,0,0,.35);
+ backdrop-filter:blur(20px);
 }
 
 textarea{
-
-width:100%;
-
-height:260px;
-
-padding:24px;
-
-border:none;
-
-border-radius:26px;
-
-background:
-
-rgba(
-255,
-255,
-255,
-.06
-);
-
-color:white;
-
-font-size:18px;
-
-resize:none;
-
-outline:none;
-
+ width:100%;
+ min-height:280px;
+ resize:vertical;
+ outline:none;
+ border:1px solid rgba(255,255,255,.1);
+ border-radius:19px;
+ padding:22px;
+ background:#0d0912;
+ color:white;
+ font:15px/1.8 'Poppins',sans-serif;
+ transition:.25s;
 }
+
+textarea:focus{
+ border-color:var(--purple);
+ box-shadow:0 0 0 3px rgba(155,92,255,.1);
+}
+
+textarea::placeholder{color:#71697b}
 
 .stats{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(
-4,
-1fr
-);
-
-gap:16px;
-
-margin-top:22px;
-
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:13px;
+ margin-top:20px;
 }
 
-.card{
+.stat{
+ background:linear-gradient(145deg,#1b1022,#100b16);
+ border:1px solid var(--border);
+ border-radius:18px;
+ padding:19px 10px;
+ text-align:center;
+ transition:.25s;
+}
 
-padding:22px;
-
-border-radius:22px;
-
-background:
-
-rgba(
-255,
-255,
-255,
-.05
-);
-
-text-align:center;
-
+.stat:hover{
+ transform:translateY(-4px);
+ border-color:rgba(155,92,255,.45);
 }
 
 .num{
-
-font-size:34px;
-
-font-weight:900;
-
-color:#9f7cff;
-
+ font-family:'Outfit',sans-serif;
+ font-size:34px;
+ font-weight:900;
+ background:linear-gradient(90deg,#ff4967,#ae75ff);
+ -webkit-background-clip:text;
+ color:transparent;
+ overflow-wrap:anywhere;
 }
 
-.label{
+.label{font-size:12px;color:var(--muted);margin-top:5px}
 
-margin-top:8px;
-
-color:#c7c6e8;
-
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:12px;
+ margin-top:22px;
 }
 
 button{
-
-width:100%;
-
-margin-top:20px;
-
-padding:18px;
-
-border:none;
-
-border-radius:22px;
-
-font-size:18px;
-
-background:
-
-linear-gradient(
-45deg,
-#7a5cff,
-#4b8dff
-);
-
-color:white;
-
+ border:0;
+ cursor:pointer;
+ border-radius:13px;
+ padding:13px 21px;
+ font-family:'Poppins',sans-serif;
+ font-weight:700;
+ font-size:13px;
+ transition:.25s;
 }
 
-@media(max-width:700px){
+button:hover{transform:translateY(-2px);filter:brightness(1.13)}
 
-.title{
-
-font-size:38px;
-
+.primary{
+ color:white;
+ background:linear-gradient(100deg,var(--red),#9a45ff);
+ box-shadow:0 8px 25px rgba(255,49,85,.17);
 }
 
-.stats{
-
-grid-template-columns:
-
-repeat(
-2,
-1fr
-);
-
+.secondary{
+ color:#eee;
+ background:#211629;
+ border:1px solid var(--border);
 }
 
+.helper{
+ margin-top:16px;
+ color:#8f849b;
+ font-size:12px;
 }
 
+.section{
+ margin-top:65px;
+}
+
+.section h2{
+ font-family:'Outfit',sans-serif;
+ font-size:30px;
+ margin-bottom:16px;
+}
+
+.section>p{
+ color:var(--muted);
+ line-height:1.9;
+ font-size:14px;
+ margin-bottom:18px;
+}
+
+.info-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+}
+
+.info-card{
+ padding:21px;
+ background:rgba(255,255,255,.035);
+ border:1px solid var(--border);
+ border-radius:18px;
+}
+
+.info-card h3{font-size:16px;margin-bottom:9px;color:#e7caff}
+.info-card p{font-size:13px;color:var(--muted);line-height:1.8}
+
+.faq{
+ padding:19px 0;
+ border-bottom:1px solid var(--border);
+}
+
+.faq h3{font-size:15px;margin-bottom:8px}
+.faq p{font-size:13px;color:var(--muted);line-height:1.8}
+
+.links{
+ display:flex;
+ flex-wrap:wrap;
+ gap:11px;
+}
+
+.links a{
+ padding:10px 15px;
+ border:1px solid var(--border);
+ border-radius:30px;
+ background:rgba(255,255,255,.04);
+ color:#d7c3ff;
+ font-size:12px;
+ transition:.2s;
+}
+
+.links a:hover{
+ border-color:var(--purple);
+ color:white;
+}
+
+footer{
+ margin-top:65px;
+ padding:25px 0;
+ border-top:1px solid var(--border);
+ text-align:center;
+ color:#887e91;
+ font-size:12px;
+ line-height:2;
+}
+
+@media(max-width:750px){
+ body{padding:16px}
+ nav{margin-bottom:40px}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .info-grid{grid-template-columns:1fr}
+ .tool-box{padding:16px}
+ textarea{min-height:230px;padding:16px}
+ .actions button{flex:1}
+}
+
+@media(max-width:400px){
+ .num{font-size:28px}
+ .stat{padding:16px 7px}
+ h1{letter-spacing:-1px}
+}
 </style>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"Toolora AI Word Counter",
+ "url":"https://gamingsss-hub.github.io/word-counter.html",
+ "applicationCategory":"UtilitiesApplication",
+ "operatingSystem":"Any",
+ "description":"A free online word counter and character counter with reading time, sentence and paragraph statistics.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}
+}
+</script>
 
 </head>
 
 <body>
+<div class="container">
 
-<div class="box">
+<nav>
+ <a href="index.html" class="logo">TOOLORA<span> AI</span></a>
+ <a href="index.html" class="back">← Home</a>
+</nav>
 
-<a
-href="utility.html"
-class="back">
+<header class="hero">
+ <span class="tag">FREE ONLINE TEXT TOOL</span>
+ <h1>Smart <span>Word Counter</span></h1>
+ <p>Count words, characters, sentences and paragraphs instantly. Analyze your text and check reading time with this free online tool.</p>
+</header>
 
-← Utility
+<main>
+<section class="tool-box" aria-label="Word counter tool">
 
-</a>
-
-<div class="title">
-
-📝 Word Counter
-
-</div>
-
-<div class="sub">
-
-Count words • characters • reading time
-
-</div>
-
-<textarea
-id="text"
-placeholder="Start typing..."
-onkeyup="count()">
-
-</textarea>
+<textarea id="text" placeholder="Start typing or paste your text here..." aria-label="Enter text to count"></textarea>
 
 <div class="stats">
 
-<div class="card">
-
-<div
-class="num"
-id="words">
-
-0
-
+<div class="stat">
+ <div class="num" id="words">0</div>
+ <div class="label">Words</div>
 </div>
 
-<div class="label">
-
-Words
-
+<div class="stat">
+ <div class="num" id="chars">0</div>
+ <div class="label">Characters</div>
 </div>
 
+<div class="stat">
+ <div class="num" id="sentences">0</div>
+ <div class="label">Sentences</div>
 </div>
 
-<div class="card">
-
-<div
-class="num"
-id="chars">
-
-0
-
+<div class="stat">
+ <div class="num" id="paragraphs">0</div>
+ <div class="label">Paragraphs</div>
 </div>
 
-<div class="label">
-
-Characters
-
+<div class="stat">
+ <div class="num" id="spaces">0</div>
+ <div class="label">Spaces</div>
 </div>
 
+<div class="stat">
+ <div class="num" id="reading">0 min</div>
+ <div class="label">Reading Time</div>
 </div>
 
-<div class="card">
-
-<div
-class="num"
-id="read">
-
-0
-
+<div class="stat">
+ <div class="num" id="speaking">0 min</div>
+ <div class="label">Speaking Time</div>
 </div>
 
-<div class="label">
-
-Read Min
-
+<div class="stat">
+ <div class="num" id="nospace">0</div>
+ <div class="label">No-Space Characters</div>
 </div>
 
 </div>
 
-<div class="card">
-
-<div
-class="num"
-id="space">
-
-0
-
+<div class="actions">
+ <button class="primary" onclick="copyText()">Copy Text</button>
+ <button class="secondary" onclick="downloadText()">Download TXT</button>
+ <button class="secondary" onclick="clearText()">Clear Text</button>
 </div>
 
-<div class="label">
+<div class="helper">Your text is processed in your browser. It is not uploaded by this tool.</div>
 
-Spaces
+</section>
 
-</div>
+<section class="section">
+ <h2>About Online Word Counter</h2>
+ <p>A word counter is a useful writing tool that calculates the number of words and characters in a text. Whether you are writing an essay, article, assignment, email, social media caption or blog post, Toolora AI helps you check your text instantly. Simply type or paste your content into the text box and the statistics update automatically.</p>
 
-</div>
+ <div class="info-grid">
+  <div class="info-card">
+   <h3>Word Count</h3>
+   <p>Find the total number of words in your text. Useful for essays, articles, assignments and writing limits.</p>
+  </div>
+  <div class="info-card">
+   <h3>Character Count</h3>
+   <p>Check the total characters, including spaces and punctuation, or see the count without spaces.</p>
+  </div>
+  <div class="info-card">
+   <h3>Reading Time</h3>
+   <p>Estimate how long it may take an average reader to read your text at approximately 200 words per minute.</p>
+  </div>
+ </div>
+</section>
 
-</div>
+<section class="section">
+ <h2>How to Use the Word Counter</h2>
+ <div class="info-grid">
+  <div class="info-card">
+   <h3>01. Enter Text</h3>
+   <p>Type your content or paste text into the large text area.</p>
+  </div>
+  <div class="info-card">
+   <h3>02. Check Statistics</h3>
+   <p>View word count, characters, sentences, paragraphs and estimated reading time.</p>
+  </div>
+  <div class="info-card">
+   <h3>03. Copy or Download</h3>
+   <p>Copy your text or download it as a TXT file. Use Clear Text to start again.</p>
+  </div>
+ </div>
+</section>
 
-<button onclick="clearText()">
+<section class="section">
+ <h2>Frequently Asked Questions</h2>
 
-Clear
+ <div class="faq">
+  <h3>1. Is Toolora AI Word Counter free?</h3>
+  <p>Yes. You can use this online word counter for free without creating an account.</p>
+ </div>
 
-</button>
+ <div class="faq">
+  <h3>2. How are words counted?</h3>
+  <p>Words are counted by separating text wherever whitespace occurs. Multiple spaces and line breaks are treated as separators.</p>
+ </div>
+
+ <div class="faq">
+  <h3>3. Does the character count include spaces?</h3>
+  <p>Yes. The Characters statistic includes spaces and punctuation. The No-Space Characters statistic excludes whitespace.</p>
+ </div>
+
+ <div class="faq">
+  <h3>4. How is reading time calculated?</h3>
+  <p>Reading time is estimated using approximately 200 words per minute. Actual reading speed varies from person to person.</p>
+ </div>
+
+ <div class="faq">
+  <h3>5. Is my text uploaded to a server?</h3>
+  <p>No. The counting functions run directly in your browser. This page does not send your text to a server.</p>
+ </div>
+
+ <div class="faq">
+  <h3>6. Can I download my text?</h3>
+  <p>Yes. Select Download TXT to save your entered text as a plain text file.</p>
+ </div>
+</section>
+
+<section class="section">
+ <h2>Explore More Free Tools</h2>
+ <p>Discover more useful tools and utilities from Toolora AI.</p>
+
+ <div class="links">
+  <a href="essay-writer.html">AI Essay Writer</a>
+  <a href="ai-background-remover.html">Background Remover</a>
+  <a href="image-resizer.html">Image Resizer</a>
+  <a href="color-picker.html">Color Picker</a>
+  <a href="qr-generator.html">QR Generator</a>
+  <a href="calculator.html">Calculator</a>
+  <a href="unit-converter.html">Unit Converter</a>
+  <a href="currency.html">Currency Converter</a>
+  <a href="age-calculator.html">Age Calculator</a>
+  <a href="world-clock.html">World Clock</a>
+  <a href="countdown-timer.html">Countdown Timer</a>
+  <a href="about.html">About Us</a>
+  <a href="faq.html">FAQ</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="contact.html">Contact</a>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <p>© 2026 Toolora AI. All rights reserved.</p>
+ <p>Free Online Tools • AI Tools • Calculators • Utilities</p>
+ <p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="contact.html">Contact</a></p>
+</footer>
 
 </div>
 
 <script>
+const textArea = document.getElementById("text");
 
 function count(){
+ const t = textArea.value;
 
-let t=
+ const trimmed = t.trim();
 
-text.value;
+ const words = trimmed === "" ? 0 : trimmed.split(/\s+/u).length;
+ const chars = t.length;
+ const spaces = (t.match(/\s/g) || []).length;
+ const noSpace = t.replace(/\s/g,"").length;
 
-let words=
+ const sentenceMatches = trimmed.match(/[^.!?。！？]+[.!?。！？]*/gu) || [];
+ const sentences = trimmed === "" ? 0 : sentenceMatches.filter(s => s.trim()).length;
 
-t.trim()
+ const paragraphs = trimmed === "" ? 0 : trimmed.split(/\n\s*\n/u).filter(p => p.trim()).length;
 
-==''
+ const reading = words === 0 ? 0 : Math.ceil(words/200);
+ const speaking = words === 0 ? 0 : Math.ceil(words/130);
 
-?
-
-0
-
-:
-
-t.trim()
-
-.split(/\s+/)
-
-.length;
-
-
-
-words.innerHTML=
-words;
-
-document.getElementById(
-"words"
-).innerHTML=
-words;
-
-document.getElementById(
-"chars"
-).innerHTML=
-t.length;
-
-document.getElementById(
-"space"
-).innerHTML=
-
-(
-
-t.match(/ /g)
-
-||
-
-[]
-
-).length;
-
-document.getElementById(
-"read"
-).innerHTML=
-
-Math.max(
-1,
-Math.ceil(
-words/200
-)
-
-);
-
+ document.getElementById("words").textContent = words.toLocaleString();
+ document.getElementById("chars").textContent = chars.toLocaleString();
+ document.getElementById("sentences").textContent = sentences.toLocaleString();
+ document.getElementById("paragraphs").textContent = paragraphs.toLocaleString();
+ document.getElementById("spaces").textContent = spaces.toLocaleString();
+ document.getElementById("reading").textContent = reading + " min";
+ document.getElementById("speaking").textContent = speaking + " min";
+ document.getElementById("nospace").textContent = noSpace.toLocaleString();
 }
-
-
 
 function clearText(){
-
-text.value='';
-
-count();
-
+ textArea.value = "";
+ count();
+ textArea.focus();
 }
 
+async function copyText(){
+ const value = textArea.value;
+
+ if(!value){
+  alert("Please enter some text first.");
+  return;
+ }
+
+ try{
+  await navigator.clipboard.writeText(value);
+  alert("Text copied successfully!");
+ }catch(error){
+  textArea.select();
+  document.execCommand("copy");
+  alert("Text copied!");
+ }
+}
+
+function downloadText(){
+ const value = textArea.value;
+
+ if(!value){
+  alert("Please enter some text first.");
+  return;
+ }
+
+ const blob = new Blob([value],{type:"text/plain;charset=utf-8"});
+ const url = URL.createObjectURL(blob);
+ const link = document.createElement("a");
+
+ link.href = url;
+ link.download = "toolora-word-counter.txt";
+ document.body.appendChild(link);
+ link.click();
+ link.remove();
+
+ URL.revokeObjectURL(url);
+}
+
+textArea.addEventListener("input",count);
+count();
 </script>
 
 </body>
-
 </html>
