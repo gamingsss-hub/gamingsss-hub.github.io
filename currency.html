@@ -1,284 +1,682 @@
+
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08050d">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Currency Converter – Live Exchange Rates | Toolora AI</title>
+<meta name="description" content="Convert 20+ world currencies with updated exchange rates using Toolora AI's free online currency converter.">
+<meta name="keywords" content="currency converter, live exchange rates, USD to INR, INR to USD, money converter, EUR converter, Toolora AI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/currency.html">
+<link rel="icon" href="favicon.png">
+<meta property="og:title" content="Currency Converter | Toolora AI">
+<meta property="og:description" content="Convert currencies using updated exchange rates with Toolora AI.">
+<meta property="og:url" content="https://gamingsss-hub.github.io/currency.html">
+<meta property="og:type" content="website">
 
-<title>
-
-Currency Converter – Toolora | Live Converter
-
-</title>
-
-<meta
-name="description"
-content="Convert currencies instantly with Toolora Currency Converter. Fast and simple exchange calculator.">
-
-<meta
-name="keywords"
-content="currency converter, exchange rate, money converter, usd inr, toolora">
-
-<link
-rel="icon"
-href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Poppins,sans-serif;
+font-family:'Outfit','Poppins',sans-serif;
+}
+
+:root{
+--bg:#08050d;
+--card:#130d1b;
+--border:rgba(255,255,255,.09);
+--red:#ff3155;
+--purple:#9655ff;
+--muted:#a49bad;
 }
 
 body{
-
-background:#050b18;
-
-color:white;
-
-padding:24px;
-
-}
-
-.box{
-
-max-width:620px;
-
-margin:auto;
-
-background:#091428;
-
-padding:30px;
-
-border-radius:30px;
-
-}
-
-h1{
-
-font-size:36px;
-
-margin-bottom:24px;
-
-}
-
-select,
-input{
-
-width:100%;
-
-padding:18px;
-
-margin-top:14px;
-
-border:none;
-
-border-radius:18px;
-
-background:#13213f;
-
-color:white;
-
-}
-
-button{
-
-width:100%;
-
-padding:18px;
-
-margin-top:18px;
-
-border:none;
-
-border-radius:20px;
-
+min-height:100vh;
 background:
-
-linear-gradient(
-45deg,
-#6d42ff,
-#009dff
-);
-
+radial-gradient(ellipse at 10% 5%,rgba(255,49,85,.13),transparent 35%),
+radial-gradient(ellipse at 90% 20%,rgba(150,85,255,.15),transparent 35%),
+var(--bg);
 color:white;
-
-font-size:18px;
-
+padding:24px 16px 60px;
 }
 
-.result{
-
-margin-top:28px;
-
-font-size:32px;
-
-font-weight:900;
-
+.container{
+width:100%;
+max-width:850px;
+margin:auto;
 }
 
 .back{
-
-display:inline-block;
-
-margin-bottom:20px;
-
-color:white;
-
+display:inline-flex;
+align-items:center;
+gap:8px;
+color:#c9bdd6;
 text-decoration:none;
-
+margin:8px 0 22px;
+font-size:14px;
+transition:.2s;
 }
 
+.back:hover{color:white;}
+
+.hero{text-align:center;margin-bottom:30px;}
+
+.logo{
+display:inline-block;
+padding:8px 15px;
+border:1px solid rgba(255,49,85,.3);
+background:rgba(255,49,85,.08);
+border-radius:30px;
+color:#ff7890;
+font-size:12px;
+font-weight:700;
+letter-spacing:1px;
+margin-bottom:15px;
+}
+
+h1{
+font-size:clamp(30px,6vw,46px);
+font-weight:800;
+letter-spacing:-1.5px;
+}
+
+h1 span{
+background:linear-gradient(90deg,#ff3155,#b16aff);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+}
+
+.subtitle{
+color:var(--muted);
+font-size:14px;
+margin-top:10px;
+line-height:1.7;
+}
+
+.converter{
+background:linear-gradient(145deg,rgba(29,18,40,.96),rgba(15,10,23,.98));
+border:1px solid var(--border);
+border-radius:26px;
+padding:clamp(20px,5vw,35px);
+box-shadow:0 25px 80px rgba(0,0,0,.35);
+}
+
+.field-label{
+display:block;
+font-size:13px;
+color:#c9bdd6;
+margin:18px 0 8px;
+font-weight:600;
+}
+
+.amount-input,.currency-select{
+width:100%;
+padding:16px;
+border:1px solid rgba(255,255,255,.1);
+border-radius:14px;
+background:#0c0913;
+color:white;
+outline:none;
+font-size:16px;
+transition:.2s;
+}
+
+.amount-input:focus,.currency-select:focus{
+border-color:var(--purple);
+box-shadow:0 0 0 3px rgba(150,85,255,.12);
+}
+
+.currency-select option{
+background:#130d1b;
+color:white;
+}
+
+.currency-row{
+display:grid;
+grid-template-columns:1fr 55px 1fr;
+gap:12px;
+align-items:end;
+}
+
+.swap-wrap{
+display:flex;
+justify-content:center;
+align-items:center;
+padding-bottom:2px;
+}
+
+.swap-btn{
+width:48px;
+height:48px;
+border-radius:14px;
+border:1px solid rgba(150,85,255,.35);
+background:rgba(150,85,255,.12);
+color:#c49aff;
+font-size:23px;
+cursor:pointer;
+transition:.25s;
+}
+
+.swap-btn:hover{
+transform:rotate(180deg);
+background:rgba(150,85,255,.25);
+}
+
+.convert-btn{
+width:100%;
+padding:17px;
+border:0;
+border-radius:15px;
+margin-top:25px;
+background:linear-gradient(100deg,var(--red),var(--purple));
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+box-shadow:0 8px 25px rgba(255,49,85,.18);
+transition:.25s;
+}
+
+.convert-btn:hover{
+transform:translateY(-2px);
+filter:brightness(1.1);
+}
+
+.convert-btn:disabled{
+opacity:.6;
+cursor:wait;
+transform:none;
+}
+
+.result-box{
+display:none;
+margin-top:25px;
+padding:23px;
+border-radius:18px;
+background:linear-gradient(120deg,rgba(255,49,85,.11),rgba(150,85,255,.14));
+border:1px solid rgba(150,85,255,.22);
+text-align:center;
+}
+
+.result-small{
+font-size:13px;
+color:#c4b8ce;
+}
+
+.result-value{
+font-size:clamp(30px,7vw,43px);
+font-weight:800;
+margin:10px 0;
+overflow-wrap:anywhere;
+}
+
+.result-rate{
+font-size:13px;
+color:#c4b8ce;
+line-height:1.7;
+}
+
+.status{
+font-size:12px;
+color:var(--muted);
+margin-top:17px;
+text-align:center;
+line-height:1.6;
+}
+
+.status.error{color:#ff8298;}
+.status.success{color:#a6e8be;}
+
+.history{
+margin-top:25px;
+padding-top:22px;
+border-top:1px solid var(--border);
+}
+
+.history-heading{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:14px;
+}
+
+.history-heading h3{font-size:16px;}
+
+.clear-btn{
+background:transparent;
+border:0;
+color:#ff8298;
+cursor:pointer;
+font-size:12px;
+}
+
+.history-item{
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:12px 0;
+border-bottom:1px solid rgba(255,255,255,.06);
+font-size:13px;
+color:#d4cbdc;
+}
+
+.history-item strong{color:white;text-align:right;}
+
+.info-section{
+margin-top:35px;
+display:grid;
+gap:18px;
+}
+
+.info-card{
+padding:23px;
+border:1px solid var(--border);
+border-radius:20px;
+background:rgba(255,255,255,.025);
+}
+
+.info-card h2{
+font-size:19px;
+margin-bottom:12px;
+}
+
+.info-card p,.info-card li{
+font-size:14px;
+line-height:1.8;
+color:#b9afc2;
+}
+
+.info-card ul{padding-left:20px;}
+
+.faq-item{
+padding:14px 0;
+border-bottom:1px solid var(--border);
+}
+
+.faq-item:last-child{border:0;}
+
+.faq-item h3{
+font-size:15px;
+margin-bottom:7px;
+}
+
+.footer{
+text-align:center;
+margin-top:35px;
+color:#81778b;
+font-size:12px;
+line-height:2;
+}
+
+.footer a{
+color:#c39aff;
+text-decoration:none;
+}
+
+@media(max-width:520px){
+body{padding:15px 12px 40px;}
+.currency-row{grid-template-columns:1fr 44px 1fr;gap:7px;}
+.currency-select,.amount-input{padding:14px 9px;font-size:14px;}
+.swap-btn{width:40px;height:44px;}
+.converter{border-radius:20px;}
+}
 </style>
 
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"Toolora AI Currency Converter",
+ "url":"https://gamingsss-hub.github.io/currency.html",
+ "applicationCategory":"UtilitiesApplication",
+ "operatingSystem":"Any",
+ "description":"Free online currency converter using updated exchange rates."
+}
+</script>
 </head>
 
 <body>
+<main class="container">
 
-<div class="box">
+<a href="index.html" class="back">← Back to Toolora Home</a>
 
-<a
-href="utility.html"
-class="back">
+<header class="hero">
+<div class="logo">TOOLORA AI • FREE TOOL</div>
+<h1>Currency <span>Converter</span></h1>
+<p class="subtitle">Convert world currencies with updated exchange rates.</p>
+</header>
 
-← Utility
+<section class="converter" aria-label="Currency converter">
 
-</a>
-
-<h1>
-
-💸 Currency Converter
-
-</h1>
-
+<label class="field-label" for="amount">Enter Amount</label>
 <input
+class="amount-input"
 type="number"
 id="amount"
-placeholder="Enter Amount">
+placeholder="Enter amount"
+min="0"
+step="any"
+value="1"
+inputmode="decimal"
+>
 
-<select id="from">
+<div class="currency-row">
 
-<option>USD</option>
+<div>
+<label class="field-label" for="from">From Currency</label>
+<select class="currency-select" id="from"></select>
+</div>
 
-<option>INR</option>
+<div class="swap-wrap">
+<button class="swap-btn" id="swap" type="button" aria-label="Swap currencies">⇄</button>
+</div>
 
-<option>EUR</option>
+<div>
+<label class="field-label" for="to">To Currency</label>
+<select class="currency-select" id="to"></select>
+</div>
 
-<option>GBP</option>
+</div>
 
-<option>AED</option>
-
-</select>
-
-<select id="to">
-
-<option>INR</option>
-
-<option>USD</option>
-
-<option>EUR</option>
-
-<option>GBP</option>
-
-<option>AED</option>
-
-</select>
-
-<button onclick="convert()">
-
-Convert
-
+<button class="convert-btn" id="convert" type="button">
+Convert Currency →
 </button>
 
-<div
-class="result"
-id="result">
-
-0
-
+<div class="result-box" id="resultBox" aria-live="polite">
+<div class="result-small">Converted Amount</div>
+<div class="result-value" id="resultValue">—</div>
+<div class="result-rate" id="resultRate"></div>
 </div>
 
+<p class="status" id="status" role="status">Exchange rates will load automatically.</p>
+
+<div class="history">
+<div class="history-heading">
+<h3>Recent Conversions</h3>
+<button class="clear-btn" id="clearHistory" type="button">Clear History</button>
 </div>
+<div id="historyList">
+<p class="status">Your recent conversions will appear here.</p>
+</div>
+</div>
+
+</section>
+
+<section class="info-section">
+
+<article class="info-card">
+<h2>🌍 About Currency Converter</h2>
+<p>Toolora AI Currency Converter helps you calculate the value of one currency in another. Select your currencies, enter an amount and get an estimated converted value using the latest available exchange-rate data from the API.</p>
+</article>
+
+<article class="info-card">
+<h2>✨ How to Use</h2>
+<ul>
+<li>Enter the amount you want to convert.</li>
+<li>Select the currency you are converting from.</li>
+<li>Select your target currency.</li>
+<li>Press the Convert Currency button.</li>
+<li>Use the swap button to reverse the currencies.</li>
+</ul>
+</article>
+
+<article class="info-card">
+<h2>❓ Frequently Asked Questions</h2>
+
+<div class="faq-item">
+<h3>1. Is this currency converter free?</h3>
+<p>Yes. You can use this converter for free without creating an account.</p>
+</div>
+
+<div class="faq-item">
+<h3>2. Are the exchange rates updated?</h3>
+<p>Rates are fetched from an external exchange-rate API and are generally updated daily. They may not match the exact rate offered by banks or payment providers.</p>
+</div>
+
+<div class="faq-item">
+<h3>3. Does it support USD to INR?</h3>
+<p>Yes. You can convert USD to INR, INR to USD and many other supported currencies.</p>
+</div>
+
+<div class="faq-item">
+<h3>4. Can I use it on mobile?</h3>
+<p>Yes. The converter is designed to work on mobile phones, tablets and desktop devices.</p>
+</div>
+
+</article>
+
+<article class="info-card">
+<h2>Explore More Toolora Tools</h2>
+<p>
+<a href="calculator.html">Calculator</a> ·
+<a href="unit-converter.html">Unit Converter</a> ·
+<a href="age-calculator.html">Age Calculator</a> ·
+<a href="world-clock.html">World Clock</a> ·
+<a href="expense-tracker.html">Expense Tracker</a>
+</p>
+</article>
+
+</section>
+
+<footer class="footer">
+<p>© 2026 Toolora AI. All Rights Reserved.</p>
+<p>Simple, smart and useful online tools.</p>
+<a href="privacy.html">Privacy Policy</a> ·
+<a href="about.html">About Us</a> ·
+<a href="contact.html">Contact</a>
+</footer>
+
+</main>
 
 <script>
-
-const rates={
-
-USD:1,
-
-INR:87,
-
-EUR:0.85,
-
-GBP:0.73,
-
-AED:3.67
-
+const currencyNames = {
+USD:"US Dollar",
+INR:"Indian Rupee",
+EUR:"Euro",
+GBP:"British Pound",
+AED:"UAE Dirham",
+CAD:"Canadian Dollar",
+AUD:"Australian Dollar",
+JPY:"Japanese Yen",
+CNY:"Chinese Yuan",
+CHF:"Swiss Franc",
+SGD:"Singapore Dollar",
+NZD:"New Zealand Dollar",
+SAR:"Saudi Riyal",
+QAR:"Qatari Riyal",
+PKR:"Pakistani Rupee",
+BDT:"Bangladeshi Taka",
+NPR:"Nepalese Rupee",
+LKR:"Sri Lankan Rupee",
+ZAR:"South African Rand",
+THB:"Thai Baht",
+MYR:"Malaysian Ringgit",
+IDR:"Indonesian Rupiah",
+KRW:"South Korean Won",
+TRY:"Turkish Lira",
+BRL:"Brazilian Real",
+MXN:"Mexican Peso",
+SEK:"Swedish Krona",
+NOK:"Norwegian Krone",
+DKK:"Danish Krone",
+HKD:"Hong Kong Dollar"
 };
 
-function convert(){
+const fromSelect = document.getElementById("from");
+const toSelect = document.getElementById("to");
+const amountInput = document.getElementById("amount");
+const convertBtn = document.getElementById("convert");
+const resultBox = document.getElementById("resultBox");
+const resultValue = document.getElementById("resultValue");
+const resultRate = document.getElementById("resultRate");
+const statusText = document.getElementById("status");
+const historyList = document.getElementById("historyList");
 
-let amount=
+let exchangeRates = null;
+let lastUpdated = null;
+let history = [];
 
-Number(
+function populateCurrencies(){
+Object.entries(currencyNames).forEach(([code,name])=>{
+const label = `${code} — ${name}`;
 
-document.getElementById(
+fromSelect.add(new Option(label,code));
+toSelect.add(new Option(label,code));
+});
 
-"amount"
-
-).value
-
-);
-
-let from=
-
-document.getElementById(
-
-"from"
-
-).value;
-
-let to=
-
-document.getElementById(
-
-"to"
-
-).value;
-
-let usd=
-
-amount/
-
-rates[from];
-
-let final=
-
-usd*
-
-rates[to];
-
-document.getElementById(
-
-"result"
-
-).innerHTML=
-
-final.toFixed(2)
-
-+" "+to;
-
+fromSelect.value = "USD";
+toSelect.value = "INR";
 }
 
+function setStatus(message,type=""){
+statusText.textContent = message;
+statusText.className = "status " + type;
+}
+
+async function loadRates(){
+setStatus("Loading latest available exchange rates...");
+
+try{
+const response = await fetch("https://open.er-api.com/v6/latest/USD");
+
+if(!response.ok){
+throw new Error("Unable to connect to exchange-rate service.");
+}
+
+const data = await response.json();
+
+if(data.result !== "success" || !data.rates){
+throw new Error("Exchange-rate data is currently unavailable.");
+}
+
+exchangeRates = data.rates;
+lastUpdated = data.time_last_update_utc || "Not provided";
+
+setStatus("Exchange rates loaded successfully. Last update: " + lastUpdated,"success");
+
+}catch(error){
+exchangeRates = null;
+setStatus("Could not load exchange rates. Please check your internet connection and try again.","error");
+}
+}
+
+function convert(){
+const amount = Number(amountInput.value);
+const from = fromSelect.value;
+const to = toSelect.value;
+
+if(amountInput.value.trim() === "" || !Number.isFinite(amount) || amount < 0){
+setStatus("Please enter a valid amount greater than or equal to zero.","error");
+resultBox.style.display = "none";
+return;
+}
+
+if(!exchangeRates){
+setStatus("Exchange rates are not loaded yet. Please try again.","error");
+return;
+}
+
+const fromRate = exchangeRates[from];
+const toRate = exchangeRates[to];
+
+if(!fromRate || !toRate){
+setStatus("Rate unavailable for the selected currency.","error");
+return;
+}
+
+const converted = (amount / fromRate) * toRate;
+
+if(!Number.isFinite(converted)){
+setStatus("Conversion could not be completed.","error");
+return;
+}
+
+resultValue.textContent = new Intl.NumberFormat("en-US",{
+maximumFractionDigits:4
+}).format(converted) + " " + to;
+
+const oneUnitRate = toRate / fromRate;
+
+resultRate.textContent =
+`1 ${from} = ${oneUnitRate.toFixed(5)} ${to}`;
+
+resultBox.style.display = "block";
+
+setStatus("Conversion successful. Rates are indicative and may differ from provider rates.","success");
+
+addHistory(amount,from,converted,to);
+}
+
+function addHistory(amount,from,result,to){
+history.unshift({
+amount,
+from,
+result,
+to
+});
+
+history = history.slice(0,5);
+renderHistory();
+}
+
+function renderHistory(){
+if(history.length === 0){
+historyList.innerHTML = '<p class="status">Your recent conversions will appear here.</p>';
+return;
+}
+
+historyList.innerHTML = "";
+
+history.forEach(item=>{
+const row = document.createElement("div");
+row.className = "history-item";
+
+const left = document.createElement("span");
+left.textContent = `${item.amount} ${item.from}`;
+
+const right = document.createElement("strong");
+right.textContent = `${item.result.toFixed(2)} ${item.to}`;
+
+row.append(left,right);
+historyList.appendChild(row);
+});
+}
+
+convertBtn.addEventListener("click",convert);
+
+document.getElementById("swap").addEventListener("click",()=>{
+const previousFrom = fromSelect.value;
+fromSelect.value = toSelect.value;
+toSelect.value = previousFrom;
+
+if(exchangeRates && amountInput.value.trim() !== ""){
+convert();
+}
+});
+
+document.getElementById("clearHistory").addEventListener("click",()=>{
+history = [];
+renderHistory();
+});
+
+amountInput.addEventListener("keydown",event=>{
+if(event.key === "Enter"){
+convert();
+}
+});
+
+populateCurrencies();
+loadRates();
 </script>
 
 </body>
-
 </html>
