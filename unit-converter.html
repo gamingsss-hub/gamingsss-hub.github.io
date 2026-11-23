@@ -1,254 +1,665 @@
+
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08050d">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Unit Converter – Length, Weight, Temperature & More | Toolora AI</title>
+<meta name="description" content="Convert length, weight, temperature, area, volume, speed, time and digital storage units instantly with Toolora AI's free online unit converter.">
+<meta name="keywords" content="unit converter, length converter, weight converter, temperature converter, area converter, volume converter, speed converter, Toolora AI">
+<meta name="author" content="Toolora AI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/unit-converter.html">
+<link rel="icon" href="favicon.png">
 
-<title>
-Unit Converter – Toolora | Length Weight Temperature
-</title>
+<meta property="og:title" content="Free Unit Converter | Toolora AI">
+<meta property="og:description" content="Convert different measurement units instantly with Toolora AI.">
+<meta property="og:url" content="https://gamingsss-hub.github.io/unit-converter.html">
+<meta property="og:type" content="website">
 
-<meta
-name="description"
-content="Free Toolora Unit Converter. Convert length weight temperature area speed and more instantly.">
-
-<meta
-name="keywords"
-content="unit converter,length converter,weight converter,temperature converter,toolora">
-
-<meta
-name="author"
-content="Toolora">
-
-<link
-rel="icon"
-href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Poppins,sans-serif;
+font-family:'Outfit',sans-serif;
+}
+
+:root{
+--bg:#08050d;
+--card:#15101e;
+--red:#ff3155;
+--purple:#9655ff;
+--muted:#a99fb4;
+--border:rgba(255,255,255,.09);
 }
 
 body{
-
-background:#050b18;
-
-color:white;
-
-padding:24px;
-
+min-height:100vh;
+padding:22px 15px 55px;
+color:#fff;
+background:
+radial-gradient(ellipse at 10% 5%,rgba(255,49,85,.13),transparent 35%),
+radial-gradient(ellipse at 90% 20%,rgba(150,85,255,.15),transparent 35%),
+var(--bg);
 }
 
-.box{
-
-max-width:620px;
-
+.container{
+max-width:850px;
 margin:auto;
+}
 
-background:#091428;
+.back{
+display:inline-block;
+color:#c8bbd4;
+text-decoration:none;
+font-size:14px;
+margin:8px 0 22px;
+}
 
-padding:28px;
+.back:hover{color:white;}
 
+.hero{
+text-align:center;
+margin-bottom:28px;
+}
+
+.tag{
+display:inline-block;
+padding:8px 15px;
 border-radius:30px;
-
+color:#ff8298;
+background:rgba(255,49,85,.09);
+border:1px solid rgba(255,49,85,.3);
+font-size:12px;
+font-weight:700;
+letter-spacing:1px;
+margin-bottom:14px;
 }
 
 h1{
-
-font-size:34px;
-
-margin-bottom:20px;
-
-}
-
-select,
-input{
-
-width:100%;
-
-padding:18px;
-
-margin-top:12px;
-
-border:none;
-
-border-radius:18px;
-
-background:#13213f;
-
-color:white;
-
-}
-
-button{
-
-width:100%;
-
-margin-top:18px;
-
-padding:18px;
-
-border:none;
-
-border-radius:20px;
-
-background:
-
-linear-gradient(
-45deg,
-#6d42ff,
-#009dff
-);
-
-color:white;
-
-font-size:18px;
-
-}
-
-.result{
-
-margin-top:22px;
-
-font-size:28px;
-
+font-size:clamp(30px,6vw,45px);
 font-weight:800;
-
+letter-spacing:-1px;
 }
 
+h1 span{
+background:linear-gradient(90deg,var(--red),#b16aff);
+background-clip:text;
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.subtitle{
+color:var(--muted);
+font-size:14px;
+line-height:1.7;
+margin-top:9px;
+}
+
+.converter{
+padding:clamp(20px,5vw,32px);
+background:linear-gradient(145deg,rgba(29,18,40,.97),rgba(15,10,23,.98));
+border:1px solid var(--border);
+border-radius:25px;
+box-shadow:0 25px 80px rgba(0,0,0,.35);
+}
+
+.section-label{
+font-size:13px;
+font-weight:600;
+color:#c8bbd4;
+margin-bottom:12px;
+display:block;
+}
+
+.categories{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin-bottom:25px;
+}
+
+.category{
+padding:13px 5px;
+border:1px solid var(--border);
+border-radius:14px;
+background:rgba(255,255,255,.035);
+color:#d9d0e1;
+cursor:pointer;
+font-size:13px;
+font-weight:600;
+transition:.2s;
+}
+
+.category span{
+display:block;
+font-size:22px;
+margin-bottom:5px;
+}
+
+.category:hover{
+border-color:var(--purple);
+}
+
+.category.active{
+background:linear-gradient(120deg,rgba(255,49,85,.18),rgba(150,85,255,.2));
+border-color:var(--purple);
+color:white;
+}
+
+.field-label{
+display:block;
+font-size:13px;
+color:#c8bbd4;
+margin:15px 0 8px;
+}
+
+.input,.select{
+width:100%;
+padding:15px;
+border:1px solid rgba(255,255,255,.1);
+border-radius:13px;
+background:#0c0913;
+color:white;
+outline:none;
+font-size:15px;
+}
+
+.input:focus,.select:focus{
+border-color:var(--purple);
+box-shadow:0 0 0 3px rgba(150,85,255,.12);
+}
+
+.select option{
+background:#15101e;
+}
+
+.conversion-row{
+display:grid;
+grid-template-columns:1fr 52px 1fr;
+gap:12px;
+align-items:end;
+}
+
+.swap-wrap{
+display:flex;
+justify-content:center;
+padding-bottom:2px;
+}
+
+.swap{
+width:46px;
+height:46px;
+border-radius:13px;
+background:rgba(150,85,255,.13);
+border:1px solid rgba(150,85,255,.35);
+color:#c49aff;
+font-size:22px;
+cursor:pointer;
+transition:.25s;
+}
+
+.swap:hover{
+transform:rotate(180deg);
+background:rgba(150,85,255,.25);
+}
+
+.convert-btn{
+width:100%;
+padding:16px;
+border:0;
+border-radius:14px;
+margin-top:23px;
+background:linear-gradient(100deg,var(--red),var(--purple));
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.2s;
+}
+
+.convert-btn:hover{
+transform:translateY(-2px);
+filter:brightness(1.1);
+}
+
+.result-box{
+display:none;
+margin-top:24px;
+padding:22px;
+border-radius:17px;
+border:1px solid rgba(150,85,255,.25);
+background:linear-gradient(120deg,rgba(255,49,85,.1),rgba(150,85,255,.14));
+text-align:center;
+}
+
+.result-label{
+font-size:13px;
+color:#c9bdd6;
+}
+
+.result-value{
+font-size:clamp(28px,7vw,40px);
+font-weight:800;
+margin:9px 0 15px;
+overflow-wrap:anywhere;
+}
+
+.copy-btn{
+padding:10px 18px;
+border:1px solid rgba(255,255,255,.15);
+border-radius:10px;
+background:rgba(255,255,255,.07);
+color:white;
+cursor:pointer;
+font-size:13px;
+}
+
+.status{
+font-size:12px;
+color:var(--muted);
+text-align:center;
+margin-top:15px;
+}
+
+.info{
+display:grid;
+gap:16px;
+margin-top:30px;
+}
+
+.info-card{
+padding:22px;
+background:rgba(255,255,255,.025);
+border:1px solid var(--border);
+border-radius:18px;
+}
+
+.info-card h2{
+font-size:19px;
+margin-bottom:12px;
+}
+
+.info-card p,.info-card li{
+font-size:14px;
+line-height:1.8;
+color:#b9afc2;
+}
+
+.info-card ul{padding-left:20px;}
+
+.faq{
+padding:13px 0;
+border-bottom:1px solid var(--border);
+}
+
+.faq:last-child{border:0;}
+
+.faq h3{
+font-size:15px;
+margin-bottom:6px;
+}
+
+.footer{
+text-align:center;
+margin-top:32px;
+color:#81778b;
+font-size:12px;
+line-height:2;
+}
+
+.footer a{
+color:#c39aff;
+text-decoration:none;
+}
+
+@media(max-width:600px){
+.categories{grid-template-columns:repeat(2,1fr);}
+.conversion-row{grid-template-columns:1fr 42px 1fr;gap:7px;}
+.input,.select{padding:13px 9px;font-size:13px;}
+.swap{width:39px;height:43px;}
+}
 </style>
 
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"Toolora AI Unit Converter",
+ "url":"https://gamingsss-hub.github.io/unit-converter.html",
+ "applicationCategory":"UtilitiesApplication",
+ "operatingSystem":"Any",
+ "description":"Free online tool for converting length, weight, temperature, area, volume, speed, time and data units."
+}
+</script>
 </head>
 
 <body>
+<main class="container">
 
-<div class="box">
+<a href="index.html" class="back">← Back to Toolora Home</a>
 
-<h1>
+<header class="hero">
+<div class="tag">TOOLORA AI • FREE TOOL</div>
+<h1>Unit <span>Converter</span></h1>
+<p class="subtitle">Convert everyday measurements quickly and accurately.</p>
+</header>
 
-📏 Unit Converter
+<section class="converter">
 
-</h1>
+<span class="section-label">Choose Conversion Category</span>
 
-<input
-id="value"
-type="number"
-placeholder="Enter value">
+<div class="categories" id="categories">
+<button class="category active" data-type="length"><span>📏</span>Length</button>
+<button class="category" data-type="weight"><span>⚖️</span>Weight</button>
+<button class="category" data-type="temperature"><span>🌡️</span>Temperature</button>
+<button class="category" data-type="area"><span>📐</span>Area</button>
+<button class="category" data-type="volume"><span>🧪</span>Volume</button>
+<button class="category" data-type="speed"><span>🚀</span>Speed</button>
+<button class="category" data-type="time"><span>⏱️</span>Time</button>
+<button class="category" data-type="data"><span>💾</span>Data</button>
+</div>
 
-<select id="type">
+<label class="field-label" for="value">Enter Value</label>
+<input class="input" type="number" id="value" placeholder="Enter value" step="any">
 
-<option value="cm-m">
+<div class="conversion-row">
 
-CM → Meter
+<div>
+<label class="field-label" for="from">From</label>
+<select class="select" id="from"></select>
+</div>
 
-</option>
+<div class="swap-wrap">
+<button class="swap" id="swap" type="button" aria-label="Swap units">⇄</button>
+</div>
 
-<option value="m-cm">
-
-Meter → CM
-
-</option>
-
-<option value="kg-g">
-
-KG → Gram
-
-</option>
-
-<option value="g-kg">
-
-Gram → KG
-
-</option>
-
-<option value="c-f">
-
-Celsius → Fahrenheit
-
-</option>
-
-<option value="f-c">
-
-Fahrenheit → Celsius
-
-</option>
-
-</select>
-
-<button onclick="convert()">
-
-Convert
-
-</button>
-
-<div
-class="result"
-id="result">
-
-0
-
+<div>
+<label class="field-label" for="to">To</label>
+<select class="select" id="to"></select>
 </div>
 
 </div>
+
+<button class="convert-btn" id="convert" type="button">Convert Now →</button>
+
+<div class="result-box" id="resultBox" aria-live="polite">
+<div class="result-label">Conversion Result</div>
+<div class="result-value" id="result">0</div>
+<button class="copy-btn" id="copy" type="button">📋 Copy Result</button>
+</div>
+
+<p class="status" id="status">Choose a category and enter a value to begin.</p>
+
+</section>
+
+<section class="info">
+
+<article class="info-card">
+<h2>📚 About Unit Converter</h2>
+<p>Toolora AI Unit Converter is a free online measurement tool. Convert common units of length, weight, temperature, area, volume, speed, time and digital storage without installing any application. All calculations happen directly in your browser.</p>
+</article>
+
+<article class="info-card">
+<h2>✨ How to Use</h2>
+<ul>
+<li>Select a conversion category.</li>
+<li>Enter the value you want to convert.</li>
+<li>Choose the original and target units.</li>
+<li>Click Convert Now to see the result.</li>
+<li>Use the swap button to reverse the units.</li>
+<li>Copy your result with one click.</li>
+</ul>
+</article>
+
+<article class="info-card">
+<h2>❓ Frequently Asked Questions</h2>
+
+<div class="faq">
+<h3>1. Is this unit converter free?</h3>
+<p>Yes. Toolora AI provides this unit converter free of charge.</p>
+</div>
+
+<div class="faq">
+<h3>2. Does it support temperature conversion?</h3>
+<p>Yes. Convert Celsius, Fahrenheit and Kelvin.</p>
+</div>
+
+<div class="faq">
+<h3>3. Does it need an internet connection?</h3>
+<p>No. Once the page is loaded, all conversions work directly in your browser without an API.</p>
+</div>
+
+<div class="faq">
+<h3>4. Can I use it on mobile?</h3>
+<p>Yes. The page is responsive and works on phones, tablets and desktop devices.</p>
+</div>
+</article>
+
+<article class="info-card">
+<h2>Explore More Toolora Tools</h2>
+<p>
+<a href="calculator.html">Calculator</a> ·
+<a href="currency.html">Currency Converter</a> ·
+<a href="age-calculator.html">Age Calculator</a> ·
+<a href="world-clock.html">World Clock</a> ·
+<a href="expense-tracker.html">Expense Tracker</a>
+</p>
+</article>
+
+</section>
+
+<footer class="footer">
+<p>© 2026 Toolora AI. All Rights Reserved.</p>
+<p>Useful tools, made simple.</p>
+<a href="privacy.html">Privacy Policy</a> ·
+<a href="about.html">About Us</a> ·
+<a href="contact.html">Contact</a>
+</footer>
+
+</main>
 
 <script>
+const units = {
+length:{
+"Millimeter (mm)":0.001,
+"Centimeter (cm)":0.01,
+"Meter (m)":1,
+"Kilometer (km)":1000,
+"Inch (in)":0.0254,
+"Foot (ft)":0.3048,
+"Yard (yd)":0.9144,
+"Mile (mi)":1609.344
+},
+weight:{
+"Milligram (mg)":0.000001,
+"Gram (g)":0.001,
+"Kilogram (kg)":1,
+"Metric Ton (t)":1000,
+"Ounce (oz)":0.028349523125,
+"Pound (lb)":0.45359237
+},
+area:{
+"Square Millimeter (mm²)":0.000001,
+"Square Centimeter (cm²)":0.0001,
+"Square Meter (m²)":1,
+"Square Kilometer (km²)":1000000,
+"Hectare (ha)":10000,
+"Acre (ac)":4046.8564224,
+"Square Foot (ft²)":0.09290304
+},
+volume:{
+"Milliliter (mL)":0.001,
+"Liter (L)":1,
+"Cubic Meter (m³)":1000,
+"US Gallon (gal)":3.785411784,
+"US Quart (qt)":0.946352946,
+"Cup (US)":0.2365882365,
+"Fluid Ounce (US)":0.0295735296
+},
+speed:{
+"Meter/second (m/s)":1,
+"Kilometer/hour (km/h)":1/3.6,
+"Mile/hour (mph)":0.44704,
+"Foot/second (ft/s)":0.3048,
+"Knot (kn)":0.514444
+},
+time:{
+"Millisecond (ms)":0.001,
+"Second (s)":1,
+"Minute (min)":60,
+"Hour (h)":3600,
+"Day (d)":86400,
+"Week":604800,
+"Year (365 days)":31536000
+},
+data:{
+"Bit (b)":0.125,
+"Byte (B)":1,
+"Kilobyte (KB)":1000,
+"Megabyte (MB)":1000000,
+"Gigabyte (GB)":1000000000,
+"Terabyte (TB)":1000000000000,
+"Kibibyte (KiB)":1024,
+"Mebibyte (MiB)":1048576,
+"Gibibyte (GiB)":1073741824
+}
+};
 
-function convert(){
+const valueInput = document.getElementById("value");
+const fromSelect = document.getElementById("from");
+const toSelect = document.getElementById("to");
+const resultBox = document.getElementById("resultBox");
+const resultText = document.getElementById("result");
+const statusText = document.getElementById("status");
 
-let v=
+let currentCategory = "length";
+let lastResult = "";
 
-Number(
+function populateUnits(category){
+const names = category === "temperature"
+? ["Celsius (°C)","Fahrenheit (°F)","Kelvin (K)"]
+: Object.keys(units[category]);
 
-document.getElementById(
+fromSelect.innerHTML = "";
+toSelect.innerHTML = "";
 
-"value"
+names.forEach(name=>{
+fromSelect.add(new Option(name,name));
+toSelect.add(new Option(name,name));
+});
 
-).value
-
-);
-
-let t=
-
-document.getElementById(
-
-"type"
-
-).value;
-
-let r=0;
-
-if(t=="cm-m") r=v/100;
-
-if(t=="m-cm") r=v*100;
-
-if(t=="kg-g") r=v*1000;
-
-if(t=="g-kg") r=v/1000;
-
-if(t=="c-f") r=(v*9/5)+32;
-
-if(t=="f-c") r=(v-32)*5/9;
-
-document.getElementById(
-
-"result"
-
-).innerHTML=r;
-
+if(names.length > 1){
+toSelect.selectedIndex = 1;
 }
 
+resultBox.style.display = "none";
+statusText.textContent = "Enter a value and select units to convert.";
+}
+
+function convertTemperature(value,from,to){
+let celsius;
+
+if(from === "Celsius (°C)") celsius = value;
+else if(from === "Fahrenheit (°F)") celsius = (value-32)*5/9;
+else celsius = value-273.15;
+
+if(to === "Celsius (°C)") return celsius;
+if(to === "Fahrenheit (°F)") return (celsius*9/5)+32;
+return celsius+273.15;
+}
+
+function formatNumber(number){
+return new Intl.NumberFormat("en-US",{
+maximumFractionDigits:10
+}).format(number);
+}
+
+function convert(){
+const raw = valueInput.value.trim();
+const value = Number(raw);
+const from = fromSelect.value;
+const to = toSelect.value;
+
+if(raw === "" || !Number.isFinite(value)){
+resultBox.style.display = "none";
+statusText.textContent = "Please enter a valid number.";
+return;
+}
+
+let answer;
+
+if(currentCategory === "temperature"){
+answer = convertTemperature(value,from,to);
+}else{
+const fromFactor = units[currentCategory][from];
+const toFactor = units[currentCategory][to];
+
+answer = (value*fromFactor)/toFactor;
+}
+
+if(!Number.isFinite(answer)){
+statusText.textContent = "Unable to calculate this conversion.";
+return;
+}
+
+const outputUnit = to;
+lastResult = `${formatNumber(answer)} ${outputUnit}`;
+
+resultText.textContent = lastResult;
+resultBox.style.display = "block";
+statusText.textContent = "Conversion completed successfully.";
+}
+
+document.getElementById("categories").addEventListener("click",event=>{
+const button = event.target.closest(".category");
+if(!button) return;
+
+document.querySelectorAll(".category").forEach(item=>{
+item.classList.remove("active");
+});
+
+button.classList.add("active");
+currentCategory = button.dataset.type;
+populateUnits(currentCategory);
+});
+
+document.getElementById("convert").addEventListener("click",convert);
+
+document.getElementById("swap").addEventListener("click",()=>{
+const oldFrom = fromSelect.value;
+fromSelect.value = toSelect.value;
+toSelect.value = oldFrom;
+
+if(valueInput.value.trim() !== ""){
+convert();
+}
+});
+
+document.getElementById("copy").addEventListener("click",async()=>{
+if(!lastResult) return;
+
+try{
+await navigator.clipboard.writeText(lastResult);
+statusText.textContent = "Result copied to clipboard!";
+}catch(error){
+statusText.textContent = "Clipboard access unavailable in this browser.";
+}
+});
+
+valueInput.addEventListener("keydown",event=>{
+if(event.key === "Enter") convert();
+});
+
+populateUnits(currentCategory);
 </script>
 
 </body>
-
 </html>
