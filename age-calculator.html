@@ -1,555 +1,838 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08050c">
 
-<title>Age Calculator | Calculate Exact Age Online</title>
+<title>Age Calculator – Calculate Exact Age Online | Toolora AI</title>
+<meta name="description" content="Calculate your exact age in years, months and days with Toolora AI's free age calculator. Find your next birthday, zodiac sign and day of birth instantly.">
+<meta name="keywords" content="age calculator, exact age calculator, calculate age online, birthday calculator, date of birth calculator, next birthday countdown">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/age-calculator.html">
 
-<meta name="description"
-content="Calculate your exact age instantly with years, months, days, zodiac sign and next birthday countdown.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Online Age Calculator | Toolora AI">
+<meta property="og:description" content="Find your exact age, birthday countdown, zodiac sign and day of birth.">
+<meta property="og:url" content="https://gamingsss-hub.github.io/age-calculator.html">
+<meta property="og:site_name" content="Toolora AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Age Calculator | Toolora AI">
+<meta name="twitter:description" content="Calculate your exact age online for free.">
 
-<meta name="keywords"
-content="age calculator, calculate age online, birthday calculator, age finder">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"Toolora AI Age Calculator",
+ "url":"https://gamingsss-hub.github.io/age-calculator.html",
+ "applicationCategory":"UtilitiesApplication",
+ "operatingSystem":"Any",
+ "description":"Free online age calculator to calculate exact age, birthday countdown, zodiac sign and day of birth.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}
+}
+</script>
 
 <style>
+:root{
+ --bg:#08050c;
+ --panel:#140d1a;
+ --red:#ff3155;
+ --purple:#9b5cff;
+ --text:#fff;
+ --muted:#aaa0b7;
+ --border:rgba(255,255,255,.09);
+}
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Inter,Arial,sans-serif;
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
 }
 
 body{
-
-min-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-padding:20px;
-
-background:
-
-linear-gradient(
-160deg,
-#f5f7ff,
-#eef2ff,
-#e0f2fe
-);
-
+ min-height:100vh;
+ padding:22px;
+ color:var(--text);
+ font-family:'Poppins',sans-serif;
+ background:
+ radial-gradient(ellipse at 10% 5%,rgba(255,49,85,.15),transparent 35%),
+ radial-gradient(ellipse at 90% 15%,rgba(155,92,255,.17),transparent 35%),
+ var(--bg);
 }
 
-.app{
+a{color:inherit;text-decoration:none}
 
-max-width:700px;
+.container{
+ max-width:1050px;
+ margin:auto;
+}
 
-width:100%;
-
-padding:30px;
-
-border-radius:36px;
-
-background:
-
-rgba(
-255,
-255,
-255,
-0.72
-);
-
-backdrop-filter:
-blur(20px);
-
-box-shadow:
-
-0 30px 80px
-rgba(
-0,
-0,
-0,
-0.12
-);
-
+nav{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ margin-bottom:55px;
 }
 
 .logo{
-
-font-size:42px;
-
-text-align:center;
-
-margin-bottom:10px;
-
+ font-family:'Outfit',sans-serif;
+ font-size:25px;
+ font-weight:900;
 }
 
-.title{
-
-font-size:34px;
-
-font-weight:800;
-
-text-align:center;
-
-color:#111827;
-
+.logo span{
+ background:linear-gradient(90deg,var(--red),var(--purple));
+ -webkit-background-clip:text;
+ color:transparent;
 }
 
-.sub{
-
-text-align:center;
-
-color:#6b7280;
-
-margin-bottom:30px;
-
+.back{
+ padding:10px 17px;
+ border:1px solid var(--border);
+ border-radius:30px;
+ background:rgba(255,255,255,.04);
+ color:#d5bdff;
+ font-size:13px;
 }
 
-input{
-
-width:100%;
-
-padding:20px;
-
-border:none;
-
-border-radius:22px;
-
-font-size:18px;
-
-background:white;
-
-margin-bottom:18px;
-
-box-shadow:
-
-0 8px 25px
-rgba(
-0,
-0,
-0,
-0.06
-);
-
+.hero{
+ text-align:center;
+ margin-bottom:32px;
 }
 
-button{
-
-width:100%;
-
-padding:18px;
-
-border:none;
-
-border-radius:20px;
-
-font-size:20px;
-
-font-weight:700;
-
-cursor:pointer;
-
-color:white;
-
-background:
-
-linear-gradient(
-90deg,
-#2563eb,
-#7c3aed
-);
-
+.tag{
+ display:inline-block;
+ padding:8px 16px;
+ border-radius:30px;
+ color:#ff91a4;
+ background:rgba(255,49,85,.1);
+ border:1px solid rgba(255,49,85,.25);
+ font-size:12px;
+ font-weight:700;
+ letter-spacing:1px;
 }
 
-.cards{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(
-2,
-1fr
-);
-
-gap:16px;
-
-margin-top:28px;
-
+h1{
+ font-family:'Outfit',sans-serif;
+ font-size:clamp(37px,6vw,62px);
+ font-weight:900;
+ letter-spacing:-2px;
+ margin:19px 0 12px;
 }
 
-.card{
-
-padding:22px;
-
-border-radius:24px;
-
-background:white;
-
+h1 span{
+ background:linear-gradient(90deg,#ff3155,#ad63ff);
+ -webkit-background-clip:text;
+ color:transparent;
 }
 
-.num{
-
-font-size:34px;
-
-font-weight:900;
-
-color:#111827;
-
+.hero p{
+ max-width:650px;
+ margin:auto;
+ color:var(--muted);
+ font-size:14px;
+ line-height:1.8;
 }
 
-.label{
-
-color:#64748b;
-
+.calculator{
+ max-width:850px;
+ margin:auto;
+ padding:28px;
+ border:1px solid var(--border);
+ border-radius:28px;
+ background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.02));
+ box-shadow:0 25px 80px rgba(0,0,0,.35);
+ backdrop-filter:blur(20px);
 }
 
-.big{
-
-margin-top:16px;
-
-padding:24px;
-
-border-radius:24px;
-
-background:
-
-linear-gradient(
-90deg,
-#111827,
-#1e293b
-);
-
-color:white;
-
+.form-title{
+ font-family:'Outfit',sans-serif;
+ font-size:23px;
+ font-weight:800;
+ margin-bottom:8px;
 }
 
-@media(max-width:600px){
-
-.cards{
-
-grid-template-columns:1fr;
-
+.form-sub{
+ color:var(--muted);
+ font-size:13px;
+ margin-bottom:22px;
 }
 
+label{
+ display:block;
+ font-size:13px;
+ color:#e2d6f2;
+ margin-bottom:10px;
+ font-weight:600;
 }
 
+input[type="date"]{
+ width:100%;
+ padding:17px;
+ border:1px solid var(--border);
+ border-radius:15px;
+ outline:none;
+ background:#100b16;
+ color:white;
+ font-family:'Poppins',sans-serif;
+ font-size:15px;
+ color-scheme:dark;
+}
+
+input[type="date"]:focus{
+ border-color:var(--purple);
+ box-shadow:0 0 0 3px rgba(155,92,255,.1);
+}
+
+.primary{
+ width:100%;
+ margin-top:17px;
+ padding:16px;
+ border:0;
+ border-radius:14px;
+ color:white;
+ font-family:'Poppins',sans-serif;
+ font-weight:700;
+ font-size:15px;
+ cursor:pointer;
+ background:linear-gradient(100deg,var(--red),#9745ff);
+ box-shadow:0 8px 25px rgba(255,49,85,.17);
+ transition:.25s;
+}
+
+.primary:hover{transform:translateY(-2px);filter:brightness(1.12)}
+
+.error{
+ display:none;
+ margin-top:15px;
+ padding:12px 15px;
+ border-radius:12px;
+ color:#ff9eae;
+ background:rgba(255,49,85,.1);
+ border:1px solid rgba(255,49,85,.2);
+ font-size:13px;
+}
+
+#result{display:none;margin-top:28px}
+
+.result-heading{
+ font-family:'Outfit',sans-serif;
+ font-size:23px;
+ font-weight:800;
+ margin-bottom:15px;
+}
+
+.age-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:13px;
+}
+
+.age-card{
+ padding:23px 12px;
+ text-align:center;
+ border-radius:18px;
+ border:1px solid var(--border);
+ background:linear-gradient(145deg,#211326,#110b17);
+}
+
+.age-num{
+ font-family:'Outfit',sans-serif;
+ font-size:clamp(30px,5vw,43px);
+ font-weight:900;
+ background:linear-gradient(90deg,#ff4967,#ad75ff);
+ -webkit-background-clip:text;
+ color:transparent;
+ overflow-wrap:anywhere;
+}
+
+.age-label{
+ color:var(--muted);
+ font-size:12px;
+ margin-top:5px;
+}
+
+.extra-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:13px;
+ margin-top:14px;
+}
+
+.extra-card{
+ padding:18px;
+ border:1px solid var(--border);
+ border-radius:17px;
+ background:rgba(255,255,255,.035);
+}
+
+.extra-card .small-label{
+ color:var(--muted);
+ font-size:12px;
+ margin-bottom:7px;
+}
+
+.extra-card .value{
+ font-family:'Outfit',sans-serif;
+ font-size:21px;
+ font-weight:800;
+ color:#e8d5ff;
+ overflow-wrap:anywhere;
+}
+
+.birthday{
+ margin-top:15px;
+ padding:23px;
+ border-radius:19px;
+ background:linear-gradient(110deg,rgba(255,49,85,.16),rgba(155,92,255,.17));
+ border:1px solid rgba(180,100,255,.2);
+}
+
+.birthday h3{
+ font-family:'Outfit',sans-serif;
+ font-size:21px;
+ margin-bottom:7px;
+}
+
+.birthday p{
+ color:#e2d6ed;
+ font-size:13px;
+ line-height:1.8;
+}
+
+.result-actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:11px;
+ margin-top:17px;
+}
+
+.secondary{
+ flex:1;
+ padding:13px 17px;
+ border:1px solid var(--border);
+ border-radius:13px;
+ color:white;
+ background:#211629;
+ font-family:'Poppins',sans-serif;
+ font-weight:600;
+ cursor:pointer;
+}
+
+.section{margin-top:65px}
+
+.section h2{
+ font-family:'Outfit',sans-serif;
+ font-size:29px;
+ margin-bottom:15px;
+}
+
+.section>p{
+ color:var(--muted);
+ font-size:14px;
+ line-height:1.9;
+ margin-bottom:18px;
+}
+
+.info-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:14px;
+}
+
+.info-card{
+ padding:21px;
+ border:1px solid var(--border);
+ border-radius:18px;
+ background:rgba(255,255,255,.035);
+}
+
+.info-card h3{
+ color:#e5caff;
+ font-size:16px;
+ margin-bottom:9px;
+}
+
+.info-card p{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.8;
+}
+
+.faq{
+ padding:19px 0;
+ border-bottom:1px solid var(--border);
+}
+
+.faq h3{
+ font-size:15px;
+ margin-bottom:8px;
+}
+
+.faq p{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.8;
+}
+
+.links{
+ display:flex;
+ flex-wrap:wrap;
+ gap:11px;
+}
+
+.links a{
+ padding:10px 15px;
+ border:1px solid var(--border);
+ border-radius:30px;
+ background:rgba(255,255,255,.04);
+ color:#d7c3ff;
+ font-size:12px;
+ transition:.2s;
+}
+
+.links a:hover{
+ border-color:var(--purple);
+ color:white;
+}
+
+footer{
+ margin-top:65px;
+ padding:25px 0;
+ border-top:1px solid var(--border);
+ text-align:center;
+ color:#887e91;
+ font-size:12px;
+ line-height:2;
+}
+
+@media(max-width:750px){
+ body{padding:16px}
+ nav{margin-bottom:40px}
+ .calculator{padding:19px}
+ .info-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:480px){
+ .age-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+ .age-card{padding:17px 5px}
+ .extra-grid{grid-template-columns:1fr}
+ .age-num{font-size:29px}
+ h1{letter-spacing:-1px}
+}
 </style>
-
 </head>
 
 <body>
+<div class="container">
 
-<div class="app">
+<nav>
+ <a href="index.html" class="logo">TOOLORA<span> AI</span></a>
+ <a href="index.html" class="back">← Home</a>
+</nav>
 
-<div class="logo">
-🎂
-</div>
+<header class="hero">
+ <span class="tag">FREE BIRTHDAY & AGE TOOL</span>
+ <h1>Exact <span>Age Calculator</span></h1>
+ <p>Discover your exact age in years, months and days. Calculate your next birthday countdown, birth day and zodiac sign instantly.</p>
+</header>
 
-<div class="title">
-Age Calculator
-</div>
+<main>
 
-<div class="sub">
-Years • Months • Days • Zodiac
-</div>
+<section class="calculator">
+ <div class="form-title">🎂 Calculate Your Age</div>
+ <p class="form-sub">Enter your date of birth to get your age details.</p>
 
-<input
-type="date"
-id="dob">
+ <label for="dob">Select Your Date of Birth</label>
+ <input type="date" id="dob">
 
-<button onclick="calc()">
+ <button class="primary" onclick="calculateAge()">Calculate My Age →</button>
 
-Calculate Age
+ <div class="error" id="error" role="alert"></div>
 
-</button>
+ <div id="result" aria-live="polite">
+  <div class="result-heading">Your Age Details</div>
 
-<div id="result">
+  <div class="age-grid">
+   <div class="age-card">
+    <div class="age-num" id="years">0</div>
+    <div class="age-label">Years</div>
+   </div>
+   <div class="age-card">
+    <div class="age-num" id="months">0</div>
+    <div class="age-label">Months</div>
+   </div>
+   <div class="age-card">
+    <div class="age-num" id="days">0</div>
+    <div class="age-label">Days</div>
+   </div>
+  </div>
 
-</div>
+  <div class="extra-grid">
+   <div class="extra-card">
+    <div class="small-label">Total Days Lived</div>
+    <div class="value" id="totalDays">0</div>
+   </div>
+   <div class="extra-card">
+    <div class="small-label">Day of Birth</div>
+    <div class="value" id="birthDay">-</div>
+   </div>
+   <div class="extra-card">
+    <div class="small-label">Zodiac Sign</div>
+    <div class="value" id="zodiac">-</div>
+   </div>
+   <div class="extra-card">
+    <div class="small-label">Next Birthday</div>
+    <div class="value" id="nextDate">-</div>
+   </div>
+  </div>
+
+  <div class="birthday">
+   <h3>🎉 Birthday Countdown</h3>
+   <p id="countdown">-</p>
+  </div>
+
+  <div class="result-actions">
+   <button class="secondary" onclick="copyResult()">Copy Results</button>
+   <button class="secondary" onclick="resetCalculator()">Reset</button>
+  </div>
+ </div>
+</section>
+
+<section class="section">
+ <h2>About Age Calculator</h2>
+ <p>Toolora AI's free online age calculator helps you find your exact age from your date of birth. It calculates completed years, months and remaining days using calendar dates. You can also check your total days lived, day of birth, traditional zodiac sign and the time remaining until your next birthday.</p>
+
+ <div class="info-grid">
+  <div class="info-card">
+   <h3>Exact Age</h3>
+   <p>Calculate your completed years, months and days instead of relying on a simple year subtraction.</p>
+  </div>
+  <div class="info-card">
+   <h3>Birthday Countdown</h3>
+   <p>Find how many days remain until your next birthday and see its calendar date.</p>
+  </div>
+  <div class="info-card">
+   <h3>Birth Details</h3>
+   <p>Discover the weekday on which you were born and your traditional zodiac sign.</p>
+  </div>
+ </div>
+</section>
+
+<section class="section">
+ <h2>How to Use the Age Calculator</h2>
+ <div class="info-grid">
+  <div class="info-card">
+   <h3>01. Select Date</h3>
+   <p>Choose your date of birth using the date picker.</p>
+  </div>
+  <div class="info-card">
+   <h3>02. Calculate</h3>
+   <p>Click Calculate My Age to generate your age details.</p>
+  </div>
+  <div class="info-card">
+   <h3>03. View Results</h3>
+   <p>Check your age, total days, birth weekday and next birthday countdown.</p>
+  </div>
+ </div>
+</section>
+
+<section class="section">
+ <h2>Frequently Asked Questions</h2>
+
+ <div class="faq">
+  <h3>1. Is this age calculator free?</h3>
+  <p>Yes. Toolora AI's age calculator is free to use and does not require an account.</p>
+ </div>
+
+ <div class="faq">
+  <h3>2. How is exact age calculated?</h3>
+  <p>The calculator compares your date of birth with today's date and calculates completed calendar years, months and remaining days.</p>
+ </div>
+
+ <div class="faq">
+  <h3>3. Does it support leap year birthdays?</h3>
+  <p>Yes. The calculator handles February 29 birthdays. In non-leap years, the birthday countdown uses February 28 as the birthday date.</p>
+ </div>
+
+ <div class="faq">
+  <h3>4. What is total days lived?</h3>
+  <p>It is the number of complete calendar days between your date of birth and the current date.</p>
+ </div>
+
+ <div class="faq">
+  <h3>5. Is my date of birth stored?</h3>
+  <p>No. The calculation happens in your browser. This page does not send your date of birth to a server.</p>
+ </div>
+
+ <div class="faq">
+  <h3>6. What does the zodiac sign mean?</h3>
+  <p>The zodiac sign shown is based on traditional Western astrology date ranges. It is provided for general interest.</p>
+ </div>
+</section>
+
+<section class="section">
+ <h2>Explore More Free Tools</h2>
+ <p>Discover more useful tools and utilities from Toolora AI.</p>
+ <div class="links">
+  <a href="word-counter.html">Word Counter</a>
+  <a href="essay-writer.html">AI Essay Writer</a>
+  <a href="color-picker.html">Color Picker</a>
+  <a href="image-resizer.html">Image Resizer</a>
+  <a href="ai-background-remover.html">Background Remover</a>
+  <a href="calculator.html">Calculator</a>
+  <a href="unit-converter.html">Unit Converter</a>
+  <a href="currency.html">Currency Converter</a>
+  <a href="world-clock.html">World Clock</a>
+  <a href="countdown-timer.html">Countdown Timer</a>
+  <a href="qr-generator.html">QR Generator</a>
+  <a href="expense-tracker.html">Expense Tracker</a>
+  <a href="about.html">About Us</a>
+  <a href="faq.html">FAQ</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="contact.html">Contact</a>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <p>© 2026 Toolora AI. All rights reserved.</p>
+ <p>Free Online Tools • AI Tools • Calculators • Utilities</p>
+ <p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="contact.html">Contact</a></p>
+</footer>
 
 </div>
 
 <script>
+const dobInput = document.getElementById("dob");
+const resultBox = document.getElementById("result");
+const errorBox = document.getElementById("error");
 
-function zodiac(d,m){
-
-if(
-(m==1&&d>=20)||(m==2&&d<=18)
-)
-return"Aquarius";
-
-if(
-(m==2&&d>=19)||(m==3&&d<=20)
-)
-return"Pisces";
-
-if(
-(m==3&&d>=21)||(m==4&&d<=19)
-)
-return"Aries";
-
-if(
-(m==4&&d>=20)||(m==5&&d<=20)
-)
-return"Taurus";
-
-if(
-(m==5&&d>=21)||(m==6&&d<=20)
-)
-return"Gemini";
-
-if(
-(m==6&&d>=21)||(m==7&&d<=22)
-)
-return"Cancer";
-
-if(
-(m==7&&d>=23)||(m==8&&d<=22)
-)
-return"Leo";
-
-if(
-(m==8&&d>=23)||(m==9&&d<=22)
-)
-return"Virgo";
-
-if(
-(m==9&&d>=23)||(m==10&&d<=22)
-)
-return"Libra";
-
-if(
-(m==10&&d>=23)||(m==11&&d<=21)
-)
-return"Scorpio";
-
-if(
-(m==11&&d>=22)||(m==12&&d<=21)
-)
-return"Sagittarius";
-
-return"Capricorn";
-
+// Use local calendar dates, converted to UTC for reliable day arithmetic.
+function dateUTC(year, month, day){
+ return new Date(Date.UTC(year, month, day));
 }
 
-function calc(){
-
-let v=
-
-dob.value;
-
-if(!v){
-
-alert(
-"Select birth date"
-);
-
-return;
-
+function daysBetween(a,b){
+ return Math.round((b-a)/86400000);
 }
 
-let birth=
-
-new Date(
-v
-);
-
-let now=
-
-new Date();
-
-let years=
-
-now.getFullYear()
-
--
-
-birth.getFullYear();
-
-let months=
-
-now.getMonth()
-
--
-
-birth.getMonth();
-
-let days=
-
-now.getDate()
-
--
-
-birth.getDate();
-
-if(days<0){
-
-months--;
-
-days+=30;
-
+function daysInMonth(year,month){
+ return new Date(Date.UTC(year,month+1,0)).getUTCDate();
 }
 
-if(months<0){
+function zodiac(day,month){
+ const signs = [
+  ["Capricorn",20],["Aquarius",19],["Pisces",21],
+  ["Aries",20],["Taurus",21],["Gemini",21],
+  ["Cancer",23],["Leo",23],["Virgo",23],
+  ["Libra",23],["Scorpio",22],["Sagittarius",22],
+  ["Capricorn",20]
+ ];
 
-years--;
-
-months+=12;
-
+ return day < signs[month-1][1]
+  ? signs[month-1][0]
+  : signs[month][0];
 }
 
-let next=
+function getAge(birth,today){
+ let years = today.getUTCFullYear()-birth.getUTCFullYear();
 
-new Date(
+ let anniversary = dateUTC(
+  birth.getUTCFullYear()+years,
+  birth.getUTCMonth(),
+  birth.getUTCDate()
+ );
 
-now.getFullYear(),
+ // If this year's birthday has not arrived, subtract one year.
+ if(anniversary>today){
+  years--;
+  anniversary = dateUTC(
+   birth.getUTCFullYear()+years,
+   birth.getUTCMonth(),
+   birth.getUTCDate()
+  );
+ }
 
-birth.getMonth(),
+ let months = 0;
+ let cursor = anniversary;
 
-birth.getDate()
+ while(months<11){
+  const nextMonthIndex = cursor.getUTCMonth()+1;
+  const nextYear = cursor.getUTCFullYear()+Math.floor(nextMonthIndex/12);
+  const nextMonth = nextMonthIndex%12;
+  const nextDay = Math.min(
+   birth.getUTCDate(),
+   daysInMonth(nextYear,nextMonth)
+  );
 
-);
+  const nextDate = dateUTC(nextYear,nextMonth,nextDay);
 
-if(next<now){
+  if(nextDate>today) break;
 
-next.setFullYear(
+  cursor = nextDate;
+  months++;
+ }
 
-next.getFullYear()+1
+ const days = daysBetween(cursor,today);
 
-);
-
+ return {years,months,days};
 }
 
-let remain=
+function getBirthdayDate(birth,today){
+ let year = today.getUTCFullYear();
 
-Math.ceil(
+ function birthdayFor(y){
+  const month = birth.getUTCMonth();
+  const day = Math.min(
+   birth.getUTCDate(),
+   daysInMonth(y,month)
+  );
+  return dateUTC(y,month,day);
+ }
 
-(next-now)
+ let next = birthdayFor(year);
 
-/
+ if(next<today){
+  next = birthdayFor(year+1);
+ }
 
-86400000
-
-);
-
-result.innerHTML=
-
-`
-
-<div
-class="cards">
-
-<div
-class="card">
-
-<div
-class="num">
-
-${years}
-
-</div>
-
-<div
-class="label">
-
-Years
-
-</div>
-
-</div>
-
-<div
-class="card">
-
-<div
-class="num">
-
-${months}
-
-</div>
-
-<div
-class="label">
-
-Months
-
-</div>
-
-</div>
-
-<div
-class="card">
-
-<div
-class="num">
-
-${days}
-
-</div>
-
-<div
-class="label">
-
-Days
-
-</div>
-
-</div>
-
-<div
-class="card">
-
-<div
-class="num">
-
-${zodiac(
-
-birth.getDate(),
-
-birth.getMonth()+1
-
-)}
-
-</div>
-
-<div
-class="label">
-
-Zodiac
-
-</div>
-
-</div>
-
-</div>
-
-<div
-class="big">
-
-🎉 Next Birthday
-
-<br><br>
-
-${remain}
-
- days left
-
-</div>
-
-`;
-
+ return next;
 }
 
+function formatDate(date){
+ return new Intl.DateTimeFormat("en-IN",{
+  day:"numeric",
+  month:"long",
+  year:"numeric",
+  timeZone:"UTC"
+ }).format(date);
+}
+
+function calculateAge(){
+ errorBox.style.display="none";
+
+ if(!dobInput.value){
+  showError("Please select your date of birth first.");
+  return;
+ }
+
+ const parts = dobInput.value.split("-").map(Number);
+ const [year,month,day] = parts;
+
+ const birth = dateUTC(year,month-1,day);
+
+ const todayNow = new Date();
+ const today = dateUTC(
+  todayNow.getFullYear(),
+  todayNow.getMonth(),
+  todayNow.getDate()
+ );
+
+ if(
+  birth.getUTCFullYear()!==year ||
+  birth.getUTCMonth()!==month-1 ||
+  birth.getUTCDate()!==day
+ ){
+  showError("Please select a valid date.");
+  return;
+ }
+
+ if(birth>today){
+  showError("Date of birth cannot be in the future.");
+  resultBox.style.display="none";
+  return;
+ }
+
+ const age = getAge(birth,today);
+ const totalDays = daysBetween(birth,today);
+ const nextBirthday = getBirthdayDate(birth,today);
+ const daysRemaining = daysBetween(today,nextBirthday);
+
+ const weekday = new Intl.DateTimeFormat("en-IN",{
+  weekday:"long",
+  timeZone:"UTC"
+ }).format(birth);
+
+ document.getElementById("years").textContent=age.years;
+ document.getElementById("months").textContent=age.months;
+ document.getElementById("days").textContent=age.days;
+
+ document.getElementById("totalDays").textContent=
+  totalDays.toLocaleString("en-IN");
+
+ document.getElementById("birthDay").textContent=weekday;
+
+ document.getElementById("zodiac").textContent=
+  zodiac(day,month);
+
+ document.getElementById("nextDate").textContent=
+  formatDate(nextBirthday);
+
+ document.getElementById("countdown").textContent=
+  daysRemaining===0
+   ? "Happy Birthday! Today is your birthday 🎂"
+   : daysRemaining+" days remaining until your next birthday on "+formatDate(nextBirthday)+".";
+
+ resultBox.style.display="block";
+}
+
+function showError(message){
+ errorBox.textContent=message;
+ errorBox.style.display="block";
+}
+
+async function copyResult(){
+ if(resultBox.style.display==="none"){
+  showError("Calculate your age first.");
+  return;
+ }
+
+ const output =
+  "TOOLORA AI - AGE CALCULATOR\n"+
+  "Age: "+document.getElementById("years").textContent+" years, "+
+  document.getElementById("months").textContent+" months, "+
+  document.getElementById("days").textContent+" days\n"+
+  "Total Days: "+document.getElementById("totalDays").textContent+"\n"+
+  "Day of Birth: "+document.getElementById("birthDay").textContent+"\n"+
+  "Zodiac Sign: "+document.getElementById("zodiac").textContent+"\n"+
+  "Next Birthday: "+document.getElementById("nextDate").textContent+"\n"+
+  document.getElementById("countdown").textContent;
+
+ try{
+  await navigator.clipboard.writeText(output);
+  alert("Age results copied successfully!");
+ }catch(error){
+  const temp = document.createElement("textarea");
+  temp.value=output;
+  document.body.appendChild(temp);
+  temp.select();
+  document.execCommand("copy");
+  temp.remove();
+  alert("Age results copied!");
+ }
+}
+
+function resetCalculator(){
+ dobInput.value="";
+ resultBox.style.display="none";
+ errorBox.style.display="none";
+ dobInput.focus();
+}
+
+const today = new Date();
+dobInput.max =
+ today.getFullYear()+"-"+
+ String(today.getMonth()+1).padStart(2,"0")+"-"+
+ String(today.getDate()).padStart(2,"0");
 </script>
 
 </body>
-
 </html>
