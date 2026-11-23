@@ -1,275 +1,591 @@
+
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08050d">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Free Online Calculator | Advanced Calculator - Toolora AI</title>
+<meta name="description" content="Use Toolora AI's free online calculator for addition, subtraction, multiplication, division, percentages and more. Fast, secure and mobile-friendly.">
+<meta name="keywords" content="online calculator, free calculator, advanced calculator, percentage calculator, math calculator, Toolora AI">
+<meta name="author" content="Toolora AI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/calculator.html">
+<link rel="icon" href="favicon.png">
 
-<title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Online Calculator | Toolora AI">
+<meta property="og:description" content="Calculate quickly with Toolora AI's free advanced online calculator.">
+<meta property="og:url" content="https://gamingsss-hub.github.io/calculator.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Online Calculator - Toolora AI">
+<meta name="twitter:description" content="A free, fast and mobile-friendly online calculator.">
 
-Calculator – Toolora | Free Online Calculator
-
-</title>
-
-<meta
-name="description"
-content="Free Toolora calculator. Fast online calculator for addition subtraction multiplication division.">
-
-<meta
-name="keywords"
-content="calculator, toolora calculator, online calculator, utility tools, math calculator">
-
-<meta
-name="author"
-content="Toolora">
-
-<meta
-name="theme-color"
-content="#050b18">
-
-<link
-rel="icon"
-href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+:root{
+ --bg:#08050d;
+ --panel:#120d19;
+ --panel2:#1b1325;
+ --red:#ff3155;
+ --purple:#9b5cff;
+ --text:#f8f5ff;
+ --muted:#a69caf;
+ --border:rgba(255,255,255,.09);
 }
-
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-
-background:#050b18;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-min-height:100vh;
-
-color:white;
-
+ min-height:100vh;
+ color:var(--text);
+ background:
+ radial-gradient(ellipse at 15% 10%,rgba(255,49,85,.15),transparent 35%),
+ radial-gradient(ellipse at 85% 80%,rgba(155,92,255,.16),transparent 38%),
+ var(--bg);
+ font-family:'Poppins',sans-serif;
+ padding:25px 16px 45px;
 }
-
-.box{
-
-width:360px;
-
-background:#0d1730;
-
-padding:26px;
-
-border-radius:34px;
-
+a{color:inherit;text-decoration:none}
+.page{max-width:1100px;margin:auto}
+.topbar{
+ display:flex;justify-content:space-between;align-items:center;
+ margin-bottom:30px;gap:15px;
 }
-
+.brand{font-family:'Outfit';font-size:23px;font-weight:900;letter-spacing:-.7px}
+.brand span{color:var(--red)}
 .back{
-
-color:white;
-
-text-decoration:none;
-
+ padding:10px 16px;border:1px solid var(--border);
+ border-radius:12px;color:#ddd3e8;font-size:13px;
+ background:rgba(255,255,255,.035);
 }
-
-.title{
-
-font-size:34px;
-
-font-weight:900;
-
-margin:20px 0;
-
+.back:hover{border-color:var(--red);color:white}
+.hero{text-align:center;margin-bottom:25px}
+.tag{
+ display:inline-block;padding:7px 13px;border-radius:30px;
+ background:rgba(255,49,85,.10);border:1px solid rgba(255,49,85,.25);
+ color:#ff8298;font-size:11px;font-weight:700;letter-spacing:1.5px;
 }
-
+h1{
+ font-family:'Outfit';font-size:clamp(30px,5vw,48px);
+ font-weight:900;letter-spacing:-1.5px;margin:13px 0 8px;
+}
+h1 span{
+ background:linear-gradient(90deg,#ff3155,#bd70ff);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{color:var(--muted);font-size:14px;line-height:1.7}
+.layout{
+ display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.75fr);
+ gap:20px;align-items:start;
+}
+.calculator,.history,.info-card{
+ background:linear-gradient(145deg,rgba(28,19,38,.97),rgba(13,10,19,.98));
+ border:1px solid var(--border);border-radius:25px;
+ box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+.calculator{padding:22px}
+.display-wrap{
+ background:#09070e;border:1px solid rgba(255,255,255,.07);
+ border-radius:18px;padding:16px;margin-bottom:16px;
+}
+.expression{
+ width:100%;min-height:27px;text-align:right;color:#a99eb5;
+ font-size:14px;overflow-wrap:anywhere;
+}
 #display{
-
-width:100%;
-
-height:90px;
-
-border:none;
-
-outline:none;
-
-padding:20px;
-
-font-size:34px;
-
-text-align:right;
-
-background:#081122;
-
-color:white;
-
-border-radius:22px;
-
-margin-bottom:18px;
-
+ width:100%;border:0;outline:0;background:transparent;
+ color:white;text-align:right;font-family:'Outfit';
+ font-size:clamp(32px,6vw,43px);font-weight:700;
+ padding:8px 0 2px;
 }
-
-.grid{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(4,1fr);
-
-gap:10px;
-
+#display.error{color:#ff6b82}
+.keys{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
 }
-
-button{
-
-height:70px;
-
-border:none;
-
-border-radius:20px;
-
-font-size:24px;
-
-background:#14254a;
-
-color:white;
-
+.key{
+ min-height:64px;border:1px solid rgba(255,255,255,.055);
+ border-radius:16px;background:#21182c;color:#f7f1ff;
+ font-family:'Outfit';font-size:21px;font-weight:600;
+ cursor:pointer;transition:.18s;
 }
-
-.op{
-
-background:#5f48ff;
-
+.key:hover{background:#30213e;transform:translateY(-2px);border-color:#8050a8}
+.key:active{transform:scale(.96)}
+.key.function{background:#302039;color:#d8b7ff}
+.key.operator{background:rgba(255,49,85,.13);color:#ff718b;border-color:rgba(255,49,85,.14)}
+.key.equal{
+ background:linear-gradient(135deg,#ff3155,#a34bff);
+ color:white;border:0;box-shadow:0 7px 22px rgba(255,49,85,.2);
 }
-
-.equal{
-
-background:#ff6b00;
-
+.key.zero{grid-column:span 2}
+.key.small{font-size:17px}
+.side{display:grid;gap:18px}
+.history{padding:20px;min-height:240px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+.section-head h2{font-family:'Outfit';font-size:19px}
+.clear-history{
+ border:0;background:transparent;color:#ff8298;font-size:12px;
+ cursor:pointer;font-weight:600;
 }
-
-.zero{
-
-grid-column:span 2;
-
+.history-list{display:grid;gap:9px;max-height:300px;overflow:auto}
+.history-item{
+ text-align:right;padding:11px 12px;border-radius:12px;
+ background:rgba(255,255,255,.045);border:1px solid var(--border);
+ cursor:pointer;overflow-wrap:anywhere;
 }
-
+.history-item:hover{border-color:var(--purple)}
+.history-expression{font-size:11px;color:var(--muted)}
+.history-result{font-family:'Outfit';font-size:19px;font-weight:700;margin-top:3px}
+.empty{color:var(--muted);font-size:13px;text-align:center;padding:30px 5px}
+.info-card{padding:20px}
+.info-card h2{font-family:'Outfit';font-size:19px;margin-bottom:12px}
+.info-card p,.info-card li{font-size:13px;color:var(--muted);line-height:1.8}
+.info-card ul{padding-left:18px}
+.copy-btn{
+ width:100%;margin-top:13px;padding:12px;border:1px solid var(--border);
+ border-radius:12px;background:rgba(155,92,255,.12);
+ color:#d6b8ff;font-weight:700;cursor:pointer;
+}
+.copy-btn:hover{background:rgba(155,92,255,.22)}
+.content{margin-top:35px;display:grid;gap:18px}
+.content-card{
+ padding:23px;border-radius:20px;background:rgba(255,255,255,.035);
+ border:1px solid var(--border);
+}
+.content-card h2{font-family:'Outfit';font-size:22px;margin-bottom:10px}
+.content-card p,.content-card li{color:var(--muted);font-size:13px;line-height:1.9}
+.content-card ul{padding-left:20px}
+.faq{padding:13px 0;border-bottom:1px solid var(--border)}
+.faq:last-child{border:0}
+.faq h3{font-size:14px;margin-bottom:6px}
+.faq p{font-size:13px;color:var(--muted);line-height:1.7}
+.related{display:flex;flex-wrap:wrap;gap:10px;margin-top:13px}
+.related a{
+ padding:9px 13px;border-radius:11px;background:rgba(155,92,255,.1);
+ border:1px solid rgba(155,92,255,.2);font-size:12px;color:#d9c0ff;
+}
+footer{text-align:center;color:#82788b;font-size:12px;margin-top:30px}
+@media(max-width:760px){
+ body{padding:17px 12px 35px}
+ .layout{grid-template-columns:1fr}
+ .calculator{padding:15px}
+ .key{min-height:61px;border-radius:13px}
+ .topbar{margin-bottom:24px}
+}
+@media(max-width:380px){
+ .keys{gap:7px}
+ .key{min-height:55px;font-size:18px}
+}
 </style>
 
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"Toolora AI Online Calculator",
+ "url":"https://gamingsss-hub.github.io/calculator.html",
+ "applicationCategory":"UtilitiesApplication",
+ "operatingSystem":"Any",
+ "description":"A free online calculator for basic arithmetic and percentage calculations.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
 </head>
 
 <body>
+<div class="page">
 
-<div class="box">
+<header class="topbar">
+ <a class="brand" href="index.html">TOOLORA<span> AI.</span></a>
+ <a class="back" href="index.html">← Back to Home</a>
+</header>
 
-<a href="utility.html"
-class="back">
+<section class="hero">
+ <span class="tag">FREE MATH TOOL</span>
+ <h1>Smart <span>Calculator</span></h1>
+ <p>Fast, simple and accurate calculations — right in your browser.</p>
+</section>
 
-← Utility
+<main class="layout">
+<section class="calculator" aria-label="Online calculator">
+ <div class="display-wrap">
+  <div class="expression" id="expression" aria-live="polite">Ready to calculate</div>
+  <input id="display" type="text" value="0" readonly aria-label="Calculator display">
+ </div>
 
-</a>
+ <div class="keys">
+  <button class="key function small" data-action="clear">AC</button>
+  <button class="key function small" data-action="delete">DEL</button>
+  <button class="key function" data-value="(">(</button>
+  <button class="key operator" data-value="/">÷</button>
 
-<div class="title">
+  <button class="key" data-value="7">7</button>
+  <button class="key" data-value="8">8</button>
+  <button class="key" data-value="9">9</button>
+  <button class="key operator" data-value="*">×</button>
 
-🧮 Calculator
+  <button class="key" data-value="4">4</button>
+  <button class="key" data-value="5">5</button>
+  <button class="key" data-value="6">6</button>
+  <button class="key operator" data-value="-">−</button>
 
-</div>
+  <button class="key" data-value="1">1</button>
+  <button class="key" data-value="2">2</button>
+  <button class="key" data-value="3">3</button>
+  <button class="key operator" data-value="+">+</button>
 
-<input
-id="display"
-readonly>
+  <button class="key function" data-action="percent">%</button>
+  <button class="key" data-value="0">0</button>
+  <button class="key" data-value=".">.</button>
+  <button class="key function" data-value=")">)</button>
 
-<div class="grid">
+  <button class="key function small" data-action="sign">+/−</button>
+  <button class="key equal zero" data-action="calculate">=</button>
+ </div>
 
-<button onclick="clr()">C</button>
+ <button class="copy-btn" id="copy">Copy Result</button>
+</section>
 
-<button onclick="del()">⌫</button>
+<aside class="side">
+ <section class="history">
+  <div class="section-head">
+   <h2>Recent History</h2>
+   <button class="clear-history" id="clearHistory">Clear all</button>
+  </div>
+  <div class="history-list" id="historyList">
+   <div class="empty">Your calculations will appear here.</div>
+  </div>
+ </section>
 
-<button class="op" onclick="add('/')">÷</button>
+ <section class="info-card">
+  <h2>Calculator Features</h2>
+  <ul>
+   <li>Basic arithmetic operations</li>
+   <li>Percentage calculations</li>
+   <li>Brackets and decimal numbers</li>
+   <li>Keyboard input support</li>
+   <li>Calculation history</li>
+   <li>Copy your final result</li>
+  </ul>
+ </section>
+</aside>
+</main>
 
-<button class="op" onclick="add('*')">×</button>
+<section class="content">
+ <article class="content-card">
+  <h2>Free Online Calculator</h2>
+  <p>Toolora AI Calculator is a free browser-based math tool for everyday calculations. Use it to add, subtract, multiply and divide numbers, work with percentages, or solve expressions using brackets. No account or installation is required.</p>
+ </article>
 
-<button onclick="add('7')">7</button>
+ <article class="content-card">
+  <h2>How to Use This Calculator</h2>
+  <ul>
+   <li>Click the number buttons to enter your calculation.</li>
+   <li>Select an operator such as addition, subtraction, multiplication or division.</li>
+   <li>Use brackets to group parts of an expression.</li>
+   <li>Press the equals button to calculate the answer.</li>
+   <li>Use DEL to remove the last character or AC to clear everything.</li>
+   <li>Click a previous result in Recent History to restore it.</li>
+  </ul>
+ </article>
 
-<button onclick="add('8')">8</button>
+ <article class="content-card">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq">
+   <h3>Is this online calculator free?</h3>
+   <p>Yes. You can use all calculator features for free without creating an account.</p>
+  </div>
+  <div class="faq">
+   <h3>Can I use my keyboard?</h3>
+   <p>Yes. Number keys and arithmetic operators are supported. Press Enter to calculate, Backspace to delete and Escape to clear.</p>
+  </div>
+  <div class="faq">
+   <h3>Does this calculator support percentages?</h3>
+   <p>Yes. Enter a number and press the percentage button to divide the current value by 100. For example, 25% becomes 0.25.</p>
+  </div>
+  <div class="faq">
+   <h3>Is my calculation data uploaded?</h3>
+   <p>No. Calculations run locally in your browser. This page does not send your expressions to a calculation server.</p>
+  </div>
+ </article>
 
-<button onclick="add('9')">9</button>
+ <article class="content-card">
+  <h2>Explore More Toolora Tools</h2>
+  <p>Discover more free tools and interactive experiences:</p>
+  <div class="related">
+   <a href="unit-converter.html">Unit Converter</a>
+   <a href="currency.html">Currency Converter</a>
+   <a href="age-calculator.html">Age Calculator</a>
+   <a href="countdown-timer.html">Countdown Timer</a>
+   <a href="word-counter.html">Word Counter</a>
+   <a href="index.html">All Tools</a>
+  </div>
+ </article>
+</section>
 
-<button class="op" onclick="add('-')">−</button>
-
-<button onclick="add('4')">4</button>
-
-<button onclick="add('5')">5</button>
-
-<button onclick="add('6')">6</button>
-
-<button class="op" onclick="add('+')">+</button>
-
-<button onclick="add('1')">1</button>
-
-<button onclick="add('2')">2</button>
-
-<button onclick="add('3')">3</button>
-
-<button class="equal" onclick="solve()">=</button>
-
-<button class="zero" onclick="add('0')">0</button>
-
-<button onclick="add('.')">.</button>
-
-</div>
-
+<footer>© 2026 Toolora AI. Free tools for everyone.</footer>
 </div>
 
 <script>
+(() => {
+ const display = document.getElementById('display');
+ const expression = document.getElementById('expression');
+ const historyList = document.getElementById('historyList');
+ const buttons = document.querySelector('.keys');
 
-let d=document.getElementById("display");
+ let current = '';
+ let justCalculated = false;
+ let history = [];
 
-function add(v){
+ const update = () => {
+  display.value = current || '0';
+  display.classList.remove('error');
+ };
 
-d.value+=v
+ const clear = () => {
+  current = '';
+  justCalculated = false;
+  expression.textContent = 'Ready to calculate';
+  update();
+ };
 
-}
+ const isOperator = char => ['+','-','*','/'].includes(char);
 
-function clr(){
+ function append(value) {
+  if (justCalculated && (/[0-9.(]/.test(value))) current = '';
+  justCalculated = false;
 
-d.value=""
+  if (value === '.') {
+   const last = current.split(/[+\-*/()]/).pop();
+   if (last.includes('.')) return;
+   if (!last) current += '0';
+  }
 
-}
+  if (isOperator(value)) {
+   if (!current && value !== '-') return;
+   if (isOperator(current.slice(-1))) {
+    if (value === '-' && current.slice(-1) !== '-') {
+     current += value;
+     update();
+     return;
+    }
+    current = current.slice(0,-1);
+   }
+  }
 
-function del(){
+  if (value === '(' && /[0-9)]$/.test(current)) current += '*';
+  if (value === ')' && (!current || isOperator(current.slice(-1)) || current.endsWith('('))) return;
 
-d.value=d.value.slice(0,-1)
+  current += value;
+  update();
+ }
 
-}
+ function tokenize(input) {
+  const tokens = input.match(/\d*\.?\d+|[()+*/-]/g);
+  if (!tokens || tokens.join('') !== input.replace(/\s/g,'')) {
+   throw new Error('Invalid expression');
+  }
+  return tokens;
+ }
 
-function solve(){
+ function calculateExpression(input) {
+  const tokens = tokenize(input);
+  let pos = 0;
 
-try{
+  function primary() {
+   const token = tokens[pos];
 
-d.value=eval(d.value)
+   if (token === '+') {
+    pos++;
+    return primary();
+   }
+   if (token === '-') {
+    pos++;
+    return -primary();
+   }
+   if (token === '(') {
+    pos++;
+    const value = addSub();
+    if (tokens[pos] !== ')') throw new Error('Missing bracket');
+    pos++;
+    return value;
+   }
+   if (!token || !/^\d*\.?\d+$/.test(token)) {
+    throw new Error('Invalid number');
+   }
 
-}
+   pos++;
+   return Number(token);
+  }
 
-catch{
+  function mulDiv() {
+   let value = primary();
+   while (tokens[pos] === '*' || tokens[pos] === '/') {
+    const op = tokens[pos++];
+    const next = primary();
+    if (op === '/' && next === 0) throw new Error('Cannot divide by zero');
+    value = op === '*' ? value * next : value / next;
+   }
+   return value;
+  }
 
-d.value="Error"
+  function addSub() {
+   let value = mulDiv();
+   while (tokens[pos] === '+' || tokens[pos] === '-') {
+    const op = tokens[pos++];
+    const next = mulDiv();
+    value = op === '+' ? value + next : value - next;
+   }
+   return value;
+  }
 
-}
+  const result = addSub();
+  if (pos !== tokens.length || !Number.isFinite(result)) {
+   throw new Error('Invalid calculation');
+  }
+  return Number.parseFloat(result.toPrecision(12)).toString();
+ }
 
-}
+ function renderHistory() {
+  if (!history.length) {
+   historyList.innerHTML = '<div class="empty">Your calculations will appear here.</div>';
+   return;
+  }
 
+  historyList.replaceChildren();
+  history.forEach(item => {
+   const button = document.createElement('button');
+   button.type = 'button';
+   button.className = 'history-item';
+
+   const exp = document.createElement('div');
+   exp.className = 'history-expression';
+   exp.textContent = item.expression;
+
+   const result = document.createElement('div');
+   result.className = 'history-result';
+   result.textContent = '= ' + item.result;
+
+   button.append(exp,result);
+   button.addEventListener('click', () => {
+    current = item.result;
+    justCalculated = true;
+    expression.textContent = item.expression;
+    update();
+   });
+   historyList.append(button);
+  });
+ }
+
+ function solve() {
+  if (!current) return;
+  try {
+   const original = current;
+   const result = calculateExpression(current);
+   history.unshift({expression:original,result});
+   history = history.slice(0,20);
+   current = result;
+   justCalculated = true;
+   expression.textContent = original + ' =';
+   update();
+   renderHistory();
+  } catch (error) {
+   display.value = error.message === 'Cannot divide by zero' ? 'Cannot divide by 0' : 'Error';
+   display.classList.add('error');
+   expression.textContent = 'Check your expression';
+  }
+ }
+
+ function removeLast() {
+  if (justCalculated) {
+   clear();
+   return;
+  }
+  current = current.slice(0,-1);
+  update();
+ }
+
+ function percent() {
+  if (!current) return;
+  try {
+   current = calculateExpression(current) ;
+   current = String(Number(current) / 100);
+   justCalculated = false;
+   expression.textContent = 'Percentage';
+   update();
+  } catch {
+   display.value = 'Error';
+   display.classList.add('error');
+  }
+ }
+
+ function sign() {
+  if (!current) {
+   current = '-';
+  } else if (justCalculated) {
+   current = String(-Number(current));
+   justCalculated = false;
+  } else {
+   current = '-(' + current + ')';
+  }
+  update();
+ }
+
+ buttons.addEventListener('click', event => {
+  const button = event.target.closest('button');
+  if (!button) return;
+
+  if (button.dataset.value !== undefined) append(button.dataset.value);
+  else {
+   const action = button.dataset.action;
+   if (action === 'clear') clear();
+   if (action === 'delete') removeLast();
+   if (action === 'calculate') solve();
+   if (action === 'percent') percent();
+   if (action === 'sign') sign();
+  }
+ });
+
+ document.addEventListener('keydown', event => {
+  if (/^[0-9.+\-*/()]$/.test(event.key)) {
+   event.preventDefault();
+   append(event.key);
+  } else if (event.key === 'Enter' || event.key === '=') {
+   event.preventDefault();
+   solve();
+  } else if (event.key === 'Backspace') {
+   event.preventDefault();
+   removeLast();
+  } else if (event.key === 'Escape') {
+   clear();
+  } else if (event.key === '%') {
+   event.preventDefault();
+   percent();
+  }
+ });
+
+ document.getElementById('clearHistory').addEventListener('click', () => {
+  history = [];
+  renderHistory();
+ });
+
+ document.getElementById('copy').addEventListener('click', async () => {
+  if (!current) return;
+  const button = document.getElementById('copy');
+  try {
+   await navigator.clipboard.writeText(current);
+   button.textContent = 'Copied!';
+  } catch {
+   button.textContent = 'Copy not available';
+  }
+  setTimeout(() => button.textContent = 'Copy Result',1500);
+ });
+
+ update();
+ renderHistory();
+})();
 </script>
-
 </body>
-
 </html>
