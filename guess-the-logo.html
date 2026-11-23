@@ -1,480 +1,1410 @@
+
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08050c">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Guess The Logo Game | 15 Brand Challenges – Toolora AI</title>
+<meta name="description" content="Play Guess The Logo, a challenging free brand quiz game. Identify 15 famous logos, beat the timer, use lifelines and test your brand knowledge.">
+<meta name="keywords" content="guess the logo, logo quiz, brand quiz game, logo challenge, famous brand logos, online logo game, Toolora AI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/guess-the-logo.html">
 
-<title>Guess The Logo Quiz – Test Your Brand Knowledge</title>
+<meta property="og:title" content="Guess The Logo Challenge – Toolora AI">
+<meta property="og:description" content="Can you identify 15 famous brands before time runs out?">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gamingsss-hub.github.io/guess-the-logo.html">
 
-<meta name="description" content="Play Guess The Logo Quiz online and identify famous brand logos. Fun logo challenge with score system and multiple questions.">
-<meta name="keywords" content="guess the logo, logo quiz, brand logo quiz, logo game, famous logos quiz, guess brand, logo challenge, online logo quiz, world brands quiz">
-  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+:root{
+  --bg:#08050c;
+  --panel:#140d1b;
+  --panel2:#1d1326;
+  --red:#ff3155;
+  --purple:#a45cff;
+  --cyan:#00e5ff;
+  --green:#37e6a1;
+  --text:#f7f2ff;
+  --muted:#a69aaf;
+  --border:rgba(255,255,255,.09);
+}
 
 *{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-font-family:Arial;
-
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#07172c,
-
-#123f73
-
-);
-
-color:white;
-
-padding:20px;
-
-text-align:center;
-
+  min-height:100vh;
+  font-family:'Poppins',sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(ellipse at 15% 5%,rgba(155,92,255,.16),transparent 35%),
+    radial-gradient(ellipse at 90% 30%,rgba(255,49,85,.12),transparent 35%),
+    linear-gradient(145deg,#08050c,#100817 55%,#08050c);
 }
 
-.box{
-
-max-width:550px;
-
-margin:auto;
-
-background:#102748;
-
-padding:25px;
-
-border-radius:25px;
-
+button,select{
+  font:inherit;
 }
 
-#logo img{
-
-width:150px;
-
-height:150px;
-
-object-fit:contain;
-
-background:white;
-
-padding:15px;
-
-border-radius:18px;
-
+button{
+  cursor:pointer;
 }
 
-.opt{
-
-width:100%;
-
-padding:15px;
-
-margin:10px 0;
-
-border:none;
-
-border-radius:14px;
-
-font-size:18px;
-
-background:#1d4ed8;
-
-color:white;
-
+button:disabled{
+  opacity:.38;
+  cursor:not-allowed;
 }
 
-#result{
+.topbar{
+  padding:16px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+  background:rgba(8,5,12,.8);
+  backdrop-filter:blur(18px);
+}
 
-font-size:22px;
+.logo{
+  font-family:'Outfit',sans-serif;
+  font-weight:900;
+  font-size:23px;
+}
 
-margin-top:18px;
+.logo span{
+  color:var(--red);
+}
 
+.back{
+  color:#c9b9d5;
+  text-decoration:none;
+  font-size:13px;
+}
+
+.back:hover{
+  color:white;
+}
+
+.container{
+  width:min(1000px,94%);
+  margin:35px auto 55px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.tag{
+  display:inline-block;
+  padding:7px 15px;
+  border:1px solid rgba(255,49,85,.3);
+  background:rgba(255,49,85,.08);
+  border-radius:30px;
+  color:#ff8ba0;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:13px;
+}
+
+.hero h1{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(32px,6vw,54px);
+  font-weight:900;
+  line-height:1.1;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,#ff3155,#b16aff,#00d9ff);
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  max-width:600px;
+  margin:12px auto 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+}
+
+.game{
+  position:relative;
+  padding:22px;
+  border-radius:26px;
+  border:1px solid rgba(180,100,255,.2);
+  background:linear-gradient(145deg,rgba(27,18,35,.97),rgba(12,8,17,.98));
+  box-shadow:0 25px 90px rgba(0,0,0,.45),0 0 45px rgba(155,92,255,.08);
+  overflow:hidden;
+}
+
+.game:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:15%;
+  right:15%;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--red),var(--purple),transparent);
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.stat{
+  text-align:center;
+  padding:12px 7px;
+  border-radius:14px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--border);
+}
+
+.stat small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.stat strong{
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-size:23px;
+  margin-top:4px;
+}
+
+#score{
+  color:#c49aff;
+}
+
+#timer{
+  color:#ff7188;
+}
+
+#streak{
+  color:#ffbd66;
+}
+
+#questionNo{
+  color:var(--cyan);
+}
+
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:8px;
+}
+
+.progress{
+  height:7px;
+  background:#2b2033;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:20px;
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--red),var(--purple),var(--cyan));
+  transition:width .3s;
+}
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+.start-screen{
+  text-align:center;
+  padding:25px 10px 15px;
+}
+
+.big-icon{
+  font-size:70px;
+  margin-bottom:13px;
+  filter:drop-shadow(0 0 20px rgba(255,49,85,.4));
+}
+
+.start-screen h2{
+  font-family:'Outfit',sans-serif;
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.start-screen p{
+  max-width:530px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+}
+
+.mode-label{
+  display:block;
+  color:#c4b3d0;
+  font-size:12px;
+  margin:23px 0 9px;
+}
+
+#mode{
+  width:min(330px,100%);
+  padding:13px;
+  border-radius:12px;
+  border:1px solid rgba(155,92,255,.4);
+  background:#20152a;
+  color:white;
+  outline:none;
+}
+
+#mode option{
+  background:#170f20;
+}
+
+.primary{
+  display:inline-block;
+  border:0;
+  padding:14px 30px;
+  border-radius:13px;
+  color:white;
+  font-weight:800;
+  background:linear-gradient(100deg,#ff3155,#a64dff);
+  box-shadow:0 8px 25px rgba(255,49,85,.2);
+  transition:.2s;
+}
+
+.primary:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
+}
+
+.start-btn{
+  margin-top:19px;
+  min-width:220px;
+}
+
+.rules{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:25px;
+}
+
+.rule{
+  padding:13px 8px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--border);
+  border-radius:13px;
+  color:#bdb0c8;
+  font-size:11px;
+}
+
+.rule b{
+  display:block;
+  font-family:'Outfit',sans-serif;
+  color:white;
+  font-size:17px;
+  margin-bottom:3px;
+}
+
+.game-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:15px;
+  flex-wrap:wrap;
+}
+
+.level-badge{
+  padding:7px 12px;
+  border-radius:30px;
+  background:rgba(155,92,255,.12);
+  color:#d1adff;
+  font-size:11px;
+  font-weight:700;
+  border:1px solid rgba(155,92,255,.22);
+}
+
+.timer-bar{
+  height:5px;
+  background:#2b2033;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:19px;
+}
+
+.timer-fill{
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg,#37e6a1,#ffca64,#ff3155);
+  transition:width 1s linear;
+}
+
+.logo-stage{
+  min-height:245px;
+  padding:20px;
+  border-radius:20px;
+  border:1px solid rgba(155,92,255,.2);
+  background:
+    radial-gradient(circle at center,rgba(155,92,255,.16),transparent 65%),
+    linear-gradient(145deg,#1c1327,#0c0912);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.logo-stage:before{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:1px solid rgba(255,255,255,.055);
+  border-radius:14px;
+  pointer-events:none;
+}
+
+.logo-frame{
+  width:180px;
+  height:180px;
+  border-radius:22px;
+  background:#fff;
+  padding:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  box-shadow:0 12px 45px rgba(0,0,0,.35),0 0 35px rgba(155,92,255,.18);
+  overflow:hidden;
+}
+
+#brandLogo{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  transition:filter .3s,transform .3s;
+}
+
+.logo-frame.hard #brandLogo{
+  filter:grayscale(1) contrast(.72) brightness(.85);
+  transform:scale(.82);
+}
+
+.logo-frame.hard:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 34%,
+    rgba(20,13,27,.45) 34%,
+    rgba(20,13,27,.45) 42%,
+    transparent 42%,
+    transparent 68%,
+    rgba(20,13,27,.32) 68%,
+    rgba(20,13,27,.32) 75%,
+    transparent 75%
+  );
+  pointer-events:none;
+}
+
+.question-title{
+  text-align:center;
+  margin:19px 0 13px;
+  font-family:'Outfit',sans-serif;
+  font-size:19px;
+}
+
+.options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px;
+}
+
+.option{
+  min-height:57px;
+  padding:12px;
+  border-radius:13px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.045);
+  color:#eee5f5;
+  font-size:13px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.option:hover:not(:disabled){
+  border-color:var(--purple);
+  background:rgba(155,92,255,.14);
+  transform:translateY(-2px);
+}
+
+.option.correct{
+  background:rgba(55,230,161,.14);
+  border-color:var(--green);
+  color:var(--green);
+}
+
+.option.wrong{
+  background:rgba(255,49,85,.13);
+  border-color:var(--red);
+  color:#ff879a;
+}
+
+.option.eliminated{
+  opacity:.17;
+  text-decoration:line-through;
+}
+
+#feedback{
+  min-height:27px;
+  margin-top:14px;
+  text-align:center;
+  font-size:13px;
+  font-weight:700;
+}
+
+.good{
+  color:var(--green);
+}
+
+.bad{
+  color:#ff7188;
 }
 
 .info{
-
-display:flex;
-
-justify-content:space-between;
-
-margin-top:20px;
-
+  color:#c49aff;
 }
 
-</style>
+.lifelines{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:15px;
+}
 
+.lifeline{
+  padding:11px 15px;
+  border-radius:11px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.045);
+  color:#e6d9ed;
+  font-size:11px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.lifeline:hover:not(:disabled){
+  border-color:var(--cyan);
+  background:rgba(0,229,255,.08);
+}
+
+.lifeline:disabled{
+  text-decoration:line-through;
+}
+
+.result-screen{
+  text-align:center;
+  padding:25px 10px;
+}
+
+.result-icon{
+  font-size:70px;
+  margin-bottom:12px;
+}
+
+.result-screen h2{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(30px,5vw,43px);
+}
+
+.result-screen p{
+  max-width:540px;
+  margin:10px auto 20px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+}
+
+.result-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  max-width:600px;
+  margin:20px auto;
+}
+
+.result-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:15px 8px;
+}
+
+.result-card strong{
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-size:25px;
+  color:#c49aff;
+}
+
+.result-card span{
+  color:var(--muted);
+  font-size:10px;
+}
+
+.result-actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:20px;
+}
+
+.secondary{
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.05);
+  color:#e6d9ed;
+  padding:12px 18px;
+  border-radius:12px;
+  font-size:12px;
+}
+
+.content{
+  margin-top:35px;
+}
+
+.content h2,.content h3{
+  font-family:'Outfit',sans-serif;
+  margin-bottom:10px;
+}
+
+.content h2{
+  font-size:23px;
+}
+
+.content h3{
+  font-size:18px;
+  margin-top:22px;
+}
+
+.content p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.9;
+}
+
+.content a{
+  color:#c49aff;
+  text-decoration:none;
+}
+
+.footer{
+  text-align:center;
+  color:#766b80;
+  font-size:11px;
+  padding:20px;
+}
+
+@media(max-width:600px){
+  .topbar{
+    padding:14px 5%;
+  }
+
+  .logo{
+    font-size:19px;
+  }
+
+  .container{
+    margin-top:23px;
+  }
+
+  .game{
+    padding:14px;
+    border-radius:20px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+  }
+
+  .stat strong{
+    font-size:20px;
+  }
+
+  .logo-stage{
+    min-height:210px;
+  }
+
+  .logo-frame{
+    width:155px;
+    height:155px;
+  }
+
+  .options{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+  .option{
+    min-height:51px;
+  }
+
+  .rules{
+    grid-template-columns:1fr;
+  }
+
+  .result-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+</style>
 </head>
 
 <body>
 
-<div class="box">
+<header class="topbar">
+  <div class="logo">TOOLORA<span> AI</span></div>
+  <a href="index.html" class="back">← Back to Home</a>
+</header>
 
-<h1>
+<main class="container">
 
-🏆 Guess The Logo
+  <section class="hero">
+    <div class="tag">✦ THE BRAND KNOWLEDGE CHALLENGE ✦</div>
+    <h1>GUESS THE <span>LOGO</span></h1>
+    <p>
+      15 famous brands. Four choices. One correct answer.
+      Test your brand knowledge and see how many logos you can recognize!
+    </p>
+  </section>
 
-</h1>
+  <section class="game">
 
-<br>
+    <div class="stats">
+      <div class="stat">
+        <small>Score</small>
+        <strong id="score">0</strong>
+      </div>
+      <div class="stat">
+        <small>Time Left</small>
+        <strong id="timer">15s</strong>
+      </div>
+      <div class="stat">
+        <small>Streak 🔥</small>
+        <strong id="streak">0</strong>
+      </div>
+      <div class="stat">
+        <small>Question</small>
+        <strong id="questionNo">0/15</strong>
+      </div>
+    </div>
 
-<div id="logo"></div>
+    <div class="progress-label">
+      <span>QUIZ PROGRESS</span>
+      <span id="progressText">Ready to play</span>
+    </div>
 
-<br>
+    <div class="progress">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
 
-<div id="options"></div>
+    <!-- START SCREEN -->
+    <div class="screen start-screen active" id="startScreen">
 
-<div id="result"></div>
+      <div class="big-icon">🏆</div>
 
-<div class="info">
+      <h2>Are You a Brand Expert?</h2>
 
-<div>
+      <p>
+        Recognize famous company logos, beat the countdown and build
+        your winning streak. Choose your difficulty and start the challenge.
+      </p>
 
-Score:
+      <label class="mode-label" for="mode">SELECT DIFFICULTY</label>
 
-<span id="score">
+      <select id="mode">
+        <option value="easy">🟢 Easy – Full Colour Logos</option>
+        <option value="medium">🟡 Medium – 15 Seconds</option>
+        <option value="hard">🔴 Hard – Disguised Logos</option>
+      </select>
 
-0
+      <br>
 
-</span>
+      <button class="primary start-btn" id="startBtn">
+        START CHALLENGE ↗
+      </button>
 
-</div>
+      <div class="rules">
+        <div class="rule">
+          <b>15</b>
+          Logo Questions
+        </div>
+        <div class="rule">
+          <b>4</b>
+          Answer Choices
+        </div>
+        <div class="rule">
+          <b>3</b>
+          Difficulty Modes
+        </div>
+      </div>
 
-<div>
+    </div>
 
-<span id="progress">
+    <!-- GAME SCREEN -->
+    <div class="screen" id="gameScreen">
 
-1/15
+      <div class="game-top">
+        <span class="level-badge" id="levelBadge">🟢 EASY MODE</span>
+        <span style="color:#a69aaf;font-size:11px" id="pointsLabel">
+          +100 POINTS
+        </span>
+      </div>
 
-</span>
+      <div class="timer-bar">
+        <div class="timer-fill" id="timerFill"></div>
+      </div>
 
-</div>
+      <div class="logo-stage">
+        <div class="logo-frame" id="logoFrame">
+          <img id="brandLogo" src="" alt="Guess the brand logo">
+        </div>
+      </div>
 
-</div>
+      <h2 class="question-title">Which brand does this logo belong to?</h2>
 
-</div>
+      <div class="options" id="options"></div>
+
+      <div id="feedback" role="status" aria-live="polite"></div>
+
+      <div class="lifelines">
+        <button class="lifeline" id="hintBtn">💡 Hint (-20)</button>
+        <button class="lifeline" id="fiftyBtn">⚡ 50:50 (-25)</button>
+        <button class="lifeline" id="skipBtn">⏭ Skip (-10)</button>
+      </div>
+
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div class="screen result-screen" id="resultScreen">
+
+      <div class="result-icon" id="resultIcon">🏆</div>
+      <h2 id="resultTitle">QUIZ COMPLETED!</h2>
+      <p id="resultDescription"></p>
+
+      <div class="result-grid">
+        <div class="result-card">
+          <strong id="finalScore">0</strong>
+          <span>FINAL SCORE</span>
+        </div>
+        <div class="result-card">
+          <strong id="correctCount">0/15</strong>
+          <span>CORRECT ANSWERS</span>
+        </div>
+        <div class="result-card">
+          <strong id="accuracy">0%</strong>
+          <span>ACCURACY</span>
+        </div>
+        <div class="result-card">
+          <strong id="bestStreak">0</strong>
+          <span>BEST STREAK</span>
+        </div>
+        <div class="result-card">
+          <strong id="missedCount">0</strong>
+          <span>SKIPPED / WRONG</span>
+        </div>
+        <div class="result-card">
+          <strong id="rating">-</strong>
+          <span>YOUR RATING</span>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button class="primary" id="againBtn">PLAY AGAIN ↻</button>
+        <button class="secondary" id="homeBtn">CHANGE MODE</button>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="content">
+    <h2>About Guess The Logo</h2>
+    <p>
+      Guess The Logo is a free online brand recognition game. Identify
+      popular company logos from different industries, including technology,
+      entertainment, shopping and social media. Challenge yourself with
+      three difficulty levels and improve your visual memory.
+    </p>
+
+    <h3>How to Play</h3>
+    <p>
+      Select Easy, Medium or Hard mode. Study the displayed logo and select
+      the correct brand from four options before the timer ends. Use hints
+      and the 50:50 lifeline strategically. Correct answers earn points,
+      while lifelines and skipped questions reduce your score.
+    </p>
+
+    <h3>Explore More Games</h3>
+    <p>
+      <a href="escape-room.html">Escape Room</a> ·
+      <a href="iq.html">IQ Quiz</a> ·
+      <a href="guess-the-flag.html">Guess the Flag</a> ·
+      <a href="worldgk.html">World GK</a> ·
+      <a href="index.html">More Games</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  © 2026 Toolora AI · Free Online Logo Quiz Game
+</footer>
 
 <script>
-
-let score=0;
-
-let current=0;
-
-const right=
-
-new Audio(
-
-"https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"
-
-);
-
-const wrong=
-
-new Audio(
-
-"https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"
-
-);
-
-const quiz=[
-
-["apple.png","Apple"],
-
-["youtube.png","YouTube"],
-
-["netflix.png","Netflix"],
-
-["instagram.png","Instagram"],
-
-["spotify.png","Spotify"],
-
-["amazon.png","Amazon"],
-
-["facebook.png","Facebook"],
-
-["whatsapp.png","WhatsApp"],
-
-["tiktok.png","TikTok"],
-
-["playstation.png","PlayStation"],
-
-["disney.png","Disney"],
-
-["google.png","Google"],
-
-["microsoft.png","Microsoft"],
-
-["openai.png","OpenAI"],
-
-["flipkart.png","Flipkart"]
-
+const quizData = [
+  {
+    file:"apple.png",
+    brand:"Apple",
+    hint:"A famous technology company known for the iPhone.",
+    options:["Apple","Samsung","Microsoft","Google"]
+  },
+  {
+    file:"youtube.png",
+    brand:"YouTube",
+    hint:"A popular platform for watching and sharing videos.",
+    options:["Netflix","YouTube","Spotify","Twitch"]
+  },
+  {
+    file:"netflix.png",
+    brand:"Netflix",
+    hint:"A streaming service famous for movies and series.",
+    options:["Disney","Amazon Prime","Netflix","Hulu"]
+  },
+  {
+    file:"instagram.png",
+    brand:"Instagram",
+    hint:"A social media app known for photos, stories and reels.",
+    options:["Snapchat","Pinterest","Instagram","Facebook"]
+  },
+  {
+    file:"spotify.png",
+    brand:"Spotify",
+    hint:"A popular music and podcast streaming platform.",
+    options:["Apple Music","Spotify","SoundCloud","YouTube"]
+  },
+  {
+    file:"amazon.png",
+    brand:"Amazon",
+    hint:"A major online shopping and cloud computing company.",
+    options:["Flipkart","eBay","Amazon","Walmart"]
+  },
+  {
+    file:"facebook.png",
+    brand:"Facebook",
+    hint:"A social networking platform with a blue identity.",
+    options:["Facebook","LinkedIn","X","Reddit"]
+  },
+  {
+    file:"whatsapp.png",
+    brand:"WhatsApp",
+    hint:"A messaging app with a green chat icon.",
+    options:["Telegram","WhatsApp","Messenger","Signal"]
+  },
+  {
+    file:"tiktok.png",
+    brand:"TikTok",
+    hint:"A short-form video platform known for music and trends.",
+    options:["TikTok","Instagram","Snapchat","YouTube"]
+  },
+  {
+    file:"playstation.png",
+    brand:"PlayStation",
+    hint:"A gaming brand created by Sony.",
+    options:["Xbox","Nintendo","PlayStation","Steam"]
+  },
+  {
+    file:"disney.png",
+    brand:"Disney",
+    hint:"A famous entertainment company known for animated stories.",
+    options:["Pixar","Disney","Warner Bros","Marvel"]
+  },
+  {
+    file:"google.png",
+    brand:"Google",
+    hint:"A technology company known for its search engine.",
+    options:["Yahoo","Bing","Google","Opera"]
+  },
+  {
+    file:"microsoft.png",
+    brand:"Microsoft",
+    hint:"The company behind Windows and Xbox.",
+    options:["Apple","Microsoft","Intel","Adobe"]
+  },
+  {
+    file:"openai.png",
+    brand:"OpenAI",
+    hint:"An artificial intelligence research and product company.",
+    options:["NVIDIA","OpenAI","Meta","IBM"]
+  },
+  {
+    file:"flipkart.png",
+    brand:"Flipkart",
+    hint:"An Indian online shopping company.",
+    options:["Amazon","Myntra","Flipkart","Meesho"]
+  }
 ];
 
-function shuffle(a){
+const $ = id => document.getElementById(id);
 
-return a.sort(
+let questions = [];
+let current = 0;
+let score = 0;
+let streak = 0;
+let bestStreak = 0;
+let correctAnswers = 0;
+let missed = 0;
+let mode = "easy";
+let timePerQuestion = 20;
+let timeLeft = 20;
+let timerInterval = null;
+let locked = false;
+let hintUsed = false;
+let fiftyUsed = false;
+let totalTime = 0;
+let gameStarted = false;
 
-()=>Math.random()-.5
+function shuffle(array){
+  const copy = [...array];
 
-);
+  for(let i=copy.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [copy[i],copy[j]] = [copy[j],copy[i]];
+  }
 
+  return copy;
 }
 
-function load(){
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(screen=>{
+    screen.classList.remove("active");
+  });
 
-document.getElementById("logo")
-
-.innerHTML=
-
-`
-
-<img
-
-src="${quiz[current][0]}"
-
-alt="logo"
-
-style="
-
-width:150px;
-
-height:150px;
-
-object-fit:contain;
-
-background:white;
-
-padding:12px;
-
-border-radius:20px;
-
-display:block;
-
-margin:auto;
-
-">
-
-`;
-
-document
-
-.getElementById(
-
-"progress"
-
-)
-
-.innerHTML=
-
-`${current+1}/15`;
-
-document
-
-.getElementById(
-
-"result"
-
-)
-
-.innerHTML="";
-
-let correct=
-
-quiz[current][1];
-
-let options=
-
-shuffle([
-
-correct,
-
-...shuffle(
-
-quiz
-
-.filter(
-
-x=>
-
-x[1]!==correct
-
-)
-
-.slice(0,3)
-
-.map(
-
-x=>x[1]
-
-)
-
-)
-
-]);
-
-let html="";
-
-options.forEach(v=>{
-
-html+=`
-
-<button
-
-class="opt"
-
-onclick=
-
-"check('${v}')">
-
-${v}
-
-</button>
-
-`;
-
-});
-
-document
-
-.getElementById(
-
-"options"
-
-)
-
-.innerHTML=
-
-html;
-
+  $(id).classList.add("active");
 }
 
-function check(v){
+function getSettings(){
+  mode = $("mode").value;
 
-let correct=
-
-quiz[current][1];
-
-if(
-
-v===correct
-
-){
-
-right.play();
-
-score++;
-
-document
-
-.getElementById(
-
-"result"
-
-)
-
-.innerHTML=
-
-"✅ Correct";
-
+  if(mode === "easy"){
+    timePerQuestion = 20;
+  }else if(mode === "medium"){
+    timePerQuestion = 15;
+  }else{
+    timePerQuestion = 12;
+  }
 }
 
-else{
+function startGame(){
+  getSettings();
 
-wrong.play();
+  questions = shuffle(quizData);
+  current = 0;
+  score = 0;
+  streak = 0;
+  bestStreak = 0;
+  correctAnswers = 0;
+  missed = 0;
+  totalTime = 0;
+  gameStarted = true;
+  locked = false;
 
-document
+  $("progressFill").style.width = "0%";
+  $("progressText").textContent = "0 / 15 Completed";
 
-.getElementById(
-
-"result"
-
-)
-
-.innerHTML=
-
-"❌ "+correct;
-
+  showScreen("gameScreen");
+  updateStats();
+  loadQuestion();
 }
 
-document
-
-.getElementById(
-
-"score"
-
-)
-
-.innerHTML=
-
-score;
-
-setTimeout(
-
-()=>{
-
-current++;
-
-if(
-
-current<15
-
-){
-
-load();
-
+function updateStats(){
+  $("score").textContent = score;
+  $("streak").textContent = streak;
+  $("questionNo").textContent = Math.min(current+1,15) + "/15";
 }
 
-else{
-
-document.body.innerHTML=
-
-`
-
-<h1>
-
-🏆 Final Score
-
-</h1>
-
-<h2>
-
-${score}/15
-
-</h2>
-
-`;
-
+function updateProgress(){
+  const done = current;
+  $("progressFill").style.width = (done/15*100) + "%";
+  $("progressText").textContent = done + " / 15 Completed";
 }
 
-},
+function loadQuestion(){
+  if(current >= questions.length){
+    finishGame();
+    return;
+  }
 
-1200
+  locked = false;
+  hintUsed = false;
+  fiftyUsed = false;
+  timeLeft = timePerQuestion;
 
-);
+  const item = questions[current];
 
+  $("brandLogo").src = item.file;
+  $("brandLogo").alt = "Identify this brand logo";
+
+  $("brandLogo").onerror = function(){
+    this.alt = "Logo image not found: " + item.file;
+    this.style.display = "none";
+    $("feedback").textContent = "Image not found: " + item.file + " — check the filename.";
+    $("feedback").className = "bad";
+  };
+
+  $("brandLogo").onload = function(){
+    this.style.display = "block";
+  };
+
+  const frame = $("logoFrame");
+  frame.classList.toggle("hard",mode === "hard");
+
+  if(mode === "easy"){
+    $("levelBadge").textContent = "🟢 EASY MODE";
+    $("pointsLabel").textContent = "+100 POINTS";
+  }else if(mode === "medium"){
+    $("levelBadge").textContent = "🟡 MEDIUM MODE";
+    $("pointsLabel").textContent = "+150 POINTS";
+  }else{
+    $("levelBadge").textContent = "🔴 HARD MODE";
+    $("pointsLabel").textContent = "+200 POINTS";
+  }
+
+  const options = shuffle(item.options);
+
+  $("options").innerHTML = "";
+
+  options.forEach(option=>{
+    const button = document.createElement("button");
+    button.className = "option";
+    button.type = "button";
+    button.textContent = option;
+    button.addEventListener("click",()=>checkAnswer(option,button));
+    $("options").appendChild(button);
+  });
+
+  $("feedback").textContent = "Choose the correct brand!";
+  $("feedback").className = "info";
+
+  $("hintBtn").disabled = false;
+  $("fiftyBtn").disabled = false;
+  $("skipBtn").disabled = false;
+
+  updateStats();
+  updateTimerDisplay();
+  startQuestionTimer();
 }
 
-load();
+function updateTimerDisplay(){
+  $("timer").textContent = timeLeft + "s";
+  $("timerFill").style.width = (timeLeft/timePerQuestion*100) + "%";
 
+  if(timeLeft <= 5){
+    $("timer").style.color = "#ff3155";
+  }else{
+    $("timer").style.color = "#ff7188";
+  }
+}
+
+function startQuestionTimer(){
+  clearInterval(timerInterval);
+
+  timerInterval = setInterval(()=>{
+    if(locked) return;
+
+    timeLeft--;
+    totalTime++;
+    updateTimerDisplay();
+
+    if(timeLeft <= 0){
+      clearInterval(timerInterval);
+      handleTimeout();
+    }
+  },1000);
+}
+
+function getPoints(){
+  if(mode === "easy") return 100;
+  if(mode === "medium") return 150;
+  return 200;
+}
+
+function checkAnswer(selected,button){
+  if(locked) return;
+
+  locked = true;
+  clearInterval(timerInterval);
+
+  const item = questions[current];
+  const buttons = [...document.querySelectorAll(".option")];
+
+  buttons.forEach(btn=>{
+    btn.disabled = true;
+
+    if(btn.textContent === item.brand){
+      btn.classList.add("correct");
+    }
+  });
+
+  if(selected === item.brand){
+    const base = getPoints();
+    const speedBonus = timeLeft * 3;
+    const streakBonus = streak >= 2 ? 25 : 0;
+
+    score += base + speedBonus + streakBonus;
+    correctAnswers++;
+    streak++;
+    bestStreak = Math.max(bestStreak,streak);
+
+    $("feedback").textContent =
+      "✓ CORRECT! +" + (base+speedBonus+streakBonus) + " points";
+
+    $("feedback").className = "good";
+
+    playTone(700,.12);
+    setTimeout(()=>playTone(950,.12),100);
+  }else{
+    missed++;
+    streak = 0;
+
+    if(button) button.classList.add("wrong");
+
+    $("feedback").textContent = "✕ Wrong! Correct answer: " + item.brand;
+    $("feedback").className = "bad";
+
+    playTone(180,.2);
+  }
+
+  updateStats();
+
+  setTimeout(nextQuestion,1250);
+}
+
+function handleTimeout(){
+  if(locked) return;
+
+  locked = true;
+  missed++;
+  streak = 0;
+
+  const correct = questions[current].brand;
+
+  document.querySelectorAll(".option").forEach(btn=>{
+    btn.disabled = true;
+
+    if(btn.textContent === correct){
+      btn.classList.add("correct");
+    }
+  });
+
+  $("feedback").textContent = "⏰ Time's up! Answer: " + correct;
+  $("feedback").className = "bad";
+
+  updateStats();
+  setTimeout(nextQuestion,1400);
+}
+
+function nextQuestion(){
+  clearInterval(timerInterval);
+
+  current++;
+
+  if(current >= 15){
+    updateProgress();
+    finishGame();
+    return;
+  }
+
+  updateProgress();
+  loadQuestion();
+}
+
+function useHint(){
+  if(locked || hintUsed) return;
+
+  hintUsed = true;
+  score = Math.max(0,score-20);
+
+  const hint = questions[current].hint;
+
+  $("feedback").textContent = "💡 " + hint + " (-20 points)";
+  $("feedback").className = "info";
+
+  $("hintBtn").disabled = true;
+  updateStats();
+}
+
+function useFifty(){
+  if(locked || fiftyUsed) return;
+
+  fiftyUsed = true;
+  score = Math.max(0,score-25);
+
+  const correct = questions[current].brand;
+
+  const wrongButtons = [...document.querySelectorAll(".option")]
+    .filter(btn=>btn.textContent !== correct && !btn.classList.contains("eliminated"));
+
+  shuffle(wrongButtons).slice(0,2).forEach(btn=>{
+    btn.disabled = true;
+    btn.classList.add("eliminated");
+  });
+
+  $("fiftyBtn").disabled = true;
+  $("feedback").textContent = "⚡ Two incorrect choices removed! (-25 points)";
+  $("feedback").className = "info";
+
+  updateStats();
+}
+
+function skipQuestion(){
+  if(locked) return;
+
+  locked = true;
+  clearInterval(timerInterval);
+
+  score = Math.max(0,score-10);
+  missed++;
+  streak = 0;
+
+  const correct = questions[current].brand;
+
+  document.querySelectorAll(".option").forEach(btn=>{
+    btn.disabled = true;
+
+    if(btn.textContent === correct){
+      btn.classList.add("correct");
+    }
+  });
+
+  $("feedback").textContent = "⏭ Skipped! Answer: " + correct + " (-10 points)";
+  $("feedback").className = "bad";
+
+  updateStats();
+  setTimeout(nextQuestion,1200);
+}
+
+function finishGame(){
+  clearInterval(timerInterval);
+  gameStarted = false;
+
+  const accuracy = Math.round(correctAnswers/15*100);
+
+  let rating = "Beginner";
+  let icon = "🙂";
+
+  if(accuracy >= 90){
+    rating = "Brand Master";
+    icon = "👑";
+  }else if(accuracy >= 75){
+    rating = "Expert";
+    icon = "🏆";
+  }else if(accuracy >= 55){
+    rating = "Pro";
+    icon = "🔥";
+  }else if(accuracy >= 35){
+    rating = "Learner";
+    icon = "🎯";
+  }
+
+  $("resultIcon").textContent = icon;
+  $("resultTitle").textContent = "QUIZ COMPLETED!";
+  $("resultDescription").textContent =
+    accuracy >= 75
+    ? "Excellent performance! You have a strong eye for famous brands. Can you beat your score next time?"
+    : "Challenge complete! Keep practicing your brand recognition skills and try again to improve your score.";
+
+  $("finalScore").textContent = score;
+  $("correctCount").textContent = correctAnswers + "/15";
+  $("accuracy").textContent = accuracy + "%";
+  $("bestStreak").textContent = bestStreak;
+  $("missedCount").textContent = missed;
+  $("rating").textContent = rating;
+
+  $("progressText").textContent = "15 / 15 Completed";
+  $("progressFill").style.width = "100%";
+
+  showScreen("resultScreen");
+}
+
+function backToStart(){
+  clearInterval(timerInterval);
+  gameStarted = false;
+
+  $("progressFill").style.width = "0%";
+  $("progressText").textContent = "Ready to play";
+
+  showScreen("startScreen");
+}
+
+function playTone(frequency,duration){
+  try{
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if(!AudioContext) return;
+
+    const context = new AudioContext();
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+
+    oscillator.frequency.value = frequency;
+    oscillator.type = "sine";
+
+    gain.gain.setValueAtTime(.08,context.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.001,context.currentTime+duration);
+
+    oscillator.start();
+    oscillator.stop(context.currentTime+duration);
+
+    oscillator.onended = ()=>context.close();
+  }catch(error){}
+}
+
+$("startBtn").addEventListener("click",startGame);
+$("hintBtn").addEventListener("click",useHint);
+$("fiftyBtn").addEventListener("click",useFifty);
+$("skipBtn").addEventListener("click",skipQuestion);
+$("againBtn").addEventListener("click",startGame);
+$("homeBtn").addEventListener("click",backToStart);
 </script>
 
 </body>
-
 </html>
