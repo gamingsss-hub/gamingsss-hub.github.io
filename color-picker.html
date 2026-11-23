@@ -1,254 +1,1102 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08060d">
 
-<title>Color Picker | Pick & Copy Colors | Toolora</title>
+<title>Free Online Color Picker – HEX, RGB & HSL Converter | Toolora AI</title>
+<meta name="description" content="Use Toolora AI free online color picker to select colors and instantly get HEX, RGB and HSL codes. Generate random colors, preview shades and copy color codes.">
+<meta name="keywords" content="online color picker, HEX color picker, RGB color converter, HSL color picker, random color generator, color code finder, Toolora AI">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Toolora AI">
 
-<meta name="description" content="Free online Color Picker. Pick any color and instantly copy HEX, RGB and HSL values.">
+<link rel="canonical" href="https://gamingsss-hub.github.io/color-picker.html">
 
-<meta name="keywords" content="color picker, hex color picker, rgb converter, hsl color, toolora">
+<meta property="og:title" content="Free Online Color Picker | Toolora AI">
+<meta property="og:description" content="Pick colors, explore HEX, RGB and HSL values and copy color codes instantly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gamingsss-hub.github.io/color-picker.html">
+<meta property="og:site_name" content="Toolora AI">
 
-<link rel="icon" href="favicon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Toolora AI Color Picker">
+<meta name="twitter:description" content="Free online color picker with HEX, RGB and HSL converter.">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"Toolora AI Color Picker",
+ "url":"https://gamingsss-hub.github.io/color-picker.html",
+ "applicationCategory":"DesignApplication",
+ "operatingSystem":"Any",
+ "description":"A free online color picker and color code converter for HEX, RGB and HSL values."
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+  {
+   "@type":"Question",
+   "name":"What is an online color picker?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"An online color picker is a tool that lets users select colors and view their color codes in formats such as HEX, RGB and HSL."
+   }
+  },
+  {
+   "@type":"Question",
+   "name":"What is a HEX color code?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"A HEX color code is a six-digit hexadecimal representation of a color, usually written with a hash symbol, such as #FF0000."
+   }
+  },
+  {
+   "@type":"Question",
+   "name":"What is the difference between RGB and HSL?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"RGB represents colors using red, green and blue values. HSL represents colors using hue, saturation and lightness."
+   }
+  },
+  {
+   "@type":"Question",
+   "name":"Can I generate random colors?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Yes. The random color feature generates a new color and displays its HEX, RGB and HSL values."
+   }
+  },
+  {
+   "@type":"Question",
+   "name":"Can I copy color codes?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Yes. You can copy HEX, RGB and HSL values using the individual copy buttons."
+   }
+  }
+ ]
+}
+</script>
 
 <style>
+:root{
+    --bg:#08060d;
+    --red:#ff3158;
+    --purple:#a855f7;
+    --text:#f8f7fb;
+    --muted:#aaa3b5;
+    --border:rgba(255,255,255,.09);
+}
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+}
 
-background:
-linear-gradient(135deg,#09111f,#141e30,#1e3a8a,#4f46e5);
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    top:-220px;
+    left:-180px;
+    background:rgba(255,49,88,.13);
+    filter:blur(120px);
+    border-radius:50%;
+    z-index:-1;
+}
 
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
+body::after{
+    content:"";
+    position:fixed;
+    width:550px;
+    height:550px;
+    right:-200px;
+    top:300px;
+    background:rgba(168,85,247,.13);
+    filter:blur(130px);
+    border-radius:50%;
+    z-index:-1;
+}
 
-padding:20px;
-
-color:white;
-
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:linear-gradient(145deg,#08060d,#100817,#08060d);
 }
 
 .container{
-
-width:100%;
-max-width:520px;
-
-background:rgba(255,255,255,.08);
-
-backdrop-filter:blur(18px);
-
-padding:30px;
-
-border-radius:25px;
-
-text-align:center;
-
-box-shadow:0 20px 60px rgba(0,0,0,.4);
-
+    width:min(1100px,92%);
+    margin:auto;
 }
 
-h1{
-
-margin-bottom:20px;
-
+header{
+    text-align:center;
+    padding:55px 10px 35px;
 }
 
-.colorBox{
+.tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 15px;
+    border:1px solid rgba(255,49,88,.3);
+    border-radius:30px;
+    background:rgba(255,49,88,.08);
+    color:#ff8198;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:18px;
+}
 
-width:170px;
-height:170px;
+header h1{
+    font-family:'Outfit',sans-serif;
+    font-size:clamp(34px,5vw,55px);
+    font-weight:800;
+    letter-spacing:-1px;
+    margin-bottom:13px;
+}
 
-border-radius:20px;
+header h1 span{
+    background:linear-gradient(100deg,#ff3158,#b85bff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
 
-margin:20px auto;
+header p{
+    max-width:650px;
+    margin:auto;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.8;
+}
 
-background:#3b82f6;
+.hero-line{
+    width:85px;
+    height:3px;
+    border-radius:10px;
+    margin:22px auto 0;
+    background:linear-gradient(90deg,var(--red),var(--purple));
+}
 
-border:4px solid rgba(255,255,255,.2);
+.picker-card{
+    max-width:850px;
+    margin:15px auto 55px;
+    padding:30px;
+    background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.02));
+    border:1px solid var(--border);
+    border-radius:24px;
+    backdrop-filter:blur(18px);
+    box-shadow:0 25px 70px rgba(0,0,0,.3);
+}
 
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:22px;
+}
+
+.section-icon{
+    width:43px;
+    height:43px;
+    display:grid;
+    place-items:center;
+    border-radius:13px;
+    background:rgba(255,49,88,.12);
+    border:1px solid rgba(255,49,88,.2);
+    color:#ff6a88;
+}
+
+.section-title h2{
+    font-family:'Outfit',sans-serif;
+    font-size:21px;
+}
+
+.section-title p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:2px;
+}
+
+.preview{
+    height:220px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.15);
+    background:#3b82f6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    transition:background .2s;
+}
+
+.preview span{
+    padding:12px 22px;
+    background:rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:12px;
+    color:white;
+    font-family:'Outfit',sans-serif;
+    font-size:23px;
+    font-weight:700;
+    backdrop-filter:blur(8px);
+    text-shadow:0 2px 8px rgba(0,0,0,.3);
+}
+
+.picker-label{
+    display:block;
+    color:#e8e2ee;
+    font-size:13px;
+    font-weight:600;
+    margin:23px 0 9px;
+}
+
+.color-control{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    background:rgba(0,0,0,.25);
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:10px 13px;
 }
 
 input[type=color]{
-
-width:100%;
-height:60px;
-
-border:none;
-
-background:none;
-
-cursor:pointer;
-
-margin:20px 0;
-
+    width:55px;
+    height:45px;
+    border:none;
+    background:none;
+    cursor:pointer;
 }
 
-.info{
-
-background:#111827;
-
-padding:15px;
-
-border-radius:15px;
-
-margin:12px 0;
-
-font-size:16px;
-
+input[type=color]::-webkit-color-swatch-wrapper{
+    padding:0;
 }
 
-button{
-
-width:100%;
-
-padding:16px;
-
-margin-top:12px;
-
-border:none;
-
-border-radius:15px;
-
-background:#2563eb;
-
-color:white;
-
-font-size:17px;
-
-font-weight:700;
-
-cursor:pointer;
-
+input[type=color]::-webkit-color-swatch{
+    border:2px solid rgba(255,255,255,.2);
+    border-radius:9px;
 }
 
-button:hover{
-
-background:#1d4ed8;
-
+.control-info{
+    font-size:12px;
+    color:var(--muted);
 }
 
+.control-info strong{
+    display:block;
+    color:white;
+    font-size:14px;
+    margin-bottom:3px;
+}
+
+.values{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.value-card{
+    background:rgba(0,0,0,.28);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:17px 13px;
+    min-width:0;
+}
+
+.value-card h3{
+    color:#c69aff;
+    font-size:12px;
+    margin-bottom:12px;
+}
+
+.value-text{
+    color:white;
+    font-size:13px;
+    font-weight:600;
+    overflow-wrap:anywhere;
+    min-height:40px;
+    display:flex;
+    align-items:center;
+}
+
+.copy-btn{
+    width:100%;
+    margin-top:12px;
+    padding:10px;
+    border:1px solid rgba(168,85,247,.25);
+    border-radius:9px;
+    background:rgba(168,85,247,.1);
+    color:#e2c4ff;
+    font-family:'Poppins',sans-serif;
+    font-size:12px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.copy-btn:hover{
+    background:rgba(168,85,247,.22);
+    border-color:var(--purple);
+}
+
+.action-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:20px;
+}
+
+.action-btn{
+    padding:15px;
+    border:0;
+    border-radius:12px;
+    color:white;
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.action-btn:hover{
+    transform:translateY(-3px);
+}
+
+.random-btn{
+    background:linear-gradient(100deg,#ff3158,#d12b80);
+    box-shadow:0 7px 22px rgba(255,49,88,.2);
+}
+
+.reset-btn{
+    background:linear-gradient(100deg,#7929c7,#a855f7);
+    box-shadow:0 7px 22px rgba(168,85,247,.2);
+}
+
+.history{
+    margin-top:30px;
+    padding-top:23px;
+    border-top:1px solid var(--border);
+}
+
+.history-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.history-heading h3{
+    font-family:'Outfit',sans-serif;
+    font-size:17px;
+}
+
+.clear-history{
+    background:none;
+    border:0;
+    color:#ff8299;
+    font-family:'Poppins',sans-serif;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.swatches{
+    display:flex;
+    flex-wrap:wrap;
+    gap:11px;
+}
+
+.swatch{
+    width:42px;
+    height:42px;
+    border:2px solid rgba(255,255,255,.2);
+    border-radius:11px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.swatch:hover{
+    transform:scale(1.1);
+    border-color:white;
+}
+
+.empty-history{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.seo-content{
+    max-width:1050px;
+    margin:45px auto 30px;
+    padding:32px;
+    background:rgba(255,255,255,.035);
+    border:1px solid var(--border);
+    border-radius:22px;
+    line-height:1.9;
+}
+
+.seo-content h2{
+    color:#ff6987;
+    font-family:'Outfit',sans-serif;
+    font-size:24px;
+    margin:28px 0 10px;
+}
+
+.seo-content h2:first-child{
+    margin-top:0;
+}
+
+.seo-content h3{
+    color:#d8adff;
+    font-family:'Outfit',sans-serif;
+    font-size:17px;
+    margin:18px 0 6px;
+}
+
+.seo-content p,
+.seo-content li{
+    color:#bdb5c7;
+    font-size:14px;
+}
+
+.seo-content ul{
+    padding-left:23px;
+}
+
+.seo-content li{
+    margin:6px 0;
+}
+
+.faq-item{
+    padding:16px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.faq-item:last-child{
+    border:0;
+}
+
+.seo-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:16px;
+}
+
+.seo-links a{
+    padding:9px 13px;
+    border:1px solid rgba(168,85,247,.25);
+    border-radius:9px;
+    background:rgba(168,85,247,.07);
+    color:#d7a8ff;
+    text-decoration:none;
+    font-size:13px;
+    transition:.2s;
+}
+
+.seo-links a:hover{
+    border-color:var(--red);
+    color:#ff8099;
+}
+
+footer{
+    max-width:1050px;
+    margin:30px auto 0;
+    padding:27px 15px;
+    border-top:1px solid var(--border);
+    text-align:center;
+    color:#928a9c;
+    font-size:12px;
+    line-height:2;
+}
+
+footer a{
+    color:#c58aff;
+    text-decoration:none;
+    margin:0 9px;
+}
+
+footer a:hover{
+    color:#ff6a88;
+}
+
+@media(max-width:600px){
+    header{
+        padding:42px 5px 30px;
+    }
+
+    header h1{
+        font-size:36px;
+    }
+
+    .picker-card{
+        padding:19px 15px;
+        border-radius:18px;
+    }
+
+    .preview{
+        height:175px;
+    }
+
+    .values{
+        grid-template-columns:1fr;
+    }
+
+    .value-card{
+        padding:15px;
+    }
+
+    .value-text{
+        min-height:25px;
+    }
+
+    .action-row{
+        grid-template-columns:1fr;
+    }
+
+    .seo-content{
+        padding:22px 16px;
+    }
+
+    .seo-content h2{
+        font-size:21px;
+    }
+}
 </style>
-
 </head>
 
 <body>
 
+<div class="bg"></div>
+
 <div class="container">
 
-<h1>🎨 Color Picker</h1>
+<header>
+    <div class="tag">
+        <i class="fa-solid fa-palette"></i>
+        TOOLORA AI DESIGN TOOLS
+    </div>
 
-<div
-class="colorBox"
-id="box">
+    <h1>Online <span>Color Picker</span></h1>
+
+    <p>
+        Pick your perfect color, explore HEX, RGB and HSL values
+        and copy color codes instantly with our free online tool.
+    </p>
+
+    <div class="hero-line"></div>
+</header>
+
+<main class="picker-card">
+
+    <div class="section-title">
+        <div class="section-icon">
+            <i class="fa-solid fa-eye-dropper"></i>
+        </div>
+        <div>
+            <h2>Color Studio</h2>
+            <p>Select, preview and convert colors</p>
+        </div>
+    </div>
+
+    <div class="preview" id="box">
+        <span id="previewText">#3B82F6</span>
+    </div>
+
+    <label class="picker-label" for="picker">
+        Choose Your Color
+    </label>
+
+    <div class="color-control">
+        <input type="color" id="picker" value="#3b82f6">
+        <div class="control-info">
+            <strong id="selectedColor">#3B82F6</strong>
+            Live color selection
+        </div>
+    </div>
+
+    <div class="values">
+
+        <div class="value-card">
+            <h3><i class="fa-solid fa-hashtag"></i> HEX</h3>
+            <div class="value-text" id="hex">#3B82F6</div>
+            <button class="copy-btn" id="copyHex" type="button">
+                <i class="fa-regular fa-copy"></i> Copy HEX
+            </button>
+        </div>
+
+        <div class="value-card">
+            <h3><i class="fa-solid fa-sliders"></i> RGB</h3>
+            <div class="value-text" id="rgb">rgb(59, 130, 246)</div>
+            <button class="copy-btn" id="copyRgb" type="button">
+                <i class="fa-regular fa-copy"></i> Copy RGB
+            </button>
+        </div>
+
+        <div class="value-card">
+            <h3><i class="fa-solid fa-droplet"></i> HSL</h3>
+            <div class="value-text" id="hsl">hsl(217, 91%, 60%)</div>
+            <button class="copy-btn" id="copyHsl" type="button">
+                <i class="fa-regular fa-copy"></i> Copy HSL
+            </button>
+        </div>
+
+    </div>
+
+    <div class="action-row">
+        <button class="action-btn random-btn" id="randomBtn" type="button">
+            <i class="fa-solid fa-dice"></i>
+            Random Color
+        </button>
+
+        <button class="action-btn reset-btn" id="resetBtn" type="button">
+            <i class="fa-solid fa-rotate-left"></i>
+            Reset Color
+        </button>
+    </div>
+
+    <div class="history">
+
+        <div class="history-heading">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Recent Colors</h3>
+            <button class="clear-history" id="clearHistory" type="button">
+                Clear History
+            </button>
+        </div>
+
+        <div class="swatches" id="history">
+            <span class="empty-history">Your selected colors will appear here.</span>
+        </div>
+
+    </div>
+
+</main>
 
 </div>
 
-<input
-type="color"
-id="picker"
-value="#3b82f6">
+<section class="seo-content">
 
-<div
-class="info"
-id="hex">
+<h2>Free Online Color Picker</h2>
 
-HEX : #3B82F6
+<p>
+Toolora AI Color Picker is a free online tool that helps you select
+colors and find their HEX, RGB and HSL values. Whether you are
+designing a website, creating graphics, editing images or choosing
+a color palette, this tool makes it easy to explore and copy color
+codes.
+</p>
 
+<p>
+Choose a color using the color input, view its live preview and
+instantly see the corresponding color values. You can also generate
+random colors and revisit recently selected shades.
+</p>
+
+<h2>How to Use the Color Picker</h2>
+
+<ul>
+<li>Open the color picker on this page.</li>
+<li>Click the color selection box.</li>
+<li>Choose your preferred color.</li>
+<li>View the HEX, RGB and HSL values.</li>
+<li>Use the relevant Copy button to copy a color code.</li>
+<li>Generate a random color if you want new inspiration.</li>
+<li>Use Recent Colors to revisit a previously selected shade.</li>
+</ul>
+
+<h2>Understanding HEX, RGB and HSL Color Formats</h2>
+
+<h3>What is HEX?</h3>
+<p>
+HEX is a hexadecimal color representation commonly used in web
+design and CSS. A typical HEX code begins with a hash symbol and
+contains six hexadecimal characters. For example, #FF0000
+represents red.
+</p>
+
+<h3>What is RGB?</h3>
+<p>
+RGB stands for Red, Green and Blue. It represents a color using
+three numerical values, generally ranging from 0 to 255. RGB is
+widely used in digital displays and CSS styling.
+</p>
+
+<h3>What is HSL?</h3>
+<p>
+HSL stands for Hue, Saturation and Lightness. Hue describes the
+color, saturation represents its intensity, and lightness describes
+how light or dark it appears.
+</p>
+
+<h2>Where Can You Use a Color Picker?</h2>
+
+<ul>
+<li><strong>Web design:</strong> Select colors for website backgrounds, buttons and text.</li>
+<li><strong>Graphic design:</strong> Explore colors for posters, banners and digital artwork.</li>
+<li><strong>UI design:</strong> Create consistent colors for interface elements.</li>
+<li><strong>CSS development:</strong> Copy HEX, RGB and HSL values for stylesheets.</li>
+<li><strong>Creative projects:</strong> Explore different shades and color combinations.</li>
+</ul>
+
+<h2>Benefits of Using an Online Color Picker</h2>
+
+<ul>
+<li>Quick color selection and live preview.</li>
+<li>Instant HEX, RGB and HSL conversion.</li>
+<li>One-click copying of color values.</li>
+<li>Random color generation for inspiration.</li>
+<li>Recent color history for quick access.</li>
+<li>Responsive design for desktop and mobile devices.</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+<h3>1. Is this color picker free?</h3>
+<p>
+Yes. You can use the color selection and conversion features
+without paying for access.
+</p>
 </div>
 
-<div
-class="info"
-id="rgb">
-
-RGB :
-
-59,130,246
-
+<div class="faq-item">
+<h3>2. What is a HEX color code?</h3>
+<p>
+A HEX code is a hexadecimal representation of a color.
+For example, #FFFFFF represents white and #000000 represents black.
+</p>
 </div>
 
-<button onclick="copyHex()">
-
-📋 Copy HEX
-
-</button>
-
-<button onclick="randomColor()">
-
-🎲 Random Color
-
-</button>
-
+<div class="faq-item">
+<h3>3. What is the difference between RGB and HSL?</h3>
+<p>
+RGB describes colors through red, green and blue values.
+HSL describes them through hue, saturation and lightness.
+</p>
 </div>
+
+<div class="faq-item">
+<h3>4. Can I copy the selected color code?</h3>
+<p>
+Yes. Use the separate buttons to copy the HEX, RGB or HSL
+value of your selected color.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>5. Can I generate random colors?</h3>
+<p>
+Yes. Click Random Color to generate another color and
+automatically update its preview and color codes.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>6. Does this tool work on mobile devices?</h3>
+<p>
+Yes. The interface is responsive and can be used on supported
+mobile phones, tablets and desktop browsers.
+</p>
+</div>
+
+<h2>Explore More Toolora AI Tools</h2>
+
+<p>
+Discover other free online tools for productivity, calculations,
+image editing and everyday tasks.
+</p>
+
+<div class="seo-links">
+<a href="index.html">All Tools</a>
+<a href="image-resizer.html">Image Resizer</a>
+<a href="ai-background-remover.html">AI Background Remover</a>
+<a href="word-counter.html">Word Counter</a>
+<a href="qr-generator.html">QR Generator</a>
+<a href="calculator.html">Calculator</a>
+<a href="unit-converter.html">Unit Converter</a>
+<a href="currency.html">Currency Converter</a>
+<a href="age-calculator.html">Age Calculator</a>
+<a href="world-clock.html">World Clock</a>
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 Toolora AI. All rights reserved.</p>
+<p>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="contact.html">Contact</a>
+</p>
+</footer>
 
 <script>
+const picker = document.getElementById("picker");
+const box = document.getElementById("box");
 
-const picker=document.getElementById("picker");
+const hex = document.getElementById("hex");
+const rgb = document.getElementById("rgb");
+const hsl = document.getElementById("hsl");
 
-const box=document.getElementById("box");
+const previewText = document.getElementById("previewText");
+const selectedColor = document.getElementById("selectedColor");
 
-const hex=document.getElementById("hex");
+const historyContainer = document.getElementById("history");
 
-const rgb=document.getElementById("rgb");
+let colorHistory = [];
+let currentColor = "#3b82f6";
 
-picker.oninput=function(){
+function convertToRGB(color){
 
-update(this.value);
+    const r = parseInt(color.slice(1,3),16);
+    const g = parseInt(color.slice(3,5),16);
+    const b = parseInt(color.slice(5,7),16);
+
+    return {r,g,b};
+
+}
+
+function convertToHSL(r,g,b){
+
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
+    const max = Math.max(r,g,b);
+    const min = Math.min(r,g,b);
+
+    let h,s;
+    let l = (max+min)/2;
+
+    if(max === min){
+
+        h = 0;
+        s = 0;
+
+    }else{
+
+        const d = max-min;
+
+        s = l > 0.5
+            ? d/(2-max-min)
+            : d/(max+min);
+
+        switch(max){
+
+            case r:
+                h = (g-b)/d + (g < b ? 6 : 0);
+                break;
+
+            case g:
+                h = (b-r)/d + 2;
+                break;
+
+            case b:
+                h = (r-g)/d + 4;
+                break;
+
+        }
+
+        h /= 6;
+
+    }
+
+    return {
+        h:Math.round(h*360),
+        s:Math.round(s*100),
+        l:Math.round(l*100)
+    };
 
 }
 
 function update(color){
 
-box.style.background=color;
+    currentColor = color.toLowerCase();
 
-hex.innerHTML="HEX : "+color.toUpperCase();
+    const values = convertToRGB(currentColor);
 
-let r=parseInt(color.substr(1,2),16);
+    const hslValues = convertToHSL(
+        values.r,
+        values.g,
+        values.b
+    );
 
-let g=parseInt(color.substr(3,2),16);
+    const hexValue = currentColor.toUpperCase();
 
-let b=parseInt(color.substr(5,2),16);
+    const rgbValue = `rgb(${values.r}, ${values.g}, ${values.b})`;
 
-rgb.innerHTML=`RGB : ${r}, ${g}, ${b}`;
+    const hslValue = `hsl(${hslValues.h}, ${hslValues.s}%, ${hslValues.l}%)`;
+
+    picker.value = currentColor;
+
+    box.style.background = currentColor;
+
+    previewText.innerText = hexValue;
+    selectedColor.innerText = hexValue;
+
+    hex.innerText = hexValue;
+    rgb.innerText = rgbValue;
+    hsl.innerText = hslValue;
+
+    if(!colorHistory.includes(currentColor)){
+
+        colorHistory.unshift(currentColor);
+
+        if(colorHistory.length > 12){
+            colorHistory.pop();
+        }
+
+    }
+
+    renderHistory();
 
 }
 
-function copyHex(){
+function renderHistory(){
 
-navigator.clipboard.writeText(picker.value);
+    historyContainer.innerHTML = "";
 
-alert("HEX Copied!");
+    if(colorHistory.length === 0){
+
+        historyContainer.innerHTML =
+        '<span class="empty-history">Your selected colors will appear here.</span>';
+
+        return;
+
+    }
+
+    colorHistory.forEach(color=>{
+
+        const swatch = document.createElement("button");
+
+        swatch.type = "button";
+        swatch.className = "swatch";
+        swatch.style.background = color;
+        swatch.title = color.toUpperCase();
+        swatch.setAttribute("aria-label","Select color "+color);
+
+        swatch.addEventListener("click",()=>{
+
+            update(color);
+
+        });
+
+        historyContainer.appendChild(swatch);
+
+    });
 
 }
 
-function randomColor(){
+async function copyValue(value,button){
 
-let letters="0123456789ABCDEF";
+    try{
 
-let color="#";
+        await navigator.clipboard.writeText(value);
 
-for(let i=0;i<6;i++){
+        const oldText = button.innerHTML;
 
-color+=letters[Math.floor(Math.random()*16)];
+        button.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+
+        setTimeout(()=>{
+
+            button.innerHTML = oldText;
+
+        },1300);
+
+    }catch(error){
+
+        alert("Clipboard access unavailable. Please copy the value manually: "+value);
+
+    }
 
 }
 
-picker.value=color;
+picker.addEventListener("input",function(){
 
-update(color);
+    update(this.value);
 
-}
+});
+
+document.getElementById("copyHex").addEventListener("click",function(){
+
+    copyValue(currentColor.toUpperCase(),this);
+
+});
+
+document.getElementById("copyRgb").addEventListener("click",function(){
+
+    copyValue(rgb.innerText,this);
+
+});
+
+document.getElementById("copyHsl").addEventListener("click",function(){
+
+    copyValue(hsl.innerText,this);
+
+});
+
+document.getElementById("randomBtn").addEventListener("click",function(){
+
+    const randomColor = "#"+Math.floor(
+        Math.random()*16777215
+    ).toString(16).padStart(6,"0");
+
+    update(randomColor);
+
+});
+
+document.getElementById("resetBtn").addEventListener("click",function(){
+
+    update("#3b82f6");
+
+});
+
+document.getElementById("clearHistory").addEventListener("click",function(){
+
+    colorHistory = [];
+
+    renderHistory();
+
+});
+
+update("#3b82f6");
+
+console.log("Toolora AI Color Picker Ready");
 
 </script>
 
