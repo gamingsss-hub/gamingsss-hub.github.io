@@ -1,373 +1,814 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08050d">
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Free Expense Tracker & Budget Planner | Toolora AI</title>
+<meta name="description" content="Track daily expenses, manage your monthly budget and monitor spending with Toolora AI's free expense tracker.">
+<meta name="keywords" content="expense tracker, budget planner, money tracker, daily expense manager, monthly expenses, free expense tracker">
+<meta name="author" content="Toolora AI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/expense-tracker.html">
 
-<title>
-Expense Tracker | Track Money
-</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Expense Tracker | Toolora AI">
+<meta property="og:description" content="Track expenses and manage your monthly budget with Toolora AI.">
+<meta property="og:url" content="https://gamingsss-hub.github.io/expense-tracker.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Expense Tracker | Toolora AI">
+<meta name="twitter:description" content="Free daily expense tracking and budget management tool.">
 
-<meta
-name="description"
-content="Track expenses and manage money online">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<meta
-name="keywords"
-content="expense tracker,money tracker,budget">
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"Toolora AI Expense Tracker",
+ "url":"https://gamingsss-hub.github.io/expense-tracker.html",
+ "applicationCategory":"FinanceApplication",
+ "operatingSystem":"Any",
+ "description":"A free browser-based expense tracker and monthly budget planner.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}
+}
+</script>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
+:root{
+ --bg:#08050d;
+ --panel:#15101d;
+ --panel2:#1d1527;
+ --red:#ff3155;
+ --purple:#9b5cff;
+ --text:#f8f5ff;
+ --muted:#a69caf;
+ --border:rgba(255,255,255,.09);
+ --green:#42d99a;
 }
-
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-
-background:
-
-linear-gradient(
-135deg,
-#f8fafc,
-#dbeafe,
-#eef2ff
-);
-
-padding:20px;
-
-display:flex;
-
-justify-content:center;
-
+ background:
+ radial-gradient(ellipse at 10% 5%,rgba(255,49,85,.13),transparent 35%),
+ radial-gradient(ellipse at 90% 85%,rgba(155,92,255,.14),transparent 38%),
+ var(--bg);
+ color:var(--text);
+ font-family:'Poppins',sans-serif;
+ min-height:100vh;
+ padding:22px 15px 45px;
 }
-
-.box{
-
-width:100%;
-
-max-width:500px;
-
-background:white;
-
-padding:25px;
-
-border-radius:28px;
-
-box-shadow:
-
-0 20px 60px
-rgba(0,0,0,.12);
-
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.container{max-width:1150px;margin:auto}
+.topbar{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:15px;margin-bottom:30px;
 }
-
+.brand{font-family:'Outfit';font-size:24px;font-weight:900}
+.brand span{color:var(--red)}
+.back{
+ border:1px solid var(--border);padding:10px 15px;
+ border-radius:12px;font-size:13px;color:#ddd3e8;
+ background:rgba(255,255,255,.035);
+}
+.hero{text-align:center;margin-bottom:27px}
+.tag{
+ display:inline-block;padding:7px 13px;border-radius:30px;
+ background:rgba(255,49,85,.1);border:1px solid rgba(255,49,85,.25);
+ color:#ff8298;font-size:11px;font-weight:700;letter-spacing:1.5px;
+}
 h1{
-
-text-align:center;
-
-margin-bottom:20px;
-
+ font-family:'Outfit';font-size:clamp(30px,5vw,46px);
+ margin:13px 0 8px;letter-spacing:-1.3px;font-weight:900;
 }
-
-input,select{
-
-width:100%;
-
-padding:16px;
-
-margin-bottom:12px;
-
-border:none;
-
-background:#f3f4f6;
-
-border-radius:14px;
-
+h1 span{
+ background:linear-gradient(90deg,#ff3155,#bd70ff);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
 }
-
-button{
-
-width:100%;
-
-padding:16px;
-
-border:none;
-
-border-radius:16px;
-
-background:
-
-linear-gradient(
-90deg,
-#2563eb,
-#7c3aed
-);
-
-color:white;
-
-font-size:18px;
-
+.hero p{font-size:13px;color:var(--muted);line-height:1.7}
+.dashboard{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:15px;
+ margin-bottom:20px;
 }
-
-.total{
-
-margin:25px 0;
-
-font-size:34px;
-
-font-weight:900;
-
-text-align:center;
-
+.stat{
+ padding:21px;border:1px solid var(--border);border-radius:19px;
+ background:linear-gradient(145deg,#1b1325,#100c17);
+ min-width:0;
 }
-
-.item{
-
-padding:15px;
-
-background:#f8fafc;
-
-margin-bottom:10px;
-
-border-radius:16px;
-
-display:flex;
-
-justify-content:space-between;
-
+.stat-label{font-size:12px;color:var(--muted)}
+.stat-value{
+ font-family:'Outfit';font-size:clamp(22px,3vw,30px);
+ font-weight:800;margin-top:8px;overflow-wrap:anywhere;
 }
-
-.del{
-
-background:red;
-
-color:white;
-
-padding:8px 12px;
-
-border-radius:10px;
-
+.stat-icon{font-size:20px;margin-bottom:9px}
+.main-grid{
+ display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.4fr);
+ gap:18px;align-items:start;
 }
-
+.card{
+ background:linear-gradient(145deg,rgba(27,19,37,.97),rgba(14,10,20,.98));
+ border:1px solid var(--border);border-radius:22px;padding:22px;
+}
+.card-title{
+ font-family:'Outfit';font-size:21px;font-weight:800;
+ margin-bottom:17px;
+}
+.field{margin-bottom:14px}
+.field label{
+ display:block;font-size:12px;color:#c9bfce;margin-bottom:7px;
+}
+.field input,.field select{
+ width:100%;padding:13px 14px;border:1px solid var(--border);
+ outline:none;border-radius:12px;background:#0c0912;color:white;
+ font-size:13px;
+}
+.field input:focus,.field select:focus{
+ border-color:var(--purple);box-shadow:0 0 0 3px rgba(155,92,255,.1);
+}
+.field input::placeholder{color:#756b7e}
+.field select option{background:#17101f;color:white}
+.primary{
+ width:100%;padding:14px;border:0;border-radius:13px;
+ background:linear-gradient(110deg,#ff3155,#a34bff);
+ color:white;font-weight:800;font-size:14px;
+ box-shadow:0 8px 22px rgba(255,49,85,.15);
+ transition:.2s;
+}
+.primary:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.budget-box{
+ margin-top:20px;padding:16px;border-radius:16px;
+ background:rgba(155,92,255,.08);border:1px solid rgba(155,92,255,.2);
+}
+.budget-head{
+ display:flex;justify-content:space-between;gap:10px;
+ font-size:12px;margin-bottom:12px;
+}
+.budget-head span:last-child{color:#d4b7ff;font-weight:700}
+.progress{
+ height:9px;background:#30253a;border-radius:20px;overflow:hidden;
+}
+.progress-fill{
+ width:0%;height:100%;border-radius:20px;
+ background:linear-gradient(90deg,#9b5cff,#ff3155);
+ transition:width .3s;
+}
+.budget-note{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.6}
+.budget-form{
+ display:flex;gap:8px;margin-top:14px;
+}
+.budget-form input{
+ width:100%;min-width:0;padding:11px;
+ border:1px solid var(--border);border-radius:10px;
+ background:#0c0912;color:white;outline:none;
+}
+.budget-form button{
+ border:0;border-radius:10px;padding:0 13px;
+ background:#8d4be5;color:white;font-size:12px;font-weight:700;
+}
+.list-card{min-width:0}
+.list-header{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:12px;margin-bottom:15px;flex-wrap:wrap;
+}
+.list-header h2{font-family:'Outfit';font-size:21px}
+.count{font-size:11px;color:var(--muted)}
+.filters{
+ display:grid;grid-template-columns:1fr 150px;gap:10px;margin-bottom:15px;
+}
+.filters input,.filters select{
+ width:100%;min-width:0;padding:11px 12px;
+ border:1px solid var(--border);border-radius:11px;
+ background:#0c0912;color:white;font-size:12px;outline:none;
+}
+.filters select option{background:#17101f}
+.expense-list{display:grid;gap:10px}
+.expense-item{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;padding:14px;border-radius:15px;
+ background:rgba(255,255,255,.035);
+ border:1px solid rgba(255,255,255,.06);
+}
+.expense-left{display:flex;align-items:center;gap:12px;min-width:0}
+.expense-icon{
+ width:43px;height:43px;flex-shrink:0;border-radius:13px;
+ display:grid;place-items:center;background:rgba(155,92,255,.13);
+ font-size:20px;
+}
+.expense-name{font-size:13px;font-weight:700;overflow-wrap:anywhere}
+.expense-meta{font-size:10px;color:var(--muted);margin-top:4px}
+.expense-right{text-align:right;flex-shrink:0}
+.expense-amount{font-family:'Outfit';font-size:17px;font-weight:800}
+.delete-btn{
+ border:0;background:transparent;color:#ff7087;
+ font-size:11px;margin-top:5px;font-weight:600;
+}
+.empty{
+ text-align:center;padding:38px 10px;color:var(--muted);
+ font-size:13px;line-height:1.8;
+}
+.tools-row{
+ display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;
+}
+.secondary{
+ flex:1;min-width:120px;padding:11px;border-radius:11px;
+ background:rgba(155,92,255,.1);border:1px solid rgba(155,92,255,.2);
+ color:#d7bcff;font-size:12px;font-weight:700;
+}
+.danger{
+ background:rgba(255,49,85,.08);border-color:rgba(255,49,85,.2);
+ color:#ff8196;
+}
+.message{
+ font-size:12px;color:var(--green);min-height:20px;margin-top:10px;
+}
+.content{margin-top:30px;display:grid;gap:16px}
+.content-card{
+ padding:22px;border-radius:19px;background:rgba(255,255,255,.035);
+ border:1px solid var(--border);
+}
+.content-card h2{font-family:'Outfit';font-size:21px;margin-bottom:10px}
+.content-card p,.content-card li{
+ color:var(--muted);font-size:13px;line-height:1.9;
+}
+.content-card ul{padding-left:20px}
+.faq{padding:13px 0;border-bottom:1px solid var(--border)}
+.faq:last-child{border:0}
+.faq h3{font-size:14px;margin-bottom:6px}
+.faq p{font-size:12px}
+.related{display:flex;flex-wrap:wrap;gap:10px;margin-top:13px}
+.related a{
+ padding:9px 13px;border-radius:11px;
+ background:rgba(155,92,255,.1);border:1px solid rgba(155,92,255,.2);
+ font-size:12px;color:#d9c0ff;
+}
+footer{text-align:center;color:#82788b;font-size:12px;margin-top:28px}
+@media(max-width:760px){
+ body{padding:16px 11px 35px}
+ .main-grid{grid-template-columns:1fr}
+ .dashboard{gap:9px}
+ .stat{padding:14px}
+ .stat-value{font-size:21px}
+ .card{padding:17px}
+}
+@media(max-width:400px){
+ .dashboard{grid-template-columns:1fr}
+ .stat{padding:13px}
+ .filters{grid-template-columns:1fr}
+ .expense-item{padding:11px}
+}
 </style>
-
 </head>
 
 <body>
+<div class="container">
 
-<div class="box">
+<header class="topbar">
+ <a href="index.html" class="brand">TOOLORA<span> AI.</span></a>
+ <a href="index.html" class="back">← Back to Home</a>
+</header>
 
-<h1>
-💸 Expense Tracker
-</h1>
+<section class="hero">
+ <span class="tag">PERSONAL MONEY MANAGER</span>
+ <h1>Expense <span>Tracker</span></h1>
+ <p>Track your spending, manage your budget and understand where your money goes.</p>
+</section>
 
-<input
-id="name"
-placeholder="Expense">
+<section class="dashboard">
+ <div class="stat">
+  <div class="stat-icon">💸</div>
+  <div class="stat-label">All-Time Expenses</div>
+  <div class="stat-value" id="allTotal">₹0</div>
+ </div>
+ <div class="stat">
+  <div class="stat-icon">📅</div>
+  <div class="stat-label">This Month</div>
+  <div class="stat-value" id="monthTotal">₹0</div>
+ </div>
+ <div class="stat">
+  <div class="stat-icon">🧾</div>
+  <div class="stat-label">Total Transactions</div>
+  <div class="stat-value" id="transactionCount">0</div>
+ </div>
+</section>
 
-<input
-id="amount"
-type="number"
-placeholder="Amount">
+<main class="main-grid">
 
-<select id="cat">
+<section class="card">
+ <h2 class="card-title">＋ Add Expense</h2>
 
-<option>Food</option>
+ <form id="expenseForm">
+  <div class="field">
+   <label for="expenseName">Expense Name</label>
+   <input id="expenseName" type="text" maxlength="60" placeholder="e.g. Lunch, Bus ticket" required>
+  </div>
 
-<option>Travel</option>
+  <div class="field">
+   <label for="expenseAmount">Amount (₹)</label>
+   <input id="expenseAmount" type="number" min="0.01" max="100000000" step="0.01" placeholder="Enter amount" required>
+  </div>
 
-<option>Shopping</option>
+  <div class="field">
+   <label for="expenseCategory">Category</label>
+   <select id="expenseCategory">
+    <option value="Food">🍔 Food</option>
+    <option value="Travel">🚗 Travel</option>
+    <option value="Shopping">🛍️ Shopping</option>
+    <option value="Bills">🧾 Bills</option>
+    <option value="Education">📚 Education</option>
+    <option value="Health">💊 Health</option>
+    <option value="Entertainment">🎮 Entertainment</option>
+    <option value="Other">📦 Other</option>
+   </select>
+  </div>
 
-<option>Other</option>
+  <div class="field">
+   <label for="expenseDate">Date</label>
+   <input id="expenseDate" type="date" required>
+  </div>
 
-</select>
+  <button type="submit" class="primary">＋ Add Transaction</button>
+  <div class="message" id="formMessage" aria-live="polite"></div>
+ </form>
 
-<button onclick="add()">
+ <div class="budget-box">
+  <div class="budget-head">
+   <strong>Monthly Budget</strong>
+   <span id="budgetPercent">Not set</span>
+  </div>
+  <div class="progress">
+   <div class="progress-fill" id="budgetProgress"></div>
+  </div>
+  <div class="budget-note" id="budgetNote">Set a monthly budget to monitor your spending.</div>
 
-Add Expense
+  <div class="budget-form">
+   <input id="budgetInput" type="number" min="1" max="100000000" step="0.01" placeholder="Set budget ₹" aria-label="Monthly budget">
+   <button type="button" id="saveBudget">Save</button>
+  </div>
+ </div>
+</section>
 
-</button>
+<section class="card list-card">
+ <div class="list-header">
+  <h2>Expense History</h2>
+  <span class="count" id="visibleCount">0 records</span>
+ </div>
 
-<div
-class="total"
+ <div class="filters">
+  <input id="searchInput" type="search" placeholder="Search expenses..." aria-label="Search expenses">
+  <select id="filterCategory" aria-label="Filter by category">
+   <option value="All">All Categories</option>
+   <option>Food</option>
+   <option>Travel</option>
+   <option>Shopping</option>
+   <option>Bills</option>
+   <option>Education</option>
+   <option>Health</option>
+   <option>Entertainment</option>
+   <option>Other</option>
+  </select>
+ </div>
 
-id="total">
+ <div class="expense-list" id="expenseList">
+  <div class="empty">💸<br>No expenses yet.<br>Add your first transaction to get started.</div>
+ </div>
 
-₹0
+ <div class="tools-row">
+  <button type="button" class="secondary" id="exportBtn">↓ Export CSV</button>
+  <button type="button" class="secondary danger" id="clearBtn">Clear All</button>
+ </div>
+ <div class="message" id="actionMessage" aria-live="polite"></div>
+</section>
 
-</div>
+</main>
 
-<div
-id="list">
+<section class="content">
 
-</div>
+ <article class="content-card">
+  <h2>Free Online Expense Tracker</h2>
+  <p>Toolora AI Expense Tracker helps you record everyday spending in one place. Add an expense, choose its category and date, and review your spending totals. You can also set a monthly budget and export your records as a CSV file for your own reference.</p>
+ </article>
 
+ <article class="content-card">
+  <h2>How to Use the Expense Tracker</h2>
+  <ul>
+   <li>Enter a name and amount for your expense.</li>
+   <li>Select a category and transaction date.</li>
+   <li>Press Add Transaction to save the record.</li>
+   <li>Set a monthly budget to compare spending with your target.</li>
+   <li>Use search and category filters to find specific expenses.</li>
+   <li>Export your records as a CSV file whenever needed.</li>
+  </ul>
+ </article>
+
+ <article class="content-card">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq">
+   <h3>Is this expense tracker free?</h3>
+   <p>Yes. All features on this page are free to use.</p>
+  </div>
+  <div class="faq">
+   <h3>Where is my expense data stored?</h3>
+   <p>Your records are saved in your browser's local storage on this device. They are not uploaded to a Toolora account or server.</p>
+  </div>
+  <div class="faq">
+   <h3>Can I set a monthly budget?</h3>
+   <p>Yes. Enter a budget amount and the tracker will compare it with expenses dated in the current month.</p>
+  </div>
+  <div class="faq">
+   <h3>Can I download my expense history?</h3>
+   <p>Yes. Use Export CSV to download your expense records and open them in compatible spreadsheet software.</p>
+  </div>
+  <div class="faq">
+   <h3>Will my data appear on another device?</h3>
+   <p>No. Browser local storage is specific to the browser and device. Your records do not automatically sync between devices.</p>
+  </div>
+ </article>
+
+ <article class="content-card">
+  <h2>Explore More Toolora Tools</h2>
+  <p>Discover more useful free tools:</p>
+  <div class="related">
+   <a href="calculator.html">Calculator</a>
+   <a href="currency.html">Currency Converter</a>
+   <a href="unit-converter.html">Unit Converter</a>
+   <a href="age-calculator.html">Age Calculator</a>
+   <a href="countdown-timer.html">Countdown Timer</a>
+   <a href="word-counter.html">Word Counter</a>
+   <a href="index.html">All Tools</a>
+  </div>
+ </article>
+
+</section>
+
+<footer>© 2026 Toolora AI. Free tools for everyone.</footer>
 </div>
 
 <script>
-
-const nameInput =
-document.getElementById("name");
-
-const amountInput =
-document.getElementById("amount");
-
-const catInput =
-document.getElementById("cat");
-
-const total =
-document.getElementById("total");
-
-const list =
-document.getElementById("list");
-
-let data =
-JSON.parse(
-localStorage.getItem(
-"money"
-)
-)||[];
-
-function save(){
-
-localStorage.setItem(
-
-"money",
-
-JSON.stringify(
-data
-)
-
-);
-
-}
-
-function add(){
-
-if(
-
-nameInput.value.trim()===""||
-
-amountInput.value===""
-
-){
-
-alert(
-
-"Fill all fields"
-
-);
-
-return;
-
-}
-
-data.push({
-
-n:
-
-nameInput.value,
-
-a:
-
-Number(
-amountInput.value
-),
-
-c:
-
-catInput.value
-
-});
-
-save();
-
-render();
-
-nameInput.value="";
-
-amountInput.value="";
-
-}
-
-function del(i){
-
-data.splice(i,1);
-
-save();
-
-render();
-
-}
-
-function render(){
-
-list.innerHTML="";
-
-let sum=0;
-
-data.forEach(
-
-(item,index)=>{
-
-sum+=item.a;
-
-list.innerHTML+=`
-
-<div class="item">
-
-<div>
-
-<b>
-
-${item.n}
-
-</b>
-
-<br>
-
-${item.c}
-
-</div>
-
-<div>
-
-₹${item.a}
-
-<br><br>
-
-<button
-class="del"
-
-onclick="del(${index})">
-
-Delete
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-total.innerHTML=
-
-"₹"+sum;
-
-}
-
-render();
-
+(() => {
+ "use strict";
+
+ const $ = id => document.getElementById(id);
+
+ const STORAGE_KEY = "toolora_expenses_v2";
+ const BUDGET_KEY = "toolora_monthly_budget_v2";
+
+ const icons = {
+  Food:"🍔",
+  Travel:"🚗",
+  Shopping:"🛍️",
+  Bills:"🧾",
+  Education:"📚",
+  Health:"💊",
+  Entertainment:"🎮",
+  Other:"📦"
+ };
+
+ const today = () => {
+  const d = new Date();
+  return [
+   d.getFullYear(),
+   String(d.getMonth()+1).padStart(2,"0"),
+   String(d.getDate()).padStart(2,"0")
+  ].join("-");
+ };
+
+ const money = amount => new Intl.NumberFormat("en-IN",{
+  style:"currency",
+  currency:"INR",
+  maximumFractionDigits:2
+ }).format(amount);
+
+ let expenses = [];
+ let monthlyBudget = 0;
+
+ try {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  if(Array.isArray(saved)){
+   expenses = saved.filter(item =>
+    item &&
+    typeof item.id === "string" &&
+    typeof item.name === "string" &&
+    Number.isFinite(Number(item.amount)) &&
+    Number(item.amount) > 0 &&
+    typeof item.category === "string" &&
+    /^\d{4}-\d{2}-\d{2}$/.test(item.date)
+   ).map(item => ({
+    id:item.id,
+    name:item.name.slice(0,60),
+    amount:Number(item.amount),
+    category:Object.hasOwn(icons,item.category) ? item.category : "Other",
+    date:item.date
+   }));
+  }
+ } catch {
+  expenses = [];
+ }
+
+ try {
+  const savedBudget = Number(localStorage.getItem(BUDGET_KEY));
+  if(Number.isFinite(savedBudget) && savedBudget > 0){
+   monthlyBudget = savedBudget;
+  }
+ } catch {
+  monthlyBudget = 0;
+ }
+
+ $("expenseDate").value = today();
+
+ function save(){
+  try {
+   localStorage.setItem(STORAGE_KEY,JSON.stringify(expenses));
+   localStorage.setItem(BUDGET_KEY,String(monthlyBudget));
+   return true;
+  } catch {
+   $("actionMessage").textContent =
+    "Storage unavailable or full. Export your data and check browser storage.";
+   return false;
+  }
+ }
+
+ function currentMonth(){
+  return today().slice(0,7);
+ }
+
+ function monthExpenses(){
+  return expenses.filter(item => item.date.startsWith(currentMonth()));
+ }
+
+ function renderDashboard(){
+  const allTotal = expenses.reduce((sum,item)=>sum+item.amount,0);
+  const monthTotal = monthExpenses().reduce((sum,item)=>sum+item.amount,0);
+
+  $("allTotal").textContent = money(allTotal);
+  $("monthTotal").textContent = money(monthTotal);
+  $("transactionCount").textContent = expenses.length.toLocaleString("en-IN");
+
+  if(monthlyBudget > 0){
+   const percent = monthTotal/monthlyBudget*100;
+   const remaining = monthlyBudget-monthTotal;
+
+   $("budgetPercent").textContent = Math.round(percent)+"% used";
+   $("budgetProgress").style.width = Math.min(percent,100)+"%";
+
+   $("budgetProgress").style.background = percent > 100
+    ? "linear-gradient(90deg,#ff3155,#ff7b55)"
+    : "linear-gradient(90deg,#9b5cff,#ff3155)";
+
+   $("budgetNote").textContent = remaining >= 0
+    ? money(remaining)+" remaining from your monthly budget."
+    : money(Math.abs(remaining))+" over your monthly budget.";
+
+   $("budgetInput").value = monthlyBudget;
+  } else {
+   $("budgetPercent").textContent = "Not set";
+   $("budgetProgress").style.width = "0%";
+   $("budgetNote").textContent = "Set a monthly budget to monitor your spending.";
+   $("budgetInput").value = "";
+  }
+ }
+
+ function renderList(){
+  const search = $("searchInput").value.trim().toLowerCase();
+  const category = $("filterCategory").value;
+
+  const filtered = expenses.filter(item => {
+   const matchesSearch =
+    item.name.toLowerCase().includes(search) ||
+    item.category.toLowerCase().includes(search);
+
+   const matchesCategory =
+    category === "All" || item.category === category;
+
+   return matchesSearch && matchesCategory;
+  }).sort((a,b)=>b.date.localeCompare(a.date));
+
+  $("visibleCount").textContent =
+   filtered.length+" record"+(filtered.length===1?"":"s");
+
+  const list = $("expenseList");
+  list.replaceChildren();
+
+  if(!filtered.length){
+   const empty = document.createElement("div");
+   empty.className = "empty";
+   empty.textContent = expenses.length
+    ? "No matching expenses found."
+    : "💸 No expenses yet. Add your first transaction to get started.";
+   list.appendChild(empty);
+   return;
+  }
+
+  filtered.forEach(item => {
+   const row = document.createElement("div");
+   row.className = "expense-item";
+
+   const left = document.createElement("div");
+   left.className = "expense-left";
+
+   const icon = document.createElement("div");
+   icon.className = "expense-icon";
+   icon.textContent = icons[item.category] || "📦";
+
+   const details = document.createElement("div");
+
+   const name = document.createElement("div");
+   name.className = "expense-name";
+   name.textContent = item.name;
+
+   const meta = document.createElement("div");
+   meta.className = "expense-meta";
+   meta.textContent = item.category+" • "+item.date;
+
+   details.append(name,meta);
+   left.append(icon,details);
+
+   const right = document.createElement("div");
+   right.className = "expense-right";
+
+   const amount = document.createElement("div");
+   amount.className = "expense-amount";
+   amount.textContent = money(item.amount);
+
+   const del = document.createElement("button");
+   del.type = "button";
+   del.className = "delete-btn";
+   del.textContent = "Delete";
+   del.setAttribute("aria-label","Delete "+item.name);
+   del.addEventListener("click",()=>deleteExpense(item.id));
+
+   right.append(amount,del);
+   row.append(left,right);
+   list.appendChild(row);
+  });
+ }
+
+ function render(){
+  renderDashboard();
+  renderList();
+ }
+
+ function deleteExpense(id){
+  const item = expenses.find(entry=>entry.id===id);
+  if(!item) return;
+
+  if(!confirm("Delete this expense: "+item.name+"?")) return;
+
+  expenses = expenses.filter(entry=>entry.id!==id);
+  save();
+  render();
+  $("actionMessage").textContent = "Expense deleted.";
+ }
+
+ $("expenseForm").addEventListener("submit",event=>{
+  event.preventDefault();
+
+  const name = $("expenseName").value.trim();
+  const amount = Number($("expenseAmount").value);
+  const category = $("expenseCategory").value;
+  const date = $("expenseDate").value;
+
+  if(!name || name.length>60){
+   alert("Enter an expense name (up to 60 characters).");
+   return;
+  }
+
+  if(!Number.isFinite(amount) || amount<=0 || amount>100000000){
+   alert("Enter a valid amount greater than ₹0.");
+   return;
+  }
+
+  if(!Object.hasOwn(icons,category)){
+   alert("Please select a valid category.");
+   return;
+  }
+
+  if(!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)){
+   alert("Please select a valid date.");
+   return;
+  }
+
+  const [year,month,day] = date.split("-").map(Number);
+  const parsedDate = new Date(year,month-1,day);
+
+  if(parsedDate.getFullYear()!==year ||
+     parsedDate.getMonth()!==month-1 ||
+     parsedDate.getDate()!==day){
+   alert("Please select a valid calendar date.");
+   return;
+  }
+
+  expenses.push({
+   id:crypto.randomUUID ? crypto.randomUUID() :
+    Date.now().toString(36)+Math.random().toString(36).slice(2),
+   name,
+   amount:Math.round(amount*100)/100,
+   category,
+   date
+  });
+
+  if(!save()){
+   expenses.pop();
+   return;
+  }
+
+  $("expenseName").value = "";
+  $("expenseAmount").value = "";
+  $("expenseDate").value = today();
+  $("formMessage").textContent = "✓ Expense added successfully!";
+  $("actionMessage").textContent = "";
+
+  render();
+ });
+
+ $("saveBudget").addEventListener("click",()=>{
+  const value = Number($("budgetInput").value);
+
+  if(!Number.isFinite(value) || value<=0 || value>100000000){
+   alert("Enter a valid monthly budget greater than ₹0.");
+   return;
+  }
+
+  const oldBudget = monthlyBudget;
+  monthlyBudget = Math.round(value*100)/100;
+
+  if(!save()){
+   monthlyBudget = oldBudget;
+   return;
+  }
+
+  $("actionMessage").textContent = "✓ Monthly budget saved.";
+  renderDashboard();
+ });
+
+ $("searchInput").addEventListener("input",renderList);
+ $("filterCategory").addEventListener("change",renderList);
+
+ $("clearBtn").addEventListener("click",()=>{
+  if(!expenses.length){
+   $("actionMessage").textContent = "There are no expenses to clear.";
+   return;
+  }
+
+  if(!confirm("Delete ALL expense records? This cannot be undone.")) return;
+
+  const oldExpenses = expenses;
+  expenses = [];
+
+  if(!save()){
+   expenses = oldExpenses;
+   return;
+  }
+
+  $("actionMessage").textContent = "All expense records cleared.";
+  render();
+ });
+
+ $("exportBtn").addEventListener("click",()=>{
+  if(!expenses.length){
+   $("actionMessage").textContent = "Add expenses before exporting.";
+   return;
+  }
+
+  const rows = [
+   ["Expense Name","Amount INR","Category","Date"],
+   ...expenses.map(item=>[
+    item.name,
+    item.amount.toFixed(2),
+    item.category,
+    item.date
+   ])
+  ];
+
+  const csv = rows.map(row =>
+   row.map(value =>
+    '"'+String(value).replace(/"/g,'""')+'"'
+   ).join(",")
+  ).join("\r\n");
+
+  const blob = new Blob(["\uFEFF"+csv],{
+   type:"text/csv;charset=utf-8;"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "toolora-expenses-"+today()+".csv";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+
+  $("actionMessage").textContent = "✓ CSV report exported.";
+ });
+
+ render();
+})();
 </script>
-</body>
 
+</body>
 </html>
