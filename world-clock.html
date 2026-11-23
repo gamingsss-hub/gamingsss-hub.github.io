@@ -1,289 +1,972 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08050c">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>World Clock – Live Time in 12+ Cities & Time Zone Converter | Toolora AI</title>
+<meta name="description" content="Check accurate live world clocks for international cities. Compare time zones, convert time between countries and save your favourite cities with Toolora AI.">
+<meta name="keywords" content="world clock, live world time, time zone converter, current time worldwide, international clock, city time">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/world-clock.html">
 
-<title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Live World Clock & Time Zone Converter | Toolora AI">
+<meta property="og:description" content="Check live time around the world and convert time between cities.">
+<meta property="og:url" content="https://gamingsss-hub.github.io/world-clock.html">
+<meta property="og:site_name" content="Toolora AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="World Clock | Toolora AI">
+<meta name="twitter:description" content="Live international clocks and time zone converter.">
 
-World Clock | Live Time
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-</title>
-
-<meta
-name="description"
-
-content=
-
-"Check current time in different countries">
-
-<meta
-name="keywords"
-
-content=
-
-"world clock,time zones,live time">
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"Toolora AI World Clock",
+ "url":"https://gamingsss-hub.github.io/world-clock.html",
+ "applicationCategory":"UtilitiesApplication",
+ "operatingSystem":"Any",
+ "description":"Free live world clock and time zone converter for international cities.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}
+}
+</script>
 
 <style>
-
-*{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-font-family:Arial;
-
+:root{
+ --bg:#08050c;
+ --panel:#140d1a;
+ --red:#ff3155;
+ --purple:#9b5cff;
+ --text:#fff;
+ --muted:#aaa0b7;
+ --border:rgba(255,255,255,.09);
 }
+
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-
-background:
-
-linear-gradient(
-135deg,
-#f8fafc,
-#e0f2fe,
-#eef2ff
-);
-
-padding:20px;
-
+ min-height:100vh;
+ padding:22px;
+ color:var(--text);
+ font-family:'Poppins',sans-serif;
+ background:
+ radial-gradient(ellipse at 10% 5%,rgba(255,49,85,.15),transparent 35%),
+ radial-gradient(ellipse at 90% 15%,rgba(155,92,255,.17),transparent 35%),
+ var(--bg);
 }
 
-.box{
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
 
-max-width:900px;
+.container{max-width:1150px;margin:auto}
 
-margin:auto;
+nav{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:48px;
+ gap:15px;
+}
 
-padding:30px;
+.logo{
+ font-family:'Outfit',sans-serif;
+ font-size:25px;
+ font-weight:900;
+}
 
+.logo span{
+ background:linear-gradient(90deg,var(--red),var(--purple));
+ -webkit-background-clip:text;
+ color:transparent;
+}
+
+.back{
+ padding:10px 17px;
+ border:1px solid var(--border);
+ border-radius:30px;
+ background:rgba(255,255,255,.04);
+ color:#d5bdff;
+ font-size:13px;
+}
+
+.hero{text-align:center;margin-bottom:32px}
+
+.tag{
+ display:inline-block;
+ padding:8px 16px;
+ border-radius:30px;
+ color:#ff91a4;
+ background:rgba(255,49,85,.1);
+ border:1px solid rgba(255,49,85,.25);
+ font-size:12px;
+ font-weight:700;
+ letter-spacing:1px;
 }
 
 h1{
-
-text-align:center;
-
-margin-bottom:30px;
-
+ font-family:'Outfit',sans-serif;
+ font-size:clamp(38px,6vw,64px);
+ font-weight:900;
+ letter-spacing:-2px;
+ margin:18px 0 12px;
 }
 
-.grid{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(
-auto-fit,
-minmax(240px,1fr)
-);
-
-gap:16px;
-
+h1 span{
+ background:linear-gradient(90deg,#ff3155,#ad63ff);
+ -webkit-background-clip:text;
+ color:transparent;
 }
 
-.card{
-
-padding:26px;
-
-border-radius:28px;
-
-background:white;
-
-box-shadow:
-
-0 20px 60px
-rgba(
-0,
-0,
-0,
-.08
-);
-
+.hero p{
+ max-width:690px;
+ margin:auto;
+ color:var(--muted);
+ font-size:14px;
+ line-height:1.8;
 }
 
-.city{
-
-font-size:22px;
-
-font-weight:800;
-
+.panel{
+ padding:24px;
+ border:1px solid var(--border);
+ border-radius:25px;
+ background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.02));
+ box-shadow:0 25px 80px rgba(0,0,0,.3);
+ backdrop-filter:blur(18px);
 }
 
-.time{
-
-font-size:34px;
-
-margin-top:12px;
-
+.local-panel{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:20px;
+ margin-bottom:22px;
+ background:linear-gradient(110deg,rgba(255,49,85,.13),rgba(155,92,255,.13));
 }
 
-.zone{
+.local-title{font-size:13px;color:#d8c8e8}
+.local-city{font-family:'Outfit',sans-serif;font-size:23px;font-weight:800;margin-top:5px}
+.local-date{font-size:12px;color:var(--muted);margin-top:5px}
 
-color:#64748b;
-
-margin-top:8px;
-
+.local-time{
+ font-family:'Outfit',sans-serif;
+ font-size:clamp(28px,5vw,43px);
+ font-weight:900;
+ white-space:nowrap;
+ background:linear-gradient(90deg,#ff4967,#b27aff);
+ -webkit-background-clip:text;
+ color:transparent;
 }
 
+.section-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ flex-wrap:wrap;
+ gap:15px;
+ margin:30px 0 17px;
+}
+
+.section-head h2{
+ font-family:'Outfit',sans-serif;
+ font-size:25px;
+}
+
+.controls{display:flex;gap:9px;flex-wrap:wrap}
+
+.small-btn{
+ padding:10px 14px;
+ border:1px solid var(--border);
+ border-radius:11px;
+ color:#eee;
+ background:#211629;
+ font-size:12px;
+ font-weight:600;
+ cursor:pointer;
+}
+
+.small-btn.active{
+ background:linear-gradient(100deg,var(--red),#9745ff);
+ border-color:transparent;
+}
+
+.search-row{
+ display:flex;
+ gap:10px;
+ margin-bottom:17px;
+}
+
+.search-row input{
+ flex:1;
+ min-width:0;
+ padding:14px 17px;
+ border:1px solid var(--border);
+ border-radius:13px;
+ outline:none;
+ color:white;
+ background:#100b16;
+}
+
+.search-row input:focus,
+.converter select:focus,
+.converter input:focus{
+ border-color:var(--purple);
+}
+
+.search-row input::placeholder{color:#81778b}
+
+.city-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:14px;
+}
+
+.city-card{
+ position:relative;
+ padding:20px;
+ min-width:0;
+ border:1px solid var(--border);
+ border-radius:19px;
+ background:linear-gradient(145deg,#1c1222,#100b16);
+ transition:.25s;
+}
+
+.city-card:hover{
+ transform:translateY(-4px);
+ border-color:rgba(155,92,255,.5);
+}
+
+.card-top{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:8px;
+}
+
+.city-name{
+ font-family:'Outfit',sans-serif;
+ font-size:20px;
+ font-weight:800;
+ overflow-wrap:anywhere;
+}
+
+.country{
+ color:var(--muted);
+ font-size:11px;
+ margin-top:4px;
+}
+
+.favorite{
+ width:34px;
+ height:34px;
+ flex-shrink:0;
+ border:1px solid var(--border);
+ border-radius:10px;
+ color:#b9aabd;
+ background:#24172b;
+ cursor:pointer;
+ font-size:17px;
+}
+
+.favorite.on{color:#ff5473}
+
+.city-time{
+ font-family:'Outfit',sans-serif;
+ font-size:clamp(26px,3vw,34px);
+ font-weight:900;
+ margin-top:19px;
+ letter-spacing:-1px;
+ background:linear-gradient(90deg,#ff4967,#b27aff);
+ -webkit-background-clip:text;
+ color:transparent;
+ white-space:nowrap;
+}
+
+.city-date{
+ color:#d5c9df;
+ font-size:12px;
+ margin-top:5px;
+}
+
+.city-status{
+ display:flex;
+ align-items:center;
+ gap:7px;
+ color:var(--muted);
+ font-size:11px;
+ margin-top:12px;
+}
+
+.dot{
+ width:7px;
+ height:7px;
+ border-radius:50%;
+ background:#a16bff;
+}
+
+.offset{
+ color:#9f8eaa;
+ font-size:11px;
+ margin-top:5px;
+}
+
+.empty{
+ grid-column:1/-1;
+ text-align:center;
+ padding:30px;
+ color:var(--muted);
+ border:1px dashed var(--border);
+ border-radius:15px;
+}
+
+.converter{margin-top:35px}
+
+.converter h2{
+ font-family:'Outfit',sans-serif;
+ font-size:26px;
+ margin-bottom:8px;
+}
+
+.converter>p{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.8;
+ margin-bottom:20px;
+}
+
+.convert-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:14px;
+}
+
+.field label{
+ display:block;
+ margin-bottom:9px;
+ color:#d7c9e6;
+ font-size:12px;
+ font-weight:600;
+}
+
+.field select,.field input{
+ width:100%;
+ padding:14px;
+ border:1px solid var(--border);
+ border-radius:12px;
+ outline:none;
+ color:white;
+ background:#100b16;
+ font-size:13px;
+ color-scheme:dark;
+}
+
+.convert-btn{
+ width:100%;
+ padding:15px;
+ margin-top:17px;
+ border:0;
+ border-radius:13px;
+ color:white;
+ font-weight:700;
+ background:linear-gradient(100deg,var(--red),#9745ff);
+ cursor:pointer;
+ transition:.2s;
+}
+
+.convert-btn:hover{filter:brightness(1.12);transform:translateY(-2px)}
+
+.convert-result{
+ display:none;
+ margin-top:18px;
+ padding:20px;
+ border:1px solid rgba(155,92,255,.25);
+ border-radius:16px;
+ background:rgba(155,92,255,.08);
+}
+
+.convert-result small{color:var(--muted)}
+.convert-time{
+ font-family:'Outfit',sans-serif;
+ font-size:29px;
+ font-weight:900;
+ margin:8px 0;
+ color:#d8baff;
+}
+
+.convert-result p{font-size:12px;color:#d2c4df;line-height:1.8}
+
+.note{
+ margin-top:12px;
+ color:#94899e;
+ font-size:11px;
+ line-height:1.8;
+}
+
+.section{margin-top:65px}
+
+.section h2{
+ font-family:'Outfit',sans-serif;
+ font-size:29px;
+ margin-bottom:15px;
+}
+
+.section>p{
+ color:var(--muted);
+ font-size:14px;
+ line-height:1.9;
+ margin-bottom:18px;
+}
+
+.info-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:14px;
+}
+
+.info-card{
+ padding:21px;
+ border:1px solid var(--border);
+ border-radius:18px;
+ background:rgba(255,255,255,.035);
+}
+
+.info-card h3{font-size:16px;color:#e5caff;margin-bottom:9px}
+.info-card p{color:var(--muted);font-size:13px;line-height:1.8}
+
+.faq{padding:19px 0;border-bottom:1px solid var(--border)}
+.faq h3{font-size:15px;margin-bottom:8px}
+.faq p{color:var(--muted);font-size:13px;line-height:1.8}
+
+.links{display:flex;flex-wrap:wrap;gap:11px}
+.links a{
+ padding:10px 15px;
+ border:1px solid var(--border);
+ border-radius:30px;
+ background:rgba(255,255,255,.04);
+ color:#d7c3ff;
+ font-size:12px;
+}
+.links a:hover{border-color:var(--purple);color:white}
+
+footer{
+ margin-top:65px;
+ padding:25px 0;
+ border-top:1px solid var(--border);
+ text-align:center;
+ color:#887e91;
+ font-size:12px;
+ line-height:2;
+}
+
+@media(max-width:850px){
+ .city-grid{grid-template-columns:repeat(2,1fr)}
+ .info-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:550px){
+ body{padding:15px}
+ nav{margin-bottom:38px}
+ .panel{padding:17px}
+ .city-grid{grid-template-columns:1fr}
+ .local-panel{align-items:flex-start;flex-direction:column}
+ .convert-grid{grid-template-columns:1fr}
+ .search-row{flex-direction:column}
+ .section-head h2{font-size:22px}
+ h1{letter-spacing:-1px}
+}
 </style>
-
 </head>
 
 <body>
+<div class="container">
 
-<div class="box">
+<nav>
+ <a href="index.html" class="logo">TOOLORA<span> AI</span></a>
+ <a href="index.html" class="back">← Home</a>
+</nav>
 
-<h1>
+<header class="hero">
+ <span class="tag">GLOBAL TIME DASHBOARD</span>
+ <h1>World <span>Clock</span></h1>
+ <p>Explore live time around the world. Compare international cities, discover time differences and convert time between time zones.</p>
+</header>
 
-🌍 World Clock
+<main>
 
-</h1>
+<section class="panel local-panel">
+ <div>
+  <div class="local-title">YOUR LOCAL TIME</div>
+  <div class="local-city" id="localCity">Your Location</div>
+  <div class="local-date" id="localDate">Loading date...</div>
+ </div>
+ <div class="local-time" id="localTime">--:--:--</div>
+</section>
 
-<div
-class="grid"
-
-id="grid">
-
+<div class="section-head">
+ <h2>🌍 Live World Clocks</h2>
+ <div class="controls">
+  <button class="small-btn active" id="allBtn" onclick="setFilter('all')">All Cities</button>
+  <button class="small-btn" id="favBtn" onclick="setFilter('favorites')">★ Favourites</button>
+  <button class="small-btn" id="formatBtn" onclick="toggleFormat()">24 Hour</button>
+ </div>
 </div>
+
+<div class="search-row">
+ <input id="search" type="search" placeholder="Search city or country..." aria-label="Search cities">
+ <button class="small-btn" onclick="clearSearch()">Clear</button>
+</div>
+
+<div class="city-grid" id="cityGrid"></div>
+
+<section class="panel converter">
+ <h2>⏱️ Time Zone Converter</h2>
+ <p>Choose a city, enter a local date and time, and convert it to another city's time zone.</p>
+
+ <div class="convert-grid">
+  <div class="field">
+   <label for="fromCity">From City</label>
+   <select id="fromCity"></select>
+  </div>
+  <div class="field">
+   <label for="toCity">To City</label>
+   <select id="toCity"></select>
+  </div>
+  <div class="field">
+   <label for="sourceDateTime">Date and Time</label>
+   <input type="datetime-local" id="sourceDateTime">
+  </div>
+ </div>
+
+ <button class="convert-btn" onclick="convertTime()">Convert Time →</button>
+
+ <div class="convert-result" id="convertResult" aria-live="polite">
+  <small>CONVERTED LOCAL TIME</small>
+  <div class="convert-time" id="convertedTime"></div>
+  <p id="convertedDetails"></p>
+ </div>
+
+ <div class="note">Time conversion uses your browser's IANA time-zone database. Daylight-saving rules are applied automatically. Ambiguous or nonexistent local times around clock changes may need manual checking.</div>
+</section>
+
+<section class="section">
+ <h2>About Toolora World Clock</h2>
+ <p>Toolora AI World Clock helps you check the current local time in cities across different countries. It uses standard time-zone identifiers rather than fixed UTC offsets, so cities that observe daylight-saving time can display their changing offsets automatically.</p>
+
+ <div class="info-grid">
+  <div class="info-card">
+   <h3>Live International Time</h3>
+   <p>View current time and date in major cities including London, New York, Tokyo, Sydney and Delhi.</p>
+  </div>
+  <div class="info-card">
+   <h3>Time Zone Conversion</h3>
+   <p>Convert a date and time from one selected city to another using browser time-zone data.</p>
+  </div>
+  <div class="info-card">
+   <h3>Favourite Cities</h3>
+   <p>Save cities you check frequently and filter your dashboard to show your favourites.</p>
+  </div>
+ </div>
+</section>
+
+<section class="section">
+ <h2>Frequently Asked Questions</h2>
+
+ <div class="faq">
+  <h3>1. Is the World Clock showing real time?</h3>
+  <p>Yes. Each city clock uses the current device time and its official IANA time-zone identifier. The display updates every second.</p>
+ </div>
+
+ <div class="faq">
+  <h3>2. Does this World Clock need an API?</h3>
+  <p>No external time API is required. The browser's built-in JavaScript internationalization features provide the time-zone calculations.</p>
+ </div>
+
+ <div class="faq">
+  <h3>3. What is a time zone?</h3>
+  <p>A time zone is a region that follows a particular standard time. Different cities may have different UTC offsets.</p>
+ </div>
+
+ <div class="faq">
+  <h3>4. What is daylight saving time?</h3>
+  <p>Some regions adjust their clocks seasonally. The browser's time-zone database accounts for these changes for supported zones.</p>
+ </div>
+
+ <div class="faq">
+  <h3>5. Can I save favourite cities?</h3>
+  <p>Yes. Use the star button on a city card. Your favourites are saved in your browser on that device.</p>
+ </div>
+
+ <div class="faq">
+  <h3>6. Is the World Clock free?</h3>
+  <p>Yes. Toolora AI World Clock is free to use and does not require an account.</p>
+ </div>
+</section>
+
+<section class="section">
+ <h2>Explore More Free Tools</h2>
+ <p>Discover more useful tools and utilities from Toolora AI.</p>
+ <div class="links">
+  <a href="age-calculator.html">Age Calculator</a>
+  <a href="word-counter.html">Word Counter</a>
+  <a href="countdown-timer.html">Countdown Timer</a>
+  <a href="calculator.html">Calculator</a>
+  <a href="currency.html">Currency Converter</a>
+  <a href="unit-converter.html">Unit Converter</a>
+  <a href="color-picker.html">Color Picker</a>
+  <a href="qr-generator.html">QR Generator</a>
+  <a href="essay-writer.html">AI Essay Writer</a>
+  <a href="image-resizer.html">Image Resizer</a>
+  <a href="about.html">About Us</a>
+  <a href="faq.html">FAQ</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="contact.html">Contact</a>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <p>© 2026 Toolora AI. All rights reserved.</p>
+ <p>Free Online Tools • AI Tools • Calculators • Utilities</p>
+ <p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="contact.html">Contact</a></p>
+</footer>
 
 </div>
 
 <script>
-
-const cities=[
-
-{
-
-n:"New York",
-
-z:"America/New_York"
-
-},
-
-{
-
-n:"London",
-
-z:"Europe/London"
-
-},
-
-{
-
-n:"Delhi",
-
-z:"Asia/Kolkata"
-
-},
-
-{
-
-n:"Tokyo",
-
-z:"Asia/Tokyo"
-
-},
-
-{
-
-n:"Sydney",
-
-z:"Australia/Sydney"
-
-},
-
-{
-
-n:"Paris",
-
-z:"Europe/Paris"
-
-}
-
+const cities = [
+ {id:"new-york",name:"New York",country:"USA",zone:"America/New_York",emoji:"🇺🇸"},
+ {id:"los-angeles",name:"Los Angeles",country:"USA",zone:"America/Los_Angeles",emoji:"🇺🇸"},
+ {id:"chicago",name:"Chicago",country:"USA",zone:"America/Chicago",emoji:"🇺🇸"},
+ {id:"toronto",name:"Toronto",country:"Canada",zone:"America/Toronto",emoji:"🇨🇦"},
+ {id:"london",name:"London",country:"United Kingdom",zone:"Europe/London",emoji:"🇬🇧"},
+ {id:"paris",name:"Paris",country:"France",zone:"Europe/Paris",emoji:"🇫🇷"},
+ {id:"berlin",name:"Berlin",country:"Germany",zone:"Europe/Berlin",emoji:"🇩🇪"},
+ {id:"dubai",name:"Dubai",country:"UAE",zone:"Asia/Dubai",emoji:"🇦🇪"},
+ {id:"delhi",name:"New Delhi",country:"India",zone:"Asia/Kolkata",emoji:"🇮🇳"},
+ {id:"mumbai",name:"Mumbai",country:"India",zone:"Asia/Kolkata",emoji:"🇮🇳"},
+ {id:"singapore",name:"Singapore",country:"Singapore",zone:"Asia/Singapore",emoji:"🇸🇬"},
+ {id:"bangkok",name:"Bangkok",country:"Thailand",zone:"Asia/Bangkok",emoji:"🇹🇭"},
+ {id:"tokyo",name:"Tokyo",country:"Japan",zone:"Asia/Tokyo",emoji:"🇯🇵"},
+ {id:"seoul",name:"Seoul",country:"South Korea",zone:"Asia/Seoul",emoji:"🇰🇷"},
+ {id:"sydney",name:"Sydney",country:"Australia",zone:"Australia/Sydney",emoji:"🇦🇺"},
+ {id:"auckland",name:"Auckland",country:"New Zealand",zone:"Pacific/Auckland",emoji:"🇳🇿"},
+ {id:"cairo",name:"Cairo",country:"Egypt",zone:"Africa/Cairo",emoji:"🇪🇬"},
+ {id:"moscow",name:"Moscow",country:"Russia",zone:"Europe/Moscow",emoji:"🇷🇺"},
+ {id:"sao-paulo",name:"São Paulo",country:"Brazil",zone:"America/Sao_Paulo",emoji:"🇧🇷"},
+ {id:"honolulu",name:"Honolulu",country:"Hawaii, USA",zone:"Pacific/Honolulu",emoji:"🌺"}
 ];
 
-function update(){
+let use24Hour = true;
+let filter = "all";
+let favorites = [];
 
-grid.innerHTML="";
-
-cities.forEach(
-
-c=>{
-
-let t=
-
-new Date()
-
-.toLocaleTimeString(
-
-"en-US",
-
-{
-
-timeZone:
-
-c.z
-
+try{
+ favorites = JSON.parse(localStorage.getItem("tooloraWorldFavorites") || "[]");
+ if(!Array.isArray(favorites)) favorites=[];
+}catch(e){
+ favorites=[];
 }
 
-);
+const grid = document.getElementById("cityGrid");
+const search = document.getElementById("search");
 
-grid.innerHTML+=`
+function getTimeZoneOffset(zone,date=new Date()){
+ const parts = new Intl.DateTimeFormat("en-US",{
+  timeZone:zone,
+  timeZoneName:"shortOffset"
+ }).formatToParts(date);
 
-<div
-class='card'>
+ return parts.find(p=>p.type==="timeZoneName")?.value || "UTC";
+}
 
-<div
-class='city'>
+function getDayPeriod(zone,date=new Date()){
+ const hour = Number(new Intl.DateTimeFormat("en-US",{
+  timeZone:zone,
+  hour:"numeric",
+  hourCycle:"h23"
+ }).format(date));
 
-${c.n}
+ if(hour>=5 && hour<12) return {label:"Morning",emoji:"🌅"};
+ if(hour>=12 && hour<17) return {label:"Afternoon",emoji:"☀️"};
+ if(hour>=17 && hour<21) return {label:"Evening",emoji:"🌇"};
+ return {label:"Night",emoji:"🌙"};
+}
 
-</div>
+function formatTime(date,zone){
+ return new Intl.DateTimeFormat("en-US",{
+  timeZone:zone,
+  hour:"2-digit",
+  minute:"2-digit",
+  second:"2-digit",
+  hour12:!use24Hour
+ }).format(date);
+}
 
-<div
-class='time'>
+function formatDate(date,zone){
+ return new Intl.DateTimeFormat("en-US",{
+  timeZone:zone,
+  weekday:"short",
+  day:"numeric",
+  month:"short",
+  year:"numeric"
+ }).format(date);
+}
 
-${t}
+function updateLocalClock(now){
+ const zone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 
-</div>
+ document.getElementById("localCity").textContent =
+  zone.replaceAll("_"," ");
 
-<div
-class='zone'>
+ document.getElementById("localTime").textContent =
+  formatTime(now,zone);
 
-${c.z}
+ document.getElementById("localDate").textContent =
+  formatDate(now,zone)+" · "+zone;
+}
 
-</div>
+function renderCities(){
+ const query = search.value.trim().toLowerCase();
 
-</div>
+ let shown = cities.filter(city=>{
+  const matches =
+   city.name.toLowerCase().includes(query) ||
+   city.country.toLowerCase().includes(query) ||
+   city.zone.toLowerCase().includes(query);
 
-`;
+  const favoriteMatch =
+   filter==="all" || favorites.includes(city.id);
 
+  return matches && favoriteMatch;
+ });
+
+ if(!shown.length){
+  grid.innerHTML='<div class="empty">No cities found. Try another search.</div>';
+  return;
+ }
+
+ grid.innerHTML = shown.map(city=>`
+  <article class="city-card" data-id="${city.id}">
+   <div class="card-top">
+    <div>
+     <div class="city-name">${city.emoji} ${city.name}</div>
+     <div class="country">${city.country}</div>
+    </div>
+    <button class="favorite ${favorites.includes(city.id)?"on":""}"
+     onclick="toggleFavorite('${city.id}')"
+     aria-label="Toggle ${city.name} favourite">
+     ${favorites.includes(city.id)?"★":"☆"}
+    </button>
+   </div>
+   <div class="city-time" data-time="${city.id}">--:--:--</div>
+   <div class="city-date" data-date="${city.id}">Loading...</div>
+   <div class="city-status" data-status="${city.id}">
+    <span class="dot"></span> Loading...
+   </div>
+   <div class="offset" data-offset="${city.id}">${city.zone}</div>
+  </article>
+ `).join("");
+
+ updateClocks();
+}
+
+function updateClocks(){
+ const now = new Date();
+
+ updateLocalClock(now);
+
+ cities.forEach(city=>{
+  const timeEl = document.querySelector(`[data-time="${city.id}"]`);
+  if(!timeEl) return;
+
+  timeEl.textContent = formatTime(now,city.zone);
+
+  const dateEl = document.querySelector(`[data-date="${city.id}"]`);
+  const statusEl = document.querySelector(`[data-status="${city.id}"]`);
+  const offsetEl = document.querySelector(`[data-offset="${city.id}"]`);
+
+  if(dateEl) dateEl.textContent = formatDate(now,city.zone);
+
+  const period = getDayPeriod(city.zone,now);
+  if(statusEl){
+   statusEl.innerHTML =
+    `<span class="dot"></span>${period.emoji} ${period.label}`;
+  }
+
+  if(offsetEl){
+   offsetEl.textContent =
+    city.zone+" · "+getTimeZoneOffset(city.zone,now);
+  }
+ });
+}
+
+function toggleFavorite(id){
+ if(favorites.includes(id)){
+  favorites = favorites.filter(x=>x!==id);
+ }else{
+  favorites.push(id);
+ }
+
+ try{
+  localStorage.setItem("tooloraWorldFavorites",JSON.stringify(favorites));
+ }catch(e){}
+
+ renderCities();
+}
+
+function setFilter(value){
+ filter=value;
+
+ document.getElementById("allBtn").classList.toggle("active",value==="all");
+ document.getElementById("favBtn").classList.toggle("active",value==="favorites");
+
+ renderCities();
+}
+
+function toggleFormat(){
+ use24Hour=!use24Hour;
+ document.getElementById("formatBtn").textContent =
+  use24Hour?"24 Hour":"12 Hour";
+ updateClocks();
+}
+
+function clearSearch(){
+ search.value="";
+ renderCities();
+}
+
+search.addEventListener("input",renderCities);
+
+// Populate converter city lists.
+const fromSelect=document.getElementById("fromCity");
+const toSelect=document.getElementById("toCity");
+
+cities.forEach(city=>{
+ const label=city.emoji+" "+city.name+" ("+city.country+")";
+
+ fromSelect.add(new Option(label,city.zone));
+ toSelect.add(new Option(label,city.zone));
 });
 
+fromSelect.value="Asia/Kolkata";
+toSelect.value="Europe/London";
+
+// Set initial converter input to current local wall-clock time.
+function setInitialConverterDate(){
+ const now=new Date();
+ const local = new Date(now.getTime()-now.getTimezoneOffset()*60000);
+ document.getElementById("sourceDateTime").value =
+  local.toISOString().slice(0,16);
 }
 
-update();
+// Convert a local wall-clock date/time in a named zone into a UTC timestamp.
+// Iterative offset correction uses the browser's IANA timezone database.
+function localDateTimeToUTC(value,zone){
+ const match=value.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/);
+ if(!match) throw new Error("Please select a valid date and time.");
 
-setInterval(
+ const [year,month,day,hour,minute]=match.slice(1).map(Number);
 
-update,
+ const desired=Date.UTC(year,month-1,day,hour,minute);
+ let guess=desired;
 
-1000
+ for(let i=0;i<5;i++){
+  const parts=new Intl.DateTimeFormat("en-GB",{
+   timeZone:zone,
+   year:"numeric",
+   month:"2-digit",
+   day:"2-digit",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit",
+   hourCycle:"h23"
+  }).formatToParts(new Date(guess));
 
-);
+  const get = type=>Number(parts.find(p=>p.type===type).value);
 
+  const represented=Date.UTC(
+   get("year"),get("month")-1,get("day"),
+   get("hour"),get("minute"),get("second")
+  );
+
+  const difference=desired-represented;
+  guess+=difference;
+
+  if(difference===0) break;
+ }
+
+ // Validate the resulting wall-clock time. DST transition gaps can be invalid.
+ const check=new Intl.DateTimeFormat("en-GB",{
+  timeZone:zone,
+  year:"numeric",month:"2-digit",day:"2-digit",
+  hour:"2-digit",minute:"2-digit",hourCycle:"h23"
+ }).formatToParts(new Date(guess));
+
+ const valueOf=type=>Number(check.find(p=>p.type===type).value);
+
+ if(
+  valueOf("year")!==year ||
+  valueOf("month")!==month ||
+  valueOf("day")!==day ||
+  valueOf("hour")!==hour ||
+  valueOf("minute")!==minute
+ ){
+  throw new Error("This local time may not exist because of a daylight-saving clock change. Please choose another time.");
+ }
+
+ return new Date(guess);
+}
+
+function convertTime(){
+ const value=document.getElementById("sourceDateTime").value;
+ const from=fromSelect.value;
+ const to=toSelect.value;
+ const result=document.getElementById("convertResult");
+
+ try{
+  if(!value) throw new Error("Please select a date and time.");
+
+  const instant=localDateTimeToUTC(value,from);
+
+  const converted=new Intl.DateTimeFormat("en-US",{
+   timeZone:to,
+   weekday:"long",
+   year:"numeric",
+   month:"long",
+   day:"numeric",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit",
+   hour12:!use24Hour
+  }).format(instant);
+
+  document.getElementById("convertedTime").textContent=converted;
+
+  document.getElementById("convertedDetails").textContent=
+   "From "+from+" ("+getTimeZoneOffset(from,instant)+")"+
+   " → "+to+" ("+getTimeZoneOffset(to,instant)+")";
+
+  result.style.display="block";
+ }catch(error){
+  result.style.display="block";
+  document.getElementById("convertedTime").textContent="Unable to convert";
+  document.getElementById("convertedDetails").textContent=error.message;
+ }
+}
+
+setInitialConverterDate();
+renderCities();
+updateClocks();
+
+setInterval(updateClocks,1000);
 </script>
 
 </body>
-
 </html>
