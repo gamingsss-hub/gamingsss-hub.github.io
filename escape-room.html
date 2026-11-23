@@ -1,508 +1,1291 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08050c">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Escape Room Game Online | Solve 15 Mystery Puzzles – Toolora AI</title>
+<meta name="description" content="Play the free online Escape Room adventure game by Toolora AI. Solve 15 mystery puzzles, unlock secret rooms, use clues and escape before time runs out.">
+<meta name="keywords" content="escape room game, online escape room, mystery puzzle game, brain game, riddle game, puzzle adventure, Toolora AI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/escape-room.html">
 
-<title>
+<meta property="og:title" content="Escape Room Game – Toolora AI">
+<meta property="og:description" content="Can you solve all 15 puzzles and escape? Play the free mystery adventure.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gamingsss-hub.github.io/escape-room.html">
 
-Escape Room – Solve Puzzles & Escape Online
-
-</title>
-
-<meta
-name="description"
-
-content=
-
-"Play Escape Room online and solve puzzles to unlock every room and escape.">
-
-<meta
-name="keywords"
-
-content=
-
-"escape room,puzzle game,riddle game,brain game,mystery game">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --bg:#08050c;
+  --panel:#120d18;
+  --panel2:#1b1223;
+  --red:#ff3155;
+  --purple:#9b5cff;
+  --cyan:#00e5ff;
+  --text:#f7f2ff;
+  --muted:#a69aaf;
+  --border:rgba(255,255,255,.09);
+  --green:#37e6a1;
+}
 
 *{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-font-family:Arial;
-
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#050816,
-
-#0a1733,
-
-#000
-
-);
-
-color:white;
-
-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-padding:20px;
-
+  min-height:100vh;
+  color:var(--text);
+  font-family:'Poppins',sans-serif;
+  background:
+    radial-gradient(ellipse at 15% 5%,rgba(155,92,255,.16),transparent 35%),
+    radial-gradient(ellipse at 90% 30%,rgba(255,49,85,.12),transparent 35%),
+    linear-gradient(145deg,#08050c,#100817 55%,#08050c);
+  overflow-x:hidden;
 }
 
-.box{
-
-max-width:600px;
-
-width:100%;
-
-padding:35px;
-
-text-align:center;
-
-border-radius:30px;
-
-background:
-
-rgba(
-255,
-255,
-255,
-.05
-);
-
-backdrop-filter:
-
-blur(20px);
-
-box-shadow:
-
-0 0 80px
-
-#00ccff44;
-
-}
-
-h1{
-
-margin-bottom:20px;
-
-}
-
-#room{
-
-font-size:28px;
-
-margin-bottom:20px;
-
-}
-
-#question{
-
-font-size:24px;
-
-margin-bottom:25px;
-
-}
-
-input{
-
-width:100%;
-
-padding:18px;
-
-border:none;
-
-border-radius:18px;
-
-font-size:20px;
-
-margin-bottom:20px;
-
+button,input,select{
+  font:inherit;
 }
 
 button{
-
-padding:16px 35px;
-
-border:none;
-
-border-radius:16px;
-
-font-size:20px;
-
-background:
-
-linear-gradient(
-
-90deg,
-
-#00aaff,
-
-#0055ff
-
-);
-
-color:white;
-
+  cursor:pointer;
 }
 
-#msg{
-
-margin-top:20px;
-
-font-size:24px;
-
+button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
 }
 
+.topbar{
+  width:100%;
+  padding:17px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--border);
+  background:rgba(8,5,12,.8);
+  backdrop-filter:blur(18px);
+}
+
+.logo{
+  font-family:'Outfit',sans-serif;
+  font-size:23px;
+  font-weight:900;
+  letter-spacing:.5px;
+}
+
+.logo span{
+  color:var(--red);
+}
+
+.back-link{
+  color:#c8b8d7;
+  text-decoration:none;
+  font-size:13px;
+  transition:.2s;
+}
+
+.back-link:hover{
+  color:white;
+}
+
+.container{
+  width:min(1100px,94%);
+  margin:35px auto 55px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:28px;
+}
+
+.eyebrow{
+  display:inline-block;
+  padding:7px 15px;
+  border:1px solid rgba(255,49,85,.3);
+  background:rgba(255,49,85,.08);
+  color:#ff8298;
+  border-radius:30px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:14px;
+}
+
+.hero h1{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(32px,6vw,55px);
+  line-height:1.12;
+  font-weight:900;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,#ff3155,#b16aff,#00d9ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  max-width:620px;
+  margin:12px auto 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+}
+
+.game-shell{
+  position:relative;
+  padding:22px;
+  border-radius:27px;
+  border:1px solid rgba(180,100,255,.2);
+  background:linear-gradient(145deg,rgba(27,18,35,.97),rgba(12,8,17,.98));
+  box-shadow:0 25px 90px rgba(0,0,0,.45),0 0 45px rgba(155,92,255,.08);
+  overflow:hidden;
+}
+
+.game-shell:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:15%;
+  right:15%;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--red),var(--purple),transparent);
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.stat{
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:13px 8px;
+  text-align:center;
+}
+
+.stat small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.stat strong{
+  display:block;
+  margin-top:5px;
+  font-family:'Outfit',sans-serif;
+  font-size:22px;
+}
+
+#timer{
+  color:#ff617c;
+}
+
+#score{
+  color:#c49aff;
+}
+
+#roomNumber{
+  color:var(--cyan);
+}
+
+.progress-wrap{
+  margin-bottom:20px;
+}
+
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:8px;
+}
+
+.progress-track{
+  height:8px;
+  background:#2a2032;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--red),var(--purple),var(--cyan));
+  border-radius:20px;
+  transition:width .4s ease;
+}
+
+.room-scene{
+  position:relative;
+  min-height:210px;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.09);
+  background:
+    linear-gradient(rgba(8,5,12,.5),rgba(8,5,12,.8)),
+    radial-gradient(circle at 50% 35%,rgba(155,92,255,.35),transparent 35%),
+    linear-gradient(135deg,#21152d,#0c0913 65%,#27111c);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:25px;
+}
+
+.room-scene:before,
+.room-scene:after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(255,255,255,.07);
+  pointer-events:none;
+}
+
+.room-scene:before{
+  inset:15px;
+  border-radius:14px;
+}
+
+.room-scene:after{
+  width:100px;
+  height:140px;
+  border-radius:50px 50px 5px 5px;
+  border-bottom:0;
+  opacity:.6;
+}
+
+.scene-content{
+  position:relative;
+  z-index:1;
+}
+
+.scene-icon{
+  font-size:53px;
+  margin-bottom:9px;
+  filter:drop-shadow(0 0 18px rgba(255,49,85,.5));
+}
+
+.scene-content h2{
+  font-family:'Outfit',sans-serif;
+  font-size:25px;
+}
+
+.scene-content p{
+  color:#c5b5d0;
+  font-size:12px;
+  margin-top:7px;
+}
+
+.difficulty-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:9px;
+  flex-wrap:wrap;
+  margin:20px 0;
+}
+
+.difficulty-row label{
+  color:var(--muted);
+  font-size:12px;
+}
+
+select{
+  color:white;
+  background:#21152b;
+  border:1px solid rgba(155,92,255,.35);
+  border-radius:11px;
+  padding:10px 14px;
+  outline:none;
+}
+
+select option{
+  background:#17101e;
+  color:white;
+}
+
+.story{
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:18px;
+}
+
+.story-title{
+  color:#ff8197;
+  font-size:10px;
+  letter-spacing:1.5px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.story p{
+  color:#c6b9ce;
+  font-size:12px;
+  line-height:1.8;
+}
+
+.puzzle-card{
+  padding:23px 18px;
+  border:1px solid rgba(155,92,255,.23);
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(155,92,255,.08),rgba(255,49,85,.045));
+  text-align:center;
+}
+
+.puzzle-tag{
+  color:#bb91ff;
+  font-size:10px;
+  letter-spacing:2px;
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+#question{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(19px,3vw,25px);
+  line-height:1.5;
+  font-weight:700;
+}
+
+.answer-area{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+}
+
+#answer{
+  min-width:0;
+  flex:1;
+  padding:15px 16px;
+  border-radius:13px;
+  border:1px solid rgba(255,255,255,.13);
+  background:#0b0710;
+  color:white;
+  outline:none;
+  font-size:15px;
+  transition:.2s;
+}
+
+#answer:focus{
+  border-color:var(--purple);
+  box-shadow:0 0 0 3px rgba(155,92,255,.12);
+}
+
+#answer::placeholder{
+  color:#766b80;
+}
+
+.primary-btn{
+  border:0;
+  padding:14px 22px;
+  border-radius:13px;
+  color:white;
+  font-weight:700;
+  background:linear-gradient(100deg,#ff3155,#a64dff);
+  box-shadow:0 8px 25px rgba(255,49,85,.18);
+  transition:.2s;
+}
+
+.primary-btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.12);
+}
+
+.secondary-btn{
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.05);
+  color:#e6d9ed;
+  padding:11px 15px;
+  border-radius:11px;
+  font-size:12px;
+  transition:.2s;
+}
+
+.secondary-btn:hover{
+  background:rgba(155,92,255,.14);
+  border-color:rgba(155,92,255,.4);
+}
+
+.actions{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+#message{
+  min-height:27px;
+  margin-top:15px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.message-good{
+  color:var(--green);
+}
+
+.message-bad{
+  color:#ff6b83;
+}
+
+.message-info{
+  color:#c49aff;
+}
+
+.hint-box{
+  display:none;
+  text-align:left;
+  margin-top:15px;
+  padding:13px 15px;
+  border-radius:12px;
+  border:1px solid rgba(0,229,255,.2);
+  background:rgba(0,229,255,.055);
+  color:#a8eff7;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.bottom-actions{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
+.bottom-actions .secondary-btn{
+  flex:1;
+}
+
+.notice{
+  text-align:center;
+  margin-top:17px;
+  color:#82758b;
+  font-size:10px;
+  line-height:1.7;
+}
+
+.result-screen{
+  display:none;
+  text-align:center;
+  padding:35px 15px;
+}
+
+.result-icon{
+  font-size:75px;
+  margin-bottom:15px;
+}
+
+.result-screen h2{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(29px,5vw,42px);
+  margin-bottom:10px;
+}
+
+.result-screen p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+  max-width:500px;
+  margin:0 auto 20px;
+}
+
+.result-stats{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:20px 0;
+}
+
+.result-stat{
+  padding:14px 22px;
+  border-radius:14px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+}
+
+.result-stat strong{
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-size:24px;
+  color:#d0a9ff;
+}
+
+.result-stat span{
+  color:var(--muted);
+  font-size:10px;
+}
+
+.footer{
+  text-align:center;
+  padding:20px;
+  color:#756a7d;
+  font-size:11px;
+}
+
+.footer a{
+  color:#b78cff;
+  text-decoration:none;
+}
+
+@media(max-width:600px){
+  .topbar{
+    padding:14px 5%;
+  }
+
+  .logo{
+    font-size:19px;
+  }
+
+  .container{
+    margin-top:23px;
+  }
+
+  .game-shell{
+    padding:14px;
+    border-radius:20px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+  }
+
+  .stat{
+    padding:10px;
+  }
+
+  .stat strong{
+    font-size:20px;
+  }
+
+  .room-scene{
+    min-height:175px;
+  }
+
+  .answer-area{
+    flex-direction:column;
+  }
+
+  .primary-btn{
+    width:100%;
+  }
+
+  .bottom-actions{
+    flex-direction:column;
+  }
+
+  .bottom-actions .secondary-btn{
+    width:100%;
+  }
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="box">
+<header class="topbar">
+  <div class="logo">TOOLORA<span> AI</span></div>
+  <a href="index.html" class="back-link">← Back to Home</a>
+</header>
 
-<h1>
+<main class="container">
 
-🚪 Escape Room
+  <section class="hero">
+    <div class="eyebrow">✦ MYSTERY ADVENTURE GAME ✦</div>
+    <h1>THE <span>ESCAPE ROOM</span></h1>
+    <p>
+      15 mysterious rooms. 3 difficulty levels. One final escape.
+      Find clues, solve puzzles and unlock the secrets hidden behind every door.
+    </p>
+  </section>
 
-</h1>
+  <section class="game-shell">
 
-<div id="room">
+    <div id="gameArea">
 
-Room 1
+      <div class="stats">
+        <div class="stat">
+          <small>Time Left</small>
+          <strong id="timer">20:00</strong>
+        </div>
 
-</div>
+        <div class="stat">
+          <small>Your Score</small>
+          <strong id="score">0</strong>
+        </div>
 
-<div id="question">
+        <div class="stat">
+          <small>Current Room</small>
+          <strong id="roomNumber">1/15</strong>
+        </div>
 
-Loading...
+        <div class="stat">
+          <small>Hints Left</small>
+          <strong id="hintsLeft">2</strong>
+        </div>
+      </div>
 
-</div>
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span>ESCAPE PROGRESS</span>
+          <span id="progressText">0 / 15 Rooms</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
 
-<input
-id="ans"
+      <div class="room-scene">
+        <div class="scene-content">
+          <div class="scene-icon" id="sceneIcon">🚪</div>
+          <h2 id="sceneTitle">The Forgotten Room</h2>
+          <p id="sceneSubtitle">Something is hidden here...</p>
+        </div>
+      </div>
 
-placeholder=
+      <div class="difficulty-row">
+        <label for="difficulty">DIFFICULTY:</label>
+        <select id="difficulty">
+          <option value="easy">🟢 Easy</option>
+          <option value="medium" disabled>🟡 Medium 🔒</option>
+          <option value="hard" disabled>🔴 Hard 🔒</option>
+        </select>
+      </div>
 
-"Type answer">
+      <div class="story">
+        <div class="story-title">📜 MISSION STORY</div>
+        <p id="storyText"></p>
+      </div>
 
-<button
+      <div class="puzzle-card">
+        <div class="puzzle-tag">🔐 SOLVE THE PUZZLE</div>
+        <div id="question">Loading puzzle...</div>
 
-onclick=
+        <div class="answer-area">
+          <input
+            type="text"
+            id="answer"
+            placeholder="Enter your answer..."
+            autocomplete="off"
+            maxlength="60"
+            aria-label="Your puzzle answer"
+          >
+          <button class="primary-btn" id="unlockBtn" type="button">
+            UNLOCK ROOM ↗
+          </button>
+        </div>
 
-"check()">
+        <div id="message" role="status" aria-live="polite"></div>
 
-Unlock
+        <div class="hint-box" id="hintBox"></div>
+      </div>
 
-</button>
+      <div class="actions">
+        <button class="secondary-btn" id="hintBtn" type="button">
+          💡 Reveal Hint
+        </button>
 
-<div id="msg">
+        <button class="secondary-btn" id="pauseBtn" type="button">
+          ⏸ Pause Game
+        </button>
+      </div>
 
-</div>
+      <div class="bottom-actions">
+        <button class="secondary-btn" id="restartBtn" type="button">
+          ↻ Restart Game
+        </button>
 
-</div>
+        <button class="secondary-btn" id="instructionsBtn" type="button">
+          ❔ How to Play
+        </button>
+      </div>
+
+      <div class="notice">
+        Every correct answer gives you 100 points. Wrong answers and hints reduce your score.
+        You have 20 minutes to complete your adventure.
+      </div>
+
+    </div>
+
+    <div class="result-screen" id="resultScreen">
+      <div class="result-icon" id="resultIcon">🏆</div>
+      <h2 id="resultTitle">YOU ESCAPED!</h2>
+      <p id="resultDescription"></p>
+
+      <div class="result-stats">
+        <div class="result-stat">
+          <strong id="finalScore">0</strong>
+          <span>FINAL SCORE</span>
+        </div>
+
+        <div class="result-stat">
+          <strong id="finalRooms">15</strong>
+          <span>ROOMS CLEARED</span>
+        </div>
+
+        <div class="result-stat">
+          <strong id="finalTime">00:00</strong>
+          <span>TIME LEFT</span>
+        </div>
+      </div>
+
+      <button class="primary-btn" id="playAgainBtn" type="button">
+        PLAY AGAIN ↻
+      </button>
+    </div>
+
+  </section>
+
+  <section style="margin-top:35px">
+    <h2 style="font-family:Outfit;font-size:23px;margin-bottom:10px">
+      About Escape Room
+    </h2>
+    <p style="color:#a69aaf;font-size:13px;line-height:1.9">
+      Escape Room is a free online puzzle adventure game where players solve
+      riddles, logic questions and mystery challenges to unlock new rooms.
+      Start with Easy mode, progress through Medium and Hard, and try to
+      complete all 15 rooms before the countdown reaches zero.
+    </p>
+
+    <h3 style="font-family:Outfit;font-size:18px;margin:22px 0 8px">
+      How to Play
+    </h3>
+    <p style="color:#a69aaf;font-size:13px;line-height:1.9">
+      Read the mission story and puzzle carefully. Type your answer in the
+      answer box and press Unlock Room. Use hints if you get stuck, but
+      remember that each hint costs points. Complete all five rooms in a
+      difficulty level to unlock the next one.
+    </p>
+
+    <h3 style="font-family:Outfit;font-size:18px;margin:22px 0 8px">
+      More Brain Games
+    </h3>
+    <p style="color:#a69aaf;font-size:13px;line-height:2">
+      Try more challenges:
+      <a href="iq.html" style="color:#c49aff">IQ Quiz</a> ·
+      <a href="worldgk.html" style="color:#c49aff">World GK</a> ·
+      <a href="guess-the-flag.html" style="color:#c49aff">Guess the Flag</a> ·
+      <a href="index.html" style="color:#c49aff">More Toolora AI Games</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  © 2026 Toolora AI · Free Online Puzzle Adventure
+</footer>
 
 <script>
+const levels = {
+  easy: [
+    {
+      title:"The Forgotten Room",
+      icon:"🚪",
+      subtitle:"A mysterious door blocks your way.",
+      story:"You wake up in an old room. A strange message is written on the wall. Solve it to open the first door.",
+      q:"I have hands but cannot clap. What am I?",
+      a:["clock"],
+      hints:["You can find me on a wall or table.","I help you know the time."]
+    },
+    {
+      title:"The Dark Library",
+      icon:"📚",
+      subtitle:"A secret is hidden among the books.",
+      story:"You enter a dusty library. A locked cabinet has a riddle written on it. Find the answer to continue.",
+      q:"What has many pages but is not a website?",
+      a:["book"],
+      hints:["You can read stories in it.","It may have a cover and chapters."]
+    },
+    {
+      title:"The Silent Kitchen",
+      icon:"🍽️",
+      subtitle:"Something is hidden near the table.",
+      story:"The kitchen door is locked. A note says that the answer is something you use every day while eating.",
+      q:"I have teeth but I cannot bite. What am I?",
+      a:["comb"],
+      hints:["You use me on your hair.","My teeth are arranged in a row."]
+    },
+    {
+      title:"The Secret Passage",
+      icon:"🗝️",
+      subtitle:"A code is needed to open the passage.",
+      story:"You discover a keypad. The clue says: count the sides of a triangle and multiply by four.",
+      q:"What is the secret code?",
+      a:["12","twelve"],
+      hints:["A triangle has 3 sides.","Multiply 3 by 4."]
+    },
+    {
+      title:"The Final Easy Door",
+      icon:"🔓",
+      subtitle:"One last puzzle before the next stage.",
+      story:"A final door appears. The message says: I go up but never come down. What am I?",
+      q:"Solve the final riddle.",
+      a:["age"],
+      hints:["It increases as time passes.","Everyone has one."]
+    }
+  ],
 
-const levels={
+  medium: [
+    {
+      title:"The Secret Laboratory",
+      icon:"🧪",
+      subtitle:"A strange message is on the laboratory screen.",
+      story:"You enter a secret laboratory. A scientist left a puzzle behind. Solve it to activate the exit system.",
+      q:"I speak without a mouth and hear without ears. What am I?",
+      a:["echo"],
+      hints:["You may hear me in a mountain valley.","I repeat sounds."]
+    },
+    {
+      title:"The Clock Tower",
+      icon:"🕰️",
+      subtitle:"The old clock holds a secret.",
+      story:"An enormous clock is stopped. A note reads: what has keys but cannot open locks?",
+      q:"What am I?",
+      a:["keyboard","piano"],
+      hints:["You use one version to type.","Another version makes music."]
+    },
+    {
+      title:"The Mirror Hall",
+      icon:"🪞",
+      subtitle:"Look carefully at the hidden pattern.",
+      story:"You find a mirror with a number sequence written on it. The next number will unlock the door.",
+      q:"Complete the sequence: 2, 4, 8, 16, ?",
+      a:["32"],
+      hints:["Each number is doubled.","Multiply 16 by 2."]
+    },
+    {
+      title:"The Underground Vault",
+      icon:"🏦",
+      subtitle:"A strange object is guarding the vault.",
+      story:"A locked vault asks a riddle. You must think beyond the obvious to find the answer.",
+      q:"What gets wetter the more it dries?",
+      a:["towel"],
+      hints:["You use it after bathing.","It absorbs water."]
+    },
+    {
+      title:"The Medium Exit",
+      icon:"🚪",
+      subtitle:"The final medium-level lock awaits.",
+      story:"The exit keypad displays a simple maths challenge. Enter the correct code to reach the final stage.",
+      q:"A number is multiplied by 3 and then 6 is added. The result is 27. What is the number?",
+      a:["7","seven"],
+      hints:["First subtract 6 from 27.","Then divide the result by 3."]
+    }
+  ],
 
-easy:[
-{q:"2 + 2 ?",a:"4"},
-{q:"Color of sky",a:"blue"},
-{q:"First month",a:"january"},
-{q:"5 × 5",a:"25"},
-{q:"What opens lock?",a:"key"}
-],
-
-medium:[
-{q:"I speak without mouth. What am I?",a:"echo"},
-{q:"What has keys but no locks?",a:"keyboard"},
-{q:"What comes once in a minute twice in a moment?",a:"m"},
-{q:"7×8+2",a:"58"},
-{q:"Capital of Australia",a:"canberra"}
-],
-
-hard:[
-{q:"I am always coming but never arrive?",a:"tomorrow"},
-{q:"What has one eye but cannot see?",a:"needle"},
-{q:"What gets wetter while drying?",a:"towel"},
-{q:"What belongs to you but others use more?",a:"name"},
-{q:"Decode: 1 1 2 3 5 8 ?",a:"13"}
-]
-
+  hard: [
+    {
+      title:"The Haunted Mansion",
+      icon:"🏚️",
+      subtitle:"The mansion has one final secret.",
+      story:"You enter an abandoned mansion. A message appears: I am always coming, but never arrive. Find the answer.",
+      q:"What am I?",
+      a:["tomorrow"],
+      hints:["It is the day after today.","It is always in the future."]
+    },
+    {
+      title:"The Prison Break",
+      icon:"⛓️",
+      subtitle:"A hidden code is written on the wall.",
+      story:"You find a number pattern carved into the wall. The next number is the key to the exit.",
+      q:"Complete the sequence: 1, 1, 2, 3, 5, 8, ?",
+      a:["13","thirteen"],
+      hints:["Each number is the sum of the previous two.","Add 5 and 8."]
+    },
+    {
+      title:"The Quantum Chamber",
+      icon:"⚛️",
+      subtitle:"Think carefully before answering.",
+      story:"A computer asks a logic question. Only a careful thinker can unlock this chamber.",
+      q:"If two's company and three's a crowd, what are four and five?",
+      a:["9","nine"],
+      hints:["Ignore the word company.","Add the two numbers."]
+    },
+    {
+      title:"The Hidden Observatory",
+      icon:"🔭",
+      subtitle:"The stars reveal the final clue.",
+      story:"A telescope points toward a mysterious number sequence. Find the missing number to continue.",
+      q:"Complete the sequence: 3, 6, 11, 18, 27, ?",
+      a:["38"],
+      hints:["The differences are 3, 5, 7 and 9.","The next difference is 11."]
+    },
+    {
+      title:"The Final Escape",
+      icon:"🏆",
+      subtitle:"The last door stands before freedom.",
+      story:"You have reached the final chamber. One last riddle stands between you and freedom. Think carefully.",
+      q:"What can travel around the world while staying in one corner?",
+      a:["stamp","postage stamp"],
+      hints:["You may find me on an envelope.","I help send letters."]
+    }
+  ]
 };
 
-let mode="easy";
-let room=0;
+const order = ["easy","medium","hard"];
+const totalRooms = 15;
 
-document.querySelector(".box").insertAdjacentHTML(
-"afterbegin",
+let mode = "easy";
+let room = 0;
+let score = 0;
+let unlocked = 0;
+let hintsUsed = 0;
+let hintStep = 0;
+let wrongAnswers = 0;
+let timeLeft = 20 * 60;
+let timerInterval = null;
+let paused = false;
+let finished = false;
 
-`
+const $ = id => document.getElementById(id);
 
-<select id="mode"
-
-style="
-
-padding:12px;
-
-margin-bottom:20px;
-
-border-radius:12px;
-
-font-size:18px;
-
-">
-
-<option value="easy">
-
-🟢 Easy
-
-</option>
-
-<option value="medium">
-
-🟡 Medium
-
-</option>
-
-<option value="hard">
-
-🔴 Hard
-
-</option>
-
-</select>
-
-`
-
-);
-
-document
-
-.getElementById("mode")
-
-.onchange=(e)=>{
-
-mode=e.target.value;
-
-room=0;
-
-load();
-
-};
-
-function load(){
-
-document
-
-.getElementById("room")
-
-.innerHTML=
-
-`${mode.toUpperCase()} • Room ${room+1}/5`;
-
-document
-
-.getElementById("question")
-
-.innerHTML=
-
-levels[mode][room].q;
-
-document
-
-.getElementById("ans").value="";
-
-document
-
-.getElementById("msg").innerHTML="";
-
+function getGlobalRoom(){
+  return order.indexOf(mode) * 5 + room + 1;
 }
 
-function check(){
-
-let input=
-
-document
-
-.getElementById("ans")
-
-.value
-
-.toLowerCase()
-
-.trim();
-
-if(
-
-input===
-
-levels[mode][room].a
-
-){
-
-room++;
-
-document
-
-.getElementById("msg")
-
-.innerHTML=
-
-"🔓 Correct";
-
-if(room===5){
-
-if(mode==="easy"){
-
-alert(
-
-"🟢 Easy Completed → Medium Unlock"
-
-);
-
-mode="medium";
-
+function formatTime(seconds){
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return String(m).padStart(2,"0") + ":" + String(s).padStart(2,"0");
 }
 
-else if(
-
-mode==="medium"
-
-){
-
-alert(
-
-"🟡 Medium Completed → Hard Unlock"
-
-);
-
-mode="hard";
-
+function currentPuzzle(){
+  return levels[mode][room];
 }
 
-else{
+function updateStats(){
+  $("score").textContent = score;
+  $("timer").textContent = formatTime(timeLeft);
+  $("roomNumber").textContent = getGlobalRoom() + "/15";
+  $("hintsLeft").textContent = Math.max(0,2-hintStep);
 
-document.body.innerHTML=
-
-`
-
-<div
-
-style='
-
-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-background:black;
-
-color:white;
-
-font-size:45px;
-
-text-align:center;
-
-'
-
->
-
-🏆 FINAL ESCAPE<br>
-
-You Escaped All Rooms
-
-</div>
-
-`;
-
-return;
-
+  const completed = getGlobalRoom() - 1;
+  $("progressText").textContent = completed + " / 15 Rooms";
+  $("progressFill").style.width = (completed / totalRooms * 100) + "%";
 }
 
-document
+function updateDifficulty(){
+  const select = $("difficulty");
 
-.getElementById("mode")
+  [...select.options].forEach((option,index)=>{
+    option.disabled = index > unlocked;
+    option.textContent = [
+      "🟢 Easy",
+      "🟡 Medium" + (unlocked >= 1 ? "" : " 🔒"),
+      "🔴 Hard" + (unlocked >= 2 ? "" : " 🔒")
+    ][index];
+  });
 
-.value=mode;
-
-room=0;
-
+  select.value = mode;
 }
 
-load();
-
+function showMessage(text,type){
+  $("message").textContent = text;
+  $("message").className =
+    type === "good" ? "message-good" :
+    type === "bad" ? "message-bad" :
+    "message-info";
 }
 
-else{
+function loadRoom(){
+  if(finished) return;
 
-document
+  const puzzle = currentPuzzle();
 
-.getElementById("msg")
+  $("sceneTitle").textContent = puzzle.title;
+  $("sceneIcon").textContent = puzzle.icon;
+  $("sceneSubtitle").textContent = puzzle.subtitle;
+  $("storyText").textContent = puzzle.story;
+  $("question").textContent = puzzle.q;
 
-.innerHTML=
+  $("answer").value = "";
+  $("hintBox").style.display = "none";
+  $("hintBox").textContent = "";
 
-"❌ Wrong Answer";
+  hintStep = 0;
+  paused = false;
 
+  $("pauseBtn").textContent = "⏸ Pause Game";
+  $("answer").disabled = false;
+  $("unlockBtn").disabled = false;
+  $("hintBtn").disabled = false;
+
+  updateDifficulty();
+  updateStats();
+  showMessage("Find the answer and unlock the door.","info");
+
+  $("answer").focus();
 }
 
+function normalizeAnswer(value){
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[.,!?;:'"()]/g,"")
+    .replace(/\s+/g," ");
 }
 
-document
+function checkAnswer(){
+  if(paused || finished) return;
 
-.getElementById("ans")
+  const value = normalizeAnswer($("answer").value);
 
-.addEventListener(
+  if(!value){
+    showMessage("Please enter an answer first.","bad");
+    $("answer").focus();
+    return;
+  }
 
-"keypress",
+  const puzzle = currentPuzzle();
+  const correct = puzzle.a.some(answer =>
+    normalizeAnswer(answer) === value
+  );
 
-(e)=>{
+  if(correct){
+    score += 100;
+    showMessage("🔓 Correct! The door is unlocked.","good");
+    updateStats();
 
-if(
+    $("answer").disabled = true;
+    $("unlockBtn").disabled = true;
+    $("hintBtn").disabled = true;
 
-e.key==="Enter"
-
-)
-
-check();
-
+    setTimeout(nextRoom,850);
+  }else{
+    score = Math.max(0,score - 15);
+    wrongAnswers++;
+    updateStats();
+    showMessage("❌ Not quite! Try another answer. (-15 points)","bad");
+    $("answer").select();
+  }
 }
 
-);
+function revealHint(){
+  if(paused || finished) return;
 
-load();
+  if(hintStep >= 2){
+    showMessage("No more hints available in this room.","bad");
+    return;
+  }
 
+  const puzzle = currentPuzzle();
+  const hint = puzzle.hints[hintStep];
+
+  hintStep++;
+  hintsUsed++;
+  score = Math.max(0,score - 30);
+
+  $("hintBox").style.display = "block";
+  $("hintBox").textContent = "💡 Hint " + hintStep + ": " + hint;
+
+  updateStats();
+  showMessage("Hint revealed! (-30 points)","info");
+
+  if(hintStep >= 2){
+    $("hintBtn").disabled = true;
+  }
+}
+
+function nextRoom(){
+  if(finished) return;
+
+  room++;
+
+  if(room >= 5){
+    const index = order.indexOf(mode);
+
+    if(index < 2){
+      unlocked = Math.max(unlocked,index+1);
+      mode = order[index+1];
+      room = 0;
+
+      updateDifficulty();
+
+      showMessage("🎉 Level completed! Next difficulty unlocked.","good");
+      loadRoom();
+      return;
+    }
+
+    winGame();
+    return;
+  }
+
+  loadRoom();
+}
+
+function winGame(){
+  finished = true;
+  clearInterval(timerInterval);
+
+  $("gameArea").style.display = "none";
+  $("resultScreen").style.display = "block";
+
+  $("resultIcon").textContent = "🏆";
+  $("resultTitle").textContent = "YOU ESCAPED!";
+
+  $("resultDescription").textContent =
+    "Amazing work! You solved all 15 puzzles, unlocked every room and escaped the mystery adventure. You are a true puzzle master!";
+
+  $("finalScore").textContent = score;
+  $("finalRooms").textContent = "15/15";
+  $("finalTime").textContent = formatTime(timeLeft);
+}
+
+function gameOver(){
+  finished = true;
+  clearInterval(timerInterval);
+
+  $("gameArea").style.display = "none";
+  $("resultScreen").style.display = "block";
+
+  $("resultIcon").textContent = "⏰";
+  $("resultTitle").textContent = "TIME IS UP!";
+
+  $("resultDescription").textContent =
+    "The countdown has ended before you could escape. Your adventure is over, but you can restart and try again!";
+
+  $("finalScore").textContent = score;
+  $("finalRooms").textContent = (getGlobalRoom()-1) + "/15";
+  $("finalTime").textContent = "00:00";
+}
+
+function startTimer(){
+  clearInterval(timerInterval);
+
+  timerInterval = setInterval(()=>{
+    if(paused || finished) return;
+
+    timeLeft--;
+
+    $("timer").textContent = formatTime(timeLeft);
+
+    if(timeLeft <= 60){
+      $("timer").style.color = "#ff3155";
+    }
+
+    if(timeLeft <= 0){
+      timeLeft = 0;
+      $("timer").textContent = "00:00";
+      gameOver();
+    }
+  },1000);
+}
+
+function togglePause(){
+  if(finished) return;
+
+  paused = !paused;
+
+  if(paused){
+    $("pauseBtn").textContent = "▶ Resume Game";
+    $("answer").disabled = true;
+    $("unlockBtn").disabled = true;
+    $("hintBtn").disabled = true;
+    showMessage("Game paused. Take your time.","info");
+  }else{
+    $("pauseBtn").textContent = "⏸ Pause Game";
+    $("answer").disabled = false;
+    $("unlockBtn").disabled = false;
+    $("hintBtn").disabled = hintStep >= 2;
+    showMessage("Game resumed. Continue your mission!","info");
+    $("answer").focus();
+  }
+}
+
+function changeDifficulty(){
+  const selected = $("difficulty").value;
+  const index = order.indexOf(selected);
+
+  if(index > unlocked){
+    updateDifficulty();
+    return;
+  }
+
+  mode = selected;
+  room = 0;
+  loadRoom();
+}
+
+function restartGame(){
+  const confirmed = confirm("Restart the game? Your current score and progress will be lost.");
+
+  if(!confirmed) return;
+
+  clearInterval(timerInterval);
+
+  mode = "easy";
+  room = 0;
+  score = 0;
+  unlocked = 0;
+  hintsUsed = 0;
+  hintStep = 0;
+  wrongAnswers = 0;
+  timeLeft = 20 * 60;
+  paused = false;
+  finished = false;
+
+  $("timer").style.color = "#ff617c";
+  $("gameArea").style.display = "block";
+  $("resultScreen").style.display = "none";
+
+  loadRoom();
+  startTimer();
+}
+
+function showInstructions(){
+  alert(
+    "HOW TO PLAY\n\n" +
+    "1. Read the mission story and puzzle.\n" +
+    "2. Type your answer and press UNLOCK ROOM.\n" +
+    "3. Every correct answer gives 100 points.\n" +
+    "4. Wrong answers cost 15 points.\n" +
+    "5. Each hint costs 30 points.\n" +
+    "6. You can use 2 hints per room.\n" +
+    "7. Complete Easy, Medium and Hard levels.\n" +
+    "8. Escape all 15 rooms within 20 minutes!\n\n" +
+    "Good luck, detective!"
+  );
+}
+
+$("unlockBtn").addEventListener("click",checkAnswer);
+$("hintBtn").addEventListener("click",revealHint);
+$("pauseBtn").addEventListener("click",togglePause);
+$("restartBtn").addEventListener("click",restartGame);
+$("instructionsBtn").addEventListener("click",showInstructions);
+$("playAgainBtn").addEventListener("click",restartGame);
+$("difficulty").addEventListener("change",changeDifficulty);
+
+$("answer").addEventListener("keydown",event=>{
+  if(event.key === "Enter"){
+    checkAnswer();
+  }
+});
+
+loadRoom();
+startTimer();
 </script>
 
 </body>
-
 </html>
