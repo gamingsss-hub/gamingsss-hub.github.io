@@ -1,563 +1,1125 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08070d">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Color Reflex Game | Test Your Focus & Reaction Speed - Toolora AI</title>
+<meta name="description" content="Play the free Color Reflex Game by Toolora AI. Test your focus, color recognition and reaction speed with Easy, Medium and Hard challenges.">
+<meta name="keywords" content="color reflex game, color reaction test, brain game, focus test, reaction speed game, color recognition game">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/color-reflex.html">
 
-<title>
-Color Reflex Game – Test Your Speed & Focus
-</title>
+<meta property="og:title" content="Color Reflex Game - Toolora AI">
+<meta property="og:description" content="Challenge your brain with this free color reflex and focus game.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gamingsss-hub.github.io/color-reflex.html">
+<meta name="twitter:card" content="summary">
 
-<meta
-name="description"
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-content=
-
-"Play Color Reflex Game online and test your reaction speed and focus.">
-
-<meta
-name="keywords"
-
-content=
-
-"color reflex,reaction game,color game,focus challenge">
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"Toolora AI Color Reflex Game",
+ "url":"https://gamingsss-hub.github.io/color-reflex.html",
+ "applicationCategory":"GameApplication",
+ "operatingSystem":"Any",
+ "description":"A free browser-based color recognition, focus and reaction speed game.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
 
 <style>
-
-*{
-
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-
+:root{
+ --bg:#08070d;
+ --panel:#14111e;
+ --panel2:#1d1829;
+ --red:#ff3155;
+ --purple:#995cff;
+ --cyan:#54dcff;
+ --green:#39e2a0;
+ --text:#f8f6ff;
+ --muted:#a59db5;
+ --border:rgba(255,255,255,.09);
 }
-
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-
-background:
-
-linear-gradient(
-135deg,
-#020617,
-#051d38,
-#1f1147
-);
-
-color:white;
-
-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-padding:20px;
-
+ min-height:100vh;
+ padding:18px;
+ color:var(--text);
+ font-family:'Poppins',sans-serif;
+ background:
+ radial-gradient(ellipse at 10% 0%,rgba(255,49,85,.12),transparent 34%),
+ radial-gradient(ellipse at 90% 10%,rgba(153,92,255,.14),transparent 35%),
+ var(--bg);
 }
-
-.box{
-
-max-width:560px;
-
-width:100%;
-
-padding:30px;
-
-text-align:center;
-
-border-radius:35px;
-
-background:
-
-rgba(
-255,
-255,
-255,
-.06
-);
-
-backdrop-filter:
-
-blur(20px);
-
-box-shadow:
-
-0 0 90px
-
-#00d9ff44;
-
+button{font-family:inherit}
+button:focus-visible,a:focus-visible{
+ outline:2px solid var(--cyan);
+ outline-offset:3px;
 }
-
+.topbar{
+ max-width:1050px;
+ margin:0 auto 25px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:12px;
+}
+.brand{
+ font-family:'Outfit',sans-serif;
+ font-size:24px;
+ font-weight:900;
+ letter-spacing:-1px;
+}
+.brand span{color:var(--red)}
+.back{
+ color:white;
+ text-decoration:none;
+ padding:10px 15px;
+ border:1px solid var(--border);
+ border-radius:12px;
+ background:rgba(255,255,255,.04);
+ font-size:13px;
+}
+.back:hover{border-color:var(--purple)}
+.wrapper{max-width:1050px;margin:auto}
+.hero{text-align:center;margin:8px 0 24px}
+.eyebrow{
+ display:inline-block;
+ padding:7px 13px;
+ border-radius:30px;
+ border:1px solid rgba(255,49,85,.25);
+ background:rgba(255,49,85,.09);
+ color:#ff8da1;
+ font-size:10px;
+ font-weight:800;
+ letter-spacing:1.6px;
+}
 h1{
-
-font-size:38px;
-
-margin-bottom:20px;
-
+ font-family:'Outfit',sans-serif;
+ font-size:clamp(34px,6vw,52px);
+ line-height:1.12;
+ font-weight:900;
+ margin:14px 0 9px;
 }
-
-#colorBox{
-
-height:230px;
-
-border-radius:30px;
-
-margin:20px 0;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:40px;
-
-font-weight:bold;
-
-transition:.25s;
-
+h1 span{
+ background:linear-gradient(90deg,var(--red),var(--purple),var(--cyan));
+ -webkit-background-clip:text;
+ background-clip:text;
+ color:transparent;
 }
-
-.grid{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(2,1fr);
-
-gap:12px;
-
+.hero p{color:var(--muted);font-size:13px;line-height:1.7}
+.layout{
+ display:grid;
+ grid-template-columns:minmax(0,1fr) 285px;
+ gap:17px;
+ align-items:start;
 }
-
-.opt{
-
-padding:18px;
-
-border:none;
-
-border-radius:20px;
-
-font-size:22px;
-
-color:white;
-
+.panel{
+ border:1px solid var(--border);
+ border-radius:22px;
+ padding:21px;
+ background:linear-gradient(145deg,rgba(28,23,41,.97),rgba(15,13,22,.98));
+ box-shadow:0 18px 55px rgba(0,0,0,.25);
 }
-
-.top{
-
-display:flex;
-
-justify-content:space-around;
-
-margin-bottom:15px;
-
-font-size:22px;
-
+.hidden{display:none!important}
+.panel-title{
+ font-family:'Outfit',sans-serif;
+ font-size:20px;
+ font-weight:800;
 }
-
+.muted{color:var(--muted);font-size:12px;line-height:1.7}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:9px;
+ margin:17px 0;
+}
+.stat{
+ text-align:center;
+ padding:11px 5px;
+ background:rgba(255,255,255,.04);
+ border:1px solid var(--border);
+ border-radius:13px;
+ min-width:0;
+}
+.stat small{
+ display:block;
+ color:var(--muted);
+ font-size:9px;
+ font-weight:700;
+ letter-spacing:.6px;
+}
+.stat strong{
+ display:block;
+ font-family:'Outfit',sans-serif;
+ font-size:23px;
+ margin-top:3px;
+}
+.stat.time strong{color:#ff8297}
+.stat.score strong{color:#c7a2ff}
+.progress-head{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ font-size:11px;
+ color:var(--muted);
+ margin-bottom:8px;
+}
+.progress{
+ height:7px;
+ background:#292334;
+ border-radius:20px;
+ overflow:hidden;
+}
+.progress-fill{
+ width:100%;
+ height:100%;
+ background:linear-gradient(90deg,var(--red),var(--purple));
+ border-radius:20px;
+ transform-origin:left;
+ transition:transform .2s linear;
+}
+.challenge{
+ margin:19px 0 15px;
+ padding:12px;
+ border:1px solid var(--border);
+ background:rgba(255,255,255,.025);
+ border-radius:13px;
+ text-align:center;
+}
+.challenge-label{
+ color:var(--muted);
+ font-size:10px;
+ font-weight:800;
+ letter-spacing:1.5px;
+}
+.challenge h2{
+ font-family:'Outfit',sans-serif;
+ font-size:clamp(18px,3vw,24px);
+ margin-top:5px;
+}
+.color-stage{
+ min-height:240px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+ border:1px solid rgba(153,92,255,.24);
+ border-radius:20px;
+ background:
+ radial-gradient(ellipse at center,rgba(153,92,255,.12),transparent 70%),
+ #0c0a13;
+ overflow:hidden;
+ transition:background .15s;
+}
+.color-word{
+ font-family:'Outfit',sans-serif;
+ font-size:clamp(52px,12vw,92px);
+ font-weight:900;
+ letter-spacing:2px;
+ text-shadow:0 7px 28px rgba(0,0,0,.5);
+ user-select:none;
+}
+.color-caption{
+ text-align:center;
+ color:var(--muted);
+ font-size:11px;
+ margin:12px 0 15px;
+ min-height:18px;
+}
+.options{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:11px;
+}
+.color-option{
+ min-height:62px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:10px;
+ border:1px solid var(--border);
+ border-radius:14px;
+ background:rgba(255,255,255,.045);
+ color:white;
+ font-size:14px;
+ font-weight:800;
+ cursor:pointer;
+ transition:.18s;
+}
+.color-option:hover:not(:disabled){
+ transform:translateY(-2px);
+ border-color:var(--purple);
+ background:rgba(153,92,255,.12);
+}
+.color-option:disabled{cursor:default;opacity:.75}
+.color-option.correct{
+ border-color:var(--green);
+ background:rgba(57,226,160,.12);
+ color:#75f5bd;
+}
+.color-option.wrong{
+ border-color:var(--red);
+ background:rgba(255,49,85,.12);
+ color:#ff8297;
+}
+.color-dot{
+ width:17px;height:17px;
+ border-radius:50%;
+ display:inline-block;
+ border:2px solid rgba(255,255,255,.5);
+ box-shadow:0 0 10px currentColor;
+ flex-shrink:0;
+}
+.feedback{
+ min-height:27px;
+ text-align:center;
+ margin-top:13px;
+ font-size:13px;
+ font-weight:700;
+}
+.feedback.good{color:var(--green)}
+.feedback.bad{color:#ff8297}
+.controls{
+ display:flex;
+ gap:9px;
+ margin-top:12px;
+}
+.primary{
+ flex:1;
+ border:0;
+ border-radius:13px;
+ padding:14px 17px;
+ background:linear-gradient(100deg,var(--red),#a33cff);
+ color:white;
+ font-size:13px;
+ font-weight:800;
+ cursor:pointer;
+ transition:.2s;
+}
+.primary:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.secondary{
+ border:1px solid var(--border);
+ border-radius:12px;
+ padding:12px 15px;
+ background:rgba(255,255,255,.04);
+ color:white;
+ font-size:12px;
+ font-weight:700;
+ cursor:pointer;
+}
+.secondary:hover{border-color:var(--purple)}
+.secondary:disabled{opacity:.4;cursor:not-allowed}
+.side{display:grid;gap:14px}
+.side-title{
+ font-family:'Outfit',sans-serif;
+ font-size:17px;
+ font-weight:800;
+ margin-bottom:13px;
+}
+.setting-label{
+ display:block;
+ color:var(--muted);
+ font-size:10px;
+ font-weight:800;
+ letter-spacing:.8px;
+ margin:14px 0 8px;
+}
+.choices{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:7px;
+}
+.choice{
+ padding:10px 3px;
+ border:1px solid var(--border);
+ border-radius:10px;
+ background:rgba(255,255,255,.04);
+ color:#c7bed3;
+ font-size:10px;
+ font-weight:800;
+ cursor:pointer;
+}
+.choice.selected{
+ border-color:var(--purple);
+ color:white;
+ background:rgba(153,92,255,.16);
+}
+.best-box{
+ border:1px solid rgba(255,49,85,.2);
+ border-radius:14px;
+ padding:15px;
+ background:linear-gradient(120deg,rgba(255,49,85,.1),rgba(153,92,255,.1));
+}
+.best-box small{color:var(--muted);font-size:10px}
+.best-box strong{
+ display:block;
+ font-family:'Outfit',sans-serif;
+ font-size:32px;
+ margin-top:4px;
+}
+.best-box p{color:var(--muted);font-size:10px}
+.stat-list{display:grid;gap:12px}
+.stat-line{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ font-size:12px;
+}
+.stat-line span{color:var(--muted)}
+.stat-line strong{font-weight:700}
+.tip{
+ color:var(--muted);
+ font-size:11px;
+ line-height:1.8;
+}
+.key-hint{
+ margin-top:12px;
+ text-align:center;
+ color:var(--muted);
+ font-size:10px;
+}
+.result-overlay{
+ position:fixed;
+ inset:0;
+ z-index:10;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:15px;
+ background:rgba(5,4,10,.85);
+ backdrop-filter:blur(9px);
+}
+.result-card{
+ width:min(430px,100%);
+ max-height:90vh;
+ overflow:auto;
+ text-align:center;
+ padding:25px;
+ border:1px solid var(--border);
+ border-radius:22px;
+ background:#171321;
+ box-shadow:0 25px 80px rgba(0,0,0,.5);
+}
+.result-icon{font-size:52px}
+.result-card h2{
+ font-family:'Outfit',sans-serif;
+ font-size:29px;
+ margin:8px 0;
+}
+.result-card p{color:var(--muted);font-size:12px}
+.result-score{
+ font-family:'Outfit',sans-serif;
+ font-size:55px;
+ font-weight:900;
+ color:#c9a2ff;
+ margin:12px 0;
+}
+.result-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:9px;
+ margin:15px 0 20px;
+}
+.result-item{
+ padding:12px;
+ border:1px solid var(--border);
+ border-radius:12px;
+ background:rgba(255,255,255,.04);
+}
+.result-item small{display:block;color:var(--muted);font-size:9px}
+.result-item strong{font-size:19px}
+.info{
+ margin-top:25px;
+ padding:22px;
+ border:1px solid var(--border);
+ border-radius:18px;
+ background:rgba(255,255,255,.025);
+}
+.info h2{
+ font-family:'Outfit',sans-serif;
+ font-size:21px;
+ margin-bottom:9px;
+}
+.info h3{font-size:14px;margin:16px 0 6px}
+.info p,.info li{
+ color:var(--muted);
+ font-size:12px;
+ line-height:1.9;
+}
+.info ul{padding-left:19px}
+.footer{
+ text-align:center;
+ color:#766e82;
+ font-size:11px;
+ padding:25px 5px;
+}
+.footer a{color:#c5a0ff;text-decoration:none}
+@media(max-width:850px){
+ .layout{grid-template-columns:1fr}
+ .side{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:540px){
+ body{padding:12px}
+ .topbar{margin-bottom:18px}
+ .brand{font-size:21px}
+ .panel{padding:14px;border-radius:17px}
+ .layout{gap:12px}
+ .stats{gap:6px}
+ .stat{padding:9px 3px}
+ .stat small{font-size:8px}
+ .stat strong{font-size:19px}
+ .color-stage{min-height:205px;padding:12px}
+ .options{gap:8px}
+ .color-option{min-height:58px;font-size:12px}
+ .side{grid-template-columns:1fr}
+ .info{padding:17px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{
+  scroll-behavior:auto!important;
+  animation-duration:.01ms!important;
+  transition-duration:.01ms!important;
+ }
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="box">
+<header class="topbar">
+ <div class="brand">TOOLORA<span> AI</span></div>
+ <a class="back" href="index.html">← Home</a>
+</header>
 
-<h1>
+<main class="wrapper">
 
-🧪 Color Reflex
+<section class="hero">
+ <div class="eyebrow">🧠 BRAIN & REFLEX CHALLENGE</div>
+ <h1>COLOR <span>REFLEX</span></h1>
+ <p>Think fast, focus carefully and test how quickly you recognize colors.</p>
+</section>
 
-</h1>
+<div class="layout">
 
-<div class="top">
+<!-- GAME AREA -->
+<section class="panel">
 
-<div>
+ <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+  <h2 class="panel-title">🧪 Reflex Arena</h2>
+  <span class="muted" id="gameStatus">READY TO PLAY</span>
+ </div>
 
-⏱
+ <div class="stats">
+  <div class="stat time"><small>TIME LEFT</small><strong id="time">30</strong></div>
+  <div class="stat score"><small>SCORE</small><strong id="score">0</strong></div>
+  <div class="stat"><small>STREAK</small><strong id="streak">0</strong></div>
+  <div class="stat"><small>ACCURACY</small><strong id="accuracy">0%</strong></div>
+ </div>
 
-<span id="time">
+ <div class="progress-head">
+  <span id="roundLabel">ROUND 0</span>
+  <span id="levelLabel">EASY MODE</span>
+ </div>
+ <div class="progress">
+  <div class="progress-fill" id="timeProgress"></div>
+ </div>
 
-30
+ <div class="challenge">
+  <div class="challenge-label" id="instruction">GET READY</div>
+  <h2 id="challengeTitle">Press Start to Play</h2>
+ </div>
 
-</span>
+ <div class="color-stage" id="colorStage">
+  <div class="color-word" id="colorWord">START</div>
+ </div>
 
+ <div class="color-caption" id="caption">Choose your settings and begin the challenge.</div>
+
+ <div class="options" id="options">
+  <button class="color-option" disabled>🔴 RED</button>
+  <button class="color-option" disabled>🔵 BLUE</button>
+  <button class="color-option" disabled>🟢 GREEN</button>
+  <button class="color-option" disabled>🟡 YELLOW</button>
+ </div>
+
+ <div class="feedback" id="feedback" aria-live="polite"></div>
+
+ <div class="controls">
+  <button class="primary" id="startBtn">▶ START GAME</button>
+  <button class="secondary" id="pauseBtn" disabled>Ⅱ PAUSE</button>
+  <button class="secondary" id="resetBtn">↻ RESET</button>
+ </div>
+
+ <div class="key-hint">Desktop keyboard shortcuts: 1 = Red · 2 = Blue · 3 = Green · 4 = Yellow</div>
+
+</section>
+
+<!-- SIDE PANEL -->
+<aside class="side">
+
+ <section class="panel">
+  <h2 class="side-title">⚙️ Game Settings</h2>
+
+  <span class="setting-label">DURATION</span>
+  <div class="choices" id="durationChoices">
+   <button class="choice" data-value="15">15 SEC</button>
+   <button class="choice selected" data-value="30">30 SEC</button>
+   <button class="choice" data-value="60">60 SEC</button>
+  </div>
+
+  <span class="setting-label">DIFFICULTY</span>
+  <div class="choices" id="difficultyChoices">
+   <button class="choice selected" data-value="easy">EASY</button>
+   <button class="choice" data-value="medium">MEDIUM</button>
+   <button class="choice" data-value="hard">HARD</button>
+  </div>
+
+  <span class="setting-label">SOUND</span>
+  <button class="secondary" id="soundBtn" style="width:100%">🔊 Sound: ON</button>
+
+  <p class="tip" style="margin-top:13px">
+   Easy: Match the word and its ink color.<br>
+   Medium: Sometimes they don't match.<br>
+   Hard: They differ, with a distracting background.
+  </p>
+ </section>
+
+ <section class="panel">
+  <h2 class="side-title">🏆 Personal Best</h2>
+  <div class="best-box">
+   <small>HIGHEST SCORE</small>
+   <strong id="best">0</strong>
+   <p>Saved in this browser</p>
+  </div>
+ </section>
+
+ <section class="panel">
+  <h2 class="side-title">📊 Session Stats</h2>
+  <div class="stat-list">
+   <div class="stat-line"><span>Total Attempts</span><strong id="attempts">0</strong></div>
+   <div class="stat-line"><span>Correct Answers</span><strong id="correct">0</strong></div>
+   <div class="stat-line"><span>Wrong Answers</span><strong id="wrong">0</strong></div>
+   <div class="stat-line"><span>Avg. Reaction</span><strong id="avgReaction">--</strong></div>
+   <div class="stat-line"><span>Best Reaction</span><strong id="bestReaction">--</strong></div>
+  </div>
+ </section>
+
+ <section class="panel">
+  <h2 class="side-title">💡 Quick Tip</h2>
+  <p class="tip">In Hard mode, focus on the color of the letters, not the word's meaning or the background. Accuracy matters more than speed!</p>
+ </section>
+
+</aside>
 </div>
 
-<div>
+<section class="info">
+ <h2>About Color Reflex Game</h2>
+ <p>Color Reflex is a free browser-based brain and reaction game. It challenges you to identify colors quickly while paying attention to the instructions. Different difficulty levels add extra visual distractions to make the challenge more interesting.</p>
 
-🏆
+ <h3>How to Play</h3>
+ <ul>
+  <li>Select a game duration and difficulty.</li>
+  <li>Read the instruction displayed above the color word.</li>
+  <li>Select the correct answer from the four color buttons.</li>
+  <li>Try to build a streak by answering correctly.</li>
+  <li>Complete the timer and review your results.</li>
+ </ul>
 
-<span id="score">
+ <h3>Frequently Asked Questions</h3>
+ <h3>Is Color Reflex free?</h3>
+ <p>Yes. You can play this game for free without creating an account.</p>
 
-0
+ <h3>Does it work on mobile phones?</h3>
+ <p>Yes. The layout and answer buttons adapt to mobile, tablet and desktop screens. Touch and mouse input are supported.</p>
 
-</span>
+ <h3>What is Hard mode?</h3>
+ <p>Hard mode uses mismatched word and ink colors along with a changing background. Follow the instruction carefully to choose the correct answer.</p>
 
-</div>
+ <h3>Is my best score saved?</h3>
+ <p>Your best score is saved locally in your browser. It does not automatically sync between different devices.</p>
+</section>
 
-<div>
+<footer class="footer">
+ © 2026 Toolora AI · Free Online Games
+<br><br>
+<a href="index.html">Home</a> ·
+<a href="aim-trainer.html">Aim Trainer</a> ·
+<a href="speed-click-test.html">Speed Click Test</a> ·
+<a href="privacy.html">Privacy</a>
+</footer>
 
-🔥
+</main>
 
-<span id="best">
-
-0
-
-</span>
-
-</div>
-
-</div>
-
-<div id="colorBox">
-
-START
-
-</div>
-
-<div class="grid">
-
-<button
-class="opt"
-onclick="pick('red')"
-style="background:red">
-
-RED
-
-</button>
-
-<button
-class="opt"
-onclick="pick('blue')"
-style="background:blue">
-
-BLUE
-
-</button>
-
-<button
-class="opt"
-onclick="pick('green')"
-style="background:green">
-
-GREEN
-
-</button>
-
-<button
-class="opt"
-onclick="pick('yellow')"
-style="background:#d4aa00">
-
-YELLOW
-
-</button>
-
-</div>
-
+<!-- RESULT POPUP -->
+<div class="result-overlay hidden" id="resultOverlay">
+ <div class="result-card">
+  <div class="result-icon" id="resultIcon">🏆</div>
+  <h2 id="resultTitle">Challenge Complete!</h2>
+  <p>Your color reflex session has ended.</p>
+  <div class="result-score" id="finalScore">0</div>
+  <div class="result-grid">
+   <div class="result-item"><small>✅ CORRECT</small><strong id="finalCorrect">0</strong></div>
+   <div class="result-item"><small>❌ WRONG</small><strong id="finalWrong">0</strong></div>
+   <div class="result-item"><small>🎯 ACCURACY</small><strong id="finalAccuracy">0%</strong></div>
+   <div class="result-item"><small>🔥 BEST STREAK</small><strong id="finalStreak">0</strong></div>
+   <div class="result-item"><small>⚡ AVG. REACTION</small><strong id="finalReaction">--</strong></div>
+   <div class="result-item"><small>🏆 BEST SCORE</small><strong id="finalBest">0</strong></div>
+  </div>
+  <button class="primary" id="againBtn">PLAY AGAIN ↻</button>
+  <button class="secondary" id="closeResultBtn" style="width:100%;margin-top:9px">CLOSE RESULTS</button>
+ </div>
 </div>
 
 <script>
+"use strict";
 
-let colors=[
+const $ = id => document.getElementById(id);
 
-"red",
-"blue",
-"green",
-"yellow"
-
+const colorData = [
+ {name:"RED",value:"#ff3155",dot:"🔴"},
+ {name:"BLUE",value:"#318bff",dot:"🔵"},
+ {name:"GREEN",value:"#22c982",dot:"🟢"},
+ {name:"YELLOW",value:"#f4c542",dot:"🟡"}
 ];
 
-let current="";
+const settings = {
+ duration:30,
+ difficulty:"easy",
+ sound:true
+};
 
+let state="ready";
 let score=0;
+let timeLeft=30;
+let deadline=0;
+let timerInterval=null;
+let currentAnswer=null;
+let round=0;
+let correct=0;
+let wrong=0;
+let streak=0;
+let bestStreak=0;
+let reactions=[];
+let questionStarted=0;
+let questionLocked=false;
+let audioContext=null;
+let bestScore=0;
+let bestReaction=null;
+let roundTimeout=null;
 
-let time=30;
+try{
+ bestScore=Number(localStorage.getItem("toolora_color_best")||0);
+ const saved=localStorage.getItem("toolora_color_reaction");
+ if(saved!==null) bestReaction=Number(saved);
+}catch(e){}
 
-let best=
+$("best").textContent=bestScore;
+renderStats();
 
-localStorage
-
-.getItem(
-
-"bestColor"
-
-)
-
-||
-
-0;
-
-let speed=1000;
-
-let timer;
-
-let changer;
-
-let playing=false;
-
-document
-
-.getElementById(
-
-"best"
-
-)
-
-.innerHTML=
-
-best;
-
-function randomColor(){
-
-current=
-
-colors[
-
-Math.floor(
-
-Math.random()
-
-*4
-
-)
-
-];
-
-let box=
-
-document
-
-.getElementById(
-
-"colorBox"
-
-);
-
-box.style.background=
-
-current;
-
-box.innerHTML=
-
-current
-
-.toUpperCase();
-
+function shuffle(array){
+ const copy=[...array];
+ for(let i=copy.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [copy[i],copy[j]]=[copy[j],copy[i]];
+ }
+ return copy;
 }
 
-function gameOver(){
-
-clearInterval(
-
-timer
-
-);
-
-clearInterval(
-
-changer
-
-);
-
-playing=false;
-
-document
-
-.getElementById(
-
-"colorBox"
-
-)
-
-.innerHTML=
-
-`
-
-💀 GAME OVER
-
-<br>
-
-Score:
-${score}
-
-`;
-
-if(
-
-score>
-
-best
-
-){
-
-best=score;
-
-localStorage
-
-.setItem(
-
-"bestColor",
-
-best
-
-);
-
-document
-
-.getElementById(
-
-"best"
-
-)
-
-.innerHTML=
-
-best;
-
+function playTone(frequency=650){
+ if(!settings.sound)return;
+ try{
+  audioContext=audioContext||(new (window.AudioContext||window.webkitAudioContext)());
+  if(audioContext.state==="suspended")audioContext.resume();
+  const osc=audioContext.createOscillator();
+  const gain=audioContext.createGain();
+  osc.connect(gain);
+  gain.connect(audioContext.destination);
+  osc.frequency.value=frequency;
+  gain.gain.setValueAtTime(.06,audioContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+.14);
+  osc.start();
+  osc.stop(audioContext.currentTime+.15);
+ }catch(e){}
 }
 
+function getAccuracy(){
+ const total=correct+wrong;
+ return total?Math.round(correct/total*100):0;
 }
 
-function start(){
-
-playing=true;
-
-score=0;
-
-time=30;
-
-speed=1000;
-
-document
-
-.getElementById(
-
-"score"
-
-)
-
-.innerHTML=
-
-0;
-
-randomColor();
-
-timer=
-
-setInterval(
-
-()=>{
-
-time--;
-
-document
-
-.getElementById(
-
-"time"
-
-)
-
-.innerHTML=
-
-time;
-
-if(
-
-time<=0
-
-){
-
-gameOver();
-
+function getAverageReaction(){
+ if(!reactions.length)return null;
+ return reactions.reduce((a,b)=>a+b,0)/reactions.length;
 }
 
-},
+function renderStats(){
+ $("score").textContent=score;
+ $("streak").textContent=streak;
+ $("accuracy").textContent=getAccuracy()+"%";
+ $("correct").textContent=correct;
+ $("wrong").textContent=wrong;
+ $("attempts").textContent=correct+wrong;
 
-1000
-
-);
-
-changer=
-
-setInterval(
-
-()=>{
-
-randomColor();
-
-if(
-
-speed>300
-
-){
-
-speed-=40;
-
+ const avg=getAverageReaction();
+ $("avgReaction").textContent=avg===null?"--":Math.round(avg)+" ms";
+ $("bestReaction").textContent=bestReaction===null?"--":bestReaction+" ms";
 }
 
-},
-
-speed);
-
+function clearTimers(){
+ clearInterval(timerInterval);
+ clearTimeout(roundTimeout);
+ timerInterval=null;
+ roundTimeout=null;
 }
 
-function pick(v){
-
-if(
-
-!playing
-
-){
-
-start();
-
-return;
-
+function setChoices(group,value){
+ document.querySelectorAll("#"+group+" .choice").forEach(button=>{
+  button.classList.toggle("selected",button.dataset.value===String(value));
+ });
 }
 
-if(
+$("durationChoices").addEventListener("click",event=>{
+ const button=event.target.closest(".choice");
+ if(!button || state==="running" || state==="paused")return;
+ settings.duration=Number(button.dataset.value);
+ timeLeft=settings.duration;
+ $("time").textContent=timeLeft;
+ setChoices("durationChoices",settings.duration);
+ updateProgress();
+});
 
-v!==current
+$("difficultyChoices").addEventListener("click",event=>{
+ const button=event.target.closest(".choice");
+ if(!button || state==="running" || state==="paused")return;
+ settings.difficulty=button.dataset.value;
+ setChoices("difficultyChoices",settings.difficulty);
+ $("levelLabel").textContent=settings.difficulty.toUpperCase()+" MODE";
+});
 
-){
+$("soundBtn").addEventListener("click",()=>{
+ settings.sound=!settings.sound;
+ $("soundBtn").textContent=settings.sound?"🔊 Sound: ON":"🔇 Sound: OFF";
+});
 
-gameOver();
-
-return;
-
+function updateProgress(){
+ const ratio=Math.max(0,timeLeft/settings.duration);
+ $("timeProgress").style.transform=`scaleX(${ratio})`;
+ $("time").textContent=Math.max(0,Math.ceil(timeLeft));
 }
 
-score++;
+function resetSession(){
+ clearTimers();
+ state="ready";
+ score=0;
+ correct=0;
+ wrong=0;
+ streak=0;
+ bestStreak=0;
+ round=0;
+ reactions=[];
+ timeLeft=settings.duration;
+ questionLocked=true;
 
-document
+ $("gameStatus").textContent="READY TO PLAY";
+ $("instruction").textContent="GET READY";
+ $("challengeTitle").textContent="Press Start to Play";
+ $("colorWord").textContent="START";
+ $("colorWord").style.color="white";
+ $("colorStage").style.background="";
+ $("caption").textContent="Choose your settings and begin the challenge.";
+ $("roundLabel").textContent="ROUND 0";
+ $("feedback").textContent="";
+ $("feedback").className="feedback";
+ $("startBtn").textContent="▶ START GAME";
+ $("pauseBtn").disabled=true;
+ $("pauseBtn").textContent="Ⅱ PAUSE";
+ $("resultOverlay").classList.add("hidden");
 
-.getElementById(
-
-"score"
-
-)
-
-.innerHTML=
-
-score;
-
-randomColor();
-
+ renderOptions(false);
+ updateProgress();
+ renderStats();
 }
 
+function startGame(){
+ if(state==="running")return;
+
+ if(state==="paused"){
+  resumeGame();
+  return;
+ }
+
+ resetSession();
+ state="running";
+ questionLocked=false;
+ deadline=Date.now()+settings.duration*1000;
+ questionStarted=performance.now();
+
+ $("gameStatus").textContent="GAME LIVE";
+ $("startBtn").textContent="▶ GAME RUNNING";
+ $("pauseBtn").disabled=false;
+
+ nextRound();
+ startTimer();
+}
+
+function startTimer(){
+ clearInterval(timerInterval);
+ timerInterval=setInterval(()=>{
+  if(state!=="running")return;
+  timeLeft=Math.max(0,(deadline-Date.now())/1000);
+  updateProgress();
+  if(timeLeft<=0)finishGame();
+ },80);
+}
+
+function makeQuestion(){
+ const wordColor=colorData[Math.floor(Math.random()*colorData.length)];
+ let inkColor=wordColor;
+ let backgroundColor="#0c0a13";
+
+ if(settings.difficulty==="medium"){
+  if(Math.random()<.55){
+   inkColor=colorData.filter(c=>c.name!==wordColor.name)[
+    Math.floor(Math.random()*3)
+   ];
+  }
+ }
+
+ if(settings.difficulty==="hard"){
+  inkColor=colorData.filter(c=>c.name!==wordColor.name)[
+   Math.floor(Math.random()*3)
+  ];
+  backgroundColor=colorData.filter(c=>
+   c.name!==wordColor.name && c.name!==inkColor.name
+  )[Math.floor(Math.random()*2)].value+"22";
+ }
+
+ return {wordColor,inkColor,backgroundColor};
+}
+
+function nextRound(){
+ if(state!=="running")return;
+
+ questionLocked=false;
+ round++;
+
+ const question=makeQuestion();
+ currentAnswer=question.inkColor;
+
+ $("roundLabel").textContent="ROUND "+round;
+ $("levelLabel").textContent=settings.difficulty.toUpperCase()+" MODE";
+ $("feedback").textContent="";
+ $("feedback").className="feedback";
+ $("instruction").textContent="SELECT THE INK COLOR";
+ $("challengeTitle").textContent="What color are the letters?";
+ $("colorWord").textContent=question.wordColor.name;
+ $("colorWord").style.color=question.inkColor.value;
+ $("colorStage").style.background=
+  `radial-gradient(ellipse at center,${question.backgroundColor},#0c0a13 80%)`;
+ $("caption").textContent=
+  settings.difficulty==="hard"
+   ?"Ignore the word and background. Focus on the letter color."
+   :"Look at the letters and select their color.";
+
+ renderOptions(true);
+ questionStarted=performance.now();
+}
+
+function renderOptions(enabled){
+ $("options").innerHTML="";
+
+ shuffle(colorData).forEach((color,index)=>{
+  const button=document.createElement("button");
+  button.className="color-option";
+  button.disabled=!enabled;
+  button.dataset.color=color.name;
+
+  const dot=document.createElement("span");
+  dot.className="color-dot";
+  dot.style.background=color.value;
+  dot.style.color=color.value;
+
+  const label=document.createElement("span");
+  label.textContent=color.name;
+
+  button.append(dot,label);
+  button.addEventListener("click",()=>pick(color.name,button));
+  $("options").appendChild(button);
+ });
+}
+
+function pick(selected,button){
+ if(state!=="running"||questionLocked)return;
+ questionLocked=true;
+
+ const reaction=Math.round(performance.now()-questionStarted);
+ reactions.push(reaction);
+
+ document.querySelectorAll(".color-option").forEach(btn=>{
+  btn.disabled=true;
+  if(btn.dataset.color===currentAnswer.name){
+   btn.classList.add("correct");
+  }
+ });
+
+ if(selected===currentAnswer.name){
+  correct++;
+  streak++;
+  bestStreak=Math.max(bestStreak,streak);
+
+  const speedBonus=Math.max(0,Math.round((1500-reaction)/100));
+  const streakBonus=streak>1 && streak%5===0?10:0;
+  const earned=10+speedBonus+streakBonus;
+
+  score+=earned;
+  button.classList.add("correct");
+  $("feedback").textContent="✓ Correct! +"+earned+" points";
+  $("feedback").className="feedback good";
+  playTone(850);
+ }else{
+  wrong++;
+  streak=0;
+  button.classList.add("wrong");
+  $("feedback").textContent="✕ Wrong! The ink color was "+currentAnswer.name;
+  $("feedback").className="feedback bad";
+  playTone(220);
+ }
+
+ renderStats();
+
+ // Brief pause after each answer
+ roundTimeout=setTimeout(()=>{
+  if(state==="running")nextRound();
+ },260);
+}
+
+function pauseGame(){
+ if(state!=="running")return;
+
+ timeLeft=Math.max(0,(deadline-Date.now())/1000);
+ clearTimers();
+ state="paused";
+ questionLocked=true;
+
+ $("gameStatus").textContent="PAUSED";
+ $("startBtn").textContent="▶ RESUME";
+ $("pauseBtn").textContent="▶ RESUME";
+ $("instruction").textContent="GAME PAUSED";
+ $("challengeTitle").textContent="Take a short break";
+ $("colorWord").textContent="PAUSED";
+ $("colorWord").style.color="white";
+ $("colorStage").style.background="";
+ $("caption").textContent="Press Resume when you're ready.";
+ renderOptions(false);
+ updateProgress();
+}
+
+function resumeGame(){
+ if(state!=="paused")return;
+
+ state="running";
+ questionLocked=false;
+ deadline=Date.now()+timeLeft*1000;
+
+ $("gameStatus").textContent="GAME LIVE";
+ $("startBtn").textContent="▶ GAME RUNNING";
+ $("pauseBtn").textContent="Ⅱ PAUSE";
+
+ nextRound();
+ startTimer();
+}
+
+function finishGame(){
+ if(state==="finished")return;
+
+ clearTimers();
+ state="finished";
+ questionLocked=true;
+ timeLeft=0;
+ updateProgress();
+
+ $("gameStatus").textContent="SESSION COMPLETE";
+ $("startBtn").textContent="▶ START AGAIN";
+ $("pauseBtn").disabled=true;
+ $("pauseBtn").textContent="Ⅱ PAUSE";
+
+ renderOptions(false);
+
+ const oldBest=bestScore;
+ if(score>bestScore){
+  bestScore=score;
+  try{localStorage.setItem("toolora_color_best",String(bestScore));}catch(e){}
+ }
+
+ const avg=getAverageReaction();
+ if(avg!==null && (bestReaction===null || avg<bestReaction)){
+  bestReaction=Math.round(avg);
+  try{localStorage.setItem("toolora_color_reaction",String(bestReaction));}catch(e){}
+ }
+
+ $("best").textContent=bestScore;
+ $("resultIcon").textContent=score>oldBest && score>0?"🏆":"🧠";
+ $("resultTitle").textContent=score>oldBest && score>0?"New Personal Best!":"Challenge Complete!";
+ $("finalScore").textContent=score;
+ $("finalCorrect").textContent=correct;
+ $("finalWrong").textContent=wrong;
+ $("finalAccuracy").textContent=getAccuracy()+"%";
+ $("finalStreak").textContent=bestStreak;
+ $("finalReaction").textContent=avg===null?"--":Math.round(avg)+" ms";
+ $("finalBest").textContent=bestScore;
+
+ $("resultOverlay").classList.remove("hidden");
+ playTone(700);
+}
+
+$("startBtn").addEventListener("click",()=>{
+ if(state==="paused")resumeGame();
+ else if(state!=="running")startGame();
+});
+
+$("pauseBtn").addEventListener("click",()=>{
+ if(state==="running")pauseGame();
+ else if(state==="paused")resumeGame();
+});
+
+$("resetBtn").addEventListener("click",resetSession);
+$("againBtn").addEventListener("click",()=>{
+ $("resultOverlay").classList.add("hidden");
+ startGame();
+});
+$("closeResultBtn").addEventListener("click",()=>{
+ $("resultOverlay").classList.add("hidden");
+});
+
+document.addEventListener("keydown",event=>{
+ if(state!=="running")return;
+
+ const keys={"1":"RED","2":"BLUE","3":"GREEN","4":"YELLOW"};
+ const answer=keys[event.key];
+ if(!answer)return;
+
+ const button=[...document.querySelectorAll(".color-option")]
+  .find(btn=>btn.dataset.color===answer);
+
+ if(button && !button.disabled)button.click();
+});
+
+document.addEventListener("visibilitychange",()=>{
+ if(document.hidden && state==="running")pauseGame();
+});
+
+updateProgress();
+renderOptions(false);
 </script>
 
 </body>
-
 </html>
