@@ -1,471 +1,986 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08060e">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Speed Click Test – Online CPS Test Game | Toolora AI</title>
+<meta name="description" content="Test your clicking speed with Toolora AI Speed Click Test. Measure your CPS, beat your best score and challenge yourself in 5, 10 or 30 seconds.">
+<meta name="keywords" content="speed click test, click speed test, CPS test, clicks per second, mouse click test, fast clicking game">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/speed-click-test.html">
 
-<title>
+<meta property="og:title" content="Speed Click Test | Toolora AI">
+<meta property="og:description" content="How fast can you click? Test your CPS and beat your personal record.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gamingsss-hub.github.io/speed-click-test.html">
 
-Click Speed Test – Fast Click Challenge
-
-</title>
-
-<meta
-name="description"
-
-content=
-
-"Play Click Speed Test online and see how fast you can click in 10 seconds.">
-
-<meta
-name="keywords"
-
-content=
-
-"click speed test,cps test,click game,fast click,online game">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --bg:#08060e;
+  --panel:#12101c;
+  --red:#ff3155;
+  --purple:#8b5cff;
+  --cyan:#00e5ff;
+  --text:#f7f4ff;
+  --muted:#a7a1b7;
+  --border:rgba(255,255,255,.09);
+}
 
 *{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-font-family:Arial;
-
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-
-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-background:
-
-radial-gradient(
-
-circle,
-
-#1a0033,
-
-#050814,
-
-#000
-
-);
-
-color:white;
-
-overflow:hidden;
-
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse at 15% 10%,rgba(139,92,255,.16),transparent 35%),
+    radial-gradient(ellipse at 90% 80%,rgba(255,49,85,.12),transparent 35%),
+    var(--bg);
+  color:var(--text);
+  font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
 }
 
-.box{
-
-width:90%;
-
-max-width:550px;
-
-padding:30px;
-
-text-align:center;
-
-border-radius:35px;
-
-background:
-
-rgba(
-255,
-255,
-255,
-.06
-);
-
-backdrop-filter:
-
-blur(25px);
-
-box-shadow:
-
-0 0 80px
-
-#00e1ff44;
-
+button,a{
+  font:inherit;
 }
 
-h1{
+button{
+  cursor:pointer;
+}
 
-font-size:38px;
+.topbar{
+  width:100%;
+  padding:19px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--border);
+  background:rgba(8,6,14,.65);
+  backdrop-filter:blur(15px);
+}
 
-margin-bottom:15px;
+.logo{
+  color:white;
+  text-decoration:none;
+  font-family:'Outfit',sans-serif;
+  font-size:23px;
+  font-weight:900;
+  letter-spacing:-.7px;
+}
 
+.logo span{
+  color:var(--red);
+}
+
+.home-link{
+  color:#ddd5ee;
+  text-decoration:none;
+  font-size:13px;
+  border:1px solid var(--border);
+  padding:9px 17px;
+  border-radius:30px;
+  transition:.2s;
+}
+
+.home-link:hover{
+  border-color:var(--purple);
+  color:white;
+}
+
+.container{
+  width:min(100% - 30px,1050px);
+  margin:45px auto 55px;
+}
+
+.heading{
+  text-align:center;
+  margin-bottom:28px;
+}
+
+.tag{
+  display:inline-block;
+  color:#ff9bad;
+  background:rgba(255,49,85,.10);
+  border:1px solid rgba(255,49,85,.22);
+  padding:7px 15px;
+  border-radius:30px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1px;
+  margin-bottom:15px;
+}
+
+.heading h1{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(30px,5vw,48px);
+  font-weight:900;
+  line-height:1.15;
+}
+
+.heading h1 span{
+  background:linear-gradient(90deg,#ff3155,#a36aff,#00e5ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.heading p{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:12px;
+}
+
+.game-layout{
+  display:grid;
+  grid-template-columns:1fr 270px;
+  gap:20px;
+  align-items:start;
+}
+
+.game-panel,.side-panel{
+  background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:25px;
+  box-shadow:0 20px 70px rgba(0,0,0,.25);
+}
+
+.game-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.game-label{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.status{
+  font-size:11px;
+  color:#c9aaff;
+  background:rgba(139,92,255,.13);
+  padding:7px 12px;
+  border-radius:20px;
+}
+
+.timer-box{
+  text-align:center;
+  padding:12px 0 20px;
+}
+
+.timer-label{
+  color:var(--muted);
+  font-size:12px;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
 #timer{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(48px,9vw,72px);
+  font-weight:900;
+  line-height:1.25;
+  margin-top:4px;
+  font-variant-numeric:tabular-nums;
+}
 
-font-size:26px;
+#timer.danger{
+  color:var(--red);
+}
 
-margin-bottom:15px;
+.progress-track{
+  height:7px;
+  background:rgba(255,255,255,.08);
+  border-radius:20px;
+  overflow:hidden;
+  margin:5px 0 22px;
+}
 
+#progress{
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg,var(--purple),var(--red));
+  border-radius:20px;
+  transition:width .08s linear;
+}
+
+.arena{
+  min-height:245px;
+  border:1px dashed rgba(255,255,255,.15);
+  background:
+    radial-gradient(circle at center,rgba(139,92,255,.12),transparent 65%),
+    rgba(0,0,0,.16);
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
 }
 
 #clickBtn{
-
-width:260px;
-
-height:260px;
-
-border-radius:50%;
-
-border:none;
-
-font-size:34px;
-
-color:white;
-
-cursor:pointer;
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#ff0066,
-
-#6a00ff
-
-);
-
-box-shadow:
-
-0 0 80px
-
-#ff0080;
-
-transition:.1s;
-
+  width:min(210px,65vw);
+  height:min(210px,65vw);
+  max-width:210px;
+  max-height:210px;
+  border:0;
+  border-radius:50%;
+  color:white;
+  font-family:'Outfit',sans-serif;
+  font-size:25px;
+  font-weight:900;
+  background:linear-gradient(135deg,#ff3155,#a12dcb 55%,#704cff);
+  box-shadow:0 0 35px rgba(255,49,85,.28),inset 0 2px 8px rgba(255,255,255,.2);
+  transition:transform .09s,filter .2s,box-shadow .2s;
+  touch-action:manipulation;
+  user-select:none;
+  -webkit-user-select:none;
 }
 
-#clickBtn:active{
-
-transform:scale(.94);
-
+#clickBtn:active:not(:disabled){
+  transform:scale(.94);
+  filter:brightness(1.2);
 }
 
-.stats{
-
-display:flex;
-
-justify-content:space-around;
-
-margin-top:25px;
-
-font-size:22px;
-
+#clickBtn:disabled{
+  cursor:not-allowed;
+  opacity:.8;
 }
 
-#result{
-
-margin-top:25px;
-
-font-size:28px;
-
-color:#00ffb7;
-
+.arena.active{
+  border-color:rgba(255,49,85,.45);
+  border-style:solid;
 }
 
+.arena.active #clickBtn{
+  animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+  from{box-shadow:0 0 25px rgba(255,49,85,.25)}
+  to{box-shadow:0 0 48px rgba(139,92,255,.48)}
+}
+
+.hint{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:15px;
+  min-height:20px;
+}
+
+.controls{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:22px;
+}
+
+.primary-btn,.secondary-btn{
+  padding:12px 23px;
+  border-radius:12px;
+  border:0;
+  font-weight:700;
+  font-size:13px;
+  transition:.2s;
+}
+
+.primary-btn{
+  color:white;
+  background:linear-gradient(100deg,var(--red),#a12dcb);
+  box-shadow:0 7px 25px rgba(255,49,85,.17);
+}
+
+.primary-btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
+}
+
+.secondary-btn{
+  color:#eee8ff;
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--border);
+}
+
+.secondary-btn:hover{
+  border-color:var(--purple);
+}
+
+.mode-title{
+  color:var(--muted);
+  font-size:11px;
+  text-align:center;
+  margin-top:25px;
+  margin-bottom:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.modes{
+  display:flex;
+  justify-content:center;
+  gap:9px;
+}
+
+.mode{
+  padding:9px 19px;
+  color:#c8c0d8;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--border);
+  border-radius:10px;
+  font-size:12px;
+  font-weight:600;
+}
+
+.mode.selected{
+  background:rgba(139,92,255,.19);
+  border-color:var(--purple);
+  color:white;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:20px;
+}
+
+.stat{
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--border);
+  padding:14px 8px;
+  border-radius:15px;
+  text-align:center;
+}
+
+.stat small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:5px;
+}
+
+.stat strong{
+  font-family:'Outfit',sans-serif;
+  font-size:24px;
+  font-weight:800;
+}
+
+.side-panel h3{
+  font-family:'Outfit',sans-serif;
+  font-size:19px;
+  margin-bottom:17px;
+}
+
+.record-card{
+  background:linear-gradient(135deg,rgba(255,49,85,.13),rgba(139,92,255,.13));
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:17px;
+  padding:19px;
+  margin-bottom:18px;
+}
+
+.record-card small{
+  color:#c5b9d8;
+  font-size:11px;
+}
+
+.record-card strong{
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-size:37px;
+  margin-top:5px;
+}
+
+.record-card span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.stat-line{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+  font-size:12px;
+}
+
+.stat-line span{
+  color:var(--muted);
+}
+
+.stat-line strong{
+  color:white;
+}
+
+.tip{
+  background:rgba(0,229,255,.055);
+  border:1px solid rgba(0,229,255,.13);
+  border-radius:14px;
+  padding:14px;
+  margin-top:20px;
+  color:#b8eaf0;
+  font-size:11px;
+  line-height:1.8;
+}
+
+.result-box{
+  display:none;
+  margin-top:18px;
+  padding:16px;
+  border-radius:15px;
+  text-align:center;
+  background:rgba(139,92,255,.10);
+  border:1px solid rgba(139,92,255,.25);
+}
+
+.result-box.show{
+  display:block;
+  animation:appear .3s ease;
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.result-box h3{
+  font-family:'Outfit',sans-serif;
+  font-size:22px;
+}
+
+.result-box p{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:7px;
+}
+
+.content-section{
+  margin-top:35px;
+  padding:26px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:rgba(255,255,255,.025);
+}
+
+.content-section h2{
+  font-family:'Outfit',sans-serif;
+  font-size:22px;
+  margin-bottom:12px;
+}
+
+.content-section p,.content-section li{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.9;
+}
+
+.content-section ul{
+  padding-left:20px;
+  margin-top:10px;
+}
+
+.faq{
+  padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.faq:last-child{
+  border:0;
+}
+
+.faq h3{
+  font-size:14px;
+  margin-bottom:6px;
+}
+
+footer{
+  text-align:center;
+  padding:25px 15px;
+  color:#898397;
+  font-size:11px;
+}
+
+footer a{
+  color:#c7a9ff;
+  text-decoration:none;
+}
+
+@media(max-width:800px){
+  .game-layout{
+    grid-template-columns:1fr;
+  }
+  .side-panel{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .side-panel h3{
+    grid-column:1/-1;
+    margin-bottom:0;
+  }
+  .record-card{
+    margin-bottom:0;
+  }
+  .tip{
+    margin-top:0;
+  }
+}
+
+@media(max-width:520px){
+  .topbar{
+    padding:15px 5%;
+  }
+  .logo{
+    font-size:20px;
+  }
+  .container{
+    margin-top:30px;
+  }
+  .game-panel,.side-panel{
+    padding:17px;
+    border-radius:19px;
+  }
+  .arena{
+    min-height:220px;
+  }
+  .stats-grid{
+    gap:7px;
+  }
+  .stat{
+    padding:12px 5px;
+  }
+  .stat strong{
+    font-size:21px;
+  }
+  .side-panel{
+    display:block;
+  }
+  .record-card{
+    margin:14px 0;
+  }
+  .tip{
+    margin-top:15px;
+  }
+  .content-section{
+    padding:19px;
+  }
+}
 </style>
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Speed Click Test",
+  "url":"https://gamingsss-hub.github.io/speed-click-test.html",
+  "applicationCategory":"GameApplication",
+  "operatingSystem":"Any",
+  "description":"A free online click speed test to measure clicks per second."
+}
+</script>
 </head>
 
 <body>
 
-<div class="box">
+<header class="topbar">
+  <a href="index.html" class="logo">TOOLORA<span> AI</span></a>
+  <a href="index.html" class="home-link">← Home</a>
+</header>
 
-<h1>
+<main class="container">
 
-🏁 Click Speed Test
+  <section class="heading">
+    <span class="tag">⚡ REFLEX & SPEED CHALLENGE</span>
+    <h1>Speed <span>Click Test</span></h1>
+    <p>How fast can you click? Challenge yourself and beat your personal record.</p>
+  </section>
 
-</h1>
+  <div class="game-layout">
 
-<div id="timer">
+    <section class="game-panel">
 
-10
+      <div class="game-top">
+        <span class="game-label">YOUR CLICKING CHALLENGE</span>
+        <span class="status" id="status">● READY</span>
+      </div>
 
-</div>
+      <div class="timer-box">
+        <div class="timer-label">Time Remaining</div>
+        <div id="timer">10.00</div>
+      </div>
 
-<button
+      <div class="progress-track">
+        <div id="progress"></div>
+      </div>
 
-id="clickBtn">
+      <div class="arena" id="arena">
+        <button id="clickBtn" disabled>START TEST</button>
+      </div>
 
-START
+      <p class="hint" id="hint">Choose a duration and press Start Test.</p>
 
-</button>
+      <div class="controls">
+        <button class="primary-btn" id="startBtn">▶ Start Test</button>
+        <button class="secondary-btn" id="resetBtn">↻ Reset</button>
+      </div>
 
-<div class="stats">
+      <div class="mode-title">Choose Test Duration</div>
 
-<div>
+      <div class="modes">
+        <button class="mode" data-time="5">5 Sec</button>
+        <button class="mode selected" data-time="10">10 Sec</button>
+        <button class="mode" data-time="30">30 Sec</button>
+      </div>
 
-🔥
+      <div class="stats-grid">
+        <div class="stat">
+          <small>🖱 TOTAL CLICKS</small>
+          <strong id="score">0</strong>
+        </div>
+        <div class="stat">
+          <small>⚡ LIVE CPS</small>
+          <strong id="cps">0.0</strong>
+        </div>
+        <div class="stat">
+          <small>🏆 BEST CPS</small>
+          <strong id="bestCps">0.0</strong>
+        </div>
+      </div>
 
-<span id="score">
+      <div class="result-box" id="resultBox">
+        <h3 id="resultTitle">🏁 Test Complete!</h3>
+        <p id="resultText"></p>
+      </div>
 
-0
+    </section>
 
-</span>
+    <aside class="side-panel">
 
-</div>
+      <h3>🏆 Your Performance</h3>
 
-<div>
+      <div class="record-card">
+        <small>PERSONAL BEST CLICKS</small>
+        <strong id="bestClicks">0</strong>
+        <span>Most clicks in one round</span>
+      </div>
 
-🏆
+      <div>
+        <div class="stat-line">
+          <span>Last CPS</span>
+          <strong id="lastCps">0.0</strong>
+        </div>
+        <div class="stat-line">
+          <span>Last Score</span>
+          <strong id="lastScore">0</strong>
+        </div>
+        <div class="stat-line">
+          <span>Test Duration</span>
+          <strong id="durationLabel">10 sec</strong>
+        </div>
+      </div>
 
-<span id="best">
+      <div class="tip">
+        💡 <b>Pro Tip:</b><br>
+        Keep your hand relaxed, use a comfortable clicking position and maintain a steady rhythm. Practice to improve your personal score.
+      </div>
 
-0
+    </aside>
 
-</span>
+  </div>
 
-</div>
+  <section class="content-section">
+    <h2>What is a Speed Click Test?</h2>
+    <p>
+      A Speed Click Test measures how many times you can click within a selected time limit. Your result is measured in CPS, which means Clicks Per Second. This simple online game lets you challenge your clicking speed on a computer, tablet or mobile phone.
+    </p>
 
-</div>
+    <h2 style="margin-top:22px">How to Play</h2>
+    <ul>
+      <li>Select a test duration: 5, 10 or 30 seconds.</li>
+      <li>Press the Start Test button.</li>
+      <li>Tap or click the large button as quickly as you comfortably can.</li>
+      <li>Watch your score and live CPS.</li>
+      <li>Check your final result and try to beat your personal best.</li>
+    </ul>
 
-<div id="result">
+    <h2 style="margin-top:22px">Frequently Asked Questions</h2>
 
-Ready?
+    <div class="faq">
+      <h3>1. What does CPS mean?</h3>
+      <p>CPS stands for Clicks Per Second. It represents the average number of clicks made per second during your test.</p>
+    </div>
 
-</div>
+    <div class="faq">
+      <h3>2. Can I play on mobile?</h3>
+      <p>Yes. The game supports touch input on smartphones and tablets, as well as mouse clicks on desktop computers.</p>
+    </div>
 
-</div>
+    <div class="faq">
+      <h3>3. Is this Speed Click Test free?</h3>
+      <p>Yes. You can play the test for free without creating an account.</p>
+    </div>
+
+    <div class="faq">
+      <h3>4. Does the game save my best score?</h3>
+      <p>Yes. Your personal best is saved in your browser using local storage. It may not transfer to another device or browser.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Explore More Toolora AI Games</h2>
+    <p>
+      <a href="aim-trainer.html">Aim Trainer</a> ·
+      <a href="color-reflex.html">Color Reflex</a> ·
+      <a href="spin-wheel.html">Spin Wheel</a> ·
+      <a href="escape-room.html">Escape Room</a> ·
+      <a href="guess-the-logo.html">Guess The Logo</a>
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Toolora AI · Free Online Games & Tools
+  <br><br>
+  <a href="privacy.html">Privacy Policy</a> ·
+  <a href="about.html">About</a> ·
+  <a href="contact.html">Contact</a>
+</footer>
 
 <script>
-
-let clicks=0;
-
-let time=10;
-
-let started=false;
-
-let interval;
-
-let best=
-
-localStorage
-
-.getItem(
-
-"bestClick"
-
-)
-
-||
-
-0;
-
-document
-
-.getElementById(
-
-"best"
-
-)
-
-.innerHTML=
-
-best;
-
-function start(){
-
-started=true;
-
-clicks=0;
-
-time=10;
-
-document
-
-.getElementById(
-
-"score"
-
-)
-
-.innerHTML=
-
-0;
-
-document
-
-.getElementById(
-
-"result"
-
-)
-
-.innerHTML=
-
-"GO!!!";
-
-interval=
-
-setInterval(
-
-()=>{
-
-time--;
-
-document
-
-.getElementById(
-
-"timer"
-
-)
-
-.innerHTML=
-
-time;
-
-if(
-
-time<=0
-
-){
-
-clearInterval(
-
-interval
-
-);
-
-started=false;
-
-let cps=
-
-(
-
-clicks/10
-
-)
-
-.toFixed(
-
-1
-
-);
-
-document
-
-.getElementById(
-
-"result"
-
-)
-
-.innerHTML=
-
-`⚡ ${cps} CPS`;
-
-if(
-
-clicks>
-
-best
-
-){
-
-best=clicks;
-
-localStorage
-
-.setItem(
-
-"bestClick",
-
-best
-
-);
-
-document
-
-.getElementById(
-
-"best"
-
-)
-
-.innerHTML=
-
-best;
-
+const $ = id => document.getElementById(id);
+
+let duration = 10;
+let clicks = 0;
+let running = false;
+let finished = false;
+let deadline = 0;
+let timerFrame = null;
+let bestClicks = Number(localStorage.getItem("bestClick") || 0);
+let bestCps = Number(localStorage.getItem("bestClickCps") || 0);
+let lastClickTime = 0;
+
+$("bestClicks").textContent = bestClicks;
+$("bestCps").textContent = bestCps.toFixed(1);
+
+function updateStats(){
+  $("score").textContent = clicks;
+
+  const elapsed = duration - Math.max(0,(deadline-Date.now())/1000);
+  const cps = elapsed > 0 ? clicks/elapsed : 0;
+
+  $("cps").textContent = cps.toFixed(1);
 }
 
+function setStatus(text){
+  $("status").textContent = "● " + text;
 }
 
-},
-
-1000
-
-);
-
+function stopTimer(){
+  if(timerFrame !== null){
+    cancelAnimationFrame(timerFrame);
+    timerFrame = null;
+  }
 }
 
-document
+function updateTimer(){
+  if(!running) return;
 
-.getElementById(
+  const remaining = Math.max(0,deadline-Date.now());
+  const seconds = remaining/1000;
 
-"clickBtn"
+  $("timer").textContent = seconds.toFixed(2);
+  $("timer").classList.toggle("danger",seconds <= 3);
 
-)
+  $("progress").style.width =
+    (remaining/(duration*1000)*100) + "%";
 
-.onclick=
+  updateStats();
 
-()=>{
+  if(remaining <= 0){
+    finishGame();
+    return;
+  }
 
-if(
-
-!started
-
-){
-
-start();
-
-return;
-
+  timerFrame = requestAnimationFrame(updateTimer);
 }
 
-clicks++;
+function startGame(){
+  if(running) return;
 
-document
+  stopTimer();
 
-.getElementById(
+  clicks = 0;
+  running = true;
+  finished = false;
+  lastClickTime = 0;
+  deadline = Date.now() + duration*1000;
 
-"score"
+  $("score").textContent = "0";
+  $("cps").textContent = "0.0";
+  $("timer").textContent = duration.toFixed(2);
+  $("timer").classList.remove("danger");
+  $("progress").style.width = "100%";
 
-)
+  $("resultBox").classList.remove("show");
+  $("arena").classList.add("active");
 
-.innerHTML=
+  $("clickBtn").disabled = false;
+  $("clickBtn").textContent = "CLICK!";
+  $("hint").textContent = "Go! Click the button as quickly as you can.";
 
-clicks;
+  $("startBtn").disabled = true;
+  $("startBtn").textContent = "TEST RUNNING";
+  $("startBtn").style.opacity = ".5";
 
-};
+  setStatus("RUNNING");
 
+  updateTimer();
+}
+
+function registerClick(){
+  if(!running || Date.now() >= deadline) return;
+
+  clicks++;
+
+  $("score").textContent = clicks;
+
+  const elapsed = Math.max(.001,(duration*1000-(deadline-Date.now()))/1000);
+  $("cps").textContent = (clicks/elapsed).toFixed(1);
+}
+
+function finishGame(){
+  if(!running) return;
+
+  running = false;
+  finished = true;
+  stopTimer();
+
+  const cps = clicks/duration;
+  const isNewRecord = clicks > bestClicks;
+
+  if(isNewRecord){
+    bestClicks = clicks;
+    localStorage.setItem("bestClick",bestClicks);
+    $("bestClicks").textContent = bestClicks;
+  }
+
+  if(cps > bestCps){
+    bestCps = cps;
+    localStorage.setItem("bestClickCps",bestCps);
+    $("bestCps").textContent = bestCps.toFixed(1);
+  }
+
+  $("timer").textContent = "0.00";
+  $("timer").classList.remove("danger");
+  $("progress").style.width = "0%";
+
+  $("clickBtn").disabled = true;
+  $("clickBtn").textContent = "FINISHED";
+
+  $("arena").classList.remove("active");
+
+  $("startBtn").disabled = false;
+  $("startBtn").textContent = "↻ Play Again";
+  $("startBtn").style.opacity = "1";
+
+  $("hint").textContent = "Your test is complete. Try again to beat your record.";
+
+  $("lastCps").textContent = cps.toFixed(1);
+  $("lastScore").textContent = clicks;
+
+  setStatus("COMPLETED");
+
+  let rating = "Keep practicing!";
+  if(cps >= 8) rating = "Excellent clicking speed!";
+  else if(cps >= 6) rating = "Great performance!";
+  else if(cps >= 4) rating = "Good job!";
+
+  $("resultTitle").textContent = isNewRecord
+    ? "🏆 New Personal Record!"
+    : "🏁 Test Complete!";
+
+  $("resultText").textContent =
+    `You made ${clicks} clicks at ${cps.toFixed(2)} CPS. ${rating}`;
+
+  $("resultBox").classList.add("show");
+}
+
+function resetGame(){
+  running = false;
+  finished = false;
+  stopTimer();
+
+  clicks = 0;
+
+  $("timer").textContent = duration.toFixed(2);
+  $("timer").classList.remove("danger");
+  $("progress").style.width = "100%";
+
+  $("score").textContent = "0";
+  $("cps").textContent = "0.0";
+
+  $("clickBtn").disabled = true;
+  $("clickBtn").textContent = "START TEST";
+
+  $("startBtn").disabled = false;
+  $("startBtn").textContent = "▶ Start Test";
+  $("startBtn").style.opacity = "1";
+
+  $("arena").classList.remove("active");
+  $("resultBox").classList.remove("show");
+
+  $("hint").textContent = "Choose a duration and press Start Test.";
+
+  setStatus("READY");
+}
+
+$("startBtn").addEventListener("click",startGame);
+$("resetBtn").addEventListener("click",resetGame);
+
+$("clickBtn").addEventListener("click",registerClick);
+
+document.querySelectorAll(".mode").forEach(button=>{
+  button.addEventListener("click",()=>{
+    if(running) return;
+
+    duration = Number(button.dataset.time);
+
+    document.querySelectorAll(".mode").forEach(b=>{
+      b.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+    $("durationLabel").textContent = duration + " sec";
+
+    resetGame();
+  });
+});
+
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden && running){
+    // The deadline-based timer remains accurate if the tab is hidden.
+  }
+});
+
+window.addEventListener("pagehide",stopTimer);
 </script>
 
 </body>
-
 </html>
