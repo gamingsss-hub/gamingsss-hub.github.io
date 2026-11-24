@@ -1,494 +1,1066 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08070d">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Aim Trainer Online | Reaction Speed & Accuracy Game - Toolora AI</title>
+<meta name="description" content="Play Toolora AI Aim Trainer online. Improve your reaction speed, target accuracy and focus with interactive aim challenges on mobile and desktop.">
+<meta name="keywords" content="aim trainer, reaction time game, target practice game, aim speed test, accuracy test, online aim game">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/aim-trainer.html">
 
-<title>
-Aim Trainer – Improve Your Aim Speed Online
-</title>
+<meta property="og:title" content="Aim Trainer Online - Toolora AI">
+<meta property="og:description" content="Test your reaction speed and accuracy with the free online Aim Trainer.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gamingsss-hub.github.io/aim-trainer.html">
+<meta name="twitter:card" content="summary">
 
-<meta
-name="description"
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-content=
-
-"Play Aim Trainer online and improve reaction speed and target accuracy with this fun target challenge.">
-
-<meta
-name="keywords"
-
-content=
-
-"aim trainer,target game,reaction game,speed challenge,online game">
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"Toolora AI Aim Trainer",
+ "url":"https://gamingsss-hub.github.io/aim-trainer.html",
+ "applicationCategory":"GameApplication",
+ "operatingSystem":"Any",
+ "description":"A free browser-based target practice and reaction speed game.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
 
 <style>
-
-*{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-font-family:Arial;
-
+:root{
+ --bg:#08070d;
+ --panel:#13111c;
+ --panel2:#1b1727;
+ --red:#ff3155;
+ --purple:#995cff;
+ --cyan:#54dcff;
+ --green:#38e2a0;
+ --text:#f8f6ff;
+ --muted:#a59db5;
+ --border:rgba(255,255,255,.09);
 }
-
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-
-background:
-
-radial-gradient(
-
-circle,
-
-#020617,
-
-#07132e,
-
-#000
-
-);
-
-height:100vh;
-
-overflow:hidden;
-
-color:white;
-
+ min-height:100vh;
+ background:
+ radial-gradient(ellipse at 10% 0%,rgba(255,49,85,.12),transparent 34%),
+ radial-gradient(ellipse at 90% 10%,rgba(153,92,255,.14),transparent 35%),
+ var(--bg);
+ color:var(--text);
+ font-family:'Poppins',sans-serif;
+ padding:18px;
 }
-
-.top{
-
-display:flex;
-
-justify-content:space-around;
-
-padding:20px;
-
-font-size:24px;
-
+button{font-family:inherit}
+button:focus-visible,a:focus-visible{
+ outline:2px solid var(--cyan);
+ outline-offset:3px;
 }
-
-#game{
-
-height:80vh;
-
-position:relative;
-
+.topbar{
+ max-width:1150px;
+ margin:0 auto 24px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px;
 }
-
+.brand{
+ font-family:'Outfit',sans-serif;
+ font-size:24px;
+ font-weight:900;
+ letter-spacing:-1px;
+}
+.brand span{color:var(--red)}
+.back{
+ text-decoration:none;
+ color:white;
+ border:1px solid var(--border);
+ background:rgba(255,255,255,.04);
+ padding:10px 15px;
+ border-radius:12px;
+ font-size:13px;
+}
+.back:hover{border-color:var(--purple)}
+.wrapper{max-width:1150px;margin:auto}
+.hero{text-align:center;margin:10px 0 25px}
+.eyebrow{
+ display:inline-block;
+ padding:7px 13px;
+ border:1px solid rgba(255,49,85,.25);
+ background:rgba(255,49,85,.09);
+ border-radius:30px;
+ color:#ff8da1;
+ font-size:10px;
+ font-weight:800;
+ letter-spacing:1.7px;
+}
+h1{
+ font-family:'Outfit',sans-serif;
+ font-size:clamp(34px,6vw,53px);
+ font-weight:900;
+ line-height:1.12;
+ margin:13px 0 9px;
+}
+h1 span{
+ background:linear-gradient(90deg,var(--red),var(--purple),var(--cyan));
+ -webkit-background-clip:text;
+ background-clip:text;
+ color:transparent;
+}
+.hero p{color:var(--muted);font-size:13px;line-height:1.7}
+.layout{
+ display:grid;
+ grid-template-columns:minmax(0,1fr) 285px;
+ gap:18px;
+ align-items:start;
+}
+.panel{
+ background:linear-gradient(145deg,rgba(27,23,40,.97),rgba(15,13,22,.98));
+ border:1px solid var(--border);
+ border-radius:22px;
+ padding:20px;
+ box-shadow:0 18px 55px rgba(0,0,0,.25);
+}
+.arena-panel{min-width:0}
+.arena-top{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ margin-bottom:15px;
+ flex-wrap:wrap;
+}
+.arena-heading{
+ font-family:'Outfit',sans-serif;
+ font-size:19px;
+ font-weight:800;
+}
+.live-label{
+ font-size:10px;
+ color:var(--green);
+ font-weight:800;
+ letter-spacing:1px;
+}
+.live-label::before{
+ content:"";
+ display:inline-block;
+ width:7px;height:7px;
+ background:var(--green);
+ border-radius:50%;
+ margin-right:7px;
+ box-shadow:0 0 10px var(--green);
+}
+.hud{
+ display:grid;
+ grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:9px;
+ margin-bottom:15px;
+}
+.hud-card{
+ padding:11px 8px;
+ text-align:center;
+ border:1px solid var(--border);
+ border-radius:13px;
+ background:rgba(255,255,255,.035);
+ min-width:0;
+}
+.hud-card small{
+ display:block;
+ color:var(--muted);
+ font-size:9px;
+ font-weight:700;
+ letter-spacing:.7px;
+}
+.hud-card strong{
+ display:block;
+ font-family:'Outfit',sans-serif;
+ font-size:23px;
+ margin-top:2px;
+ font-weight:800;
+}
+.hud-card.time strong{color:#ff8297}
+.hud-card.score strong{color:#c5a1ff}
+.arena{
+ position:relative;
+ height:440px;
+ min-height:300px;
+ overflow:hidden;
+ border:1px solid rgba(153,92,255,.25);
+ border-radius:17px;
+ background-color:#0b0a12;
+ background-image:
+ linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+ radial-gradient(ellipse at center,rgba(153,92,255,.10),transparent 65%);
+ background-size:35px 35px,35px 35px,100% 100%;
+ touch-action:pan-y;
+ user-select:none;
+ -webkit-user-select:none;
+}
+.arena::after{
+ content:"";
+ position:absolute;
+ inset:0;
+ pointer-events:none;
+ background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.28));
+}
+.arena-message{
+ position:absolute;
+ inset:0;
+ z-index:3;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ text-align:center;
+ padding:20px;
+ pointer-events:none;
+}
+.arena-message .big{font-size:43px;margin-bottom:10px}
+.arena-message strong{
+ font-family:'Outfit',sans-serif;
+ font-size:22px;
+}
+.arena-message p{
+ color:var(--muted);
+ font-size:12px;
+ margin-top:7px;
+ line-height:1.6;
+}
 .target{
-
-position:absolute;
-
-width:90px;
-
-height:90px;
-
-border-radius:50%;
-
-cursor:pointer;
-
-background:
-
-radial-gradient(
-
-circle,
-
-#ff0044,
-
-#ff6600
-
-);
-
-box-shadow:
-
-0 0 60px
-
-#ff0066;
-
-animation:
-
-pulse 1s infinite;
-
+ position:absolute;
+ z-index:2;
+ border:0;
+ padding:0;
+ border-radius:50%;
+ cursor:crosshair;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ background:radial-gradient(circle,
+ #fff 0 9%,
+ #ff5475 10% 26%,
+ #a81743 27% 46%,
+ #ff7895 47% 59%,
+ #651330 60% 100%);
+ box-shadow:
+ 0 0 0 4px rgba(255,49,85,.15),
+ 0 0 22px rgba(255,49,85,.6),
+ inset 0 0 9px rgba(255,255,255,.5);
+ animation:targetPop .16s ease-out;
+ -webkit-tap-highlight-color:transparent;
+ touch-action:manipulation;
 }
-
-@keyframes pulse{
-
-50%{
-
-transform:
-
-scale(1.12);
-
+.target::after{
+ content:"";
+ position:absolute;
+ width:13%;
+ height:13%;
+ border-radius:50%;
+ background:white;
+ box-shadow:0 0 12px white;
 }
-
+.target:active{transform:scale(.9)}
+@keyframes targetPop{
+ from{transform:scale(.55);opacity:.3}
+ to{transform:scale(1);opacity:1}
 }
-
-#center{
-
-text-align:center;
-
-margin-top:40px;
-
+.target.moving{transition:left .65s ease,top .65s ease}
+.target.hit{animation:hitEffect .16s ease forwards}
+@keyframes hitEffect{
+ to{transform:scale(1.55);opacity:0}
 }
-
-button{
-
-padding:18px 40px;
-
-border:none;
-
-border-radius:20px;
-
-font-size:24px;
-
-background:
-
-linear-gradient(
-
-90deg,
-
-#00bfff,
-
-#0055ff
-
-);
-
-color:white;
-
+.arena-footer{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ flex-wrap:wrap;
+ margin-top:11px;
+ color:var(--muted);
+ font-size:10px;
 }
-
-#msg{
-
-margin-top:20px;
-
-font-size:30px;
-
+.controls{
+ display:flex;
+ gap:9px;
+ margin-top:15px;
+ flex-wrap:wrap;
 }
-
+.primary{
+ flex:1;
+ min-width:130px;
+ border:0;
+ border-radius:12px;
+ padding:13px 17px;
+ background:linear-gradient(100deg,var(--red),#a33cff);
+ color:white;
+ font-size:13px;
+ font-weight:800;
+ cursor:pointer;
+ transition:.2s;
+}
+.primary:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.secondary{
+ border:1px solid var(--border);
+ border-radius:12px;
+ padding:12px 15px;
+ background:rgba(255,255,255,.045);
+ color:white;
+ font-size:12px;
+ font-weight:700;
+ cursor:pointer;
+}
+.secondary:hover{border-color:var(--purple)}
+.secondary:disabled{opacity:.35;cursor:not-allowed}
+.side{display:grid;gap:15px}
+.side-title{
+ font-family:'Outfit',sans-serif;
+ font-size:17px;
+ font-weight:800;
+ margin-bottom:13px;
+}
+.setting-label{
+ display:block;
+ color:var(--muted);
+ font-size:10px;
+ font-weight:700;
+ letter-spacing:.7px;
+ margin:14px 0 8px;
+}
+.choice-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:7px;
+}
+.choice{
+ border:1px solid var(--border);
+ border-radius:10px;
+ background:rgba(255,255,255,.04);
+ color:#c6bed2;
+ padding:10px 4px;
+ font-size:11px;
+ font-weight:700;
+ cursor:pointer;
+}
+.choice.selected{
+ border-color:var(--purple);
+ color:white;
+ background:rgba(153,92,255,.16);
+ box-shadow:inset 0 0 15px rgba(153,92,255,.07);
+}
+.best-box{
+ padding:15px;
+ border-radius:14px;
+ border:1px solid rgba(255,49,85,.2);
+ background:linear-gradient(120deg,rgba(255,49,85,.10),rgba(153,92,255,.10));
+}
+.best-box small{color:var(--muted);font-size:10px}
+.best-box strong{
+ display:block;
+ font-family:'Outfit',sans-serif;
+ font-size:30px;
+ margin-top:3px;
+}
+.best-box p{color:var(--muted);font-size:10px;margin-top:2px}
+.stat-list{display:grid;gap:12px}
+.stat-line{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ font-size:12px;
+}
+.stat-line span{color:var(--muted)}
+.stat-line strong{font-weight:700}
+.tip{
+ font-size:11px;
+ color:var(--muted);
+ line-height:1.8;
+}
+.hidden{display:none!important}
+.result-overlay{
+ position:absolute;
+ inset:0;
+ z-index:5;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ background:rgba(8,7,13,.88);
+ backdrop-filter:blur(8px);
+ padding:15px;
+}
+.result-card{
+ width:min(360px,100%);
+ text-align:center;
+ padding:22px;
+ border:1px solid var(--border);
+ border-radius:18px;
+ background:#171321;
+ box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+.result-card .trophy{font-size:45px}
+.result-card h2{
+ font-family:'Outfit',sans-serif;
+ font-size:27px;
+ margin:5px 0;
+}
+.result-card p{color:var(--muted);font-size:11px}
+.result-score{
+ font-family:'Outfit',sans-serif;
+ font-size:48px;
+ font-weight:900;
+ color:#d0aaff;
+ margin:10px 0;
+}
+.result-details{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:8px;
+ margin:15px 0;
+}
+.result-detail{
+ background:rgba(255,255,255,.045);
+ padding:10px;
+ border-radius:10px;
+}
+.result-detail small{display:block;color:var(--muted);font-size:9px}
+.result-detail strong{font-size:17px}
+.info{
+ margin-top:25px;
+ padding:22px;
+ border:1px solid var(--border);
+ border-radius:18px;
+ background:rgba(255,255,255,.025);
+}
+.info h2{
+ font-family:'Outfit',sans-serif;
+ font-size:21px;
+ margin-bottom:9px;
+}
+.info h3{font-size:14px;margin:16px 0 6px}
+.info p,.info li{
+ color:var(--muted);
+ font-size:12px;
+ line-height:1.9;
+}
+.info ul{padding-left:19px}
+.footer{
+ text-align:center;
+ color:#766e82;
+ font-size:11px;
+ padding:25px 5px;
+}
+.footer a{color:#c5a0ff;text-decoration:none}
+@media(max-width:850px){
+ .layout{grid-template-columns:1fr}
+ .side{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:540px){
+ body{padding:12px}
+ .topbar{margin-bottom:18px}
+ .brand{font-size:21px}
+ .hero{margin:7px 0 19px}
+ .panel{padding:14px;border-radius:17px}
+ .layout{gap:12px}
+ .hud{gap:6px}
+ .hud-card{padding:9px 3px}
+ .hud-card small{font-size:8px}
+ .hud-card strong{font-size:19px}
+ .arena{height:390px;min-height:290px}
+ .arena-heading{font-size:17px}
+ .side{grid-template-columns:1fr}
+ .controls{gap:7px}
+ .primary,.secondary{padding:12px 10px;font-size:11px}
+ .info{padding:17px}
+}
+@media(max-height:650px) and (min-width:700px){
+ .arena{height:350px}
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="top">
+<header class="topbar">
+ <div class="brand">TOOLORA<span> AI</span></div>
+ <a class="back" href="index.html">← Home</a>
+</header>
 
-<div>
+<main class="wrapper">
 
-⏱
+<section class="hero">
+ <div class="eyebrow">⚡ REFLEX & PRECISION CHALLENGE</div>
+ <h1>AIM <span>TRAINER</span></h1>
+ <p>Test your focus, reaction speed and accuracy. Hit the targets before time runs out.</p>
+</section>
 
-<span id="time">
+<div class="layout">
 
-20
+<!-- MAIN GAME -->
+<section class="panel arena-panel">
 
-</span>
+ <div class="arena-top">
+  <div class="arena-heading">🎯 Practice Arena</div>
+  <div class="live-label" id="statusLabel">READY TO PLAY</div>
+ </div>
 
+ <div class="hud">
+  <div class="hud-card time">
+   <small>TIME LEFT</small>
+   <strong id="time">30</strong>
+  </div>
+  <div class="hud-card score">
+   <small>SCORE</small>
+   <strong id="score">0</strong>
+  </div>
+  <div class="hud-card">
+   <small>HITS</small>
+   <strong id="hits">0</strong>
+  </div>
+  <div class="hud-card">
+   <small>ACCURACY</small>
+   <strong id="accuracy">0%</strong>
+  </div>
+ </div>
+
+ <div class="arena" id="arena">
+  <div class="arena-message" id="arenaMessage">
+   <div class="big">🎯</div>
+   <strong>Ready to test your aim?</strong>
+   <p>Choose your settings and press Start Game.<br>Hit as many targets as you can!</p>
+  </div>
+  <div class="result-overlay hidden" id="resultOverlay">
+   <div class="result-card">
+    <div class="trophy" id="resultIcon">🏆</div>
+    <h2 id="resultTitle">Challenge Complete!</h2>
+    <p>Your practice session has ended.</p>
+    <div class="result-score" id="resultScore">0</div>
+    <div class="result-details">
+     <div class="result-detail"><small>HITS</small><strong id="resultHits">0</strong></div>
+     <div class="result-detail"><small>MISSES</small><strong id="resultMisses">0</strong></div>
+     <div class="result-detail"><small>ACCURACY</small><strong id="resultAccuracy">0%</strong></div>
+     <div class="result-detail"><small>AVG. REACTION</small><strong id="resultReaction">--</strong></div>
+    </div>
+    <button class="primary" id="againBtn">PLAY AGAIN ↻</button>
+   </div>
+  </div>
+ </div>
+
+ <div class="arena-footer">
+  <span>🖱 Desktop: Click targets</span>
+  <span>📱 Mobile: Tap targets</span>
+ </div>
+
+ <div class="controls">
+  <button class="primary" id="startBtn">▶ START GAME</button>
+  <button class="secondary" id="pauseBtn" disabled>Ⅱ PAUSE</button>
+  <button class="secondary" id="resetBtn">↻ RESET</button>
+ </div>
+
+</section>
+
+<!-- SETTINGS AND STATS -->
+<aside class="side">
+
+ <section class="panel">
+  <h2 class="side-title">⚙️ Game Settings</h2>
+
+  <span class="setting-label">DURATION</span>
+  <div class="choice-grid" id="durationChoices">
+   <button class="choice" data-value="15">15 SEC</button>
+   <button class="choice selected" data-value="30">30 SEC</button>
+   <button class="choice" data-value="60">60 SEC</button>
+  </div>
+
+  <span class="setting-label">DIFFICULTY</span>
+  <div class="choice-grid" id="difficultyChoices">
+   <button class="choice selected" data-value="easy">EASY</button>
+   <button class="choice" data-value="medium">MEDIUM</button>
+   <button class="choice" data-value="hard">HARD</button>
+  </div>
+
+  <span class="setting-label">GAME OPTIONS</span>
+  <button class="secondary" id="soundBtn" style="width:100%">🔊 Sound: ON</button>
+
+  <p class="tip" style="margin-top:14px">
+   Easy: Larger targets<br>
+   Medium: Smaller targets<br>
+   Hard: Small moving targets
+  </p>
+ </section>
+
+ <section class="panel">
+  <h2 class="side-title">🏆 Personal Best</h2>
+  <div class="best-box">
+   <small>YOUR HIGHEST SCORE</small>
+   <strong id="best">0</strong>
+   <p>Saved on this browser</p>
+  </div>
+ </section>
+
+ <section class="panel">
+  <h2 class="side-title">📊 Session Statistics</h2>
+  <div class="stat-list">
+   <div class="stat-line"><span>Total Attempts</span><strong id="attempts">0</strong></div>
+   <div class="stat-line"><span>Successful Hits</span><strong id="sideHits">0</strong></div>
+   <div class="stat-line"><span>Misses</span><strong id="sideMisses">0</strong></div>
+   <div class="stat-line"><span>Avg. Reaction</span><strong id="avgReaction">--</strong></div>
+   <div class="stat-line"><span>Best Reaction</span><strong id="bestReaction">--</strong></div>
+  </div>
+ </section>
+
+ <section class="panel">
+  <h2 class="side-title">💡 Pro Tip</h2>
+  <p class="tip">
+   Focus on the center of the target. Try to stay accurate instead of clicking randomly. Your score improves with successful hits and accuracy.
+  </p>
+ </section>
+
+</aside>
 </div>
 
-<div>
+<section class="info">
+ <h2>About Aim Trainer</h2>
+ <p>Toolora AI Aim Trainer is a free browser-based reaction and precision game. Targets appear at different positions inside the practice arena. Hit them as quickly and accurately as possible before the timer ends.</p>
 
-🎯
+ <h3>How to Play</h3>
+ <ul>
+  <li>Select a game duration: 15, 30 or 60 seconds.</li>
+  <li>Choose Easy, Medium or Hard difficulty.</li>
+  <li>Press Start Game to begin.</li>
+  <li>Click or tap the targets as they appear.</li>
+  <li>Try to achieve a high score while maintaining accuracy.</li>
+  <li>Check your results and personal best after the session.</li>
+ </ul>
 
-<span id="score">
+ <h3>Mobile and Desktop Support</h3>
+ <p>The game supports mouse clicks on desktop and touch input on mobile devices. The practice arena automatically adjusts to the available screen size.</p>
 
-0
+ <h3>Frequently Asked Questions</h3>
+ <h3>Is Aim Trainer free?</h3>
+ <p>Yes. This browser game is free to play and does not require registration.</p>
 
-</span>
+ <h3>Does it work on mobile?</h3>
+ <p>Yes. You can play using your phone's touchscreen or a desktop mouse.</p>
 
-</div>
+ <h3>Is my best score saved?</h3>
+ <p>Your personal best is stored locally in your browser using local storage. It may not transfer to another device or browser.</p>
+</section>
 
-<div>
-
-🏆
-
-<span id="best">
-
-0
-
-</span>
-
-</div>
-
-</div>
-
-<div id="center">
-
-<button onclick="start()">
-
-START
-
-</button>
-
-<div id="msg">
-
-Hit Targets
-
-</div>
-
-</div>
-
-<div id="game">
-
-</div>
+<footer class="footer">
+ © 2026 Toolora AI · Free Online Games
+<br><br>
+<a href="index.html">Home</a> ·
+<a href="speed-click-test.html">Speed Click Test</a> ·
+<a href="color-reflex.html">Color Reflex</a> ·
+<a href="privacy.html">Privacy</a>
+</footer>
 
 <script>
+"use strict";
 
-let score=0;
+const $ = id => document.getElementById(id);
 
-let time=20;
+const arena = $("arena");
 
-let active=false;
-
-let best=
-
-localStorage
-
-.getItem(
-
-"bestAim"
-
-)
-
-||
-
-0;
-
-document
-
-.getElementById(
-
-"best"
-
-)
-
-.innerHTML=
-
-best;
-
-function target(){
-
-if(
-
-!active
-
-)
-
-return;
-
-let t=
-
-document
-
-.createElement(
-
-"div"
-
-);
-
-t.className=
-
-"target";
-
-t.style.left=
-
-Math.random()
-
-*80+
-
-"%";
-
-t.style.top=
-
-Math.random()
-
-*75+
-
-"%";
-
-t.onclick=
-
-()=>{
-
-score++;
-
-document
-
-.getElementById(
-
-"score"
-
-)
-
-.innerHTML=
-
-score;
-
-t.remove();
-
-target();
-
+const settings = {
+ duration:30,
+ difficulty:"easy",
+ sound:true
 };
 
-document
+const difficultySettings = {
+ easy:{size:76,moving:false,points:10},
+ medium:{size:57,moving:false,points:15},
+ hard:{size:43,moving:true,points:20}
+};
 
-.getElementById(
+let state = "ready";
+let score = 0;
+let hits = 0;
+let misses = 0;
+let timeLeft = 30;
+let deadline = 0;
+let timerInterval = null;
+let moveInterval = null;
+let targetElement = null;
+let targetBorn = 0;
+let reactionTimes = [];
+let bestScore = 0;
+let bestReaction = null;
+let audioContext = null;
+let sessionStarted = false;
 
-"game"
+try{
+ bestScore = Number(localStorage.getItem("toolora_aim_best") || 0);
+}catch(e){}
+$("best").textContent = bestScore;
 
-)
+try{
+ const storedReaction = localStorage.getItem("toolora_aim_reaction");
+ if(storedReaction !== null) bestReaction = Number(storedReaction);
+}catch(e){}
+renderStats();
 
-.innerHTML="";
-
-document
-
-.getElementById(
-
-"game"
-
-)
-
-.appendChild(
-
-t
-
-);
-
+function playTone(frequency=650){
+ if(!settings.sound) return;
+ try{
+  audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
+  if(audioContext.state==="suspended") audioContext.resume();
+  const oscillator = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+  oscillator.frequency.value=frequency;
+  gain.gain.setValueAtTime(.06,audioContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+.12);
+  oscillator.start();
+  oscillator.stop(audioContext.currentTime+.13);
+ }catch(e){}
 }
 
-function start(){
-
-score=0;
-
-time=20;
-
-active=true;
-
-document
-
-.getElementById(
-
-"score"
-
-)
-
-.innerHTML=
-
-0;
-
-target();
-
-let x=
-
-setInterval(
-
-()=>{
-
-time--;
-
-document
-
-.getElementById(
-
-"time"
-
-)
-
-.innerHTML=
-
-time;
-
-if(
-
-time<=0
-
-){
-
-clearInterval(
-
-x
-
-);
-
-active=false;
-
-document
-
-.getElementById(
-
-"game"
-
-)
-
-.innerHTML="";
-
-if(
-
-score>
-
-best
-
-){
-
-best=score;
-
-localStorage
-
-.setItem(
-
-"bestAim",
-
-best
-
-);
-
-document
-
-.getElementById(
-
-"best"
-
-)
-
-.innerHTML=
-
-best;
-
+function accuracy(){
+ const total=hits+misses;
+ return total ? Math.round((hits/total)*100) : 0;
 }
 
-document
-
-.getElementById(
-
-"msg"
-
-)
-
-.innerHTML=
-
-`🔥 Score ${score}`;
-
+function averageReaction(){
+ if(!reactionTimes.length) return null;
+ return reactionTimes.reduce((a,b)=>a+b,0)/reactionTimes.length;
 }
 
-},
+function renderStats(){
+ $("score").textContent=score;
+ $("hits").textContent=hits;
+ $("accuracy").textContent=accuracy()+"%";
+ $("sideHits").textContent=hits;
+ $("sideMisses").textContent=misses;
+ $("attempts").textContent=hits+misses;
 
-1000
-
-);
-
+ const avg=averageReaction();
+ $("avgReaction").textContent=avg===null?"--":Math.round(avg)+" ms";
+ $("bestReaction").textContent=bestReaction===null?"--":bestReaction+" ms";
 }
 
+function clearGameTimers(){
+ clearInterval(timerInterval);
+ clearInterval(moveInterval);
+ timerInterval=null;
+ moveInterval=null;
+}
+
+function removeTarget(){
+ if(targetElement){
+  targetElement.remove();
+  targetElement=null;
+ }
+}
+
+function clearArena(){
+ removeTarget();
+ $("arenaMessage").classList.add("hidden");
+}
+
+function setStatus(message){
+ $("statusLabel").textContent=message;
+}
+
+function setTimeDisplay(){
+ $("time").textContent=Math.max(0,Math.ceil(timeLeft));
+}
+
+function setChoice(group,value){
+ document.querySelectorAll("#"+group+" .choice").forEach(button=>{
+  button.classList.toggle("selected",button.dataset.value===String(value));
+ });
+}
+
+$("durationChoices").addEventListener("click",event=>{
+ const button=event.target.closest(".choice");
+ if(!button || state==="running" || state==="paused") return;
+ settings.duration=Number(button.dataset.value);
+ timeLeft=settings.duration;
+ setTimeDisplay();
+ setChoice("durationChoices",settings.duration);
+});
+
+$("difficultyChoices").addEventListener("click",event=>{
+ const button=event.target.closest(".choice");
+ if(!button || state==="running" || state==="paused") return;
+ settings.difficulty=button.dataset.value;
+ setChoice("difficultyChoices",settings.difficulty);
+});
+
+$("soundBtn").addEventListener("click",()=>{
+ settings.sound=!settings.sound;
+ $("soundBtn").textContent=settings.sound?"🔊 Sound: ON":"🔇 Sound: OFF";
+});
+
+function resetSession(){
+ clearGameTimers();
+ removeTarget();
+
+ score=0;
+ hits=0;
+ misses=0;
+ reactionTimes=[];
+ timeLeft=settings.duration;
+ state="ready";
+ sessionStarted=false;
+
+ setTimeDisplay();
+ renderStats();
+
+ $("pauseBtn").disabled=true;
+ $("pauseBtn").textContent="Ⅱ PAUSE";
+ $("resultOverlay").classList.add("hidden");
+ $("arenaMessage").classList.remove("hidden");
+ $("arenaMessage").innerHTML=`
+  <div class="big">🎯</div>
+  <strong>Ready to test your aim?</strong>
+  <p>Choose your settings and press Start Game.<br>Hit as many targets as you can!</p>
+ `;
+ $("startBtn").textContent="▶ START GAME";
+ setStatus("READY TO PLAY");
+}
+
+function startGame(){
+ if(state==="running") return;
+
+ if(state==="paused"){
+  resumeGame();
+  return;
+ }
+
+ resetSession();
+ state="running";
+ sessionStarted=true;
+
+ $("arenaMessage").classList.add("hidden");
+ $("resultOverlay").classList.add("hidden");
+ $("pauseBtn").disabled=false;
+ $("startBtn").textContent="▶ GAME RUNNING";
+ setStatus("GAME LIVE");
+
+ deadline=Date.now()+settings.duration*1000;
+ timeLeft=settings.duration;
+ setTimeDisplay();
+
+ spawnTarget();
+ startTimer();
+}
+
+function startTimer(){
+ clearInterval(timerInterval);
+ timerInterval=setInterval(()=>{
+  if(state!=="running") return;
+
+  timeLeft=Math.max(0,(deadline-Date.now())/1000);
+  setTimeDisplay();
+
+  if(timeLeft<=0){
+   finishGame();
+  }
+ },80);
+}
+
+function randomPosition(size){
+ const rect=arena.getBoundingClientRect();
+ const padding=12;
+ const maxX=Math.max(padding,rect.width-size-padding);
+ const maxY=Math.max(padding,rect.height-size-padding);
+
+ return {
+  x:padding+Math.random()*(maxX-padding),
+  y:padding+Math.random()*(maxY-padding)
+ };
+}
+
+function spawnTarget(){
+ if(state!=="running") return;
+
+ removeTarget();
+
+ const config=difficultySettings[settings.difficulty];
+ const size=Math.min(config.size,arena.clientWidth*.25);
+ const position=randomPosition(size);
+
+ const target=document.createElement("button");
+ target.type="button";
+ target.className="target";
+ target.setAttribute("aria-label","Hit target");
+ target.style.width=size+"px";
+ target.style.height=size+"px";
+ target.style.left=position.x+"px";
+ target.style.top=position.y+"px";
+
+ target.addEventListener("pointerdown",event=>{
+  event.preventDefault();
+  event.stopPropagation();
+  hitTarget(target);
+ });
+
+ arena.appendChild(target);
+ targetElement=target;
+ targetBorn=performance.now();
+
+ if(config.moving){
+  moveInterval=setInterval(()=>{
+   if(state!=="running" || targetElement!==target) return;
+   const next=randomPosition(size);
+   target.style.left=next.x+"px";
+   target.style.top=next.y+"px";
+  },700);
+ }
+}
+
+function hitTarget(target){
+ if(state!=="running" || target!==targetElement) return;
+
+ const reaction=Math.round(performance.now()-targetBorn);
+ reactionTimes.push(reaction);
+
+ hits++;
+ const points=difficultySettings[settings.difficulty].points;
+ const speedBonus=Math.max(0,Math.round((1000-reaction)/100));
+ score+=points+speedBonus;
+
+ target.classList.add("hit");
+ targetElement=null;
+ clearInterval(moveInterval);
+ moveInterval=null;
+
+ playTone(820);
+ renderStats();
+
+ setTimeout(()=>{
+  if(state==="running") spawnTarget();
+ },100);
+}
+
+arena.addEventListener("pointerdown",event=>{
+ if(state!=="running") return;
+ if(event.target.closest(".target")) return;
+
+ misses++;
+ renderStats();
+ playTone(190);
+});
+
+function pauseGame(){
+ if(state!=="running") return;
+
+ timeLeft=Math.max(0,(deadline-Date.now())/1000);
+ clearGameTimers();
+ removeTarget();
+
+ state="paused";
+ setTimeDisplay();
+ $("pauseBtn").textContent="▶ RESUME";
+ $("startBtn").textContent="▶ RESUME";
+ $("arenaMessage").classList.remove("hidden");
+ $("arenaMessage").innerHTML=`
+  <div class="big">⏸️</div>
+  <strong>Game Paused</strong>
+  <p>Take a break. Resume when you're ready.</p>
+ `;
+ setStatus("PAUSED");
+}
+
+function resumeGame(){
+ if(state!=="paused") return;
+
+ state="running";
+ deadline=Date.now()+timeLeft*1000;
+ $("arenaMessage").classList.add("hidden");
+ $("pauseBtn").textContent="Ⅱ PAUSE";
+ $("startBtn").textContent="▶ GAME RUNNING";
+ setStatus("GAME LIVE");
+
+ spawnTarget();
+ startTimer();
+}
+
+function finishGame(){
+ if(state==="finished") return;
+
+ clearGameTimers();
+ removeTarget();
+ state="finished";
+ timeLeft=0;
+ setTimeDisplay();
+
+ $("pauseBtn").disabled=true;
+ $("startBtn").textContent="▶ START AGAIN";
+ setStatus("SESSION COMPLETE");
+
+ const avg=averageReaction();
+ const currentBest=bestScore;
+
+ if(score>bestScore){
+  bestScore=score;
+  try{localStorage.setItem("toolora_aim_best",String(bestScore));}catch(e){}
+ }
+ $("best").textContent=bestScore;
+
+ if(avg!==null && (bestReaction===null || avg<bestReaction)){
+  bestReaction=Math.round(avg);
+  try{localStorage.setItem("toolora_aim_reaction",String(bestReaction));}catch(e){}
+ }
+
+ $("resultScore").textContent=score;
+ $("resultHits").textContent=hits;
+ $("resultMisses").textContent=misses;
+ $("resultAccuracy").textContent=accuracy()+"%";
+ $("resultReaction").textContent=avg===null?"--":Math.round(avg)+" ms";
+
+ $("resultIcon").textContent=score>currentBest && score>0?"🏆":"🎯";
+ $("resultTitle").textContent=score>currentBest && score>0?"New Personal Best!":"Challenge Complete!";
+
+ $("resultOverlay").classList.remove("hidden");
+ $("arenaMessage").classList.add("hidden");
+
+ renderStats();
+ playTone(700);
+}
+
+$("startBtn").addEventListener("click",()=>{
+ if(state==="paused") resumeGame();
+ else if(state!=="running") startGame();
+});
+
+$("pauseBtn").addEventListener("click",()=>{
+ if(state==="running") pauseGame();
+ else if(state==="paused") resumeGame();
+});
+
+$("resetBtn").addEventListener("click",resetSession);
+$("againBtn").addEventListener("click",startGame);
+
+document.addEventListener("visibilitychange",()=>{
+ if(document.hidden && state==="running"){
+  pauseGame();
+ }
+});
+
+window.addEventListener("resize",()=>{
+ if(state==="running" && targetElement){
+  const config=difficultySettings[settings.difficulty];
+  const size=Math.min(config.size,arena.clientWidth*.25);
+  const position=randomPosition(size);
+  targetElement.style.left=position.x+"px";
+  targetElement.style.top=position.y+"px";
+ }
+});
+
+setTimeDisplay();
 </script>
 
 </body>
-
 </html>
