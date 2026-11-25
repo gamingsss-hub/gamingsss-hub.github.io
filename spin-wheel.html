@@ -1,295 +1,1238 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08060e">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Quest Wheel – Create Random Adventures | Toolora AI</title>
+<meta name="description" content="Explore the unique Toolora Quest Wheel. Spin to discover a fantasy realm, a random mission and a surprise twist. Create your own adventure for free.">
+<meta name="keywords" content="quest wheel, spin wheel, random adventure generator, mystery wheel, random challenge generator, online spin wheel">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gamingsss-hub.github.io/spin-wheel.html">
 
-<title>
+<meta property="og:title" content="Quest Wheel – Toolora AI">
+<meta property="og:description" content="Spin three wheels and generate your own random adventure.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gamingsss-hub.github.io/spin-wheel.html">
 
-Spin The Wheel – Random Challenge Game
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-</title>
-
-<meta
-name="description"
-
-content=
-
-"Spin the wheel online and get random challenges, rewards and fun tasks instantly.">
-
-<meta
-name="keywords"
-
-content=
-
-"spin wheel, lucky spin, random wheel, challenge game, spin game">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Toolora Quest Wheel",
+  "url":"https://gamingsss-hub.github.io/spin-wheel.html",
+  "applicationCategory":"GameApplication",
+  "operatingSystem":"Any",
+  "description":"A free interactive three-stage adventure and random quest generator."
+}
+</script>
 
 <style>
+:root{
+  --bg:#08060e;
+  --panel:#13101d;
+  --red:#ff3155;
+  --purple:#955cff;
+  --cyan:#00e5ff;
+  --text:#f8f5ff;
+  --muted:#a9a2b8;
+  --border:rgba(255,255,255,.09);
+}
 
 *{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-font-family:Arial;
-
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-
-background:
-
-linear-gradient(
-135deg,
-#05101f,
-#0a1f45,
-#0c2b61
-);
-
-color:white;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-height:100vh;
-
-padding:20px;
-
+  min-height:100vh;
+  color:var(--text);
+  font-family:'Poppins',sans-serif;
+  background:
+    radial-gradient(ellipse at 12% 5%,rgba(139,92,255,.17),transparent 36%),
+    radial-gradient(ellipse at 90% 65%,rgba(255,49,85,.12),transparent 36%),
+    var(--bg);
+  overflow-x:hidden;
 }
 
-.box{
-
-max-width:550px;
-
-width:100%;
-
-text-align:center;
-
-}
-
-h1{
-
-margin-bottom:20px;
-
-}
-
-#wheel{
-
-width:320px;
-
-height:320px;
-
-margin:auto;
-
-border-radius:50%;
-
-border:
-
-8px solid white;
-
-background:
-
-conic-gradient(
-
-#ff4444 0deg 45deg,
-
-#ffaa00 45deg 90deg,
-
-#00cc66 90deg 135deg,
-
-#00aaff 135deg 180deg,
-
-#8844ff 180deg 225deg,
-
-#ff44aa 225deg 270deg,
-
-#00ffaa 270deg 315deg,
-
-#ffff44 315deg 360deg
-
-);
-
-transition:
-
-transform 5s
-cubic-bezier(
-.2,
-1,
-.2,
-1
-);
-
-}
-
-.pointer{
-
-font-size:40px;
-
+button,a{
+  font:inherit;
 }
 
 button{
-
-margin-top:30px;
-
-padding:18px 40px;
-
-border:none;
-
-border-radius:18px;
-
-font-size:22px;
-
-background:
-
-linear-gradient(
-90deg,
-#00aaff,
-#0055ff
-);
-
-color:white;
-
+  cursor:pointer;
 }
 
-#result{
-
-margin-top:25px;
-
-font-size:28px;
-
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
 }
 
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:17px 6%;
+  border-bottom:1px solid var(--border);
+  background:rgba(8,6,14,.7);
+  backdrop-filter:blur(15px);
+}
+
+.logo{
+  color:white;
+  text-decoration:none;
+  font-family:'Outfit',sans-serif;
+  font-size:23px;
+  font-weight:900;
+}
+
+.logo span{
+  color:var(--red);
+}
+
+.home-link{
+  color:#ddd5ee;
+  text-decoration:none;
+  font-size:13px;
+  border:1px solid var(--border);
+  padding:9px 16px;
+  border-radius:30px;
+}
+
+.container{
+  width:min(100% - 30px,1100px);
+  margin:38px auto 60px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:27px;
+}
+
+.tag{
+  display:inline-block;
+  background:rgba(139,92,255,.12);
+  border:1px solid rgba(139,92,255,.3);
+  color:#c6a9ff;
+  border-radius:30px;
+  padding:7px 15px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1px;
+  margin-bottom:14px;
+}
+
+.hero h1{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(34px,6vw,54px);
+  font-weight:900;
+  line-height:1.1;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,#ff3155,#a36aff,#00e5ff);
+  color:transparent;
+  background-clip:text;
+  -webkit-background-clip:text;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:12px;
+  line-height:1.8;
+}
+
+.main-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 310px;
+  gap:19px;
+  align-items:start;
+}
+
+.panel{
+  background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:23px;
+  box-shadow:0 20px 65px rgba(0,0,0,.25);
+}
+
+.stage-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:17px;
+}
+
+.stage-heading h2{
+  font-family:'Outfit',sans-serif;
+  font-size:21px;
+}
+
+.stage-number{
+  color:#c5a6ff;
+  background:rgba(139,92,255,.14);
+  border:1px solid rgba(139,92,255,.2);
+  border-radius:30px;
+  padding:6px 12px;
+  font-size:11px;
+}
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-bottom:20px;
+}
+
+.step{
+  padding:12px 5px;
+  text-align:center;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--border);
+  border-radius:13px;
+  color:#b8b0c7;
+  font-size:11px;
+  transition:.2s;
+}
+
+.step strong{
+  display:block;
+  font-size:19px;
+  margin-bottom:4px;
+}
+
+.step.active{
+  border-color:var(--purple);
+  background:rgba(139,92,255,.15);
+  color:white;
+}
+
+.step.done{
+  border-color:rgba(0,229,255,.3);
+  color:#8aefff;
+}
+
+.wheel-wrap{
+  width:min(100%,430px);
+  aspect-ratio:1;
+  position:relative;
+  margin:0 auto;
+  filter:drop-shadow(0 12px 28px rgba(139,92,255,.17));
+}
+
+#wheel{
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.pointer{
+  position:absolute;
+  top:-5px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:3;
+  width:0;
+  height:0;
+  border-left:16px solid transparent;
+  border-right:16px solid transparent;
+  border-top:34px solid #fff;
+  filter:drop-shadow(0 3px 8px rgba(255,49,85,.6));
+}
+
+.wheel-center{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff3155,#9252ff);
+  border:5px solid #171020;
+  box-shadow:0 0 22px rgba(139,92,255,.5);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:21px;
+  pointer-events:none;
+}
+
+.wheel-caption{
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:13px;
+}
+
+.spin-actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:21px;
+}
+
+.primary-btn,.secondary-btn{
+  padding:12px 21px;
+  border-radius:12px;
+  border:0;
+  font-weight:700;
+  font-size:13px;
+  transition:.2s;
+}
+
+.primary-btn{
+  color:white;
+  background:linear-gradient(100deg,var(--red),#974cff);
+  box-shadow:0 7px 25px rgba(255,49,85,.17);
+}
+
+.primary-btn:hover:not(:disabled){
+  transform:translateY(-2px);
+  filter:brightness(1.1);
+}
+
+.secondary-btn{
+  color:#eee8ff;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--border);
+}
+
+.secondary-btn:hover:not(:disabled){
+  border-color:var(--purple);
+}
+
+.current-result{
+  margin-top:18px;
+  padding:15px;
+  border-radius:15px;
+  background:rgba(139,92,255,.09);
+  border:1px solid rgba(139,92,255,.2);
+  text-align:center;
+  display:none;
+}
+
+.current-result.show{
+  display:block;
+}
+
+.current-result small{
+  color:#c6a9ff;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.current-result strong{
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-size:22px;
+  margin-top:5px;
+  overflow-wrap:anywhere;
+}
+
+.side-panel h3{
+  font-family:'Outfit',sans-serif;
+  font-size:19px;
+  margin-bottom:15px;
+}
+
+.side-note{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.8;
+  margin-bottom:15px;
+}
+
+.editor-block{
+  margin-bottom:17px;
+}
+
+.editor-block label{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.editor-block textarea{
+  width:100%;
+  min-height:88px;
+  resize:vertical;
+  background:rgba(0,0,0,.23);
+  border:1px solid var(--border);
+  color:white;
+  border-radius:11px;
+  padding:11px;
+  outline:none;
+  font-family:'Poppins',sans-serif;
+  font-size:11px;
+  line-height:1.8;
+}
+
+.editor-block textarea:focus{
+  border-color:var(--purple);
+}
+
+.full-btn{
+  width:100%;
+}
+
+.editor-actions{
+  display:grid;
+  gap:9px;
+}
+
+.history{
+  margin-top:20px;
+  border-top:1px solid var(--border);
+  padding-top:17px;
+}
+
+.history h4{
+  font-family:'Outfit',sans-serif;
+  font-size:15px;
+  margin-bottom:11px;
+}
+
+.history-list{
+  display:grid;
+  gap:9px;
+  max-height:220px;
+  overflow-y:auto;
+}
+
+.history-item{
+  padding:10px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--border);
+  border-radius:11px;
+  font-size:11px;
+  color:#d8d1e5;
+  line-height:1.8;
+}
+
+.history-item small{
+  color:var(--muted);
+  display:block;
+}
+
+.history-empty{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.quest-card{
+  display:none;
+  margin-top:22px;
+  padding:23px;
+  border:1px solid rgba(0,229,255,.25);
+  border-radius:20px;
+  background:
+    radial-gradient(circle at top right,rgba(139,92,255,.17),transparent 45%),
+    rgba(0,229,255,.035);
+  animation:reveal .5s ease;
+}
+
+.quest-card.show{
+  display:block;
+}
+
+@keyframes reveal{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.quest-top{
+  text-align:center;
+  margin-bottom:17px;
+}
+
+.quest-top small{
+  color:#82eafa;
+  font-size:10px;
+  letter-spacing:2px;
+  font-weight:700;
+}
+
+.quest-top h2{
+  font-family:'Outfit',sans-serif;
+  font-size:27px;
+  margin-top:5px;
+}
+
+.quest-part{
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.quest-part:last-of-type{
+  border-bottom:0;
+}
+
+.quest-part small{
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.quest-part strong{
+  display:block;
+  font-size:15px;
+  margin-top:4px;
+  overflow-wrap:anywhere;
+}
+
+.quest-actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:9px;
+  margin-top:17px;
+}
+
+.content{
+  margin-top:28px;
+  padding:24px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:rgba(255,255,255,.025);
+}
+
+.content h2{
+  font-family:'Outfit',sans-serif;
+  font-size:21px;
+  margin-bottom:10px;
+}
+
+.content p,.content li{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.9;
+}
+
+.content ul{
+  padding-left:20px;
+  margin-top:8px;
+}
+
+.faq{
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.faq:last-child{
+  border:0;
+}
+
+.faq h3{
+  font-size:13px;
+  margin-bottom:5px;
+}
+
+footer{
+  text-align:center;
+  color:#898397;
+  padding:25px 15px;
+  font-size:11px;
+}
+
+footer a{
+  color:#c7a9ff;
+  text-decoration:none;
+}
+
+@media(max-width:850px){
+  .main-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:520px){
+  .topbar{
+    padding:14px 5%;
+  }
+  .logo{
+    font-size:20px;
+  }
+  .container{
+    margin-top:27px;
+  }
+  .panel{
+    padding:16px;
+    border-radius:19px;
+  }
+  .wheel-wrap{
+    width:min(100%,350px);
+  }
+  .wheel-center{
+    width:55px;
+    height:55px;
+  }
+  .content{
+    padding:18px;
+  }
+  .primary-btn,.secondary-btn{
+    padding:12px 15px;
+  }
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="box">
+<header class="topbar">
+  <a href="index.html" class="logo">TOOLORA<span> AI</span></a>
+  <a href="index.html" class="home-link">← Home</a>
+</header>
 
-<h1>
+<main class="container">
 
-🎡 Spin The Wheel
+  <section class="hero">
+    <span class="tag">✦ A DIFFERENT KIND OF SPIN WHEEL</span>
+    <h1>QUEST <span>WHEEL</span></h1>
+    <p>Three spins. One adventure. Discover what fate has prepared for you.</p>
+  </section>
 
-</h1>
+  <div class="main-grid">
 
-<div class="pointer">
+    <section class="panel">
 
-⬇️
+      <div class="stage-heading">
+        <h2 id="stageTitle">🌌 Choose Your Realm</h2>
+        <span class="stage-number" id="stageNumber">STAGE 01 / 03</span>
+      </div>
 
-</div>
+      <div class="steps">
+        <div class="step active" id="step0">
+          <strong>🌌</strong>
+          Realm
+        </div>
+        <div class="step" id="step1">
+          <strong>⚔️</strong>
+          Mission
+        </div>
+        <div class="step" id="step2">
+          <strong>🌀</strong>
+          Twist
+        </div>
+      </div>
 
-<div id="wheel"></div>
+      <div class="wheel-wrap">
+        <div class="pointer"></div>
+        <canvas id="wheel"></canvas>
+        <div class="wheel-center">✦</div>
+      </div>
 
-<button
+      <p class="wheel-caption" id="wheelCaption">
+        Spin to discover your adventure world
+      </p>
 
-onclick=
+      <div class="spin-actions">
+        <button class="primary-btn" id="spinBtn">🎡 SPIN THE WHEEL</button>
+        <button class="secondary-btn" id="nextBtn" disabled>Next Stage →</button>
+      </div>
 
-"spin()">
+      <div class="current-result" id="currentResult">
+        <small id="resultLabel">YOUR RESULT</small>
+        <strong id="resultValue"></strong>
+      </div>
 
-SPIN
+      <div class="quest-card" id="questCard">
+        <div class="quest-top">
+          <small>✦ YOUR ADVENTURE IS READY ✦</small>
+          <h2>THE QUEST</h2>
+        </div>
 
-</button>
+        <div class="quest-part">
+          <small>🌌 YOUR REALM</small>
+          <strong id="questRealm"></strong>
+        </div>
 
-<div id="result">
+        <div class="quest-part">
+          <small>⚔️ YOUR MISSION</small>
+          <strong id="questMission"></strong>
+        </div>
 
-Ready?
+        <div class="quest-part">
+          <small>🌀 THE TWIST</small>
+          <strong id="questTwist"></strong>
+        </div>
 
-</div>
+        <div class="quest-actions">
+          <button class="primary-btn" id="copyBtn">📋 Copy Quest</button>
+          <button class="secondary-btn" id="newQuestBtn">↻ New Adventure</button>
+        </div>
+      </div>
 
-</div>
+    </section>
+
+    <aside class="panel side-panel">
+
+      <h3>🛠 Customize Your Quest</h3>
+
+      <p class="side-note">
+        Make your own adventure! Add your own options to each wheel. Write one option per line.
+      </p>
+
+      <div class="editor-block">
+        <label>🌌 Realm Options</label>
+        <textarea id="realmInput"></textarea>
+      </div>
+
+      <div class="editor-block">
+        <label>⚔️ Mission Options</label>
+        <textarea id="missionInput"></textarea>
+      </div>
+
+      <div class="editor-block">
+        <label>🌀 Twist Options</label>
+        <textarea id="twistInput"></textarea>
+      </div>
+
+      <div class="editor-actions">
+        <button class="primary-btn full-btn" id="applyBtn">✓ Apply Custom Options</button>
+        <button class="secondary-btn full-btn" id="restoreBtn">↻ Restore Default Options</button>
+      </div>
+
+      <div class="history">
+        <h4>📜 Quest History</h4>
+        <div class="history-list" id="historyList">
+          <p class="history-empty">Your completed adventures will appear here.</p>
+        </div>
+        <button class="secondary-btn full-btn" id="clearHistoryBtn" style="margin-top:12px">Clear History</button>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <section class="content">
+    <h2>What is Quest Wheel?</h2>
+    <p>
+      Quest Wheel is a creative adventure generator that combines three random selections into one unique quest. Discover a realm, receive a mission and uncover a surprise twist. Every completed combination creates a new fictional adventure.
+    </p>
+
+    <h2 style="margin-top:20px">How to Play</h2>
+    <ul>
+      <li>Spin the first wheel to discover your adventure realm.</li>
+      <li>Move to the second stage and reveal your mission.</li>
+      <li>Spin the final wheel to reveal an unexpected twist.</li>
+      <li>View your completed quest and copy or save it in your history.</li>
+      <li>Customize all three wheels to create your own combinations.</li>
+    </ul>
+
+    <h2 style="margin-top:20px">Frequently Asked Questions</h2>
+
+    <div class="faq">
+      <h3>1. Is Quest Wheel free?</h3>
+      <p>Yes. You can use all three wheels and customize your options for free.</p>
+    </div>
+
+    <div class="faq">
+      <h3>2. Can I create my own wheel options?</h3>
+      <p>Yes. Add your own realm, mission and twist options using the customization panel.</p>
+    </div>
+
+    <div class="faq">
+      <h3>3. Does Quest Wheel work on mobile?</h3>
+      <p>Yes. The layout adapts to smartphones, tablets and desktop screens.</p>
+    </div>
+
+    <div class="faq">
+      <h3>4. Where is my quest history stored?</h3>
+      <p>Your recent quest history is saved in your browser's local storage. It does not automatically sync across devices.</p>
+    </div>
+  </section>
+
+  <section class="content">
+    <h2>Explore More Toolora AI Games</h2>
+    <p>
+      <a href="aim-trainer.html">Aim Trainer</a> ·
+      <a href="color-reflex.html">Color Reflex</a> ·
+      <a href="speed-click-test.html">Speed Click Test</a> ·
+      <a href="guess-the-logo.html">Guess The Logo</a> ·
+      <a href="escape-room.html">Escape Room</a>
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Toolora AI · Free Online Games & Tools
+  <br><br>
+  <a href="privacy.html">Privacy Policy</a> ·
+  <a href="about.html">About</a> ·
+  <a href="contact.html">Contact</a>
+</footer>
 
 <script>
+const $ = id => document.getElementById(id);
 
-const rewards=[
-
-"🏆 100 Points",
-
-"😂 Tell Joke",
-
-"🔥 Double Score",
-
-"🌍 Geography Quiz",
-
-"🎁 Bonus Reward",
-
-"🎬 Movie Quiz",
-
-"😎 Lucky Win",
-
-"🎮 Play Again"
-
+const defaults = [
+  [
+    "Lost Galaxy",
+    "Ancient Kingdom",
+    "Crystal Forest",
+    "Shadow City",
+    "Frozen Planet",
+    "Hidden Island",
+    "Mystery Castle",
+    "Dream Dimension"
+  ],
+  [
+    "Find the Hidden Treasure",
+    "Solve the Ancient Mystery",
+    "Rescue the Lost Explorer",
+    "Discover a Secret Portal",
+    "Unlock the Forgotten Door",
+    "Find the Missing Map",
+    "Explore the Unknown Temple",
+    "Decode the Secret Message"
+  ],
+  [
+    "Complete It Without Hints",
+    "You Have Only One Attempt",
+    "A Secret Clue Is Hidden",
+    "Time Is Running Out",
+    "Trust Your First Decision",
+    "Take the Unexpected Route",
+    "Use Only Your Imagination",
+    "Discover a Bonus Challenge"
+  ]
 ];
 
-let rotation=0;
+const titles = [
+  "🌌 Choose Your Realm",
+  "⚔️ Choose Your Mission",
+  "🌀 Reveal The Twist"
+];
 
-function spin(){
+const captions = [
+  "Spin to discover your adventure world",
+  "Spin to reveal your mission",
+  "Spin to reveal your unexpected twist"
+];
 
-let wheel=
+const keys = ["realm","mission","twist"];
 
-document
+const palette = [
+  "#7137a8",
+  "#a32e70",
+  "#5435a0",
+  "#c13b52",
+  "#4b4aa8",
+  "#873b91",
+  "#a94765",
+  "#3f579e",
+  "#7042a0",
+  "#b63c75"
+];
 
-.getElementById(
+let options = defaults.map(a=>[...a]);
+let selected = [null,null,null];
+let activeStage = 0;
+let rotation = 0;
+let spinning = false;
+let animationFrame = null;
+let history = [];
 
-"wheel"
+const canvas = $("wheel");
+const ctx = canvas.getContext("2d");
 
-);
+function resizeCanvas(){
+  const rect = canvas.getBoundingClientRect();
+  const dpr = Math.min(window.devicePixelRatio || 1,2);
 
-let random=
+  canvas.width = Math.round(rect.width*dpr);
+  canvas.height = Math.round(rect.height*dpr);
 
-Math.floor(
+  ctx.setTransform(dpr,0,0,dpr,0,0);
 
-Math.random()*8
-
-);
-
-rotation+=
-
-1800+
-
-random*45;
-
-wheel.style.transform=
-
-`rotate(${rotation}deg)`;
-
-setTimeout(
-
-()=>{
-
-document
-
-.getElementById(
-
-"result"
-
-)
-
-.innerHTML=
-
-rewards[random];
-
-},
-
-5000
-
-);
-
+  drawWheel();
 }
 
+function drawWheel(){
+  const rect = canvas.getBoundingClientRect();
+  const size = rect.width;
+
+  if(!size) return;
+
+  const center = size/2;
+  const radius = size/2-7;
+  const items = options[activeStage];
+  const slice = Math.PI*2/items.length;
+
+  ctx.clearRect(0,0,size,size);
+
+  ctx.save();
+  ctx.translate(center,center);
+
+  ctx.beginPath();
+  ctx.arc(0,0,radius+3,0,Math.PI*2);
+  ctx.fillStyle="#171020";
+  ctx.fill();
+
+  for(let i=0;i<items.length;i++){
+    const start = -Math.PI/2+rotation+i*slice;
+    const end = start+slice;
+
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.arc(0,0,radius,start,end);
+    ctx.closePath();
+
+    ctx.fillStyle=palette[i%palette.length];
+    ctx.fill();
+
+    ctx.strokeStyle="rgba(255,255,255,.55)";
+    ctx.lineWidth=1.5;
+    ctx.stroke();
+
+    ctx.save();
+
+    ctx.rotate(start+slice/2);
+
+    const maxWidth=radius*.48;
+    let label=items[i];
+
+    ctx.fillStyle="#fff";
+    ctx.font=`600 ${Math.max(9,Math.min(13,size*.031))}px Poppins, Arial`;
+    ctx.textAlign="right";
+    ctx.textBaseline="middle";
+
+    while(ctx.measureText(label).width>maxWidth && label.length>8){
+      label=label.slice(0,-1);
+    }
+
+    if(label!==items[i]) label+="…";
+
+    ctx.shadowColor="rgba(0,0,0,.35)";
+    ctx.shadowBlur=3;
+    ctx.fillText(label,radius*.88,0);
+
+    ctx.restore();
+  }
+
+  ctx.beginPath();
+  ctx.arc(0,0,radius,0,Math.PI*2);
+  ctx.strokeStyle="rgba(255,255,255,.65)";
+  ctx.lineWidth=3;
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+function renderStage(){
+  $("stageTitle").textContent=titles[activeStage];
+  $("stageNumber").textContent=`STAGE 0${activeStage+1} / 03`;
+  $("wheelCaption").textContent=captions[activeStage];
+
+  for(let i=0;i<3;i++){
+    const step=$("step"+i);
+    step.classList.toggle("active",i===activeStage);
+    step.classList.toggle("done",selected[i]!==null);
+  }
+
+  const hasResult=selected[activeStage]!==null;
+
+  $("currentResult").classList.toggle("show",hasResult);
+  $("resultValue").textContent=hasResult?selected[activeStage]:"";
+
+  $("nextBtn").disabled=!hasResult || activeStage===2;
+  $("nextBtn").textContent=activeStage===1?"Final Stage →":"Next Stage →";
+
+  $("spinBtn").disabled=spinning;
+  $("spinBtn").textContent=spinning?"SPINNING...":"🎡 SPIN THE WHEEL";
+
+  $("questCard").classList.toggle(
+    "show",
+    selected.every(v=>v!==null)
+  );
+
+  drawWheel();
+}
+
+function normalize(angle){
+  return ((angle%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
+}
+
+function spinWheel(){
+  if(spinning) return;
+
+  spinning=true;
+  $("spinBtn").disabled=true;
+  $("nextBtn").disabled=true;
+  $("spinBtn").textContent="✦ SPINNING...";
+
+  $("currentResult").classList.remove("show");
+  $("questCard").classList.remove("show");
+
+  const items=options[activeStage];
+  const count=items.length;
+  const slice=Math.PI*2/count;
+
+  const winner=Math.floor(Math.random()*count);
+  const center=(winner+.5)*slice;
+
+  const start=rotation;
+  let target=-center;
+
+  while(target<=start+Math.PI*6){
+    target+=Math.PI*2;
+  }
+
+  const total=target-start;
+  const duration=4800;
+  const startTime=performance.now();
+
+  function animate(now){
+    const progress=Math.min((now-startTime)/duration,1);
+    const eased=1-Math.pow(1-progress,4);
+
+    rotation=start+total*eased;
+    drawWheel();
+
+    if(progress<1){
+      animationFrame=requestAnimationFrame(animate);
+    }else{
+      rotation=target;
+      spinning=false;
+      animationFrame=null;
+
+      selected[activeStage]=items[winner];
+
+      showWinner(items[winner]);
+      renderStage();
+
+      if(selected.every(v=>v!==null)){
+        buildQuest();
+      }
+    }
+  }
+
+  animationFrame=requestAnimationFrame(animate);
+}
+
+function showWinner(value){
+  $("currentResult").classList.add("show");
+  $("resultValue").textContent=value;
+  $("resultLabel").textContent=
+    activeStage===0?"YOUR REALM":
+    activeStage===1?"YOUR MISSION":"YOUR TWIST";
+
+  if(activeStage===2){
+    $("nextBtn").disabled=true;
+  }else{
+    $("nextBtn").disabled=false;
+  }
+}
+
+function buildQuest(){
+  $("questRealm").textContent=selected[0];
+  $("questMission").textContent=selected[1];
+  $("questTwist").textContent=selected[2];
+
+  const entry={
+    realm:selected[0],
+    mission:selected[1],
+    twist:selected[2],
+    date:new Date().toLocaleString()
+  };
+
+  history.unshift(entry);
+  history=history.slice(0,15);
+
+  saveHistory();
+  renderHistory();
+
+  $("questCard").classList.add("show");
+}
+
+function nextStage(){
+  if(spinning || selected[activeStage]===null) return;
+
+  if(activeStage<2){
+    activeStage++;
+    rotation=0;
+    renderStage();
+  }
+}
+
+function newAdventure(){
+  if(spinning) return;
+
+  selected=[null,null,null];
+  activeStage=0;
+  rotation=0;
+
+  $("questCard").classList.remove("show");
+  $("currentResult").classList.remove("show");
+
+  renderStage();
+}
+
+function applyOptions(){
+  if(spinning) return;
+
+  const inputs=[
+    $("realmInput"),
+    $("missionInput"),
+    $("twistInput")
+  ];
+
+  const newOptions=inputs.map(input=>
+    [...new Set(
+      input.value
+        .split("\n")
+        .map(v=>v.trim())
+        .filter(Boolean)
+    )]
+  );
+
+  if(newOptions.some(arr=>arr.length<2)){
+    alert("Har wheel mein kam se kam 2 unique options hone chahiye.");
+    return;
+  }
+
+  if(newOptions.some(arr=>arr.length>20)){
+    alert("Har wheel mein maximum 20 options allowed hain.");
+    return;
+  }
+
+  options=newOptions;
+  newAdventure();
+
+  alert("Your custom wheel options have been applied!");
+}
+
+function restoreDefaults(){
+  if(spinning) return;
+
+  options=defaults.map(a=>[...a]);
+
+  $("realmInput").value=options[0].join("\n");
+  $("missionInput").value=options[1].join("\n");
+  $("twistInput").value=options[2].join("\n");
+
+  newAdventure();
+}
+
+function saveHistory(){
+  try{
+    localStorage.setItem(
+      "toolora_quest_history",
+      JSON.stringify(history)
+    );
+  }catch(e){}
+}
+
+function loadHistory(){
+  try{
+    const saved=JSON.parse(
+      localStorage.getItem("toolora_quest_history")||"[]"
+    );
+
+    if(Array.isArray(saved)){
+      history=saved.slice(0,15);
+    }
+  }catch(e){
+    history=[];
+  }
+
+  renderHistory();
+}
+
+function renderHistory(){
+  const container=$("historyList");
+
+  if(!history.length){
+    container.innerHTML=
+      '<p class="history-empty">Your completed adventures will appear here.</p>';
+    return;
+  }
+
+  container.innerHTML=history.map((item,index)=>`
+    <div class="history-item">
+      <strong>✦ Quest ${history.length-index}</strong>
+      <small>${escapeHTML(item.date)}</small>
+      🌌 ${escapeHTML(item.realm)}<br>
+      ⚔️ ${escapeHTML(item.mission)}<br>
+      🌀 ${escapeHTML(item.twist)}
+    </div>
+  `).join("");
+}
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,char=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
+}
+
+function copyQuest(){
+  const text=
+`TOOLORA QUEST
+
+Realm: ${selected[0]}
+Mission: ${selected[1]}
+Twist: ${selected[2]}
+
+Generated with Toolora AI Quest Wheel`;
+
+  if(!navigator.clipboard){
+    alert("Clipboard access is unavailable in this browser.");
+    return;
+  }
+
+  navigator.clipboard.writeText(text)
+    .then(()=>alert("Quest copied successfully!"))
+    .catch(()=>alert("Could not copy. Please try again."));
+}
+
+$("spinBtn").addEventListener("click",spinWheel);
+$("nextBtn").addEventListener("click",nextStage);
+$("newQuestBtn").addEventListener("click",newAdventure);
+$("applyBtn").addEventListener("click",applyOptions);
+$("restoreBtn").addEventListener("click",restoreDefaults);
+$("copyBtn").addEventListener("click",copyQuest);
+
+$("clearHistoryBtn").addEventListener("click",()=>{
+  if(!confirm("Clear all saved quest history?")) return;
+
+  history=[];
+  saveHistory();
+  renderHistory();
+});
+
+$("realmInput").value=defaults[0].join("\n");
+$("missionInput").value=defaults[1].join("\n");
+$("twistInput").value=defaults[2].join("\n");
+
+loadHistory();
+renderStage();
+
+if("ResizeObserver" in window){
+  new ResizeObserver(resizeCanvas).observe(canvas);
+}else{
+  window.addEventListener("resize",resizeCanvas);
+}
+
+resizeCanvas();
 </script>
 
 </body>
-
 </html>
