@@ -6,9 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08070d">
 
-<title>Guess The Flag Quiz | World Flags Challenge - Toolora AI</title>
-<meta name="description" content="Play the free Guess The Flag Quiz by Toolora AI. Identify country flags, beat the timer, use hints and test your world geography knowledge.">
-<meta name="keywords" content="guess the flag, world flags quiz, country flag game, geography quiz, flag challenge, country quiz, Toolora AI">
+<title>Guess The Flag Quiz – World Flags Challenge | Toolora AI</title>
+<meta name="description" content="Play the free Guess The Flag quiz. Identify 60 country flags, beat the timer, use hints and test your world geography knowledge.">
+<meta name="keywords" content="guess the flag, world flags quiz, country flag game, geography quiz, flag challenge, Toolora AI">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://gamingsss-hub.github.io/guess-the-flag.html">
 
@@ -47,6 +47,10 @@ body{
  padding:20px;
 }
 button{font-family:inherit}
+button:focus-visible,a:focus-visible{
+ outline:2px solid var(--cyan);
+ outline-offset:3px;
+}
 .topbar{
  max-width:1100px;margin:0 auto 30px;
  display:flex;justify-content:space-between;align-items:center;
@@ -61,6 +65,7 @@ button{font-family:inherit}
  color:#fff;text-decoration:none;border:1px solid var(--border);
  padding:10px 16px;border-radius:12px;font-size:13px;
  background:rgba(255,255,255,.04);
+ transition:.2s;
 }
 .back:hover{border-color:var(--purple)}
 .wrapper{max-width:760px;margin:auto}
@@ -153,10 +158,15 @@ h1 span{
  background:rgba(255,49,85,.12);color:#ff8297;
  padding:7px 13px;border-radius:10px;min-width:48px;text-align:center;
 }
-.timer-number.urgent{background:rgba(255,49,85,.25);color:#ff536e}
+.timer-number.urgent{
+ background:rgba(255,49,85,.25);
+ color:#ff536e;
+ animation:pulse .7s infinite alternate;
+}
+@keyframes pulse{to{transform:scale(1.06)}}
 .question-label{
  color:var(--muted);font-size:12px;text-align:center;
- letter-spacing:1.4px;font-weight:700;
+ letter-spacing:1.1px;font-weight:700;
 }
 .flag-box{
  margin:18px 0;padding:25px 10px;
@@ -178,15 +188,20 @@ h1 span{
  transition:.18s;
 }
 .option:hover:not(:disabled){
- border-color:var(--purple);background:rgba(155,92,255,.12);
+ border-color:var(--purple);
+ background:rgba(155,92,255,.12);
  transform:translateY(-2px);
 }
 .option:disabled{cursor:default;opacity:1}
 .option.correct{
- border-color:var(--green);background:rgba(55,223,154,.13);color:#75f5bd;
+ border-color:var(--green);
+ background:rgba(55,223,154,.13);
+ color:#75f5bd;
 }
 .option.wrong{
- border-color:var(--red);background:rgba(255,49,85,.13);color:#ff8297;
+ border-color:var(--red);
+ background:rgba(255,49,85,.13);
+ color:#ff8297;
 }
 .option.removed{visibility:hidden;pointer-events:none}
 .feedback{
@@ -203,6 +218,7 @@ h1 span{
  border:1px solid var(--border);border-radius:12px;
  padding:12px 6px;background:rgba(255,255,255,.04);
  color:white;font-size:11px;font-weight:700;cursor:pointer;
+ transition:.2s;
 }
 .tool-btn:hover:not(:disabled){border-color:var(--purple)}
 .tool-btn:disabled{opacity:.35;cursor:not-allowed}
@@ -221,7 +237,10 @@ h1 span{
 }
 .final-score strong{font-family:'Outfit';font-size:48px;display:block}
 .final-score small{color:var(--muted)}
-.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
+.result-grid{
+ display:grid;grid-template-columns:repeat(2,1fr);
+ gap:10px;margin-bottom:20px
+}
 .result-item{
  background:rgba(255,255,255,.04);border:1px solid var(--border);
  padding:13px;border-radius:13px;
@@ -268,6 +287,11 @@ h1 span{
  .stat strong{font-size:17px}
  .tools{gap:6px}
  .tool-btn{font-size:10px;padding:11px 4px}
+ .timer-row{align-items:flex-start}
+ .question-label{text-align:left;max-width:65%}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
 </style>
 
@@ -286,42 +310,39 @@ h1 span{
 </head>
 
 <body>
-
 <header class="topbar">
  <div class="brand">TOOLORA<span> AI</span></div>
  <a class="back" href="index.html">← Home</a>
 </header>
 
 <main class="wrapper">
-
 <section class="hero">
  <div class="eyebrow">🌍 WORLD GEOGRAPHY CHALLENGE</div>
  <h1>GUESS THE <span>FLAG</span></h1>
  <p>Recognize countries, beat the clock and prove your geography knowledge.</p>
 </section>
 
-<!-- START SCREEN -->
 <section class="panel" id="startScreen">
  <h2 class="section-title">Choose Your Challenge</h2>
  <p class="muted">Select a difficulty level. Each round contains 15 random flags.</p>
 
  <div class="levels">
-  <button class="level selected" data-level="easy">
+  <button class="level selected" data-level="easy" type="button">
    <div class="level-icon">🟢</div>
    <strong>Easy</strong>
    <small>20 seconds per question</small>
   </button>
-  <button class="level" data-level="medium">
+  <button class="level" data-level="medium" type="button">
    <div class="level-icon">🟡</div>
    <strong>Medium</strong>
    <small>15 seconds per question</small>
   </button>
-  <button class="level" data-level="hard">
+  <button class="level" data-level="hard" type="button">
    <div class="level-icon">🔴</div>
    <strong>Hard</strong>
    <small>12 seconds per question</small>
   </button>
-  <button class="level" data-level="expert">
+  <button class="level" data-level="expert" type="button">
    <div class="level-icon">🔥</div>
    <strong>Expert</strong>
    <small>10 seconds per question</small>
@@ -329,18 +350,16 @@ h1 span{
  </div>
 
  <div class="stats">
-  <div class="stat"><small>COUNTRIES</small><strong>60+</strong></div>
+  <div class="stat"><small>COUNTRIES</small><strong>60</strong></div>
   <div class="stat"><small>QUESTIONS</small><strong>15</strong></div>
-  <div class="stat"><small>GAME MODE</small><strong>Timed</strong></div>
+  <div class="stat"><small>YOUR BEST</small><strong id="startBest">0</strong></div>
  </div>
 
- <button class="primary" id="startBtn">START QUIZ →</button>
+ <button class="primary" id="startBtn" type="button">START QUIZ →</button>
  <p class="muted" style="text-align:center;margin-top:13px">💡 Use hints and 50:50 carefully. Good luck!</p>
 </section>
 
-<!-- GAME SCREEN -->
 <section class="panel hidden" id="gameScreen">
-
  <div class="stats">
   <div class="stat"><small>🏆 SCORE</small><strong id="score">0</strong></div>
   <div class="stat"><small>🔥 STREAK</small><strong id="streak">0</strong></div>
@@ -359,7 +378,7 @@ h1 span{
  </div>
 
  <div class="flag-box">
-  <div class="flag" id="flag">🇮🇳</div>
+  <div class="flag" id="flag" aria-label="Country flag">🇮🇳</div>
  </div>
 
  <p class="question-text">Select the correct country</p>
@@ -368,16 +387,15 @@ h1 span{
  <div class="feedback" id="feedback" aria-live="polite"></div>
 
  <div class="tools">
-  <button class="tool-btn" id="hintBtn">💡 Hint</button>
-  <button class="tool-btn" id="fiftyBtn">✂️ 50:50</button>
-  <button class="tool-btn" id="skipBtn">⏭ Skip</button>
+  <button class="tool-btn" id="hintBtn" type="button">💡 Hint</button>
+  <button class="tool-btn" id="fiftyBtn" type="button">✂️ 50:50</button>
+  <button class="tool-btn" id="skipBtn" type="button">⏭ Skip</button>
  </div>
- <div class="hint-text" id="hintText"></div>
+ <div class="hint-text" id="hintText" aria-live="polite"></div>
 
- <button class="primary next-btn hidden" id="nextBtn">NEXT QUESTION →</button>
+ <button class="primary next-btn hidden" id="nextBtn" type="button">NEXT QUESTION →</button>
 </section>
 
-<!-- RESULT SCREEN -->
 <section class="panel hidden" id="resultScreen">
  <div class="result-icon" id="resultIcon">🏆</div>
  <h2 class="result-title" id="resultTitle">Amazing!</h2>
@@ -390,9 +408,14 @@ h1 span{
 
  <div class="result-grid">
   <div class="result-item"><small>✅ CORRECT</small><strong id="correctCount">0</strong></div>
-  <div class="result-item"><small>❌ WRONG</small><strong id="wrongCount">0</strong></div>
+  <div class="result-item"><small>❌ WRONG / MISSED</small><strong id="wrongCount">0</strong></div>
   <div class="result-item"><small>🎯 ACCURACY</small><strong id="finalAccuracy">0%</strong></div>
   <div class="result-item"><small>🔥 BEST STREAK</small><strong id="bestStreak">0</strong></div>
+ </div>
+
+ <div class="result-item" style="margin-bottom:18px">
+  <small>🏅 PERSONAL BEST</small>
+  <strong id="personalBest">0</strong>
  </div>
 
  <div class="review">
@@ -400,8 +423,8 @@ h1 span{
   <div id="reviewList"></div>
  </div>
 
- <button class="primary" id="playAgainBtn">PLAY AGAIN ↻</button>
- <button class="tool-btn" id="homeBtn" style="width:100%;margin-top:10px">← Back to Home</button>
+ <button class="primary" id="playAgainBtn" type="button">PLAY AGAIN ↻</button>
+ <button class="tool-btn" id="homeBtn" type="button" style="width:100%;margin-top:10px">← Back to Home</button>
 </section>
 
 <section class="info-section">
@@ -419,7 +442,7 @@ h1 span{
  </ul>
 
  <h3>Scoring System</h3>
- <p>Correct answers earn 100 base points, with a small time bonus for answering quickly. Consecutive correct answers can also earn a streak bonus. Incorrect answers and skipped questions do not earn points.</p>
+ <p>Correct answers earn 100 base points, plus a time bonus for answering quickly. Consecutive correct answers can also earn a streak bonus. Incorrect answers, skipped questions and timeouts do not earn points.</p>
 
  <h3>Frequently Asked Questions</h3>
  <h3>Is Guess The Flag free?</h3>
@@ -434,7 +457,6 @@ h1 span{
  <h3>Can I play offline?</h3>
  <p>The quiz logic works in your browser without an external game server. An internet connection may still be needed to load the website and its fonts.</p>
 </section>
-
 </main>
 
 <footer class="footer">
@@ -449,7 +471,6 @@ h1 span{
 <script>
 "use strict";
 
-/* COUNTRY FLAG QUESTION BANK */
 const countries = [
  {flag:"🇮🇳",name:"India",hint:"South Asia"},
  {flag:"🇺🇸",name:"United States",hint:"North America"},
@@ -548,6 +569,18 @@ function shuffle(array){
  return copy;
 }
 
+function getBest(){
+ try{
+  return Number(localStorage.getItem("toolora_flag_best") || 0);
+ }catch(error){
+  return 0;
+ }
+}
+
+function updateBestDisplay(){
+ $("startBest").textContent = getBest();
+}
+
 function playTone(frequency=600){
  try{
   audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
@@ -561,12 +594,19 @@ function playTone(frequency=600){
   gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+.16);
   oscillator.start();
   oscillator.stop(audioContext.currentTime+.17);
- }catch(e){}
+ }catch(error){}
+}
+
+function stopTimer(){
+ if(timerInterval !== null){
+  clearInterval(timerInterval);
+  timerInterval = null;
+ }
 }
 
 document.querySelectorAll(".level").forEach(button=>{
  button.addEventListener("click",()=>{
-  document.querySelectorAll(".level").forEach(b=>b.classList.remove("selected"));
+  document.querySelectorAll(".level").forEach(item=>item.classList.remove("selected"));
   button.classList.add("selected");
   selectedLevel = button.dataset.level;
  });
@@ -576,6 +616,7 @@ $("startBtn").addEventListener("click",startGame);
 $("playAgainBtn").addEventListener("click",()=>{
  $("resultScreen").classList.add("hidden");
  $("startScreen").classList.remove("hidden");
+ updateBestDisplay();
 });
 $("homeBtn").addEventListener("click",()=>{
  window.location.href="index.html";
@@ -586,7 +627,7 @@ $("fiftyBtn").addEventListener("click",useFifty);
 $("skipBtn").addEventListener("click",skipQuestion);
 
 function startGame(){
- clearInterval(timerInterval);
+ stopTimer();
 
  questions = shuffle(countries).slice(0,15);
  current = 0;
@@ -605,7 +646,8 @@ function startGame(){
 }
 
 function loadQuestion(){
- clearInterval(timerInterval);
+ stopTimer();
+
  locked = false;
  usedHint = false;
  usedFifty = false;
@@ -614,6 +656,7 @@ function loadQuestion(){
  timeLeft = levels[selectedLevel].time;
 
  $("flag").textContent = question.flag;
+ $("flag").setAttribute("aria-label","Flag question "+(current+1));
  $("questionCount").textContent = `QUESTION ${current+1} / ${questions.length}`;
  $("levelName").textContent = levels[selectedLevel].label + " MODE";
  $("progressFill").style.width = `${(current/questions.length)*100}%`;
@@ -630,16 +673,16 @@ function loadQuestion(){
  updateTimerDisplay();
 
  const wrongOptions = shuffle(
-  countries.filter(country=>country.name!==question.name)
+  countries.filter(country=>country.name !== question.name)
  ).slice(0,3);
 
  const options = shuffle([question,...wrongOptions]);
-
  $("options").innerHTML = "";
 
  options.forEach(option=>{
   const button = document.createElement("button");
   button.className = "option";
+  button.type = "button";
   button.textContent = option.name;
   button.dataset.answer = option.name;
   button.addEventListener("click",()=>checkAnswer(option.name,button));
@@ -647,11 +690,12 @@ function loadQuestion(){
  });
 
  timerInterval = setInterval(()=>{
-  timeLeft--;
+  if(locked) return;
+  timeLeft = Math.max(0,timeLeft-1);
   updateTimerDisplay();
 
-  if(timeLeft<=0){
-   clearInterval(timerInterval);
+  if(timeLeft <= 0){
+   stopTimer();
    timeExpired();
   }
  },1000);
@@ -665,6 +709,7 @@ function updateTimerDisplay(){
 function updateStats(){
  $("score").textContent = score;
  $("streak").textContent = streak;
+
  const attempted = correctTotal + wrongTotal;
  $("accuracy").textContent = attempted
   ? Math.round((correctTotal/attempted)*100)+"%"
@@ -679,21 +724,38 @@ function lockOptions(){
 
 function revealCorrect(){
  document.querySelectorAll(".option").forEach(button=>{
-  if(button.dataset.answer===questions[current].name){
+  if(button.dataset.answer === questions[current].name){
    button.classList.add("correct");
   }
  });
 }
 
+function recordAnswer(result,given){
+ const question = questions[current];
+ answers.push({
+  flag:question.flag,
+  name:question.name,
+  result,
+  given
+ });
+}
+
+function showNextButton(){
+ $("nextBtn").classList.remove("hidden");
+ $("nextBtn").textContent =
+  current === questions.length-1 ? "VIEW RESULTS →" : "NEXT QUESTION →";
+}
+
 function checkAnswer(answer,button){
  if(locked) return;
+
  locked = true;
- clearInterval(timerInterval);
+ stopTimer();
  lockOptions();
 
  const question = questions[current];
 
- if(answer===question.name){
+ if(answer === question.name){
   correctTotal++;
   streak++;
   bestStreak = Math.max(bestStreak,streak);
@@ -707,13 +769,7 @@ function checkAnswer(answer,button){
   $("feedback").textContent = `✓ Correct! +${earned} points`;
   $("feedback").className = "feedback good";
   playTone(850);
-
-  answers.push({
-   flag:question.flag,
-   name:question.name,
-   result:"Correct",
-   given:answer
-  });
+  recordAnswer("Correct",answer);
  }else{
   wrongTotal++;
   streak = 0;
@@ -722,22 +778,16 @@ function checkAnswer(answer,button){
   $("feedback").textContent = `✕ Incorrect! Correct answer: ${question.name}`;
   $("feedback").className = "feedback bad";
   playTone(230);
-
-  answers.push({
-   flag:question.flag,
-   name:question.name,
-   result:"Wrong",
-   given:answer
-  });
+  recordAnswer("Wrong",answer);
  }
 
  updateStats();
- $("nextBtn").classList.remove("hidden");
- $("nextBtn").textContent = current===questions.length-1 ? "VIEW RESULTS →" : "NEXT QUESTION →";
+ showNextButton();
 }
 
 function timeExpired(){
  if(locked) return;
+
  locked = true;
  lockOptions();
 
@@ -749,23 +799,16 @@ function timeExpired(){
  $("feedback").textContent = `⏰ Time's up! Answer: ${question.name}`;
  $("feedback").className = "feedback bad";
 
- answers.push({
-  flag:question.flag,
-  name:question.name,
-  result:"Time up",
-  given:"No answer"
- });
-
+ recordAnswer("Time up","No answer");
  updateStats();
- $("nextBtn").classList.remove("hidden");
- $("nextBtn").textContent = current===questions.length-1 ? "VIEW RESULTS →" : "NEXT QUESTION →";
+ showNextButton();
  playTone(230);
 }
 
 function nextQuestion(){
  if(!locked) return;
 
- if(current<questions.length-1){
+ if(current < questions.length-1){
   current++;
   loadQuestion();
  }else{
@@ -775,6 +818,7 @@ function nextQuestion(){
 
 function showHint(){
  if(locked || usedHint) return;
+
  usedHint = true;
  $("hintBtn").disabled = true;
  $("hintText").textContent = "💡 Region hint: " + questions[current].hint;
@@ -782,22 +826,25 @@ function showHint(){
 
 function useFifty(){
  if(locked || usedFifty) return;
+
  usedFifty = true;
  $("fiftyBtn").disabled = true;
 
  const correct = questions[current].name;
  const wrongButtons = [...document.querySelectorAll(".option")]
-  .filter(button=>button.dataset.answer!==correct);
+  .filter(button=>button.dataset.answer !== correct);
 
  shuffle(wrongButtons).slice(0,2).forEach(button=>{
   button.classList.add("removed");
+  button.disabled = true;
  });
 }
 
 function skipQuestion(){
  if(locked) return;
+
  locked = true;
- clearInterval(timerInterval);
+ stopTimer();
  lockOptions();
 
  const question = questions[current];
@@ -808,20 +855,13 @@ function skipQuestion(){
  $("feedback").textContent = `⏭ Skipped! Answer: ${question.name}`;
  $("feedback").className = "feedback bad";
 
- answers.push({
-  flag:question.flag,
-  name:question.name,
-  result:"Skipped",
-  given:"Skipped"
- });
-
+ recordAnswer("Skipped","Skipped");
  updateStats();
- $("nextBtn").classList.remove("hidden");
- $("nextBtn").textContent = current===questions.length-1 ? "VIEW RESULTS →" : "NEXT QUESTION →";
+ showNextButton();
 }
 
 function showResults(){
- clearInterval(timerInterval);
+ stopTimer();
 
  $("gameScreen").classList.add("hidden");
  $("resultScreen").classList.remove("hidden");
@@ -830,9 +870,9 @@ function showResults(){
  let title = "Keep Practising!";
  let icon = "🌱";
 
- if(accuracy>=90){title="Flag Master!";icon="🏆";}
- else if(accuracy>=70){title="Excellent Work!";icon="🔥";}
- else if(accuracy>=50){title="Good Effort!";icon="👏";}
+ if(accuracy >= 90){title="Flag Master!";icon="🏆";}
+ else if(accuracy >= 70){title="Excellent Work!";icon="🔥";}
+ else if(accuracy >= 50){title="Good Effort!";icon="👏";}
 
  $("resultIcon").textContent = icon;
  $("resultTitle").textContent = title;
@@ -843,10 +883,17 @@ function showResults(){
  $("finalAccuracy").textContent = accuracy+"%";
  $("bestStreak").textContent = bestStreak;
 
- try{
-  const oldBest = Number(localStorage.getItem("toolora_flag_best")||0);
-  if(score>oldBest) localStorage.setItem("toolora_flag_best",String(score));
- }catch(e){}
+ let personalBest = getBest();
+
+ if(score > personalBest){
+  personalBest = score;
+  try{
+   localStorage.setItem("toolora_flag_best",String(score));
+  }catch(error){}
+ }
+
+ $("personalBest").textContent = personalBest;
+ updateBestDisplay();
 
  $("reviewList").innerHTML = "";
 
@@ -859,7 +906,7 @@ function showResults(){
 
   const right = document.createElement("span");
   right.textContent = item.result;
-  right.className = item.result==="Correct" ? "correct-text" : "wrong-text";
+  right.className = item.result === "Correct" ? "correct-text" : "wrong-text";
 
   row.append(left,right);
   $("reviewList").appendChild(row);
@@ -867,7 +914,8 @@ function showResults(){
 
  $("progressFill").style.width = "100%";
 }
-</script>
 
+updateBestDisplay();
+</script>
 </body>
 </html>
